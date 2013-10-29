@@ -1,0 +1,205 @@
+Changes in Version 1.0.2, 2013.10.29:
+
+	o Changed the names of functions used for minimization in the following functions:
+	  
+	  ciBinomN.vec, elnorm3, enormMultiplyCensored.mle, enormSinglyCensored.mle, 
+	  predIntPois
+
+========================
+
+Changes in Version 1.0.1:
+
+	o Fixed bugs in the following functions that had misspelled variable 
+	  names or variables that had not been defined:
+
+	  ci.gamma.chisq.approx, ci.lnorm3.zero.skew, ciBinomN, eqlnorm, 
+	  plot.gofCensored, ppccNormMultiplyCensoredGofTest, 
+	  ppccNormSinglyCensoredGofTest, predIntPois, print.boxcox, 
+	  print.boxcoxCensored
+
+========================
+
+Changes in Version 1.0.0
+
+	o The current version of EnvStats is Version 1.0.0.
+
+	o EnvStats is built upon Version 2.0 of the S-PLUS module "EnvironmentalStats for S-PLUS".  It includes numerous additions and changes.
+
+	o Function and data object names in EnvStats differ from those in EnvironmentalStats for S-PLUS.  All objects that begin with an upper case letter are data objects, and all functions begin with a lower case letter.  So for example, all data objects that began with "epa." in EnvironmentalStats for S-PLUS begin with "EPA." in EnvStats.
+
+	o For former EnvironmentalStats for S-PLUS users, here are the name conversions for the functions:
+
+		Old Name						New Name
+		--------						--------
+		anova.pe						anovaPE
+		aov.n							aovN
+		aov.power						aovPower
+		boxcox.multiply.censored				Embeded in boxcoxCensored
+		boxcox.singly.censored					Embeded in boxcoxCensored
+		boxcox.transform					boxcoxTransform
+		cdf.compare						cdfCompare
+		cdf.compare.censored					cdfCompareCensored
+		cdfplot							cdfPlot
+		chen.t.test						chenTTest
+		chisq.gof						Embedded in gofTest
+		ci.binom.half.width					ciBinomHalfWidth
+		ci.binom.n						ciBinomN
+		ci.norm.half.width					ciNormHalfWidth
+		ci.norm.n						ciNormN
+		ci.npar.conf.level					ciNparConfLevel
+		ci.npar.n						ciNparN
+		detection.limit.calibrate				detectionLimitCalibrate
+		dlnorm.alt						dlnormAlt
+		dlnorm.mix						dlnormMix
+		dlnorm.mix.alt						dlnormMixAlt
+		dlnorm.trunc						dlnormTrunc
+		dlnorm.trunc.alt					dlnormTruncAlt
+		dnorm.mix						dnormMix
+		dnorm.trunc						dnormTrunc
+		dzmlnorm.alt						dzmlnormAlt
+		ecdplot							ecdfPlot
+		ecdfplot.censored					ecdfPlotCensored
+		elnorm.alt						elnormAlt
+		elnorm.alt.multiply.censored				Embeded in elnormAltCensored
+		elnorm.alt.singly.censored				Embeded in elnormAltCensored
+		elnorm.multiply.censored				Embeded in elnormCensored
+		elnorm.singly.censored					Embeded in elnormCensored
+		enorm.multiply.censored					Embeded in enormCensored
+		enorm.singly.censored					Embeded in enormCensored
+		enpar.censored						enparCensored
+		epdfplot						epdfPlot
+		epois.multiply.censored					Embeded in epoisCensored
+		epois.singly.censored					Embeded in epoisCensored
+		error.bar						errorBar
+		ev.norm.ord.stats					evNormOrdStats
+		ev.norm.ord.stats.scalar				evNormOrdStatsScalar
+		ezmlnorm.alt						ezmlnormAlt
+		full.summary						summaryFull
+		geo.mean						geoMean
+		geo.sd							geoSD
+		pdfplot							pdfPlot
+		inverse.predict.calibrate				inversePredictCalibrate
+		kendall.trend.test					kendallTrendTest
+		ks.gof							Embedded in gofTest
+		l.moment						lMoment
+		linear.trend.test.n					linearTrendTestN
+		linear.trend.test.power					linearTrendTestPower
+		linear.trend.test.scaled.mds				linearTrendTestScaledMds
+		log.choose.multinomial					logChooseMultinomial
+		one.sample.permutation.test				oneSamplePermutationTest
+		pdfplot							pdfPlot
+		plnorm.alt						plnormAlt
+		plnorm.mix						plnormMix
+		plnorm.mix.alt						plnormMixAlt
+		plnorm.trunc						plnormTrunc
+		plnorm.trunc.alt					plnormTruncAlt
+		plot.aov.design						plotAovDesign
+		plot.ci.binom.design					plotCiBinomDesign
+		plot.ci.norm.design					plotCiNormDesign
+		plot.ci.npar.design					plotCiNparDesign
+		plot.linear.trend.test.design				plotLinearTrendTestDesign
+		plot.permutation.test					plot.permutationTest
+		plot.pred.int.lnorm.alt.simultaneous.test.power.curve	plotPredIntLnormAltSimultaneousTestPowerCurve
+		plot.pred.int.lnorm.alt.test.power.curve		plotPredIntLnormAltTestPowerCurve
+		plot.pred.int.norm.design				plotPredIntNormDesign
+		plot.pred.int.norm.simultaneous.test.power.curve	plotPredIntNormSimultaneousTestPowerCurve
+		plot.pred.int.norm.test.power.curve			plotPredIntNormTestPowerCurve
+		plot.pred.int.npar.design				plotPredIntNparDesign
+		plot.pred.int.npar.simultaneous.design			plotPredIntNparSimultaneousDesign
+		plot.pred.int.npar.simultaneous.test.power.curve	plotPredIntNparSimultaneousTestPowerCurve
+		plot.prop.test.design					plotPropTestDesign
+		plot.t.test.design					plotTTestDesign
+		plot.t.test.lnorm.alt.design				plotTTestLnormAltDesign
+		plot.tol.int.norm.design				plotTolIntNormDesign
+		plot.tol.int.npar.design				plotTolIntNparDesign
+		pnorm.mix						pnormMix
+		pnorm.trunc						pnormTrunc
+		ppcc.evd.gof						Embedded in gofTest
+		ppcc.norm.gof						Embedded in gofTest
+		ppcc.norm.group.gof					Embedded in gofGroupTest
+		ppcc.norm.multiply.censored.gof				Embedded in gofCensoredTest
+		ppcc.norm.singly.censored.gof				Embedded in gofCensoredTest
+		ppoints.censored					ppointCensored
+		pred.int.lnorm						predIntLnorm
+		pred.int.lnorm.alt.simultaneous.test.power		predIntLnormAltSimultaneousTestPower
+		pred.int.lnorm.alt.test.power				predIntLnormAltTestPower
+		pred.int.lnorm.simultaneous				predIntLnormSimultaneous
+		pred.int.norm						predIntNorm
+		pred.int.norm.half.width				predIntNormHalfWidth
+		pred.int.norm.K						predIntNormK
+		pred.int.norm.n						predIntNormN
+		pred.int.norm.simultaneous				predIntNormSimultaneous
+		pred.int.norm.simultaneous.K				predIntNormSimultaneousK
+		pred.int.norm.simultaneous.test.power			predIntNormSimultaneousTestPower
+		pred.int.norm.test.power				predIntNormTestPower
+		pred.int.npar						predIntNpar
+		pred.int.npar.conf.level				predIntNparConfLevel
+		pred.int.npar.n						predIntNparN
+		pred.int.npar.simultaneous				predIntNparSimultaneous
+		pred.int.npar.simultaneous.conf.level			predIntNparSimultaneousConfLevel
+		pred.int.npar.simultaneous.n				predIntNparSimultaneousN
+		pred.int.npar.simultaneous.test.power			predIntNparSimultaneousTestPower
+		pred.int.pois						predIntPois
+		prop.test.mdd						propTestMdd
+		prop.test.n						propTestN
+		prop.test.power						propTestPower
+		pw.moment						pwMoment
+		pzmlnorm.alt						pzmlnormAlt
+		qlnorm.alt						qlnormAlt
+		qlnorm.mix						qlnormMix
+		qlnorm.mix.alt						qlnormMixAlt
+		qlnorm.trunc						qlnormTrunc
+		qlnorm.trunc.alt					qlnormTruncAlt
+		qnorm.mix						qnormMix
+		qnorm.trunc						qnormTrunc
+		qqline							qqLine
+		qqplot							qqPlot
+		qqplot.gestalt						qqPlotGestalt
+		qqplot.censored						qqPlotCensored
+		quantile.test						quantileTest
+		qzmlnorm.alt						qzmlnormAlt
+		rlnorm.alt						rlnormAlt
+		rlnorm.mix						rlnormMix
+		rlnorm.mix.alt						rlnormMixAlt
+		rlnorm.trunc						rlnormTrunc
+		rlnorm.trunc.alt					rlnormTruncAlt
+		rnorm.mix						rnormMix
+		rnorm.trunc						rnormTrunc
+		rzmlnorm.alt						rzmlnormAlt
+		seasonal.kendall.trend.test				kendallSeasonalTrendTest
+		serial.correlation.test					serialCorrelationTest
+		sf.gof							Embedded in gofTest
+		sf.group.gof						Embedded in gofGroupTest
+		sf.multiply.censored.gof				Embedded in gofCensoredTest
+		sf.singly.censored.gof					Embedded in gofCensoredTest
+		sign.test						signTest
+		simulate.mv.matrix					simulateMvMatrix
+		simulate.vector						simulateVector
+		skew.gof						Embedded in gofTest
+		sw.gof							Embedded in gofTest
+		sw.group.gof						Embedded in gofGroupTest
+		sw.singly.censored.gof					Embedded in gofCensoredTest
+		t.test.n						tTestN
+		t.test.power						tTestPower
+		t.test.scaled.mdd					tTestScaledMdd
+		t.test.lnorm.alt.n					tTestLnormAltN
+		t.test.lnorm.alt.power					tTestLnormAltPower
+		t.test.lnorm.alt.ratio.of.means				tTestLnormAltRatioOfMeans
+		tol.int.lnorm						tolIntLnorm
+		tol.int.norm						tolIntNorm
+		tol.int.norm.half.width					tolIntNormHalfWidth
+		tol.int.norm.K						tolIntNormK
+		tol.int.norm.n						tolIntNormN
+		tol.int.npar						tolIntNpar
+		tol.int.npar.conf.level					tolIntNparConfLevel
+		tol.int.npar.coverage					tolIntNparCoverage
+		tol.int.npar.n						tolIntNparN
+		tol.int.pois						tolIntPois
+		two.sample.linear.rank.test				twoSampleLinearRankTest
+		two.sample.linear.rank.test.censored			twoSampleLinearRankTestCensored
+		two.sample.permutation.test.location			twoSamplePermutationTestLocation
+		two.sample.permutation.test.proportion			twoSamplePermuationTestProportion
+		var.group.test						varGroupTest
+		var.test						varTest
+		z.test.gevd.shape					zTestGevdShape
+
