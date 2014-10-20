@@ -1,8 +1,8 @@
 elnormAltMultiplyCensored <-
 function (x, censored, method = "mle", censoring.side = "left", 
     ci = FALSE, ci.method = "profile.likelihood", ci.type = "two-sided", 
-    conf.level = 0.95, n.bootstraps = 1000, use.acc.con = FALSE, 
-    pivot.statistic = "z", ...) 
+    conf.level = 0.95, n.bootstraps = 1000, pivot.statistic = "z", 
+    ...) 
 {
     if (!is.vector(x, mode = "numeric")) 
         stop("'x' must be a numeric vector")
@@ -47,20 +47,16 @@ function (x, censored, method = "mle", censoring.side = "left",
     ci.method <- match.arg(ci.method, c("delta", "cox", "normal.approx", 
         "bootstrap", "profile.likelihood"))
     ci.type <- match.arg(ci.type, c("two-sided", "lower", "upper"))
-    if (ci && ci.method == "profile.likelihood") {
-        if (method != "mle") 
-            stop("When ci.method=\"profile.likelihood\" you must set method=\"mle\"")
-        if (ci.type != "two-sided") 
-            stop("When ci.method=\"profile.likelihood\" you must set ci.type=\"two-sided\"")
-    }
+    if (ci && ci.method == "profile.likelihood" && method != 
+        "mle") 
+        stop("When ci.method=\"profile.likelihood\" you must set method=\"mle\"")
     pivot.statistic <- match.arg(pivot.statistic, c("z", "t"))
     if (K == 1 && min(x.no.cen) > cen.levels) {
         ret.list <- elnormAltSinglyCensored(x = x, censored = censored, 
             method = method, censoring.side = censoring.side, 
             ci = ci, ci.method = ci.method, ci.type = ci.type, 
             conf.level = conf.level, n.bootstraps = n.bootstraps, 
-            use.acc.con = use.acc.con, pivot.statistic = pivot.statistic, 
-            ...)
+            pivot.statistic = pivot.statistic, ...)
         ret.list$data.name <- data.name
         ret.list$censoring.name <- censoring.name
         ret.list$bad.obs <- bad.obs
@@ -87,13 +83,6 @@ function (x, censored, method = "mle", censoring.side = "left",
                 ...))
         }
         else {
-            if (ci.type != "two-sided") 
-                stop(paste("'ci.type' must be set to 'two-sided' when", 
-                  "'ci.method' equals 'bootstrap'."))
-            if (use.acc.con && length(unique(x.no.cen)) < 3) 
-                stop(paste("'x' must contain at least 3 distinct uncensored observations", 
-                  "in order to compute the acceleration constant (use.acc.con=TRUE)", 
-                  "for the Bias-Corrected Bootstrap Confidence Intervals."))
             param.ci.list <- do.call(est.fcn, list(x = x, censored = censored, 
                 N = N, cen.levels = cen.levels, K = K, c.vec = c.vec, 
                 n.cen = n.cen, censoring.side = censoring.side, 
@@ -103,8 +92,7 @@ function (x, censored, method = "mle", censoring.side = "left",
                 censored = censored, N = N, cen.levels = cen.levels, 
                 K = K, c.vec = c.vec, censoring.side = censoring.side, 
                 est.fcn = est.fcn, ci.type = ci.type, conf.level = conf.level, 
-                n.bootstraps = n.bootstraps, use.acc.con = use.acc.con, 
-                obs.mean = param.ci.list$parameters["mean"], 
+                n.bootstraps = n.bootstraps, obs.mean = param.ci.list$parameters["mean"], 
                 ...)
             param.ci.list <- c(param.ci.list, list(ci.obj = ci.list))
         }

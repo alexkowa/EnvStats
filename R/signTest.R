@@ -10,20 +10,22 @@ function (x, y = NULL, alternative = "two.sided", mu = 0, paired = FALSE,
     if (is.null(y)) {
         if (paired) 
             stop("argument 'y' missing for paired test.")
-        if (!is.vector(x, mode = "numeric") || is.factor(x)) 
+        if (!is.numeric(x)) 
             stop("'x' must be a numeric vector")
         data.name <- deparse(substitute(x))
-        if ((length(mu) != 1) || !is.finite(mu)) 
+        if (!is.numeric(mu) || length(mu) != 1 || !is.finite(mu)) 
             stop("argument 'mu' must be a single finite numeric value.")
         if ((bad.obs <- sum(!(x.ok <- is.finite(x)))) > 0) {
             is.not.finite.warning(x)
             x <- x[x.ok]
             warning(paste(bad.obs, "observations with NA/NaN/Inf in 'x' removed."))
         }
+        x <- x[x != mu]
         n <- length(x)
         if (n < 2 || length(unique(x)) < 2) 
-            stop(paste("'x' must contain at least 2 non-missing distinct values. ", 
-                "This is not true for 'x' =", data.name))
+            stop(paste("'x' must contain at least 2 non-missing distinct values", 
+                "not equal to the supplied value of 'mu'.", "This is not true for 'x' =", 
+                data.name))
         d <- x
     }
     else {
@@ -43,11 +45,12 @@ function (x, y = NULL, alternative = "two.sided", mu = 0, paired = FALSE,
                 is.not.finite.warning(y)
             d <- d[both.ok]
             warning(paste(bad.obs, "observations with NA/NaN/Inf in 'x' or 'y' removed."))
-            n <- length(d)
         }
+        d <- d[d != mu]
+        n <- length(d)
         if (n < 2 || all(d == d[1])) 
-            stop(paste("There must be at least 2 non-missing distinct differences. ", 
-                "This is not true for the paired values in\n", 
+            stop(paste("There must be at least 2 non-missing distinct differences", 
+                "not equal to the supplied value of 'mu'.", "This is not true for the paired values in\n", 
                 "'x' =", data.name["x"], "and\n", "'y' =", data.name["y"]))
     }
     muhat <- median(d)

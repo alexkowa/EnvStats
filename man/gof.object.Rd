@@ -111,7 +111,7 @@
 \seealso{
   \code{\link{gofTest}}, \code{\link{print.gof}}, \code{\link{plot.gof}}, 
   \link[=FcnsByCatGOFTests]{Goodness-of-Fit Tests}, 
-  \code{\link{Distribution.df}}, \code{gofCensored.object}.
+  \code{\link{Distribution.df}}, \code{\link{gofCensored.object}}.
 }
 \examples{
   # Create an object of class "gof", then print it out. 
@@ -187,7 +187,7 @@
 
   # Clean up
   #---------
-  rm(gof.obj)
+  rm(dat, gof.obj)
   graphics.off()
 }
 \keyword{classes}

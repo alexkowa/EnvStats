@@ -1,15 +1,15 @@
 stripChart.default <-
 function (x, method = "stack", seed = 47, jitter = 0.1 * cex, 
-    offset = 1/2, vertical = TRUE, group.names, drop.unused.levels = TRUE, 
-    add = FALSE, at = NULL, xlim = NULL, ylim = NULL, ylab = NULL, 
-    xlab = NULL, dlab = "", glab = "", log = "", pch = 1, col = par("fg"), 
-    cex = par("cex"), points.cex = cex, axes = TRUE, frame.plot = axes, 
-    show.ci = TRUE, location.pch = 16, location.cex = cex, conf.level = 0.95, 
-    min.n.for.ci = 2, ci.offset = 3/ifelse(n > 2, (n - 1)^(1/3), 
-        1), ci.bar.ends = TRUE, ci.bar.ends.size = 0.5 * cex, 
-    ci.bar.gap = FALSE, n.text = "bottom", n.text.line = ifelse(n.text == 
-        "bottom", 2, 0), n.text.cex = cex, location.scale.text = "top", 
-    location.scale.digits = 1, location.scale.text.line = ifelse(location.scale.text == 
+    offset = 1/2, vertical = TRUE, group.names, group.names.cex = cex, 
+    drop.unused.levels = TRUE, add = FALSE, at = NULL, xlim = NULL, 
+    ylim = NULL, ylab = NULL, xlab = NULL, dlab = "", glab = "", 
+    log = "", pch = 1, col = par("fg"), cex = par("cex"), points.cex = cex, 
+    axes = TRUE, frame.plot = axes, show.ci = TRUE, location.pch = 16, 
+    location.cex = cex, conf.level = 0.95, min.n.for.ci = 2, 
+    ci.offset = 3/ifelse(n > 2, (n - 1)^(1/3), 1), ci.bar.ends = TRUE, 
+    ci.bar.ends.size = 0.5 * cex, ci.bar.gap = FALSE, n.text = "bottom", 
+    n.text.line = ifelse(n.text == "bottom", 2, 0), n.text.cex = cex, 
+    location.scale.text = "top", location.scale.digits = 1, location.scale.text.line = ifelse(location.scale.text == 
         "top", 0, 3.5), location.scale.text.cex = cex * 0.8 * 
         ifelse(n > 6, max(0.4, 1 - (n - 6) * 0.06), 1), p.value = FALSE, 
     p.value.digits = 3, p.value.line = 2, p.value.cex = cex, 
@@ -98,7 +98,8 @@ function (x, method = "stack", seed = 47, jitter = 0.1 * cex,
         if (vertical) {
             if (axes) {
                 if (n > 1L) 
-                  axis(1, at = at, labels = group.names, ...)
+                  axis(1, at = at, labels = group.names, cex.axis = group.names.cex, 
+                    ...)
                 Axis(x, side = 2, ...)
             }
             if (is.null(ylab)) 
@@ -110,7 +111,8 @@ function (x, method = "stack", seed = 47, jitter = 0.1 * cex,
             if (axes) {
                 Axis(x, side = 1, ...)
                 if (n > 1L) 
-                  axis(2, at = at, labels = group.names, ...)
+                  axis(2, at = at, labels = group.names, cex.axis = group.names.cex, 
+                    ...)
             }
             if (is.null(xlab)) 
                 xlab <- dlab
@@ -150,6 +152,16 @@ function (x, method = "stack", seed = 47, jitter = 0.1 * cex,
         }
     }
     dimnames(ci.mat) <- list(group.names, c("LCL", "UCL", "Conf.Level"))
+    if (show.ci) {
+        length.ci.offset <- length(ci.offset)
+        if (!is.vector(ci.offset, mode = "numeric") || !all(is.finite(ci.offset)) || 
+            any(ci.offset < .Machine$double.eps) || !(length.ci.offset %in% 
+            c(1, n))) 
+            stop(paste("'ci.offset' must be a positive scalar, or else a vector of", 
+                "positive numbers with length equal to the number of groups"))
+        if (length.ci.offset == 1) 
+            ci.offset <- rep(ci.offset, n)
+    }
     for (i in 1L:n) {
         x <- groups[[i]]
         y <- rep.int(at[i], length(x))
@@ -208,25 +220,25 @@ function (x, method = "stack", seed = 47, jitter = 0.1 * cex,
         if (show.ci) {
             if (vertical) {
                 if (sd.x > 0 & n.vec[i] >= min.n.for.ci) 
-                  errorBar(x = at[i] + ci.offset * csize, y = location.vec[i], 
-                    lower = ci.mat[i, "LCL"], upper = ci.mat[i, 
-                      "UCL"], incr = FALSE, bar.ends = ci.bar.ends, 
+                  errorBar(x = at[i] + ci.offset[i] * csize, 
+                    y = location.vec[i], lower = ci.mat[i, "LCL"], 
+                    upper = ci.mat[i, "UCL"], incr = FALSE, bar.ends = ci.bar.ends, 
                     gap = ci.bar.gap, add = TRUE, horizontal = FALSE, 
                     col = col[(i - 1L)%%length(col) + 1L], bar.ends.size = ci.bar.ends.size)
-                points(at[i] + ci.offset * csize, location.vec[i], 
+                points(at[i] + ci.offset[i] * csize, location.vec[i], 
                   pch = location.pch, col = col[(i - 1L)%%length(col) + 
                     1L], cex = location.cex)
             }
             else {
                 if (sd.x > 0 & n.vec[i] >= min.n.for.ci) 
-                  errorBar(x = location.vec[i], y = at[i] + ci.offset * 
+                  errorBar(x = location.vec[i], y = at[i] + ci.offset[i] * 
                     csize, lower = ci.mat[i, "LCL"], upper = ci.mat[i, 
                     "UCL"], incr = FALSE, bar.ends = ci.bar.ends, 
                     gap = ci.bar.gap, add = TRUE, horizontal = TRUE, 
                     col = col[(i - 1L)%%length(col) + 1L], bar.ends.size = ci.bar.ends.size)
-                points(location.vec[i], at[i] + ci.offset * csize, 
-                  pch = location.pch, col = col[(i - 1L)%%length(col) + 
-                    1L], cex = location.cex)
+                points(location.vec[i], at[i] + ci.offset[i] * 
+                  csize, pch = location.pch, col = col[(i - 1L)%%length(col) + 
+                  1L], cex = location.cex)
             }
         }
     }
@@ -235,95 +247,99 @@ function (x, method = "stack", seed = 47, jitter = 0.1 * cex,
     if (ci.and.test == "nonparametric") 
         dimnames(return.mat)[[2]][2:3] <- c("Median", "IQR")
     dimnames(return.mat)[[1]] <- group.names
-    if (n == 1L) {
-        p.val <- NA
-        p.val.string <- ""
-    }
-    else if (any(sapply(groups, sd) > 0)) {
-        if (n == 2) {
-            if (ci.and.test == "nonparametric") {
-                test.fcn <- "wilcox.test"
-                if (is.null(test.arg.list) || all(is.na(pmatch(names(ci.arg.list), 
-                  "conf.int")))) {
-                  test.arg.list <- c(test.arg.list, list(conf.int = TRUE))
+    ret.list <- list(group.centers = at, group.stats = return.mat)
+    if (p.value) {
+        if (n == 1L) {
+            p.val <- NA
+            p.val.string <- ""
+        }
+        else if (any(sapply(groups, sd) > 0)) {
+            if (n == 2) {
+                if (ci.and.test == "nonparametric") {
+                  test.fcn <- "wilcox.test"
+                  if (is.null(test.arg.list) || all(is.na(pmatch(names(ci.arg.list), 
+                    "conf.int")))) {
+                    test.arg.list <- c(test.arg.list, list(conf.int = TRUE))
+                  }
+                  else {
+                    index <- (1:length(test.arg.list))[!is.na(pmatch(names(test.arg.list), 
+                      "conf.int"))]
+                    if (!unlist(test.arg.list[index])) 
+                      test.arg.list[[index]] <- TRUE
+                  }
+                  p.val.string <- "Wilcoxon p-value"
                 }
                 else {
-                  index <- (1:length(test.arg.list))[!is.na(pmatch(names(test.arg.list), 
-                    "conf.int"))]
-                  if (!unlist(test.arg.list[index])) 
-                    test.arg.list[[index]] <- TRUE
+                  test.fcn <- "t.test"
+                  if (is.null(test.arg.list) || all(is.na(pmatch(names(test.arg.list), 
+                    "var.equal")))) {
+                    test.arg.list <- c(test.arg.list, list(var.equal = TRUE))
+                    p.val.string <- "t-test p-value"
+                  }
+                  else {
+                    index <- (1:length(test.arg.list))[!is.na(pmatch(names(test.arg.list), 
+                      "var.equal"))]
+                    if (!unlist(test.arg.list[index])) 
+                      p.val.string <- "Welch t-test p-value"
+                  }
                 }
-                p.val.string <- "Wilcoxon p-value"
+                alternative <- match.arg(alternative, c("two.sided", 
+                  "less", "greater"))
+                if (alternative != "two.sided") 
+                  p.val.string <- paste(p.val.string, " (alternative='", 
+                    alternative, "')", sep = "")
+                test.list <- do.call(test.fcn, args = c(list(x = groups[[2]], 
+                  y = groups[[1]], alternative = alternative, 
+                  conf.level = group.difference.conf.level), 
+                  test.arg.list))
+                p.val <- test.list$p.value
+                ci <- test.list$conf.int
             }
             else {
-                test.fcn <- "t.test"
-                if (is.null(test.arg.list) || all(is.na(pmatch(names(test.arg.list), 
-                  "var.equal")))) {
-                  test.arg.list <- c(test.arg.list, list(var.equal = TRUE))
-                  p.val.string <- "t-test p-value"
+                y <- unlist(groups)
+                group.n <- sapply(groups, length)
+                group <- factor(rep(1:n, times = group.n))
+                if (ci.and.test == "parametric") {
+                  p.val.string <- "Anova p-value"
+                  dum.aov <- aov(y ~ group)
+                  dum.mat <- unclass(summary(dum.aov))[[1]]
+                  p.val <- dum.mat[1, "Pr(>F)"]
                 }
                 else {
-                  index <- (1:length(test.arg.list))[!is.na(pmatch(names(test.arg.list), 
-                    "var.equal"))]
-                  if (!unlist(test.arg.list[index])) 
-                    p.val.string <- "Welch t-test p-value"
+                  p.val.string <- "Kruskal-Wallis p-value"
+                  test.list <- kruskal.test(y ~ group)
+                  p.val <- test.list$p.value
                 }
             }
-            alternative <- match.arg(alternative, c("two.sided", 
-                "less", "greater"))
-            if (alternative != "two.sided") 
-                p.val.string <- paste(p.val.string, " (alternative='", 
-                  alternative, "')", sep = "")
-            test.list <- do.call(test.fcn, args = c(list(x = groups[[2]], 
-                y = groups[[1]], alternative = alternative, conf.level = group.difference.conf.level), 
-                test.arg.list))
-            p.val <- test.list$p.value
-            ci <- test.list$conf.int
+            if (p.value & !is.na(p.val)) {
+                p.val.to.show <- round(p.val, p.value.digits)
+                p.val.to.show <- ifelse(p.val.to.show == 0, paste("<", 
+                  format(5 * 10^-(p.value.digits + 1), scientific = FALSE)), 
+                  paste("=", p.val.to.show))
+                string <- paste(p.val.string, p.val.to.show)
+                if (n == 2 & group.difference.ci) {
+                  string1 <- ifelse(ci.and.test == "parametric", 
+                    "% CI for Difference in Means: [", "% CI for Difference in Locations: [")
+                  string <- paste(string, ";  ", round(100 * 
+                    group.difference.conf.level, 0), string1, 
+                    round(ci[1], group.difference.digits), ", ", 
+                    round(ci[2], group.difference.digits), "]", 
+                    sep = "")
+                }
+                mtext(string, line = p.value.line, cex = p.value.cex)
+            }
         }
         else {
-            y <- unlist(groups)
-            group.n <- sapply(groups, length)
-            group <- factor(rep(group.names, times = group.n))
-            if (ci.and.test == "parametric") {
-                p.val.string <- "Anova p-value"
-                dum.aov <- aov(y ~ group)
-                dum.mat <- unclass(summary(dum.aov))[[1]]
-                p.val <- dum.mat[1, "Pr(>F)"]
-            }
-            else {
-                p.val.string <- "Kruskal-Wallis p-value"
-                test.list <- kruskal.test(y ~ group)
-                p.val <- test.list$p.value
-            }
+            p.val.string <- "p-value"
+            p.val <- NA
+            ci <- c(LCL = NA, UCL = NA)
+            if (p.value) 
+                warning("Constant values within each group, so between-group test not possible")
         }
-        if (p.value & !is.na(p.val)) {
-            p.val.to.show <- round(p.val, p.value.digits)
-            p.val.to.show <- ifelse(p.val.to.show == 0, paste("<", 
-                format(5 * 10^-(p.value.digits + 1), scientific = FALSE)), 
-                paste("=", p.val.to.show))
-            string <- paste(p.val.string, p.val.to.show)
-            if (n == 2 & group.difference.ci) {
-                string1 <- ifelse(ci.and.test == "parametric", 
-                  "% CI for Difference in Means: [", "% CI for Difference in Locations: [")
-                string <- paste(string, ";  ", round(100 * group.difference.conf.level, 
-                  0), string1, round(ci[1], group.difference.digits), 
-                  ", ", round(ci[2], group.difference.digits), 
-                  "]", sep = "")
-            }
-            mtext(string, line = p.value.line, cex = p.value.cex)
-        }
+        attr(p.val, "type") <- p.val.string
+        ret.list <- c(ret.list, list(group.difference.p.value = p.val))
+        if (n == 2) 
+            ret.list <- c(ret.list, list(group.difference.conf.int = ci))
     }
-    else {
-        p.val.string <- "p-value"
-        p.val <- NA
-        ci <- c(LCL = NA, UCL = NA)
-        if (p.value) 
-            warning("Constant values within each group, so between-group test not possible")
-    }
-    attr(p.val, "type") <- p.val.string
-    ret.list <- list(group.centers = at, group.stats = return.mat, 
-        group.difference.p.value = p.val)
-    if (n == 2) 
-        ret.list <- c(ret.list, list(group.difference.conf.int = ci))
     invisible(ret.list)
 }

@@ -1,9 +1,8 @@
 oneSamplePermutationTest <-
 function (x, alternative = "two.sided", mu = 0, exact = FALSE, 
-    n.permutations = 5000, seed = sample(.Random.seed, size = 1), 
-    ...) 
+    n.permutations = 5000, seed = NULL, ...) 
 {
-    if (!is.vector(x, mode = "numeric") || is.factor(x)) 
+    if (!is.numeric(x)) 
         stop("'x' must be a numeric vector")
     data.name <- deparse(substitute(x))
     if ((bad.obs <- sum(!(x.ok <- is.finite(x)))) > 0) {
@@ -24,6 +23,9 @@ function (x, alternative = "two.sided", mu = 0, exact = FALSE,
             length(n.permutations) != 1 || n.permutations != 
             trunc(n.permutations) || n.permutations < 1) 
             stop("'n.permutations' must be a positive integer")
+        if (!is.null(seed) && (!is.numeric(seed) || length(seed) != 
+            1 || seed != trunc(seed) || seed < 0 || seed > 1000)) 
+            stop("'seed' must be an integer between 0 and 1000")
     }
     dff <- x - mu
     method <- "One-Sample Permutation Test"

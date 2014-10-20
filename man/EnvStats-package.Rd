@@ -35,8 +35,8 @@
 \tabular{ll}{
 Package: \tab EnvStats\cr
 Type: \tab Package\cr
-Version: \tab 1.0.2\cr
-Date: \tab 2013-10-29\cr
+Version: \tab 1.0.3\cr
+Date: \tab 2014-10-20\cr
 License: \tab GPL (>=3)\cr
 LazyLoad: \tab yes\cr
 }
@@ -211,7 +211,7 @@ Maintainer: Steven P. Millard <EnvStats@ProbStatInfo.com>
   sum(EPA.94b.tccb.df$Censored) 
   #[1] 1 
 
-  EPA.94b.tccb.df$TcCB[EPA.94b.tccb.df$Censored]
+  with(EPA.94b.tccb.df, TcCB[Censored])
   #0.09 
 
   # Summary statistics will treat the one censored value 
@@ -294,8 +294,8 @@ Maintainer: Steven P. Millard <EnvStats@ProbStatInfo.com>
   # assuming a lognormal distribution.
   #------------------------------------------------------------
 
-  TcCB.ref <- EPA.94b.tccb.df$TcCB[EPA.94b.tccb.df$Area == "Reference"]
-  eqlnorm(TcCB.ref, p = 0.9, ci = TRUE)
+  with(EPA.94b.tccb.df, 
+    eqlnorm(TcCB[Area == "Reference"], p = 0.9, ci = TRUE))
 
   # Results of Distribution Parameter Estimation
   # --------------------------------------------
@@ -311,7 +311,7 @@ Maintainer: Steven P. Millard <EnvStats@ProbStatInfo.com>
   #
   # Quantile Estimation Method:      qmle
   #
-  # Data:                            TcCB.ref
+  # Data:                            TcCB[Area == "Reference"]
   #
   # Sample Size:                     47
   #

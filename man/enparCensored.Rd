@@ -13,8 +13,7 @@
   enparCensored(x, censored, censoring.side = "left", correct.se = FALSE, 
     left.censored.min = "DL", right.censored.max = "DL", ci = FALSE, 
     ci.method = "normal.approx", ci.type = "two-sided", conf.level = 0.95, 
-    pivot.statistic = "z", ci.sample.size = NULL, n.bootstraps = 1000, 
-    use.acc.con = FALSE)
+    pivot.statistic = "z", ci.sample.size = NULL, n.bootstraps = 1000)
 }
 \arguments{
   \item{x}{
@@ -101,13 +100,6 @@
   argument is ignored if \code{ci=FALSE} and/or \code{ci.method} does not 
   equal \code{"bootstrap"}.
 }
-  \item{use.acc.con}{
-  logical scalar indicating whether to use the acceleration constant when 
-  computing the bias-corrected bootstrap confidence interval (see the DETAILS section).  
-  The default value is \code{FALSE}.  This 
-  argument is ignored if \code{ci=FALSE} and/or \code{ci.method} does not 
-  equal \code{"bootstrap"}.
-}
 }
 \details{
   Let \eqn{\underline{x} = (x_1, x_2, \ldots, x_N)} denote a vector of \eqn{N} 
@@ -125,7 +117,7 @@
   \bold{Estimation} \cr
   It can be shown that the mean of a positive-valued distribution is equal to the 
   area under the survival curve (Klein and Moeschberger, 2003, p.33):
-  \deqn{\mu = \int_0^\infty [1 - F(t)] dt = \int_0^\infty S(t) dt =  \;\;\;\;\;\; (2)}
+  \deqn{\mu = \int_0^\infty [1 - F(t)] dt = \int_0^\infty S(t) dt \;\;\;\;\;\; (2)}
   where \eqn{F(t)} denotes the cumulative distribution function evaluated at \eqn{t} 
   and \eqn{S(t) = 1 - F(t)} denotes the survival function evaluated at \eqn{t}.  
   When the Kaplan-Meier estimator is used to construct the survival function, 
@@ -234,7 +226,13 @@
       observations in \eqn{\underline{x}}. Because the bootstrap sample usually 
       does not match the original sample, the estimate of \eqn{\mu} based on the 
       bootstrap sample will usually differ from the original estimate based on 
-      \eqn{\underline{x}}.
+      \eqn{\underline{x}}.  For the bootstrap-t method (see below), this step also 
+      involves estimating the standard error of the estimate of the mean and 
+      computing the statistic \eqn{T = (\hat{\mu}_B - \hat{mu}) / \hat{\sigma}_{\hat{\mu}_B}} 
+      where \eqn{\hat{\mu}} denotes the estimate of the mean based on the original sample, 
+      and \eqn{\hat{\mu}_B} and \eqn{\hat{\sigma}_{\hat{\mu}_B}} denote the estimate of 
+      the mean and estimate of the standard error of the estimate of the mean based on 
+      the bootstrap sample.
 
     \item Repeat Steps 1 and 2 \eqn{B} times, where \eqn{B} is some large number.  
       For the function \code{enparCensored}, the number of bootstraps \eqn{B} is 
@@ -242,18 +240,24 @@
       The default value of \code{n.bootstraps} is \code{1000}.
 
     \item Use the \eqn{B} estimated values of \eqn{\mu} to compute the empirical 
-      cumulative distribution function of this estimator of \eqn{\mu} (see 
-      \code{\link{ecdfPlot}}), and then create a confidence interval for \eqn{\mu} 
+      cumulative distribution function of the estimator of \eqn{\mu} or to compute 
+      the empirical cumulative distribution function of the statistic \eqn{T}  
+      (see \code{\link{ecdfPlot}}), and then create a confidence interval for \eqn{\mu} 
       based on this estimated cdf.  
   }
 
-  The percentile interval (Efron and Tibshirani, 1993, p.170) is computed as:
-  \deqn{[\hat{G}^{-1}(\frac{\alpha}{2}), \; \hat{G}^{-1}(\frac{1-\alpha}{2})] \;\;\;\;\;\; (10)}
-  where \eqn{\hat{G}(t)} denotes the empirical cdf evaluated at \eqn{t} and thus 
-  \eqn{\hat{G}^{-1}(p)} denotes the \eqn{p}'th empirical quantile, that is, 
-  the \eqn{p}'th quantile associated with the empirical cdf.  The function 
-  \code{enparCensored} calls the \R function \code{\link[stats]{quantile}} to compute 
-  the empirical quantiles used in Equation (10).
+  The two-sided percentile interval (Efron and Tibshirani, 1993, p.170) is computed as:
+  \deqn{[\hat{G}^{-1}(\frac{\alpha}{2}), \; \hat{G}^{-1}(1-\frac{\alpha}{2})] \;\;\;\;\;\; (10)}
+  where \eqn{\hat{G}(t)} denotes the empirical cdf of \eqn{\hat{\mu}_B} evaluated at \eqn{t} 
+  and thus \eqn{\hat{G}^{-1}(p)} denotes the \eqn{p}'th empirical quantile of the 
+  distribution of \eqn{\hat{\mu}_B}, that is, the \eqn{p}'th quantile associated with the 
+  empirical cdf.  Similarly, a one-sided lower 
+  confidence interval is computed as:
+  \deqn{[\hat{G}^{-1}(\alpha), \; \infty] \;\;\;\;\;\; (11)}
+  and a one-sided upper confidence interval is computed as:
+  \deqn{[-\infty, \; \hat{G}^{-1}(1-\alpha)] \;\;\;\;\;\; (12)}
+  The function \code{enparCensored} calls the \R function \code{\link[stats]{quantile}} 
+  to compute the empirical quantiles used in Equations (10)-(12).
 
   The percentile method bootstrap confidence interval is only first-order 
   accurate (Efron and Tibshirani, 1993, pp.187-188), meaning that the probability 
@@ -262,30 +266,49 @@
   (1993, pp.184--188) proposed a bias-corrected and accelerated interval that is 
   second-order accurate, meaning that the probability that the confidence interval 
   will contain the true value of \eqn{\mu} may be off by \eqn{k/N} instead of 
-  \eqn{k/\sqrt{N}}.  The bias-corrected and accelerated confidence interval is 
+  \eqn{k/\sqrt{N}}.  The two-sided bias-corrected and accelerated confidence interval is 
   computed as:
-  \deqn{[\hat{G}^{-1}(\alpha_1), \; \hat{G}^{-1}(\alpha_2)] \;\;\;\;\;\; (11)}
+  \deqn{[\hat{G}^{-1}(\alpha_1), \; \hat{G}^{-1}(\alpha_2)] \;\;\;\;\;\; (13)}
   where
-  \deqn{\alpha_1 = \Phi[\hat{z}_0 + \frac{\hat{z}_0 + z_{\alpha/2}}{1 - \hat{a}(z_0 + z_{\alpha/2})}] \;\;\;\;\;\; (12)}
-  \deqn{\alpha_2 = \Phi[\hat{z}_0 + \frac{\hat{z}_0 + z_{1-\alpha/2}}{1 - \hat{a}(z_0 + z_{1-\alpha/2})}] \;\;\;\;\;\; (13)}
-  \deqn{\hat{z}_0 = \Phi^{-1}[\hat{G}(\hat{\mu})] \;\;\;\;\;\; (14)}
-  \deqn{\hat{a} = \frac{\sum_{i=1}^N (\hat{\mu}_{(\cdot)} - \hat{\mu}_{(i)})^3}{6[\sum_{i=1}^N (\hat{\mu}_{(\cdot)} - \hat{\mu}_{(i)})^2]^{3/2}} \;\;\;\;\;\; (15)}
+  \deqn{\alpha_1 = \Phi[\hat{z}_0 + \frac{\hat{z}_0 + z_{\alpha/2}}{1 - \hat{a}(z_0 + z_{\alpha/2})}] \;\;\;\;\;\; (14)}
+  \deqn{\alpha_2 = \Phi[\hat{z}_0 + \frac{\hat{z}_0 + z_{1-\alpha/2}}{1 - \hat{a}(z_0 + z_{1-\alpha/2})}] \;\;\;\;\;\; (15)}
+  \deqn{\hat{z}_0 = \Phi^{-1}[\hat{G}(\hat{\mu})] \;\;\;\;\;\; (16)}
+  \deqn{\hat{a} = \frac{\sum_{i=1}^N (\hat{\mu}_{(\cdot)} - \hat{\mu}_{(i)})^3}{6[\sum_{i=1}^N (\hat{\mu}_{(\cdot)} - \hat{\mu}_{(i)})^2]^{3/2}} \;\;\;\;\;\; (17)}
   where the quantity \eqn{\hat{\mu}_{(i)}} denotes the estimate of \eqn{\mu} using 
   all the values in \eqn{\underline{x}} except the \eqn{i}'th one, and
-  \deqn{\hat{\mu}{(\cdot)} = \frac{1}{N} \sum_{i=1}^N \hat{\mu_{(i)}} \;\;\;\;\;\; (16)}
+  \deqn{\hat{\mu}{(\cdot)} = \frac{1}{N} \sum_{i=1}^N \hat{\mu_{(i)}} \;\;\;\;\;\; (18)}
+  A one-sided lower confidence interval is given by:
+  \deqn{[\hat{G}^{-1}(\alpha_1), \; \infty] \;\;\;\;\;\; (19)}
+  and a one-sided upper confidence interval is given by:
+  \deqn{[-\infty, \; \hat{G}^{-1}(\alpha_2)] \;\;\;\;\;\; (20)}
+  where \eqn{\alpha_1} and \eqn{\alpha_2} are computed as for a two-sided confidence 
+  interval, except \eqn{\alpha/2} is replaced with \eqn{\alpha} in Equations (14) and (15).
+
   The constant \eqn{\hat{z}_0} incorporates the bias correction, and the constant 
   \eqn{\hat{a}} is the acceleration constant.  The term \dQuote{acceleration} refers 
   to the rate of change of the standard error of the estimate of \eqn{\mu} with 
   respect to the true value of \eqn{\mu} (Efron and Tibshirani, 1993, p.186).  For a 
   normal (Gaussian) distribution, the standard error of the estimate of \eqn{\mu} 
   does not depend on the value of \eqn{\mu}, hence the acceleration constant is not 
-  really necessary.  The argument \code{use.acc.con} (see the section ARGUMENTS above) 
-  determines whether the acceleration constant \eqn{\hat{a}} is computed as in 
-  Equation (15) (\code{use.acc.con=TRUE}) or is set to 0 (\code{use.acc.con=FALSE}).  
-  The default value is \code{use.acc.con=FALSE}.
+  really necessary.
 
-  When \code{ci.method="bootstrap"}, the function \code{enparCensored} computes both 
-  the percentile method and bias-corrected bootstrap confidence intervals.
+  For the bootstrap-t method, the two-sided confidence interval 
+  (Efron and Tibshirani, 1993, p.160) is computed as:
+  \deqn{[\hat{\mu} - t_{1-\alpha/2}\hat{\sigma}_{\hat{\mu}}, \; \hat{\mu} - t_{\alpha/2}\hat{\sigma}_{\hat{\mu}}] \;\;\;\;\;\; (21)}
+  where \eqn{\hat{\mu}} and \eqn{\hat{\sigma}_{\hat{\mu}}} denote the estimate of the mean 
+  and standard error of the estimate of the mean based on the original sample, and 
+  \eqn{t_p} denotes the \eqn{p}'th empirical quantile of the bootstrap distribution of 
+  the statistic \eqn{T}.  Similarly, a one-sided lower confidence interval is computed as:
+  \deqn{[\hat{\mu} - t_{1-\alpha}\hat{\sigma}_{\hat{\mu}}, \; \infty] \;\;\;\;\;\; (22)}
+  and a one-sided upper confidence interval is computed as:
+  \deqn{[-\infty, \; \hat{\mu} - t_{\alpha}\hat{\sigma}_{\hat{\mu}}] \;\;\;\;\;\; (23)}
+
+  When \code{ci.method="bootstrap"}, the function \code{enparCensored} computes  
+  the percentile method, bias-corrected and accelerated method, and bootstrap-t 
+  bootstrap confidence intervals.  The percentile method is transformation respecting, 
+  but not second-order accurate.  The bootstrap-t method is second-order accurate, but not 
+  transformation respecting.  The bias-corrected and accelerated method is both 
+  transformation respecting and second-order accurate (Efron and Tibshirani, 1993, p.188).
 }
 \value{
   a list of class \code{"estimateCensored"} containing the estimated parameters 

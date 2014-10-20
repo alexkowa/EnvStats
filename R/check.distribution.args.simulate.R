@@ -11,10 +11,10 @@ function (distribution, param.list, sample.method, check.params = TRUE)
         stop(paste("No method for Stable Distribution.  The only function", 
             "for the Stable Distribution is 'rstab', which produces", 
             "random numbers from this distribution."))
-    dist.type <- Distribution.df[idist, "Type"]
-    n.dist.params <- Distribution.df[idist, "Number.parameters"]
-    dist.params.names <- unlist(Distribution.df[idist, paste("Parameter", 
-        1:n.dist.params, sep = ".")])
+    dist.type <- EnvStats::Distribution.df[idist, "Type"]
+    n.dist.params <- EnvStats::Distribution.df[idist, "Number.parameters"]
+    dist.params.names <- unlist(EnvStats::Distribution.df[idist, 
+        paste("Parameter", 1:n.dist.params, sep = ".")])
     if (check.params) {
         if (!is.list(param.list)) 
             stop("'param.list' must be a list.")
@@ -51,9 +51,9 @@ function (distribution, param.list, sample.method, check.params = TRUE)
         out.of.bounds.vec <- logical(n.dist.params)
         for (i in 1:n.dist.params) {
             param <- param.list[[i]]
-            out.of.bounds.vec[i] <- any(param < eval(parse(text = Distribution.df[idist, 
+            out.of.bounds.vec[i] <- any(param < eval(parse(text = EnvStats::Distribution.df[idist, 
                 paste("Parameter", i, "Min", sep = ".")]))) || 
-                any(param > eval(parse(text = Distribution.df[idist, 
+                any(param > eval(parse(text = EnvStats::Distribution.df[idist, 
                   paste("Parameter", i, "Max", sep = ".")])))
         }
         if (any(out.of.bounds.vec)) 

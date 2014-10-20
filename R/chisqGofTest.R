@@ -30,7 +30,7 @@ function (x, n.classes = NULL, cut.points = NULL, distribution = "norm",
     n.dist.params <- check.da.list$n.dist.params
     dist.params.names <- check.da.list$dist.params.names
     if (estimate.params) {
-        if (Distribution.df[dist.abb, "Estimation.Method(s)"] == 
+        if (EnvStats::Distribution.df[dist.abb, "Estimation.Method(s)"] == 
             "") 
             stop(paste("No estimation method for", dist.name, 
                 "Distribution"))

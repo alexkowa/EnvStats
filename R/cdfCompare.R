@@ -73,7 +73,7 @@ function (x, y = NULL, discrete = FALSE, prob.method = ifelse(discrete,
         n.dist.params <- check.da.list$n.dist.params
         dist.params.names <- check.da.list$dist.params.names
         if (estimate.params) {
-            if (Distribution.df[dist.abb, "Estimation.Method(s)"] == 
+            if (EnvStats::Distribution.df[dist.abb, "Estimation.Method(s)"] == 
                 "") 
                 stop(paste("No estimation method available for the", 
                   dist.name, "Distribution"))

@@ -382,6 +382,7 @@
 
   #----------
 
+  \dontrun{
   # Compare estimated power using approximation method with estimated power
   # using Monte Carlo simulation for the 1-of-4 plan based on individual 
   # observations using the 3rd highest background value.
@@ -394,6 +395,7 @@
   #         [,1]      [,2]      [,3]
   #LCL 0.4111999 0.8451148 0.9835747
   #UCL 0.4628001 0.8808852 0.9944253
+  }
  
   #==========
 

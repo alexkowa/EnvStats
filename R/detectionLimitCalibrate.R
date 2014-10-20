@@ -1,5 +1,5 @@
 detectionLimitCalibrate <-
-function (object, coverage = 0.99, simultaneous = FALSE) 
+function (object, coverage = 0.99, simultaneous = TRUE) 
 {
     if (!inherits(object, "lm")) 
         stop("The argument 'object' must inherit from the class 'lm'.")
@@ -26,7 +26,9 @@ function (object, coverage = 0.99, simultaneous = FALSE)
         control = list(x.tol = .Machine$double.eps * 1e+08), 
         y.weird = upl.y.at.x.eq.0, object.weird = object, x.name.weird = x.name, 
         coverage.weird = coverage, simultaneous.weird = simultaneous)$par
-    attr(dl, "coverage") <- coverage
-    attr(dl, "simultaneous") <- simultaneous
-    dl
+    dl.vec <- c(upl.y.at.x.eq.0, dl)
+    names(dl.vec) <- c("Decision Limit (Signal)", "Detection Limit (Concentration)")
+    attr(dl.vec, "coverage") <- coverage
+    attr(dl.vec, "simultaneous") <- simultaneous
+    dl.vec
 }

@@ -11,6 +11,8 @@
   user-specified probability distributions.
 }
 \details{
+  \bold{Goodness-of-Fit Tests}
+
   \tabular{ll}{
   \emph{Function Name}                    \tab \emph{Description} \cr
   \code{\link{gofTest}}                   \tab Perform a goodness-of-fit test for a specified probability distribution. \cr
@@ -28,6 +30,16 @@
   \code{\link{plot.gofGroup}}             \tab S3 class method for plotting an object of class \code{\link[=gofGroup.object]{"gofGroup"}}. \cr
   \code{\link{print.gofGroup}}            \tab S3 class method for printing an object of class \code{\link[=gofGroup.object]{"gofGroup"}}. \cr
   }
+
+
+  \bold{Tests for Outliers}
+
+  \tabular{ll}{
+  \emph{Function Name}                    \tab \emph{Description} \cr
+  \code{\link{rosnerTest}}                \tab Perform Rosner's test for outliers assuming a normal (Gaussian) distribution. \cr
+  \code{\link{print.gofOutlier}}          \tab S3 class method for printing an object of class \code{\link[=gofOutlier.object]{"gofOutlier"}}. \cr
+  }
+
 }
 \keyword{ package }
 

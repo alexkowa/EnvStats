@@ -9,8 +9,7 @@
   significance level.
 }
 \usage{
-  aovPower(n.vec, mu.vec = rep(0, length(n.vec)), sigma = 1, 
-    alpha = 0.05)
+  aovPower(n.vec, mu.vec = rep(0, length(n.vec)), sigma = 1, alpha = 0.05)
 }
 \arguments{
   \item{n.vec}{

@@ -51,7 +51,9 @@ function (x, censored, censoring.side = c("left", "right"), distribution = c("no
     x.cen <- x[censored]
     cen.levels <- sort(unique(x.cen))
     K <- length(cen.levels)
-    if (K == 1) {
+    if (K == 1 && ((censoring.side == "left" & cen.levels <= 
+        min(x.no.cen)) || (censoring.side == "right" & cen.levels >= 
+        max(x.no.cen)))) {
         warning(paste("Only one censoring level indicated by 'censored',", 
             "so the function 'sfSinglyCensoredGofTest' was called."))
         ret.list <- sfSinglyCensoredGofTest(x = x, censoring.side = censoring.side, 

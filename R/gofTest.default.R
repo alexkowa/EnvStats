@@ -80,7 +80,8 @@ function (y, x = NULL, test = ifelse(is.null(x), "sw", "ks"),
     if (test %in% c("sw", "sf", "ppcc") & !(distribution %in% 
         c("norm", "lnorm", "lnormAlt", "lnorm3", "zmnorm", "zmlnorm", 
             "zmlnormAlt"))) {
-        if (Distribution.df[distribution, "Type"] != "Continuous") 
+        if (EnvStats::Distribution.df[distribution, "Type"] != 
+            "Continuous") 
             stop(paste("When test=", test, ", the argument 'distribution'", 
                 " must indicate a continuous distribution", sep = ""))
         test.name <- paste(test, "GeneralGofTest", sep = "")

@@ -5,9 +5,9 @@
   Fit a calibration line or curve based on linear regression.
 }
 \usage{
-  calibrate(formula, data, max.order = 4, p.crit = 0.05, weights, 
-    subset, na.action, method = "qr", model = FALSE, x = FALSE, 
-    y = FALSE, contrasts = NULL, ...)
+  calibrate(formula, data, test.higher.orders = TRUE, max.order = 4, p.crit = 0.05, 
+    F.test = "partial", weights, subset, na.action, method = "qr", model = FALSE, 
+    x = FALSE, y = FALSE, contrasts = NULL, warn = TRUE, ...)
 }
 \arguments{
   \item{formula}{
@@ -21,13 +21,31 @@
   \code{environment(formula)}, typically the environment from which 
   \code{calibrate} is called.
 }
+  \item{test.higher.orders}{
+  logical scalar indicating whether to start with a model that contains a single predictor 
+  variable and test the fit of higher order polynomials to consider for the calibration 
+  curve (\code{test.higher.orders=TRUE}; the default), or to simply use the model suppled 
+  and add the model matrix to the fit if it was not already indicated by the argument 
+  \code{x=TRUE} in the call to \code{calibrate}.
+}
   \item{max.order}{
-  optional integer indicating the maximum order of the polynomial to consider for the calibration curve. 
-  The default value is \code{max.order=4}.
+  integer indicating the maximum order of the polynomial to consider for the 
+  calibration curve.  The default value is \code{max.order=4}, however, the final value of 
+  \code{max.order} is the minimum of \code{max.order} and value of the number of 
+  unique predictor values minus 1.  So, for example, if there are only 4 unique values of 
+  the single predictor variable, then the final value of \code{max.order} is the minimum of 
+  what the user supplies and 3; thus, in this case, the highest order polynomial that will 
+  be potentially tested is a cubic.  See also the explanation below for the argument 
+  \code{warn}.
 }
   \item{p.crit}{
-  optional numeric scaler between 0 and 1 indicating the p-value to use for the stepwise regression 
+  numeric scaler between 0 and 1 indicating the p-value to use for the stepwise regression 
   when determining which polynomial model to use.  The default value is \code{p.crit=0.05}.
+}
+  \item{F.test}{
+  character string indicating whether to perform the stepwise regression using the 
+  standard partial F-test (\code{F.test="partial"}; the default) or using the 
+  lack-of-fit F-test (\code{F.test="lof"}).
 }
   \item{weights}{
   optional vector of observation weights; if supplied, the algorithm fits to minimize the sum of the 
@@ -62,6 +80,11 @@
   \item{contrasts}{
   an optional list. See the argument \code{contrasts.arg} of \code{\link{model.matrix}}.
 }
+  \item{warn}{
+  logical scalar indicating whether to issue a warning (\code{warn=TRUE}; the default) when 
+  the value of \code{max.order} has been decreased from what the user supplied.  
+  See also the explanation above for the argument \code{max.order}.
+}
   \item{\dots}{
   additional arguments to be passed to the low level regression fitting functions 
   (see \code{\link{lm}}).
@@ -90,18 +113,25 @@
   \code{max.order} is greater than 1, \code{calibrate} then performs forward stepwise linear 
   regression to determine the \dQuote{best} polynomial model.
 
-  In the case where replicates are available, for each model calibrate computes the p-value of the 
-  ANOVA for lack-of-fit vs. pure error (Draper and Smith, 1998, Chapters 2).  If the p-value is 
+  In the case where replicates are not availble, \code{calibrate} uses standard stepwise 
+  ANOVA to compare models (Draper and Smith, 1998, p.335). In this case, if the p-value 
+  for the partial F-test to compare models is greater than or equal to \code{p.crit}, then 
+  the model with fewer terms is used as the final model.
+
+  In the case where replicates are available, if \code{F.test="lof"}, then for each model 
+  \code{calibrate} computes the p-value of the ANOVA for lack-of-fit vs. pure error 
+  (Draper and Smith, 1998, Chapters 2; see \code{\link{anovaPE}}).  If the p-value is 
   greater than or equal to \code{p.crit}, then this is the final model; otherwise the next 
-  higher-order term is added to the polynomial and the model is re-fit.
+  higher-order term is added to the polynomial and the model is re-fit.  If, during the 
+  stepwise procedure, the degrees of freedom associated with the residual sums of squares 
+  of a model to be tested is less than or equal to the number of observations minus the 
+  number of unique observations, \code{calibrate} uses the partial F-test instead of the 
+  lack-of-fit F-test.
 
-  In the case where replicates are not availble, calibrate uses standard stepwise ANOVA to compare 
-  models (Draper and Smith, 1998, p.335). In this case, if the p-value for the partial F-test to 
-  compare models is greater than or equal to \code{p.crit}, then the model with fewer terms is used as 
-  the final model.
-
-  The stepwise algorithm terminates when either the p-value is greater than or equal to \code{p.crit}, 
-  or the currently selected model in the algorithm is of order \code{max.order}.
+  The stepwise algorithm terminates when either the p-value is greater than or equal to 
+  \code{p.crit}, or the currently selected model in the algorithm is of order 
+  \code{max.order}.  The algorithm will terminate earlier than this if the next model to be 
+  fit includes singularities so that not all coefficients can be estimted.
 }
 \value{
   An object of \code{\link{class}} \code{"\link{lm}"} that includes a component called 
@@ -109,7 +139,15 @@
   calibration model).
 }
 \references{
-  Draper, N., and H. Smith. (1998). \emph{Applied Regression Analysis}. Third Edition. John Wiley and Sons, New York, Chapter 3 and p.335.
+  Draper, N., and H. Smith. (1998). \emph{Applied Regression Analysis}. Third Edition. 
+  John Wiley and Sons, New York, Chapter 3 and p.335.
+
+  Gibbons, R.D., D.K. Bhaumik, and S. Aryal. (2009). 
+  \emph{Statistical Methods for Groundwater Monitoring}. Second Edition.  
+  John Wiley & Sons, Hoboken.  Chapter 6, p. 111.
+
+  Helsel, D.R. (2012). \emph{Statistics for Censored Environmental Data Using Minitab and R, 
+  Second Edition}.  John Wiley \& Sons, Hoboken, New Jersey.  Chapter 3, p. 22.
 
   Millard, S.P., and N.K. Neerchal. (2001). \emph{Environmental Statistics with S-PLUS}. 
   CRC Press, Boca Raton, FL, pp.562-575.
@@ -129,7 +167,8 @@
   detection, and quantitation limits.
 }
 \seealso{
-  \code{\link{inversePredictCalibrate}}, \code{\link{detectionLimitCalibrate}}, \code{\link{lm}}.
+  \code{\link{anovaPE}}, \code{\link{inversePredictCalibrate}}, 
+  \code{\link{detectionLimitCalibrate}}, \code{\link{lm}}.
 }
 \examples{
   # The data frame EPA.97.cadmium.111.df contains calibration data for 
@@ -144,31 +183,35 @@
 
   Spike <- EPA.97.cadmium.111.df$Spike 
 
-  calibrate.list <- calibrate(Cadmium ~ Spike, 
-    data=EPA.97.cadmium.111.df) 
+  calibrate.list <- calibrate(Cadmium ~ Spike, data = EPA.97.cadmium.111.df, 
+    simultaneous = FALSE) 
+ 
+  newdata <- data.frame(Spike = seq(min(Spike), max(Spike), len = 100))
+ 
+  pred.list <- predict(calibrate.list, newdata = newdata, se.fit = TRUE) 
 
-  newdata <- data.frame(Spike = seq(min(Spike), max(Spike), len=100)) 
+  pointwise.list <- pointwise(pred.list, coverage = 0.99, individual = TRUE) 
 
-  pred.list <- predict(calibrate.list, newdata=newdata, se.fit=TRUE) 
+  dev.new()
+  plot(Spike, Cadmium, ylim = c(min(pointwise.list$lower), 
+    max(pointwise.list$upper)), xlab = "True Concentration (ng/L)", 
+    ylab = "Observed Concentration (ng/L)") 
 
-  pointwise.list <- pointwise(pred.list, coverage=0.99, 
-    individual=TRUE) 
+  abline(calibrate.list, lwd = 2) 
 
-  plot(Spike, Cadmium, ylim=c(min(pointwise.list$lower), 
-    max(pointwise.list$upper)), xlab="True Concentration (ng/L)", 
-    ylab="Observed Concentration (ng/L)") 
+  lines(newdata$Spike, pointwise.list$lower, lty = 8, lwd = 2) 
 
-  abline(calibrate.list, lwd=2) 
-
-  lines(newdata$Spike, pointwise.list$lower, lty=8, lwd=2) 
-
-  lines(newdata$Spike, pointwise.list$upper, lty=8, lwd=2) 
+  lines(newdata$Spike, pointwise.list$upper, lty = 8, lwd = 2) 
 
   title(paste("Calibration Line and 99\% Prediction Limits", 
-    "for US EPA Cadmium 111 Data", sep="\n"))
+    "for US EPA Cadmium 111 Data", sep = "\n"))
 
-  rm(Cadmium, Spike, newdata, calibrate.list, pred.list, 
-    pointwise.list)
+  #----------
+
+  # Clean up
+  #---------
+  rm(Cadmium, Spike, newdata, calibrate.list, pred.list, pointwise.list)
+  graphics.off()
 }
 \keyword{ models }
 \keyword{ regression }

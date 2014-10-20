@@ -4,16 +4,23 @@
   Compute Lack-of-Fit and Pure Error Anova Table for a Linear Model
 }
 \description{
-  Compute a lack-of-fit and pure error anova table for a linear model with one predictor 
-  variable and replicate observations for at least one value of the predictor variable.
+  Compute a lack-of-fit and pure error anova table for either a linear model with 
+  one predictor variable or else a linear model for which all predictor variables 
+  in the model are functions of a single variable (for example, x, x^2, etc.).  There 
+  must be replicate observations for at least one value of the predictor variable(s).
 }
 \usage{
   anovaPE(object)
 }
 \arguments{
   \item{object}{an object of \code{\link{class}} \code{"\link{lm}"}.  
-  The object can have only one predictor variable in the formula and 
-  must have replicate observations for at least one value of the predictor variable.}
+  The object must have only one predictor variable in the formula, or else 
+  all predictor variables in the model must be functions of a single variable 
+  (for example, x, x^2, etc.).  Also, the predictor variable(s) must have replicate 
+  observations for at least one value of the predictor variable(s).}  Finally, 
+  the total number of observations must be such that the degrees of freedom associated 
+  with the residual sums of squares is greater than the number of observations minus 
+  the number of unique observations.
 }
 \details{
   Produces an anova table with the the sums of squares partitioned by \dQuote{Lack of Fit} 
@@ -41,11 +48,55 @@
   # The data frame EPA.97.cadmium.111.df contains calibration data for 
   # cadmium at mass 111 (ng/L) that appeared in Gibbons et al. (1997b) 
   # and were provided to them by the U.S. EPA. 
-  # The Examples section of the help file for calibrate displays a plot 
-  # of these data along with the fitted calibration line and 99\% 
-  # non-simultaneous prediction limits. 
-  # Here we will just fit the linear model and produce the anova table 
-  # to check for lack of fit.
+  #
+  # First, display a plot of these data along with the fitted calibration line 
+  # and 99\% non-simultaneous prediction limits.  See  
+  # Millard and Neerchal (2001, pp.566-569) for more details on this 
+  # example.
+
+  EPA.97.cadmium.111.df
+  #   Cadmium Spike
+  #1     0.88     0
+  #2     1.57     0
+  #3     0.70     0
+  #...
+  #33   99.20   100
+  #34   93.71   100
+  #35  100.43   100
+
+  Cadmium <- EPA.97.cadmium.111.df$Cadmium 
+
+  Spike <- EPA.97.cadmium.111.df$Spike 
+
+  calibrate.list <- calibrate(Cadmium ~ Spike, 
+    data = EPA.97.cadmium.111.df) 
+
+  newdata <- data.frame(Spike = seq(min(Spike), max(Spike), length.out = 100)) 
+
+  pred.list <- predict(calibrate.list, newdata = newdata, se.fit = TRUE) 
+
+  pointwise.list <- pointwise(pred.list, coverage = 0.99, individual = TRUE) 
+
+  plot(Spike, Cadmium, ylim = c(min(pointwise.list$lower), 
+    max(pointwise.list$upper)), xlab = "True Concentration (ng/L)", 
+    ylab = "Observed Concentration (ng/L)") 
+
+  abline(calibrate.list, lwd = 2) 
+
+  lines(newdata$Spike, pointwise.list$lower, lty = 8, lwd = 2) 
+
+  lines(newdata$Spike, pointwise.list$upper, lty = 8, lwd = 2) 
+
+  title(paste("Calibration Line and 99\% Prediction Limits", 
+    "for US EPA Cadmium 111 Data", sep="\n"))
+
+  rm(Cadmium, Spike, newdata, calibrate.list, pred.list, 
+    pointwise.list)
+
+  #----------
+
+  # Now fit the linear model and produce the anova table to check for 
+  # lack of fit.  There is no evidence for lack of fit (p = 0.41).
 
   fit <- lm(Cadmium ~ Spike, data = EPA.97.cadmium.111.df) 
 

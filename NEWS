@@ -1,3 +1,92 @@
+Changes in Version 1.0.3, 2014.10.20:
+
+	o Added the function rosnerTest to perform Rosner's test for outliers in a 
+	  normal (Gaussian) distribution.
+
+	o Modified the function stripChart():
+		- The argument ci.offset is now allowed to be either a scalar or 
+		  a vector of length equal to the number of groups.
+		- A new argument group.names.cex has been added to give explicit 
+		  control over the size of the group labels.
+
+	o Fixed a bug in gofTestCensored() for the case when the data contain only 
+	  one censored observation and the censored observation is larger than 
+	  the smallest non-censored observation for left-censored data or is smaller than 
+	  the largest non-censored observation for right-censored data. 
+
+	o Fixed a bug in anovaPE() that allowed the user to attempt to compute a 
+	  lack-of-fit and pure error anova table when there are not enough degrees of 
+	  freedom to do so.
+
+	o Fixed a bug in calibrate() to allow only models with enough degrees of 
+	  freedom to be tested for lack-of-fit via anovaPE.  Also added the arguments 
+	  test.higher.orders and F.test.
+
+	o Modified detectionLimitCalibrate() as follows:
+
+	  + now returns not just the detection limit but both the decision limit 
+	    (on the scale of the signal) and the detection limit (on the scale of 
+	    the concentration).
+
+	  + changed the default value for the argument simultaneous to simultaneous=TRUE.
+
+	o Fixed a bug in signTest: values equal to the the argument mu were not 
+          being discarded.  (Thanks to Ed Gilroy for pointing this out!).
+
+	o Fixed a bug in enparCensored: error message appeared when 
+	  ci.method="bootstrap".  (Thanks to Dennis Helsel for pointing this 
+	  out!).
+
+	o Fixed a bug in enormCensored when method="mle", ci=TRUE, 
+	  ci.method="normal.approx", and ci.type="lower" or ci.type="upper":   
+	  LCL and UCL were switched.  (Thanks to Dennis Helsel for pointing 
+	  this out!).
+
+	o For enormCensored, elnormCensored, elnormAltCensored, egammaCensored, 
+	  egammaAltCensored, and epoisCensored, one-sided confidence intervals are 
+	  now available when ci.method="profile.likelihood". 
+
+	o For enparCensored, enormCensored, elnormCensored, elnormAltCensored, 
+	  egammaCensored, egammaAltCensored, and epoisCensored, arguments and results 
+	  returned when ci.method="bootstrap" have been updated: 
+
+	  + The argument use.acc.con has been deprecated.  Bias-corrected 
+	    and accelerated (BCa) bootstrap results are now always computed 
+	    where the acceleration constant is estimated rather than allowing 
+	    the user to set it to 0 (i.e., setting use.acc.con=FALSE in 
+	    older versions of EnvStats).  Note that 1) code that explicitly 
+	    set use.acc.con=FALSE will no longer work for these functions, and 
+	    2) use.acc.con=FALSE was the default so results run previously 
+	    will not match what is now returned (even if the random seed is 
+	    set to the same value as was used before).  
+
+	  + The argument ci.type is now allowed to be "lower" or "upper".
+
+	  + As before, there are two sets of confidence limits that are returned:
+
+	      * percentile confidence limits (denoted Pct.LCL and Pct.UCL) and 
+
+	      * bias-corrected and accelerated confidence limits (denoted 
+	        BCa.LCL and BCa.UCL)
+
+	  + For enparCensored, a third set of confidence limits are also returned:
+
+	      * studentized confidence limits (denoted t.LCL and t.UCL)
+
+  
+	o Fixed bugs in oneSamplePermutationTest and twoSamplePermutationTestLocation:
+	  the default value of the argument seed is now set to seed=NULL.
+
+	o Fixed a bug in kendallSeasonalTrendTest: an error message appeared when 
+	  the argument 'y' was supplied as a matrix and independent.obs=FALSE.
+
+	o Change all calls to the EnvStats global variable Distribution.df to 
+	  EnvStats::Distribution.df.
+
+	o Fixed formatting problems in the PDF version of the help files.
+
+========================
+
 Changes in Version 1.0.2, 2013.10.29:
 
 	o Changed the names of functions used for minimization in the following functions:

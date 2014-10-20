@@ -23,15 +23,16 @@ function (x, conf.cov.sig.digits = .Options$digits, limits.sig.digits = .Options
         if (x$method == "Bootstrap") {
             cat("Number of Bootstraps:", space(12), x$n.bootstraps, 
                 "\n\n", sep = "")
-            cat(paste("Number of Bootstrap Samples\n", "With No Censored Values:", 
-                space(9), sep = ""), x$no.cen.obs.count, "\n\n", 
-                sep = "")
-            cat(paste("Number of Times Bootstrap\n", "Repeated Because Too Few\n", 
-                "Uncensored Observations:", space(9), sep = ""), 
-                x$too.few.obs.count, "\n\n", sep = "")
-            cat(paste("Acceleration Constant for\n", "Bias Correction Used?:", 
-                space(11), sep = ""), x$acceleration.constant.used, 
-                "\n\n", sep = "")
+            if (!is.null(x$no.cen.obs.count)) {
+                cat(paste("Number of Bootstrap Samples\n", "With No Censored Values:", 
+                  space(9), sep = ""), x$no.cen.obs.count, "\n\n", 
+                  sep = "")
+            }
+            if (!is.null(x$too.few.obs.count)) {
+                cat(paste("Number of Times Bootstrap\n", "Repeated Because Too Few\n", 
+                  "Uncensored Observations:", space(9), sep = ""), 
+                  x$too.few.obs.count, "\n\n", sep = "")
+            }
         }
         if (x$method == "Generalized Pivotal Quantity") 
             cat("Number of Monte Carlos:", space(10), x$nmc, 

@@ -108,7 +108,7 @@ function (x, y = NULL, distribution = "norm", param.list = list(mean = 0,
                 stop("'plot.pos.con' must be a numeric scalar between 0 and 1")
         }
         if (estimate.params) {
-            if (Distribution.df[distribution, "Estimation.Method(s)"] == 
+            if (EnvStats::Distribution.df[distribution, "Estimation.Method(s)"] == 
                 "") 
                 stop(paste("No estimation method available for the", 
                   dist.name, "Distribution"))

@@ -1,8 +1,8 @@
 epoisCensored <-
 function (x, censored, method = "mle", censoring.side = "left", 
     ci = FALSE, ci.method = "profile.likelihood", ci.type = "two-sided", 
-    conf.level = 0.95, n.bootstraps = 1000, use.acc.con = FALSE, 
-    pivot.statistic = "z", ci.sample.size = sum(!censored)) 
+    conf.level = 0.95, n.bootstraps = 1000, pivot.statistic = "z", 
+    ci.sample.size = sum(!censored)) 
 {
     if (!is.vector(x, mode = "numeric")) 
         stop("'x' must be a numeric vector")
@@ -54,8 +54,7 @@ function (x, censored, method = "mle", censoring.side = "left",
     args.list <- list(x = x, censored = censored, method = method, 
         censoring.side = censoring.side, ci = ci, ci.method = ci.method, 
         ci.type = ci.type, conf.level = conf.level, n.bootstraps = n.bootstraps, 
-        use.acc.con = use.acc.con, ci.sample.size = ci.sample.size, 
-        pivot.statistic = pivot.statistic)
+        ci.sample.size = ci.sample.size, pivot.statistic = pivot.statistic)
     if (multiple) {
         ret.list <- do.call("epoisMultiplyCensored", args = args.list)
     }

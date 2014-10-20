@@ -62,7 +62,7 @@
   \emph{Minimum Variance Unbiased Estimation} (\code{method="mvue"}) \cr
   The minimum variance unbiased estimators (mvue's) of the mean and variance are:
   \deqn{\hat{\mu}_{mvue} = \bar{x} = \frac{1}{n} \sum_{i=1}^n x_i \;\;\;\; (1)}
-  \deqn{\hat{sigma}^2_{mvue} = s^2 = \frac{1}{n-1} \sum_{i=1}^n (x_i - \bar{x})^2 \;\;\;\; (2)}
+  \deqn{\hat{\sigma}^2_{mvue} = s^2 = \frac{1}{n-1} \sum_{i=1}^n (x_i - \bar{x})^2 \;\;\;\; (2)}
   (Johnson et al., 1994; Forbes et al., 2011).  Note that when \code{method="mvue"}, 
   the estimated standard deviation is the square root of the mvue of the variance, 
   but is not itself an mvue.
@@ -71,7 +71,7 @@
   The maximum likelihood estimator (mle) and method of moments estimator (mme) of the 
   mean are both the same as the mvue of the mean given in equation (1) above.  The 
   mle and mme of the variance is given by:
-  \deqn{\hat{sigma}^2_{mle} = s^2_m = \frac{n-1}{n} s^2 = \frac{1}{n} \sum_{i=1}^n (x_i - \bar{x})^2 \;\;\;\; (3)}
+  \deqn{\hat{\sigma}^2_{mle} = s^2_m = \frac{n-1}{n} s^2 = \frac{1}{n} \sum_{i=1}^n (x_i - \bar{x})^2 \;\;\;\; (3)}
   When \code{method="mle/mme"}, the estimated standard deviation is the square root of 
   the mle of the variance, and is itself an mle.
   \cr

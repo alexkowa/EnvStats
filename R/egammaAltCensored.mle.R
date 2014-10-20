@@ -45,7 +45,7 @@ function (x, censored, censoring.side, ci, ci.method = "profile.likelihood",
             ci.obj <- ci.gammaAltCensored.profile.likelihood(x = x, 
                 censored = censored, censoring.side = censoring.side, 
                 mean.mle = parameters["mean"], cv.mle = parameters["cv"], 
-                conf.level = conf.level, LCL.normal.approx = limits[1], 
+                ci.type = ci.type, conf.level = conf.level, LCL.normal.approx = limits[1], 
                 UCL.normal.approx = limits[2])
         }
         ret.list <- c(ret.list, list(ci.obj = ci.obj))

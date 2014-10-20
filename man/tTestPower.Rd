@@ -111,7 +111,7 @@
   probability of a Type II error, is given by:
   \deqn{1 - \beta = Pr[t_{\nu, \Delta} \ge t_{\nu}(1 - \alpha)] = 1 - G[t_{\nu}(1 - \alpha), \nu, \Delta] \;\;\;\;\;\; (10)}
   where
-  \deqn{\Delta = \sqrt{n} \frac{\delta}{\sigma} \;\;\;\;\;\; (11)}
+  \deqn{\Delta = \sqrt{n} (\frac{\delta}{\sigma}) \;\;\;\;\;\; (11)}
   \deqn{\delta = \mu - \mu_0 \;\;\;\;\;\ (12)}
   and \eqn{t_{\nu, \Delta}} denotes a 
   \link[stats:TDist]{non-central Student's t-random variable} with 
@@ -157,7 +157,7 @@
   Zar (2010, pp.115--118) presents an approximation to the power for the t-test 
   given in Equations (10), (14), and (16) above.  His approximation to the power 
   can be derived by using the approximation
-  \deqn{\sqrt{n} \frac{\delta}{s} \approx \sqrt{n} \frac{\delta}{\sigma} = \Delta \;\;\;\;\;\; (20)}
+  \deqn{\sqrt{n} (\frac{\delta}{s}) \approx \sqrt{n} (\frac{\delta}{\sigma}) = \Delta \;\;\;\;\;\; (20)}
   where \eqn{\approx} denotes \dQuote{approximately equal to}.  Zar's approximation 
   can be summarized in terms of the cumulative distribution function of the 
   non-central t-distribution as follows:
@@ -232,7 +232,7 @@
   The formulas for the power of the two-sample t-test are precisely the same as those 
   for the one-sample case, with the following modifications:
   \deqn{\nu = n_1 + n_2 - 2 \;\;\;\;\;\; (35)}
-  \deqn{\Delta = sqrt{\frac{n_1 n_2}{n_1 + n_2}} \frac{\delta}{\sigma} \;\;\;\;\;\; (36)}
+  \deqn{\Delta = \sqrt{\frac{n_1 n_2}{n_1 + n_2}} (\frac{\delta}{\sigma}) \;\;\;\;\;\; (36)}
   \deqn{\delta = \mu_1 - \mu_2 \;\;\;\;\;\; (37)}
 
   Note that none of the equations for the power of the t-test requires knowledge of 

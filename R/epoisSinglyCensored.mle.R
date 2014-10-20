@@ -52,7 +52,7 @@ function (x, censored, censoring.side, ci, ci.method = "profile.likelihood",
             names(limits) <- NULL
             ci.obj <- ci.epoisCensored.profile.likelihood(x = x, 
                 censored = censored, censoring.side = censoring.side, 
-                lambda.mle = lambda.hat, conf.level = conf.level, 
+                lambda.mle = lambda.hat, ci.type = ci.type, conf.level = conf.level, 
                 LCL.start = limits[1], UCL.start = limits[2])
         }
         ret.list <- c(ret.list, list(var.cov.params = var.cov.params, 

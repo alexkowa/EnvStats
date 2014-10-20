@@ -91,6 +91,9 @@
   set.seed(250) 
   x <- rlnormAlt(30, mean = 10, cv = 2) 
 
+  dev.new()
+  hist(x, col = "cyan")
+
   boxcox.list <- boxcox(x)
 
   data.class(boxcox.list)

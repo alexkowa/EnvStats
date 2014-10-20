@@ -132,10 +132,12 @@
   and \code{tol.alpha} are not all the same length, they are replicated to be the same length 
   as the length of the longest argument.
 
+  The computed sample size is based on the difference \code{p.or.p1 - p0.or.p2}.
+
   \strong{One-Sample Case (\code{sample.type="one.sample"})}.  
   \describe{
 
-  \item{\code{approx=TRUE}}{ When \code{sample.type="one.sample"} and \code{approx=TRUE}, 
+  \item{\code{approx=TRUE}.}{ When \code{sample.type="one.sample"} and \code{approx=TRUE}, 
   sample size is computed based on the test that uses the normal approximation to the 
   binomial distribution; see the help file for \code{\link{prop.test}}.  
   The formula for this test and the associated power is presented in 
@@ -144,7 +146,7 @@
   significance level, hypothesized proportion, and true proportion.
   }
 
-  \item{\code{approx=FALSE}}{ When \code{sample.type="one.sample"} and \code{approx=FALSE}, 
+  \item{\code{approx=FALSE}.}{ When \code{sample.type="one.sample"} and \code{approx=FALSE}, 
   sample size is computed based on the exact binomial test; see the help file for \code{\link{binom.test}}.  
   The formula for this test and its associated power is presented in standard statistics texts, 
   including Zar (2010, pp. 532-534, 539) and 

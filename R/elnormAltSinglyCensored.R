@@ -1,8 +1,8 @@
 elnormAltSinglyCensored <-
 function (x, censored, method = "mle", censoring.side = "left", 
     ci = FALSE, ci.method = "profile.likelihood", ci.type = "two-sided", 
-    conf.level = 0.95, n.bootstraps = 1000, use.acc.con = FALSE, 
-    pivot.statistic = "z", ...) 
+    conf.level = 0.95, n.bootstraps = 1000, pivot.statistic = "z", 
+    ...) 
 {
     if (!is.vector(x, mode = "numeric")) 
         stop("'x' must be a numeric vector")
@@ -66,14 +66,8 @@ function (x, censored, method = "mle", censoring.side = "left",
             "impute.w.qq.reg.w.cen.level", "impute.w.mle", "half.cen.level"))) 
             stop(paste("When ci.method='normal.approx', 'method' must be one of", 
                 "'impute.w.qq.reg', 'impute.w.qq.reg.w.cen.level', \n\t\t\t'impute.w.mle', or 'half.cen.level'"))
-        if (ci.method == "profile.likelihood") {
-            if (method != "mle") 
-                stop("When ci.method=\"profile.likelihood\" you must set method=\"mle\"")
-            if (ci.type != "two-sided") 
-                stop("When ci.method=\"profile.likelihood\" you must set ci.type=\"two-sided\"")
-        }
-        if (ci.method == "bootstrap" & ci.type != "two-sided") 
-            stop("When ci.method=\"bootstrap\" you must set ci.type=\"two-sided\"")
+        if (ci.method == "profile.likelihood" && method != "mle") 
+            stop("When ci.method=\"profile.likelihood\" you must set method=\"mle\"")
     }
     est.fcn <- paste("elnormAltSinglyCensored", method, sep = ".")
     if (!ci || ci.method != "bootstrap") {
@@ -84,10 +78,6 @@ function (x, censored, method = "mle", censoring.side = "left",
             ...))
     }
     else {
-        if (use.acc.con && length(unique(x.no.cen)) < 3) 
-            stop(paste("'x' must contain at least 3 distinct uncensored observations", 
-                "in order to compute the acceleration constant (use.acc.con=TRUE)", 
-                "for the Bias-Corrected Bootstrap Confidence Intervals."))
         param.ci.list <- do.call(est.fcn, list(x = x, censored = censored, 
             N = N, T1 = T1, n.cen = n.cen, censoring.side = censoring.side, 
             ci = FALSE, ci.method = ci.method, ci.type = ci.type, 
@@ -95,8 +85,8 @@ function (x, censored, method = "mle", censoring.side = "left",
         ci.list <- elnormAltSinglyCensored.bootstrap.ci(x = x, 
             censored = censored, N = N, T1 = T1, censoring.side = censoring.side, 
             est.fcn = est.fcn, ci.type = ci.type, conf.level = conf.level, 
-            n.bootstraps = n.bootstraps, use.acc.con = use.acc.con, 
-            obs.mean = param.ci.list$parameters["mean"], ...)
+            n.bootstraps = n.bootstraps, obs.mean = param.ci.list$parameters["mean"], 
+            ...)
         param.ci.list <- c(param.ci.list, list(ci.obj = ci.list))
     }
     method.string <- switch(method, mle = "MLE", qmvue = "Quasi-MVUE", 

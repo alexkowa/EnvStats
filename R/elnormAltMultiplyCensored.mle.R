@@ -44,7 +44,7 @@ function (x, censored, N, cen.levels, K, c.vec, n.cen, censoring.side,
                 x = x, censored = censored, censoring.side = censoring.side, 
                 distribution = "lnormAlt")
             fcn <- function(CL, loglik.at.mle, mean.mle, cv.mle, 
-                x, censored, censoring.side) {
+                x, censored, censoring.side, conf.level) {
                 cv.mle.at.CL <- elnormAltCensored.cv.mle.at.fixed.mean(fixed.mean = CL, 
                   mean.mle = mean.mle, cv.mle = cv.mle, x = x, 
                   censored = censored, censoring.side = censoring.side)
@@ -55,14 +55,31 @@ function (x, censored, N, cen.levels, K, c.vec, n.cen, censoring.side,
             }
             limits <- ci.obj$limits
             names(limits) <- NULL
-            LCL <- nlminb(start = limits[1], objective = fcn, 
-                lower = .Machine$double.eps, upper = mean, loglik.at.mle = loglik.at.mle, 
-                mean.mle = mean, cv.mle = cv, x = x, censored = censored, 
-                censoring.side = censoring.side)$par
-            UCL <- nlminb(start = limits[2], objective = fcn, 
-                lower = mean, loglik.at.mle = loglik.at.mle, 
-                mean.mle = mean, cv.mle = cv, x = x, censored = censored, 
-                censoring.side = censoring.side)$par
+            switch(ci.type, `two-sided` = {
+                LCL <- nlminb(start = limits[1], objective = fcn, 
+                  lower = .Machine$double.eps, upper = mean, 
+                  loglik.at.mle = loglik.at.mle, mean.mle = mean, 
+                  cv.mle = cv, x = x, censored = censored, censoring.side = censoring.side, 
+                  conf.level = conf.level)$par
+                UCL <- nlminb(start = limits[2], objective = fcn, 
+                  lower = mean, loglik.at.mle = loglik.at.mle, 
+                  mean.mle = mean, cv.mle = cv, x = x, censored = censored, 
+                  censoring.side = censoring.side, conf.level = conf.level)$par
+            }, lower = {
+                LCL <- nlminb(start = limits[1], objective = fcn, 
+                  lower = .Machine$double.eps, upper = mean, 
+                  loglik.at.mle = loglik.at.mle, mean.mle = mean, 
+                  cv.mle = cv, x = x, censored = censored, censoring.side = censoring.side, 
+                  conf.level = 1 - 2 * (1 - conf.level))$par
+                UCL <- Inf
+            }, upper = {
+                LCL <- 0
+                UCL <- nlminb(start = limits[2], objective = fcn, 
+                  lower = mean, loglik.at.mle = loglik.at.mle, 
+                  mean.mle = mean, cv.mle = cv, x = x, censored = censored, 
+                  censoring.side = censoring.side, conf.level = 1 - 
+                    2 * (1 - conf.level))$par
+            })
             names(LCL) <- "LCL"
             names(UCL) <- "UCL"
             ci.obj$limits <- c(LCL, UCL)

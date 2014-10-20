@@ -27,9 +27,9 @@ function (n, distribution = "norm", param.list = list(mean = 0,
         dist.abb <- check.da.list$dist.abb
         dist.name <- check.da.list$dist.name
         param.list <- check.da.list$param.list
-        supp.min <- eval(parse(text = Distribution.df[dist.abb, 
+        supp.min <- eval(parse(text = EnvStats::Distribution.df[dist.abb, 
             "Support.Min"]), envir = param.list)
-        supp.max <- eval(parse(text = Distribution.df[dist.abb, 
+        supp.max <- eval(parse(text = EnvStats::Distribution.df[dist.abb, 
             "Support.Max"]), envir = param.list)
     }
     else {

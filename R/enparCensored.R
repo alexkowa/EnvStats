@@ -2,8 +2,7 @@ enparCensored <-
 function (x, censored, censoring.side = "left", correct.se = FALSE, 
     left.censored.min = "DL", right.censored.max = "DL", ci = FALSE, 
     ci.method = "normal.approx", ci.type = "two-sided", conf.level = 0.95, 
-    pivot.statistic = "z", ci.sample.size = NULL, n.bootstraps = 1000, 
-    use.acc.con = FALSE) 
+    pivot.statistic = "z", ci.sample.size = NULL, n.bootstraps = 1000) 
 {
     if (!is.vector(x, mode = "numeric")) 
         stop("'x' must be a numeric vector")
@@ -88,28 +87,26 @@ function (x, censored, censoring.side = "left", correct.se = FALSE,
             pivot.statistic = pivot.statistic, ci.sample.size = ci.sample.size)
     }
     else {
-        if (ci.type != "two-sided") 
-            stop(paste("'ci.type' must be set to 'two-sided' when", 
-                "'ci.method' equals 'bootstrap'."))
-        if (use.acc.con && length(unique(x.no.cen)) < 3) 
-            stop(paste("'x' must contain at least 3 distinct uncensored observations", 
-                "in order to compute the acceleration constant (use.acc.con=TRUE)", 
-                "for the Bias-Corrected Bootstrap Confidence Intervals."))
         param.ci.list <- enparCensored.km(x = x, censored = censored, 
             censoring.side = censoring.side, correct.se = correct.se, 
             left.censored.min = left.censored.min, right.censored.max = right.censored.max, 
             ci = FALSE)
         ci.list <- enparCensored.bootstrap.ci(x = x, censored = censored, 
-            censoring.side = censoring.side, left.censored.min = left.censored.min, 
-            right.censored.max = right.censored.max, est.fcn = "enparCensored.km", 
-            ci.type = ci.type, conf.level = conf.level, n.bootstraps = n.bootstraps, 
-            use.acc.con = use.acc.con, obs.mean = param.ci.list$parameters["mean"])
+            censoring.side = censoring.side, correct.se = correct.se, 
+            left.censored.min = left.censored.min, right.censored.max = right.censored.max, 
+            est.fcn = "enparCensored.km", ci.type = ci.type, 
+            conf.level = conf.level, n.bootstraps = n.bootstraps, 
+            obs.mean = param.ci.list$parameters["mean"], obs.se.mean = param.ci.list$parameters["se.mean"])
         param.ci.list <- c(param.ci.list, list(ci.obj = ci.list))
     }
+    method <- "Kaplan-Meier"
+    if (correct.se) 
+        method <- paste(method, "\n", space(33), "(Bias-corrected se.mean)", 
+            sep = "")
     ret.list <- list(distribution = "None", sample.size = N, 
         censoring.side = censoring.side, censoring.levels = cen.levels, 
         percent.censored = (100 * n.cen)/N, parameters = param.ci.list$parameters, 
-        n.param.est = 2, method = "Kaplan-Meier", data.name = data.name, 
+        n.param.est = 2, method = method, data.name = data.name, 
         censoring.name = censoring.name, bad.obs = bad.obs)
     if (ci) {
         ret.list <- c(ret.list, list(interval = param.ci.list$ci.obj))

@@ -24,8 +24,8 @@ stripChart(x, ...)
 
 \method{stripChart}{default}(x, method = "stack", seed = 47, 
   jitter = 0.1 * cex, offset = 1/2, vertical = TRUE, group.names, 
-  drop.unused.levels = TRUE, add = FALSE, at = NULL, 
-  xlim = NULL, ylim = NULL, ylab = NULL, xlab = NULL, 
+  group.names.cex = cex, drop.unused.levels = TRUE, add = FALSE, 
+  at = NULL, xlim = NULL, ylim = NULL, ylab = NULL, xlab = NULL, 
   dlab = "", glab = "", log = "", pch = 1, col = par("fg"), 
   cex = par("cex"), points.cex = cex, axes = TRUE, frame.plot = axes, 
   show.ci = TRUE, location.pch = 16, location.cex = cex, 
@@ -97,6 +97,11 @@ stripChart(x, ...)
   \item{group.names}{
   group labels which will be printed alongside (or underneath) each plot.
 }
+  \item{group.names.cex}{
+  numeric scalar indicating the amount by which the group labels should be scaled 
+  relative to the default (see the help file for \code{\link{plot.default}}).  
+  The default is the current value of the graphics parameter \code{cex}.
+}
   \item{drop.unused.levels}{
   when \code{drop.unused.levels=TRUE}, groups with no observations are dropped.
 }
@@ -142,10 +147,10 @@ stripChart(x, ...)
   The default is \code{location.pch=16}, a filled circle.
 }
   \item{location.cex}{
-  integer giving the amount by which the plotting characters indicating the estimate of 
-  location for each group should be scaled relative to the default 
-  (see the help file for \code{\link{plot.default}}).  The default is the current value of 
-  the graphics parameter \code{cex}.
+  numeric scalar giving the amount by which the plotting characters indicating the 
+  estimate of location for each group should be scaled relative to the default 
+  (see the help file for \code{\link{plot.default}}).  The default is the current 
+  value of the graphics parameter \code{cex}.
 }
   \item{conf.level}{
   numeric scalar between 0 and 1 indicating the confidence level associated with the 
@@ -157,9 +162,10 @@ stripChart(x, ...)
   for the group location.  The default value is \code{min.n.for.ci=2}.
 }
   \item{ci.offset}{
-  numeric scalar in units of \code{cex} indicating the amount of space between the line 
-  showing the confidence interval and the center of the plotted points for a group.  The 
-  default value depends on the number of groups and is given by 
+  numeric scalar or vector of length equal to the number of groups (\code{n}) in units of 
+  \code{cex} indicating the amount of space between the line showing the confidence interval 
+  and tick mark associated with a particular group.  The default value depends on the number of 
+  groups and is given by \cr 
   \code{3/ifelse(n > 2, (n-1)^(1/3), 1)}.
 }
   \item{ci.bar.ends}{
@@ -183,8 +189,8 @@ stripChart(x, ...)
   default value is \code{n.text.line=2} when \code{n.text="bottom"} and \code{0} otherwise.
 }
   \item{n.text.cex}{
-  integer giving the amount by which the text indicating the sample size for each group 
-  should be scaled relative to the default (see the help file for \cr
+  numeric scalar giving the amount by which the text indicating the sample size for 
+  each group should be scaled relative to the default (see the help file for \cr
   \code{\link{plot.default}}).  The default is the current value of the graphics 
   parameter \code{cex}.
 }
@@ -203,11 +209,11 @@ stripChart(x, ...)
   \code{location.scale.text.line=0} when \code{n.text="top"} and \code{3.5} otherwise.
 }
   \item{location.scale.text.cex}{
-  integer giving the amount by which the text indicating the estimates of location and scale 
-  for each group should be scaled relative to the default (see the help file for 
-  \code{\link{plot.default}}).  The default depends on the number of groups and is 
-  given by 
-  \code{cex * 0.8 * ifelse(n > 6, max(0.4, 1 - (n-6) * 0.06), 1)}.  
+  numeric scalar giving the amount by which the text indicating the estimates of 
+  location and scale for each group should be scaled relative to the default 
+  (see the help file for \code{\link{plot.default}}).  The default depends on the 
+  number of groups and is given by 
+  \code{cex * 0.8 * ifelse(n > 6, max(0.4, 1 - (n-6) * 0.06), 1)}, 
   where \code{cex} denotes the current value of the graphics parameter \code{cex}.
 }
   \item{p.value}{
@@ -225,8 +231,8 @@ stripChart(x, ...)
   equal group locations.  The default value is \code{p.value.line=2}.
 }
   \item{p.value.cex}{
-  integer giving the amount by which the text indicating the p-value associated with the test of 
-  equal group locations should be scaled relative to the default 
+  numeric scalar giving the amount by which the text indicating the p-value associated 
+  with the test of equal group locations should be scaled relative to the default 
   (see the help file for \code{\link{plot.default}}).  
   The default is the current value of the graphics parameter \code{cex}.
 }
@@ -244,7 +250,8 @@ stripChart(x, ...)
   \item{group.difference.digits}{
   for the case when there are just 2 groups, an integer indicating the number of digits to 
   round to when displaying the confidence interval for the difference between group locations.  
-  The default value is \code{group.difference.digits=location.scale.digits}.
+  The default value is \cr 
+  \code{group.difference.digits=location.scale.digits}.
 }
   \item{ci.and.test}{
   character string indicating whether confidence intervals and tests should be based on parametric 
@@ -287,6 +294,10 @@ stripChart(x, ...)
     the lower confidence limit for the group location parameter (LCL), 
     the upper confidence limit for the group location parameter (UCL), and the 
     confidence level associated with the confidence interval (Conf.Level)}
+
+In addition, if the argument \code{p.value=TRUE}, the list also includes these 
+components:
+
   \item{group.difference.p.value}{numeric scalar indicating the p-value associated with 
     the test of equal group locations.}
   \item{group.difference.conf.int}{numeric vector of two elements indicating the confidence 

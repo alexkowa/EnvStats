@@ -14,55 +14,29 @@ function (y, season, year, alternative = "two.sided", correct = TRUE,
     data.name <- c(data.name, season.name, year.name)
     names(data.name) <- c("y", "season", "year")[1:length(data.name)]
     n <- length(y)
-    if (missing(season)) 
-        stop("When 'y' is a vector you must supply 'season'")
-    if (length(season) != n) 
-        stop("'season' must be the same length as 'y'")
-    if (!(is.vector(season, mode = "numeric") || is.factor(season) || 
-        is.vector(season, mode = "character"))) 
+    if (missing(season) || missing(year)) 
+        stop("When 'y' is a vector you must supply both 'season' and 'year'")
+    if (length(season) != n || length(year) != n) 
+        stop("'season' and 'year' must both be the same length as 'y'")
+    if (!(is.numeric(season) || is.factor(season) || is.character(season))) 
         stop("'season' must be a numeric or character vector or a factor")
     if (is.numeric(season) && !all(is.finite(season))) 
         stop(paste("Missing (NA), infinite (-Inf, Inf),", "and undefined (Nan) values not allowed in", 
             "'season'"))
+    if (!is.numeric(year)) 
+        stop("'year' must be a numeric vector")
+    if (!all(is.finite(year))) 
+        stop(paste("Missing (NA), infinite (-Inf, Inf),", "and undefined (Nan) values not allowed in", 
+            "'year'"))
     if (!is.numeric(season)) {
         season <- as.character(season)
         season.names <- unique(season)
         season <- match(season, season.names)
     }
     else season.names <- as.character(sort(unique(season)))
-    if (!independent.obs) {
-        n.seasons <- length(season.names)
-        n.yrs <- n/n.seasons
-        if (n.yrs != trunc(n.yrs) || !all(unique(season) == matrix(season, 
-            nrow = n.yrs))) 
-            stop(paste("When independent.obs=FALSE,", "there must be one observation (possibly NA)", 
-                "per season per year"))
-        year <- rep(1:n.yrs, rep(n.seasons, n.yrs))
-        if (!missing(year)) 
-            warning("When independent.obs=F the argument 'year' is ignored")
-    }
-    else {
-        if (!missing(year)) {
-            if (length(year) != n) 
-                stop("'year' must be the same length as 'y'")
-            if (!is.vector(year, mode = "numeric")) 
-                stop("'year' must be a numeric vector")
-            if (!all(is.finite(year))) 
-                stop(paste("Missing (NA), infinite (-Inf, Inf),", 
-                  "and undefined (Nan) values not allowed in", 
-                  "'year'"))
-        }
-        else {
-            n.seasons <- length(season.names)
-            n.yrs <- n/n.seasons
-            if (n.yrs != trunc(n.yrs) || !all(unique(season) == 
-                matrix(season, nrow = n.yrs))) 
-                stop(paste("When you don't supply the argument 'year',", 
-                  "there must be one observation (possibly NA)", 
-                  "per season per year"))
-            year <- rep(1:n.yrs, rep(n.seasons, n.yrs))
-        }
-    }
+    if (!independent.obs && !all(table(season, year) == 1)) 
+        stop(paste("When independent.obs=FALSE,", "there must be one observation (possibly NA)", 
+            "per season per year"))
     finite.index <- is.finite(y)
     y.no.na <- y[finite.index]
     season.no.na <- season[finite.index]

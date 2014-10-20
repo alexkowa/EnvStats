@@ -384,6 +384,7 @@
 
   #----------------------------------------------------------------
 
+  \dontrun{
   # Look at how the required sample size of a two-sample 
   # confidence interval increases with decreasing 
   # required half-width:
@@ -406,6 +407,7 @@
   #
   #$method
   #[1] "Score normal approximation, with continuity correction"
+  }
 }
 \keyword{ design }
 \keyword{ distribution }

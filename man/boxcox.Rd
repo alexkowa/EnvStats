@@ -43,7 +43,7 @@ boxcox(x, ...)
 }
   \item{lambda}{
   numeric vector of finite values indicating what powers to use for the 
-  Box-Cox transformation.  When \code{optimize=FALSE}, the default value is 
+  Box-Cox transformation.  When \code{optimize=FALSE}, the default value is \cr
   \code{lambda=seq(-2, 2, by=0.5)}.  When \code{optimize=TRUE}, \code{lambda} 
   must be a vector with two values indicating the range over which the 
   optimization will occur and the range of these two values must include 1.  
@@ -325,6 +325,9 @@ boxcox(x, ...)
   set.seed(250) 
   x <- rlnormAlt(30, mean = 10, cv = 2) 
 
+  dev.new()
+  hist(x, col = "cyan")
+
   # Using the PPCC objective:
   #--------------------------
 
@@ -431,6 +434,25 @@ boxcox(x, ...)
   # based on the PPCC looks close to a log-transformation 
   # (i.e., lambda=0).  The power that produces the largest PPCC is 
   # about 0.2, so a cube root (lambda=1/3) transformation might work too.
+
+  head(Environmental.df)
+  #           ozone radiation temperature wind
+  #05/01/1973    41       190          67  7.4
+  #05/02/1973    36       118          72  8.0
+  #05/03/1973    12       149          74 12.6
+  #05/04/1973    18       313          62 11.5
+  #05/05/1973    NA        NA          56 14.3
+  #05/06/1973    28        NA          66 14.9
+
+  tail(Environmental.df)
+  #           ozone radiation temperature wind
+  #09/25/1973    14        20          63 16.6
+  #09/26/1973    30       193          70  6.9
+  #09/27/1973    NA       145          77 13.2
+  #09/28/1973    14       191          75 14.3
+  #09/29/1973    18       131          76  8.0
+  #09/30/1973    20       223          68 11.5
+
 
   # Fit the model with the raw Ozone data
   #--------------------------------------

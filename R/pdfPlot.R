@@ -18,10 +18,10 @@ function (distribution = "norm", param.list = list(mean = 0,
     n.dist.params <- check.da.list$n.dist.params
     dist.params.names <- check.da.list$dist.params.names
     param.list <- check.da.list$param.list
-    supp.min <- eval(parse(text = Distribution.df[dist.abb, "Support.Min"]), 
-        envir = param.list)
-    supp.max <- eval(parse(text = Distribution.df[dist.abb, "Support.Max"]), 
-        envir = param.list)
+    supp.min <- eval(parse(text = EnvStats::Distribution.df[dist.abb, 
+        "Support.Min"]), envir = param.list)
+    supp.max <- eval(parse(text = EnvStats::Distribution.df[dist.abb, 
+        "Support.Max"]), envir = param.list)
     qname <- paste("q", dist.abb, sep = "")
     dname <- paste("d", dist.abb, sep = "")
     if (left.tail.cutoff == 0) {

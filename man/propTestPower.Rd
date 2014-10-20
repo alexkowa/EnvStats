@@ -96,9 +96,11 @@
 }
 }
 \details{
-  If the arguments \code{n.or.n1}, \code{p.or.p1}, \code{n2}, \code{p0.or.p2}, and \code{alpha} 
-  are not all the same length, they are replicated to be the same length as the length 
-  of the longest argument.
+  If the arguments \code{n.or.n1}, \code{p.or.p1}, \code{n2}, \code{p0.or.p2}, and 
+  \code{alpha} are not all the same length, they are replicated to be the same length 
+  as the length of the longest argument.
+
+  The power is based on the difference \code{p.or.p1 - p0.or.p2}.
 
   \strong{One-Sample Case (\code{sample.type="one.sample"})}.  
   \describe{

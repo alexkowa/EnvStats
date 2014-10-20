@@ -13,7 +13,7 @@
 
   \tabular{ll}{
   \emph{Function Name}                    \tab \emph{Description} \cr
-  \code{link{ciTableProp}}                \tab Confidence intervals for binomial proportion, or \cr
+  \code{\link{ciTableProp}}               \tab Confidence intervals for binomial proportion, or \cr
                                           \tab difference between two proportions, following Bacchetti (2010) \cr
   \code{\link{ciBinomHalfWidth}}          \tab Compute the half-width of a confidence interval for a \cr
                                           \tab Binomial proportion or the difference between two proportions. \cr

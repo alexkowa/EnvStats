@@ -8,7 +8,7 @@
 }
 \usage{
   oneSamplePermutationTest(x, alternative = "two.sided", mu = 0, exact = FALSE, 
-    n.permutations = 5000, seed = sample(.Random.seed, size = 1), ...)
+    n.permutations = 5000, seed = NULL, ...)
 }
 \arguments{
   \item{x}{
@@ -36,8 +36,8 @@
 }
   \item{seed}{
   positive integer to pass to the \R function \code{\link{set.seed}}.  The 
-  default is \code{seed=sample(.Random.seed, size=1)}, meaning that a randomly 
-  sampled single element of the current value of \code{\link{.Random.seed}} is used.  
+  default is \code{seed=NULL}, in which case the current value of 
+  \code{\link{.Random.seed}} is used.  
   Using the \code{seed} argument lets you reproduce the exact same result if all 
   other arguments stay the same.
 }

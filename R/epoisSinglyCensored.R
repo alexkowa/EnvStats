@@ -1,8 +1,8 @@
 epoisSinglyCensored <-
 function (x, censored, method = "mle", censoring.side = "left", 
     ci = FALSE, ci.method = "profile.likelihood", ci.type = "two-sided", 
-    conf.level = 0.95, n.bootstraps = 1000, use.acc.con = FALSE, 
-    ci.sample.size = N - n.cen, pivot.statistic = "z") 
+    conf.level = 0.95, n.bootstraps = 1000, ci.sample.size = N - 
+        n.cen, pivot.statistic = "z") 
 {
     if (!is.vector(x, mode = "numeric")) 
         stop("'x' must be a numeric vector")
@@ -58,21 +58,9 @@ function (x, censored, method = "mle", censoring.side = "left",
     ci.method <- match.arg(ci.method, c("normal.approx", "bootstrap", 
         "profile.likelihood"))
     ci.type <- match.arg(ci.type, c("two-sided", "lower", "upper"))
-    if (ci && ci.method == "profile.likelihood") {
-        if (method != "mle") 
-            stop("When ci.method=\"profile.likelihood\" you must set method=\"mle\"")
-        if (ci.type != "two-sided") 
-            stop("When ci.method=\"profile.likelihood\" you must set ci.type=\"two-sided\"")
-    }
-    if (ci && ci.method == "bootstrap") {
-        if (ci.type != "two-sided") 
-            stop(paste("'ci.type' must be set to 'two-sided' when", 
-                "'ci.method' equals 'bootstrap'."))
-        if (use.acc.con && length(unique(x.no.cen)) < 3) 
-            stop(paste("'x' must contain at least 3 distinct uncensored observations", 
-                "in order to compute the acceleration constant (use.acc.con=TRUE)", 
-                "for the Bias-Corrected Bootstrap Confidence Intervals."))
-    }
+    if (ci && ci.method == "profile.likelihood" && method != 
+        "mle") 
+        stop("When ci.method=\"profile.likelihood\" you must set method=\"mle\"")
     pivot.statistic <- match.arg(pivot.statistic, c("z", "t"))
     if (ci && ci.method == "normal.approx" && pivot.statistic == 
         "t" && (ci.sample.size < 2 | ci.sample.size > N)) 
@@ -90,7 +78,7 @@ function (x, censored, method = "mle", censoring.side = "left",
         ci.list <- epoisSinglyCensored.bootstrap.ci(x = x, censored = censored, 
             censoring.side = censoring.side, est.fcn = est.fcn, 
             ci.type = ci.type, conf.level = conf.level, n.bootstraps = n.bootstraps, 
-            use.acc.con = use.acc.con, obs.lambda = param.ci.list$parameters["lambda"])
+            obs.lambda = param.ci.list$parameters["lambda"])
         param.ci.list <- c(param.ci.list, list(ci.obj = ci.list))
     }
     method.string <- switch(method, mle = "MLE", half.cen.level = "Half Censoring Level")

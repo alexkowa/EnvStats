@@ -1,14 +1,16 @@
 \name{detectionLimitCalibrate}
 \alias{detectionLimitCalibrate}
+\alias{Detection Limit}
+\alias{detection limit}
 \title{
   Determine Detection Limit
 }
 \description{
-  Determine the detection limit based on using a calibration line (or curve) and inverse regression.
+  Determine the detection limit based on using a calibration line (or curve) and 
+  inverse regression.
 }
 \usage{
-  detectionLimitCalibrate(object, coverage = 0.99, 
-    simultaneous = FALSE)
+  detectionLimitCalibrate(object, coverage = 0.99, simultaneous = TRUE)
 }
 \arguments{
   \item{object}{
@@ -22,7 +24,7 @@
   \item{simultaneous}{
   optional logical scalar indicating whether to base the prediction intervals on 
   simultaneous or non-simultaneous prediction limits.  The default value is \cr
-  \code{simultaneous=FALSE}.
+  \code{simultaneous=TRUE}.
 }
 }
 \details{
@@ -78,9 +80,10 @@
   detection limit, and Glaser et al. (1981) define a quantity called the method detection limit.
 }
 \value{
-  A numeric scalar indicating the detection limit. This scalar has two attributes called \code{coverage} 
-  and \code{simultaneous} indicating the values of these arguments that were used in the call to \cr
-  \code{detectionLimitCalibrate}.
+  A numeric vector of length 2 indicating the signal detection limit and the concentration 
+  detection limit. This vector has two attributes called \code{coverage} 
+  and \code{simultaneous} indicating the values of these arguments that were used in the 
+  call to \code{detectionLimitCalibrate}.
 }
 \references{
   Clark, M.J.R., and P.H. Whitfield. (1994). Conflicting Perspectives About Detection Limits and About the Censoring of Environmental Data.  
@@ -136,6 +139,13 @@
   Gibbons, R.D., F.H. Jarke, and K.P. Stoub. (1991). Detection Limits: For Linear Calibration Curves with Increasing Variance and Multiple Future Detection Decisions. 
   In Tatsch, D.E., editor. \emph{Waste Testing and Quality Assurance: Volume 3}. 
   American Society for Testing and Materials, Philadelphi, PA.
+
+  Gibbons, R.D., D.K. Bhaumik, and S. Aryal. (2009). 
+  \emph{Statistical Methods for Groundwater Monitoring}. Second Edition.  
+  John Wiley & Sons, Hoboken.  Chapter 6, p. 111.
+
+  Helsel, D.R. (2012). \emph{Statistics for Censored Environmental Data Using Minitab and R, 
+  Second Edition}.  John Wiley \& Sons, Hoboken, New Jersey.  Chapter 3, p. 22.
 
   Glasser, J.A., D.L. Foerst, G.D. McKee, S.A. Quave, and W.L. Budde. (1981). Trace Analyses for Wastewaters. 
   \emph{Environmental Science and Technology} \bold{15}, 1426--1435.
@@ -230,34 +240,21 @@
   # Millard and Neerchal (2001, pp.566-575) for more details on this 
   # example.
 
-  calibrate.list <- calibrate(Cadmium ~ Spike, 
-    data = EPA.97.cadmium.111.df) 
+  calibrate.list <- calibrate(Cadmium ~ Spike, data = EPA.97.cadmium.111.df) 
 
-  # Compute decision limit 
-
-  pred.list <- predict(calibrate.list, newdata = data.frame(Spike=0), 
-    se.fit = TRUE) 
-
-  decision.limit <- pointwise(pred.list, coverage = 0.99, 
-    individual = TRUE)$upper 
-
-  decision.limit 
-  #       1 
-  #7.677842 
-
-
-  # Compute detection limit 
-
-  detection.limit <- detectionLimitCalibrate(calibrate.list) 
-
-  detection.limit 
-  #[1] 12.36467 
-  #attr(, "coverage"): 
-  #[1] 0.99 
-  #attr(, "simultaneous"): 
+  detectionLimitCalibrate(calibrate.list, simultaneous = FALSE) 
+  #        Decision Limit (Signal) Detection Limit (Concentration) 
+  #                       7.677842                       12.364670 
+  #attr(,"coverage")
+  #[1] 0.99
+  #attr(,"simultaneous")
   #[1] FALSE
 
-  rm(calibrate.list, pred.list, decision.limit, detection.limit) 
+  #----------
+
+  # Clean up
+  #---------
+  rm(calibrate.list) 
 }
 \keyword{ models }
 \keyword{ regression }

@@ -20,7 +20,8 @@ function (x, distribution, est.arg.list)
     ret.list$data.name <- data.name
     ret.list$bad.obs <- bad.obs
     ret.list$dist.abb <- distribution
-    ret.list$distribution <- Distribution.df[distribution, "Name"]
+    ret.list$distribution <- EnvStats::Distribution.df[distribution, 
+        "Name"]
     ret.list$distribution.parameters <- params
     ret.list$n.param.est <- length(params)
     ret.list$estimation.method <- est.list$method

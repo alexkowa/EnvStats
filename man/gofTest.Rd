@@ -848,7 +848,8 @@ gofTest(y, ...)
   quantile-quantile (Q-Q) plots (see \code{\link{qqPlot}}).
 }
 \seealso{
-  \code{\link{gof.object}}, \code{\link{print.gof}}, \code{\link{plot.gof}}, 
+  \code{\link{rosnerTest}}, \code{\link{gof.object}}, \code{\link{print.gof}}, 
+  \code{\link{plot.gof}}, 
   \code{\link{shapiro.test}}, \code{\link{ks.test}}, \code{\link{chisq.test}}, 
   \link{Normal}, \link{Lognormal}, \link{Lognormal3}, 
   \link{Zero-Modified Normal}, \link{Zero-Modified Lognormal (Delta)}, 

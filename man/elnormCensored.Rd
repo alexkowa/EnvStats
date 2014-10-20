@@ -12,8 +12,8 @@
 \usage{
   elnormCensored(x, censored, method = "mle", censoring.side = "left", 
     ci = FALSE, ci.method = "profile.likelihood", ci.type = "two-sided", 
-    conf.level = 0.95, n.bootstraps = 1000, use.acc.con = FALSE, 
-    pivot.statistic = "z", nmc = 1000, seed = NULL, ...)
+    conf.level = 0.95, n.bootstraps = 1000, pivot.statistic = "z", 
+    nmc = 1000, seed = NULL, ...)
 }
 \arguments{
   \item{x}{
@@ -95,13 +95,6 @@
   \item{n.bootstraps}{
   numeric scalar indicating how many bootstraps to use to construct the 
   confidence interval for the mean when \code{ci.type="bootstrap"}.  This 
-  argument is ignored if \code{ci=FALSE} and/or \code{ci.method} does not 
-  equal \code{"bootstrap"}.
-}
-  \item{use.acc.con}{
-  logical scalar indicating whether to use the acceleration constant when 
-  computing the bias-corrected bootstrap confidence interval (see the DETAILS section).  
-  The default value is \code{FALSE}.  This 
   argument is ignored if \code{ci=FALSE} and/or \code{ci.method} does not 
   equal \code{"bootstrap"}.
 }

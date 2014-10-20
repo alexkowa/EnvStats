@@ -1,7 +1,7 @@
 twoSamplePermutationTestLocation <-
 function (x, y, fcn = "mean", alternative = "two.sided", mu1.minus.mu2 = 0, 
-    paired = FALSE, exact = FALSE, n.permutations = 5000, seed = sample(.Random.seed, 
-        size = 1), tol = sqrt(.Machine$double.eps)) 
+    paired = FALSE, exact = FALSE, n.permutations = 5000, seed = NULL, 
+    tol = sqrt(.Machine$double.eps)) 
 {
     alternative <- match.arg(alternative, c("two.sided", "less", 
         "greater"))
@@ -13,15 +13,14 @@ function (x, y, fcn = "mean", alternative = "two.sided", mu1.minus.mu2 = 0,
             length(n.permutations) != 1 || n.permutations != 
             trunc(n.permutations) || n.permutations < 1) 
             stop("'n.permutations' must be a positive integer")
-        if (!identical(seed, .Random.seed) && (!is.vector(seed, 
-            mode = "numeric") || is.factor(seed) || length(seed) != 
+        if (!is.null(seed) && (!is.numeric(seed) || length(seed) != 
             1 || seed != trunc(seed) || seed < 0 || seed > 1000)) 
             stop("'seed' must be an integer between 0 and 1000")
     }
-    if (!is.vector(x, mode = "numeric") || is.factor(x)) 
+    if (!is.numeric(x)) 
         stop("'x' must be a numeric vector")
     x.name <- deparse(substitute(x))
-    if (!is.vector(y, mode = "numeric") || is.factor(y)) 
+    if (!is.numeric(y)) 
         stop("'y' must be a numeric vector")
     y.name <- deparse(substitute(y))
     if (paired) {

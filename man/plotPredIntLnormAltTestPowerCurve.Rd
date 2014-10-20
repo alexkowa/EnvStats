@@ -122,6 +122,29 @@
   \link{LognormalAlt}.
 }
 \examples{
+  # Plot power vs. ratio of means for k=1 future observation for 
+  # various sample sizes using a 5% significance level and assuming cv=1.
+
+  dev.new()
+  plotPredIntLnormAltTestPowerCurve(n = 8, k = 1, 
+    range.ratio.of.means=c(1, 10), ylim = c(0, 1), main = "") 
+
+  plotPredIntLnormAltTestPowerCurve(n = 16, k = 1, 
+    range.ratio.of.means = c(1, 10), add = TRUE, plot.col = "red") 
+
+  plotPredIntLnormAltTestPowerCurve(n = 32, k = 1, 
+    range.ratio.of.means=c(1, 10), add = TRUE, plot.col = "blue") 
+
+  legend("topleft", c("n=32", "n=16", "n=8"), lty = 1, lwd = 3 * par("cex"), 
+    col = c("blue", "red", "black"), bty = "n")
+
+  title(main = paste("Power vs. Ratio of Means for Upper Prediction Interval", 
+    "with k=1, Confidence=95\%, and Various Sample Sizes", sep="\n"))
+  mtext("Assuming a Lognormal Distribution with CV = 1", line = 0)
+
+  #==========
+
+  \dontrun{
   # Pages 6-16 to 6-17 of USEPA (2009) present EPA Reference Power Curves (ERPC)
   # for groundwater monitoring:
   #
@@ -154,28 +177,7 @@
   title(main = paste("Power vs. Ratio of Means for Upper Prediction Interval with",
     "n=10, Confidence=99\%, and Various Sampling Frequencies", sep="\n"))
   mtext("Assuming a Lognormal Distribution with CV = 1", line = 0)
-
-  #==========
-
-  # Plot power vs. ratio of means for various sample sizes using a 
-  # 5% significance level and assuming cv=1.
-
-  dev.new()
-  plotPredIntLnormAltTestPowerCurve(n = 8, k = 1, 
-    range.ratio.of.means=c(1, 10), ylim = c(0, 1), main = "") 
-
-  plotPredIntLnormAltTestPowerCurve(n = 16, k = 1, 
-    range.ratio.of.means = c(1, 10), add = TRUE, plot.col = "red") 
-
-  plotPredIntLnormAltTestPowerCurve(n = 32, k = 1, 
-    range.ratio.of.means=c(1, 10), add = TRUE, plot.col = "blue") 
-
-  legend("topleft", c("n=32", "n=16", "n=8"), lty = 1, lwd = 3 * par("cex"), 
-    col = c("blue", "red", "black"), bty = "n")
-
-  title(main = paste("Power vs. Ratio of Means for Upper Prediction Interval", 
-    "with k=1, Confidence=95\%, and Various Sample Sizes", sep="\n"))
-  mtext("Assuming a Lognormal Distribution with CV = 1", line = 0)
+  }
 
   #==========
 

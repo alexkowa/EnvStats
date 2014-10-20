@@ -75,8 +75,8 @@
 
   This form of estimation should be used when resampling (bootstrap or jackknife).
 
-  When \code{method="fisher"}, the coefficient of kurtosis is estimated using the 
-  unbiased estimator for the fourth central moment 
+  When \code{method="fisher"}, the coefficient of skewness is estimated using the 
+  unbiased estimator for the third central moment 
   (Serfling, 1980, p.73; Chen, 1995, p.769) and the unbiased estimator for the 
   variance.
   \deqn{\hat{\eta}_3 = \frac{\frac{n}{(n-1)(n-2)} \sum_{i=1}^n (x_i - \bar{x})^3}{s^3} \;\;\;\;\;\; (7)}
@@ -86,8 +86,8 @@
   the unbiased estimator of the third central moment.) 
   \cr
 
-  \emph{L-Moment Coefficient of Kurtosis} (\code{method="l.moments"}) \cr
-  Hosking (1990) defines the \eqn{L}-moment analog of the coefficient of kurtosis as:
+  \emph{L-Moment Coefficient of skewness} (\code{method="l.moments"}) \cr
+  Hosking (1990) defines the \eqn{L}-moment analog of the coefficient of skewness as:
   \deqn{\tau_3 = \frac{\lambda_3}{\lambda_2} \;\;\;\;\;\; (9)}
   that is, the third \eqn{L}-moment divided by the second \eqn{L}-moment.  He shows 
   that this quantity lies in the interval (-1, 1).
@@ -145,7 +145,7 @@
   goodness-of-fit test for normality (e.g., set \code{test="skew"} in the 
   call to \code{\link{gofTest}}).
 
-  Hosking (1990) introduced the idea of \eqn{L}-moments and \eqn{L}-kurtosis.  
+  Hosking (1990) introduced the idea of \eqn{L}-moments and \eqn{L}-skewness.  
 
   Vogel and Fennessey (1993) argue that \eqn{L}-moment ratios should replace 
   product moment ratios because of their superior performance (they are nearly 

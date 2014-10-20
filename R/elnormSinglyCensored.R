@@ -1,8 +1,8 @@
 elnormSinglyCensored <-
 function (x, censored, method = "mle", censoring.side = "left", 
     ci = FALSE, ci.method = "profile.likelihood", ci.type = "two-sided", 
-    conf.level = 0.95, n.bootstraps = 1000, use.acc.con = FALSE, 
-    pivot.statistic = "z", nmc = 1000, seed = NULL, ...) 
+    conf.level = 0.95, n.bootstraps = 1000, pivot.statistic = "z", 
+    nmc = 1000, seed = NULL, ...) 
 {
     if (!is.vector(x, mode = "numeric")) 
         stop("'x' must be a numeric vector")
@@ -57,19 +57,15 @@ function (x, censored, method = "mle", censoring.side = "left",
     ci.method <- match.arg(ci.method, c("normal.approx", "normal.approx.w.cov", 
         "bootstrap", "profile.likelihood", "gpq"))
     ci.type <- match.arg(ci.type, c("two-sided", "lower", "upper"))
-    if (ci && ci.method == "profile.likelihood") {
-        if (method != "mle") 
-            stop("When ci.method=\"profile.likelihood\" you must set method=\"mle\"")
-        if (ci.type != "two-sided") 
-            stop("When ci.method=\"profile.likelihood\" you must set ci.type=\"two-sided\"")
-    }
+    if (ci && ci.method == "profile.likelihood" && method != 
+        "mle") 
+        stop("When ci.method=\"profile.likelihood\" you must set method=\"mle\"")
     pivot.statistic <- match.arg(pivot.statistic, c("z", "t"))
     ret.list <- enormSinglyCensored(x = log(x), censored = censored, 
         method = method, censoring.side = censoring.side, ci = ci, 
         ci.method = ci.method, ci.type = ci.type, conf.level = conf.level, 
-        n.bootstraps = n.bootstraps, use.acc.con = use.acc.con, 
-        pivot.statistic = pivot.statistic, nmc = nmc, seed = seed, 
-        ...)
+        n.bootstraps = n.bootstraps, pivot.statistic = pivot.statistic, 
+        nmc = nmc, seed = seed, ...)
     ret.list$distribution <- "Lognormal"
     ret.list$censoring.levels <- T1
     names(ret.list$parameters) <- c("meanlog", "sdlog")

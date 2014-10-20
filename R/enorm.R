@@ -5,8 +5,11 @@ function (x, method = "mvue", ci = FALSE, ci.type = "two-sided",
     if (!is.vector(x, mode = "numeric")) 
         stop("'x' must be a numeric vector")
     data.name <- deparse(substitute(x))
-    method <- ifelse(ci, "mvue", match.arg(method, c("mvue", 
-        "mle/mme")))
+    if (length(ci) != 1 || !is.logical(ci)) 
+        stop("The argument 'ci' must be a logical scalar")
+    if (ci) 
+        method <- "mvue"
+    else method <- match.arg(method, c("mvue", "mle/mme"))
     if ((bad.obs <- sum(!(x.ok <- is.finite(x)))) > 0) {
         is.not.finite.warning(x)
         x <- x[x.ok]

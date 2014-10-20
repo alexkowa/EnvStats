@@ -243,12 +243,12 @@ kendallSeasonalTrendTest(y, ...)
   (see Equation (2) in the help file for \code{\link{kendallTrendTest}}).
 
   We can compute the estimated slope for season \eqn{j} as:
-  \deqn{\hat{\beta}_{1_j} = Median(\frac{Y_{kj} - Y_{ij}}{X_{kj} - X_{ij}}); \;\; i < k; \;\; X_kj \ne X_ik \;\;\;\;\;\; (21)}
+  \deqn{\hat{\beta}_{1_j} = Median(\frac{Y_{kj} - Y_{ij}}{X_{kj} - X_{ij}}); \;\; i < k; \;\; X_{kj} \ne X_{ik} \;\;\;\;\;\; (21)}
   for \eqn{j = 1, 2, \ldots, p}.  The overall estimate of slope, however, is 
   \bold{not} the median of these \eqn{p} estimates of slope; instead,   
   following Hirsch et al. (1982, p.117), the overall estimate of slope is the median 
   of all two-point slopes computed within each season:
-  \deqn{\hat{\beta}_1 = Median(\frac{Y_{kj} - Y_{ij}}{X_{kj} - X_{ij}}); \;\; i < k; \;\; X_kj \ne X_ik; \;\; j = 1, 2, \ldots, p \;\;\;\;\;\; (22)}
+  \deqn{\hat{\beta}_1 = Median(\frac{Y_{kj} - Y_{ij}}{X_{kj} - X_{ij}}); \;\; i < k; \;\; X_{kj} \ne X_{ik}; \;\; j = 1, 2, \ldots, p \;\;\;\;\;\; (22)}
   (see Equation (15) in the help file for \code{\link{kendallTrendTest}}).
 
   The overall estimate of intercept is the median of the \eqn{p} seasonal estimates of 

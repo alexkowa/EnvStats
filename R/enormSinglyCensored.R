@@ -1,8 +1,8 @@
 enormSinglyCensored <-
 function (x, censored, method = "mle", censoring.side = "left", 
     ci = FALSE, ci.method = "profile.likelihood", ci.type = "two-sided", 
-    conf.level = 0.95, n.bootstraps = 1000, use.acc.con = FALSE, 
-    pivot.statistic = "z", nmc = 1000, seed = NULL, ...) 
+    conf.level = 0.95, n.bootstraps = 1000, pivot.statistic = "z", 
+    nmc = 1000, seed = NULL, ...) 
 {
     if (!is.vector(x, mode = "numeric")) 
         stop("'x' must be a numeric vector")
@@ -56,12 +56,9 @@ function (x, censored, method = "mle", censoring.side = "left",
     ci.method <- match.arg(ci.method, c("normal.approx", "normal.approx.w.cov", 
         "bootstrap", "profile.likelihood", "gpq"))
     ci.type <- match.arg(ci.type, c("two-sided", "lower", "upper"))
-    if (ci && ci.method == "profile.likelihood") {
-        if (method != "mle") 
-            stop("When ci.method=\"profile.likelihood\" you must set method=\"mle\"")
-        if (ci.type != "two-sided") 
-            stop("When ci.method=\"profile.likelihood\" you must set ci.type=\"two-sided\"")
-    }
+    if (ci && ci.method == "profile.likelihood" && method != 
+        "mle") 
+        stop("When ci.method=\"profile.likelihood\" you must set method=\"mle\"")
     if (ci && ci.method == "normal.approx.w.cov" && !(method %in% 
         c("mle", "bcmle"))) 
         stop(paste("When ci.method='normal.approx.w.cov'", "you must set method='mle' or method='bcmle'"))
@@ -77,13 +74,6 @@ function (x, censored, method = "mle", censoring.side = "left",
     }
     else {
         if (ci.method == "bootstrap") {
-            if (ci.type != "two-sided") 
-                stop(paste("'ci.type' must be set to 'two-sided' when", 
-                  "'ci.method' equals 'bootstrap'."))
-            if (use.acc.con && length(unique(x.no.cen)) < 3) 
-                stop(paste("'x' must contain at least 3 distinct uncensored observations", 
-                  "in order to compute the acceleration constant (use.acc.con=TRUE)", 
-                  "for the Bias-Corrected Bootstrap Confidence Intervals."))
             param.list <- do.call(est.fcn, list(x = x, censored = censored, 
                 N = N, T1 = T1, n.cen = n.cen, censoring.side = censoring.side, 
                 ci = FALSE, ci.method = ci.method, ci.type = ci.type, 
@@ -91,8 +81,8 @@ function (x, censored, method = "mle", censoring.side = "left",
             ci.list <- enormSinglyCensored.bootstrap.ci(x = x, 
                 censored = censored, N = N, T1 = T1, censoring.side = censoring.side, 
                 est.fcn = est.fcn, ci.type = ci.type, conf.level = conf.level, 
-                n.bootstraps = n.bootstraps, use.acc.con = use.acc.con, 
-                obs.mean = param.ci.list$parameters[1], ...)
+                n.bootstraps = n.bootstraps, obs.mean = param.list$parameters["mean"], 
+                ...)
             param.ci.list <- c(param.list, list(ci.obj = ci.list))
         }
         else {

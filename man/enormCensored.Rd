@@ -12,8 +12,8 @@
 \usage{
   enormCensored(x, censored, method = "mle", censoring.side = "left", 
     ci = FALSE, ci.method = "profile.likelihood", ci.type = "two-sided", 
-    conf.level = 0.95, n.bootstraps = 1000, use.acc.con = FALSE, 
-    pivot.statistic = "z", nmc = 1000, seed = NULL, ...)
+    conf.level = 0.95, n.bootstraps = 1000, pivot.statistic = "z", 
+    nmc = 1000, seed = NULL, ...)
 }
 \arguments{
   \item{x}{
@@ -95,13 +95,6 @@
   \item{n.bootstraps}{
   numeric scalar indicating how many bootstraps to use to construct the 
   confidence interval for the mean when \code{ci.type="bootstrap"}.  This 
-  argument is ignored if \code{ci=FALSE} and/or \code{ci.method} does not 
-  equal \code{"bootstrap"}.
-}
-  \item{use.acc.con}{
-  logical scalar indicating whether to use the acceleration constant when 
-  computing the bias-corrected bootstrap confidence interval (see the DETAILS section).  
-  The default value is \code{FALSE}.  This 
   argument is ignored if \code{ci=FALSE} and/or \code{ci.method} does not 
   equal \code{"bootstrap"}.
 }
@@ -560,6 +553,9 @@
   \deqn{\mu_0: G^2 \le \chi^2_{1, {1-\alpha}} \;\;\;\;\;\; (33)}
   where \eqn{\chi^2_{\nu, p}} denotes the \eqn{p}'th quantile of the 
   \link[stats:Chisquare]{chi-squared distribution} with \eqn{\nu} degrees of freedom.
+  One-sided lower and one-sided upper confidence intervals are computed in a similar 
+  fashion, except that the quantity \eqn{1-\alpha} in Equation (33) is replaced with 
+  \eqn{1-2\alpha}.
   \cr
 
   \bold{\emph{Normal Approximation}} (\code{ci.method="normal.approx"}) \cr
@@ -685,13 +681,17 @@
       based on this estimated cdf.  
   }
 
-  The percentile interval (Efron and Tibshirani, 1993, p.170) is computed as:
-  \deqn{[\hat{G}^{-1}(\frac{\alpha}{2}), \; \hat{G}^{-1}(\frac{1-\alpha}{2})] \;\;\;\;\;\; (42)}
+  The two-sided percentile interval (Efron and Tibshirani, 1993, p.170) is computed as:
+  \deqn{[\hat{G}^{-1}(\frac{\alpha}{2}), \; \hat{G}^{-1}(1-\frac{\alpha}{2})] \;\;\;\;\;\; (42)}
   where \eqn{\hat{G}(t)} denotes the empirical cdf evaluated at \eqn{t} and thus 
   \eqn{\hat{G}^{-1}(p)} denotes the \eqn{p}'th empirical quantile, that is, 
-  the \eqn{p}'th quantile associated with the empirical cdf.  The function 
-  \code{enormCensored} calls the \R function \code{\link[stats]{quantile}} to compute 
-  the empirical quantiles used in Equation (42).
+  the \eqn{p}'th quantile associated with the empirical cdf.  Similarly, a one-sided lower 
+  confidence interval is computed as:
+  \deqn{[\hat{G}^{-1}(\alpha), \; \infty] \;\;\;\;\;\; (43)}
+  and a one-sided upper confidence interval is computed as:
+  \deqn{[-\infty, \; \hat{G}^{-1}(1-\alpha)] \;\;\;\;\;\; (44)}
+  The function \code{enormCensored} calls the \R function \code{\link[stats]{quantile}} 
+  to compute the empirical quantiles used in Equations (42)-(44).
 
   The percentile method bootstrap confidence interval is only first-order 
   accurate (Efron and Tibshirani, 1993, pp.187-188), meaning that the probability 
@@ -700,30 +700,35 @@
   (1993, pp.184-188) proposed a bias-corrected and accelerated interval that is 
   second-order accurate, meaning that the probability that the confidence interval 
   will contain the true value of \eqn{\mu} may be off by \eqn{k/N} instead of 
-  \eqn{k/\sqrt{N}}.  The bias-corrected and accelerated confidence interval is 
+  \eqn{k/\sqrt{N}}.  The two-sided bias-corrected and accelerated confidence interval is 
   computed as:
-  \deqn{[\hat{G}^{-1}(\alpha_1), \; \hat{G}^{-1}(\alpha_2)] \;\;\;\;\;\; (43)}
+  \deqn{[\hat{G}^{-1}(\alpha_1), \; \hat{G}^{-1}(\alpha_2)] \;\;\;\;\;\; (45)}
   where
-  \deqn{\alpha_1 = \Phi[\hat{z}_0 + \frac{\hat{z}_0 + z_{\alpha/2}}{1 - \hat{a}(z_0 + z_{\alpha/2})}] \;\;\;\;\;\; (44)}
-  \deqn{\alpha_2 = \Phi[\hat{z}_0 + \frac{\hat{z}_0 + z_{1-\alpha/2}}{1 - \hat{a}(z_0 + z_{1-\alpha/2})}] \;\;\;\;\;\; (45)}
-  \deqn{\hat{z}_0 = \Phi^{-1}[\hat{G}(\hat{\mu})] \;\;\;\;\;\; (46)}
-  \deqn{\hat{a} = \frac{\sum_{i=1}^N (\hat{\mu}_{(\cdot)} - \hat{\mu}_{(i)})^3}{6[\sum_{i=1}^N (\hat{\mu}_{(\cdot)} - \hat{\mu}_{(i)})^2]^{3/2}} \;\;\;\;\;\; (47)}
+  \deqn{\alpha_1 = \Phi[\hat{z}_0 + \frac{\hat{z}_0 + z_{\alpha/2}}{1 - \hat{a}(z_0 + z_{\alpha/2})}] \;\;\;\;\;\; (46)}
+  \deqn{\alpha_2 = \Phi[\hat{z}_0 + \frac{\hat{z}_0 + z_{1-\alpha/2}}{1 - \hat{a}(z_0 + z_{1-\alpha/2})}] \;\;\;\;\;\; (47)}
+  \deqn{\hat{z}_0 = \Phi^{-1}[\hat{G}(\hat{\mu})] \;\;\;\;\;\; (48)}
+  \deqn{\hat{a} = \frac{\sum_{i=1}^N (\hat{\mu}_{(\cdot)} - \hat{\mu}_{(i)})^3}{6[\sum_{i=1}^N (\hat{\mu}_{(\cdot)} - \hat{\mu}_{(i)})^2]^{3/2}} \;\;\;\;\;\; (49)}
   where the quantity \eqn{\hat{\mu}_{(i)}} denotes the estimate of \eqn{\mu} using 
   all the values in \eqn{\underline{x}} except the \eqn{i}'th one, and
-  \deqn{\hat{\mu}{(\cdot)} = \frac{1}{N} \sum_{i=1}^N \hat{\mu_{(i)}} \;\;\;\;\;\; (48)}
+  \deqn{\hat{\mu}{(\cdot)} = \frac{1}{N} \sum_{i=1}^N \hat{\mu_{(i)}} \;\;\;\;\;\; (50)}
+  A one-sided lower confidence interval is given by:
+  \deqn{[\hat{G}^{-1}(\alpha_1), \; \infty] \;\;\;\;\;\; (51)}
+  and a one-sided upper confidence interval is given by:
+  \deqn{[-\infty, \; \hat{G}^{-1}(\alpha_2)] \;\;\;\;\;\; (52)}
+  where \eqn{\alpha_1} and \eqn{\alpha_2} are computed as for a two-sided confidence 
+  interval, except \eqn{\alpha/2} is replaced with \eqn{\alpha} in Equations (46) and (47).
+
   The constant \eqn{\hat{z}_0} incorporates the bias correction, and the constant 
   \eqn{\hat{a}} is the acceleration constant.  The term \dQuote{acceleration} refers 
   to the rate of change of the standard error of the estimate of \eqn{\mu} with 
   respect to the true value of \eqn{\mu} (Efron and Tibshirani, 1993, p.186).  For a 
   normal (Gaussian) distribution, the standard error of the estimate of \eqn{\mu} 
   does not depend on the value of \eqn{\mu}, hence the acceleration constant is not 
-  really necessary.  The argument \code{use.acc.con} (see the section ARGUMENTS above) 
-  determines whether the acceleration constant \eqn{\hat{a}} is computed as in 
-  Equation (47) (\code{use.acc.con=TRUE}) or is set to 0 (\code{use.acc.con=FALSE}).  
-  The default value is \code{use.acc.con=FALSE}.
+  really necessary.
 
   When \code{ci.method="bootstrap"}, the function \code{enormCensored} computes both 
-  the percentile method and bias-corrected bootstrap confidence intervals.
+  the percentile method and bias-corrected and accelerated method 
+  bootstrap confidence intervals.
 
   This method of constructing confidence intervals for censored data was studied by 
   Shumway et al. (1989).
@@ -980,7 +985,7 @@
   found that the delta method performed quite well and was superior to the 
   bootstrap method.
 
-  Millard et al. (2014; in preparation) show that the coverage of profile likelihood 
+  Millard et al. (2015; in preparation) show that the coverage of the profile likelihood 
   method is excellent.
 }
 \seealso{

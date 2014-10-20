@@ -58,9 +58,9 @@ function (n, distributions = c(Var.1 = "norm", Var.2 = "norm"),
             dist.abb[i] <- check.da.list$dist.abb
             dist.name[i] <- check.da.list$dist.name
             param.list.tmp[[i]] <- check.da.list$param.list
-            supp.min[i] <- eval(parse(text = Distribution.df[dist.abb[i], 
+            supp.min[i] <- eval(parse(text = EnvStats::Distribution.df[dist.abb[i], 
                 "Support.Min"]), envir = param.list.tmp[[i]])
-            supp.max[i] <- eval(parse(text = Distribution.df[dist.abb[i], 
+            supp.max[i] <- eval(parse(text = EnvStats::Distribution.df[dist.abb[i], 
                 "Support.Max"]), envir = param.list.tmp[[i]])
         }
         param.list[!emp.index] <- param.list.tmp[!emp.index]

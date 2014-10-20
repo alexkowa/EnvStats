@@ -229,11 +229,11 @@
   #---------------------------------
   qqPlotGestalt(same.window = FALSE, add.line = TRUE)
 
+  \dontrun{
   # Look at 4 sets of plots all in the same graphics window
   #--------------------------------------------------------
-  # NOT DONE.  Remove the hash sign (#) from the beginning
-  # of the next line to run this example.
-  # qqPlotGestalt(add.line = TRUE, num.pages = 4)
+  qqPlotGestalt(add.line = TRUE, num.pages = 4)
+  }
 
   #==========
 

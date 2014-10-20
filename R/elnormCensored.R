@@ -1,8 +1,8 @@
 elnormCensored <-
 function (x, censored, method = "mle", censoring.side = "left", 
     ci = FALSE, ci.method = "profile.likelihood", ci.type = "two-sided", 
-    conf.level = 0.95, n.bootstraps = 1000, use.acc.con = FALSE, 
-    pivot.statistic = "z", nmc = 1000, seed = NULL, ...) 
+    conf.level = 0.95, n.bootstraps = 1000, pivot.statistic = "z", 
+    nmc = 1000, seed = NULL, ...) 
 {
     if (!is.vector(x, mode = "numeric")) 
         stop("'x' must be a numeric vector")
@@ -51,8 +51,8 @@ function (x, censored, method = "mle", censoring.side = "left",
     args.list <- list(x = x, censored = censored, method = method, 
         censoring.side = censoring.side, ci = ci, ci.method = ci.method, 
         ci.type = ci.type, conf.level = conf.level, n.bootstraps = n.bootstraps, 
-        use.acc.con = use.acc.con, pivot.statistic = pivot.statistic, 
-        nmc = nmc, seed = seed, ...)
+        pivot.statistic = pivot.statistic, nmc = nmc, seed = seed, 
+        ...)
     if (multiple) {
         ret.list <- do.call("elnormMultiplyCensored", args = args.list)
     }
