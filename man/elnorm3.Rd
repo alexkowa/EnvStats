@@ -38,7 +38,7 @@
 }
   \item{ci.method}{
   character string indicating the method to use to construct the confidence interval.  
-  The possible values are \code{"avar"} (asymptotic variance; the default), 
+  The possible values are \code{"avar"} (asymptotic variance; the default), \cr
   \code{"likelihood.profile"}, and \code{"skewness"} (method suggested by Royston 
   (1992b) for \code{method="zero.skew"}).  This argument is ignored if \code{ci=FALSE}.
 }
@@ -55,7 +55,7 @@
   \item{threshold.lb.sd}{
   a positive numeric scalar specifying the range over which to look for the 
   local maximum likelihood (\code{method="lmle"}) or zero-skewness 
-  (\code{method="zero.skewness"}) estimator of threshold.  The range is set to 
+  (\code{method="zero.skewness"}) estimator of threshold.  The range is set to \cr
   \code{[ mean(x) - threshold.lb.sd * sd(x), min(x) ]}.  If you receive a warning 
   message that \code{elnorm3} is unable to find an acceptable estimate of threshold 
   in this range, it may be because of convergence problems specific to the data in 
@@ -100,7 +100,7 @@
 
   Cohen (1951) showed that the lmle of \eqn{\gamma} is given by the solution to the 
   following equation:
-  \deqn{[\sum_{i=1}^n w_i] \, \{\sum_{i=1}^n y_i - \sum_{i=1}^n y_i^2 + \frac{1}{n}[\sum_{i=1}^n y_i]^2 \} - n \sum_{i=1}^n \frac{y_i}{w_i} = 0 \;\;\;\; (4)}
+  \deqn{[\sum_{i=1}^n \frac{1}{w_i}] \, \{\sum_{i=1}^n y_i - \sum_{i=1}^n y_i^2 + \frac{1}{n}[\sum_{i=1}^n y_i]^2 \} - n \sum_{i=1}^n \frac{y_i}{w_i} = 0 \;\;\;\; (4)}
   where
   \deqn{w_i = x_i - \hat{\gamma} \;\;\;\; (5)}
   \deqn{y_i = log(x_i - \hat{\gamma}) = log(w_i) \;\;\;\; (6)}

@@ -134,7 +134,8 @@
   fit includes singularities so that not all coefficients can be estimted.
 }
 \value{
-  An object of \code{\link{class}} \code{"\link{lm}"} that includes a component called 
+  An object of \code{\link{class}} \code{"calibrate"} that inherits from 
+  \code{\link{class}} \code{"\link{lm}"} and includes a component called 
   \code{x} that stores the model matrix (the values of the predictor variables for the final 
   calibration model).
 }
@@ -167,7 +168,8 @@
   detection, and quantitation limits.
 }
 \seealso{
-  \code{\link{anovaPE}}, \code{\link{inversePredictCalibrate}}, 
+  \code{\link{calibrate.object}}, \code{\link{anovaPE}}, 
+  \code{\link{inversePredictCalibrate}}, 
   \code{\link{detectionLimitCalibrate}}, \code{\link{lm}}.
 }
 \examples{
@@ -183,8 +185,7 @@
 
   Spike <- EPA.97.cadmium.111.df$Spike 
 
-  calibrate.list <- calibrate(Cadmium ~ Spike, data = EPA.97.cadmium.111.df, 
-    simultaneous = FALSE) 
+  calibrate.list <- calibrate(Cadmium ~ Spike, data = EPA.97.cadmium.111.df) 
  
   newdata <- data.frame(Spike = seq(min(Spike), max(Spike), len = 100))
  

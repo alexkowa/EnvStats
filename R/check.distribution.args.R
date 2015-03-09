@@ -4,7 +4,8 @@ function (distribution, param.list, check.params = TRUE)
     idist <- charmatch(distribution, .Distribution.abb, nomatch = 0)
     if (idist == 0) 
         stop(paste("Unknown or ambiguous distribution abbreviation. ", 
-            "See the help file for 'Distribution.df' for", "a list of distribution names."))
+            "See the help file for 'EnvStats::Distribution.df' for", 
+            "a list of distribution names."))
     dist.abb <- .Distribution.abb[idist]
     dist.name <- .Distribution.name[idist]
     if (dist.name == "Stable") 
@@ -32,13 +33,13 @@ function (distribution, param.list, check.params = TRUE)
                 "long as the abbreviation uniquely identifies each ", 
                 "distribution parameter relative to the other ", 
                 "distribution parameters.  See the help file for ", 
-                "'Distribution.df' for a list of distribution ", 
+                "'EnvStats::Distribution.df' for a list of distribution ", 
                 "parameter names.", sep = ""))
         param.index <- pmatch(names.param.list, dist.params.names)
         if (sum(!is.na(param.index)) != n.dist.params) 
             stop(paste("Unknown or ambiguous argument name(s) for the", 
                 "distribution parameter(s).  See the help file for", 
-                "'Distribution.df' for", "a list of distribution parameter names."))
+                "'EnvStats::Distribution.df' for", "a list of distribution parameter names."))
         if (!all(sapply(param.list, length) == 1)) 
             stop("All distribution parameters must be scalars.")
         if (any(sapply(param.list, is.na))) 
@@ -58,7 +59,7 @@ function (distribution, param.list, check.params = TRUE)
         if (any(out.of.bounds.vec)) 
             stop(paste("Illegal values for the following distribution parameter(s):\n\t\t", 
                 paste(dist.params.names[out.of.bounds.vec], collapse = ", "), 
-                "\n\t", "See the help file for 'Distribution.df' for ", 
+                "\n\t", "See the help file for 'EnvStats::Distribution.df' for ", 
                 "a list of legal values for distribution parameters.", 
                 sep = ""))
     }

@@ -14,7 +14,8 @@
 }
 \arguments{
   \item{object}{
-  an object that is the result of calling the function \code{\link{calibrate}}.
+  an object of class \code{"calibrate"} that is the result of calling the function 
+  \code{\link{calibrate}}.
 }
   \item{coverage}{
   optional numeric scalar between 0 and 1 indicating the confidence level associated with 

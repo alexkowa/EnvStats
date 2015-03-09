@@ -14,7 +14,8 @@
 }
 \arguments{
   \item{object}{
-  an object that is the result of calling the function \code{\link{calibrate}}.
+  an object of class \code{"calibrate"} that is the result of calling the function 
+  \code{\link{calibrate}}.
 }
   \item{obs.y}{
   optional numeric vector of observed values for the machine signal.  
@@ -155,18 +156,19 @@
   Spike <- EPA.97.cadmium.111.df$Spike 
 
   calibrate.list <- calibrate(Cadmium ~ Spike, 
-    data=EPA.97.cadmium.111.df) 
+    data = EPA.97.cadmium.111.df) 
 
-  newdata <- data.frame(Spike = seq(min(Spike), max(Spike), len=100))
+  newdata <- data.frame(Spike = seq(min(Spike), max(Spike), 
+    length.out = 100))
 
-  pred.list <- predict(calibrate.list, newdata=newdata, se.fit=TRUE) 
+  pred.list <- predict(calibrate.list, newdata = newdata, se.fit = TRUE) 
 
-  pointwise.list <- pointwise(pred.list, coverage=0.99, 
-    individual=TRUE) 
+  pointwise.list <- pointwise(pred.list, coverage = 0.99, 
+    individual = TRUE)
 
-  plot(Spike, Cadmium, ylim=c(min(pointwise.list$lower), 
-    max(pointwise.list$upper)), xlab="True Concentration (ng/L)", 
-    ylab="Observed Concentration (ng/L)") 
+  plot(Spike, Cadmium, ylim = c(min(pointwise.list$lower), 
+    max(pointwise.list$upper)), xlab = "True Concentration (ng/L)", 
+    ylab = "Observed Concentration (ng/L)") 
 
   abline(calibrate.list, lwd=2) 
 
@@ -175,14 +177,14 @@
   lines(newdata$Spike, pointwise.list$upper, lty=8, lwd=2) 
 
   title(paste("Calibration Line and 99\% Prediction Limits", 
-    "for US EPA Cadmium 111 Data", sep="\n")) 
+    "for US EPA Cadmium 111 Data", sep = "\n")) 
 
  
   # Now estimate the true concentration based on 
   # an observed signal of 60 ng/L. 
 
-  inversePredictCalibrate(calibrate.list, obs.y=60, 
-    intervals=TRUE, coverage=0.99, individual=TRUE) 
+  inversePredictCalibrate(calibrate.list, obs.y = 60, 
+    intervals = TRUE, coverage = 0.99, individual = TRUE) 
 
   #     obs.y   pred.x   lpl.x    upl.x 
   #[1,]    60 59.97301 53.8301 66.15422 

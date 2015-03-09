@@ -10,7 +10,7 @@ function (object, data = NULL, subset, na.action = na.pass, ...)
     m$formula <- m$object
     m$object <- NULL
     m$na.action <- na.action
-    require(stats, quietly = TRUE)
+    requireNamespace("stats", quietly = TRUE)
     m[[1L]] <- as.name("model.frame")
     mf <- eval(m, parent.frame())
     response <- attr(attr(mf, "terms"), "response")

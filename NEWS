@@ -1,3 +1,37 @@
+Changes in Version 2.0.0, 2015.03.09:
+
+	o EnvStats contains a modified version of the R function predict.lm().  
+	  To comply with CRAN policy, added the generic function predict() and the 
+	  function predict.default(), and also updated the already existing (within 
+	  EnvStats) predict.lm() function.
+
+	o EnvStats contains a modified version of the R function print.htest().  
+	  To comply with CRAN policy, added the generic function print() and the 
+	  function print.default().
+
+	o Included the function errorBar() in the NAMESPACE.  This function allows 
+	  the user to plot error bars.  See the help file for more information.
+
+	o Updated the function calibrate() to return an object of class "calibrate" 
+	  which inherits from class "lm".
+
+	o Included the function print.gofOutlier() in the NAMESPACE so that the results 
+	  print correctly for the function rosnerTest() to perform Rosner's test for 
+	  outliers assuming a normal (Gaussian) distribution.
+
+	o Updated summaryStats() so that it will accept a character or logical vector 
+	  as its first argument.
+
+	o Updated stripChart() so that it will accept a numeric matrix as its 
+	  first argument.
+
+	o Fixed a bug in the function elnorm3() for the case when method="lmle".
+	  (Thanks to Jon Hosking for pointing this out!).
+
+	o Fixed formatting problems in the PDF version of the help files.
+
+========================
+
 Changes in Version 1.0.3, 2014.10.20:
 
 	o Added the function rosnerTest to perform Rosner's test for outliers in a 

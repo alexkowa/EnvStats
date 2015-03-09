@@ -327,7 +327,7 @@ kendallTrendTest(y, ...)
 
   Helsel, D.R., and R. M. Hirsch. (2002). \emph{Statistical Methods in Water Resources}. 
   Techniques of Water Resources Investigations, Book 4, chapter A3. U.S. Geological Survey. 
-  Available on-line at \url{http://www.practicalstats.com/aes/aes/AESbook.html}.
+  Available on-line at \url{http://pubs.usgs.gov/twri/twri4a3/pdf/twri4a3-new.pdf}.
 
   Hirsch, R.M., J.R. Slack, and R.A. Smith. (1982). Techniques of Trend Analysis for Monthly Water Quality 
   Data. \emph{Water Resources Research} \bold{18}(1), 107-121.

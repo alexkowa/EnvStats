@@ -49,21 +49,24 @@ stripChart(x, ...)
 \arguments{
   \item{x}{
   the data from which the plots are to be produced.  In the default method the data can be 
-  specified as a single numeric vector, or as a list of numeric vectors, each corresponding 
-  to a component plot.  In the formula method, a symbolic specification of the form \code{y ~ g} 
-  can be given, indicating the observations in the vector \code{y} are to be grouped 
-  according to the levels of the factor \code{g} (the form \code{y ~ 1} indicates no grouping).  
-  \code{NA}s are allowed in the data.
+  specified as a list or data frame where each component is numeric, a numeric matrix, 
+  or a numeric vector.  In the formula method, a symbolic specification of the form 
+  \code{y ~ g} can be given, indicating the observations in the vector \code{y} are to be 
+  grouped according to the levels of the factor \code{g} (the form \code{y ~ 1} indicates 
+  no grouping).  \code{NA}s are allowed in the data.
 }
   \item{data}{
-  a data.frame (or list) from which the variables in \code{x} should be taken.
+  for the formula method, a data.frame (or list) from which the variables in \code{x} 
+  should be taken.
 }
   \item{subset}{
-  an optional vector specifying a subset of observations to be used for plotting.
+  for the formula method, an optional vector specifying a subset of observations to be 
+  used for plotting.
 }
   \item{na.action}{
-  a function which indicates what should happen when the data contain \code{NA}s. 
-  The default is to ignore missing values in either the response or the group.
+  for the formula method, a function which indicates what should happen when the data 
+  contain \code{NA}s.  The default is to ignore missing values in either the response or 
+  the group.
 }
   \item{\dots}{
   additional parameters passed to the default method, or by it to \code{\link{plot}}, 

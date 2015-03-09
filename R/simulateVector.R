@@ -15,7 +15,7 @@ function (n, distribution = "norm", param.list = list(mean = 0,
         nomatch = 0)
     if (any(idist == 0)) 
         stop(paste("The argument 'distribution' contains an unknown or", 
-            "ambiguous distribution abbreviation. ", "See the help file for 'Distribution.df' for", 
+            "ambiguous distribution abbreviation. ", "See the help file for 'EnvStats::Distribution.df' for", 
             "a list of distribution abbreviations. ", "You may also use the abbreviation 'emp' to denote", 
             "an empirical distribution"))
     emp <- idist == 1

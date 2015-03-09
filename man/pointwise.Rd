@@ -4,7 +4,8 @@
   Pointwise Confidence Limits for Predictions
 }
 \description{
-  Computes pointwise confidence limits for predictions computed by the function \code{\link{predict}}.
+  Computes pointwise confidence limits for predictions computed by the function 
+  \code{\link{predict}}.
 }
 \usage{
   pointwise(results.predict, coverage = 0.99, 
@@ -19,24 +20,27 @@
   The default value is \code{coverage=0.99}.
 }
   \item{simultaneous}{
-  optional logical scalar indicating whether to base the confidence limits for the predicted values on simultaneous or non-simultaneous prediction limits. 
+  optional logical scalar indicating whether to base the confidence limits for the 
+  predicted values on simultaneous or non-simultaneous prediction limits. 
   The default value is \code{simultaneous=FALSE}.
 }
   \item{individual}{
-  optional logical scalar indicating whether to base the confidence intervals for the predicted values on prediction limits for the mean (\code{individual=FALSE}) or 
+  optional logical scalar indicating whether to base the confidence intervals for the 
+  predicted values on prediction limits for the mean (\code{individual=FALSE}) or 
   prediction limits for an individual observation (\code{individual=TRUE}). 
   The default value is \code{individual=FALSE}.
 }
 }
 \details{
-  This function computes pointwise confidence limits for predictions computed by the function \cr
+  This function computes pointwise confidence limits for predictions computed by the 
+  function \cr
   \code{\link{predict}}. The limits are computed at those points specified by the argument 
   \code{newdata} of \code{\link{predict}}.
 
-  The \code{\link{predict}} function is a generic function with methods for several different classes. 
-  The funciton \code{pointwise} was part of the S language.  The modifications to 
-  \code{pointwise} in the package EnvStats involve confidence limits for predictions for a 
-  linear model (i.e., an object of class \code{lm}).
+  The \code{\link{predict}} function is a generic function with methods for several 
+  different classes.  The funciton \code{pointwise} was part of the S language.  
+  The modifications to \code{pointwise} in the package \pkg{EnvStats} involve confidence 
+  limits for predictions for a linear model (i.e., an object of class \code{"lm"}).
 
   \strong{Confidence Limits for a Predicted Mean Value (\code{individual=FALSE})}.  
   Consider a standard linear model with \eqn{p} predictor variables.  
@@ -103,7 +107,8 @@
   \email{EnvStats@ProbStatInfo.com})
 }
 \note{
-  The function \code{pointwise} is called by the functions \code{\link{detectionLimitCalibrate}} and \cr
+  The function \code{pointwise} is called by the functions 
+  \code{\link{detectionLimitCalibrate}} and \cr
   \code{\link{inversePredictCalibrate}}, which are used in \strong{calibration}. 
 
   Almost always the process of determining the concentration of a chemical in 
@@ -127,7 +132,8 @@
   associated with this estimate (Currie, 1997).
 }
 \seealso{
-  \code{\link{predict}}, \code{\link{lm}}, \code{\link{calibrate}}, 
+  \code{\link{predict}}, \code{\link{predict.lm}}, 
+  \code{\link{lm}}, \code{\link{calibrate}}, 
   \code{\link{inversePredictCalibrate}}, \code{\link{detectionLimitCalibrate}}.
 }
 \examples{

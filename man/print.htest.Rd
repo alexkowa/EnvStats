@@ -4,10 +4,11 @@
   Print Output of Hypothesis Tests
 }
 \description{
-  Formats and prints the results of performing a hypothesis test.  This method is 
-  automatically called by \code{\link[base]{print}} when given an object of class 
-  \code{"htest"}.  The names of the \pkg{EnvStats} functions that perform 
-  hypothesis tests and that produce objects of class 
+  This is a modification of the \R function \code{print.htest} that formats and 
+  prints the results of performing a hypothesis test.  This method is 
+  automatically called by the \pkg{EnvStats} generic function \code{\link{print}} when 
+  given an object of class \code{"htest"}.  The names of the \pkg{EnvStats} functions 
+  that perform hypothesis tests and that produce objects of class 
   \code{"htest"} are listed under \link{Hypothesis Tests}.
 }
 \usage{
@@ -22,7 +23,8 @@
 }
 }
 \details{
-  This is the \code{"htest"} method for the generic function \code{\link[base]{print}}.  
+  This is the \code{"htest"} method for the \pkg{EnvStats} generic function 
+  \code{\link{print}}.  
   Prints null and alternative hypotheses, name of the test, estimated population 
   parameter(s) involved in the null hypothesis, estimation method (if present), 
   data name, sample size (if present), number of missing observations removed 
@@ -43,6 +45,6 @@
 }
 \seealso{
   \link{Hypothesis Tests}, \code{\link{htest.object}}, 
-  \code{\link[base]{print}}.
+  \code{\link{print}}.
 }
 \keyword{print}

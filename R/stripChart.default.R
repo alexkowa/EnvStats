@@ -36,10 +36,22 @@ function (x, method = "stack", seed = 47, jitter = 0.1 * cex,
     if (min.n.for.ci != round(min.n.for.ci) || min.n.for.ci < 
         2) 
         stop("'min.n.for.ci' must be an integer greater than 1")
-    groups <- if (is.list(x)) 
-        x
-    else if (is.numeric(x)) 
-        list(x)
+    if (is.list(x)) {
+        if (!all(sapply(x, is.numeric))) 
+            stop("When 'x' is a data frame or list, all components must be numeric")
+        groups <- x
+    }
+    else if (is.matrix(x)) {
+        if (!is.numeric(x)) 
+            stop("When 'x' is a matrix it must be numeric")
+        groups <- data.frame(x)
+    }
+    else if (is.vector(x)) {
+        if (!is.numeric(x)) 
+            stop("When 'x' is a vector it must be numeric")
+        groups <- list(x)
+    }
+    else stop("'x' must be a list, data frame, matrix, or vector")
     if (0L == (n <- length(groups))) 
         stop("invalid first argument")
     if (drop.unused.levels) {
@@ -60,8 +72,8 @@ function (x, method = "stack", seed = 47, jitter = 0.1 * cex,
     if (is.null(at)) 
         at <- 1L:n
     else if (length(at) != n) 
-        stop(gettextf("'at' must have length equal to the number %d of groups", 
-            n), domain = NA)
+        stop(paste("'at' must have length equal to the number of groups, which is", 
+            n))
     if (is.null(dlab)) 
         dlab <- deparse(substitute(x))
     if (!add) {

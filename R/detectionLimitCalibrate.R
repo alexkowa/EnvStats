@@ -1,12 +1,12 @@
 detectionLimitCalibrate <-
 function (object, coverage = 0.99, simultaneous = TRUE) 
 {
-    if (!inherits(object, "lm")) 
-        stop("The argument 'object' must inherit from the class 'lm'.")
+    if (!inherits(object, "calibrate")) 
+        stop("The argument 'object' must inherit from the class 'calibrate'.")
     if (is.null(object$x)) 
         stop(paste("The argument 'object' must contain", "a component called 'x' that contains the model matrix.", 
             " That is, it must be the result of calling the lm", 
-            "funciton with x=T"))
+            "funciton with x=TRUE"))
     x.name <- attr(object$terms, "term.labels")[1]
     dum.df <- data.frame(0)
     names(dum.df) <- x.name

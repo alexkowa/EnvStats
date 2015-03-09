@@ -3,26 +3,28 @@
 \alias{EnvStats}
 \docType{package}
 \title{
-  Package for Environmental Statistics, including US EPA Guidance
+  Package for Environmental Statistics, Including US EPA Guidance
 }
 \description{
-  \pkg{EnvStats} is a comprehensive R package for Environmental Statistics and 
-  is the successor to the S-PLUS module \emph{EnvironmentalStats for S-PLUS}, 
-  the first copy of which was sold in April, 1997.  \pkg{EnvStats} provides a set 
-  of powerful functions for performing graphical and statistical analyses of 
-  environmental data, bringing major environmental statistical methods found 
-  in the literature and regulatory guidance documents into one statistical package, 
-  along with an extensive hypertext help system that explains what these methods do, 
-  how to use these methods, and where to find them in the environmental statistics 
-  literature.  Also included are numerous built-in data sets from regulatory 
-  guidance documents and the environmental statistics literature.  For a complete 
-  list of functions and datasets, you can do any of the following:
+  A comprehensive R package for environmental statistics and 
+  the successor to the S-PLUS module \emph{EnvironmentalStats for S-PLUS} 
+  (first released in April, 1997).  \pkg{EnvStats} provides a set of powerful 
+  functions for graphical and statistical analyses of environmental data, with 
+  a focus on analyzing chemical concentrations and physical parameters, usually in 
+  the context of mandated environmental monitoring.  It includes major environmental 
+  statistical methods found in the literature and regulatory guidance documents, 
+  and extensive help that explains what these methods do, how to use them, 
+  and where to find them in the literature.  It also includes numerous built-in data 
+  sets from regulatory guidance documents and environmental statistics literature, and 
+  scripts reproducing analyses presented in the user's manual (Millard, 2013).
+
+  For a complete list of functions and datasets, you can do any of the following:
 
   \itemize{
-    \item If you are in the on-line help, scroll to the bottom of this help page and 
-          click on the \bold{Index} link.
     \item See the help file \link[=FcnsByCat]{Functions By Category} for a listing of 
           functions by category.
+    \item If you are in the on-line help, scroll to the bottom of this help page and 
+          click on the \bold{Index} link.
     \item Type \code{library(help="EnvStats")} at the command prompt.
   }
 
@@ -35,17 +37,19 @@
 \tabular{ll}{
 Package: \tab EnvStats\cr
 Type: \tab Package\cr
-Version: \tab 1.0.3\cr
-Date: \tab 2014-10-20\cr
+Version: \tab 2.0.0\cr
+Date: \tab 2015-03-09\cr
 License: \tab GPL (>=3)\cr
 LazyLoad: \tab yes\cr
 }
 
-  A companion file \bold{EnvStats-manual.pdf} containing a listing of all the current help files 
-  is located in the \bold{doc} subdirectory of the directory where the \pkg{EnvStats} package 
+  A companion file \bold{EnvStats-manual.pdf} containing a listing of all the current help 
+  files is located on the \R CRAN web site at 
+  \url{http://cran.r-project.org/web/packages/EnvStats/EnvStats.pdf} and also in the 
+  \bold{doc} subdirectory of the directory where the \pkg{EnvStats} package 
   was installed.  For example, if you installed R under Windows, this file might be located 
   in the directory \bold{C:\\Program Files\\R-*.**.*\\library\\EnvStats\\doc}, where 
-  \bold{*.**.*} denotes the version of R you are using (e.g., 3.0.1) or in the directory 
+  \bold{*.**.*} denotes the version of R you are using (e.g., 3.2.0) or in the directory 
   \bold{C:\\Users\\\emph{Name}\\Documents\\R\\win-library\\*.**.*\\EnvStats\\doc}, where 
   \bold{\emph{Name}} denotes your user name on the Windows operating system.
 
@@ -159,8 +163,8 @@ Steven P. Millard
 Maintainer: Steven P. Millard <EnvStats@ProbStatInfo.com>
 }
 \references{
-  Millard, S.P. (In Preparation). \emph{EnvStats: An R Package for Environmental Statistics}. 
-  Springer-Verlag, New York.
+  Millard, S.P. (2013). \emph{EnvStats: An R Package for Environmental Statistics}. 
+  Springer, New York.
 
   Millard, S.P. (2002). \emph{EnvironmentalStats for S-PLUS: User's Manual for Version 2.0}. 
   Second Edition. Springer-Verlag, New York.

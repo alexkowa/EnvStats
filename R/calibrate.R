@@ -128,5 +128,6 @@ function (formula, data, test.higher.orders = TRUE, max.order = 4,
     }
     if (!x) 
         fit <- update(fit, x = TRUE)
+    class(fit) <- c("calibrate", "lm")
     fit
 }

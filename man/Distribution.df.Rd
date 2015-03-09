@@ -426,7 +426,7 @@
   The \pkg{EnvStats} package.
 }
 \references{
-  Millard, S.P. (In Preparation). \emph{EnvStats: An R Package for 
-  Environmental Statistics}. Springer-Verlag, New York.
+  Millard, S.P. (2013). \emph{EnvStats: An R Package for Environmental Statistics}. 
+  Springer, New York.
 }
 \keyword{datasets}

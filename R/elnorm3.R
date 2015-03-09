@@ -73,10 +73,10 @@ function (x, method = "lmle", ci = FALSE, ci.parameter = "threshold",
                   exp(sqrt(log(omega)) * EZ1.n))^2))^2
             }
             nlminb.list <- nlminb(start = omega, objective = fcn.to.min, 
-                lower = 1 + 1e+08 * .Machine$double.eps, s2 = var.x, 
+                lower = 1 + sqrt(.Machine$double.eps), s2 = var.x, 
                 x.bar = mean.x, x1 = x1, EZ1.n = evNormOrdStatsScalar(r = 1, 
                   n = n))
-            if (nlminb.list$objective > 1e+08 * .Machine$double.eps) {
+            if (nlminb.list$convergence != 0) {
                 warning("Unable to solve for 'omega'")
                 threshold <- meanlog <- sdlog <- NA
                 ci <- FALSE
@@ -96,7 +96,7 @@ function (x, method = "lmle", ci = FALSE, ci.parameter = "threshold",
     }, mmme = {
     }, lmle = {
         threshold.lb <- mean.x - threshold.lb.sd * sd.x
-        threshold.ub <- x1 - 1e+08 * .Machine$double.eps
+        threshold.ub <- x1 - sqrt(.Machine$double.eps)
         eta.lb <- -log(x1 - threshold.lb)
         eta.ub <- -log(x1 - threshold.ub)
         eta <- -log(x1 - threshold)
@@ -127,10 +127,11 @@ function (x, method = "lmle", ci = FALSE, ci.parameter = "threshold",
                 sum(1/y) * (sly - sum(ly^2) + (sly^2)/n.weird) - 
                   n.weird * sum(ly/y)
             }
-            threshold <- uniroot(fcn.for.root.lmle, lower = threshold - 
-                1, upper = min(threshold + 1, mean(threshold, 
-                threshold.ub)), tol = .Machine$double.eps, x.weird = x, 
-                n.weird = n)$root
+            con <- 0.25 * abs(threshold)
+            threshold <- uniroot(fcn.for.root.lmle, lower = max(threshold - 
+                con, threshold.lb), upper = min(threshold + con, 
+                mean(c(threshold, threshold.ub))), tol = .Machine$double.eps, 
+                x.weird = x, n.weird = n)$root
             y <- log(x - threshold)
             ny <- length(y)
             meanlog <- mean(y)
@@ -138,7 +139,7 @@ function (x, method = "lmle", ci = FALSE, ci.parameter = "threshold",
         }
     }, zero.skew = {
         threshold.lb <- mean.x - threshold.lb.sd * sd.x
-        threshold.ub <- x1 - 1e+08 * .Machine$double.eps
+        threshold.ub <- x1 - sqrt(.Machine$double.eps)
         fcn.for.root.zs <- function(threshold, x.weird) {
             y <- log(x.weird - threshold)
             sum((y - mean(y))^3)
@@ -147,7 +148,7 @@ function (x, method = "lmle", ci = FALSE, ci.parameter = "threshold",
             upper = threshold.ub, tol = .Machine$double.eps, 
             x.weird = x)
         threshold <- uniroot.list$root
-        if (uniroot.list$f.root > 1e+08 * .Machine$double.eps || 
+        if (uniroot.list$f.root > sqrt(.Machine$double.eps) || 
             threshold == threshold.lb || threshold == threshold.ub) {
             warning(paste("Unable to solve for 'threshold' in the interval", 
                 "[ mean(x) -", threshold.lb.sd, "* sd(x), min(x) ). ", 

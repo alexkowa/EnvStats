@@ -3,12 +3,12 @@ function (object, obs.y = NULL, n.points = ifelse(is.null(obs.y),
     100, length(obs.y)), intervals = FALSE, coverage = 0.99, 
     simultaneous = FALSE, individual = FALSE, trace = FALSE) 
 {
-    if (!inherits(object, "lm")) 
-        stop("The argument 'object' must inherit from the class 'lm'.")
+    if (!inherits(object, "calibrate")) 
+        stop("The argument 'object' must inherit from the class 'calibrate'.")
     if (is.null(object$x)) 
         stop(paste("The argument 'object' must contain", "a component called 'x' that contains the model matrix.", 
             " That is, it must be the result of calling the lm", 
-            "funciton with x=T"))
+            "funciton with x=TRUE"))
     fcn.to.min.for.x <- function(x.weird, y.weird, object.weird, 
         x.name.weird) {
         dum.df <- data.frame(x.weird)

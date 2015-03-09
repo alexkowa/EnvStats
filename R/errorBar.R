@@ -1,7 +1,8 @@
 errorBar <-
-function (x, y = NULL, lower, upper, incr = TRUE, bar.ends = TRUE, 
-    gap = TRUE, add = FALSE, horizontal = FALSE, bar.ends.size = 1, 
-    col = 1, ..., xlab = deparse(substitute(x)), xlim, ylim) 
+function (x, y = NULL, lower, upper, incr = TRUE, draw.lower = TRUE, 
+    draw.upper = TRUE, bar.ends = TRUE, gap = TRUE, add = FALSE, 
+    horizontal = FALSE, gap.size = 0.75, bar.ends.size = 1, col = 1, 
+    ..., xlab = deparse(substitute(x)), xlim, ylim) 
 {
     draw.null.warn <- function(draw, gap) {
         if (!any(draw)) {
@@ -32,7 +33,7 @@ function (x, y = NULL, lower, upper, incr = TRUE, bar.ends = TRUE,
     if (incr) 
         lower <- center - abs(lower)
     else lower <- rep(lower, length = n)
-    if (any(lower >= center)) 
+    if (draw.lower && any(lower >= center)) 
         warning(paste("There are values of 'lower' which are greater or equal to ", 
             if (horizontal) 
                 "x"
@@ -46,7 +47,7 @@ function (x, y = NULL, lower, upper, incr = TRUE, bar.ends = TRUE,
             upper <- center + upper
         else upper <- rep(upper, length = n)
     }
-    if (any(upper <= center)) 
+    if (draw.upper && any(upper <= center)) 
         warning(paste("There are values of 'upper' which are smaller or\nequal to ", 
             if (horizontal) 
                 "x"
@@ -74,50 +75,63 @@ function (x, y = NULL, lower, upper, incr = TRUE, bar.ends = TRUE,
     col <- rep(col, length = n)
     if (horizontal) {
         if (gap) 
-            gap <- 0.75 * par("cxy")[1]
+            gap <- gap.size * par("cxy")[1]
         if (bar.ends) 
             size.bar <- bar.ends.size * par("cxy")[2]
-        draw <- x - lower > gap
-        z <- draw.null.warn(draw, gap)
-        draw <- z$draw
-        gap <- z$gap
-        segments(lower[draw], y[draw], x[draw] - gap, y[draw], 
-            col = col[draw], ...)
-        if (bar.ends) 
-            segments(lower[draw], y[draw] - size.bar, lower[draw], 
-                y[draw] + size.bar, col = col[draw], ...)
-        draw <- upper - x > gap
-        z <- draw.null.warn(draw, gap)
-        draw <- z$draw
-        gap <- z$gap
-        segments(x[draw] + gap, y[draw], upper[draw], y[draw], 
-            col = col[draw], ...)
-        if (bar.ends) 
-            segments(upper[draw], y[draw] - size.bar, upper[draw], 
-                y[draw] + size.bar, col = col[draw], ...)
+        if (draw.lower) {
+            draw <- x - lower > gap
+            z <- draw.null.warn(draw, gap)
+            draw <- z$draw
+            gap <- z$gap
+            segments(lower[draw], y[draw], x[draw] - gap, y[draw], 
+                col = col[draw], ...)
+            if (bar.ends) 
+                segments(lower[draw], y[draw] - size.bar, lower[draw], 
+                  y[draw] + size.bar, col = col[draw], ...)
+        }
+        if (draw.upper) {
+            draw <- upper - x > gap
+            z <- draw.null.warn(draw, gap)
+            draw <- z$draw
+            gap <- z$gap
+            segments(x[draw] + gap, y[draw], upper[draw], y[draw], 
+                col = col[draw], ...)
+            if (bar.ends) 
+                segments(upper[draw], y[draw] - size.bar, upper[draw], 
+                  y[draw] + size.bar, col = col[draw], ...)
+        }
+        ret.list <- list(group.centers = y, group.stats = cbind(Center = x, 
+            Lower = lower, Upper = upper))
     }
     else {
         if (gap) 
-            gap <- 0.75 * par("cxy")[2]
+            gap <- gap.size * par("cxy")[2]
         if (bar.ends) 
             size.bar <- bar.ends.size * par("cxy")[1]
-        draw <- upper - y > gap
-        z <- draw.null.warn(draw, gap)
-        draw <- z$draw
-        gap <- z$gap
-        segments(x[draw], y[draw] + gap, x[draw], upper[draw], 
-            col = col[draw], ...)
-        if (bar.ends) 
-            segments(x[draw] - size.bar, upper[draw], x[draw] + 
-                size.bar, upper[draw], col = col[draw], ...)
-        draw <- y - lower > gap
-        z <- draw.null.warn(draw, gap)
-        draw <- z$draw
-        gap <- z$gap
-        segments(x[draw], y[draw] - gap, x[draw], lower[draw], 
-            col = col[draw], ...)
-        if (bar.ends) 
-            segments(x[draw] - size.bar, lower[draw], x[draw] + 
-                size.bar, lower[draw], col = col[draw], ...)
+        if (draw.upper) {
+            draw <- upper - y > gap
+            z <- draw.null.warn(draw, gap)
+            draw <- z$draw
+            gap <- z$gap
+            segments(x[draw], y[draw] + gap, x[draw], upper[draw], 
+                col = col[draw], ...)
+            if (bar.ends) 
+                segments(x[draw] - size.bar, upper[draw], x[draw] + 
+                  size.bar, upper[draw], col = col[draw], ...)
+        }
+        if (draw.lower) {
+            draw <- y - lower > gap
+            z <- draw.null.warn(draw, gap)
+            draw <- z$draw
+            gap <- z$gap
+            segments(x[draw], y[draw] - gap, x[draw], lower[draw], 
+                col = col[draw], ...)
+            if (bar.ends) 
+                segments(x[draw] - size.bar, lower[draw], x[draw] + 
+                  size.bar, lower[draw], col = col[draw], ...)
+        }
+        ret.list <- list(group.centers = x, group.stats = cbind(Center = y, 
+            Lower = lower, Upper = upper))
     }
+    invisible(ret.list)
 }

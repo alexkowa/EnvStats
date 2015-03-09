@@ -11,7 +11,7 @@ function (x, data = NULL, dlab = NULL, subset, na.action = NULL,
     m$formula <- m$x
     m$x <- NULL
     m$na.action <- na.action
-    require(stats, quietly = TRUE)
+    requireNamespace("stats", quietly = TRUE)
     m[[1L]] <- as.name("model.frame")
     mf <- eval(m, parent.frame())
     response <- attr(attr(mf, "terms"), "response")

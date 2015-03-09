@@ -6,11 +6,11 @@ function (results.predict, coverage = 0.99, simultaneous = FALSE,
     df <- results.predict$df
     if (is.null(df)) 
         stop(paste("The argument 'results.predict' must be", 
-            "the result of calling the predict() function", "with se.fit=T"))
+            "the result of calling the predict() function", "with se.fit=TRUE"))
     alpha <- 1 - coverage
     p <- results.predict$n.coefs
     if (simultaneous && is.null(p)) {
-        stop(paste("You can only set simultaneous=T", "when the argument results.predict has a", 
+        stop(paste("You can only set simultaneous=TRUE", "when the argument results.predict has a", 
             "component called n.coefs (e.g., as for the results", 
             "of predict.lm)."))
     }

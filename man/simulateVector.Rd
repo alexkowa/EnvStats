@@ -132,7 +132,7 @@
   From a Computer Code.  \emph{Technometrics} \bold{21}(2), 239--245.
 
   Millard, S.P. (2013).  \emph{EnvStats: an R Package for Environmental Statistics}.  
-  Second Edition.  Springer, New York.
+  Springer, New York.
 
   Vose, D. (2008).  \emph{Risk Analysis:  A Quantitative Guide}.  Third Edition.  
   John Wiley & Sons, West Sussex, UK, 752 pp.

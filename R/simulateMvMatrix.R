@@ -32,7 +32,7 @@ function (n, distributions = c(Var.1 = "norm", Var.2 = "norm"),
         nomatch = 0)
     if (any(idist == 0)) 
         stop(paste("The argument 'distributions' contains unknown or", 
-            "ambiguous distribution abbreviations. ", "See the help file for 'Distribution.df' for", 
+            "ambiguous distribution abbreviations. ", "See the help file for 'EnvStats::Distribution.df' for", 
             "a list of distribution abbreviations. ", "You may also use the abbreviation 'emp' to denote", 
             "an empirical distribution"))
     emp.index <- idist == 1

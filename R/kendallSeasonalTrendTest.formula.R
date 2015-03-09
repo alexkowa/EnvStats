@@ -10,7 +10,7 @@ function (y, data = NULL, subset, na.action = na.pass, ...)
     m$formula <- m$y
     m$y <- NULL
     m$na.action <- na.action
-    require(stats, quietly = TRUE)
+    requireNamespace("stats", quietly = TRUE)
     m[[1L]] <- as.name("model.frame")
     mf <- eval(m, parent.frame())
     ncol.mf <- ncol(mf)
