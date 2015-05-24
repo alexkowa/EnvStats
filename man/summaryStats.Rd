@@ -3,6 +3,8 @@
 \alias{summaryStats.formula}
 \alias{summaryStats.default}
 \alias{summaryStats.factor}
+\alias{summaryStats.logical}
+\alias{summaryStats.character}
 \alias{summaryStats.data.frame}
 \alias{summaryStats.matrix}
 \alias{summaryStats.list}
@@ -48,6 +50,10 @@ summaryStats(object, ...)
     ci = p.value & test != "chisq", conf.level = 0.95, 
     stats.in.rows = FALSE, ...)
 
+\method{summaryStats}{character}(object, ...)
+
+\method{summaryStats}{logical}(object, ...)
+
 \method{summaryStats}{data.frame}(object, ...)
 
 \method{summaryStats}{matrix}(object, ...)
@@ -57,7 +63,10 @@ summaryStats(object, ...)
 \arguments{
   \item{object}{
   an object for which summary statistics are desired.  In the default method, 
-  the argument \code{object} must be a numeric vector, a factor, a data frame, a matrix, or a list.  
+  the argument \code{object} can be a numeric vector, a factor, 
+  a character vector, a logical vector, a data frame, a matrix, or a list.  
+  When \code{object} is a character or logical vector, it is coerced to 
+  be a factor.  
   When \code{object} is a data frame, all columns must be numeric or all columns must be factors.  
   When \code{object} is a matrix, it must be a numeric or character matrix.  
   When \code{object} is a list, all components must be numeric vectors.

@@ -30,12 +30,13 @@ stripChart(x, ...)
   cex = par("cex"), points.cex = cex, axes = TRUE, frame.plot = axes, 
   show.ci = TRUE, location.pch = 16, location.cex = cex, 
   conf.level = 0.95, min.n.for.ci = 2, 
-  ci.offset = 3/ifelse(n > 2, (n-1)^(1/3), 1), 
+  ci.offset = 3/ifelse(n > 2, (n-1)^(1/3), 1), ci.bar.lwd = cex,
   ci.bar.ends = TRUE, ci.bar.ends.size = 0.5 * cex, 
   ci.bar.gap = FALSE, n.text = "bottom", 
   n.text.line = ifelse(n.text == "bottom", 2, 0), 
   n.text.cex = cex, location.scale.text = "top", 
-  location.scale.digits = 1, location.scale.text.line = 
+  location.scale.digits = 1, nsmall = location.scale.digits, 
+  location.scale.text.line = 
     ifelse(location.scale.text == "top", 0, 3.5), 
   location.scale.text.cex = 
     cex * 0.8 * ifelse(n > 6, max(0.4, 1 - (n-6) * 0.06), 1), 
@@ -171,6 +172,10 @@ stripChart(x, ...)
   groups and is given by \cr 
   \code{3/ifelse(n > 2, (n-1)^(1/3), 1)}.
 }
+  \item{ci.bar.lwd}{
+  numeric scalar indicating the line width for the confidence interval bars.
+  The default is the current value of the graphics parameter \code{cex}.
+}
   \item{ci.bar.ends}{
   logical scalar indicating whether to add flat ends to the confidence interval bars.  
   The default value is \code{ci.bar.ends=TRUE}.
@@ -205,6 +210,14 @@ stripChart(x, ...)
   \item{location.scale.digits}{
   integer indicating the number of digits to round the estimates of location and scale.  The 
   default value is \code{location.scale.digits=1}.
+}
+  \item{nsmall}{
+  integer passed to the function \code{\link{format}} indicating the the minimum 
+  number of digits to the right of the decimal point for the estimates of location 
+  and scale.  The default value is the value of \code{location.scale.digits}, which 
+  forces all estimates of location and scale have the same number of digits to the 
+  right of the decimal point (including, possibly, trailing zeros).  To omit trailing zeros, 
+  set \code{nsmall=0}. 
 }
   \item{location.scale.text.line}{
   integer indicating on which plot margin line to show the estimates of location and scale 

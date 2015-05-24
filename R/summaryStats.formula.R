@@ -23,7 +23,12 @@ function (object, data = NULL, subset, na.action = na.pass, ...)
         arg.list <- c(arg.list, dot.list)
     else arg.list <- c(arg.list, list(group = mf[, -response]), 
         dot.list)
-    if (is.factor(arg.list$object)) 
+    object <- arg.list$object
+    if (is.factor(object)) 
         do.call(summaryStats.factor, arg.list)
+    else if (is.logical(object)) 
+        do.call(summaryStats.logical, arg.list)
+    else if (is.character(object)) 
+        do.call(summaryStats.character, arg.list)
     else do.call(summaryStats.default, arg.list)
 }

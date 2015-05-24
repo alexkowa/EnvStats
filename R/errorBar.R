@@ -73,6 +73,8 @@ function (x, y = NULL, lower, upper, incr = TRUE, draw.lower = TRUE,
         }
     }
     col <- rep(col, length = n)
+    check.gp.list <- checkGraphicsPars(...)
+    gen.gp.list <- check.gp.list$gen.gp.list
     if (horizontal) {
         if (gap) 
             gap <- gap.size * par("cxy")[1]
@@ -83,22 +85,32 @@ function (x, y = NULL, lower, upper, incr = TRUE, draw.lower = TRUE,
             z <- draw.null.warn(draw, gap)
             draw <- z$draw
             gap <- z$gap
-            segments(lower[draw], y[draw], x[draw] - gap, y[draw], 
-                col = col[draw], ...)
-            if (bar.ends) 
-                segments(lower[draw], y[draw] - size.bar, lower[draw], 
-                  y[draw] + size.bar, col = col[draw], ...)
+            arg.list <- c(list(x0 = lower[draw], y0 = y[draw], 
+                x1 = x[draw] - gap, y1 = y[draw], col = col[draw]), 
+                gen.gp.list)
+            do.call(segments, arg.list)
+            if (bar.ends) {
+                arg.list <- c(list(x0 = lower[draw], y0 = y[draw] - 
+                  size.bar, x1 = lower[draw], y1 = y[draw] + 
+                  size.bar, col = col[draw]), gen.gp.list)
+                do.call(segments, arg.list)
+            }
         }
         if (draw.upper) {
             draw <- upper - x > gap
             z <- draw.null.warn(draw, gap)
             draw <- z$draw
             gap <- z$gap
-            segments(x[draw] + gap, y[draw], upper[draw], y[draw], 
-                col = col[draw], ...)
-            if (bar.ends) 
-                segments(upper[draw], y[draw] - size.bar, upper[draw], 
-                  y[draw] + size.bar, col = col[draw], ...)
+            arg.list <- c(list(x0 = x[draw] + gap, y0 = y[draw], 
+                x1 = upper[draw], y1 = y[draw], col = col[draw]), 
+                gen.gp.list)
+            do.call(segments, arg.list)
+            if (bar.ends) {
+                arg.list <- c(list(x0 = upper[draw], y0 = y[draw] - 
+                  size.bar, x1 = upper[draw], y1 = y[draw] + 
+                  size.bar, col = col[draw]), gen.gp.list)
+                do.call(segments, arg.list)
+            }
         }
         ret.list <- list(group.centers = y, group.stats = cbind(Center = x, 
             Lower = lower, Upper = upper))
@@ -113,22 +125,32 @@ function (x, y = NULL, lower, upper, incr = TRUE, draw.lower = TRUE,
             z <- draw.null.warn(draw, gap)
             draw <- z$draw
             gap <- z$gap
-            segments(x[draw], y[draw] + gap, x[draw], upper[draw], 
-                col = col[draw], ...)
-            if (bar.ends) 
-                segments(x[draw] - size.bar, upper[draw], x[draw] + 
-                  size.bar, upper[draw], col = col[draw], ...)
+            arg.list <- c(list(x0 = x[draw], y0 = y[draw] + gap, 
+                x1 = x[draw], y1 = upper[draw], col = col[draw]), 
+                gen.gp.list)
+            do.call(segments, arg.list)
+            if (bar.ends) {
+                arg.list <- c(list(x0 = x[draw] - size.bar, y0 = upper[draw], 
+                  x1 = x[draw] + size.bar, y1 = upper[draw], 
+                  col = col[draw]), gen.gp.list)
+                do.call(segments, arg.list)
+            }
         }
         if (draw.lower) {
             draw <- y - lower > gap
             z <- draw.null.warn(draw, gap)
             draw <- z$draw
             gap <- z$gap
-            segments(x[draw], y[draw] - gap, x[draw], lower[draw], 
-                col = col[draw], ...)
-            if (bar.ends) 
-                segments(x[draw] - size.bar, lower[draw], x[draw] + 
-                  size.bar, lower[draw], col = col[draw], ...)
+            arg.list <- c(list(x0 = x[draw], y0 = y[draw] - gap, 
+                x1 = x[draw], y1 = lower[draw], col = col[draw]), 
+                gen.gp.list)
+            do.call(segments, arg.list)
+            if (bar.ends) {
+                arg.list <- c(list(x0 = x[draw] - size.bar, y0 = lower[draw], 
+                  x1 = x[draw] + size.bar, y1 = lower[draw], 
+                  col = col[draw]), gen.gp.list)
+                do.call(segments, arg.list)
+            }
         }
         ret.list <- list(group.centers = x, group.stats = cbind(Center = y, 
             Lower = lower, Upper = upper))

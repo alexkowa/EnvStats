@@ -6,10 +6,12 @@ function (x, method = "stack", seed = 47, jitter = 0.1 * cex,
     log = "", pch = 1, col = par("fg"), cex = par("cex"), points.cex = cex, 
     axes = TRUE, frame.plot = axes, show.ci = TRUE, location.pch = 16, 
     location.cex = cex, conf.level = 0.95, min.n.for.ci = 2, 
-    ci.offset = 3/ifelse(n > 2, (n - 1)^(1/3), 1), ci.bar.ends = TRUE, 
-    ci.bar.ends.size = 0.5 * cex, ci.bar.gap = FALSE, n.text = "bottom", 
-    n.text.line = ifelse(n.text == "bottom", 2, 0), n.text.cex = cex, 
-    location.scale.text = "top", location.scale.digits = 1, location.scale.text.line = ifelse(location.scale.text == 
+    ci.offset = 3/ifelse(n > 2, (n - 1)^(1/3), 1), ci.bar.lwd = cex, 
+    ci.bar.ends = TRUE, ci.bar.ends.size = 0.5 * cex, ci.bar.gap = FALSE, 
+    n.text = "bottom", n.text.line = ifelse(n.text == "bottom", 
+        2, 0), n.text.cex = cex, location.scale.text = "top", 
+    location.scale.digits = 1, nsmall = location.scale.digits, 
+    location.scale.text.line = ifelse(location.scale.text == 
         "top", 0, 3.5), location.scale.text.cex = cex * 0.8 * 
         ifelse(n > 6, max(0.4, 1 - (n - 6) * 0.06), 1), p.value = FALSE, 
     p.value.digits = 3, p.value.line = 2, p.value.cex = cex, 
@@ -207,7 +209,7 @@ function (x, method = "stack", seed = 47, jitter = 0.1 * cex,
         if (location.scale.text != "none") {
             side <- ifelse(location.scale.text == "top", 3, 1)
             dum <- format(round(c(location.vec[i], scale.vec[i]), 
-                location.scale.digits))
+                location.scale.digits), nsmall = nsmall)
             if (ci.and.test == "parametric") {
                 string1 <- "Mean="
                 string2 <- "\nSD   ="
@@ -236,7 +238,8 @@ function (x, method = "stack", seed = 47, jitter = 0.1 * cex,
                     y = location.vec[i], lower = ci.mat[i, "LCL"], 
                     upper = ci.mat[i, "UCL"], incr = FALSE, bar.ends = ci.bar.ends, 
                     gap = ci.bar.gap, add = TRUE, horizontal = FALSE, 
-                    col = col[(i - 1L)%%length(col) + 1L], bar.ends.size = ci.bar.ends.size)
+                    col = col[(i - 1L)%%length(col) + 1L], lwd = ci.bar.lwd, 
+                    bar.ends.size = ci.bar.ends.size)
                 points(at[i] + ci.offset[i] * csize, location.vec[i], 
                   pch = location.pch, col = col[(i - 1L)%%length(col) + 
                     1L], cex = location.cex)
@@ -247,7 +250,8 @@ function (x, method = "stack", seed = 47, jitter = 0.1 * cex,
                     csize, lower = ci.mat[i, "LCL"], upper = ci.mat[i, 
                     "UCL"], incr = FALSE, bar.ends = ci.bar.ends, 
                     gap = ci.bar.gap, add = TRUE, horizontal = TRUE, 
-                    col = col[(i - 1L)%%length(col) + 1L], bar.ends.size = ci.bar.ends.size)
+                    col = col[(i - 1L)%%length(col) + 1L], lwd = ci.bar.lwd, 
+                    bar.ends.size = ci.bar.ends.size)
                 points(location.vec[i], at[i] + ci.offset[i] * 
                   csize, pch = location.pch, col = col[(i - 1L)%%length(col) + 
                   1L], cex = location.cex)
