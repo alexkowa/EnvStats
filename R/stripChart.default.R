@@ -56,6 +56,8 @@ function (x, method = "stack", seed = 47, jitter = 0.1 * cex,
     else stop("'x' must be a list, data frame, matrix, or vector")
     if (0L == (n <- length(groups))) 
         stop("invalid first argument")
+    if (any(sapply(groups, function(x) any(is.na(x))))) 
+        groups <- lapply(groups, function(x) x[!is.na(x)])
     if (drop.unused.levels) {
         groups.N <- sapply(groups, length)
         groups <- groups[groups.N > 0]
@@ -273,30 +275,56 @@ function (x, method = "stack", seed = 47, jitter = 0.1 * cex,
             if (n == 2) {
                 if (ci.and.test == "nonparametric") {
                   test.fcn <- "wilcox.test"
-                  if (is.null(test.arg.list) || all(is.na(pmatch(names(ci.arg.list), 
-                    "conf.int")))) {
-                    test.arg.list <- c(test.arg.list, list(conf.int = TRUE))
+                  p.val.string <- "Wilcoxon p-value"
+                  if (is.null(test.arg.list)) {
+                    test.arg.list <- list(conf.int = TRUE)
                   }
                   else {
-                    index <- (1:length(test.arg.list))[!is.na(pmatch(names(test.arg.list), 
-                      "conf.int"))]
-                    if (!unlist(test.arg.list[index])) 
-                      test.arg.list[[index]] <- TRUE
+                    if (all(is.na(pmatch(names(test.arg.list), 
+                      "conf.int")))) {
+                      test.arg.list <- c(test.arg.list, list(conf.int = TRUE))
+                    }
+                    else {
+                      index <- (1:length(test.arg.list))[!is.na(pmatch(names(test.arg.list), 
+                        "conf.int"))]
+                      if (!unlist(test.arg.list[index])) 
+                        test.arg.list[[index]] <- TRUE
+                    }
+                    if (!all(is.na(pmatch(names(test.arg.list), 
+                      "paired")))) {
+                      index <- (1:length(test.arg.list))[!is.na(pmatch(names(test.arg.list), 
+                        "paired"))]
+                      if (unlist(test.arg.list[index])) 
+                        p.val.string <- "Paired Wilcoxon p-value"
+                    }
                   }
-                  p.val.string <- "Wilcoxon p-value"
                 }
                 else {
                   test.fcn <- "t.test"
-                  if (is.null(test.arg.list) || all(is.na(pmatch(names(test.arg.list), 
-                    "var.equal")))) {
-                    test.arg.list <- c(test.arg.list, list(var.equal = TRUE))
-                    p.val.string <- "t-test p-value"
+                  p.val.string <- "t-test p-value"
+                  if (is.null(test.arg.list)) {
+                    test.arg.list <- list(var.equal = TRUE)
                   }
                   else {
-                    index <- (1:length(test.arg.list))[!is.na(pmatch(names(test.arg.list), 
-                      "var.equal"))]
-                    if (!unlist(test.arg.list[index])) 
-                      p.val.string <- "Welch t-test p-value"
+                    if (!all(is.na(pmatch(names(test.arg.list), 
+                      "paired")))) {
+                      index <- (1:length(test.arg.list))[!is.na(pmatch(names(test.arg.list), 
+                        "paired"))]
+                      if (unlist(test.arg.list[index])) 
+                        p.val.string <- "Paired t-test p-value"
+                    }
+                    else {
+                      if (is.null(test.arg.list) || all(is.na(pmatch(names(test.arg.list), 
+                        "var.equal")))) {
+                        test.arg.list <- c(test.arg.list, list(var.equal = TRUE))
+                      }
+                      else {
+                        index <- (1:length(test.arg.list))[!is.na(pmatch(names(test.arg.list), 
+                          "var.equal"))]
+                        if (!unlist(test.arg.list[index])) 
+                          p.val.string <- "Welch t-test p-value"
+                      }
+                    }
                   }
                 }
                 alternative <- match.arg(alternative, c("two.sided", 

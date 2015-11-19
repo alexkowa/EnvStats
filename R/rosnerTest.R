@@ -11,8 +11,8 @@ function (x, k = 3, alpha = 0.05, warn = TRUE)
         warning(paste(bad.obs, "observations with NA/NaN/Inf in 'x' removed."))
     }
     n <- length(x)
-    if (n < 10) 
-        stop("There must be at least 10 non-missing finite observations in 'x'")
+    if (n < 3) 
+        stop("There must be at least 3 non-missing finite observations in 'x'")
     if (length(k) != 1 || !is.numeric(k) || !is.finite(k) || 
         k != round(k) || k < 1 || k > (n - 2)) 
         stop(paste("'k' must be a positive integer less than or equal to n-2,", 
@@ -20,9 +20,22 @@ function (x, k = 3, alpha = 0.05, warn = TRUE)
     if (length(alpha) != 1 || !is.numeric(alpha) || !is.finite(alpha) || 
         any(alpha <= 0) || any(alpha >= 1)) 
         stop("'alpha' must be a numeric scalar greater than 0 and less than 1")
-    if (n < 25 && k > 1 && warn) {
-        warning(paste("The true Type I error is larger than assumed for the case when", 
-            "n < 25 and k > 1"))
+    if (warn) {
+        if (k > 10 | k > floor(n/2)) {
+            warning(paste("The true Type I error may be larger than assumed.", 
+                "Although the help file for 'rosnerTest' has a table with information", 
+                "on the estimated Type I error level,", "simulations were not run for k > 10 or k > floor(n/2).", 
+                sep = "\n"))
+        }
+        else {
+            warn.conds <- (alpha > 0.01 & ((n >= 15 & n < 25 & 
+                k > 2) | (n < 15 & k > 1))) | (alpha <= 0.01 & 
+                (n < 15 & k > 1))
+            if (warn.conds) 
+                warning(paste("The true Type I error may be larger than assumed.", 
+                  "See the help file for 'rosnerTest' for a table with information", 
+                  "on the estimated Type I error level."))
+        }
     }
     R <- rep(as.numeric(NA), k)
     mean.vec <- rep(as.numeric(NA), k)

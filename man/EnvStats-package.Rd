@@ -37,8 +37,8 @@
 \tabular{ll}{
 Package: \tab EnvStats\cr
 Type: \tab Package\cr
-Version: \tab 2.0.1\cr
-Date: \tab 2015-05-24\cr
+Version: \tab 2.0.2\cr
+Date: \tab 2015-11-17\cr
 License: \tab GPL (>=3)\cr
 LazyLoad: \tab yes\cr
 }
