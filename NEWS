@@ -1,9 +1,121 @@
+Changes in Version 2.1.0, 2016.04.18:
+
+	o Added the datasets ACE.13.TCE.df and Helsel.Hirsch.02.Mayfly.df.
+
+	o Updated summaryStats():
+	  -- Fixed bug so it does not return an error when the argument 'object' is a 
+	     logical or character vector.
+	  -- Fixed bug so it uses the argument test.arg.list in the case when there 
+	     are 2 groups, test="parametric", and group.p.value.type="within".
+	  -- When p.value=TRUE and there are 2 groups, added estimate of difference in 
+	     location to output:  
+	     when test="parametric" shows the difference between the means, and  
+	     when test="nonparametric" shows the median of the difference between 
+	     a sample from group 1 and a sample from group 2.
+
+	o Updated stripChart(): 
+	  -- Takes new argument 'plot.diff' applicable to the case when there are 2 groups.  
+	     ++ When plot.diff=TRUE and paired=FALSE, the confidence interval 
+	        for the difference between the two locations is displayed and the right axis 
+	        (when vertical=TRUE) or top axis (when vertical=FALSE) is labeled in units of 
+	        the confidence interval for the difference between the two locations. 
+	     ++ When plot.diff=TRUE and paired=TRUE, the paired differences are 
+	        displayed and the right axis (when vertical=TRUE) or 
+	        top axis (when vertical=FALSE) is labeled in units of the paired differences.  
+	        In addition, if show.ci=TRUE, the confidence interval based on the paired 
+	        differences is displayed. 
+
+	  -- Takes new argument 'paired' applicable to the case when there are 
+	     2 groups that are paired observations.  
+		++ When paired=TRUE and p.value=TRUE, the paired t-test 
+		   or paired Wilcoxon test is performed.
+
+	  -- Takes new argument 'paired.lines'.  
+	     When paired=TRUE and paired.lines=TRUE, lines are drawn between the 
+	     paired observations.
+
+	  -- Takes new argument 'paired.lty'.  
+	     When paired=TRUE and paired.lines=TRUE, paired.lty is a vector indicating 
+	     the line types to use to distinguish different paired observations.
+
+	  -- Takes new argument 'paired.lwd'.  
+	     When paired=TRUE and paired.lines=TRUE, paired.lwd is a scalar or vector 
+             indicating the width of the lines used to distinguish different paired observations.
+
+	  -- Takes new argument 'paired.pch'.  
+	     When paired=TRUE and paired.lines=TRUE, paired.pch is a vector indicating 
+	     the plotting symbols to use to distinguish different paired observations.
+
+	  -- Takes new argument 'paired.col'.  
+	     When paired=TRUE and paired.lines=TRUE, paired.col is a vector indicating 
+	     the color of the lines and/or plotting symbols to use to distinguish 
+	     different paired observations.  This argument overrides the argument 'col'.
+
+	  -- Takes new argument 'diff.col'.
+	     ++ When plot.diff=TRUE and paired=TRUE, diff.col indicates the color 
+	        of the displayed paired differences and the color of the confidence 
+	        interval when show.ci=TRUE.
+	     ++ When plot.diff=TRUE and paired=FALSE, diff.col indicates the color 
+	        of the confidence interval for the difference between the two means 
+	        when show.ci=TRUE.
+	     ++ This argument overrides the argument 'col'.
+
+	  -- Takes new argument 'diff.pch'.
+	     ++ When plot.diff=TRUE and paired=TRUE, diff.pch indicates the plotting  
+	        symbol for the displayed paired differences.
+	     ++ This argument overrides the argument 'pch'.
+
+	  -- Takes new arguments 'diff.name', 'diff.name.cex', and 'diff.axis.label'.
+	     ++ When plot.diff=TRUE, diff.name is a character string indicating the 
+	        the label for the difference between the two groups.  The default value 
+	        is Group 2 Name - Group 1 Name where Group 1 Name and Group 2 Name indicate 
+	        the name of the first and second groups, respectively.
+	     ++ When plot.diff=TRUE, diff.name.cex is a numeric scalar indicating 
+	        what value of cex to use to plot the character indicating the estimate of 
+	        of the difference between groups 1 and 2.
+	     ++ When plot.diff=TRUE, diff.axis.label is a character string indicating the 
+	        the label for the axis associated with the difference between the two groups.  
+	        The default value is "Difference Between Groups" when paired=FALSE, and 
+                "Paired Difference" when paired=TRUE.
+
+	  -- Takes new arguments 'diff.lim' and 'diff.at'.
+	     ++ When plot.diff=TRUE, diff.lim is a numeric vector of length 2 indicating the 
+                limits to use for the axis associated with the difference between the two groups.
+	     ++ When plot.diff=TRUE, diff.at is a numeric vector indicating where to place  
+                tick marks on the axis associated with the difference between the two groups.
+
+	  -- Takes new arguments 'sep.line', 'sep.lty', 'sep.lwd', and 'sep.col'.
+	     ++ When plot.diff=TRUE, sep.line is a logical scalar indicating whether to 
+	        draw a line between the second group and the difference between groups 1 and 2.
+	        The default value is sep.line=TRUE.
+	     ++ When plot.diff=TRUE, sep.lty is a numeric scalar indicating the line type to 
+	        use to draw the line between the second group and difference between groups 
+	        1 and 2.  The default value is sep.lty=2.
+	     ++ When plot.diff=TRUE, sep.lwd is a numeric scalar indicating the width of the 
+	        line to draw between the second group and difference between groups 
+	        1 and 2.  The default value is sep.lwd=cex.
+	     ++ When plot.diff=TRUE, sep.col is a numeric scalar or character string indicating 
+	        the color of the line to draw between the second group and difference between 
+	        groups 1 and 2.  The default value is sep.col="gray".
+
+	  -- Takes new arguments 'plot.diff.mar'.
+	     ++ When plot.diff=TRUE and add = FALSE, plot.diff.mar is a numeric vector of 
+	        length 4 indicating the value of the mar graphics parameter to use for the plot.  
+	        The default value is c(5.1, 4.1, 4.1, 4.1), which differs from the usual 
+	        default value in that the value for side 4 is 4.1 instead of 2.1.  This allows 
+	        for room to add an axis and axis label on side 4 indicating that that axis 
+	        represents the difference between the 2 groups.  
+
+	o Updated help files and fixed formatting issues in the PDF version.
+
+========================
+
 Changes in Version 2.0.2, 2015.11.17:
 
 	o Updated rosnerTest() and help file:
 	  -- The minimum number of non-missing, finite values in the argument x 
 	     can now be 3 instead of 10.
-	  -- A updated version of Rosner's (1983) Table 1 is given in the help file.  
+	  -- An updated version of Rosner's (1983) Table 1 is given in the help file.  
 	     The table shows the observed Type I error levels for various combinations of 
 	     sample sizes and values of k. 
 	  -- The conditions for when a warning is issued when warn=TRUE have been 

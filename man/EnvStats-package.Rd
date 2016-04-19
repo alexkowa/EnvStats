@@ -37,8 +37,8 @@
 \tabular{ll}{
 Package: \tab EnvStats\cr
 Type: \tab Package\cr
-Version: \tab 2.0.2\cr
-Date: \tab 2015-11-17\cr
+Version: \tab 2.1.0\cr
+Date: \tab 2016-04-18\cr
 License: \tab GPL (>=3)\cr
 LazyLoad: \tab yes\cr
 }
@@ -49,7 +49,7 @@ LazyLoad: \tab yes\cr
   \bold{doc} subdirectory of the directory where the \pkg{EnvStats} package 
   was installed.  For example, if you installed R under Windows, this file might be located 
   in the directory \bold{C:\\Program Files\\R-*.**.*\\library\\EnvStats\\doc}, where 
-  \bold{*.**.*} denotes the version of R you are using (e.g., 3.2.0) or in the directory 
+  \bold{*.**.*} denotes the version of R you are using (e.g., 3.2.5) or in the directory 
   \bold{C:\\Users\\\emph{Name}\\Documents\\R\\win-library\\*.**.*\\EnvStats\\doc}, where 
   \bold{\emph{Name}} denotes your user name on the Windows operating system.
 

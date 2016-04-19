@@ -238,7 +238,7 @@
 
   In the course of designing a sampling program, an environmental scientist may wish to determine 
   the relationship between sample size, confidence level, and half-width if one of the objectives of 
-  the sampling program is to produce confidence intervals.  The functions \code{ciBinomHalfWidth}, 
+  the sampling program is to produce confidence intervals.  The functions \code{\link{ciBinomHalfWidth}}, 
   \code{\link{ciBinomN}}, and \code{\link{plotCiBinomDesign}} can be used to investigate these 
   relationships for the case of binomial proportions.
 }

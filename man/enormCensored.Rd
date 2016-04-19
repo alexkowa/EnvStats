@@ -43,7 +43,7 @@
   \code{qq.reg method}), 
   \code{"impute.w.qq.reg.w.cen.level"} (moment estimation based on imputation 
   using the \code{qq.reg.w.cen.level method}), 
-  \code{"impute.w.mle"} (moment estimation based on imputation using the mle), 
+  \code{"impute.w.mle"} (moment estimation based on imputation using the mle), \cr
   \code{"iterative.impute.w.qq.reg"} (moment estimation based on iterative 
   imputation using the \code{qq.reg method}), 
   \code{"m.est"} (robust M-estimation), and 
@@ -73,7 +73,7 @@
   character string indicating what method to use to construct the confidence interval 
   for the mean.  The possible values are \code{"profile.likelihood"} 
   (profile likelihood; the default), 
-  \code{"normal.approx"} (normal approximation), 
+  \code{"normal.approx"} (normal approximation), \cr
   \code{"normal.approx.w.cov"} (normal approximation taking into account the 
   covariance between the estimated mean and standard deviation; only available for 
   singly censored data), 
@@ -123,7 +123,7 @@
   \itemize{
   \item \code{prob.method}.  Character string indicating what method to use to 
     compute the plotting positions (empirical probabilities) when \code{method} 
-    is one of \code{"qq.reg"}, \code{"qq.reg.w.cen.level"}, \code{"impute.w.qq.reg"}, 
+    is one of \code{"qq.reg"}, \code{"qq.reg.w.cen.level"}, \code{"impute.w.qq.reg"}, \cr
     \code{"impute.w.qq.reg.w.cen.level"}, \code{"impute.w.mle"}, or 
     \code{"iterative.impute.w.qq.reg"}.  Possible values are 
     \code{"kaplan-meier"} (product-limit method of Kaplan and Meier (1958)), 
@@ -137,7 +137,7 @@
 
   \item \code{plot.pos.con}.  Numeric scalar between 0 and 1 containing the 
     value of the plotting position constant to use when \code{method} is one of 
-    \code{"qq.reg"}, \code{"qq.reg.w.cen.level"}, \code{"impute.w.qq.reg"}, 
+    \code{"qq.reg"}, \code{"qq.reg.w.cen.level"}, \code{"impute.w.qq.reg"}, \cr
     \code{"impute.w.qq.reg.w.cen.level"}, \code{"impute.w.mle"}, or 
     \code{"iterative.impute.w.qq.reg"}.  The default value is \code{plot.pos.con=0.375}.  
     See the DETAILS section and the help file for \code{\link{ppointsCensored}} 
@@ -152,13 +152,13 @@
     uncensored observations.
 
   \item \code{lb.impute}.  Numeric scalar indicating the lower bound for imputed 
-    observations when method is one of \code{"impute.w.qq.reg"}, 
+    observations when method is one of \code{"impute.w.qq.reg"}, \cr
     \code{"impute.w.qq.reg.w.cen.level"}, \code{"impute.w.mle"}, or 
     \code{"iterative.impute.w.qq.reg"}.  Imputed values smaller than this 
     value will be set to this value.  The default is \code{lb.impute=-Inf}.
  
   \item \code{ub.impute}.  Numeric scalar indicating the upper bound for imputed 
-    observations when method is one of \code{"impute.w.qq.reg"}, 
+    observations when method is one of \code{"impute.w.qq.reg"}, \cr
     \code{"impute.w.qq.reg.w.cen.level"}, \code{"impute.w.mle"}, or 
     \code{"iterative.impute.w.qq.reg"}.  Imputed values larger than this value 
     will be set to this value.  The default is \code{ub.impute=Inf}.
@@ -168,7 +168,7 @@
     are \code{"relative"} (the default) and \code{"absolute"}.  See the DETAILS 
     section for more information.  
 
-  \item \code{tol}.  Numeric scalar indicating the convergence tolerance when 
+  \item \code{tol}.  Numeric scalar indicating the convergence tolerance when \cr
     \code{method="iterative.impute.w.qq.reg"}.  The default value is \code{tol=1e-6}.  
     If \code{convergence="relative"}, then the relative difference in the old and 
     new estimates of the mean and the relative difference in the old and new estimates 
@@ -437,8 +437,9 @@
   These last two modifications are not incorporated here.
   \cr
 
-  \emph{Imputation Using Quantile-Quantile Regression Including the Censoring Level} (\code{method ="impute.w.qq.reg.w.cen.level"}) \cr
-  This is exactly the same method as imputation using quantile-quantile regression 
+  \emph{Imputation Using Quantile-Quantile Regression Including the Censoring Level} \cr
+  (\code{method ="impute.w.qq.reg.w.cen.level"}) \cr
+  This is exactly the same method as imputation using quantile-quantile regression \cr
   (\code{method="impute.w.qq.reg"}), except that the quantile-quantile regression 
   including the censoring level method (\code{method="qq.reg.w.cen.level"}) is used 
   to fit the regression line.  In the context of lognormal data, this method is 
@@ -446,7 +447,7 @@
   \cr
 
   \emph{Imputation Using Maximum Likelihood} (\code{method ="impute.w.mle"}) \cr
-  This is exactly the same method as imputation with quantile-quantile regression 
+  This is exactly the same method as imputation with quantile-quantile regression \cr
   (\code{method="impute.w.qq.reg"}), except that the maximum likelihood method 
   (\code{method="mle"}) is used to compute the initial estimates of the mean and 
   standard deviation.  In the context of lognormal data, this method is discussed 
@@ -454,7 +455,7 @@
   \cr
 
   \emph{Iterative Imputation Using Quantile-Quantile Regression} (\code{method="iterative.impute.w.qq.reg"}) \cr
-  This method is similar to the imputation with quantile-quantile regression method 
+  This method is similar to the imputation with quantile-quantile regression method \cr
   (\code{method="impute.w.qq.reg"}), but iterates until the estimates of the mean 
   and standard deviation converge.  The algorithm is:
   \enumerate{

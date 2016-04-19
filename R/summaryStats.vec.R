@@ -47,11 +47,13 @@ function (x, digits = max(3, getOption("digits") - 3), digit.type = "round",
             }
             else {
                 if (test == "parametric") {
-                  dum.list <- t.test(x, alternative = alternative)
+                  dum.list <- do.call("t.test", args = c(list(x = x, 
+                    alternative = alternative), test.arg.list))
                 }
                 else {
                   dum.list <- do.call("wilcox.test", args = c(list(x = x, 
-                    conf.int = ci), test.arg.list))
+                    alternative = alternative, conf.int = ci), 
+                    test.arg.list))
                 }
                 p.val <- dum.list$p.value
                 if (p.value) {

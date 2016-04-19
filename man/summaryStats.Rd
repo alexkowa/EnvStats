@@ -63,13 +63,14 @@ summaryStats(object, ...)
 \arguments{
   \item{object}{
   an object for which summary statistics are desired.  In the default method, 
-  the argument \code{object} can be a numeric vector, a factor, 
-  a character vector, a logical vector, a data frame, a matrix, or a list.  
+  the argument \code{object} can be a numeric vector, factor, character vector, 
+  logical vector, data frame, matrix, or list.  
   When \code{object} is a character or logical vector, it is coerced to 
   be a factor.  
   When \code{object} is a data frame, all columns must be numeric or all columns must be factors.  
   When \code{object} is a matrix, it must be a numeric or character matrix.  
-  When \code{object} is a list, all components must be numeric vectors.
+  When \code{object} is a list, all components must be numeric vectors 
+  or all components must be factors.
   In the formula method, a symbolic specification of the form \code{y ~ g} 
   can be given, indicating the observations in the vector \code{y} are to be grouped 
   according to the levels of the factor \code{g} (the form \code{y ~ 1} indicates no grouping).  
@@ -301,6 +302,42 @@ summaryStats(object, ...)
   \code{\link{chisq.test}}, \code{\link{fisher.test}}, \code{\link{binom.test}}.
 }
 \examples{
+  # The guidance document USEPA (1994b, pp. 6.22--6.25)
+  # contains measures of 1,2,3,4-Tetrachlorobenzene (TcCB)
+  # concentrations (in parts per billion) from soil samples
+  # at a Reference area and a Cleanup area. These data are strored
+  # in the data frame EPA.94b.tccb.df.
+
+  #----------
+  # First, create summary statistics by area based on the log-transformed data. 
+
+  summaryStats(log10(TcCB) ~ Area, data = EPA.94b.tccb.df)
+  #           N    Mean     SD  Median     Min    Max
+  #Cleanup   77 -0.2377 0.5908 -0.3665 -1.0458 2.2270
+  #Reference 47 -0.2691 0.2032 -0.2676 -0.6576 0.1239
+
+  #----------
+  # Now create summary statistics by area based on the log-transformed data 
+  # and use the t-test to compare the areas.
+
+  summaryStats(log10(TcCB) ~ Area, data = EPA.94b.tccb.df, p.value = TRUE)
+
+  summaryStats(log10(TcCB) ~ Area, data = EPA.94b.tccb.df, 
+    p.value = TRUE, stats.in.rows = TRUE)
+  #                Cleanup  Reference Combined
+  #N                77       47       124     
+  #Mean             -0.2377  -0.2691   -0.2496
+  #SD                0.5908   0.2032    0.481 
+  #Median           -0.3665  -0.2676   -0.3143
+  #Min              -1.0458  -0.6576   -1.0458
+  #Max               2.227    0.1239    2.227 
+  #Diff                                -0.0313
+  #p.value.between                      0.73  
+  #95%.LCL.between                     -0.2082
+  #95%.UCL.between                      0.1456
+
+  #====================================================================
+
   # Page 9-3 of USEPA (2009) lists trichloroethene 
   # concentrations (TCE; mg/L) collected from groundwater at two wells.
   # Here, the seven non-detects have been set to their detection limit.
@@ -317,7 +354,6 @@ summaryStats(object, ...)
     se = TRUE, quartiles = TRUE, digits = 3, data.name = "TCE")
   #     N Mean    SD    SE Median   Min  Max 1st Qu. 3rd Qu. NA's N.Total
   #TCE 27 0.09 0.064 0.012    0.1 0.004 0.25   0.031    0.12    3      30
-
 
   #----------
   # Now compute summary statistics by well.
@@ -353,7 +389,7 @@ summaryStats(object, ...)
   #NA's     1.000  2.000
   #N.Total 15.000 15.000
 
-  #--------------------------------------------------------------------
+  #====================================================================
 
   # Page 13-3 of USEPA (2009) lists iron concentrations (ppm) in 
   # groundwater collected from 6 wells.  
@@ -403,7 +439,7 @@ summaryStats(object, ...)
   #95%.UCL          4.3    4.6    5.4    4.9    5.9    5.6    4.6    
   #p.value.between                                            0.025 
 
-  #--------------------------------------------------------------------
+  #====================================================================
 
   # Using the built-in dataset HairEyeColor, summarize the frequencies 
   # of hair color and test whether there is a difference in proportions.
@@ -423,6 +459,7 @@ summaryStats(object, ...)
     levels = Hair.color)
 
   #----------
+
   # Compute summary statistics and perform the chi-square test 
   # for equal proportions of hair color
 
@@ -504,7 +541,7 @@ summaryStats(object, ...)
   rm(Hair, Hair.color, Hair.fac, Red.Hair.fac, HairEye, Eye.color, 
     n11, n12, n21, n22, Eye.fac)
 
-  #--------------------------------------------------------------------
+  #====================================================================
 
   # The data set EPA.89b.cadmium.df contains information on 
   # cadmium concentrations in groundwater collected from a
@@ -512,9 +549,12 @@ summaryStats(object, ...)
   # between the well types and test for a difference using 
   # Fisher's exact test.
 
-  summaryStats(factor(Censored) ~ Well.type, 
-    data = EPA.89b.cadmium.df, digits = 1, p.value = TRUE, 
-    test = "fisher", stats.in.rows = TRUE)
+  summaryStats(factor(Censored) ~ Well.type, data = EPA.89b.cadmium.df, 
+    digits = 1, p.value = TRUE, test = "fisher")
+
+
+  summaryStats(factor(Censored) ~ Well.type, data = EPA.89b.cadmium.df, 
+    digits = 1, p.value = TRUE, test = "fisher", stats.in.rows = TRUE)
   #                FALSE TRUE  Combined
   #Background(N)     8    16    24     
   #Background(Pct)  33.3  66.7 100     
@@ -522,7 +562,7 @@ summaryStats(object, ...)
   #Compliance(Pct)  37.5  62.5 100     
   #Fisher_p                      0.81  
   #95%.LCL.OR                    0.3   
-  #95%.UCL.OR                    2.5 
+  #95%.UCL.OR                    2.5
 }
 \keyword{ univar }
 \keyword{ htest }

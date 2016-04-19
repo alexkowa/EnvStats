@@ -153,7 +153,6 @@
 
   Gansecki, M. (2009).  \emph{Using the Optimal Rank Values Calculator}.  
   US Environmental Protection Agency, Region 8, March 10, 2009.
-  \url{http://www.epa.gov/osw/hazard/correctiveaction/resources/guidance/sitechar/gwstats/calculator-use.pdf}.
 }
 \author{
     Steven P. Millard (\email{EnvStats@ProbStatInfo.com})

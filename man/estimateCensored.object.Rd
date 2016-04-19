@@ -84,7 +84,7 @@
   \item{percent.censored}{numeric scalar indicating the percent of non-missing 
     observations that are censored.}
   \item{data.name}{character string indicating the name of the data 
-    object used to compute the estimateCensoredd parameters or quantiles.}
+    object used to compute the estimateCensored parameters or quantiles.}
   \item{censoring.name}{character string indicating the name of the data object 
     used to identify which values are censored.}
   \item{bad.obs}{numeric scalar indicating the number of missing (\code{NA}), 
@@ -98,12 +98,12 @@
 
   \item{parameters}{(parametric estimation only) a numeric vector 
     with a names attribute containing the names and values of the 
-    estimateCensoredd distribution parameters.}
+    estimateCensored distribution parameters.}
   \item{n.param.est}{(parametric estimation only) a scalar indicating 
-    the number of distribution parameters estimateCensoredd.}
+    the number of distribution parameters estimateCensored.}
   \item{method}{(parametric estimation only) a character string 
-    indicating the method used to compute the estimateCensoredd parameters.}
-  \item{quantiles}{a numeric vector of estimateCensoredd quantiles.}
+    indicating the method used to compute the estimateCensored parameters.}
+  \item{quantiles}{a numeric vector of estimateCensored quantiles.}
   \item{quantile.method}{a character string indicating the method of 
     quantile estimation.}
   \item{interval}{a list of class \code{"intervalEstimate"} containing 

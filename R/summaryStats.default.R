@@ -118,16 +118,19 @@ function (object, group = NULL, drop.unused.levels = TRUE, se = FALSE,
                       test.list <- do.call("t.test", args = c(list(x = x.2, 
                         y = x.1, alternative = alternative, conf.level = conf.level), 
                         test.arg.list))
+                      diff.locations <- -diff(test.list$estimate)
                     }
                     else {
                       test.list <- do.call("wilcox.test", args = c(list(x = x.2, 
                         y = x.1, alternative = alternative, conf.int = TRUE, 
                         conf.level = conf.level), test.arg.list))
+                      diff.locations <- test.list$estimate
                     }
                     p <- test.list$p.value
                     conf.int <- test.list$conf.int
                   }
                   else {
+                    diff.locations <- NA
                     p <- NA
                     conf.int <- c(NA, NA)
                   }
@@ -145,6 +148,19 @@ function (object, group = NULL, drop.unused.levels = TRUE, se = FALSE,
                     else p <- kruskal.test(x ~ group)$p.value
                   }
                   else p <- NA
+                }
+                if (n.groups == 2) {
+                  diff.locations <- c(rep(NA, nc - 1), do.call(digit.type, 
+                    list(x = diff.locations, digits = digits)))
+                  names(diff.locations) <- cn
+                  index <- match("NA's", rn)
+                  if (!is.na(index)) {
+                    mat <- rbind(mat[1:(index - 1), ], Diff = diff.locations, 
+                      mat[index:nr, ])
+                  }
+                  else mat <- rbind(mat, Diff = diff.locations)
+                  nr <- nrow(mat)
+                  rn <- rownames(mat)
                 }
                 p <- c(rep(NA, nc - 1), do.call(p.value.digit.type, 
                   list(x = p, digits = p.value.digits)))

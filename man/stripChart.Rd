@@ -22,30 +22,34 @@ stripChart(x, ...)
 \method{stripChart}{formula}(x, data = NULL, dlab = NULL, 
     subset, na.action = NULL, ...)
 
-\method{stripChart}{default}(x, method = "stack", seed = 47, 
-  jitter = 0.1 * cex, offset = 1/2, vertical = TRUE, group.names, 
-  group.names.cex = cex, drop.unused.levels = TRUE, add = FALSE, 
-  at = NULL, xlim = NULL, ylim = NULL, ylab = NULL, xlab = NULL, 
-  dlab = "", glab = "", log = "", pch = 1, col = par("fg"), 
-  cex = par("cex"), points.cex = cex, axes = TRUE, frame.plot = axes, 
-  show.ci = TRUE, location.pch = 16, location.cex = cex, 
-  conf.level = 0.95, min.n.for.ci = 2, 
-  ci.offset = 3/ifelse(n > 2, (n-1)^(1/3), 1), ci.bar.lwd = cex,
-  ci.bar.ends = TRUE, ci.bar.ends.size = 0.5 * cex, 
-  ci.bar.gap = FALSE, n.text = "bottom", 
-  n.text.line = ifelse(n.text == "bottom", 2, 0), 
-  n.text.cex = cex, location.scale.text = "top", 
-  location.scale.digits = 1, nsmall = location.scale.digits, 
-  location.scale.text.line = 
-    ifelse(location.scale.text == "top", 0, 3.5), 
-  location.scale.text.cex = 
-    cex * 0.8 * ifelse(n > 6, max(0.4, 1 - (n-6) * 0.06), 1), 
-  p.value = FALSE, p.value.digits = 3, p.value.line = 2, 
-  p.value.cex = cex, group.difference.ci = p.value, 
-  group.difference.conf.level = 0.95, 
-  group.difference.digits = location.scale.digits, 
-  ci.and.test = "parametric", ci.arg.list = NULL, 
-  test.arg.list = NULL, alternative = "two.sided", ...)
+\method{stripChart}{default}(x, 
+    method = ifelse(paired && paired.lines, "overplot", "stack"), 
+    seed = 47, jitter = 0.1 * cex, offset = 1/2, vertical = TRUE, 
+    group.names, group.names.cex = cex, drop.unused.levels = TRUE, 
+    add = FALSE, at = NULL, xlim = NULL, ylim = NULL, ylab = NULL, 
+    xlab = NULL, dlab = "", glab = "", log = "", pch = 1, col = par("fg"), 
+    cex = par("cex"), points.cex = cex, axes = TRUE, frame.plot = axes, 
+    show.ci = TRUE, location.pch = 16, location.cex = cex, 
+    conf.level = 0.95, min.n.for.ci = 2, 
+    ci.offset = 3/ifelse(n > 2, (n-1)^(1/3), 1), ci.bar.lwd = cex, 
+    ci.bar.ends = TRUE, ci.bar.ends.size = 0.5 * cex, ci.bar.gap = FALSE, 
+    n.text = "bottom", n.text.line = ifelse(n.text == "bottom", 2, 0), 
+    n.text.cex = cex, location.scale.text = "top", 
+    location.scale.digits = 1, nsmall = location.scale.digits, 
+    location.scale.text.line = ifelse(location.scale.text == "top", 0, 3.5), 
+    location.scale.text.cex = 
+      cex * 0.8 * ifelse(n > 6, max(0.4, 1 - (n-6) * 0.06), 1), 
+    p.value = FALSE, p.value.digits = 3, p.value.line = 2, p.value.cex = cex, 
+    group.difference.ci = p.value, group.difference.conf.level = 0.95, 
+    group.difference.digits = location.scale.digits, 
+    ci.and.test = "parametric", ci.arg.list = NULL, test.arg.list = NULL, 
+    alternative = "two.sided", plot.diff = FALSE, diff.col = col[1], 
+    diff.pch = pch[1], paired = FALSE, paired.lines = paired, 
+    paired.lty = 1:6, paired.lwd = 1, paired.pch = 1:14, paired.col = NULL, 
+    diff.name = NULL, diff.name.cex = group.names.cex, sep.line = TRUE, 
+    sep.lty = 2, sep.lwd = cex, sep.col = "gray", diff.lim = NULL, 
+    diff.at = NULL, diff.axis.label = NULL, 
+    plot.diff.mar = c(5, 4, 4, 4) + 0.1, ...)
 }
 \arguments{
   \item{x}{
@@ -234,7 +238,7 @@ stripChart(x, ...)
 }
   \item{p.value}{
   logical scalar indicating whether to show the p-value associated with testing whether all groups 
-  have the same population location.  The default value is \code{p.value=TRUE}.  
+  have the same population location.  The default value is \code{p.value=FALSE}.  
   The p-value is displayed at the top of the graph.
 }
   \item{p.value.digits}{
@@ -253,10 +257,10 @@ stripChart(x, ...)
   The default is the current value of the graphics parameter \code{cex}.
 }
   \item{group.difference.ci}{
-  for the case when there are just 2 groups, a logical scalar indicating whether to show 
+  for the case when there are just 2 groups, a logical scalar indicating whether to display  
   the confidence interval for the difference between group locations.  The default is 
   the value of the \code{p.value} argument.  The confidence interval is displayed at the 
-  top of the graph.
+  top of the graph in the format [Lower CI, Upper CI].
 }
   \item{group.difference.conf.level}{
   for the case when there are just 2 groups, a numeric scalar between 0 and 1 
@@ -298,6 +302,150 @@ stripChart(x, ...)
   case when there are two groups.  Possible values are \code{"two.sided"} (the default), 
   \code{"less"}, and \code{"greater"}.
 }
+  \item{plot.diff}{
+  applicable only to the case when there are two groups: \cr  
+  logical scalar indicating whether to plot the confidence interval for the difference between 
+  the groups.  The default is \code{plot.diff=FALSE}.
+
+  When \code{plot.diff=TRUE} and \code{paired=FALSE}, the confidence interval 
+  for the difference between the two locations is displayed and the right-hand axis 
+  (when \code{vertical=TRUE}) or top axis (when \code{vertical=FALSE}) is labeled in units of 
+  the confidence interval for the difference between the two locations.  
+  If \code{ci.and.test="parametric"}, the confidence interval for the difference between the 
+  two means is displayed. 
+  If \code{ci.and.test="nonparametric"}, the confidence interval for the median of the 
+  difference between a sample from the first group and a sample from the second group is displayed 
+  (see the help file for \code{\link{wilcox.test}}.
+
+  When \code{plot.diff=TRUE} and \code{paired=TRUE}, the paired differences are 
+  displayed and the right-hand axis (when \code{vertical=TRUE}) or 
+  top axis (when \code{vertical=FALSE}) is labeled in units of the paired differences.
+  In addition, if \code{show.ci=TRUE}, the confidence interval based on the paired 
+  differences is displayed.  In this case, if \code{ci.and.test="parametric"} 
+  the confidence interval for the mean of the paired differences is displayed, and 
+  if \code{ci.and.test="nonparametric"} the confidence interval for the pseudomedian 
+  is displayed (see the help file for \code{\link{wilcox.test}}.
+}
+  \item{diff.col}{
+  applicable only to the case when there are two groups and \code{plot.diff=TRUE}: \cr 
+  numeric or character scalar indicating what color to use for the confidence interval for 
+  the difference in locations between the two groups.  When \code{paired=TRUE}, this 
+  argument also controls the color of the paired differences.  
+  The default is \code{diff.col=col[1]}.
+}
+  \item{diff.pch}{
+  applicable only to the case when there are two groups, \code{plot.diff=TRUE}, and \code{paired=TRUE}: \cr
+  numeric or character scalar indicating what plotting symbol to use for the paired differences.  
+  The default is \code{diff.pch=pch[1]}.
+}
+  \item{paired}{
+  applicable only to the case when there are two groups: \cr
+  logical scalar indicating whether the observations in the first group are paired with those 
+  in the second group.  The default is \code{paired=FALSE}.
+}
+  \item{paired.lines}{
+  applicable only to the case when there are two groups and \code{paired=TRUE}: \cr
+  logical scalar indicating whether to join the paired observations with lines.  
+  The default value is the value of the argument \code{paired}.
+}
+  \item{paired.lty}{
+  applicable only to the case when there are two groups, \code{paired=TRUE}, and 
+  \code{paired.lines=TRUE}: \cr 
+  numeric vector indicating the line types to use to join the paired observations with lines.  
+  The default value is \code{paired.lty=1:6}.
+}
+  \item{paired.lwd}{
+  applicable only to the case when there are two groups, \code{paired=TRUE}, and 
+  \code{paired.lines=TRUE}: \cr 
+  numeric vector indicating the widths of the lines used to join the paired observations with lines.  
+  The default value is \code{paired.lwd=1}.
+}
+  \item{paired.pch}{
+  applicable only to the case when there are two groups, \code{paired=TRUE}, and 
+  \code{paired.lines=TRUE}: \cr
+  numeric vector indicating the plotting characters to use at each end of the lines used to 
+  join the paired observations with lines.  The default value is \code{paired.pch=1:14}.
+}
+  \item{paired.col}{
+  applicable only to the case when there are two groups, \code{paired=TRUE}, and 
+  \code{paired.lines=TRUE}: \cr 
+  character or numeric vector indicating the colors for the lines (and plotting characters) 
+  used to join the paired observations with lines.  The default value is \code{paired.col=NULL}, 
+  in which case the vector becomes \cr
+  \code{c("black", "red", "green3", "blue", "magenta", "darkgreen", "purple",} \cr 
+  \code{"orange", "darkolivegreen", "steelblue", "darkgray")}.
+}
+  \item{diff.name}{
+  applicable only to the case when there are two groups and \code{plot.diff=TRUE}: \cr 
+  character scalar indicating the label to use for the confidence interval for the 
+  difference between groups.  For the case when \code{paired=TRUE}, this label also 
+  describes the paired differences.  The default value is \code{diff.name=NULL}, 
+  in which case the label is "group 2 - group 1", where group 1 and group 2 denote the names for 
+  the each group.  For example, if group 1 is labeled "A" and group 2 is labeled "B", then 
+  the default value is \code{diff.name="B-A"}.
+}
+  \item{diff.name.cex}{
+  applicable only to the case when there are two groups and \code{plot.diff=TRUE}: \cr 
+  numeric scalar indicating the amount by which the label for group differences 
+  should be scaled relative to the default (see the help file for \code{\link{plot.default}}).  
+  The default value is \code{diff.name.cex=group.names.cex}.
+}
+  \item{sep.line}{
+  applicable only to the case when there are two groups and \code{plot.diff=TRUE}: \cr 
+  logical scalar indicating whether to draw a line between the strip charts for the two 
+  groups and the confidence interval for the difference between the two groups (and paired 
+  differences when \code{paired=TRUE}).  The default value is \code{sep.line=TRUE}.
+}
+  \item{sep.lty}{
+  applicable only to the case when there are two groups, \code{plot.diff=TRUE}, and 
+  \code{sep.line=TRUE}: \cr 
+  numeric scalar indicating the line type to use for the line drawn between the strip charts 
+  for the two groups and the confidence interval for the difference between the two groups.   
+  The default value is \code{sep.lty=2}.
+}
+  \item{sep.lwd}{
+  applicable only to the case when there are two groups, \code{plot.diff=TRUE}, and 
+  \code{sep.line=TRUE}: \cr 
+  numeric scalar indicating the line width to use for the line drawn between the strip charts 
+  for the two groups and the confidence interval for the difference between the two groups.   
+  The default value is the current value of the graphics parameter \code{cex}.
+}
+  \item{sep.col}{
+  applicable only to the case when there are two groups, \code{plot.diff=TRUE}, and 
+  \code{sep.line=TRUE}: \cr 
+  numeric or character scalar indicating the color of the line drawn between the strip charts 
+  for the two groups and the confidence interval for the difference between the two groups.   
+  The default value is \code{sep.col="gray"}.
+}
+  \item{diff.lim}{
+  applicable only to the case when there are two groups and \code{plot.diff=TRUE}: \cr 
+  numeric vector of length 2 indicating the limits to use for the axis associated with the 
+  confidence interval for the difference between the two groups.  When \code{paired=FALSE}, 
+  the default value is \code{range(pretty(range(CI)))} where \code{CI} denotes the two-element 
+  vector containing the lower and upper limits of the confidence interval.  
+  When \code{paired=TRUE}, the default value is \code{range(pretty(c(X, range(CI))))} where 
+  \code{X} denotes the vector containing the paired differences.
+}
+  \item{diff.at}{
+  applicable only to the case when there are two groups and \code{plot.diff=TRUE}: \cr 
+  numeric vector indicating the locations of the tick marks for the axis associated with the 
+  confidence interval for the difference between groups (see the explanation for the argument 
+  \code{at} in the help file for \code{\link{axis}}).  The default value is \code{diff.at=NULL}, 
+  in which case default values are used for the locations of the tick marks.
+}
+  \item{diff.axis.label}{
+  applicable only to the case when there are two groups and \code{plot.diff=TRUE}: \cr 
+  character string indicating the label to use for the axis associated with the 
+  confidence interval for the difference between groups.  When \code{paired=FALSE} the 
+  default value is \code{"Difference Between Groups"}, and when \code{paired=TRUE} the 
+  default value is \code{"Paired Difference"}.
+}
+  \item{plot.diff.mar}{
+  applicable only to the case when there are two groups, \code{plot.diff=TRUE}, and \code{add=FALSE}: \cr 
+  numeric vector of length 4 indicating the number of lines in the plotting margins 
+  (see the explanation for the argument \code{mar} in the help file for \code{\link{par}}). 
+  The default value is \code{plot.diff.mar = c(5, 4, 4, 4) + 0.1}.
+}
 }
 \value{
   \code{stripChart} invisibly returns a list with the following components:
@@ -311,8 +459,8 @@ stripChart(x, ...)
     the upper confidence limit for the group location parameter (UCL), and the 
     confidence level associated with the confidence interval (Conf.Level)}
 
-In addition, if the argument \code{p.value=TRUE}, the list also includes these 
-components:
+In addition, if the argument \code{p.value=TRUE} and/or 1) there are two groups and 2) \code{plot.diff=TRUE}, 
+the list also includes these components:
 
   \item{group.difference.p.value}{numeric scalar indicating the p-value associated with 
     the test of equal group locations.}
@@ -338,6 +486,10 @@ components:
   \code{\link{aov}}, \code{\link{kruskal.test}}, \code{\link{t.test}}. 
 }
 \examples{
+  #------------------------
+  # Two Independent Samples
+  #------------------------
+
   # The guidance document USEPA (1994b, pp. 6.22--6.25) 
   # contains measures of 1,2,3,4-Tetrachlorobenzene (TcCB) 
   # concentrations (in parts per billion) from soil samples 
@@ -349,7 +501,7 @@ components:
   # test to test for a difference between areas.
 
   dev.new()
-  stripChart(TcCB ~ Area, data = EPA.94b.tccb.df, 
+  stripChart(TcCB ~ Area, data = EPA.94b.tccb.df, col = c("red", "blue"), 
     p.value = TRUE, ci.and.test = "nonparametric", 
     ylab = "TcCB (ppb)")
 
@@ -359,8 +511,17 @@ components:
   # to compare the areas.
 
   dev.new()
-  stripChart(log10(TcCB) ~ Area, data = EPA.94b.tccb.df, 
-    p.value = TRUE, ci.and.test = "parametric", 
+  stripChart(log10(TcCB) ~ Area, data = EPA.94b.tccb.df, col = c("red", "blue"), 
+    p.value = TRUE, ylab = "log10 [ TcCB (ppb) ]")
+
+  #----------
+
+  # Repeat the above procedure, but also plot the confidence interval  
+  # for the difference between the means.
+
+  dev.new()
+  stripChart(log10(TcCB) ~ Area, data = EPA.94b.tccb.df, col = c("red", "blue"), 
+    p.value = TRUE, plot.diff = TRUE, diff.col = "black", 
     ylab = "log10 [ TcCB (ppb) ]")
 
   #----------
@@ -368,10 +529,9 @@ components:
   # Repeat the above procedure, but allow the variances to differ.
 
   dev.new()
-  stripChart(log10(TcCB) ~ Area, data = EPA.94b.tccb.df, 
-    p.value = TRUE, ci.and.test = "parametric", 
-    ylab = "log10 [ TcCB (ppb) ]", 
-    test.arg.list = list(var.equal = FALSE))
+  stripChart(log10(TcCB) ~ Area, data = EPA.94b.tccb.df, col = c("red", "blue"),
+    p.value = TRUE, plot.diff = TRUE, diff.col = "black", 
+    ylab = "log10 [ TcCB (ppb) ]", test.arg.list = list(var.equal = FALSE))
 
   #----------
 
@@ -379,13 +539,110 @@ components:
   # stacking them.
 
   dev.new()
-  stripChart(log10(TcCB) ~ Area, data = EPA.94b.tccb.df, 
-    p.value = TRUE, ci.and.test = "parametric", 
-    ylab = "log10 [ TcCB (ppb) ]", 
-    test.arg.list = list(var.equal = FALSE), 
+  stripChart(log10(TcCB) ~ Area, data = EPA.94b.tccb.df, col = c("red", "blue"),
+    p.value = TRUE, plot.diff = TRUE, diff.col = "black", 
+    ylab = "log10 [ TcCB (ppb) ]", test.arg.list = list(var.equal = FALSE), 
     method = "jitter", ci.offset = 4)
 
+  #---------- 
+
+  # Clean up
+  #---------
+  graphics.off()
+
+  #====================
+
+  #--------------------
+  # Paired Observations
+  #--------------------
+
+  # The data frame ACE.13.TCE.df contians paired observations of 
+  # trichloroethylene (TCE; mg/L) at 10 groundwater monitoring wells 
+  # before and after remediation.
+  #
+  # Create one-dimensional scatterplots to compare TCE concentrations 
+  # before and after remediation and use a paired t-test to 
+  # test for a difference between periods.
+
+  dev.new()
+  stripChart(TCE.mg.per.L ~ Period, data = ACE.13.TCE.df, 
+    col = c("brown", "green"), p.value = TRUE, paired = TRUE, 
+    ylab = "TCE (mg/L)")
+
+  #----------
+
+  # Repeat the above procedure, but also plot the confidence interval  
+  # for the mean of the paired differences.
+
+  dev.new()
+  stripChart(TCE.mg.per.L ~ Period, data = ACE.13.TCE.df, 
+    col = c("brown", "green"), p.value = TRUE, paired = TRUE, 
+    ylab = "TCE (mg/L)", plot.diff = TRUE, diff.col = "blue")
+
+
   #==========
+
+  # Repeat the last two examples, but use a one-sided alternative since 
+  # remediation should decrease TCE concentration.
+
+  dev.new()
+  stripChart(TCE.mg.per.L ~ Period, data = ACE.13.TCE.df, 
+    col = c("brown", "green"), p.value = TRUE, paired = TRUE, 
+    ylab = "TCE (mg/L)", alternative = "less", 
+    group.difference.digits = 2)
+
+  #----------
+
+  # Repeat the above procedure, but also plot the confidence interval  
+  # for the mean of the paired differences.
+  #
+  # NOTE: Although stripChart can *report* one-sided confidence intervals 
+  #       for the difference between two groups (see above example), 
+  #       when *plotting* the confidence interval for the difference, 
+  #       only two-sided CIs are allowed.  
+  #       Here, we will set the confidence level of the confidence 
+  #       interval for the mean of the paired differences to 90%, 
+  #       so that the upper bound of the CI corresponds to the upper 
+  #       bound of a 95% one-sided CI.
+
+  dev.new()
+  stripChart(TCE.mg.per.L ~ Period, data = ACE.13.TCE.df, 
+    col = c("brown", "green"), p.value = TRUE, paired = TRUE, 
+    ylab = "TCE (mg/L)", group.difference.digits = 2, 
+    plot.diff = TRUE, diff.col = "blue", group.difference.conf.level = 0.9)
+
+ #---------- 
+
+  # Clean up
+  #---------
+  graphics.off()
+
+  #==========
+
+  # The data frame Helsel.Hirsch.02.Mayfly.df contains paired counts
+  # of mayfly nymphs above and below industrial outfalls in 12 streams.  
+  #
+  # Create one-dimensional scatterplots to compare the 
+  # counts between locations and use a nonparametric test 
+  # to compare counts above and below the outfalls.
+
+  dev.new()
+  stripChart(Mayfly.Count ~ Location, data = Helsel.Hirsch.02.Mayfly.df, 
+    col = c("green", "brown"), p.value = TRUE, paired = TRUE, 
+    ci.and.test = "nonparametric", ylab = "Number of Mayfly Nymphs")
+
+  #---------- 
+ 
+  # Repeat the above procedure, but also plot the confidence interval  
+  # for the pseudomedian of the paired differences.
+
+  dev.new()
+  stripChart(Mayfly.Count ~ Location, data = Helsel.Hirsch.02.Mayfly.df, 
+    col = c("green", "brown"), p.value = TRUE, paired = TRUE, 
+    ci.and.test = "nonparametric", ylab = "Number of Mayfly Nymphs", 
+    plot.diff = TRUE, diff.col = "blue")
+
+ #---------- 
 
   # Clean up
   #---------
