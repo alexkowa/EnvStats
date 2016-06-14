@@ -24,7 +24,7 @@
   character string indicating what variable to use for the x-axis.  Possible values are 
   \code{"n"} (sample size; the default), 
   \code{"half.width"} (the half-width of the confidence interval), 
-  \code{"p.hat"} (the estimated probability of dQuote{success}), and 
+  \code{"p.hat"} (the estimated probability of \dQuote{success}), and 
   \code{"conf.level"} (the confidence level).
 }
   \item{y.var}{
@@ -51,9 +51,9 @@
   \item{p.hat.or.p1.hat}{
   numeric scalar indicating an estimated proportion.  \cr
   When \code{sample.type="one.sample"}, \code{p.hat.or.p1.hat} denotes the estimated value of 
-  \eqn{p}, the probability of dQuote{success}.  \cr
+  \eqn{p}, the probability of \dQuote{success}.  \cr
   When \code{sample.type="two.sample"}, \code{p.hat.or.p1.hat} denotes the estimated value of 
-  \eqn{p_1}, the probability of dQuote{success} in group 1.  \cr
+  \eqn{p_1}, the probability of \dQuote{success} in group 1.  \cr
   Missing (\code{NA}), undefined (\code{NaN}), and infinite (\code{Inf}, \code{-Inf}) values are not allowed.  
   This argument is ignored if \code{x.var="p.hat"}.
 }
@@ -239,7 +239,7 @@
   Newcombe, R.G. (1998b). Interval Estimation for the Difference Between Independent Proportions:  
   Comparison of Eleven Methods. \emph{Statistics in Medicine}, \bold{17}, 873--890.
 
-  Ott, .W.R. (1995). \emph{Environmental Statistics and Data Analysis}. 
+  Ott, W.R. (1995). \emph{Environmental Statistics and Data Analysis}. 
   Lewis Publishers, Boca Raton, FL, Chapter 4.
 
   USEPA. (1989b). \emph{Statistical Analysis of Ground-Water Monitoring Data at RCRA Facilities, Interim Final Guidance}. 

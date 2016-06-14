@@ -12,7 +12,8 @@
   Five different kinds of plots are available.
 
   The function \code{plot.gofGroup} is automatically called by \code{\link{plot}} 
-  when given an object of class \code{"gofGroup"}.  The names of other functions 
+  when given an object of class \cr
+  \code{"gofGroup"}.  The names of other functions 
   associated with goodness-of-fit test are listed under \link{Goodness-of-Fit Tests}.
 }
 \usage{
@@ -47,8 +48,8 @@
 }
   \item{captions}{
   a list with 1 to 5 components with the names \code{"QQ"}, \code{"MDQQ"}, 
-  \code{"ScoresQQ"}, \code{"ScoresMDQQ"}, and/or \code{"Results"}.  
-  Each component either has 
+  \code{"ScoresQQ"}, \cr
+  \code{"ScoresMDQQ"}, and/or \code{"Results"}.  Each component either has 
   the value \code{NULL} or else it is a character string containing the title for that 
   particular kind of plot.  When the component has the value \code{NULL} (the default), 
   a default title is used.  This argument is useful when you are creating more than 
@@ -109,13 +110,16 @@
   This argument is ignored if \code{plot.type="Test Results"}.
 }
 
-Arguments associated with \code{plot.type="Test Results"} \cr
+
+
+\bold{Arguments associated with \code{plot.type="Test Results"}} \cr
+
   \item{digits}{
   scalar indicating how many significant digits to print for the test results 
-  when \code{plot.type="Summary"} or \code{plot.type="Test Results"}.  
-  If \code{plot.type == "Summary"}, the default value is 
-  \code{digits=2}, otherwise it is \code{.Options$digits} (i.e., the current 
-  setting of \code{options("digits")}).
+  when \code{plot.type="Summary"} or \code{plot.type="Test Results"}.  If \cr
+  \code{plot.type == "Summary"}, the default value is 
+  \code{digits=2}, otherwise it is \cr
+  \code{.Options$digits} (i.e., the current setting of \code{options("digits")}).
 }
   \item{individual.p.values}{
   logical scalar indicating whether to display the p-values associated with 
@@ -142,13 +146,16 @@ Arguments associated with \code{plot.type="Test Results"} \cr
   \code{\link{par}} for more information.  
 }
 
-Arguments associated with \code{plot.type="Summary"} \cr
+
+
+\bold{Arguments associated with \code{plot.type="Summary"}} \cr
+
   \item{add.om.title}{
-  logical scalar indicating whether to add a title in the outer margin when 
+  logical scalar indicating whether to add a title in the outer margin when \cr
   \code{plot.type="Summary"}.  The default value is \code{add.om.title=TRUE}.
 }
   \item{om.title}{
-  character string containing the outer margin title.  The default value is 
+  character string containing the outer margin title.  The default value is \cr
   \code{om.title=NULL}, which will result in a default title.
 }
   \item{om.font}{
@@ -164,7 +171,10 @@ Arguments associated with \code{plot.type="Summary"} \cr
   default value is \code{om.line=1}.
 }
 
-Graphics parameters: \cr
+
+
+\bold{Graphics parameters:} \cr
+
   \item{cex.main, cex.axis, cex.lab, main, xlab, ylab, xlim, ylim, oma, \dots}{
   additional graphics parameters.  See the help file for \code{\link{par}}.
 }

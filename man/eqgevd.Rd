@@ -50,15 +50,16 @@
 }
   \item{plot.pos.cons}{
   numeric vector of length 2 specifying the constants used in the formula for the 
-  plotting positions when \code{method="pwme"} and 
-  \code{pwme.method="plotting.position"}.  The default value is 
+  plotting positions when \code{method="pwme"} and \cr
+  \code{pwme.method="plotting.position"}.  The default value is \cr
   \code{plot.pos.cons=c(a=0.35, b=0)}.  If this vector has a names attribute with 
   the value \code{c("a","b")} or \code{c("b","a")}, then the elements will be 
   matched by name in the formula for computing the plotting positions.  Otherwise, 
   the first element is mapped to the name \code{"a"} and the second element to the 
   name \code{"b"}.  See the DETAILS section of the help file for \code{\link{egevd}} 
   for more information.  This argument is used only if \code{method="tsoe"}, or if 
-  both \code{method="pwme"} and \code{pwme.method="plotting.position"}.
+  both \code{method="pwme"} and \cr
+  \code{pwme.method="plotting.position"}.
 }
   \item{digits}{
   an integer indicating the number of decimal places to round to when printing out 
@@ -162,7 +163,7 @@
 }
 \seealso{
   \code{\link{egevd}}, \link[=GEVD]{Generalized Extreme Value Distribution}, 
-  \link[=EVD]{Extreme Value Distribution}, \code{\link{eevd}}, 
+  \link[=EVD]{Extreme Value Distribution}, \code{\link{eevd}}, \cr
   \code{\link{estimate.object}}.
 }
 \examples{

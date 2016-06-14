@@ -49,13 +49,14 @@
   character string indicating the method to use for parameter estimation.  \cr
   \cr
   For singly censored data, possible values are \code{"mle"} (the default), \code{"bcmle"}, 
-  \code{"qq.reg"}, \code{"qq.reg.w.cen.level"}, \code{"impute.w.qq.reg"}, 
-  \code{"impute.w.qq.reg.w.cen.level"}, \code{"impute.w.mle"}, \code{"iterative.impute.w.qq.reg"}, 
+  \code{"qq.reg"}, \code{"qq.reg.w.cen.level"}, \code{"impute.w.qq.reg"}, \cr
+  \code{"impute.w.qq.reg.w.cen.level"}, \code{"impute.w.mle"}, \cr
+  \code{"iterative.impute.w.qq.reg"}, 
   \code{"m.est"}, and \code{"half.cen.level"}.  See the help file for \code{\link{enormCensored}} 
   for details. \cr
   \cr
   For multiply censored data, possible values are \code{"mle"} (the default), \code{"qq.reg"}, 
-  \code{"impute.w.qq.reg"}, and \code{"half.cen.level"}.  See the help file for 
+  \code{"impute.w.qq.reg"}, and \code{"half.cen.level"}.  See the help file for \cr
   \code{\link{enormCensored}} for details.
 }
   \item{censoring.side}{
@@ -76,7 +77,8 @@
   The function \code{gpqTolIntNormSinglyCensored} generates GPQs as described in Algorithm 12.1 
   of Krishnamoorthy and Mathew (2009, p. 329).  The function 
   \code{gpqTolIntNormMultiplyCensored} is an extension of this idea to multiply censored data.  
-  These functions are called by \code{\link{tolIntNormCensored}} when \code{ti.method="gpq"}, 
+  These functions are called by \cr
+  \code{\link{tolIntNormCensored}} when \code{ti.method="gpq"}, 
   and also by \code{\link{eqnormCensored}} when \code{ci=TRUE} and \code{ci.method="gpq"}.  See 
   the help files for these functions for an explanation of GPQs.
 

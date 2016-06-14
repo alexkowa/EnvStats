@@ -41,7 +41,7 @@
   These arguments are ignored if \code{ci=FALSE}.
 }
   \item{lb, ub}{
-  scalars indicating lower and upper bounds on the distribution.  By default, 
+  scalars indicating lower and upper bounds on the distribution.  By default, \cr
   \code{lb=-Inf} and \code{ub=Inf}.  If you are constructing a confidence interval 
   for a quantile from a distribution that you know has a lower bound other than 
   \code{-Inf} (e.g., \code{0}), set \code{lb} to this value.  Similarly, if you 
@@ -201,7 +201,8 @@
 }
 \value{
   a list of class \code{"estimate"} containing the estimated quantile(s) and other 
-  information.  See \code{\link{estimate.object}} for details.
+  information.  See \cr
+  \code{\link{estimate.object}} for details.
 }
 \references{
   Berthouex, P.M., and L.C. Brown. (2002). \emph{Statistics for Environmental Engineers}. 

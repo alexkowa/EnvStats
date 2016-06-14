@@ -41,7 +41,7 @@
   When \code{x.var="k"} or \code{x.var="m"}, the default value is c(1, 20).
 }
   \item{n}{
-  numeric scalar indicating the sample size.  The default value is  
+  numeric scalar indicating the sample size.  The default value is \cr 
   \code{max(25, lpl.rank + n.plus.one.minus.upl.rank + 1)}.  
   Missing (\code{NA}), undefined (\code{NaN}), and infinite (\code{Inf}, \code{-Inf}) 
   values are not allowed.  
@@ -79,9 +79,10 @@
   non-negative integer related to the rank of the order statistic to use for 
   the upper bound of the prediction interval.  A value of 
   \code{n.plus.one.minus.upl.rank=1} (the default) means use the 
-  first largest value, and in general a value of 
+  first largest value, and in general a value of \cr
   \code{n.plus.one.minus.upl.rank=}\eqn{i} means use the \eqn{i}'th largest value.  
-  If \code{pi.type="lower"}, this argument is set equal to \code{0}.
+  If \cr
+  \code{pi.type="lower"}, this argument is set equal to \code{0}.
 }
   \item{n.max}{
   for the case when \code{y.var="n"}, a positive integer greater than 2 indicating 
@@ -90,7 +91,8 @@
   \item{maxiter}{
   positive integer indicating the maximum number of iterations to use in the 
   \code{\link{uniroot}} search algorithm for sample size when \code{y.var="n"}.  
-  The default value is \code{maxiter=1000}.
+  The default value is \cr
+  \code{maxiter=1000}.
 }
   \item{plot.it}{
   a logical scalar indicating whether to create a plot or add to the 
@@ -106,9 +108,8 @@
 }
   \item{n.points}{
   a numeric scalar specifying how many (x,y) pairs to use to produce the plot.  
-  There are \code{n.points} x-values evenly spaced between 
-  \code{range.x.var[1]} and \code{range.x.var[2]}.  The default value is 
-  \code{n.points=100}.
+  There are \code{n.points} x-values evenly spaced between \code{range.x.var[1]} and \cr
+  \code{range.x.var[2]}.  The default value is \code{n.points=100}.
 }
   \item{plot.col}{
   a numeric scalar or character string determining the color of the plotted 

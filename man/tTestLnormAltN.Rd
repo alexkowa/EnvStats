@@ -39,9 +39,9 @@
   \item{sample.type}{
   character string indicating whether to compute power based on a one-sample or 
   two-sample hypothesis test.  When \code{sample.type="one.sample"}, the computed 
-  power is based on a hypothesis test for a single mean.  When 
+  power is based on a hypothesis test for a single mean.  When \cr
   \code{sample.type="two.sample"}, the computed power is based on a hypothesis test 
-  for the difference between two means.  The default value is 
+  for the difference between two means.  The default value is \cr
   \code{sample.type="one.sample"} unless the argument \code{n2} is supplied.
 }
   \item{alternative}{
@@ -66,7 +66,7 @@
   \code{TRUE}.
 }
   \item{n.max}{
-  positive integer greater than 1 indicating the maximum sample size when 
+  positive integer greater than 1 indicating the maximum sample size when \cr
   \code{sample.type="one.sample"} or the maximum sample size for group 1 
   when \code{sample.type="two.sample"}.  The default value is \code{n.max=5000}.
 }

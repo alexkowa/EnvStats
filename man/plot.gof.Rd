@@ -24,7 +24,8 @@
     evd = 0.44, 0.4), ecdf.col = "cyan", fitted.cdf.col = "black", 
   ecdf.lwd = 3 * par("cex"), fitted.cdf.lwd = 3 * par("cex"), ecdf.lty = 1, 
   fitted.cdf.lty = 2, add.line = TRUE, 
-  digits = ifelse(plot.type == "Summary", 2, .Options$digits), test.result.font = 1, 
+  digits = ifelse(plot.type == "Summary", 2, .Options$digits), 
+  test.result.font = 1, 
   test.result.cex = ifelse(plot.type == "Summary", 0.9, 1) * par("cex"), 
   test.result.mar = c(0, 0, 3, 0) + 0.1, 
   cex.main = ifelse(plot.type == "Summary", 1.2, 1.5) * par("cex"), 
@@ -107,7 +108,10 @@
   This argument is ignored when \code{plot.type="PDFs: Observed and Fitted"}.
 }
 
-Arguments associated with \code{plot.type="PDFs: Observed and Fitted"}: \cr
+
+
+\bold{Arguments associated with \code{plot.type="PDFs: Observed and Fitted"}:} \cr
+
   \item{hist.col}{
   a character string or numeric scalar determining the color of the histogram 
   used to display the distribution of the observed values.  The default value is 
@@ -131,7 +135,10 @@ Arguments associated with \code{plot.type="PDFs: Observed and Fitted"}: \cr
   See the entry for \code{lty} in the \R help file for \code{\link{par}} for more information.
 }
 
-Arguments associated with \code{plot.type="CDFs: Observed and Fitted"}: \cr
+
+
+\bold{Arguments associated with \code{plot.type="CDFs: Observed and Fitted"}:} \cr
+
   \item{plot.pos.con}{
   numeric scalar between 0 and 1 containing the value of the plotting position 
   constant used to construct the observed (empirical) CDF.  The default value of 
@@ -139,8 +146,8 @@ Arguments associated with \code{plot.type="CDFs: Observed and Fitted"}: \cr
   (i.e., the distribution assumed for the goodness-of-fit test).  
   For the \link[stats:Normal]{normal}, \link[stats:Lognormal]{lognormal}, and 
   \link[=Lognormal3]{three-parameter lognormal distributions}, 
-  the default value is \code{plot.pos.con=0.375}.  
-  For the \link[=EVD]{Type I extreme value (Gumbel) distribution}, 
+  the default value is \cr
+  \code{plot.pos.con=0.375}.  For the \link[=EVD]{Type I extreme value (Gumbel) distribution}, 
   the default value is \code{plot.pos.con=0.44}.  For all other distributions, 
   the default value is \code{plot.pos.con=0.4}.  See the help files for 
   \code{\link{ecdfPlot}} and \code{\link{qqPlot}} for more information and the 
@@ -182,8 +189,11 @@ Arguments associated with \code{plot.type="CDFs: Observed and Fitted"}: \cr
   See the entry for \code{lty} in the \R help file for \code{\link{par}} for more information.
 }
 
-Arguments associated with \code{plot.type="Q-Q Plot"} or \code{plot.type="Tukey M-D Q-Q Plot"}: \cr
-As explained above, \code{plot.pos.con} is used for these plot types.  Also:
+\bold{Arguments associated with \code{plot.type="Q-Q Plot"} or} \cr
+\bold{\code{plot.type="Tukey M-D Q-Q Plot"}:} \cr
+
+As explained above, \code{plot.pos.con} is used for these plot types.  Also: \cr
+
   \item{add.line}{
   logical scalar indicating whether to add a line to the plot.  If \code{add.line=TRUE} 
   and \code{plot.type="Q-Q Plot"}, a 0-1 line is added to the plot.  
@@ -191,7 +201,10 @@ As explained above, \code{plot.pos.con} is used for these plot types.  Also:
   line at \eqn{y=0} is added to the plot.  The default value is \code{add.line=TRUE}.
 }
 
-Arguments associated with \code{plot.type="Test Results"} \cr 
+
+
+\bold{Arguments associated with \code{plot.type="Test Results"}} \cr 
+
   \item{test.result.font}{
   numeric scalar indicating which font to use to print out the test results.  
   The default value is \code{test.result.font=1}.  See the description of the 
@@ -213,13 +226,16 @@ Arguments associated with \code{plot.type="Test Results"} \cr
   \code{\link{par}} for more information.  
 }
 
-Arguments associated with \code{plot.type="Summary"} \cr
+
+
+\bold{Arguments associated with \code{plot.type="Summary"}} \cr
+
   \item{add.om.title}{
-  logical scalar indicating whether to add a title in the outer margin when 
+  logical scalar indicating whether to add a title in the outer margin when \cr
   \code{plot.type="Summary"}.  The default value is \code{add.om.title=TRUE}.
 }
   \item{om.title}{
-  character string containing the outer margin title.  The default value is 
+  character string containing the outer margin title.  The default value is \cr
   \code{om.title=NULL}, which will result in a default title.
 }
   \item{om.font}{
@@ -235,14 +251,18 @@ Arguments associated with \code{plot.type="Summary"} \cr
   default value is \code{om.line=0.5}.
 }
 
-Graphics parameters: \cr
+
+
+\bold{Graphics parameters:} \cr
+
   \item{cex.main, cex.axis, cex.lab, main, xlab, ylab, xlim, ylim, oma, \dots}{
   additional graphics parameters.  See the help file for \code{\link{par}}.
 }
 }
 \details{
   The function \code{plot.gof} is a method for the generic function 
-  \code{\link{plot}} for the class \code{"gof"} (see \code{\link{gof.object}}).  
+  \code{\link{plot}} for objects that inherit from class \code{"gof"} \cr
+  (see \code{\link{gof.object}}).  
   It can be invoked by calling \code{\link{plot}} and giving it an object of 
   class \code{"gof"} as the first argument, or by calling \code{plot.gof} 
   directly, regardless of the class of the object given as the first argument 
@@ -251,10 +271,10 @@ Graphics parameters: \cr
   Plots associated with the goodness-of-fit test are produced on the current graphics 
   device.  These can be one or all of the following:
   \itemize{
-  \item Observed distribution overlaid with fitted distribution 
+  \item Observed distribution overlaid with fitted distribution \cr
     (\code{plot.type="PDFs: Observed and Fitted"}).  See the help files for 
     \code{\link{hist}} and \code{\link{pdfPlot}}.
-  \item Observed empirical distribution overlaid with fitted cumulative distribution 
+  \item Observed empirical distribution overlaid with fitted cumulative distribution \cr
     (\code{plot.type="CDFs: Observed and Fitted"}).  See the help file for 
     \code{\link{cdfCompare}}.
   \item Observed quantiles vs. fitted quantiles (Q-Q Plot) 

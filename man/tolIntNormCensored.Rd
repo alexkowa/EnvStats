@@ -54,22 +54,23 @@
   character string indicating the method to use for parameter estimation.  \cr
   \cr
   For singly censored data, possible values are \code{"mle"} (the default), \code{"bcmle"}, 
-  \code{"qq.reg"}, \code{"qq.reg.w.cen.level"}, \code{"impute.w.qq.reg"}, 
-  \code{"impute.w.qq.reg.w.cen.level"}, \code{"impute.w.mle"}, \code{"iterative.impute.w.qq.reg"}, 
+  \code{"qq.reg"}, \code{"qq.reg.w.cen.level"}, \code{"impute.w.qq.reg"}, \cr
+  \code{"impute.w.qq.reg.w.cen.level"}, \code{"impute.w.mle"}, \cr
+  \code{"iterative.impute.w.qq.reg"}, 
   \code{"m.est"}, and \code{"half.cen.level"}.  See the help file for \code{\link{enormCensored}} 
   for details. \cr
   \cr
   For multiply censored data, possible values are \code{"mle"} (the default), \code{"qq.reg"}, 
-  \code{"impute.w.qq.reg"}, and \code{"half.cen.level"}.  See the help file for 
+  \code{"impute.w.qq.reg"}, and \code{"half.cen.level"}.  See the help file for \cr
   \code{\link{enormCensored}} for details.
 }
   \item{ti.method}{
   character string specifying the method for constructing the tolerance 
-  interval.  Possible values are 
-  \code{"exact.for.complete"} (the default), 
-  \code{"gpq"} (Generalized Pivotal Quantity), and, for a two-sided 
-  tolerance interval (i.e., when \code{ti.type="two-sided"}), 
-  \code{"wald.wolfowitz.for.complete"}.  
+  interval.  Possible values are: \cr 
+  \code{"exact.for.complete"} (the default), \cr 
+  \code{"gpq"} (Generalized Pivotal Quantity), and \cr
+  \code{"wald.wolfowitz.for.complete"} (only available for a two-sided tolerance interval,  
+  i.e., when \code{ti.type="two-sided"}). \cr  
   See the DETAILS section for more information.
 }
   \item{seed}{
@@ -94,7 +95,8 @@
   \code{ti.method="exact.for.complete"} or 
   \code{ti.method="wald.wolfowitz.for.complete"}, the tolerance interval 
   is constructed by first computing the maximum likelihood estimates of 
-  the mean and standard deviation by calling \code{\link{enormCensored}}, 
+  the mean and standard deviation by calling \cr
+  \code{\link{enormCensored}}, 
   then passing these values to the function \code{\link{tolIntNorm}} to 
   produce the tolerance interval as if the estimates were based on 
   complete rather than censored data.  These last two methods are purely 

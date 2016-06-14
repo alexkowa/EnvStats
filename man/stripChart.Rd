@@ -44,7 +44,7 @@ stripChart(x, ...)
     group.difference.digits = location.scale.digits, 
     ci.and.test = "parametric", ci.arg.list = NULL, test.arg.list = NULL, 
     alternative = "two.sided", plot.diff = FALSE, diff.col = col[1], 
-    diff.pch = pch[1], paired = FALSE, paired.lines = paired, 
+    diff.method = "stack", diff.pch = pch[1], paired = FALSE, paired.lines = paired, 
     paired.lty = 1:6, paired.lwd = 1, paired.pch = 1:14, paired.col = NULL, 
     diff.name = NULL, diff.name.cex = group.names.cex, sep.line = TRUE, 
     sep.lty = 2, sep.lwd = cex, sep.col = "gray", diff.lim = NULL, 
@@ -79,12 +79,14 @@ stripChart(x, ...)
   appearance of the plot. 
 }
   \item{method}{
-  the method to be used to separate coincident points.  The method \code{"overplot"} 
-  causes such points to be overplotted, but it is also possible to specify 
-  \code{"jitter"} to jitter the points, or \code{"stack"} to 
-  have coincident points stacked (the default).  Note that the default value of 
-  \code{method} (\code{method="stack"}) differs from the default value for the \R function 
-  \code{\link{stripchart}}, which uses \code{method="overplot"} by default.
+  the method to be used to separate coincident points.  When \code{method="stack"} 
+  coincident points are stacked, when \code{method="jitter"} coincident points are 
+  jittered, and when \code{method="overplot"} coincident points are overplotted.  
+  When there are 2 groups and \code{paired=TRUE} and \code{paired.lines=TRUE} the 
+  default value is \code{method="overplot"}, otherewise the default method is 
+  \code{method="stack"} (which differs from the default value for the \R function 
+  \code{\link{stripchart}}, which uses \cr
+  \code{method="overplot"} by default).
 }
   \item{seed}{
   when \code{method="jitter"} is used, the argument \code{seed} is passed to 
@@ -295,7 +297,9 @@ stripChart(x, ...)
   The default value is \code{test.arg.list=NULL}.  In particular, in the case when there are two groups, 
   \code{ci.and.test="parametric"}, and \code{ci.arg.list} is \code{NULL} or does not contain a 
   component specifying the value for \code{var.equal}, this argument is updated to include the 
-  component \code{var.equal=TRUE}, which is not the default behavior of \code{\link{t.test}}.
+  component \code{var.equal=TRUE}, which is not the default behavior of \code{\link{t.test}}. \cr 
+  NOTE: If \code{test.arg.list} contains a component named \code{"paired"}, the value of 
+  that component is set to the value of the argument \code{paired} (see below).
 }
   \item{alternative}{
   character string describing the alternative hypothesis for the test of group differences in the 
@@ -310,8 +314,8 @@ stripChart(x, ...)
   When \code{plot.diff=TRUE} and \code{paired=FALSE}, the confidence interval 
   for the difference between the two locations is displayed and the right-hand axis 
   (when \code{vertical=TRUE}) or top axis (when \code{vertical=FALSE}) is labeled in units of 
-  the confidence interval for the difference between the two locations.  
-  If \code{ci.and.test="parametric"}, the confidence interval for the difference between the 
+  the confidence interval for the difference between the two locations.  If \cr
+  \code{ci.and.test="parametric"}, the confidence interval for the difference between the 
   two means is displayed. 
   If \code{ci.and.test="nonparametric"}, the confidence interval for the median of the 
   difference between a sample from the first group and a sample from the second group is displayed 
@@ -319,11 +323,13 @@ stripChart(x, ...)
 
   When \code{plot.diff=TRUE} and \code{paired=TRUE}, the paired differences are 
   displayed and the right-hand axis (when \code{vertical=TRUE}) or 
-  top axis (when \code{vertical=FALSE}) is labeled in units of the paired differences.
+  top axis (when \cr
+  \code{vertical=FALSE}) is labeled in units of the paired differences.
   In addition, if \code{show.ci=TRUE}, the confidence interval based on the paired 
   differences is displayed.  In this case, if \code{ci.and.test="parametric"} 
   the confidence interval for the mean of the paired differences is displayed, and 
-  if \code{ci.and.test="nonparametric"} the confidence interval for the pseudomedian 
+  if \cr
+  \code{ci.and.test="nonparametric"} the confidence interval for the pseudomedian 
   is displayed (see the help file for \code{\link{wilcox.test}}.
 }
   \item{diff.col}{
@@ -333,6 +339,13 @@ stripChart(x, ...)
   argument also controls the color of the paired differences.  
   The default is \code{diff.col=col[1]}.
 }
+  \item{diff.method}{
+  applicable only to the case when there are two groups, \code{plot.diff=TRUE}, and \code{paired=TRUE}: \cr
+  the method to be used to separate coincident points for the paired differences.  
+  The default value is \code{diff.method="stack"}.  Other options are \cr
+  \code{diff.method="jitter"} 
+  and \code{diff.method="overplot"}.  See the explanation for the argument \code{method} above.
+}
   \item{diff.pch}{
   applicable only to the case when there are two groups, \code{plot.diff=TRUE}, and \code{paired=TRUE}: \cr
   numeric or character scalar indicating what plotting symbol to use for the paired differences.  
@@ -341,7 +354,9 @@ stripChart(x, ...)
   \item{paired}{
   applicable only to the case when there are two groups: \cr
   logical scalar indicating whether the observations in the first group are paired with those 
-  in the second group.  The default is \code{paired=FALSE}.
+  in the second group.  The default is \code{paired=FALSE}.  \cr
+  NOTE:  If the argument \code{test.arg.list} (see above) contains a component named \code{"paired"}, 
+  the value of that component is set to the value of the argument \code{paired}.
 }
   \item{paired.lines}{
   applicable only to the case when there are two groups and \code{paired=TRUE}: \cr
@@ -349,31 +364,32 @@ stripChart(x, ...)
   The default value is the value of the argument \code{paired}.
 }
   \item{paired.lty}{
-  applicable only to the case when there are two groups, \code{paired=TRUE}, and 
+  applicable only to the case when there are two groups, \code{paired=TRUE}, and \cr
   \code{paired.lines=TRUE}: \cr 
   numeric vector indicating the line types to use to join the paired observations with lines.  
   The default value is \code{paired.lty=1:6}.
 }
   \item{paired.lwd}{
-  applicable only to the case when there are two groups, \code{paired=TRUE}, and 
+  applicable only to the case when there are two groups, \code{paired=TRUE}, and \cr
   \code{paired.lines=TRUE}: \cr 
   numeric vector indicating the widths of the lines used to join the paired observations with lines.  
   The default value is \code{paired.lwd=1}.
 }
   \item{paired.pch}{
-  applicable only to the case when there are two groups, \code{paired=TRUE}, and 
+  applicable only to the case when there are two groups, \code{paired=TRUE}, and \cr
   \code{paired.lines=TRUE}: \cr
   numeric vector indicating the plotting characters to use at each end of the lines used to 
-  join the paired observations with lines.  The default value is \code{paired.pch=1:14}.
+  join the paired observations with lines.  The default value is \cr
+  \code{paired.pch=1:14}.
 }
   \item{paired.col}{
-  applicable only to the case when there are two groups, \code{paired=TRUE}, and 
+  applicable only to the case when there are two groups, \code{paired=TRUE}, and \cr
   \code{paired.lines=TRUE}: \cr 
   character or numeric vector indicating the colors for the lines (and plotting characters) 
   used to join the paired observations with lines.  The default value is \code{paired.col=NULL}, 
   in which case the vector becomes \cr
-  \code{c("black", "red", "green3", "blue", "magenta", "darkgreen", "purple",} \cr 
-  \code{"orange", "darkolivegreen", "steelblue", "darkgray")}.
+  \code{c("black", "red", "green3", "blue", "magenta", "darkgreen",} \cr 
+  \code{"purple", "orange", "darkolivegreen", "steelblue", "darkgray")}.
 }
   \item{diff.name}{
   applicable only to the case when there are two groups and \code{plot.diff=TRUE}: \cr 
@@ -394,7 +410,8 @@ stripChart(x, ...)
   applicable only to the case when there are two groups and \code{plot.diff=TRUE}: \cr 
   logical scalar indicating whether to draw a line between the strip charts for the two 
   groups and the confidence interval for the difference between the two groups (and paired 
-  differences when \code{paired=TRUE}).  The default value is \code{sep.line=TRUE}.
+  differences when \code{paired=TRUE}).  The default value is \cr
+  \code{sep.line=TRUE}.
 }
   \item{sep.lty}{
   applicable only to the case when there are two groups, \code{plot.diff=TRUE}, and 
@@ -420,10 +437,11 @@ stripChart(x, ...)
   \item{diff.lim}{
   applicable only to the case when there are two groups and \code{plot.diff=TRUE}: \cr 
   numeric vector of length 2 indicating the limits to use for the axis associated with the 
-  confidence interval for the difference between the two groups.  When \code{paired=FALSE}, 
-  the default value is \code{range(pretty(range(CI)))} where \code{CI} denotes the two-element 
-  vector containing the lower and upper limits of the confidence interval.  
-  When \code{paired=TRUE}, the default value is \code{range(pretty(c(X, range(CI))))} where 
+  confidence interval for the difference between the two groups.  
+  When \code{paired=FALSE}, the default value is the range of the y-axis, but centered at 
+  the mean of the confidence interval for the difference in locations.  
+  When \cr
+  \code{paired=TRUE}, the default value is \code{range(pretty(c(X, range(CI))))} where 
   \code{X} denotes the vector containing the paired differences.
 }
   \item{diff.at}{

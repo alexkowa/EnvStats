@@ -18,8 +18,8 @@
   numeric vector of observations.
 }
   \item{na.rm}{
-  logical scalar indicating whether to remove missing values from \code{x}.  
-  If \code{na.rm=FALSE} (the default) and \code{x} contains missing values, 
+  logical scalar indicating whether to remove missing values from \code{x}.  If \cr
+  \code{na.rm=FALSE} (the default) and \code{x} contains missing values, 
   then a missing value (\code{NA}) is returned.  If \code{na.rm=TRUE}, 
   missing values are removed from \code{x} prior to computing the coefficient 
   of variation.
@@ -39,8 +39,8 @@
 }
   \item{plot.pos.cons}{
   numeric vector of length 2 specifying the constants used in the formula for 
-  the plotting positions when \code{method="l.moments"} and 
-  \code{l.moment.method="plotting.position"}.  The default value is 
+  the plotting positions when \code{method="l.moments"} and \cr
+  \code{l.moment.method="plotting.position"}.  The default value is \cr
   \code{plot.pos.cons=c(a=0.35, b=0)}.  If this vector has a names attribute 
   with the value \code{c("a","b")} or \code{c("b","a")}, then the elements will 
   be matched by name in the formula for computing the plotting positions.  
@@ -142,8 +142,8 @@
 \note{
   Traditionally, the coefficient of skewness has been estimated using product 
   moment estimators.  Sometimes an estimate of skewness is used in a 
-  goodness-of-fit test for normality (e.g., set \code{test="skew"} in the 
-  call to \code{\link{gofTest}}).
+  goodness-of-fit test for normality (e.g., set \cr
+  \code{test="skew"} in the call to \code{\link{gofTest}}).
 
   Hosking (1990) introduced the idea of \eqn{L}-moments and \eqn{L}-skewness.  
 

@@ -163,7 +163,8 @@
   \deqn{[-\infty, \bar{x} + Ks] \;\;\;\;\;\; (5)} 
 
   \bold{Note:}  For simultaneous prediction intervals, only lower 
-  (\code{pi.type="lower"}) and upper (\code{pi.type="upper"}) prediction 
+  (\code{pi.type="lower"}) and upper \cr
+  (\code{pi.type="upper"}) prediction 
   intervals are available.
   
   The derivation of the constant \eqn{K} is explained in the help file for 
@@ -352,7 +353,7 @@
 \seealso{
   \code{\link{predIntNormSimultaneousK}}, 
   \code{\link{predIntNormSimultaneousTestPower}}, 
-  \code{\link{predIntNorm}}, 
+  \code{\link{predIntNorm}}, \cr
   \code{\link{predIntLnormSimultaneous}}, \code{\link{tolIntNorm}}, 
   \link{Normal}, \code{\link{estimate.object}}, \code{\link{enorm}}
 }

@@ -23,7 +23,8 @@
   class \code{"summaryStats"}.
 
   \item{stats.in.rows}{logical scalar indicating whether the statistics 
-    are stored by row (\code{stats.in.rows=TRUE}) or by column 
+    are stored by row \cr
+    (\code{stats.in.rows=TRUE}) or by column 
     (\code{stats.in.rows=FALSE}).}
   \item{drop0trailing}{logical scalar indicating whether to drop trailing 0's 
     when printing the summary statistics.}

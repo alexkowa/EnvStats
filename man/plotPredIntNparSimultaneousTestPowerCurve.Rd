@@ -63,9 +63,10 @@
   non-negative integer related to the rank of the order statistic to use for 
   the upper 
   bound of the prediction interval.  A value of \code{n.plus.one.minus.upl.rank=1} 
-  means use the first largest value, and in general a value of 
+  means use the first largest value, and in general a value of \cr
   \code{n.plus.one.minus.upl.rank=}\eqn{i} means use the \eqn{i}'th largest value. 
-  When \code{pi.type="upper"}, the default value is \code{n.plus.one.minus.upl.rank=1}. 
+  When \cr
+  \code{pi.type="upper"}, the default value is \code{n.plus.one.minus.upl.rank=1}. 
   When \code{pi.type="lower"}, the argument \code{n.plus.one.minus.upl.rank} is set 
   equal to \code{0}.
 }
@@ -89,7 +90,7 @@
   Monte Carlo simulation).
 }
   \item{NMC}{
-  positive integer indicating the number of Monte Carlo trials to run when 
+  positive integer indicating the number of Monte Carlo trials to run when \cr
   \code{method="simulate"}.  The default value is \code{NMC=100}.
 }
   \item{range.delta.over.sigma}{
@@ -164,7 +165,7 @@
   to determine the relationship between sample size, significance level, power, and 
   scaled difference if one of the objectives of the sampling program is to determine 
   whether two distributions differ from each other.  The functions 
-  \code{\link{predIntNparSimultaneousTestPower}} and 
+  \code{\link{predIntNparSimultaneousTestPower}} and \cr
   \code{plotPredIntNparSimultaneousTestPowerCurve} can be 
   used to investigate these relationships for the case of normally-distributed 
   observations. 

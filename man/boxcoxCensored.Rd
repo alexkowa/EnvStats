@@ -39,7 +39,7 @@
 }
   \item{lambda}{
   numeric vector of finite values indicating what powers to use for the 
-  Box-Cox transformation.  When \code{optimize=FALSE}, the default value is 
+  Box-Cox transformation.  When \code{optimize=FALSE}, the default value is \cr
   \code{lambda=seq(-2, 2, by=0.5)}.  When \code{optimize=TRUE}, \code{lambda} 
   must be a vector with two values indicating the range over which the 
   optimization will occur and the range of these two values must include 1.  
@@ -70,13 +70,16 @@
   \item{prob.method}{
   for multiply censored data, 
   character string indicating what method to use to compute the plotting positions 
-  (empirical probabilities) when \code{objective.name="PPCC"}.  Possible values are 
-  \code{"kaplan-meier"} (product-limit method of Kaplan and Meier (1958)), 
-  \code{"modified kaplan-meier"} (same as \code{"kaplan-meier"} with the maximum value included), 
-  \code{"nelson"} (hazard plotting method of Nelson (1972)), 
-  \code{"michael-schucany"} (generalization of the product-limit method due to Michael and Schucany (1986)), and 
-  \code{"hirsch-stedinger"} (generalization of the product-limit method due to Hirsch and Stedinger (1987)).  
-  The default value is \code{prob.method="michael-schucany"}. 
+  (empirical probabilities) when \cr
+  \code{objective.name="PPCC"}.  Possible values are: \cr
+
+  \code{"kaplan-meier"} (product-limit method of Kaplan and Meier (1958)), \cr
+  \code{"modified kaplan-meier"} (same as \code{"kaplan-meier"} with the maximum value included), \cr
+  \code{"nelson"} (hazard plotting method of Nelson (1972)), \cr 
+  \code{"michael-schucany"} (generalization of the product-limit method due to Michael and Schucany (1986)), and \cr 
+  \code{"hirsch-stedinger"} (generalization of the product-limit method due to Hirsch and Stedinger (1987)). \cr
+
+  The default value is \code{prob.method="michael-schucany"}. \cr 
 
   The \code{"nelson"} method is only available for \code{censoring.side="right"}, and 
   the \code{"modified kaplan-meier"} is only available for \code{censoring.side="left"}.  

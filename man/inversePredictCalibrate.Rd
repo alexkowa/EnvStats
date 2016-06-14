@@ -14,7 +14,7 @@
 }
 \arguments{
   \item{object}{
-  an object of class \code{"calibrate"} that is the result of calling the function 
+  an object of class \code{"calibrate"} that is the result of calling the function \cr
   \code{\link{calibrate}}.
 }
   \item{obs.y}{

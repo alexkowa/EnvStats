@@ -15,8 +15,8 @@
   numeric vector of observations.
 }
   \item{na.rm}{
-  logical scalar indicating whether to remove missing values from \code{x}.  
-  If \code{na.rm=FALSE} (the default) and \code{x} contains missing values, 
+  logical scalar indicating whether to remove missing values from \code{x}. If \cr
+  \code{na.rm=FALSE} (the default) and \code{x} contains missing values, 
   then a missing value (\code{NA}) is returned.  If \code{na.rm=TRUE}, 
   missing values are removed from \code{x} prior to computing the coefficient 
   of variation.

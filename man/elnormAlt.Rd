@@ -50,7 +50,8 @@
   a list containing arguments for the function \code{\link{eqnpar}}.  The components 
   of this list are \code{lcl.rank} (set to \code{NULL} by default), \code{ucl.rank} 
   (set to \code{NULL} by default), \code{ci.method} (set to \code{"exact"} if the 
-  sample size is \eqn{\le 20}, otherwise set to \code{"normal.approx"}), and 
+  sample size is \eqn{\le 20}, otherwise set to \cr
+  \code{"normal.approx"}), and 
   \code{approx.conf.level} (set to the value of \code{conf.level}).  This argument is 
   ignored unless \code{ci=TRUE} and \code{ci.method="parkin"}. 
 }
@@ -289,7 +290,8 @@
 }
 \value{
   a list of class \code{"estimate"} containing the estimated parameters and other information.  
-  See \code{\link{estimate.object}} for details.
+  See \cr
+  \code{\link{estimate.object}} for details.
 }
 \references{
   Aitchison, J., and J.A.C. Brown (1957).  \emph{The Lognormal Distribution 

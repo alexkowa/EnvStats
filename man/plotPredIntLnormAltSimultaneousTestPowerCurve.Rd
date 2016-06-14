@@ -155,7 +155,7 @@
   to determine the relationship between sample size, significance level, power, and 
   scaled difference if one of the objectives of the sampling program is to determine 
   whether two distributions differ from each other.  The functions 
-  \code{\link{predIntLnormAltSimultaneousTestPower}} and 
+  \code{\link{predIntLnormAltSimultaneousTestPower}} and \cr
   \code{plotPredIntLnormAltSimultaneousTestPowerCurve} can be 
   used to investigate these relationships for the case of normally-distributed 
   observations. 

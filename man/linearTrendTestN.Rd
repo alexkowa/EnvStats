@@ -80,7 +80,7 @@
 }
 \seealso{
   \code{\link{linearTrendTestPower}}, \code{\link{linearTrendTestScaledMds}}, 
-  \code{\link{plotLinearTrendTestDesign}}, \code{\link{lm}}, 
+  \code{\link{plotLinearTrendTestDesign}}, \code{\link{lm}}, \cr
   \code{\link{summary.lm}}, \code{\link{kendallTrendTest}}, 
   \link{Power and Sample Size}, \link{Normal}, \code{\link{t.test}}.
 }

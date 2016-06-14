@@ -29,9 +29,10 @@
   length as \code{x}.
 }
   \item{method}{
-  character string specifying the method of estimation.  Possible values are 
-  \code{"mle/mme"} (maximum likelihood and method of moments; the default) and 
-  \code{"mvue"} (minimum variance unbiased).  You cannot use \code{method="mvue"} if 
+  character string specifying the method of estimation.  Possible values are: \cr 
+  \code{"mle/mme"} (maximum likelihood and method of moments; the default) and \cr
+  \code{"mvue"} (minimum variance unbiased).  \cr
+  You cannot use \code{method="mvue"} if 
   the sum of the elements in \code{size} is 1.  See the DETAILS section for more 
   information on these estimation methods.
 }
@@ -64,7 +65,7 @@
   \eqn{K=1}.
 }
 \value{
-  a list of class \code{"estimate"} containing the estimated parameters and other information.  
+  a list of class \code{"estimate"} containing the estimated parameters and other information. \cr 
   See \code{\link{estimate.object}} for details.
 }
 \references{

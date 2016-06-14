@@ -160,13 +160,13 @@
   \eqn{\theta_1} and coefficient of variation \eqn{\tau}; that is, the means are 
   allowed to differ between the two populations, but not the coefficient of variation.
 
-  The function \code{predIntLnormAltSimultaneousTestPower} calls the function 
+  The function \code{predIntLnormAltSimultaneousTestPower} calls the function \cr
   \code{\link{predIntNormSimultaneousTestPower}}, with the argument 
   \code{delta.over.sigma} given by:
   \deqn{\frac{\delta}{\sigma} = \frac{log(R)}{\sqrt{log(\tau^2 + 1)}} \;\;\;\;\;\; (1)}
   where \eqn{R} is given by:
   \deqn{R = \frac{\theta_1}{\theta_2} \;\;\;\;\;\; (2)}
-  and corresponds to the argument \code{ratio.of.means} for the function 
+  and corresponds to the argument \code{ratio.of.means} for the function \cr
   \code{predIntLnormAltSimultaneousTestPower}, and \eqn{\tau} corresponds to the 
   argument \code{cv}.
 }
@@ -185,10 +185,10 @@
   \code{\link{predIntNormSimultaneousTestPower}}.
 }
 \seealso{
-  \code{\link{predIntLnormAltSimultaneous}}, 
-  \code{\link{plotPredIntLnormAltSimultaneousTestPowerCurve}}, 
-  \code{\link{predIntNormSimultaneous}}, 
-  \code{\link{plotPredIntNormSimultaneousTestPowerCurve}}, 
+  \code{\link{predIntLnormAltSimultaneous}}, \cr
+  \code{\link{plotPredIntLnormAltSimultaneousTestPowerCurve}}, \cr
+  \code{\link{predIntNormSimultaneous}}, \cr
+  \code{\link{plotPredIntNormSimultaneousTestPowerCurve}}, \cr
   \link{Prediction Intervals}, \link{LognormalAlt}.
 }
 \examples{

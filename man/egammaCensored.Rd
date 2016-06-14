@@ -79,7 +79,7 @@
 }
   \item{ci.sample.size}{
   numeric scalar indicating what sample size to assume to construct the 
-  confidence interval for the mean if \code{pivot.statistic="t"} and 
+  confidence interval for the mean if \code{pivot.statistic="t"} and \cr
   \code{ci.method="normal.approx"}.  The default value is the number of 
   uncensored observations.
 }

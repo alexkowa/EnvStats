@@ -207,7 +207,7 @@
   Newcombe, R.G. (1998b). Interval Estimation for the Difference Between Independent Proportions:  
   Comparison of Eleven Methods. \emph{Statistics in Medicine}, \bold{17}, 873--890.
 
-  Ott, .W.R. (1995). \emph{Environmental Statistics and Data Analysis}. 
+  Ott, W.R. (1995). \emph{Environmental Statistics and Data Analysis}. 
   Lewis Publishers, Boca Raton, FL, Chapter 4.
 
   USEPA. (1989b). \emph{Statistical Analysis of Ground-Water Monitoring Data at RCRA Facilities, Interim Final Guidance}. 

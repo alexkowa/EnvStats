@@ -6,9 +6,9 @@
 \description{
   Plot the results of calling functions that return an object of class 
   \code{"permutationTest"}.  Currently, the \pkg{EnvStats} functions that perform 
-  permutation tests and produce objects of class \code{"permutationTest"} are:
-  \code{\link{oneSamplePermutationTest}},  
-  \code{\link{twoSamplePermutationTestLocation}}, and 
+  permutation tests and produce objects of class \cr
+  \code{"permutationTest"} are:  \code{\link{oneSamplePermutationTest}},  
+  \code{\link{twoSamplePermutationTestLocation}}, and \cr
   \code{\link{twoSamplePermutationTestProportion}}. 
 
   The function \code{plot.permutationTest} is automatically called by 
@@ -68,7 +68,7 @@
   \code{\link{plot}} for the class \code{"permutationTest"} 
   (see \code{\link{permutationTest.object}}).  It can be invoked by calling 
   \code{\link{plot}} and giving it an object of 
-  class \code{"permutationTest"} as the first argument, or by calling 
+  class \code{"permutationTest"} as the first argument, or by calling \cr
   \code{plot.permutationTest} directly, regardless of the class of the object given 
   as the first argument to \code{plot.permutationTest}.
 }
@@ -84,7 +84,7 @@
 }
 \seealso{
   \code{\link{permutationTest.object}}, \code{\link{print.permutationTest}}, 
-  \code{\link{oneSamplePermutationTest}},  
+  \code{\link{oneSamplePermutationTest}},  \cr
   \code{\link{twoSamplePermutationTestLocation}},  
   \code{\link{twoSamplePermutationTestProportion}},
   \link{Hypothesis Tests}, \code{\link{plot}}.

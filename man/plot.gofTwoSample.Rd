@@ -41,11 +41,15 @@
   \item{plot.type}{
   character string indicating what kind of plot to create.  Only one particular 
   plot type will be created, unless \code{plot.type="All"}, in which case all plots 
-  will be created sequentially.  The possible values of \code{plot.type} are: 
-  \code{"Summary"} (the default), \code{"PDFs: Observed"}, 
-  \code{"CDFs: Observed"}, \code{"Q-Q Plot"}, \code{"Tukey M-D Q-Q Plot"}, 
-  \code{"Test Results"}, and \code{"All"}.  See the DETAILS section for more 
-  information.
+  will be created sequentially.  The possible values of \code{plot.type} are: \cr
+  \code{"Summary"} (the default), \cr
+  \code{"PDFs: Observed"}, \cr
+  \code{"CDFs: Observed"}, \cr
+  \code{"Q-Q Plot"}, \cr
+  \code{"Tukey M-D Q-Q Plot"}, \cr
+  \code{"Test Results"}, and \cr
+  \code{"All"}.  \cr
+  See the DETAILS section for more information.
 }
   \item{captions}{
   a list with 1 to 5 components with the names \code{"PDFs"}, \code{"CDFs"}, 
@@ -100,7 +104,10 @@
   \code{plot.type == "All"}.
 }
 
-Arguments associated with \code{plot.type="PDFs: Observed"}: \cr
+
+
+\bold{Arguments associated with \code{plot.type="PDFs: Observed"}:} \cr
+
   \item{x.points.col}{
   a character string or numeric scalar determining the color of the plotting symbol  
   used to display the distribution of the observed \code{x} values 
@@ -127,10 +134,13 @@ Arguments associated with \code{plot.type="PDFs: Observed"}: \cr
   The default value is \code{jitter.points=TRUE}.
 }
 
-Arguments associated with \code{plot.type="CDFs: Observed"}: \cr
+
+
+\bold{Arguments associated with \code{plot.type="CDFs: Observed"}:} \cr
+
   \item{discrete}{
   logical scalar indicating whether the two distributions are considered to be 
-  discrete (\code{discrete=TRUE}) or not(\code{discrete=FALSE}; the default).  When 
+  discrete (\code{discrete=TRUE}) or not(\code{discrete=FALSE}; the default).  When \cr
   \code{discrete=TRUE}, the empirical CDFs are plotted as step functions.
 }
   \item{plot.pos.con}{
@@ -187,8 +197,13 @@ Arguments associated with \code{plot.type="CDFs: Observed"}: \cr
   information.
 }
 
-Arguments associated with \code{plot.type="Q-Q Plot"} or \code{plot.type="Tukey M-D Q-Q Plot"}: \cr
-As explained above, \code{plot.pos.con} is used for these plot types.  Also:
+
+
+\bold{Arguments associated with \code{plot.type="Q-Q Plot"} or} \cr
+\bold{\code{plot.type="Tukey M-D Q-Q Plot"}:} \cr
+
+As explained above, \code{plot.pos.con} is used for these plot types.  Also: \cr
+
   \item{add.line}{
   logical scalar indicating whether to add a line to the plot.  If \code{add.line=TRUE} 
   and \code{plot.type="Q-Q Plot"}, a 0-1 line is added to the plot.  
@@ -196,13 +211,16 @@ As explained above, \code{plot.pos.con} is used for these plot types.  Also:
   line at \eqn{y=0} is added to the plot.  The default value is \code{add.line=TRUE}.
 }
 
-Arguments associated with \code{plot.type="Test Results"} \cr 
+
+
+\bold{Arguments associated with \code{plot.type="Test Results"}} \cr 
+
   \item{digits}{
   scalar indicating how many significant digits to print for the test results 
-  when \code{plot.type="Summary"} or \code{plot.type="Test Results"}.  
-  If \code{plot.type == "Summary"}, the default value is 
-  \code{digits=2}, otherwise it is \code{.Options$digits} (i.e., the current 
-  setting of \code{options("digits")}).
+  when \code{plot.type="Summary"} or \code{plot.type="Test Results"}.  If \cr
+  \code{plot.type == "Summary"}, the default value is 
+  \code{digits=2}, otherwise it is \cr
+  \code{.Options$digits} (i.e., the current setting of \code{options("digits")}).
 }
   \item{test.result.font}{
   numeric scalar indicating which font to use to print out the test results.  
@@ -225,13 +243,16 @@ Arguments associated with \code{plot.type="Test Results"} \cr
   \code{\link{par}} for more information.  
 }
 
-Arguments associated with \code{plot.type="Summary"} \cr
+
+
+\bold{Arguments associated with \code{plot.type="Summary"}} \cr
+
   \item{add.om.title}{
-  logical scalar indicating whether to add a title in the outer margin when 
+  logical scalar indicating whether to add a title in the outer margin when \cr
   \code{plot.type="Summary"}.  The default value is \code{add.om.title=TRUE}.
 }
   \item{om.title}{
-  character string containing the outer margin title.  The default value is 
+  character string containing the outer margin title.  The default value is \cr
   \code{om.title=NULL}, which will result in a default title.
 }
   \item{om.font}{
@@ -247,15 +268,18 @@ Arguments associated with \code{plot.type="Summary"} \cr
   default value is \code{om.line=0.5}.
 }
 
-Graphics parameters: \cr
+
+
+\bold{Graphics parameters:} \cr
+
   \item{cex.main, cex.axis, cex.lab, main, xlab, ylab, xlim, ylim, oma, \dots}{
   additional graphics parameters.  See the help file for \code{\link{par}}.
 }
 }
 \details{
   The function \code{plot.gofTwoSample} is a method for the generic function 
-  \code{\link{plot}} for the class \code{"gofTwoSample"} (see 
-  \code{\link{gofTwoSample.object}}).  
+  \code{\link{plot}} for the class \cr
+  \code{"gofTwoSample"} (see \code{\link{gofTwoSample.object}}).  
   It can be invoked by calling \code{\link{plot}} and giving it an object of 
   class \code{"gofTwoSample"} as the first argument, or by calling 
   \code{plot.gofTwoSample} directly, regardless of the class of the object given 

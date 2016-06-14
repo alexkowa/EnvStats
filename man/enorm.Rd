@@ -44,7 +44,7 @@
 }
   \item{ci.param}{
   character string indicating which parameter to create a confidence interval for.  
-  The possible values are \code{ci.param="mean"} (the default) and 
+  The possible values are \code{ci.param="mean"} (the default) and \cr
   \code{ci.param="variance"}.  This argument is ignored if \code{ci=FALSE}.
 }
 }
@@ -108,7 +108,8 @@
 }
 \value{
   a list of class \code{"estimate"} containing the estimated parameters and other information.  
-  See \code{\link{estimate.object}} for details.
+  See \cr
+  \code{\link{estimate.object}} for details.
 }
 \references{
   Berthouex, P.M., and L.C. Brown. (2002). 

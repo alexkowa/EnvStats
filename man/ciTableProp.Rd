@@ -17,13 +17,13 @@
 }
 \arguments{
   \item{n1}{
-  positive integer greater than 1 specifying the sample size when 
-  \code{sample.type="one.sample"} or the sample size for group 1 when 
+  positive integer greater than 1 specifying the sample size when \cr
+  \code{sample.type="one.sample"} or the sample size for group 1 when \cr
   \code{sample.type="two.sample"}.  The default value is \code{n1=10}.
 }
   \item{p1.hat}{
   numeric vector of values between 0 and 1 indicating the estimated proportion 
-  (\code{sample.type="one.sample"}) or the estimated proportion for group 1 
+  (\code{sample.type="one.sample"}) or the estimated proportion for group 1 \cr
   (\code{sample.type="two.sample"}).  The default value is \code{c(0.1, 0.2, 0.3)}.
   Missing (\code{NA}), undefined (\code{NaN}), an infinite 
   (\code{-Inf}, \code{Inf}) values are not allowed.
@@ -61,26 +61,27 @@
   \item{ci.method}{
   character string indicating the method to use to construct the confidence interval.  
   The default value is \code{ci.method="score"} (i.e., the score method; see the 
-  help file for \code{\link{prop.test}}), which is the only method available when 
+  help file for \code{\link{prop.test}}), which is the only method available when \cr
   \code{sample.type="two.sample"}.  When \code{sample.type="one.sample"}, you may 
   also set \code{ci.method="exact"} (i.e., the exact method).
 }
   \item{correct}{
-  logical scalar indicating whether to use the correction for continuity when 
+  logical scalar indicating whether to use the correction for continuity when \cr
   \code{ci.method="score"} (see the help file for \code{\link{prop.test}}).  The 
   default value is \code{correct=TRUE}.
 }
   \item{tol}{
-  numeric scalar indicating how close the values of the adjusted elements of 
+  numeric scalar indicating how close the values of the adjusted elements of \cr
   \code{p2.hat.minus.p1.hat} have to be in order to provide a simply display 
-  of confidence intervals (see DETAILS section below).  The default value is 
+  of confidence intervals (see DETAILS section below).  The default value is \cr
   \code{tol=10^-(digits + 1)}.
 }
 }
 \details{
   \emph{One-Sample Case} (\code{sample.type="one.sample"}) \cr
   For the one-sample case, the function \code{ciTableProp} calls the \R function 
-  \code{\link{prop.test}} when \code{ci.method="score"}, and calls the \R function 
+  \code{\link{prop.test}} when \cr
+  \code{ci.method="score"}, and calls the \R function 
   \code{\link{binom.test}}, when \code{ci.method="exact"}.  To ensure that the 
   user-supplied values of \code{p1.hat} are valid for the given user-supplied values 
   of \code{n1}, values for the argument \code{x} to the function 

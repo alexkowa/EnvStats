@@ -32,28 +32,28 @@
   \item{method}{
   character string specifying the method of estimation.  
 
-  For singly censored data, the possible values are:  
-  \code{"mle"} (maximum likelihood; the default), 
-  \code{"qmvue"} (quasi minimum variance unbiased estimation)
-  \code{"bcmle"} (bias-corrected maximum likelihood), 
-  \code{"impute.w.qq.reg"} (moment estimation based on imputation using the 
-  \code{qq.reg method}), 
+  For singly censored data, the possible values are: \cr 
+  \code{"mle"} (maximum likelihood; the default), \cr
+  \code{"qmvue"} (quasi minimum variance unbiased estimation), \cr
+  \code{"bcmle"} (bias-corrected maximum likelihood), \cr
+  \code{"rROS"} or \code{"impute.w.qq.reg"} (moment estimation based on imputation using  
+    quantile-quantile regression; also called \emph{robust regression on order statistics} 
+    and abbreviated rROS), \cr
   \code{"impute.w.qq.reg.w.cen.level"} (moment estimation based on imputation 
-  using the \code{qq.reg.w.cen.level method}), 
-  \code{"impute.w.mle"} (moment estimation based on imputation using the mle), 
-  and 
+    using the \code{qq.reg.w.cen.level method}), \cr
+  \code{"impute.w.mle"} (moment estimation based on imputation using the mle), and \cr
   \code{"half.cen.level"} (moment estimation based on setting the censored 
-  observations to half the censoring level).  
+    observations to half the censoring level).  
 
-  For multiply censored data, the possible values are:
-  \code{"mle"} (maximum likelihood; the default), 
-  \code{"qmvue"} (quasi minimum variance unbiased estimation), 
-  \code{"bcmle"} (bias-corrected maximum likelihood), 
-  \code{"impute.w.qq.reg"} (moment estimation based on imputation using 
-  quantile-quantile regression), 
-  and 
+  For multiply censored data, the possible values are: \cr
+  \code{"mle"} (maximum likelihood; the default), \cr
+  \code{"qmvue"} (quasi minimum variance unbiased estimation), \cr
+  \code{"bcmle"} (bias-corrected maximum likelihood), \cr
+  \code{"rROS"} or \code{"impute.w.qq.reg"} (moment estimation based on imputation using 
+    quantile-quantile regression; also called \emph{robust regression on order statistics} 
+    and abbreviated rROS), and \cr
   \code{"half.cen.level"} (moment estimation based on setting the censored 
-  observations to half the censoring level).
+    observations to half the censoring level).
 
   See the DETAILS section for more information.
 }
@@ -68,17 +68,18 @@
   \item{ci.method}{
   character string indicating what method to use to construct the confidence interval 
   for the mean.  The possible values are 
-  \code{"profile.likelihood"} (profile likelihood; the default), 
-  \code{"cox"} (Cox's approximation),
-  \code{"delta"} (normal approximation based on the delta method), 
-  \code{"normal.approx"} (normal approximation), 
-  and 
+  \code{"profile.likelihood"} (profile likelihood; the default), \cr
+  \code{"cox"} (Cox's approximation), \cr
+  \code{"delta"} (normal approximation based on the delta method), \cr
+  \code{"normal.approx"} (normal approximation), and \cr 
   \code{"bootstrap"} (based on bootstrapping). 
 
+  The confidence interval method \code{"profile.likelihood"} is valid only 
+  when \code{method="mle"}. \cr
   The confidence interval methods \code{"delta"} and \code{"cox"} are valid only 
-  when \code{method} is one of \code{"mle"}, \code{"bcmle"}, or \code{"qmvue"}.  
+  when \code{method} is one of \code{"mle"}, \code{"bcmle"}, or \code{"qmvue"}.  \cr
   The confidence interval method \code{"normal.approx"} is valid only when 
-  \code{method} is one of \code{"impute.w.qq.reg"}, 
+  \code{method} is one of \code{"rROS"}, \code{"impute.w.qq.reg"}, 
   \code{"impute.w.qq.reg.w.cen.level"}, \code{"impute.w.mle"}, or 
   \code{"half.cen.level"}. 
 
@@ -116,7 +117,7 @@
   \itemize{
   \item \code{prob.method}.  Character string indicating what method to use to 
     compute the plotting positions (empirical probabilities) when \code{method} 
-    is one of \code{"impute.w.qq.reg"}, \code{"impute.w.qq.reg.w.cen.level"}, or 
+    is one of \code{"rROS"}, \code{"impute.w.qq.reg"}, \code{"impute.w.qq.reg.w.cen.level"}, or 
     \code{"impute.w.mle"}.  Possible values are 
     \code{"kaplan-meier"} (product-limit method of Kaplan and Meier (1958)), 
     \code{"nelson"} (hazard plotting method of Nelson (1972)), 
@@ -129,6 +130,7 @@
 
   \item \code{plot.pos.con}.  Numeric scalar between 0 and 1 containing the 
     value of the plotting position constant to use when \code{method} is one of 
+    \code{"rROS"}, \cr
     \code{"impute.w.qq.reg"}, \code{"impute.w.qq.reg.w.cen.level"}, or 
     \code{"impute.w.mle"}.  The default value is \code{plot.pos.con=0.375}.  
     See the DETAILS section and the help file for \code{\link{ppointsCensored}} 
@@ -145,13 +147,13 @@
     uncensored observations.
 
   \item \code{lb.impute}.  Numeric scalar indicating the lower bound for imputed 
-    observations when method is one of \code{"impute.w.qq.reg"}, 
+    observations when method is one of \code{"rROS"}, \code{"impute.w.qq.reg"}, \cr
     \code{"impute.w.qq.reg.w.cen.level"}, or \code{"impute.w.mle"}.  
     Imputed values smaller than this 
     value will be set to this value.  The default is \code{lb.impute=-Inf}.
  
   \item \code{ub.impute}.  Numeric scalar indicating the upper bound for imputed 
-    observations when method is one of \code{"impute.w.qq.reg"}, 
+    observations when method is one of \code{"rROS"}, \code{"impute.w.qq.reg"}, \cr
     \code{"impute.w.qq.reg.w.cen.level"}, or \code{"impute.w.mle"}.  
     Imputed values larger than this value 
     will be set to this value.  The default is \code{ub.impute=Inf}.
@@ -287,9 +289,11 @@
   is computed when \code{method="bcmle"}.
   \cr
 
+  \emph{Robust Regression on Order Statistics} (\code{method="rROS"}) or \cr
   \emph{Imputation Using Quantile-Quantile Regression} (\code{method ="impute.w.qq.reg"}) \cr
-  This method involves using quantile-quantile regression on the log-transformed 
-  observations to fit a regression line (and thus initially estimate the mean 
+  This is the robust Regression on Order Statistics (rROS) method discussed in USEPA (2009) 
+  and Helsel (2012).  This method involves using quantile-quantile regression on the 
+  log-transformed observations to fit a regression line (and thus initially estimate the mean 
   \eqn{\mu} and standard deviation \eqn{\sigma} in log-space), imputing the 
   log-transformed values of the \eqn{c} censored observations by predicting them 
   from the regression equation, transforming the log-scale imputed values back to 
@@ -358,10 +362,12 @@
 
   \emph{Imputation Using Maximum Likelihood} (\code{method ="impute.w.mle"}) \cr
   \bold{This method is only available for sinlgy censored data}.
-  This is exactly the same method as imputation with quantile-quantile regression 
-  (\code{method="impute.w.qq.reg"}), except that the maximum likelihood method 
-  (\code{method="mle"}) is used to compute the initial estimates of the mean and 
-  standard deviation.  In the context of lognormal data, this method is discussed 
+  This is exactly the same method as robust Regression on Order Statistics (i.e., 
+  the same as using \code{method="rROS"} or \cr 
+  \code{method="impute.w.qq.reg"}), 
+  except that the maximum likelihood method (\code{method="mle"}) is used to compute 
+  the initial estimates of the mean and standard deviation.  
+  In the context of lognormal data, this method is discussed 
   by El-Shaarawi (1989), which he denotes as the Modified Maximum Likelihood Method.
   \cr
 
@@ -382,7 +388,7 @@
   \bold{CONFIDENCE INTERVALS} \cr
   This section explains how confidence intervals for the mean \eqn{\theta} are 
   computed.
-  \cr
+  f\cr
 
   \emph{Likelihood Profile} (\code{ci.method="profile.likelihood"}) \cr
   This method was proposed by Cox (1970, p.88), and Venzon and Moolgavkar (1988) 
@@ -488,7 +494,7 @@
   \cr
 
   \emph{Direct Normal Approximation Based on the Moment Estimators} (\code{ci.method="normal.approx"}) \cr
-  This method is valid only for the moment estimators based on imputed values 
+  This method is valid only for the moment estimators based on imputed values \cr
   (i.e., \code{method="impute.w.qq.reg"} or \code{method="half.cen.level"}).  For 
   these cases, the standard deviation of the estimated mean is assumed to be 
   approximated by 
@@ -820,7 +826,7 @@
 
   # Here we will estimate the mean and coefficient of variation 
   # ON THE ORIGINAL SCALE using the MLE, QMVUE, 
-  # and imputation with Q-Q regression (also called robust ROS). 
+  # and robust ROS (imputation with Q-Q regression). 
 
   # First look at the data:
   #-----------------------
@@ -879,8 +885,8 @@
   #Percent Censored:                24%
 
   # Now compare the MLE with the QMVUE and the 
-  # estimator based on imputation with Q-Q regression
-  #--------------------------------------------------
+  # estimator based on robust ROS
+  #-------------------------------------------
 
   with(EPA.09.Ex.15.1.manganese.df,
     elnormAltCensored(Manganese.ppb, Censored))$parameters
@@ -895,7 +901,7 @@
 
   with(EPA.09.Ex.15.1.manganese.df,
     elnormAltCensored(Manganese.ppb, Censored, 
-    method = "impute.w.qq.reg"))$parameters
+    method = "rROS"))$parameters
   #     mean        cv 
   #19.886180  1.298868
 
@@ -913,7 +919,7 @@
 
   with(EPA.09.Ex.15.1.manganese.df,
     elnormAltCensored(Manganese.ppb, Censored,
-    method = "impute.w.qq.reg", plot.pos.con = 0))$parameters
+    method = "rROS", plot.pos.con = 0))$parameters
   #     mean        cv 
   #19.827673  1.304725
 

@@ -21,9 +21,9 @@
   the same probability of success (\code{prob}). 
 }
   \item{method}{
-  character string specifying the method of estimation.  Possible values are 
+  character string specifying the method of estimation.  Possible values are \cr 
   \code{"mle/mme"} (maximum likelihood and method of moments; the default) and 
-  \code{"mvue"} (minimum variance unbiased).  You cannot use \code{method="mvue"} if 
+  \code{"mvue"} (minimum variance unbiased).  You cannot use \code{method="mvue"} if \cr
   \code{length(x)=1}.  See the DETAILS section for more information on these 
   estimation methods. 
 }
@@ -54,7 +54,8 @@
 }
 \value{
   a list of class \code{"estimate"} containing the estimated parameters and other information.  
-  See \code{\link{estimate.object}} for details.
+  See \cr
+  \code{\link{estimate.object}} for details.
 }
 \references{
   Forbes, C., M. Evans, N. Hastings, and B. Peacock. (2011).  Statistical Distributions. 

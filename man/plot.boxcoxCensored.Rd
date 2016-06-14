@@ -5,8 +5,8 @@
 }
 \description{
   Plot the results of calling the function \code{\link{boxcoxCensored}}, 
-  which returns an object of class \code{"boxcoxCensored"}.  
-  Three different kinds of plots are available.
+  which returns an object of class \cr
+  \code{"boxcoxCensored"}.  Three different kinds of plots are available.
 
   The function \code{plot.boxcoxCensored} is automatically called by \code{\link{plot}} 
   when given an object of class \code{"boxcoxCensored"}.
@@ -14,11 +14,12 @@
 \usage{
 \method{plot}{boxcoxCensored}(x, plot.type = "Objective vs. lambda", same.window = TRUE, 
     ask = same.window & plot.type != "Ojective vs. lambda", 
-    prob.method = "michael-schucany", plot.pos.con = 0.375, estimate.params = FALSE, 
-    equal.axes = qq.line.type == "0-1" || estimate.params, add.line = TRUE, 
-    qq.line.type = "least squares", duplicate.points.method = "standard", 
-    points.col = 1, line.col = 1, line.lwd = par("cex"), line.lty = 1, 
-    digits = .Options$digits, cex.main = 1.4 * par("cex"), cex.sub = par("cex"), 
+    prob.method = "michael-schucany", plot.pos.con = 0.375, 
+    estimate.params = FALSE, equal.axes = qq.line.type == "0-1" || estimate.params, 
+    add.line = TRUE, qq.line.type = "least squares", 
+    duplicate.points.method = "standard", points.col = 1, line.col = 1, 
+    line.lwd = par("cex"), line.lty = 1, digits = .Options$digits, 
+    cex.main = 1.4 * par("cex"), cex.sub = par("cex"), 
     main = NULL, sub = NULL, xlab = NULL, ylab = NULL, xlim = NULL, 
     ylim = NULL, ...)
 }
@@ -30,9 +31,11 @@
   \item{plot.type}{
   character string indicating what kind of plot to create.  Only one particular 
   plot type will be created, unless \code{plot.type="All"}, in which case all plots 
-  will be created sequentially.  The possible values of \code{plot.type} are: 
-  \code{"Objective vs. lambda"} (the default), \code{"Q-Q Plots"}, 
-  \code{"Tukey M-D Q-Q Plots"}, and \code{"All"}.
+  will be created sequentially.  The possible values of \code{plot.type} are: \cr
+  \code{"Objective vs. lambda"} (the default), \cr
+  \code{"Q-Q Plots"}, \cr
+  \code{"Tukey M-D Q-Q Plots"}, and \cr
+  \code{"All"}.
 }
   \item{same.window}{
   logical scalar indicating whether to produce all plots in the same graphics 
@@ -54,9 +57,10 @@
   \code{\link{par}} for more information.
 }
 
-Arguments associated with \code{plot.type="Q-Q Plots"}, 
-\code{plot.type="Tukey M-D Q-Q Plots"}, or \code{plot.type="All"} 
-(supplied to \code{\link{qqPlot}}): 
+
+\bold{The following arguments can be supplied when \code{plot.type="Q-Q Plots"},} \cr
+\bold{\code{plot.type="Tukey M-D Q-Q Plots"}, or \code{plot.type="All"} 
+(supplied to \code{\link{qqPlot}}):} 
 
   \item{prob.method}{
   character string indicating what method to use to compute the plotting positions 
@@ -94,7 +98,8 @@ Arguments associated with \code{plot.type="Q-Q Plots"},
   \item{equal.axes}{
   logical scalar indicating whether to use the same range on the \eqn{x}- and 
   \eqn{y}-axes when \code{plot.type="Q-Q Plots"}.  The default value is 
-  \code{TRUE} if \code{qq.line.type="0-1"} or \code{estimate.params=TRUE}, 
+  \code{TRUE} if \cr
+  \code{qq.line.type="0-1"} or \code{estimate.params=TRUE}, 
   otherwise it is \code{FALSE}.
 }
   \item{add.line}{
@@ -105,7 +110,7 @@ Arguments associated with \code{plot.type="Q-Q Plots"},
   the plot.  The default value is \code{add.line=TRUE}.
 }
   \item{qq.line.type}{
-  character string determining what kind of line to add to the plot when 
+  character string determining what kind of line to add to the plot when \cr
   \code{plot.type="Q-Q Plots"}.  Possible values are \code{"least squares"} 
   (a least squares line; the default), 
   \code{"0-1"} (a line with intercept 0 and slope 1), 
@@ -145,17 +150,18 @@ Arguments associated with \code{plot.type="Q-Q Plots"},
   value is the current setting of \code{options("digits")}.
 }
 
-Graphics parameters:
+\bold{Graphics parameters:}
   \item{cex.main, cex.sub, main, sub, xlab, ylab, xlim, ylim, \dots}{
   graphics parameters; see \code{\link{par}} for more information.  The 
   default value of \code{cex.main} is \code{cex.main=1.4 * par("cex")}.  
-  The default value of \code{cex.sub} is \code{cex.sub=par("cex")}.
+  The default value of \code{cex.sub} is \cr
+  \code{cex.sub=par("cex")}.
 }
 }
 \details{
   The function \code{plot.boxcoxCensored} is a method for the generic function 
-  \code{\link{plot}} for the class \code{"boxcoxCensored"} 
-  (see \code{\link{boxcoxCensored.object}}).  
+  \code{\link{plot}} for the class \cr
+  \code{"boxcoxCensored"} (see \code{\link{boxcoxCensored.object}}).  
   It can be invoked by calling \code{\link{plot}} and giving it an object of 
   class \code{"boxcoxCensored"} as the first argument, or by calling 
   \code{plot.boxcoxCensored} directly, regardless of the class of the object given 

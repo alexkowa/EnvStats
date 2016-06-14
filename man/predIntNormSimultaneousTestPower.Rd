@@ -176,7 +176,8 @@
   \deqn{[-\infty, \bar{x} + Ks] \;\;\;\;\;\; (5)} 
 
   \bold{Note:}  For simultaneous prediction intervals, only lower 
-  (\code{pi.type="lower"}) and upper (\code{pi.type="upper"}) prediction 
+  (\code{pi.type="lower"}) and upper \cr
+  (\code{pi.type="upper"}) prediction 
   intervals are available.
   
   The derivation of the constant \eqn{K} is explained in the help file for 
@@ -296,15 +297,15 @@
   to determine the relationship between sample size, significance level, power, and 
   scaled difference if one of the objectives of the sampling program is to determine 
   whether two distributions differ from each other.  The functions 
-  \code{predIntNormSimultaneousTestPower} and 
+  \code{predIntNormSimultaneousTestPower} and \cr
   \code{\link{plotPredIntNormSimultaneousTestPowerCurve}} can be 
   used to investigate these relationships for the case of normally-distributed 
   observations. 
 }
 \seealso{
-  \code{\link{predIntNormSimultaneous}}, \code{\link{predIntNormSimultaneousK}}, 
+  \code{\link{predIntNormSimultaneous}}, \code{\link{predIntNormSimultaneousK}}, \cr
   \code{\link{plotPredIntNormSimultaneousTestPowerCurve}}, 
-  \code{\link{predIntNorm}}, \code{\link{predIntNormK}}, 
+  \code{\link{predIntNorm}}, \code{\link{predIntNormK}}, \cr
   \code{\link{predIntNormTestPower}}, \link{Prediction Intervals}, 
   \link{Normal}.
 }

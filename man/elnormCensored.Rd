@@ -33,31 +33,34 @@
   \item{method}{
   character string specifying the method of estimation.  
 
-  For singly censored data, the possible values are:  
-  \code{"mle"} (maximum likelihood; the default), 
-  \code{"bcmle"} (bias-corrected maximum likelihood), 
-  \code{"qq.reg"} (quantile-quantile regression), 
+  For singly censored data, the possible values are:  \cr
+  \code{"mle"} (maximum likelihood; the default), \cr
+  \code{"bcmle"} (bias-corrected maximum likelihood), \cr 
+  \code{"ROS"} or \code{"qq.reg"} (quantile-quantile regression; also called 
+    \emph{regression on order statistics} and abbreviated ROS), \cr
   \code{"qq.reg.w.cen.level"} (quantile-quantile regression including the 
-  censoring level), 
-  \code{"impute.w.qq.reg"} (moment estimation based on imputation using the 
-  \code{qq.reg method}), 
+    censoring level), \cr
+  \code{"rROS"} or \code{"impute.w.qq.reg"} (moment estimation based on imputation using  
+    quantile-quantile regression; also called \emph{robust regression on order statistics} 
+    and abbreviated rROS), \cr
   \code{"impute.w.qq.reg.w.cen.level"} (moment estimation based on imputation 
-  using the \code{qq.reg.w.cen.level method}), 
-  \code{"impute.w.mle"} (moment estimation based on imputation using the mle), 
+    using the \code{qq.reg.w.cen.level} method), \cr
+  \code{"impute.w.mle"} (moment estimation based on imputation using the mle), \cr
   \code{"iterative.impute.w.qq.reg"} (moment estimation based on iterative 
-  imputation using the \code{qq.reg method}), 
-  \code{"m.est"} (robust M-estimation), and 
+    imputation using the \code{qq.reg} method), \cr
+  \code{"m.est"} (robust M-estimation), and \cr 
   \code{"half.cen.level"} (moment estimation based on setting the censored 
-  observations to half the censoring level).  
+    observations to half the censoring level).  
 
-  For multiply censored data, the possible values are:
-  \code{"mle"} (maximum likelihood; the default), 
-  \code{"qq.reg"} (quantile-quantile regression), 
-  \code{"impute.w.qq.reg"} (moment estimation based on imputation using the 
-  \code{qq.reg method}), 
-  and 
+  For multiply censored data, the possible values are:  \cr
+  \code{"mle"} (maximum likelihood; the default), \cr
+  \code{"ROS"} or \code{"qq.reg"} (quantile-quantile regression; also called 
+    \emph{regression on order statistics} and abbreviated ROS), \cr
+  \code{"rROS"} or \code{"impute.w.qq.reg"} (moment estimation based on imputation using  
+    quantile-quantile regression; also called \emph{robust regression on order statistics} 
+    and abbreviated rROS), and \cr
   \code{"half.cen.level"} (moment estimation based on setting the censored 
-  observations to half the censoring level).
+    observations to half the censoring level).
 
   See the DETAILS section for more information.
 }
@@ -71,15 +74,16 @@
 }
   \item{ci.method}{
   character string indicating what method to use to construct the confidence interval 
-  for the mean.  The possible values are \code{"profile.likelihood"} 
-  (profile likelihood; the default), 
-  \code{"normal.approx"} (normal approximation), 
+  for the mean.  The possible values are: \cr
+  \code{"profile.likelihood"} (profile likelihood; the default), \cr 
+  \code{"normal.approx"} (normal approximation), \cr
   \code{"normal.approx.w.cov"} (normal approximation taking into account the 
   covariance between the estimated mean and standard deviation; only available for 
-  singly censored data), 
-  \code{"gpq"} (generalized pivotal quantity), and 
-  \code{"bootstrap"} (based on bootstrapping).  
-  See the DETAILS section for more information.  
+  singly censored data), \cr
+  \code{"gpq"} (generalized pivotal quantity), and \cr 
+  \code{"bootstrap"} (based on bootstrapping).
+
+  See the DETAILS section for more information. 
   This argument is ignored if \code{ci=FALSE}.
 }
   \item{ci.type}{
@@ -109,11 +113,11 @@
 }
   \item{nmc}{
   numeric scalar indicating the number of Monte Carlo simulations to run when 
-  \code{ci.method="gpq"}.  The default is \code{nmc=1000}.  This argument is ignored 
-  if \code{ci=FALSE}.
+  \code{ci.method="gpq"}.  The default is \code{nmc=1000}.  This argument is ignored if \cr 
+  \code{ci=FALSE}.
 }
   \item{seed}{
-  integer supplied to the function \code{\link[base]{set.seed}} and used when 
+  integer supplied to the function \code{\link[base]{set.seed}} and used when \cr
   \code{ci.method="bootstrap"} or \code{ci.method="gpq"}.  The default value is 
   \code{seed=NULL}, in which case the current value of \code{.Random.seed} is used.  
   This argument is ignored when \code{ci=FALSE}.
@@ -123,13 +127,14 @@
   \itemize{
   \item \code{prob.method}.  Character string indicating what method to use to 
     compute the plotting positions (empirical probabilities) when \code{method} 
-    is one of \code{"qq.reg"}, \code{"qq.reg.w.cen.level"}, \code{"impute.w.qq.reg"}, 
-    \code{"impute.w.qq.reg.w.cen.level"}, \code{"impute.w.mle"}, or 
-    \code{"iterative.impute.w.qq.reg"}.  Possible values are 
-    \code{"kaplan-meier"} (product-limit method of Kaplan and Meier (1958)), 
-    \code{"nelson"} (hazard plotting method of Nelson (1972)), 
-    \code{"michael-schucany"} (generalization of the product-limit method due to Michael and Schucany (1986)), and 
-    \code{"hirsch-stedinger"} (generalization of the product-limit method due to Hirsch and Stedinger (1987)).  
+    is one of \code{"ROS"}, \code{"qq.reg"}, \code{"qq.reg.w.cen.level"}, 
+    \code{"rROS"}, \code{"impute.w.qq.reg"}, 
+    \code{"impute.w.qq.reg.w.cen.level"}, \code{"impute.w.mle"}, or \cr
+    \code{"iterative.impute.w.qq.reg"}.  Possible values are: \cr
+    \code{"kaplan-meier"} (product-limit method of Kaplan and Meier (1958)), \cr
+    \code{"nelson"} (hazard plotting method of Nelson (1972)), \cr
+    \code{"michael-schucany"} (generalization of the product-limit method due to Michael and Schucany (1986)), and \cr 
+    \code{"hirsch-stedinger"} (generalization of the product-limit method due to Hirsch and Stedinger (1987)). \cr  
     The default value is \code{prob.method="michael-schucany"}.  The \code{"nelson"} 
     method is only available for \code{censoring.side="right"}.  
     See the DETAILS section and the help file for \code{\link{ppointsCensored}} 
@@ -137,8 +142,8 @@
 
   \item \code{plot.pos.con}.  Numeric scalar between 0 and 1 containing the 
     value of the plotting position constant to use when \code{method} is one of 
-    \code{"qq.reg"}, \code{"qq.reg.w.cen.level"}, \code{"impute.w.qq.reg"}, 
-    \code{"impute.w.qq.reg.w.cen.level"}, \code{"impute.w.mle"}, or 
+    \code{"qq.reg"}, \code{"qq.reg.w.cen.level"}, \code{"impute.w.qq.reg"}, \cr
+    \code{"impute.w.qq.reg.w.cen.level"}, \code{"impute.w.mle"}, or \cr
     \code{"iterative.impute.w.qq.reg"}.  The default value is \code{plot.pos.con=0.375}.  
     See the DETAILS section and the help file for \code{\link{ppointsCensored}} 
     for more information.
@@ -152,14 +157,14 @@
     uncensored observations.
 
   \item \code{lb.impute}.  Numeric scalar indicating the lower bound for imputed 
-    observations when method is one of \code{"impute.w.qq.reg"}, 
-    \code{"impute.w.qq.reg.w.cen.level"}, \code{"impute.w.mle"}, or 
+    observations when method is one of \code{"impute.w.qq.reg"}, \cr
+    \code{"impute.w.qq.reg.w.cen.level"}, \code{"impute.w.mle"}, or \cr
     \code{"iterative.impute.w.qq.reg"}.  Imputed values smaller than this 
     value will be set to this value.  The default is \code{lb.impute=-Inf}.
  
   \item \code{ub.impute}.  Numeric scalar indicating the upper bound for imputed 
-    observations when method is one of \code{"impute.w.qq.reg"}, 
-    \code{"impute.w.qq.reg.w.cen.level"}, \code{"impute.w.mle"}, or 
+    observations when method is one of \code{"impute.w.qq.reg"}, \cr
+    \code{"impute.w.qq.reg.w.cen.level"}, \code{"impute.w.mle"}, or \cr
     \code{"iterative.impute.w.qq.reg"}.  Imputed values larger than this value 
     will be set to this value.  The default is \code{ub.impute=Inf}.
  
@@ -168,7 +173,7 @@
     are \code{"relative"} (the default) and \code{"absolute"}.  See the DETAILS 
     section for more information.  
 
-  \item \code{tol}.  Numeric scalar indicating the convergence tolerance when 
+  \item \code{tol}.  Numeric scalar indicating the convergence tolerance when \cr
     \code{method="iterative.impute.w.qq.reg"}.  The default value is \code{tol=1e-6}.  
     If \code{convergence="relative"}, then the relative difference in the old and 
     new estimates of the mean and the relative difference in the old and new estimates 
@@ -424,7 +429,7 @@
   # Here we will estimate the mean and standard deviation using the MLE, 
   # Q-Q regression (also called parametric regression on order statistics 
   # or ROS; e.g., USEPA, 2009 and Helsel, 2012), and imputation with Q-Q 
-  # regression (also called robust ROS). 
+  # regression (also called robust ROS or rROS). 
 
   # First look at the data:
   #-----------------------
@@ -483,8 +488,8 @@
   #Percent Censored:                24%
 
   # Now compare the MLE with the estimators based on 
-  # Q-Q regression and imputation with Q-Q regression
-  #--------------------------------------------------
+  # Q-Q regression (ROS) and imputation with Q-Q regression (rROS)
+  #---------------------------------------------------------------
 
   with(EPA.09.Ex.15.1.manganese.df,
     elnormCensored(Manganese.ppb, Censored))$parameters
@@ -493,13 +498,13 @@
 
   with(EPA.09.Ex.15.1.manganese.df,
     elnormCensored(Manganese.ppb, Censored, 
-    method = "qq.reg"))$parameters
+    method = "ROS"))$parameters
   # meanlog    sdlog 
   #2.293742 1.283635
 
   with(EPA.09.Ex.15.1.manganese.df,
     elnormCensored(Manganese.ppb, Censored, 
-    method = "impute.w.qq.reg"))$parameters
+    method = "rROS"))$parameters
   # meanlog    sdlog 
   #2.298656 1.238104
 
@@ -517,7 +522,7 @@
 
   with(EPA.09.Ex.15.1.manganese.df,
     elnormCensored(Manganese.ppb, Censored,
-    method = "impute.w.qq.reg", plot.pos.con = 0))$parameters
+    method = "rROS", plot.pos.con = 0))$parameters
   # meanlog    sdlog 
   #2.277175 1.261431
 

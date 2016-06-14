@@ -24,7 +24,7 @@
   discrete (\code{discrete=TRUE}) or continuous (\code{discrete=FALSE}; the default).
 }
   \item{density.arg.list}{
-  list with arguments to the \code{\link{density}} function.  The default value is 
+  list with arguments to the \code{\link{density}} function.  The default value is \cr
   \code{density.arg.list=NULL}.  This argument is ignored if \code{discrete=TRUE}.
 }
   \item{plot.it}{

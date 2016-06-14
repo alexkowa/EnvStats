@@ -54,7 +54,7 @@
 }
   \item{threshold.lb.sd}{
   a positive numeric scalar specifying the range over which to look for the 
-  local maximum likelihood (\code{method="lmle"}) or zero-skewness 
+  local maximum likelihood (\code{method="lmle"}) or zero-skewness \cr
   (\code{method="zero.skewness"}) estimator of threshold.  The range is set to \cr
   \code{[ mean(x) - threshold.lb.sd * sd(x), min(x) ]}.  If you receive a warning 
   message that \code{elnorm3} is unable to find an acceptable estimate of threshold 
@@ -360,7 +360,8 @@
 }
 \value{
   a list of class \code{"estimate"} containing the estimated parameters and other information.  
-  See \code{\link{estimate.object}} for details.
+  See \cr
+  \code{\link{estimate.object}} for details.
 }
 \references{
   Aitchison, J., and J.A.C. Brown (1957).  \emph{The Lognormal Distribution 

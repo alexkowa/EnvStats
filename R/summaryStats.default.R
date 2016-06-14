@@ -3,10 +3,11 @@ function (object, group = NULL, drop.unused.levels = TRUE, se = FALSE,
     quartiles = FALSE, digits = max(3, getOption("digits") - 
         3), digit.type = "round", drop0trailing = TRUE, show.na = TRUE, 
     show.0.na = FALSE, p.value = FALSE, p.value.digits = 2, p.value.digit.type = "signif", 
-    test = "parametric", test.arg.list = NULL, combine.groups = p.value, 
-    rm.group.na = TRUE, group.p.value.type = NULL, alternative = "two.sided", 
-    ci = NULL, ci.between = NULL, conf.level = 0.95, stats.in.rows = FALSE, 
-    data.name = deparse(substitute(object)), ...) 
+    test = "parametric", paired = FALSE, test.arg.list = NULL, 
+    combine.groups = p.value, rm.group.na = TRUE, group.p.value.type = NULL, 
+    alternative = "two.sided", ci = NULL, ci.between = NULL, 
+    conf.level = 0.95, stats.in.rows = FALSE, data.name = deparse(substitute(object)), 
+    ...) 
 {
     digit.type <- match.arg(digit.type, c("signif", "round"))
     p.value.digit.type <- match.arg(p.value.digit.type, c("signif", 
@@ -110,20 +111,81 @@ function (object, group = NULL, drop.unused.levels = TRUE, se = FALSE,
                 if (n.groups == 2) {
                   x.1 <- x[group == levels(group)[1]]
                   x.2 <- x[group == levels(group)[2]]
+                  if (paired && (length(x.1) != length(x.2))) {
+                    stop("When paired=TRUE each group must have the same number of observations.")
+                  }
                   if (any(SDs > 0)) {
                     if (test == "parametric") {
-                      if (is.null(test.arg.list) || all(is.na(pmatch(names(test.arg.list), 
-                        "var.equal")))) 
-                        test.arg.list <- c(test.arg.list, list(var.equal = TRUE))
+                      if (is.null(test.arg.list)) {
+                        if (paired) {
+                          test.arg.list <- list(paired = paired)
+                        }
+                        else {
+                          test.arg.list <- list(var.equal = TRUE, 
+                            paired = paired)
+                        }
+                      }
+                      else {
+                        if (all(is.na(pmatch(names(test.arg.list), 
+                          "paired")))) {
+                          test.arg.list <- c(test.arg.list, list(paired = paired))
+                        }
+                        else {
+                          index <- (1:length(test.arg.list))[!is.na(pmatch(names(test.arg.list), 
+                            "paired"))]
+                          if (test.arg.list[[index]] != paired) {
+                            test.arg.list[[index]] <- paired
+                            warning(paste("The value of the component named 'paired' in", 
+                              "the argument 'test.arg.list' has been reset to the value", 
+                              "of the argument 'paired'."))
+                          }
+                        }
+                        if (!paired) {
+                          if (all(is.na(pmatch(names(test.arg.list), 
+                            "var.equal")))) {
+                            test.arg.list <- c(test.arg.list, 
+                              list(var.equal = TRUE))
+                          }
+                        }
+                      }
                       test.list <- do.call("t.test", args = c(list(x = x.2, 
                         y = x.1, alternative = alternative, conf.level = conf.level), 
                         test.arg.list))
-                      diff.locations <- -diff(test.list$estimate)
+                      diff.locations <- test.list$estimate
+                      if (!paired) 
+                        diff.locations <- -diff(diff.locations)
                     }
                     else {
+                      if (is.null(test.arg.list)) {
+                        test.arg.list <- list(conf.int = TRUE, 
+                          paired = paired)
+                      }
+                      else {
+                        if (all(is.na(pmatch(names(test.arg.list), 
+                          "conf.int")))) {
+                          test.arg.list <- c(test.arg.list, list(conf.int = TRUE))
+                        }
+                        else {
+                          index <- (1:length(test.arg.list))[!is.na(pmatch(names(test.arg.list), 
+                            "conf.int"))]
+                          if (!unlist(test.arg.list[index])) 
+                            test.arg.list[[index]] <- TRUE
+                        }
+                        if (!all(is.na(pmatch(names(test.arg.list), 
+                          "paired")))) {
+                          index <- (1:length(test.arg.list))[!is.na(pmatch(names(test.arg.list), 
+                            "paired"))]
+                          if (test.arg.list[[index]] != paired) {
+                            test.arg.list[[index]] <- paired
+                            warning(paste("The value of the component named 'paired' in", 
+                              "the argument 'test.arg.list' has been reset to the value", 
+                              "of the argument 'paired'."))
+                          }
+                        }
+                      }
                       test.list <- do.call("wilcox.test", args = c(list(x = x.2, 
-                        y = x.1, alternative = alternative, conf.int = TRUE, 
-                        conf.level = conf.level), test.arg.list))
+                        y = x.1, alternative = alternative, conf.level = conf.level), 
+                        test.arg.list))
                       diff.locations <- test.list$estimate
                     }
                     p <- test.list$p.value
@@ -186,19 +248,25 @@ function (object, group = NULL, drop.unused.levels = TRUE, se = FALSE,
                 }
                 string <- "p.value.between"
                 if (test == "nonparametric") {
-                  string2 <- ifelse(n.groups == 2, "Wilcoxon", 
-                    "Kruskal")
+                  if (n.groups == 2) {
+                    string2 <- ifelse(paired, "paired.Wilcoxon", 
+                      "Wilcoxon")
+                  }
+                  else {
+                    string2 <- "Kruskal"
+                  }
                   string <- paste(string2, string, sep = ".")
                 }
                 else {
                   if (n.groups == 2) {
-                    if (is.null(test.arg.list) || all(is.na(pmatch(names(test.arg.list), 
-                      "var.equal")))) 
-                      var.equal <- TRUE
-                    else var.equal <- unlist(test.arg.list[!is.na(pmatch(names(test.arg.list), 
-                      "var.equal"))])
-                    if (!var.equal) 
-                      string <- paste("Welch", string, sep = ".")
+                    if (paired) {
+                      string <- paste("paired", string, sep = ".")
+                    }
+                    else {
+                      if (!test.arg.list$var.equal) {
+                        string <- paste("Welch", string, sep = ".")
+                      }
+                    }
                   }
                 }
                 if (alternative != "two.sided") 

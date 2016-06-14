@@ -22,9 +22,9 @@
   \code{FALSE} and \code{TRUE}, \code{"No"} and \code{"Yes"}, etc.).  In this case, 
   the result of \code{sort(unique(x))[2]} is taken to be the value that indicates a 
   \dQuote{success} for \code{x} and the result of \code{sort(unique(y))[2]} is taken 
-  to be the value that indicates a \dQuote{success} for \code{y}.  For example, 
+  to be the value that indicates a \dQuote{success} for \code{y}.  For example, \cr
   \code{x = c(FALSE, TRUE, FALSE, TRUE, TRUE)} indicates 3 successes in 5 trials, and 
-  \code{y = c(1, 0, 0, 0)} indicates 1 success in 4 trials.  When 
+  \code{y = c(1, 0, 0, 0)} indicates 1 success in 4 trials.  When \cr
   \code{x.and.y="Binomial Outcomes"}, missing (\code{NA}), undefined (\code{NaN}), and 
   infinite (\code{Inf}, \code{-Inf}) values are allowed but will be removed. 
 
@@ -38,7 +38,8 @@
   \item{x.and.y}{
   character string indicating the kind of data stored in the vectors \code{x} and 
   \code{y}.  The possible values are \code{x.and.y="Binomial Outcomes"} (the default), 
-  and \code{x.and.y="Number Successes and Trials"}.
+  and \cr
+  \code{x.and.y="Number Successes and Trials"}.
 }
   \item{alternative}{
   character string indicating the kind of alternative hypothesis.  The possible values 
@@ -46,7 +47,7 @@
 }
   \item{tol}{
   numeric scalar indicating the tolerance to use for computing the p-value for the 
-  two-sample permutation test.  The default value is 
+  two-sample permutation test.  The default value is \cr
   \code{tol=sqrt(.Machine$double.eps)}.  See the DETAILS section below for more 
   information.
 }
@@ -168,7 +169,7 @@
   \code{\link{prop.test}}).
 }
 \seealso{
-  \code{\link{permutationTest.object}}, \code{\link{plot.permutationTest}}, 
+  \code{\link{permutationTest.object}}, \code{\link{plot.permutationTest}}, \cr
   \code{\link{twoSamplePermutationTestLocation}},   
   \code{\link{oneSamplePermutationTest}}, 
   \link{Hypothesis Tests}, \code{\link[boot]{boot}}.

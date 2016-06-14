@@ -30,8 +30,9 @@
   A value of \code{0} for \code{lcl.rank} indicates no lower bound 
   (i.e., -Inf) and a value of 
   \code{0} for \code{n.plus.one.minus.ucl.rank} indicates no upper bound 
-  (i.e., \code{Inf}).  When \code{ci.type="upper"} then \code{lcl.rank} is 
-  set to \code{0} by default, otherwise it is set to \code{1} by default.  
+  (i.e., \code{Inf}).  When \cr
+  \code{ci.type="upper"} then \code{lcl.rank} is set to \code{0} by default, 
+  otherwise it is set to \code{1} by default.  
   When \code{ci.type="lower"} then \code{n.plus.one.minus.ucl.rank} is set 
   to \code{0} by default, otherwise it is set to \code{1} by default.
 }

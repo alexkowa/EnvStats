@@ -32,15 +32,17 @@
   Note that all future sums must be based on the same sample size.
 }
   \item{method}{
-  character string specifying the method to use.  The possible values are 
-  \code{"conditional"} (based on a conditional distribution; the default), 
+  character string specifying the method to use.  The possible values are: \cr
+  \code{"conditional"} (based on a conditional distribution; the default), \cr
   \code{"conditional.approx.normal"} (method based on approximating a conditional 
-  distribution with the standard normal distribution), 
+  distribution with the standard normal distribution), \cr
   \code{"conditional.approx.t"} (method based on approximating a conditional 
-  distribution with Student's t-distribution), and 
+  distribution with Student's t-distribution), and \cr
   \code{"normal.approx"} (approximate method based on the fact that the 
-  mean and varaince of a Poisson distribution are the same).  See the DETAILS 
-  section for more information on these methods.  The \code{"conditional"} method 
+  mean and varaince of a Poisson distribution are the same). \cr
+
+  See the DETAILS section for more information on these methods.  The \cr
+  \code{"conditional"} method 
   is only implemented for \code{k=1}; when \code{k} is bigger than 1, the value of 
   \code{method} cannot be \code{"conditional"}. 
 }
@@ -226,7 +228,7 @@
 
   \bold{Conditional Distribution Approximation Based on Student's t-Distribution} \cr
   (\code{method="conditional.approx.t"}) \cr
-  When \code{method="conditional.approx.t"}, the exact same procedure is used as when 
+  When \code{method="conditional.approx.t"}, the exact same procedure is used as when \cr
   \code{method="conditional.approx.normal"}, except that the quantity in 
   Equation (10) is assumed to follow a Student's t-distribution with \eqn{n-1} 
   degrees of freedom.  Thus, all occurrences of \eqn{z_p} are replaced with 

@@ -113,13 +113,14 @@
   See the help files for \code{\link{predIntNormTestPower}}.
 }
 \seealso{
-  \code{\link{predIntLnormAltTestPower}}, 
-  \code{\link{predIntLnormAlt}}, 
-  \code{\link{predIntNorm}}, \code{\link{predIntNormK}}, 
-  \code{\link{plotPredIntNormTestPowerCurve}}, 
-  \code{\link{predIntLnormAltSimultaneous}}, 
-  \code{\link{predIntLnormAltSimultaneousTestPower}}, \link{Prediction Intervals}, 
-  \link{LognormalAlt}.
+  \code{\link{predIntLnormAltTestPower}}, \cr
+  \code{\link{predIntLnormAlt}}, \cr
+  \code{\link{predIntNorm}}, \cr
+  \code{\link{predIntNormK}}, \cr
+  \code{\link{plotPredIntNormTestPowerCurve}}, \cr
+  \code{\link{predIntLnormAltSimultaneous}}, \cr
+  \code{\link{predIntLnormAltSimultaneousTestPower}}, \cr
+  \link{Prediction Intervals}, \link{LognormalAlt}.
 }
 \examples{
   # Plot power vs. ratio of means for k=1 future observation for 

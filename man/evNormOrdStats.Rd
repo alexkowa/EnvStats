@@ -85,9 +85,10 @@
   quantile-quantile (Q-Q) plots (see \code{\link{qqPlot}}) and to compute 
   goodness-of-fit statistics (see \code{\link{gofTest}}).  Usually, however, 
   approximations are used instead of exact values.  The functions 
-  \code{evNormOrdStats} and \code{evNormOrdStatsScalar} have been included mainly 
-  because \code{evNormOrdStatsScalar} is called by \code{\link{elnorm3}} 
-  and \code{\link{predIntNparSimultaneousTestPower}}.
+  \code{evNormOrdStats} and \cr 
+  \code{evNormOrdStatsScalar} have been included mainly 
+  because \code{evNormOrdStatsScalar} is called by \code{\link{elnorm3}} and \cr 
+  \code{\link{predIntNparSimultaneousTestPower}}.
 }
 \seealso{
   \link{Normal}, \code{\link{elnorm3}}, 

@@ -44,8 +44,8 @@
 }
   \item{plot.pos.cons}{
   numeric vector of length 2 specifying the constants used in the formula for the 
-  plotting positions when \code{method="pwme"} and 
-  \code{pwme.method="plotting.position"}.  The default value is 
+  plotting positions when \code{method="pwme"} and \cr
+  \code{pwme.method="plotting.position"}.  The default value is \cr
   \code{plot.pos.cons=c(a=0.35, b=0)}.  If this vector has a names attribute with 
   the value \code{c("a","b")} or \code{c("b","a")}, then the elements will be 
   matched by name in the formula for computing the plotting positions.  Otherwise, 
@@ -198,13 +198,14 @@
 
   \emph{Two-Stage Order Statistics Estimator} (\code{method="tsoe"}) \cr
   Currently there is no built-in method in \pkg{EnvStats} for computing confidence 
-  intervals when \code{method="tsoe"}.  
-  \link[=CastilloAndHadi1994]{Castillo and Hadi (1994)} suggest using the 
-  bootstrap or jackknife method.
+  intervals when \cr
+  \code{method="tsoe"}.  \link[=CastilloAndHadi1994]{Castillo and Hadi (1994)} suggest 
+  using the bootstrap or jackknife method.
 }
 \value{
   a list of class \code{"estimate"} containing the estimated parameters and other information.  
-  See \code{\link{estimate.object}} for details.
+  See \cr
+  \code{\link{estimate.object}} for details.
 }
 \references{
   Castillo, E., and A. Hadi. (1994).  Parameter and Quantile Estimation for the 

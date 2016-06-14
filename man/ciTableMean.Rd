@@ -16,8 +16,8 @@
 }
 \arguments{
   \item{n1}{
-  positive integer greater than 1 specifying the sample size when 
-  \code{sample.type="one.sample"} or the sample size for group 1 when 
+  positive integer greater than 1 specifying the sample size when \cr
+  \code{sample.type="one.sample"} or the sample size for group 1 when \cr
   \code{sample.type="two.sample"}.  The default value is \code{n1=10}.
 }
   \item{n2}{
@@ -88,7 +88,8 @@
   \deqn{[-\infty, \, \hat{\mu} + t(n-1, 1-\alpha/2) \frac{\hat{\sigma}}{\sqrt{n}}] \;\;\;\; (5)}
 
   For the one-sample case, the argument \code{n1} corresponds to \eqn{n} in 
-  Equation (1), the argument \code{diff.or.mean} corresponds to 
+  Equation (1), the argument \cr
+  \code{diff.or.mean} corresponds to 
   \eqn{\hat{\mu} = \bar{x}} in Equation (2), and the argument \code{SD} corresponds to 
   \eqn{\hat{\sigma} = s} in Equation (3).
   \cr

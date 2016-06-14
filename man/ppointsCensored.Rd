@@ -32,17 +32,18 @@
 }
   \item{prob.method}{
   character string indicating what method to use to compute the plotting positions 
-  (empirical probabilities).  Possible values are 
-  \code{"kaplan-meier"} (product-limit method of Kaplan and Meier (1958)), 
-  \code{"modified kaplan-meier"} (modification of Kaplan-Meier method), 
-  \code{"nelson"} (hazard plotting method of Nelson (1972)), 
-  \code{"michael-schucany"} (generalization of the product-limit method due to Michael and Schucany (1986)), and 
-  \code{"hirsch-stedinger"} (generalization of the product-limit method due to Hirsch and Stedinger (1987)).  
+  (empirical probabilities).  Possible values are: \cr
+  \code{"kaplan-meier"} (product-limit method of Kaplan and Meier (1958)), \cr 
+  \code{"modified kaplan-meier"} (modification of Kaplan-Meier method), \cr
+  \code{"nelson"} (hazard plotting method of Nelson (1972)), \cr
+  \code{"michael-schucany"} (generalization of the product-limit method due to Michael and Schucany (1986)), and \cr 
+  \code{"hirsch-stedinger"} (generalization of the product-limit method due to Hirsch and Stedinger (1987)). \cr  
+
   The default value is \code{prob.method="michael-schucany"}.  
 
   The \code{"nelson"} method is only available for \code{censoring.side="right"}, and 
-  the \code{"modified kaplan-meier"} method is only available for \code{censoring.side="left"}.  
-  See the DETAILS section for more explanation.
+  the \code{"modified kaplan-meier"} method is only available for \cr
+  \code{censoring.side="left"}.  See the DETAILS section for more explanation.
 }
   \item{plot.pos.con}{
   numeric scalar between 0 and 1 containing the value of the plotting position constant.  
@@ -56,13 +57,15 @@
   (no censored observations) are discussed in D'Agostino, R.B. (1986a) and 
   Cleveland (1993).  For data sets with censored observations, these methods 
   must be modified.  The function \code{ppointsCensored} allows you to compute 
-  plotting positions based on the product-limit method of Kaplan and Meier (1958) 
-  (\code{prob.method="kaplan-meier"}), the hazard plotting method of 
-  Nelson (1972) (\code{prob.method="nelson"}), the generalization of the 
-  product-limit method due to Michael and Schucany (1986)
-  (\code{prob.method="michael-schucany"}; the default), and the generalization of the 
-  product-limit method due to Hirsch and Stedinger (1987) 
-  (\code{prob.method="hirsch-stedinger"}).  
+  plotting positions based on any of the following methods:
+  \itemize{
+  \item Product-limit method of Kaplan and Meier (1958) (\code{prob.method="kaplan-meier"}). 
+  \item Hazard plotting method of Nelson (1972) (\code{prob.method="nelson"}).
+  \item Generalization of the product-limit method due to Michael and Schucany (1986) \cr
+  (\code{prob.method="michael-schucany"}) (the default).
+  \item Generalization of the product-limit method due to Hirsch and Stedinger (1987) \cr
+  (\code{prob.method="hirsch-stedinger"}).
+  }  
 
   Let \eqn{\underline{x}} denote a random sample of \eqn{N} observations from 
   some distribution.  Assume \eqn{n} (\eqn{0 < n < N}) of these 
@@ -209,7 +212,8 @@
   the plotting position is set to 0 for that censoring level.
   \cr
   
-  \bold{Generalization of Product-Limit Method, Michael and Schucany} (\code{prob.method="michael-schucany"}) \cr
+  \bold{Generalization of Product-Limit Method, Michael and Schucany} \cr
+  (\code{prob.method="michael-schucany"}) \cr
   For complete data sets, the disadvantage of using Equation (3) above to define 
   plotting positions is that it implies the largest observed value is the maximum 
   possible value of the distribution (the \eqn{100}'th percentile).  This may be 
@@ -259,7 +263,8 @@
   position is set to 1 for that censoring level.
   \cr
 
-  \bold{Generalization of Product-Limit Method, Hirsch and Stedinger} (\code{prob.method="hirsch-stedinger"}) \cr
+  \bold{Generalization of Product-Limit Method, Hirsch and Stedinger} \cr
+  (\code{prob.method="hirsch-stedinger"}) \cr
   Hirsch and Stedinger (1987) use a slightly different approach than Kaplan and Meier 
   (1958) and Michael and Schucany (1986) to derive a nonparametric estimate of the 
   survival function (probability of exceedance) in the context of left-censored data.  

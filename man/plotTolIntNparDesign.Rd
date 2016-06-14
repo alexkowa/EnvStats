@@ -34,7 +34,7 @@
   \code{c(0.5, 0.99)}.
 }
   \item{n}{
-  numeric scalar indicating the sample size.  The default value is  
+  numeric scalar indicating the sample size.  The default value is \cr
   \code{max(25, lpl.rank + n.plus.one.minus.upl.rank + 1)}.  
   Missing (\code{NA}), undefined (\code{NaN}), and infinite (\code{Inf}, \code{-Inf}) 
   values are not allowed.  
@@ -42,13 +42,14 @@
 }
   \item{coverage}{
   numeric scalar between 0 and 1 specifying the coverage of the tolerance interval.  The default 
-  value is \code{coverage=0.95}.  This argument is ignored if \code{x.var="coverage"} or 
-  \code{y.var="coverage"}.
+  value is \code{coverage=0.95}.  This argument is ignored if \cr
+  \code{x.var="coverage"} or \code{y.var="coverage"}.
 }
   \item{conf.level}{
   a scalar between 0 and 1 indicating the confidence level associated with the tolerance interval.  
   The default value is \code{conf.level=0.95}.  This argument is ignored if \code{x.var="conf.level"} 
-  or \code{y.var="conf.level"}, or if \code{cov.type="expectation"}.
+  or \code{y.var="conf.level"}, or if \cr
+  \code{cov.type="expectation"}.
 }
   \item{ti.type}{
   character string indicating what kind of tolerance interval to compute.  
@@ -62,18 +63,21 @@
 }
   \item{ltl.rank}{
   vector of positive integers indicating the rank of the order statistic to use for the lower bound 
-  of the tolerance interval.  If \code{ti.type="two-sided"} or \code{ti.type="lower"}, 
+  of the tolerance interval.  If \code{ti.type="two-sided"} or \cr
+  \code{ti.type="lower"}, 
   the default value is \code{ltl.rank=1} (implying the minimum value of \code{x} is used 
-  as the lower bound of the tolerance interval).  If \code{ti.type="upper"}, this argument 
+  as the lower bound of the tolerance interval).  If \cr
+  \code{ti.type="upper"}, this argument 
   is set equal to \code{0}.
 }
   \item{n.plus.one.minus.utl.rank}{
   vector of positive integers related to the rank of the order statistic to use for 
   the upper bound of the tolerance interval.  A value of 
   \code{n.plus.one.minus.utl.rank=1} (the default) means use the 
-  first largest value, and in general a value of 
+  first largest value, and in general a value of \cr
   \code{n.plus.one.minus.utl.rank=}\eqn{i} means use the \eqn{i}'th largest value.  
-  If \code{ti.type="lower"}, this argument is set equal to \code{0}.
+  If \cr
+  \code{ti.type="lower"}, this argument is set equal to \code{0}.
 }
   \item{plot.it}{
   a logical scalar indicating whether to create a plot or add to the 
@@ -89,9 +93,8 @@
 }
   \item{n.points}{
   a numeric scalar specifying how many (x,y) pairs to use to produce the plot.  
-  There are \code{n.points} x-values evenly spaced between 
-  \code{range.x.var[1]} and \code{range.x.var[2]}.  The default value is 
-  \code{n.points=100}.
+  There are \code{n.points} x-values evenly spaced between \code{range.x.var[1]} and \cr
+  \code{range.x.var[2]}.  The default value is \code{n.points=100}.
 }
   \item{plot.col}{
   a numeric scalar or character string determining the color of the plotted 

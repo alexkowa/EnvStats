@@ -5,7 +5,8 @@
 }
 \description{
   Plot the results of calling the function \code{\link{gofTestCensored}}, which returns 
-  an object of class \code{"gofCensored"} when testing the goodness-of-fit of a set of 
+  an object of class \cr
+  \code{"gofCensored"} when testing the goodness-of-fit of a set of 
   data to a distribution.  Five different kinds of plots are available.
 
   The function \code{plot.gofCensored} is automatically called by \code{\link{plot}} 
@@ -19,8 +20,8 @@
   same.window = FALSE, ask = same.window & plot.type == "All", hist.col = "cyan", 
   fitted.pdf.col = "black", fitted.pdf.lwd = 3 * par("cex"), fitted.pdf.lty = 1, 
   prob.method = "michael-schucany", plot.pos.con = 0.375, ecdf.col = "cyan", 
-  fitted.cdf.col = "black", ecdf.lwd = 3 * par("cex"), fitted.cdf.lwd = 3 * par("cex"), 
-  ecdf.lty = 1, fitted.cdf.lty = 2, add.line = TRUE, 
+  fitted.cdf.col = "black", ecdf.lwd = 3 * par("cex"), 
+  fitted.cdf.lwd = 3 * par("cex"), ecdf.lty = 1, fitted.cdf.lty = 2, add.line = TRUE, 
   digits = ifelse(plot.type == "Summary", 2, .Options$digits), test.result.font = 1, 
   test.result.cex = ifelse(plot.type == "Summary", 0.9, 1) * par("cex"), 
   test.result.mar = c(0, 0, 3, 0) + 0.1, 
@@ -103,7 +104,10 @@
   This argument is ignored when \code{plot.type="PDFs: Observed and Fitted"}.
 }
 
-Arguments associated with \code{plot.type="PDFs: Observed and Fitted"}: \cr
+
+
+\bold{Arguments associated with \code{plot.type="PDFs: Observed and Fitted"}:} \cr
+
   \item{hist.col}{
   a character string or numeric scalar determining the color of the histogram 
   used to display the distribution of the observed values.  The default value is 
@@ -127,19 +131,24 @@ Arguments associated with \code{plot.type="PDFs: Observed and Fitted"}: \cr
   See the entry for \code{lty} in the \R help file for \code{\link{par}} for more information.
 }
 
-Arguments associated with \code{plot.type="CDFs: Observed and Fitted"}: \cr
+
+
+\bold{Arguments associated with \code{plot.type="CDFs: Observed and Fitted"}:} \cr
+
   \item{prob.method}{
   character string indicating what method to use to compute the plotting positions 
-  (empirical probabilities).  Possible values are 
-  \code{"kaplan-meier"} (product-limit method of Kaplan and Meier (1958)), 
-  \code{"modified kaplan-meier"} (modification of Kaplan-Meier method), 
-  \code{"nelson"} (hazard plotting method of Nelson (1972)), 
-  \code{"michael-schucany"} (generalization of the product-limit method due to Michael and Schucany (1986)), and 
+  (empirical probabilities).  Possible values are: \cr 
+  \code{"kaplan-meier"} (product-limit method of Kaplan and Meier (1958)), \cr
+  \code{"modified kaplan-meier"} (modification of Kaplan-Meier method), \cr
+  \code{"nelson"} (hazard plotting method of Nelson (1972)), \cr
+  \code{"michael-schucany"} (generalization of the product-limit method due to Michael and Schucany (1986)), and \cr 
   \code{"hirsch-stedinger"} (generalization of the product-limit method due to Hirsch and Stedinger (1987)).  
+
   The default value is \code{prob.method="michael-schucany"}.  
 
   The \code{"nelson"} method is only available for \code{censoring.side="right"}, and 
-  the \code{"modified kaplan-meier"} method is only available for \code{censoring.side="left"}.  
+  the \code{"modified kaplan-meier"} method is only available for \cr
+  \code{censoring.side="left"}.  
   See the help file for \code{\link{ppointsCensored}} for more explanation.
 
   \bold{NOTE:}  This argument is also used to determine the plotting position method 
@@ -192,9 +201,12 @@ Arguments associated with \code{plot.type="CDFs: Observed and Fitted"}: \cr
   See the entry for \code{lty} in the \R help file for \code{\link{par}} for more information.
 }
 
-Arguments associated with \code{plot.type="Q-Q Plot"} or \code{plot.type="Tukey M-D Q-Q Plot"}: \cr
+
+
+\bold{Arguments associated with \code{plot.type="Q-Q Plot"} or \code{plot.type="Tukey M-D Q-Q Plot"}:} \cr
+
 As explained above, \code{prob.method} and \code{plot.pos.con} are used for these plot 
-types.  Also:
+types.  Also: \cr
   \item{add.line}{
   logical scalar indicating whether to add a line to the plot.  If \code{add.line=TRUE} 
   and \code{plot.type="Q-Q Plot"}, a 0-1 line is added to the plot.  
@@ -202,7 +214,10 @@ types.  Also:
   line at \eqn{y=0} is added to the plot.  The default value is \code{add.line=TRUE}.
 }
 
-Arguments associated with \code{plot.type="Test Results"} \cr 
+
+
+\bold{Arguments associated with \code{plot.type="Test Results"}} \cr 
+
   \item{test.result.font}{
   numeric scalar indicating which font to use to print out the test results.  
   The default value is \code{test.result.font=1}.  See the description of the 
@@ -219,18 +234,21 @@ Arguments associated with \code{plot.type="Test Results"} \cr
 }
   \item{test.result.mar}{
   numeric vector indicating the value of \code{mar} to use to print out the 
-  test results.  The default value is \code{test.result.mar=c(0, 0, 3, 0)+0.1}.  
+  test results.  The default value is \code{test.result.mar=c(0, 0, 3, 0) + 0.1}.  
   See the description of the \code{mar} argument in the help file for 
   \code{\link{par}} for more information.  
 }
 
-Arguments associated with \code{plot.type="Summary"} \cr
+
+
+\bold{Arguments associated with \code{plot.type="Summary"}} \cr
+
   \item{add.om.title}{
-  logical scalar indicating whether to add a title in the outer margin when 
+  logical scalar indicating whether to add a title in the outer margin when \cr
   \code{plot.type="Summary"}.  The default value is \code{add.om.title=TRUE}.
 }
   \item{om.title}{
-  character string containing the outer margin title.  The default value is 
+  character string containing the outer margin title.  The default value is \cr
   \code{om.title=NULL}, which will result in a default title.
 }
   \item{om.font}{
@@ -246,15 +264,18 @@ Arguments associated with \code{plot.type="Summary"} \cr
   default value is \code{om.line=0.5}.
 }
 
-Graphics parameters: \cr
+
+
+\bold{Graphics parameters:} \cr
+
   \item{cex.main, cex.axis, cex.lab, main, xlab, ylab, xlim, ylim, oma, \dots}{
   additional graphics parameters.  See the help file for \code{\link{par}}.
 }
 }
 \details{
   The function \code{plot.gofCensored} is a method for the generic function 
-  \code{\link{plot}} for the class \code{"gofCensored"} (see 
-  \code{\link{gofCensored.object}}).  
+  \code{\link{plot}} for objects that inherit from the class \cr
+  \code{"gofCensored"} (see \code{\link{gofCensored.object}}).  
   It can be invoked by calling \code{\link{plot}} and giving it an object of 
   class \code{"gofCensored"} as the first argument, or by calling 
   \code{plot.gofCensored} directly, regardless of the class of the object given 
@@ -263,11 +284,11 @@ Graphics parameters: \cr
   Plots associated with the goodness-of-fit test are produced on the current graphics 
   device.  These can be one or all of the following:
   \itemize{
-  \item Observed distribution overlaid with fitted distribution 
+  \item Observed distribution overlaid with fitted distribution \cr
     (\code{plot.type="PDFs: Observed and Fitted"}).  See the help files for 
     \code{\link{hist}} and \code{\link{pdfPlot}}.  \bold{Note:}  This kind of 
     plot is only available for singly-censored data.
-  \item Observed empirical distribution overlaid with fitted cumulative distribution 
+  \item Observed empirical distribution overlaid with fitted cumulative distribution \cr 
     (\code{plot.type="CDFs: Observed and Fitted"}).  See the help file for 
     \code{\link{cdfCompareCensored}}.
   \item Observed quantiles vs. fitted quantiles (Q-Q Plot) 

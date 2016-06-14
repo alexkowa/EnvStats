@@ -42,31 +42,34 @@
   character string specifying the method of estimating the mean and standard 
   deviation on the log-scale.  
 
-  For singly censored data, the possible values are:  
-  \code{"mle"} (maximum likelihood; the default), 
-  \code{"bcmle"} (bias-corrected maximum likelihood), 
-  \code{"qq.reg"} (quantile-quantile regression), 
+  For singly censored data, the possible values are: \cr 
+  \code{"mle"} (maximum likelihood; the default), \cr
+  \code{"bcmle"} (bias-corrected maximum likelihood), \cr
+  \code{"qq.reg"} (quantile-quantile regression), \cr
   \code{"qq.reg.w.cen.level"} (quantile-quantile regression including the 
-  censoring level), 
-  \code{"impute.w.qq.reg"} (moment estimation based on imputation using the 
-  \code{qq.reg method}), 
+  censoring level), \cr
+  \code{"impute.w.qq.reg"} (moment estimation based on imputation using the \cr
+  \code{qq.reg method}), \cr
   \code{"impute.w.qq.reg.w.cen.level"} (moment estimation based on imputation 
-  using the \code{qq.reg.w.cen.level method}), 
-  \code{"impute.w.mle"} (moment estimation based on imputation using the mle), 
+  using the \code{qq.reg.w.cen.level method}), \cr
+  \code{"impute.w.mle"} (moment estimation based on imputation using the mle), \cr
   \code{"iterative.impute.w.qq.reg"} (moment estimation based on iterative 
-  imputation using the \code{qq.reg method}), 
-  \code{"m.est"} (robust M-estimation), and 
+  imputation using the \code{qq.reg method}), \cr
+  \code{"m.est"} (robust M-estimation), and \cr
   \code{"half.cen.level"} (moment estimation based on setting the censored 
-  observations to half the censoring level).  
+  observations to half the censoring level). \cr
 
-  For multiply censored data, the possible values are:
-  \code{"mle"} (maximum likelihood; the default), 
-  \code{"qq.reg"} (quantile-quantile regression), 
-  \code{"impute.w.qq.reg"} (moment estimation based on imputation using the 
-  \code{qq.reg method}), 
-  and 
+
+
+  For multiply censored data, the possible values are: \cr
+  \code{"mle"} (maximum likelihood; the default), \cr
+  \code{"qq.reg"} (quantile-quantile regression), \cr
+  \code{"impute.w.qq.reg"} (moment estimation based on imputation using the \cr
+  \code{qq.reg method}), and \cr
   \code{"half.cen.level"} (moment estimation based on setting the censored 
-  observations to half the censoring level).
+  observations to half the censoring level). \cr
+
+
 
   See the DETAILS section for more information.
 }
@@ -76,10 +79,12 @@
 }
   \item{ci.method}{
   character string indicating what method to use to construct the confidence interval 
-  for the quantile.  The possible values are 
-  \code{"exact.for.complete"} (exact method for complete (uncensored) data; the default), 
-  \code{"gpq"} (method based on generalized pivotal quantities), and 
-  \code{"normal.approx"} (normal approximation).  See the DETAILS section for more 
+  for the quantile.  The possible values are: \cr
+  \code{"exact.for.complete"} (exact method for complete (uncensored) data; the default), \cr
+  \code{"gpq"} (method based on generalized pivotal quantities), and \cr
+  \code{"normal.approx"} (normal approximation).  
+
+  See the DETAILS section for more 
   information.  This argument is ignored if \code{ci=FALSE}.
 }
   \item{ci.type}{
@@ -97,19 +102,19 @@
 }
   \item{nmc}{
   numeric scalar indicating the number of Monte Carlo simulations to run when 
-  \code{ci.method="gpq"}.  The default is \code{nmc=1000}.  This argument is ignored 
-  if \code{ci=FALSE}.
+  \code{ci=TRUE} and \code{ci.method="gpq"}.  The default is \code{nmc=1000}.
 }
   \item{seed}{
   integer supplied to the function \code{\link[base]{set.seed}} and used when 
+  \code{ci=TRUE} and \cr
   \code{ci.method="gpq"}.  The default value is 
-  \code{seed=NULL}, in which case the current value of \code{.Random.seed} is used.  
-  This argument is ignored when \code{ci=FALSE}.
+  \code{seed=NULL}, in which case the current value of \code{.Random.seed} is used.
 }
 }
 \details{
   Quantiles and their associated confidence intervals are constructed by calling 
-  the function \code{\link{eqnormCensored}} using the log-transformed data and then 
+  the function \cr
+  \code{\link{eqnormCensored}} using the log-transformed data and then 
   exponentiating the quantiles and confidence limits.
 }
 \value{
@@ -260,7 +265,7 @@
 \seealso{
   \code{\link{eqnormCensored}}, \code{\link{enormCensored}}, 
   \code{\link{tolIntNormCensored}}, 
-  \code{\link{elnormCensored}}, \code{\link{Lognormal}},  
+  \code{\link{elnormCensored}}, \code{\link{Lognormal}}, \cr
   \code{\link{estimateCensored.object}}.
 }
 \examples{

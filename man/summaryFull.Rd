@@ -121,7 +121,8 @@ summaryFull(object, ...)
   list of arguments to supply to the \code{\link{kurtosis}} function.  See the help file for 
   \code{\link{kurtosis}} for more information.  The default value is \cr
   \code{kurtosis.list=list()}, 
-  which results in using the default arguments to \code{\link{kurtosis}}.
+  which results in using the default arguments to \cr
+  \code{\link{kurtosis}}.
 }
   \item{cv.list}{
   list of arguments to supply to the \code{\link{cv}} function.  See the help file for \code{\link{cv}} 

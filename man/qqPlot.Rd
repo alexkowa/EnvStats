@@ -37,7 +37,8 @@
   \item{distribution}{
   when \code{y} is not supplied, 
   a character string denoting the distribution abbreviation.  The default value is 
-  \code{distribution="norm"}.  See the help file for \code{\link{Distribution.df}} for a 
+  \code{distribution="norm"}.  See the help file for \cr
+  \code{\link{Distribution.df}} for a 
   list of possible distribution abbreviations.  This argument is ignored if \code{y} 
   is supplied.
 }
@@ -52,12 +53,13 @@
   when \code{y} is not supplied, 
   a logical scalar indicating whether to compute quantiles based on estimating the 
   distribution parameters (\code{estimate.params=TRUE}) or using the known 
-  distribution parameters specified in \code{param.list} 
+  distribution parameters specified in \code{param.list} \cr
   (\code{estimate.params=FALSE}).  The default value of \code{estimate.params} 
   is \code{FALSE} if \code{plot.type="Q-Q"} because the default configuration is a standard normal 
   (mean=0, sd=1) Q-Q plot, which will yield roughly a straight line if the observations in 
   \code{x} are from any normal distribution.  The default value of \code{estimate.params} 
-  is \code{TRUE} if \code{plot.type="Tukey Mean-Difference Q-Q"}.  The argument \code{estimate.params} 
+  is \code{TRUE} if \code{plot.type="Tukey Mean-Difference Q-Q"}.  The argument \cr
+  \code{estimate.params} 
   is ignored if \code{y} is supplied.
 }
   \item{est.arg.list}{
@@ -89,7 +91,7 @@
   zero-modified lognormal distributions, the default value is \code{plot.pos.con=0.375}.  
   For the Type I extreme value (Gumbel) distribution (\code{distribution="evd"}), 
   the default value is \cr
-  \code{plot.pos.con=0.44}.  For all other distributions, the default value is 
+  \code{plot.pos.con=0.44}.  For all other distributions, the default value is \cr 
   \code{plot.pos.con=0.4}. 
 }
   \item{plot.it}{

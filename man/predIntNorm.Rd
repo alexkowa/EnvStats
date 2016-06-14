@@ -206,7 +206,8 @@
 \seealso{
   \code{\link{predIntNormK}}, \code{\link{predIntNormSimultaneous}}, 
   \code{\link{predIntLnorm}}, \code{\link{tolIntNorm}}, 
-  \link{Normal}, \code{\link{estimate.object}}, \code{\link{enorm}}, 
+  \link{Normal}, \cr
+  \code{\link{estimate.object}}, \code{\link{enorm}}, 
   \code{\link{eqnorm}}.
 }
 \examples{

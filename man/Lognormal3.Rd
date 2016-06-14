@@ -120,7 +120,7 @@
   Concentrations.  \emph{Journal of the Air and Waste Management Association} \bold{40}, 
   1378--1383.
 
-  Ott, .W.R. (1995).  \emph{Environmental Statistics and Data Analysis}.  
+  Ott, W.R. (1995).  \emph{Environmental Statistics and Data Analysis}.  
   Lewis Publishers, Boca Raton, FL, Chapter 9.
 
   Royston, J.P. (1992b).  Estimation, Reference Ranges and Goodness of Fit for the 

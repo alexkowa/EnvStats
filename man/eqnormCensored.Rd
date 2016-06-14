@@ -41,31 +41,30 @@
   \item{method}{
   character string specifying the method of estimating the mean and standard deviation.  
 
-  For singly censored data, the possible values are:  
-  \code{"mle"} (maximum likelihood; the default), 
-  \code{"bcmle"} (bias-corrected maximum likelihood), 
-  \code{"qq.reg"} (quantile-quantile regression), 
+  For singly censored data, the possible values are: \cr
+  \code{"mle"} (maximum likelihood; the default), \cr
+  \code{"bcmle"} (bias-corrected maximum likelihood), \cr 
+  \code{"qq.reg"} (quantile-quantile regression), \cr
   \code{"qq.reg.w.cen.level"} (quantile-quantile regression including the 
-  censoring level), 
+  censoring level), \cr
   \code{"impute.w.qq.reg"} (moment estimation based on imputation using the 
-  \code{qq.reg method}), 
+  \code{qq.reg method}), \cr
   \code{"impute.w.qq.reg.w.cen.level"} (moment estimation based on imputation 
-  using the \code{qq.reg.w.cen.level method}), 
-  \code{"impute.w.mle"} (moment estimation based on imputation using the mle), 
+  using the \code{qq.reg.w.cen.level method}), \cr
+  \code{"impute.w.mle"} (moment estimation based on imputation using the mle), \cr
   \code{"iterative.impute.w.qq.reg"} (moment estimation based on iterative 
-  imputation using the \code{qq.reg method}), 
-  \code{"m.est"} (robust M-estimation), and 
+  imputation using the \code{qq.reg method}), \cr
+  \code{"m.est"} (robust M-estimation), and \cr
   \code{"half.cen.level"} (moment estimation based on setting the censored 
-  observations to half the censoring level).  
+  observations to half the censoring level).  \cr
 
-  For multiply censored data, the possible values are:
-  \code{"mle"} (maximum likelihood; the default), 
-  \code{"qq.reg"} (quantile-quantile regression), 
+  For multiply censored data, the possible values are: \cr
+  \code{"mle"} (maximum likelihood; the default), \cr
+  \code{"qq.reg"} (quantile-quantile regression), \cr
   \code{"impute.w.qq.reg"} (moment estimation based on imputation using the 
-  \code{qq.reg method}), 
-  and 
+  \code{qq.reg method}), and \cr
   \code{"half.cen.level"} (moment estimation based on setting the censored 
-  observations to half the censoring level).
+  observations to half the censoring level). \cr
 
   See the DETAILS section for more information.
 }
@@ -75,11 +74,13 @@
 }
   \item{ci.method}{
   character string indicating what method to use to construct the confidence interval 
-  for the quantile.  The possible values are 
-  \code{"exact.for.complete"} (exact method for complete (uncensored) data; the default), 
-  \code{"gpq"} (method based on generalized pivotal quantities), and 
-  \code{"normal.approx"} (normal approximation).  See the DETAILS section for more 
-  information.  This argument is ignored if \code{ci=FALSE}.
+  for the quantile.  The possible values are: \cr 
+  \code{"exact.for.complete"} (exact method for complete (i.e., uncensored) data; the default), \cr
+  \code{"gpq"} (method based on generalized pivotal quantities), and \cr
+  \code{"normal.approx"} (normal approximation).  
+
+  See the DETAILS section for more information.  This argument is ignored if \cr
+  \code{ci=FALSE}.
 }
   \item{ci.type}{
   character string indicating what kind of confidence interval for the quantile to compute.  
@@ -124,7 +125,8 @@
   \emph{Exact Method When Data are Complete} (\code{ci.method="exact.for.complete"}) \cr
   When \code{ci.method="exact.for.complete"}, the function \code{eqnormCensored} 
   calls the function \code{\link{eqnorm}}, supplying it with the estimated mean 
-  and standard deviation, and setting the argument \code{ci.method="exact"}.  Thus, this 
+  and standard deviation, and setting the argument \cr
+  \code{ci.method="exact"}.  Thus, this 
   is the exact method for computing a confidence interval for a quantile had the data 
   been complete.  Because the data have been subjected to Type I censoring, this method 
   of constructing a confidence interval for the quantile is an approximation.
@@ -133,7 +135,8 @@
   \emph{Normal Approximation} (\code{ci.method="normal.approx"}) \cr
   When \code{ci.method="normal.approx"}, the function \code{eqnormCensored} 
   calls the function \code{\link{eqnorm}}, supplying it with the estimated mean 
-  and standard deviation, and setting the argument \code{ci.method="normal.approx"}.  
+  and standard deviation, and setting the argument \cr 
+  \code{ci.method="normal.approx"}.  
   Thus, this is the normal approximation method for computing a confidence interval 
   for a quantile had the data been complete.  Because the data have been subjected 
   to Type I censoring, this method of constructing a confidence interval for the 

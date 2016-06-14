@@ -43,7 +43,7 @@
   the default value is \code{c(0.05, 0.2)}.  When \code{x.var="delta"} and 
   \code{alternative="less"} or \code{alternative="two.sided"} and 
   \code{two.sided.direction="less"}, the default value is \code{-c(0.2, 0.05)}.  
-  When \code{x.var="power"} the default value is 
+  When \code{x.var="power"} the default value is \cr
   \code{c(alpha + .Machine$double.eps, 0.95)}.  When \code{x.var="alpha"}, the 
   default value is \code{c(0.01, 0.2)}.
 }
@@ -72,12 +72,13 @@
   \item{p.or.p1}{
   numeric vector of proportions.  When \code{sample.type="one.sample"}, 
   \code{p.or.p1} denotes the \emph{true} value of \eqn{p}, the probability of 
-  \dQuote{success}.  When \code{sample.type="two.sample"}, \code{p.or.p1} 
+  \dQuote{success}.  When \cr
+  \code{sample.type="two.sample"}, \code{p.or.p1} 
   denotes the value of \eqn{p_1}, the probability of \dQuote{success} in 
-  group 1.  When \code{alternative="greater"} or 
+  group 1.  When \code{alternative="greater"} or \cr
   \code{alternative="two.sided"} and \code{two.sided.direction="greater"}, 
-  the default value is \code{p.or.p1=0.6}.  When \code{alternative="less"} 
-  or \code{alternative="two.sided"} and \code{two.sided.direction="less"}, 
+  the default value is \code{p.or.p1=0.6}.  When \code{alternative="less"} or \cr
+  \code{alternative="two.sided"} and \code{two.sided.direction="less"}, 
   the default value is \code{p.or.p1=0.4}. 
   Missing (\code{NA}), undefined (\code{NaN}), 
   and infinite (\code{Inf}, \code{-Inf}) values are not allowed. 
@@ -86,7 +87,8 @@
   \item{p0.or.p2}{
   numeric vector of proportions.  When \code{sample.type="one.sample"}, 
   \code{p0.or.p2} denotes the \emph{hypothesized} value of \eqn{p}, the 
-  probability of \dQuote{success}.  When \code{sample.type="two.sample"}, 
+  probability of \dQuote{success}.  When \cr
+  \code{sample.type="two.sample"}, 
   \code{p0.or.p2} denotes the value of \eqn{p_2}, the probability of 
   \dQuote{success} in group 2.  The default value is \code{p0.or.p2=0.5}.  
   Missing (\code{NA}), undefined (\code{NaN}), 
@@ -105,7 +107,7 @@
   \item{sample.type}{
   character string indicating whether the design is based on a one-sample or 
   two-sample proportion test.  When \code{sample.type="one.sample"}, the computations 
-  for the plot are based on a one-sample proportion test.  When 
+  for the plot are based on a one-sample proportion test.  When \cr
   \code{sample.type="two.sample"}, the computations for the plot are based on a 
   two-sample proportion test.  The default value is \code{sample.type="one.sample"}.
 }
@@ -115,10 +117,10 @@
 }
   \item{two.sided.direction}{
   character string indicating the direction (positive or negative) for the minimal 
-  detectable difference when \code{alternative="two.sided"}.  When 
+  detectable difference when \code{alternative="two.sided"}.  When \cr
   \code{two.sided.direction="greater"} (the default), the minimal detectable 
   difference is positive.  When \code{two.sided.direction="less"}, the minimal 
-  detectable difference is negative.  This argument is ignored unless 
+  detectable difference is negative.  This argument is ignored unless \cr
   \code{alternative="two.sided"} and either \code{x.var="delta"} or \code{y.var="delta"}.
 }
   \item{approx}{
@@ -126,12 +128,13 @@
   detectable difference based on the normal approximation to the binomial distribution.  
   The default value is \code{approx=TRUE}.  Currently, the exact method 
   (\code{approx=FALSE}) 
-  is only available for the one-sample case (i.e., \code{sample.type="one.sample"}).
+  is only available for the one-sample case (i.e., \cr
+  \code{sample.type="one.sample"}).
 }
   \item{correct}{
-  logical scalar indicating whether to use the continuity correction when 
-  \code{approx=TRUE}.  The default value is \code{correct=TRUE} when 
-  \code{sample.type="two.sample"} and \code{correct=FALSE} when 
+  logical scalar indicating whether to use the continuity correction when \cr
+  \code{approx=TRUE}.  The default value is \code{correct=TRUE} when \cr
+  \code{sample.type="two.sample"} and \code{correct=FALSE} when \cr
   \code{sample.type="one.sample"}.  This argument is ignored when 
   \code{approx=FALSE}.
 }
@@ -141,7 +144,7 @@
   This argument is ignored unless \code{y.var="n"}.
 }
   \item{warn}{
-  logical scalar indicating whether to issue a warning.  The default value is 
+  logical scalar indicating whether to issue a warning.  The default value is \cr
   \code{warn=TRUE}.  When \code{approx=TRUE} (test based on the normal approximation) 
   and \code{warn=TRUE}, a warning is issued for cases when the normal approximation 
   to the binomial distribution probably is not accurate.  When \code{approx=FALSE} 
@@ -195,9 +198,8 @@
 }
   \item{n.points}{
   a numeric scalar specifying how many (x,y) pairs to use to produce the plot.  
-  There are \code{n.points} x-values evenly spaced between 
-  \code{range.x.var[1]} and \code{range.x.var[2]}.  The default value is 
-  \code{n.points=100}.
+  There are \code{n.points} x-values evenly spaced between \code{range.x.var[1]} and \cr
+  \code{range.x.var[2]}.  The default value is \code{n.points=100}.
 }
   \item{plot.col}{
   a numeric scalar or character string determining the color of the plotted 

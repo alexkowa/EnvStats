@@ -38,8 +38,8 @@
 }
   \item{plot.pos.cons}{
   numeric vector of length 2 specifying the constants used in the formula for 
-  the plotting positions when \code{method="l.moments"} and 
-  \code{l.moment.method="plotting.position"}.  The default value is 
+  the plotting positions when \code{method="l.moments"} and \cr
+  \code{l.moment.method="plotting.position"}.  The default value is \cr
   \code{plot.pos.cons=c(a=0.35, b=0)}.  If this vector has a names attribute 
   with the value \code{c("a","b")} or \code{c("b","a")}, then the elements will 
   be matched by name in the formula for computing the plotting positions.  

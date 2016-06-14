@@ -96,7 +96,7 @@
   a similar fashion.
 }
 \value{
-  a list of class \code{"estimate"} containing the estimated parameters and other information.  
+  a list of class \code{"estimate"} containing the estimated parameters and other information. \cr 
   See \code{\link{estimate.object}} for details.
 }
 \references{

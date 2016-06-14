@@ -43,7 +43,7 @@
   the \eqn{k} distributions.  If \code{param.list} has a \code{names} attribute 
   (not necessary), the \code{names} attribute should be exactly the same as the 
   \code{names} attribute of the argument \code{distributions}.  The default value 
-  of \code{param.list} is 
+  of \code{param.list} is \cr
   \code{list(Var.1=list(mean=0, sd=1), Var.2=list(mean=0, sd=1))}.   
   See the help file for \code{\link{Distribution.df}} for the names and 
   possible values of the parameters associated with each distribution. 
@@ -114,7 +114,8 @@
   \item{tol.symmetry}{
   a positive numeric scalar indicating the allowable absolute deviation from 
   0 for the difference between symmetric elements of \code{cor.mat} 
-  (e.g., \code{abs(cor.mat[3,2]-cor.mat[2,3])}. The default value is 
+  (e.g., \cr
+  \code{abs(cor.mat[3,2]-cor.mat[2,3])}. The default value is \cr
   \code{.Machine$double.eps}.
 }
   \item{tol.recip.cond.num}{

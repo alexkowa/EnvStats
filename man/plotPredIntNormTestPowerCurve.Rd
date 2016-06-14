@@ -120,7 +120,7 @@
 }
 \seealso{
   \code{\link{predIntNorm}}, \code{\link{predIntNormK}}, 
-  \code{\link{predIntNormTestPower}}, \code{\link{predIntNormSimultaneous}}, 
+  \code{\link{predIntNormTestPower}}, \code{\link{predIntNormSimultaneous}}, \cr
   \code{\link{predIntNormSimultaneousK}}, 
   \code{\link{predIntNormSimultaneousTestPower}}, \link{Prediction Intervals}, 
   \link{Normal}.

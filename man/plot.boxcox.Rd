@@ -29,9 +29,11 @@
   \item{plot.type}{
   character string indicating what kind of plot to create.  Only one particular 
   plot type will be created, unless \code{plot.type="All"}, in which case all plots 
-  will be created sequentially.  The possible values of \code{plot.type} are: 
-  \code{"Objective vs. lambda"} (the default), \code{"Q-Q Plots"}, 
-  \code{"Tukey M-D Q-Q Plots"}, and \code{"All"}.
+  will be created sequentially.  The possible values of \code{plot.type} are: \cr
+  \code{"Objective vs. lambda"} (the default), \cr
+  \code{"Q-Q Plots"}, \cr
+  \code{"Tukey M-D Q-Q Plots"}, and \cr
+  \code{"All"}.
 }
   \item{same.window}{
   logical scalar indicating whether to produce all plots in the same graphics 
@@ -50,12 +52,12 @@
   \item{points.col}{
   numeric scalar determining the color of the points in the plot.  The default 
   value is \code{points.col=1}. See the entry for \code{col} in the \R help file for 
-  \code{\link{par}} for more information.
+  \code{\link{par}} for more information. \cr
 }
 
-Arguments associated with \code{plot.type="Q-Q Plots"}, 
-\code{plot.type="Tukey M-D Q-Q Plots"}, or \code{plot.type="All"} 
-(supplied to \code{\link{qqPlot}}): 
+\bold{The following arguments can be supplied when \code{plot.type="Q-Q Plots"},} \cr
+\bold{\code{plot.type="Tukey M-D Q-Q Plots"}, or \code{plot.type="All"} 
+(supplied to \code{\link{qqPlot}})}: 
 
   \item{plot.pos.con}{
   numeric scalar between 0 and 1 containing the value of the plotting position 
@@ -77,7 +79,8 @@ Arguments associated with \code{plot.type="Q-Q Plots"},
   \item{equal.axes}{
   logical scalar indicating whether to use the same range on the \eqn{x}- and 
   \eqn{y}-axes when \code{plot.type="Q-Q Plots"}.  The default value is 
-  \code{TRUE} if \code{qq.line.type="0-1"} or \code{estimate.params=TRUE}, 
+  \code{TRUE} if \cr
+  \code{qq.line.type="0-1"} or \code{estimate.params=TRUE}, 
   otherwise it is \code{FALSE}.
 }
   \item{add.line}{
@@ -88,12 +91,13 @@ Arguments associated with \code{plot.type="Q-Q Plots"},
   the plot.  The default value is \code{add.line=TRUE}.
 }
   \item{qq.line.type}{
-  character string determining what kind of line to add to the plot when 
-  \code{plot.type="Q-Q Plots"}.  Possible values are \code{"least squares"} 
-  (a least squares line; the default), 
-  \code{"0-1"} (a line with intercept 0 and slope 1), 
-  and \code{"robust"} (a line is fit through the first and third quartiles of the 
-  \eqn{x} and \eqn{y} data).  This argument is ignored if \code{add.line=FALSE}.
+  character string determining what kind of line to add to the plot when \cr
+  \code{plot.type="Q-Q Plots"}.  Possible values are: \cr
+  \code{"least squares"} (a least squares line; the default), \cr 
+  \code{"0-1"} (a line with intercept 0 and slope 1), and \cr
+  \code{"robust"} (a line is fit through the first and third quartiles of the 
+  \eqn{x} and \eqn{y} data).  \cr
+  This argument is ignored if \code{add.line=FALSE}.
 }
   \item{duplicate.points.method}{
   a character string denoting how to plot points with duplicate \eqn{(x,y)} values.  
@@ -125,14 +129,16 @@ Arguments associated with \code{plot.type="Q-Q Plots"},
   \item{digits}{
   scalar indicating how many significant digits to print for the distribution 
   parameters and the value of the objective in the sub-title.  The default 
-  value is the current setting of \code{options("digits")}.
+  value is the current setting of \code{options("digits")}. \cr
 }
 
-Graphics parameters:
+
+\bold{Graphics parameters:}
   \item{cex.main, cex.sub, main, sub, xlab, ylab, xlim, ylim, \dots}{
   graphics parameters; see \code{\link{par}} for more information.  The 
   default value of \code{cex.main} is \code{cex.main=1.4 * par("cex")}.  
-  The default value of \code{cex.sub} is \code{cex.sub=par("cex")}.
+  The default value of \code{cex.sub} is \cr
+  \code{cex.sub=par("cex")}.
 }
 }
 \details{

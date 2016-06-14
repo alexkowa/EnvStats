@@ -62,11 +62,9 @@
 }
   \item{n.plus.one.minus.upl.rank}{
   vector of non-negative integers related to the rank of the order statistic to use for 
-  the upper 
-  bound of the prediction interval.  A value of \code{n.plus.one.minus.upl.rank=1} 
-  means use the first largest value, and in general a value of 
+  the upper bound of the prediction interval.  A value of \code{n.plus.one.minus.upl.rank=1} 
+  (the default) means use the first largest value, and in general a value of \cr
   \code{n.plus.one.minus.upl.rank=}\eqn{i} means use the \eqn{i}'th largest value. 
-  When \code{pi.type="upper"}, the default value is \code{n.plus.one.minus.upl.rank=1}. 
   When \code{pi.type="lower"}, the argument \code{n.plus.one.minus.upl.rank} is set 
   equal to \code{0}.
 }
@@ -76,7 +74,8 @@
   that was sampled to construct the prediction interval, and the mean of the 
   population that will be sampled to produce the future observations.  The quantity 
   \eqn{\sigma} (sigma) denotes the population standard deviation for both populations.  
-  The default value is \code{delta.over.sigma=0}.
+  The default value is \cr
+  \code{delta.over.sigma=0}.
 }
   \item{pi.type}{
   character string indicating what kind of prediction interval to compute.  
@@ -91,12 +90,12 @@
 }
   \item{method}{
   character string indicating what method to use to compute the power.  The possible 
-  values are \code{"approx"} (approximation based on 
+  values are \code{"approx"} (approximation based on \cr
   \code{\link{predIntNormSimultaneousTestPower}}; the default) and 
   \code{"simulate"} (Monte Carlo simulation).
 }
   \item{NMC}{
-  positive integer indicating the number of Monte Carlo trials to run when 
+  positive integer indicating the number of Monte Carlo trials to run when \cr
   \code{method="simulate"}.  The default value is \code{NMC=100}.
 }
   \item{ci}{
@@ -233,7 +232,8 @@
   \deqn{K = \Phi^{-1}(\frac{i - 0.5}{n}) \;\;\;\;\;\; (8)}
   where \eqn{\Phi} denotes the cumulative distribution function of the standard 
   normal distribution and \eqn{i} denotes the rank of the order statistic used 
-  as the prediction limit.  The function \code{predIntNparSimultaneousTestPower} 
+  as the prediction limit.  The function \cr
+  \code{predIntNparSimultaneousTestPower} 
   uses the exact value of the expected value of the normal order statistic by 
   calling the function \code{\link{evNormOrdStatsScalar}}.
   \cr
@@ -265,16 +265,16 @@
   to determine the relationship between sample size, significance level, power, and 
   scaled difference if one of the objectives of the sampling program is to determine 
   whether two distributions differ from each other.  The functions 
-  \code{predIntNparSimultaneousTestPower} and 
+  \code{predIntNparSimultaneousTestPower} and \cr
   \code{\link{plotPredIntNparSimultaneousTestPowerCurve}} can be 
   used to investigate these relationships for the case of normally-distributed 
   observations. 
 }
 \seealso{
   \code{\link{plotPredIntNparSimultaneousTestPowerCurve}}, 
-  \code{\link{predIntNparSimultaneous}}, 
+  \code{\link{predIntNparSimultaneous}}, \cr
   \code{\link{predIntNparSimultaneousN}}, 
-  \code{\link{predIntNparSimultaneousConfLevel}}, 
+  \code{\link{predIntNparSimultaneousConfLevel}}, \cr
   \code{\link{plotPredIntNparSimultaneousDesign}}, 
   \code{\link{predIntNpar}}, \code{\link{tolIntNpar}}.
 }

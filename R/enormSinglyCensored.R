@@ -32,9 +32,14 @@ function (x, censored, method = "mle", censoring.side = "left",
     if (length(unique(x.no.cen)) < 2) 
         stop("'x' must contain at least 2 non-missing, uncensored, distinct values.")
     N <- length(x)
-    method <- match.arg(method, c("mle", "bcmle", "qq.reg", "qq.reg.w.cen.level", 
-        "impute.w.qq.reg", "impute.w.qq.reg.w.cen.level", "impute.w.mle", 
-        "iterative.impute.w.qq.reg", "m.est", "half.cen.level"))
+    method <- match.arg(method, c("mle", "bcmle", "ROS", "qq.reg", 
+        "qq.reg.w.cen.level", "rROS", "impute.w.qq.reg", "impute.w.qq.reg.w.cen.level", 
+        "impute.w.mle", "iterative.impute.w.qq.reg", "m.est", 
+        "half.cen.level"))
+    if (method == "ROS") 
+        method <- "qq.reg"
+    if (method == "rROS") 
+        method <- "impute.w.qq.reg"
     censoring.side <- match.arg(censoring.side, c("left", "right"))
     T1 <- unique(x[censored])
     if (length(T1) > 1) 
@@ -119,7 +124,7 @@ function (x, censored, method = "mle", censoring.side = "left",
     method.string <- switch(method, mle = "MLE", bcmle = "Bias-corrected MLE", 
         qq.reg = "Q-Q Regression (ROS)", qq.reg.w.cen.level = paste("Q-Q Regression (ROS)\n", 
             space(33), "with Censoring Level", sep = ""), impute.w.qq.reg = paste("Imputation with\n", 
-            space(33), "Q-Q Regression (ROS)", sep = ""), impute.w.qq.reg.w.cen.level = paste("Imputation with\n", 
+            space(33), "Q-Q Regression (rROS)", sep = ""), impute.w.qq.reg.w.cen.level = paste("Imputation with\n", 
             space(33), "Q-Q Regression (ROS)\n", space(33), "with Censoring Level", 
             sep = ""), impute.w.mle = "Imputation with MLE", 
         iterative.impute.w.qq.reg = paste("Iterative Imputation\n", 

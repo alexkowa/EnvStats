@@ -68,7 +68,8 @@
   A value of \code{0} for \code{lcl.rank} indicates no lower bound 
   (i.e., -Inf) and a value of 
   \code{0} for \code{n.plus.one.minus.ucl.rank} indicates no upper bound 
-  (i.e., \code{Inf}).  When \code{ci.type="upper"} then \code{lcl.rank} is 
+  (i.e., \code{Inf}).  When \cr
+  \code{ci.type="upper"} then \code{lcl.rank} is 
   set to \code{0} by default, otherwise it is set to \code{1} by default.  
   When \code{ci.type="lower"} then \code{n.plus.one.minus.ucl.rank} is set 
   to \code{0} by default, otherwise it is set to \code{1} by default.
@@ -87,9 +88,8 @@
 }
   \item{n.points}{
   a numeric scalar specifying how many (x,y) pairs to use to produce the plot.  
-  There are \code{n.points} x-values evenly spaced between 
-  \code{range.x.var[1]} and \code{range.x.var[2]}.  The default value is 
-  \code{n.points=100}.
+  There are \code{n.points} x-values evenly spaced between \code{range.x.var[1]} and \cr
+  \code{range.x.var[2]}.  The default value is \code{n.points=100}.
 }
   \item{plot.col}{
   a numeric scalar or character string determining the color of the plotted 

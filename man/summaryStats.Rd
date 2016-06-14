@@ -32,7 +32,7 @@ summaryStats(object, ...)
     digit.type = "round", drop0trailing = TRUE, 
     show.na = TRUE, show.0.na = FALSE, p.value = FALSE, 
     p.value.digits = 2, p.value.digit.type = "signif", 
-    test = "parametric", test.arg.list = NULL, 
+    test = "parametric", paired = FALSE, test.arg.list = NULL, 
     combine.groups = p.value, rm.group.na = TRUE, 
     group.p.value.type = NULL, alternative = "two.sided", 
     ci = NULL, ci.between = NULL, conf.level = 0.95, 
@@ -150,7 +150,8 @@ summaryStats(object, ...)
   integer indicating the number of digits to use for the p-value.  When \cr
   \code{p.value.digit.type="signif"}, \code{p.value.digits} indicates the 
   number of significant digits.  When \code{p.value.digit.type="round"}, \code{p.value.digits} 
-  indicates the number of decimal places to round to.  The default value is \code{p.value.digits=2}.
+  indicates the number of decimal places to round to.  The default value is \cr
+  \code{p.value.digits=2}.
 }
   \item{p.value.digit.type}{
   character string indicating whether the \code{p.value.digits} argument refers to 
@@ -181,14 +182,23 @@ summaryStats(object, ...)
   The exact binomial test is only available when \code{group} is not supplied and the number of levels 
   in \code{object} is 2. 
 }
+  \item{paired}{
+  applicable only to the case when there are two groups: \cr
+  logical scalar indicating whether the observations in the first group are paired with those 
+  in the second group.  The default is \code{paired=FALSE}.  
+  NOTE:  If the argument \code{test.arg.list} (see below) contains a component named \code{paired}, 
+  the value of that component is set to the value of the argument \code{paired}.
+}
   \item{test.arg.list}{
   a list with additional arguments to pass to the test used to compute p-values and confidence 
-  intervals.  For numeric data, when \code{test="parametric"}, \code{p.value=TRUE}, 
+  intervals.  For numeric data, when \code{test="parametric"}, \cr
+  \code{p.value=TRUE}, 
   \code{group.p.value.type="between"} and there are two groups, if this argument is 
   \code{NULL} or does not contain a component named \cr
-  \code{var.equal}, it will be modified 
-  to contain the component \code{var.equal=TRUE}.  Note that this overrides the default behavior of 
-  \code{\link{t.test}} when there are two groups.
+  \code{var.equal}, it will be modified to contain the component \code{var.equal=TRUE}.  
+  Note that this overrides the default behavior of \code{\link{t.test}} when there are two groups.  \cr
+  NOTE: If \code{test.arg.list} contains a component named \code{paired}, the value of 
+  that component is set to the value of the argument \code{paired} (see above).
 }
   \item{combine.groups}{
   logical scalar indicating whether to show summary statistics for all groups combined.  
@@ -299,7 +309,8 @@ summaryStats(object, ...)
 \seealso{
   \code{\link{summary}}, \code{\link{summaryFull}}, \code{\link{t.test}}, \code{\link{anova.lm}}, 
   \code{\link{wilcox.test}}, \code{\link{kruskal.test}}, 
-  \code{\link{chisq.test}}, \code{\link{fisher.test}}, \code{\link{binom.test}}.
+  \code{\link{chisq.test}}, \cr
+  \code{\link{fisher.test}}, \code{\link{binom.test}}.
 }
 \examples{
   # The guidance document USEPA (1994b, pp. 6.22--6.25)
@@ -563,6 +574,61 @@ summaryStats(object, ...)
   #Fisher_p                      0.81  
   #95%.LCL.OR                    0.3   
   #95%.UCL.OR                    2.5
+
+  #====================================================================
+
+  #--------------------
+  # Paired Observations
+  #--------------------
+
+  # The data frame ACE.13.TCE.df contians paired observations of 
+  # trichloroethylene (TCE; mg/L) at 10 groundwater monitoring wells 
+  # before and after remediation.
+  #
+  # Compare TCE concentrations before and after remediation and 
+  # use a paired t-test to test for a difference between periods.
+
+  summaryStats(TCE.mg.per.L ~ Period, data = ACE.13.TCE.df, 
+    p.value = TRUE, paired = TRUE)
+
+
+  summaryStats(TCE.mg.per.L ~ Period, data = ACE.13.TCE.df, 
+    p.value = TRUE, paired = TRUE, stats.in.rows = TRUE)
+  #                       Before   After    Combined
+  #N                       10       10       20     
+  #Mean                    21.624    3.6329  12.6284
+  #SD                      13.5113   3.5544  13.3281
+  #Median                  20.3      2.48     8.475 
+  #Min                      5.96     0.272    0.272 
+  #Max                     41.5     10.7     41.5   
+  #Diff                                     -17.9911
+  #paired.p.value.between                     0.0027
+  #95%.LCL.between                          -27.9097
+  #95%.UCL.between                           -8.0725
+
+  #==========
+
+  # Repeat the last example, but use a one-sided alternative since 
+  # remediation should decrease TCE concentration.
+
+  summaryStats(TCE.mg.per.L ~ Period, data = ACE.13.TCE.df, 
+    p.value = TRUE, paired = TRUE, alternative = "less")
+
+
+  summaryStats(TCE.mg.per.L ~ Period, data = ACE.13.TCE.df, 
+    p.value = TRUE, paired = TRUE, alternative = "less", 
+    stats.in.rows = TRUE)
+  #                            Before   After    Combined
+  #N                            10       10       20     
+  #Mean                         21.624    3.6329  12.6284
+  #SD                           13.5113   3.5544  13.3281
+  #Median                       20.3      2.48     8.475 
+  #Min                           5.96     0.272    0.272 
+  #Max                          41.5     10.7     41.5   
+  #Diff                                          -17.9911
+  #paired.p.value.between.less                     0.0013
+  #95%.LCL.between                                   -Inf
+  #95%.UCL.between                                -9.9537
 }
 \keyword{ univar }
 \keyword{ htest }

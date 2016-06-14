@@ -6,9 +6,10 @@
 \description{
   Two-sample linear rank test to detect a difference (usually a shift) between two 
   distributions.  The \link[=wilcox.test]{Wilcoxon Rank Sum test} is a special case of 
-  a linear rank test.  The function \code{twoSampleLinearRankTest} is part of 
+  a linear rank test.  The function \cr
+  \code{twoSampleLinearRankTest} is part of 
   \pkg{EnvStats} mainly because this help file gives the necessary background to 
-  explain two-sample linear rank tests for censored data (see 
+  explain two-sample linear rank tests for censored data (see \cr
   \code{\link{twoSampleLinearRankTestCensored}}).
 }
 \usage{
@@ -33,7 +34,7 @@
 }
   \item{scale.shift.null}{
   numeric scalar indicating the hypothesized value of \eqn{\tau}, the scale shift 
-  between the two distributions, under the null hypothesis.  The default value is 
+  between the two distributions, under the null hypothesis.  The default value is \cr
   \code{scale.shift.null=1}.  This argument is ignored if \code{shift.type="location"}.
 }
   \item{alternative}{
@@ -42,8 +43,8 @@
   DETAILS section below for more information.
 }
   \item{test}{
-  character string indicating which linear rank test to use.  The possible values are:  
-  \code{"wilcoxon"} (the default), \code{"normal.scores"}, \code{"moods.median"}, and 
+  character string indicating which linear rank test to use.  The possible values are: 
+  \code{"wilcoxon"} (the default), \code{"normal.scores"}, \code{"moods.median"}, and  
   \code{"savage.scores"}. 
 }
   \item{shift.type}{

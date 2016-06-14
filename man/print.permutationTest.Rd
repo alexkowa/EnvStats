@@ -9,7 +9,7 @@
   \code{"permutationTest"}.  Currently, the \pkg{EnvStats} functions that perform 
   permutation tests and produce objects of class \code{"permutationTest"} are:
   \code{\link{oneSamplePermutationTest}},  
-  \code{\link{twoSamplePermutationTestLocation}}, and 
+  \code{\link{twoSamplePermutationTestLocation}}, and \cr
   \code{\link{twoSamplePermutationTestProportion}}. 
 }
 \usage{

@@ -128,7 +128,8 @@
   replicated to be the same length as the length of the longest argument.  
 
   For the one-sample case, the arguments \code{p.hat.or.p1.hat}, \code{tol.p.hat}, 
-  \code{half.width}, and \code{tol.half.width} must satisfy: \cr  
+  \code{half.width}, and \cr 
+  \code{tol.half.width} must satisfy: \cr  
   \code{(p.hat.or.p1.hat + tol.p.hat + half.width + tol.half.width) <= 1}, \cr
   and \cr 
   \code{(p.hat.or.p1.hat - tol.p.hat - half.width - tol.half.width) >= 0}.
@@ -205,7 +206,7 @@
   Newcombe, R.G. (1998b). Interval Estimation for the Difference Between Independent Proportions:  
   Comparison of Eleven Methods. \emph{Statistics in Medicine}, \bold{17}, 873--890.
 
-  Ott, .W.R. (1995). \emph{Environmental Statistics and Data Analysis}. 
+  Ott, W.R. (1995). \emph{Environmental Statistics and Data Analysis}. 
   Lewis Publishers, Boca Raton, FL, Chapter 4.
 
   USEPA. (1989b). \emph{Statistical Analysis of Ground-Water Monitoring Data at RCRA Facilities, Interim Final Guidance}. 

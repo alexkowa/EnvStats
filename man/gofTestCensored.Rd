@@ -48,20 +48,22 @@
 }
   \item{distribution}{
   a character string denoting the abbreviation of the assumed distribution.  
-  Possible values are:  
-  \code{distribution="norm"} (\link{Normal} distribution; the default), 
-  \code{distribution="lnorm"} (\link{Lognormal} distribution), and 
+  Possible values are:  \cr
+  \code{distribution="norm"} (\link{Normal} distribution; the default), \cr 
+  \code{distribution="lnorm"} (\link{Lognormal} distribution), and \cr
   \code{distribution="lnormAlt"} (\link[=LognormalAlt]{Lognormal distribution, 
-  alternative parameterization}).  The results for the goodness-of-fit test are 
+  alternative parameterization}).  
+
+  The results for the goodness-of-fit test are 
   identical for \code{distribution="lnorm"} and \code{distribution="lnormAlt"}, the 
   only difference in ouput being whether the returned estimated parameters are 
   based on the log-scale or the original scale of the data.
 }
   \item{est.arg.list}{
   a list of arguments to be passed to the function estimating the distribution 
-  parameters.  For example, if \code{distribution="lnormAlt"} setting 
+  parameters.  For example, if \code{distribution="lnormAlt"} setting \cr
   \code{est.arg.list=list(method="bcmle")} indicates using the bias-corrected 
-  maximum-likelihood estimators (see the help file for \code{\link{elnormAltCensored}}).    
+  maximum likelihood estimators (see the help file for \code{\link{elnormAltCensored}}).    
   The default value is \code{est.arg.list=NULL} so that all default values for the 
   estimating function are used.  The estimated parameters are provided in the 
   output merely for information, and the choice of the method of estimation has no 
@@ -70,11 +72,11 @@
   \item{prob.method}{
   character string indicating what method to use to compute the plotting positions 
   (empirical probabilities) when \code{test="sf"} or \code{test="ppcc"}.  
-  Possible values are:
-  \code{"modified kaplan-meier"} (modification of product-limit method of Kaplan and Meier (1958)), 
-  \code{"nelson"} (hazard plotting method of Nelson (1972)), 
-  \code{"michael-schucany"} (generalization of the product-limit method due to Michael and Schucany (1986)), and 
-  \code{"hirsch-stedinger"} (generalization of the product-limit method due to Hirsch and Stedinger (1987)).  
+  Possible values are: \cr
+  \code{"modified kaplan-meier"} (modification of product-limit method of Kaplan and Meier (1958)), \cr
+  \code{"nelson"} (hazard plotting method of Nelson (1972)), \cr
+  \code{"michael-schucany"} (generalization of the product-limit method due to Michael and Schucany (1986)), and \cr
+  \code{"hirsch-stedinger"} (generalization of the product-limit method due to Hirsch and Stedinger (1987)). \cr
   The default value is \code{prob.method="michael-schucany"}.  
 
   The \code{"nelson"} method is only available for \code{censoring.side="right"}, and 
@@ -84,10 +86,9 @@
 }
   \item{plot.pos.con}{
   numeric scalar between 0 and 1 containing the value of the plotting position 
-  constant to use when \code{test="sf"} or \code{test="ppcc"}.  
-  The default value is \code{plot.pos.con=0.375}.  
-  See the DETAILS section and the help file for \code{\link{ppointsCensored}} 
-  for more information.
+  constant to use when \code{test="sf"} or \code{test="ppcc"}.  The default value is \cr
+  \code{plot.pos.con=0.375}.  See the DETAILS section and the help file for \cr
+  \code{\link{ppointsCensored}} for more information.
 }
 }
 \details{

@@ -282,9 +282,9 @@
 }
 \seealso{
   \code{\link{predIntLnormAltSimultaneousTestPower}}, 
-  \code{\link{predIntNorm}}, \code{\link{predIntNormSimultaneous}}, 
+  \code{\link{predIntNorm}}, \code{\link{predIntNormSimultaneous}}, \cr
   \code{\link{predIntNormSimultaneousTestPower}}, 
-  \code{\link{tolIntLnorm}}, \link{Lognormal}, \link{LognormalAlt}, 
+  \code{\link{tolIntLnorm}}, \link{Lognormal}, \link{LognormalAlt}, \cr
   \code{\link{estimate.object}}, \code{\link{elnorm}}, \code{\link{elnormAlt}}.
 }
 \examples{

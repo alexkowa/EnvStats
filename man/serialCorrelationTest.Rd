@@ -46,10 +46,10 @@
   call to \code{\link{lm}} in order to correctly deal with missing values.
 }
   \item{test}{
-  character string indicating which test to use.  The possible values are:
-  \code{"rank.von.Neumann"} (rank von Neumann ratio test; the default), 
-  \code{"AR1.yw"} (z-test based on Yule-Walker lag-one estimate of correlation), 
-  and \code{"AR1.mle"} (z-test based on MLE of lag-one correlation).  
+  character string indicating which test to use.  The possible values are: \cr
+  \code{"rank.von.Neumann"} (rank von Neumann ratio test; the default), \cr
+  \code{"AR1.yw"} (z-test based on Yule-Walker lag-one estimate of correlation), and \cr
+  \code{"AR1.mle"} (z-test based on MLE of lag-one correlation).  
 }
   \item{alternative}{
   character string indicating the kind of alternative hypothesis.  The possible 
@@ -198,7 +198,7 @@
   with mean 2 and variance \eqn{4/n}, but notes that a slightly better approximation 
   is given by using a variance of \eqn{20/(5n + 7)}.
 
-  To test the null hypothesis (1) when \code{test="rank.von.Neumann"}, the function 
+  To test the null hypothesis (1) when \code{test="rank.von.Neumann"}, the function \cr
   \code{serialCorrelationTest} does the following:
   \itemize{
   \item When the sample size is between 3 and 10, the exact distribution of \eqn{V_{rank}} 

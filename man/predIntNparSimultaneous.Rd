@@ -61,10 +61,10 @@
   \item{n.plus.one.minus.upl.rank}{
   positive integer related to the rank of the order statistic to use for the upper 
   bound of the prediction interval.  A value of \code{n.plus.one.minus.upl.rank=1} 
-  means use the first largest value, and in general a value of 
+  (the default) means use the first largest value, and in general a value of \cr
   \code{n.plus.one.minus.upl.rank=}\eqn{i} means use the \eqn{i}'th largest value. 
-  When \code{pi.type="upper"}, the default value is \code{n.plus.one.minus.upl.rank=1}. 
-  When \code{pi.type="lower"}, the argument \code{n.plus.one.minus.upl.rank} is set 
+  When \cr
+  \code{pi.type="lower"}, the argument \code{n.plus.one.minus.upl.rank} is set 
   equal to \code{0} and the value of \code{ub} is used as the upper bound of the 
   prediction interval.
 }
@@ -369,7 +369,7 @@
 }
 \seealso{
   \code{\link{predIntNparSimultaneousConfLevel}}, 
-  \code{\link{predIntNparSimultaneousN}}, 
+  \code{\link{predIntNparSimultaneousN}}, \cr
   \code{\link{plotPredIntNparSimultaneousDesign}},
   \code{\link{predIntNparSimultaneousTestPower}}, 
   \code{\link{predIntNpar}}, \code{\link{tolIntNpar}}, 

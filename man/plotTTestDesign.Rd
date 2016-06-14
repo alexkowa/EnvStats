@@ -37,12 +37,14 @@
   numeric vector of length 2 indicating the range of the x-variable to use 
   for the plot.  The default value depends on the value of \code{x.var}.  
   When \code{x.var="n"} the default value is \code{c(2,50)}.  When 
-  \code{x.var="delta.over.sigma"} and \code{alternative="greater"} or 
-  \code{alternative="two.sided"} and \code{two.sided.direction="greater"}, 
+  \code{x.var="delta.over.sigma"} and \cr
+  \code{alternative="greater"} or 
+  \code{alternative="two.sided"} and \cr
+  \code{two.sided.direction="greater"}, 
   the default value is \code{c(0.5, 2)}.  When \code{x.var="delta.over.sigma"} and 
-  \code{alternative="less"} or \code{alternative="two.sided"} and 
-  \code{two.sided.direction="less"}, the default value is \code{-c(2, 0.5)}.  
-  When \code{x.var="power"} the default value is 
+  \code{alternative="less"} or \cr
+  \code{alternative="two.sided"} and \code{two.sided.direction="less"}, the default value is 
+  \code{-c(2, 0.5)}. When \code{x.var="power"} the default value is \cr
   \code{c(alpha + .Machine$double.eps, 0.95)}.  When \code{x.var="alpha"}, the 
   default value is \code{c(0.01, 0.2)}.
 }
@@ -65,11 +67,14 @@
   numeric scalar specifying the ratio of the true difference (\eqn{\delta}) to the 
   population standard deviation (\eqn{\sigma}).  This is also called the 
   "scaled difference".  When \code{alternative="greater"} or 
-  \code{alternative="two.sided"} and \code{two.sided.direction="greater"}, the default 
+  \code{alternative="two.sided"} and \cr
+  \code{two.sided.direction="greater"}, the default 
   value is \code{delta.over.sigma=0.5}.  When \code{alternative="less"} or 
-  \code{alternative="two.sided"} and \code{two.sided.direction="less"}, the default 
+  \code{alternative="two.sided"} and \cr
+  \code{two.sided.direction="less"}, the default 
   value is \code{delta.over.sigma=-0.5}.  This argument is ignored when 
-  \code{x.var="delta.over.sigma"} or \code{y.var="delta.over.sigma"}.
+  \code{x.var="delta.over.sigma"} or \cr
+  \code{y.var="delta.over.sigma"}.
 }
   \item{alpha}{
   numeric scalar between 0 and 1 indicating the Type I error level associated 
@@ -94,10 +99,10 @@
 }
   \item{two.sided.direction}{
   character string indicating the direction (positive or negative) for the scaled 
-  minimal detectable difference when \code{alternative="two.sided"}.  When 
+  minimal detectable difference when \code{alternative="two.sided"}.  When \cr
   \code{two.sided.direction="greater"} (the default), the scaled minimal detectable 
   difference is positive.  When \code{two.sided.direction="less"}, the scaled minimal 
-  detectable difference is negative.  This argument is ignored unless 
+  detectable difference is negative.  This argument is ignored unless \cr
   \code{alternative="two.sided"} and either \code{x.var="delta"} or 
   \code{y.var="delta"}.
 }
@@ -143,9 +148,8 @@
 }
   \item{n.points}{
   a numeric scalar specifying how many (x,y) pairs to use to produce the plot.  
-  There are \code{n.points} x-values evenly spaced between 
-  \code{range.x.var[1]} and \code{range.x.var[2]}.  The default value is 
-  \code{n.points=50}.
+  There are \code{n.points} x-values evenly spaced between \code{range.x.var[1]} and \cr
+  \code{range.x.var[2]}.  The default value is \code{n.points=50}.
 }
   \item{plot.col}{
   a numeric scalar or character string determining the color of the plotted 

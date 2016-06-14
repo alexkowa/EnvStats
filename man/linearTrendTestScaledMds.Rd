@@ -46,8 +46,8 @@
 }
   \item{two.sided.direction}{
   character string indicating the direction (positive or negative) for the 
-  scaled minimal detectable slope when \code{alternative="two.sided"}.  
-  When \code{two.sided.direction="greater"} (the default), the scaled minimal 
+  scaled minimal detectable slope when \code{alternative="two.sided"}.  When \cr
+  \code{two.sided.direction="greater"} (the default), the scaled minimal 
   detectable slope is positive.  When \code{two.sided.direction="less"}, 
   the scaled minimal detectable slope is negative.  This argument 
   is ignored if \code{alternative="less"} or \code{alternative="greater"}.

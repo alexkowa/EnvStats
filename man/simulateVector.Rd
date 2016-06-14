@@ -33,19 +33,21 @@
   See the help file for \code{\link{Distribution.df}} for the names and 
   possible values of the parameters associated with each distribution.  
 
-  Alternatively, if you specify an empirical distribution by setting 
+  Alternatively, if you specify an empirical distribution by setting \cr
   \code{distribution="emp"}, then \code{param.list} must be a list of the 
   form \code{list(obs=}\emph{name}\code{)}, where \emph{name} denotes the 
   name of the vector containing the observations to use for the empirical 
   distribution.  In this case, you may also supply arguments to the 
   \code{\link{qemp}} function through \code{param.list}.  For example, you 
-  may set \code{param.list=list(obs=}\emph{name}\code{, discrete=T)} to 
+  may set \cr
+  \code{param.list=list(obs=}\emph{name}\code{, discrete=T)} to 
   specify an empirical distribution based on a discrete random variable.
 }
   \item{sample.method}{
-  a character string indicating whether to use simple random sampling 
+  a character string indicating whether to use simple random sampling \cr
   (\code{sample.method="SRS"}, the default) or 
-  Latin Hypercube sampling (\code{sample.method="LHS"}). 
+  Latin Hypercube sampling \cr
+  (\code{sample.method="LHS"}). 
 }
   \item{seed}{
   integer to supply to the \R function \code{\link{set.seed}}.  

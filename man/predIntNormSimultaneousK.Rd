@@ -7,7 +7,7 @@
   Compute the value of \eqn{K} (the multiplier of estimated standard deviation) used 
   to construct a simultaneous prediction interval based on data from a 
   \link[stats:Normal]{normal distribution}.  
-  The function 
+  The function \cr
   \code{predIntNormSimultaneousK} is called by \code{\link{predIntNormSimultaneous}}.
 }
 \usage{
@@ -171,8 +171,8 @@
   \deqn{[-\infty, \bar{x} + Ks] \;\;\;\;\;\; (5)} 
 
   \bold{Note:}  For simultaneous prediction intervals, only lower 
-  (\code{pi.type="lower"}) and upper (\code{pi.type="upper"}) prediction 
-  intervals are available.
+  (\code{pi.type="lower"}) and upper \cr
+  (\code{pi.type="upper"}) prediction intervals are available.
  
   The derivation of the constant \eqn{K} is explained  below.
   \cr

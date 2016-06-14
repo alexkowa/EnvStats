@@ -26,7 +26,8 @@
 \details{
   This is the \code{"gofTwoSample"} method for the generic function 
   \code{\link[base]{print}}.  
-  See the help file for \code{\link{gofTwoSample.object}} for information on the 
+  See the help file for \cr
+  \code{\link{gofTwoSample.object}} for information on the 
   information contained in this kind of object.
 }
 \value{

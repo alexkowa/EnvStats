@@ -19,17 +19,17 @@
 \arguments{
   \item{p.or.p1}{
   numeric vector of proportions.  When \code{sample.type="one.sample"}, this argument denotes the 
-  true value of \eqn{p}, the probability of dQuote{success}.  \cr
+  true value of \eqn{p}, the probability of \dQuote{success}.  \cr
   When \code{sample.type="two.sample"}, this argument denotes the value of \eqn{p_1}, 
-  the probability of dQuote{success} in group 1.  The default value is \cr
+  the probability of \dQuote{success} in group 1.  The default value is \cr
   \code{p.or.p1=0.5}.  Missing (\code{NA}), undefined (\code{NaN}), and infinite 
   (\code{Inf}, \code{-Inf}) values are not allowed.
 }
   \item{p0.or.p2}{
   numeric vector of proportions.  When \code{sample.type="one.sample"}, 
-  this argument denotes the hypothesized value of \eqn{p}, the probability of dQuote{success}.  
+  this argument denotes the hypothesized value of \eqn{p}, the probability of \dQuote{success}.  
   When \code{sample.type="two.sample"}, this argument denotes the value of \eqn{p_2}, 
-  the probability of dQuote{success} in group 2.  The default value is \cr
+  the probability of \dQuote{success} in group 2.  The default value is \cr
   \code{p0.or.p2=0.5}.  Missing (\code{NA}), undefined (\code{NaN}), and infinite 
   (\code{Inf}, \code{-Inf}) values are not allowed.
 }
@@ -232,7 +232,7 @@
 \note{
   The binomial distribution is used to model processes with binary (Yes-No, Success-Failure, 
   Heads-Tails, etc.) outcomes.  It is assumed that the outcome of any one trial is independent 
-  of any other trial, and that the probability of dQuote{success}, \eqn{p}, is the same on each trial.  
+  of any other trial, and that the probability of \dQuote{success}, \eqn{p}, is the same on each trial.  
   A binomial discrete random variable \eqn{X} is the number of "successes" in \eqn{n} independent 
   trials.  A special case of the binomial distribution occurs when \eqn{n=1}, in which case \eqn{X} 
   is also called a Bernoulli random variable.

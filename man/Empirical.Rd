@@ -125,7 +125,8 @@
   (Cleveland, 1993, p.18; D'Agostino, 1986a, pp.8,25).  The estimators defined by 
   the above equation are called \emph{plotting positions} and are used to construct 
   \link[=qqPlot]{probability plots}.  The function \code{pemp} uses the above equation 
-  when \code{prob.method="plot.pos"}.
+  when \cr 
+  \code{prob.method="plot.pos"}.
 
   For any general value of \eqn{x}, the value of the cdf is estimated by linear 
   interpolation: 
@@ -213,7 +214,7 @@
 \seealso{
   \code{\link{density}}, \code{\link{approx}}, \code{\link{epdfPlot}}, 
   \code{\link{ecdfPlot}}, \code{\link{cdfCompare}}, \code{\link{qqplot}}, 
-  \code{\link{eqnpar}}, \code{\link{quantile}}, \code{\link{sample}}, 
+  \code{\link{eqnpar}}, \code{\link{quantile}}, \code{\link{sample}}, \cr
   \code{\link{simulateVector}}, \code{\link{simulateMvMatrix}}.
 }
 \examples{

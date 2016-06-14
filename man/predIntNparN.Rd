@@ -25,7 +25,7 @@
 }
   \item{lpl.rank}{
   vector of positive integers indicating the rank of the order statistic to use for 
-  the lower bound of the prediction interval.  If \code{pi.type="two-sided"} or 
+  the lower bound of the prediction interval.  If \code{pi.type="two-sided"} or \cr
   \code{pi.type="lower"}, the default value is \code{lpl.rank=1} (implying the 
   minimum value is used as the lower bound of the prediction interval).  
   If \code{pi.type="upper"}, this argument is set equal to \code{0}.
@@ -34,9 +34,10 @@
   vector of positive integers related to the rank of the order statistic to use for 
   the upper bound of the prediction interval.  A value of 
   \code{n.plus.one.minus.upl.rank=1} (the default) means use the 
-  first largest value, and in general a value of 
+  first largest value, and in general a value of \cr
   \code{n.plus.one.minus.upl.rank=}\eqn{i} means use the \eqn{i}'th largest value.  
-  If \code{pi.type="lower"}, this argument is set equal to \code{0}.
+  If \cr
+  \code{pi.type="lower"}, this argument is set equal to \code{0}.
 }
   \item{pi.type}{
   character string indicating what kind of prediction interval to compute.  
@@ -66,7 +67,7 @@
   The function \code{predIntNparN} initially computes the required sample size \eqn{n} 
   by solving Equation (11) or (12) in the help file for \code{\link{predIntNpar}} for 
   \eqn{n}, depending on the value of the argument \code{pi.type}.  If \code{k < m}, 
-  \code{lpl.rank > 1} (two-sided and lower prediction intervals only), or 
+  \code{lpl.rank > 1} (two-sided and lower prediction intervals only), or \cr
   \code{n.plus.one.minus.upl.rank > 1} (two-sided and upper prediction intervals only), 
   then this initial value of \eqn{n} is used as the upper bound in a binary search 
   based on Equation (8) in the help file for \code{\link{predIntNpar}} and is 

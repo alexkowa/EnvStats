@@ -374,7 +374,7 @@
 }
 \seealso{
   \code{\link{GammaDist}}, \code{\link{GammaAlt}}, 
-  \code{\link{predIntNorm}}, \code{\link{predIntNormSimultaneous}}, 
+  \code{\link{predIntNorm}}, \code{\link{predIntNormSimultaneous}}, \cr
   \code{\link{predIntNormSimultaneousTestPower}}, \code{\link{tolIntGamma}}, 
   \code{\link{egamma}}, \code{\link{egammaAlt}}, \code{\link{estimate.object}}.
 }

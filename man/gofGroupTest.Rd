@@ -108,7 +108,8 @@ gofGroupTest(object, ...)
   indicates using the bias-corrected maximum-likelihood estimators of shape and scale 
   (see the help file for \code{\link{egamma}}.  See the help file 
   \link{Estimating Distribution Parameters} for a list of estimating functions.  
-  The default value is \code{est.arg.list=NULL} so that all 
+  The default value is \cr
+  \code{est.arg.list=NULL} so that all 
   default values for the estimating function are used.  This argument is ignored if 
   \code{estimate.params=FALSE}.
 

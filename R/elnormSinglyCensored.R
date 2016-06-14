@@ -34,9 +34,14 @@ function (x, censored, method = "mle", censoring.side = "left",
     if (length(unique(x.no.cen)) < 2) 
         stop("'x' must contain at least 2 non-missing, uncensored, distinct values.")
     N <- length(x)
-    method <- match.arg(method, c("mle", "bcmle", "qq.reg", "qq.reg.w.cen.level", 
-        "impute.w.qq.reg", "impute.w.qq.reg.w.cen.level", "impute.w.mle", 
-        "iterative.impute.w.qq.reg", "half.cen.level", "m.est"))
+    method <- match.arg(method, c("mle", "bcmle", "ROS", "qq.reg", 
+        "qq.reg.w.cen.level", "rROS", "impute.w.qq.reg", "impute.w.qq.reg.w.cen.level", 
+        "impute.w.mle", "iterative.impute.w.qq.reg", "half.cen.level", 
+        "m.est"))
+    if (method == "ROS") 
+        method <- "qq.reg"
+    if (method == "rROS") 
+        method <- "impute.w.qq.reg"
     censoring.side <- match.arg(censoring.side, c("left", "right"))
     T1 <- unique(x[censored])
     if (length(T1) > 1) 

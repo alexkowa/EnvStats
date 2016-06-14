@@ -116,7 +116,8 @@
 }
 \value{
   a list of class \code{"estimate"} containing the estimated parameters and other information.  
-  See \code{\link{estimate.object}} for details.
+  See \cr
+  \code{\link{estimate.object}} for details.
 }
 \references{
   Agresti, A., and B.A. Coull. (1998). Approximate is Better than "Exact" for Interval Estimation 

@@ -28,7 +28,7 @@
   character string indicating the kind of alternative hypothesis.  The possible values 
   are \code{"greater"} (right tail of treatment group shifted to the right of the 
   right tail of the reference group) and \code{"less"} (left tail of treatment group 
-  shifted to the left of the left tail of the reference group).  The default value is 
+  shifted to the left of the left tail of the reference group).  The default value is \cr
   \code{alternative="greater"}.
 }
   \item{target.quantile}{
@@ -141,7 +141,8 @@
 }
 \value{
   A list of class \code{"htest"} containing the results of the hypothesis test.  
-  See the help file for \code{\link{htest.object}} for details.
+  See the help file for \cr
+  \code{\link{htest.object}} for details.
 }
 \references{
   Carrano, A., and D. Moore. (1982).  The Rationale and Methodology for Quantifying 

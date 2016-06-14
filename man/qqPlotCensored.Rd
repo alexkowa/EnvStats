@@ -39,17 +39,18 @@
   \code{"left"} (the default) and \code{"right"}. 
 }
   \item{prob.method}{
-  character string indicating what method to use to compute the plotting positions (empirical probabilities).  
-  Possible values are 
-  \code{"kaplan-meier"} (product-limit method of Kaplan and Meier (1958)), 
-  \code{"modified kaplan-meier"} (same as \code{"kaplan-meier"} except the maximum value is plotted too), 
-  \code{"nelson"} (hazard plotting method of Nelson (1972)), 
-  \code{"michael-schucany"} (generalization of the product-limit method due to Michael and Schucany (1986)), and 
-  \code{"hirsch-stedinger"} (generalization of the product-limit method due to Hirsch and Stedinger (1987)).  
+  character string indicating what method to use to compute the plotting positions 
+  (empirical probabilities).  Possible values are: \cr 
+  \code{"kaplan-meier"} (product-limit method of Kaplan and Meier (1958)), \cr
+  \code{"modified kaplan-meier"} (same as \code{"kaplan-meier"} except the maximum value is plotted too), \cr
+  \code{"nelson"} (hazard plotting method of Nelson (1972)), \cr
+  \code{"michael-schucany"} (generalization of the product-limit method due to Michael and Schucany (1986)), and \cr
+  \code{"hirsch-stedinger"} (generalization of the product-limit method due to Hirsch and Stedinger (1987)).  \cr
+
   The default value is \code{prob.method="michael-schucany"}.  
 
   The \code{"nelson"} method is only available for \code{censoring.side="right"}, and 
-  the \code{"modified kaplan-meier"} method is only available for 
+  the \code{"modified kaplan-meier"} method is only available for \cr
   \code{censoring.side="left"}.  See the DETAILS section for more explanation.
 }
   \item{plot.pos.con}{
@@ -92,7 +93,8 @@
   For example, the function \code{\link{enormCensored}} has an optional argument called 
   \code{method} that specifies the method to use to estimate the parameters.  To override the default 
   estimation method, supply the argument \code{est.arg.list} with a component called \code{method}; 
-  for example \code{est.arg.list=list(method="impute.w.qq.reg")}.  The default value is 
+  for example \cr
+  \code{est.arg.list=list(method="impute.w.qq.reg")}.  The default value is \cr
   \code{est.arg.list=NULL} so that all default values for the estimating function are used.  
   This argument is ignored if \code{estimate.params=FALSE}.
 }
@@ -218,11 +220,11 @@
   \code{qqPlotCensored} returns a list with the following components:
 
   \item{x}{numeric vector of \eqn{x}-coordinates for the plot.  When \code{plot.type="Q-Q"} 
-    these are the quantiles from the theoretical distribution.  When 
+    these are the quantiles from the theoretical distribution.  When \cr
     \code{plot.type="Tukey Mean-Difference Q-Q"} these are the averages of the observed and 
     theoretical quantiles.}
   \item{y}{numeric vector of \eqn{y}-coordinates for the plot.  When \code{plot.type="Q-Q"} 
-    these are the observed quantiles (order statistics).  When 
+    these are the observed quantiles (order statistics).  When \cr
     \code{plot.type="Tukey Mean-Difference Q-Q"} these are the differences between the 
     observed quantiles (order statistics) and the theoretical quantiles.}
   \item{Order.Statistics}{numeric vector of the \dQuote{ordered} observations.  
@@ -326,7 +328,8 @@
 }
 \seealso{
   \code{\link{ppointsCensored}}, \link[=FcnsByCatCensoredData]{EnvStats Functions for Censored Data}, 
-  \code{\link{qqPlot}}, \code{\link{ecdfPlotCensored}}, \code{\link{qqPlotGestalt}}.
+  \code{\link{qqPlot}}, \code{\link{ecdfPlotCensored}}, \cr
+  \code{\link{qqPlotGestalt}}.
 }
 \examples{
   # Generate 20 observations from a normal distribution with mean=20 and sd=5, 

@@ -48,11 +48,15 @@
   The functions \code{eqzmlnorm} and \code{eqzmlnormAlt} return estimated quantiles 
   as well as estimates of the distribution parameters.  
 
-  Quantiles are estimated by 1) estimating the distribution parameters by 
-  calling \code{\link{ezmlnorm}} or \code{\link{ezmlnormAlt}}, and then 
-  2) calling the function \code{\link[=ZeroModifiedLognormal]{qzmlnorm}} or 
-  \code{\link[=ZeroModifiedLognormalAlt]{qzmlnormAlt}} and using the estimated 
-  distribution parameters. 
+  Quantiles are estimated by:
+  \enumerate{
+    \item estimating the distribution parameters by calling \code{\link{ezmlnorm}} or 
+    \code{\link{ezmlnormAlt}}, and then 
+
+    \item calling the function \code{\link[=ZeroModifiedLognormal]{qzmlnorm}} or 
+    \code{\link[=ZeroModifiedLognormalAlt]{qzmlnormAlt}} and using the estimated 
+    distribution parameters.
+  }
 }
 \value{
   If \code{x} is a numeric vector, \code{eqzmlnorm} and \code{eqzmlnormAlt} return a 

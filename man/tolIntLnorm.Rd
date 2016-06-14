@@ -168,7 +168,8 @@
 \seealso{
   \code{\link{tolIntNorm}}, \code{\link{Lognormal}}, \code{\link{LognormalAlt}}, 
   \code{\link{estimate.object}}, \code{\link{elnorm}}, \code{\link{elnormAlt}}, 
-  \code{\link{eqlnorm}}, \code{\link{predIntLnorm}}, 
+  \code{\link{eqlnorm}}, \cr
+  \code{\link{predIntLnorm}}, 
   \link{Tolerance Intervals}, \link{Estimating Distribution Parameters}, 
   \link{Estimating Distribution Quantiles}.
 }

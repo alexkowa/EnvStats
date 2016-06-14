@@ -31,7 +31,8 @@
   computing the plotting positions.  Otherwise, the first element is mapped to the 
   name \code{"a"} and the second element to the name \code{"b"}.  See the help file 
   for \code{\link{egevd}} for more information.  This argument is ignored if 
-  \code{pwme.method} is not equal to \code{"plotting.position"}.
+  \code{pwme.method} is not equal to \cr
+  \code{"plotting.position"}.
 }
   \item{alternative}{
   character string indicating the kind of alternative hypothesis.  The possible values 

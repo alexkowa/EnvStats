@@ -9,8 +9,10 @@
   order statistics used for the interval.
 }
 \usage{
-  tolIntNparConfLevel(n, coverage = 0.95, ltl.rank = ifelse(ti.type == "upper", 0, 1), 
-    n.plus.one.minus.utl.rank = ifelse(ti.type == "lower", 0, 1), ti.type = "two.sided")
+  tolIntNparConfLevel(n, coverage = 0.95, 
+    ltl.rank = ifelse(ti.type == "upper", 0, 1), 
+    n.plus.one.minus.utl.rank = ifelse(ti.type == "lower", 0, 1), 
+    ti.type = "two.sided")
 }
 \arguments{
   \item{n}{
@@ -24,18 +26,21 @@
 }
   \item{ltl.rank}{
   vector of positive integers indicating the rank of the order statistic to use for the lower bound 
-  of the tolerance interval.  If \code{ti.type="two-sided"} or \code{ti.type="lower"}, 
+  of the tolerance interval.  If \code{ti.type="two-sided"} or \cr
+  \code{ti.type="lower"}, 
   the default value is \code{ltl.rank=1} (implying the minimum value of \code{x} is used 
-  as the lower bound of the tolerance interval).  If \code{ti.type="upper"}, this argument 
+  as the lower bound of the tolerance interval).  If \cr
+  \code{ti.type="upper"}, this argument 
   is set equal to \code{0}.
 }
   \item{n.plus.one.minus.utl.rank}{
   vector of positive integers related to the rank of the order statistic to use for 
   the upper bound of the tolerance interval.  A value of 
   \code{n.plus.one.minus.utl.rank=1} (the default) means use the 
-  first largest value, and in general a value of 
+  first largest value, and in general a value of \cr
   \code{n.plus.one.minus.utl.rank=}\eqn{i} means use the \eqn{i}'th largest value.  
-  If \code{ti.type="lower"}, this argument is set equal to \code{0}.
+  If \cr
+  \code{ti.type="lower"}, this argument is set equal to \code{0}.
 }
   \item{ti.type}{
   character string indicating what kind of tolerance interval to compute.  

@@ -106,9 +106,9 @@
 \seealso{
   \code{\link{plotPredIntLnormAltTestPowerCurve}}, 
   \code{\link{predIntLnormAlt}}, 
-  \code{\link{predIntNorm}}, \code{\link{predIntNormK}}, 
+  \code{\link{predIntNorm}}, \code{\link{predIntNormK}}, \cr
   \code{\link{plotPredIntNormTestPowerCurve}}, 
-  \code{\link{predIntLnormAltSimultaneous}}, 
+  \code{\link{predIntLnormAltSimultaneous}}, \cr
   \code{\link{predIntLnormAltSimultaneousTestPower}}, \link{Prediction Intervals}, 
   \link{LognormalAlt}.
 }

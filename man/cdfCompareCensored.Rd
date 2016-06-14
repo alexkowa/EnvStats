@@ -60,13 +60,13 @@
   \code{0} corresponds to \code{FALSE}.  
   Missing (\code{NA}) values are allowed but will be removed.
 
-  This argument is ignored when \code{y} is not supplied.  The default value is 
+  This argument is ignored when \code{y} is not supplied.  The default value is \cr
   \code{y.censored=NULL} since the default value of \code{y} is \code{y=NULL}.
 }
   \item{y.censoring.side}{
   character string indicating on which side the censoring occurs for the values of 
   \code{y}.  The possible values are \code{"left"} (the default) and \code{"right"}. 
-  This argument is ignored when \code{y} is not supplied.  The default value is 
+  This argument is ignored when \code{y} is not supplied.  The default value is \cr
   \code{y.censoring.side=censoring.side}.
 }
   \item{discrete}{
@@ -101,7 +101,8 @@
   \item{distribution}{
   when \code{y} is not supplied, 
   a character string denoting the distribution abbreviation.  The default value is 
-  \code{distribution="norm"}.  See the help file for \code{\link{Distribution.df}} for a 
+  \code{distribution="norm"}.  See the help file for \cr 
+  \code{\link{Distribution.df}} for a 
   list of possible distribution abbreviations.  This argument is ignored if \code{y} 
   is supplied.
 }
@@ -116,9 +117,9 @@
   when \code{y} is not supplied, 
   a logical scalar indicating whether to compute the cdf for \code{x} 
   based on estimating the distribution parameters (\code{estimate.params=TRUE}) or 
-  using the known distribution parameters specified in \code{param.list} 
-  (\code{estimate.params=FALSE}).  The default value is \code{TRUE} unless 
-  the argument \code{param.list} is supplied.  The argument \code{estimate.params} 
+  using the known distribution parameters specified in \code{param.list} \cr
+  (\code{estimate.params=FALSE}).  The default value is \code{TRUE} unless the argument \cr
+  \code{param.list} is supplied.  The argument \code{estimate.params} 
   is ignored if \code{y} is supplied.
 }
   \item{est.arg.list}{
@@ -131,7 +132,7 @@
   the parameters.  
   (See the help file for \code{\link{Distribution.df}} for a list of available estimation 
   methods for each distribution.)  To override the default estimation method, supply the argument 
-  \code{est.arg.list} with a component called \code{method}; for example 
+  \code{est.arg.list} with a component called \code{method}; for example \cr
   \code{est.arg.list=list(method="mle")}.  The default value is 
   \code{est.arg.list=NULL} so that all default values for the estimating function are used.  
   This argument is ignored if \code{estimate.params=FALSE} or \code{y} is supplied.
@@ -145,7 +146,8 @@
   \item{y.or.fitted.col}{
   a numeric scalar or character string determining the color of the empirical cdf 
   (based on \code{y}) or the theoretical cdf line or points.  
-  The default value is \code{y.or.fitted.col="black"}.  See the entry for 
+  The default value is \cr
+  \code{y.or.fitted.col="black"}.  See the entry for 
   \code{col} in the help file for \code{\link{par}} for more information.
 }
   \item{x.lwd}{
@@ -240,7 +242,8 @@
   \item{type, main, xlab, ylab, xlim, ylim, \dots}{
   additional graphical parameters (see \code{\link{lines}} and \code{\link{par}}).  
   In particular, the argument \code{type} specifies the kind of line type.  
-  By default, the function \code{cdfCompareCensored} plots a step function (\code{type="s"}) 
+  By default, the function \cr
+  \code{cdfCompareCensored} plots a step function (\code{type="s"}) 
   when \code{discrete=TRUE}, and plots a straight line between points 
   (\code{type="l"}) when \code{discrete=FALSE}.  
   The user may override these defaults by supplying the graphics parameter \code{type} 
@@ -260,19 +263,22 @@
 }
 \value{
   When \code{y} is supplied, \code{cdfCompareCensored} invisibly returns a list with 
-  components \code{x.ecdf.list} and \code{y.ecdf.list}.  Each of these components 
-  is itself a list, with the components \code{Order.Statistics} and 
+  components:
+  \item{x.ecdf.list}{a list with components \code{Order.Statistics} and 
   \code{Cumulative.Probabilities}, giving coordinates of the points that have 
-  been plotted.
+  been plotted for the \code{x} values.}
+  \item{y.ecdf.list}{a list with components \code{Order.Statistics} and 
+  \code{Cumulative.Probabilities}, giving coordinates of the points that have 
+  been plotted for the \code{y} values.}
 
   When \code{y} is not supplied, \code{cdfCompareCensored} invisibly returns a list with 
-  components \code{x.ecdf.list} and \code{fitted.cdf.list}.  
-  The component \code{x.ecdf.list} is itself a list with the components 
-  \code{Order.Statistics} and \code{Cumulative.Probabilities}, giving coordinates of 
-  the points that have been plotted for the \code{x} values.  
-  The component \code{fitted.cdf.list} is itself a list with the components 
-  \code{Quantiles} and \code{Cumulative.Probabilities}, giving coordinates of the 
-  points that have been plotted for the fitted cdf.
+  components:
+  \item{x.ecdf.list}{a list with components \code{Order.Statistics} and 
+  \code{Cumulative.Probabilities}, giving coordinates of the points that have 
+  been plotted for the \code{x} values.}
+  \item{fitted.cdf.list}{a list with components \code{Quantiles} and 
+  \code{Cumulative.Probabilities}, giving coordinates of the 
+  points that have been plotted for the fitted cdf.}
 }
 \references{
   Chambers, J.M., W.S. Cleveland, B. Kleiner, and P.A. Tukey. (1983). 

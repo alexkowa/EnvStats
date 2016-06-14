@@ -14,9 +14,10 @@
   ends, and the color of the bars.
 }
 \usage{
-  errorBar(x, y = NULL, lower, upper, incr = TRUE, draw.lower = TRUE, draw.upper = TRUE, 
-    bar.ends = TRUE, gap = TRUE, add = FALSE, horizontal = FALSE, gap.size = 0.75, 
-    bar.ends.size = 1, col = 1, ..., xlab = deparse(substitute(x)), xlim, ylim)
+  errorBar(x, y = NULL, lower, upper, incr = TRUE, draw.lower = TRUE, 
+    draw.upper = TRUE, bar.ends = TRUE, gap = TRUE, add = FALSE, 
+    horizontal = FALSE, gap.size = 0.75, bar.ends.size = 1, col = 1, 
+    ..., xlab = deparse(substitute(x)), xlim, ylim)
 }
 \arguments{
   \item{x, y}{

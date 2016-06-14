@@ -36,8 +36,8 @@
 }
   \item{plot.pos.cons}{
   numeric vector of length 2 specifying the constants used in the formula for the 
-  plotting positions when \code{method="pwme"} and 
-  \code{pwme.method="plotting.position"}.  The default value is 
+  plotting positions when \code{method="pwme"} and \cr
+  \code{pwme.method="plotting.position"}.  The default value is \cr
   \code{plot.pos.cons=c(a=0.35, b=0)}.  If this vector has a names attribute with 
   the value \code{c("a","b")} or \code{c("b","a")}, then the elements will be 
   matched by name in the formula for computing the plotting positions.  Otherwise, 
@@ -184,7 +184,8 @@
 }
 \value{
   a list of class \code{"estimate"} containing the estimated parameters and other information.  
-  See \code{\link{estimate.object}} for details.
+  See \cr
+  \code{\link{estimate.object}} for details.
 }
 \references{
   Castillo, E. (1988).  \emph{Extreme Value Theory in Engineering}.  

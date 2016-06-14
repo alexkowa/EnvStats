@@ -43,7 +43,7 @@
   is c(1, 20).
 }
   \item{n}{
-  numeric scalar indicating the sample size.  The default value is  
+  numeric scalar indicating the sample size.  The default value is \cr 
   \code{max(25, lpl.rank + n.plus.one.minus.upl.rank + 1)}.  
   Missing (\code{NA}), undefined (\code{NaN}), and infinite (\code{Inf}, \code{-Inf}) 
   values are not allowed.  
@@ -98,9 +98,10 @@
   non-negative integer related to the rank of the order statistic to use for 
   the upper bound of the prediction interval.  A value of 
   \code{n.plus.one.minus.upl.rank=1} (the default) means use the 
-  first largest value, and in general a value of 
+  first largest value, and in general a value of \cr
   \code{n.plus.one.minus.upl.rank=}\eqn{i} means use the \eqn{i}'th largest value.  
-  If \code{pi.type="lower"}, this argument is set equal to \code{0}.
+  If \cr
+  \code{pi.type="lower"}, this argument is set equal to \code{0}.
 }
   \item{n.max}{
   numeric scalar indicating the maximum sample size to consider when \code{y.var="n"}.  
@@ -130,9 +131,8 @@
 }
   \item{n.points}{
   a numeric scalar specifying how many (x,y) pairs to use to produce the plot.  
-  There are \code{n.points} x-values evenly spaced between 
-  \code{range.x.var[1]} and \code{range.x.var[2]}.  The default value is 
-  \code{n.points=100}.
+  There are \code{n.points} x-values evenly spaced between \code{range.x.var[1]} and \cr
+  \code{range.x.var[2]}.  The default value is \code{n.points=100}.
 }
   \item{plot.col}{
   a numeric scalar or character string determining the color of the plotted 
@@ -160,7 +160,7 @@
 }
 \details{
   See the help file for \code{\link{predIntNparSimultaneous}}, 
-  \code{\link{predIntNparSimultaneousConfLevel}}, and 
+  \code{\link{predIntNparSimultaneousConfLevel}}, and \cr
   \code{\link{predIntNparSimultaneousN}} for information on how to compute a 
   simultaneous nonparametric prediction interval, how the confidence level 
   is computed when other quantities are fixed, and how the sample size is 
@@ -182,7 +182,7 @@
 }
 \seealso{
   \code{\link{predIntNparSimultaneous}}, 
-  \code{\link{predIntNparSimultaneousConfLevel}}, 
+  \code{\link{predIntNparSimultaneousConfLevel}}, \cr
   \code{\link{predIntNparSimultaneousN}}, 
   \code{\link{predIntNparSimultaneousTestPower}}, 
   \code{\link{predIntNpar}}, \code{\link{tolIntNpar}}.

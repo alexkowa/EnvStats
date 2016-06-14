@@ -14,7 +14,7 @@
 \details{
   Objects of S3 class \code{"permutationTest"} are returned by any of the 
   \pkg{EnvStats} functions that perform permutation tests.  Currently, these are:  
-  \code{\link{oneSamplePermutationTest}},  
+  \code{\link{oneSamplePermutationTest}},  \cr
   \code{\link{twoSamplePermutationTestLocation}}, and 
   \code{\link{twoSamplePermutationTestProportion}}. 
 }
@@ -66,7 +66,7 @@
 }
 \seealso{
   \code{\link{print.permutationTest}}, \code{\link{plot.permutationTest}}, 
-  \code{\link{oneSamplePermutationTest}},  
+  \code{\link{oneSamplePermutationTest}},  \cr
   \code{\link{twoSamplePermutationTestLocation}},  
   \code{\link{twoSamplePermutationTestProportion}}, \link{Hypothesis Tests}.
 }

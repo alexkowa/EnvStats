@@ -50,8 +50,8 @@
   For example, all functions used to estimate distribution parameters have an optional argument 
   called \code{method} that specifies the method to use to estimate the parameters.  
   (See the help file for \code{\link{Distribution.df}} for a list of available estimation 
-  methods for each distribution.)  To override the default estimation method, supply the argument 
-  \code{est.arg.list} with a component called \code{method}; for example 
+  methods for each distribution.)  To override the default estimation method, supply the argument \cr
+  \code{est.arg.list} with a component called \code{method}; for example \cr
   \code{est.arg.list=list(method="mle")}.  The default value is 
   \code{est.arg.list=NULL} so that all default values for the estimating function are used.  
   This argument is ignored if \code{estimate.params=FALSE}.

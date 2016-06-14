@@ -102,12 +102,15 @@ gofTest(y, ...)
   \item{est.arg.list}{
   a list of arguments to be passed to the function estimating the distribution parameters.  
   For example, if \code{test="sw"} and \code{distribution="gamma"}, setting \cr
-  \code{est.arg.list=list(method="bcmle")} indicates using the bias-corrected maximum-likelihood 
+  \code{est.arg.list=list(method="bcmle")} indicates using the bias-corrected \cr
+  maximum-likelihood 
   estimators of shape and scale (see the help file for \code{\link{egamma}}).  
   See the help file 
   \link{Estimating Distribution Parameters} for a list of estimating functions.  
   The default value is \code{est.arg.list=NULL} so that all default values for the 
-  estimating function are used.  This argument is ignored if \code{estimate.params=FALSE}.
+  estimating function are used.  This argument is ignored if \cr
+  \code{estimate.params=FALSE}.
+
 
   When \code{test="sw"}, \code{test="sf"}, \code{test="ppcc"}, or \code{test="skew"}, 
   and you are testing for some form of normality (i.e., \link{Normal}, \link{Lognormal}, 
@@ -118,14 +121,17 @@ gofTest(y, ...)
   output merely for information, and the choice of the method of estimation has no effect 
   on the goodness-of-fit test statistic or p-value.
 
+
   When \code{test="ks"}, \code{x} is not supplied, and 
   \code{estimate.params=TRUE}, the estimated parameters are used to 
   specify the null hypothesis of which distribution 
   the data are assumed to come from. 
 
+
   When \code{test="chisq"} and \code{estimate.params=TRUE}, 
   the estimated parameters are used to specify the null hypothesis of which distribution 
   the data are assumed to come from. 
+
 
   When \code{test="ws"}, this argument is ignored.
 }
@@ -552,7 +558,7 @@ gofTest(y, ...)
     \deqn{H_a: \sqrt{\beta}_1 \ne 0 \;\;\;\;\;\; (57)}
     \deqn{H_a: \sqrt{\beta}_1 < 0 \;\;\;\;\;\; (58)}
     \deqn{H_a: \sqrt{\beta}_1 > 0 \;\;\;\;\;\; (59)}
-    which correspond to \code{alternative="two-sided"}, \code{alternative="less"}, and 
+    which correspond to \code{alternative="two-sided"}, \code{alternative="less"}, and \cr
     \code{alternative="greater"}, respectively.
 
     To test the null hypothesis of zero skew, D'Agostino (1970) derived an 
@@ -671,7 +677,8 @@ gofTest(y, ...)
 }
 \value{
   a list of class \code{"gof"} containing the results of the goodness-of-fit test, unless 
-  the two-sample Kolmogorov-Smirnov test is used, in which case the value is a list of 
+  the two-sample \cr
+  Kolmogorov-Smirnov test is used, in which case the value is a list of 
   class \code{"gofTwoSample"}.  Objects of class \code{"gof"} and \code{"gofTwoSample"} 
   have special printing and plotting methods.  See the help files for \code{\link{gof.object}} 
   and \code{\link{gofTwoSample.object}} for details.

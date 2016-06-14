@@ -78,7 +78,8 @@
 }
 \value{
   a list of class \code{"estimate"} containing the estimated parameters and other information.  
-  See \code{\link{estimate.object}} for details.
+  See \cr
+  \code{\link{estimate.object}} for details.
 }
 \references{
   Forbes, C., M. Evans, N. Hastings, and B. Peacock. (2011).  Statistical Distributions. 

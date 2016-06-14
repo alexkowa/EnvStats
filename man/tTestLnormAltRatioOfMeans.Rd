@@ -17,8 +17,8 @@
 \arguments{
   \item{n.or.n1}{
   numeric vector of sample sizes.  When \code{sample.type="one.sample"}, 
-  \code{n.or.n1} denotes \eqn{n}, the number of observations in the single sample.  
-  When \code{sample.type="two.sample"}, \code{n.or.n1} denotes \eqn{n_1}, the number 
+  \code{n.or.n1} denotes \eqn{n}, the number of observations in the single sample.  When \cr
+  \code{sample.type="two.sample"}, \code{n.or.n1} denotes \eqn{n_1}, the number 
   of observations from group 1.  
   Missing (\code{NA}), undefined (\code{NaN}), and infinite (\code{Inf}, \code{-Inf}) 
   values are \bold{\emph{not}} allowed.
@@ -46,9 +46,9 @@
   \item{sample.type}{
   character string indicating whether to compute power based on a one-sample or 
   two-sample hypothesis test.  When \code{sample.type="one.sample"}, the computed 
-  power is based on a hypothesis test for a single mean.  When 
+  power is based on a hypothesis test for a single mean.  When \cr
   \code{sample.type="two.sample"}, the computed power is based on a hypothesis test 
-  for the difference between two means.  The default value is 
+  for the difference between two means.  The default value is \cr
   \code{sample.type="one.sample"} unless the argument \code{n2} is supplied.
 }
   \item{alternative}{
@@ -57,7 +57,7 @@
 }
   \item{two.sided.direction}{
   character string indicating the direction (greater than 1 or less than 1) for the 
-  detectable ratio of means when \code{alternative="two.sided"}.  When 
+  detectable ratio of means when \code{alternative="two.sided"}.  When \cr
   \code{two.sided.direction="greater"} (the default), the detectable ratio of means 
   is greater than 1.  When \code{two.sided.direction="less"}, the detectable ratio of 
   means is less than 1 (but greater than 0).  This argument is ignored if 
@@ -91,7 +91,7 @@
   sample size, and Type I error level.
 }
 \value{
-  a numeric vector of computed minimal or maximal detectable ratios of means.  When 
+  a numeric vector of computed minimal or maximal detectable ratios of means.  When \cr
   \code{alternative="less"}, or \code{alternative="two.sided"} and 
   \code{two.sided.direction="less"}, the computed ratios are less than 1 
   (but greater than 0).  Otherwise, the ratios are greater than 1.

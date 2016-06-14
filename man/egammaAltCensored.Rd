@@ -79,7 +79,7 @@
 }
   \item{ci.sample.size}{
   numeric scalar indicating what sample size to assume to construct the 
-  confidence interval for the mean if \code{pivot.statistic="t"} and 
+  confidence interval for the mean if \code{pivot.statistic="t"} and \cr
   \code{ci.method="normal.approx"}.  The default value is the number of 
   uncensored observations.
 }
@@ -260,7 +260,8 @@
       \eqn{\underline{x}}.
 
     \item Repeat Steps 1 and 2 \eqn{B} times, where \eqn{B} is some large number.  
-      For the function \code{egammaAltCensored}, the number of bootstraps \eqn{B} is 
+      For the function \cr
+      \code{egammaAltCensored}, the number of bootstraps \eqn{B} is 
       determined by the argument \code{n.bootstraps} (see the section ARGUMENTS above).  
       The default value of \code{n.bootstraps} is \code{1000}.
 

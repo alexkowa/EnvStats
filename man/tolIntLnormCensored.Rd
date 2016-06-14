@@ -54,22 +54,23 @@
   character string indicating the method to use for parameter estimation on the log-scale.  \cr
   \cr
   For singly censored data, possible values are \code{"mle"} (the default), \code{"bcmle"}, 
-  \code{"qq.reg"}, \code{"qq.reg.w.cen.level"}, \code{"impute.w.qq.reg"}, 
-  \code{"impute.w.qq.reg.w.cen.level"}, \code{"impute.w.mle"}, \code{"iterative.impute.w.qq.reg"}, 
+  \code{"qq.reg"}, \code{"qq.reg.w.cen.level"}, \code{"impute.w.qq.reg"}, \cr
+  \code{"impute.w.qq.reg.w.cen.level"}, \code{"impute.w.mle"}, \cr
+  \code{"iterative.impute.w.qq.reg"}, 
   \code{"m.est"}, and \code{"half.cen.level"}.  See the help file for \code{\link{enormCensored}} 
   for details. \cr
   \cr
   For multiply censored data, possible values are \code{"mle"} (the default), \code{"qq.reg"}, 
-  \code{"impute.w.qq.reg"}, and \code{"half.cen.level"}.  See the help file for 
+  \code{"impute.w.qq.reg"}, and \code{"half.cen.level"}.  See the help file for \cr
   \code{\link{enormCensored}} for details.
 }
   \item{ti.method}{
   character string specifying the method for constructing the tolerance 
-  interval.  Possible values are 
-  \code{"exact.for.complete"} (the default), 
-  \code{"gpq"} (Generalized Pivotal Quantity), and, for a two-sided 
-  tolerance interval (i.e., when \code{ti.type="two-sided"}), 
-  \code{"wald.wolfowitz.for.complete"}.  
+  interval.  Possible values are: \cr
+  \code{"exact.for.complete"} (the default), \cr
+  \code{"gpq"} (Generalized Pivotal Quantity), and \cr
+  \code{"wald.wolfowitz.for.complete"} (only available for a two-sided tolerance interval,  
+  i.e., when \code{ti.type="two-sided"}).  \cr 
   See the DETAILS section for more information.
 }
   \item{seed}{
@@ -168,7 +169,8 @@
 \seealso{
   \code{\link{tolIntNormCensored}}, 
   \code{\link{gpqTolIntNormSinglyCensored}}, \code{\link{eqnormCensored}},  
-  \code{\link{enormCensored}}, \code{\link{estimateCensored.object}}.
+  \code{\link{enormCensored}}, \cr
+  \code{\link{estimateCensored.object}}.
 }
 \examples{
   # Generate 20 observations from a lognormal distribution with parameters 

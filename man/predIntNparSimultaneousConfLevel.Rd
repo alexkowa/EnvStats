@@ -61,11 +61,9 @@
   vector of positive integers related to the rank of the order statistic to use for 
   the upper 
   bound of the prediction interval.  A value of \code{n.plus.one.minus.upl.rank=1} 
-  means use the first largest value, and in general a value of 
-  \code{n.plus.one.minus.upl.rank=}\eqn{i} means use the \eqn{i}'th largest value. 
-  When \code{pi.type="upper"}, the default value is \code{n.plus.one.minus.upl.rank=1}. 
-  When \code{pi.type="lower"}, the argument \code{n.plus.one.minus.upl.rank} is set 
-  equal to \code{0}.
+  (the default) means use the first largest value, and in general a value of \cr
+  \code{n.plus.one.minus.upl.rank=}\eqn{i} means use the \eqn{i}'th largest value.  If \cr
+  \code{pi.type="lower"}, this argument is set equal to \code{0}.
 }
   \item{pi.type}{
   character string indicating what kind of prediction interval to compute.  

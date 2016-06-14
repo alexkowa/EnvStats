@@ -18,18 +18,24 @@ function (x, method = ifelse(paired && paired.lines, "overplot",
     group.difference.ci = p.value, group.difference.conf.level = 0.95, 
     group.difference.digits = location.scale.digits, ci.and.test = "parametric", 
     ci.arg.list = NULL, test.arg.list = NULL, alternative = "two.sided", 
-    plot.diff = FALSE, diff.col = col[1], diff.pch = pch[1], 
-    paired = FALSE, paired.lines = paired, paired.lty = 1:6, 
-    paired.lwd = 1, paired.pch = 1:14, paired.col = NULL, diff.name = NULL, 
-    diff.name.cex = group.names.cex, sep.line = TRUE, sep.lty = 2, 
-    sep.lwd = cex, sep.col = "gray", diff.lim = NULL, diff.at = NULL, 
-    diff.axis.label = NULL, plot.diff.mar = c(5, 4, 4, 4) + 0.1, 
-    ...) 
+    plot.diff = FALSE, diff.col = col[1], diff.method = "stack", 
+    diff.pch = pch[1], paired = FALSE, paired.lines = paired, 
+    paired.lty = 1:6, paired.lwd = 1, paired.pch = 1:14, paired.col = NULL, 
+    diff.name = NULL, diff.name.cex = group.names.cex, sep.line = TRUE, 
+    sep.lty = 2, sep.lwd = cex, sep.col = "gray", diff.lim = NULL, 
+    diff.at = NULL, diff.axis.label = NULL, plot.diff.mar = c(5, 
+        4, 4, 4) + 0.1, ...) 
 {
     method <- pmatch(method, c("overplot", "jitter", "stack"))[1L]
     if (is.na(method) || method == 0L) 
-        stop("invalid plotting method")
-    if (method == 2L) 
+        stop("Invalid value for the argument 'method'")
+    if (plot.diff && paired) 
+        diff.method <- pmatch(diff.method, c("overplot", "jitter", 
+            "stack"))[1L]
+    if (is.na(diff.method) || diff.method == 0L) 
+        stop("Invalid value for the argument 'diff.method'")
+    if (method == 2L || (plot.diff && paired && diff.method == 
+        2L)) 
         set.seed(seed)
     n.text <- match.arg(n.text, c("bottom", "top", "none"))
     if (!vertical & n.text != "none") 
@@ -185,8 +191,15 @@ function (x, method = ifelse(paired && paired.lines, "overplot",
             log = log, ...)
         if (frame.plot) 
             box(...)
-        if (axes && n == 2 && plot.diff && is.null(diff.name)) 
-            diff.name <- paste(rev(group.names), collapse = "-")
+        csize <- cex * ifelse(vertical, xinch(par("cin")[1L]), 
+            yinch(par("cin")[2L]))
+        if (n == 2 && plot.diff) {
+            if (!paired && show.ci && method != 2L) {
+                at[3] <- at[3] + (ci.offset[3] * csize)/2
+            }
+            if (axes && is.null(diff.name)) 
+                diff.name <- paste(rev(group.names), collapse = "-")
+        }
         if (vertical) {
             if (axes) {
                 if (n == 2L && plot.diff) {
@@ -229,7 +242,10 @@ function (x, method = ifelse(paired && paired.lines, "overplot",
         }
         title(xlab = xlab, ylab = ylab, ...)
     }
-    csize <- cex * ifelse(vertical, xinch(par("cin")[1L]), yinch(par("cin")[2L]))
+    else {
+        csize <- cex * ifelse(vertical, xinch(par("cin")[1L]), 
+            yinch(par("cin")[2L]))
+    }
     n.vec <- rep.int(as.numeric(NA), n)
     location.vec <- rep.int(as.numeric(NA), n)
     scale.vec <- location.vec
@@ -437,10 +453,10 @@ function (x, method = ifelse(paired && paired.lines, "overplot",
                 if (ci.and.test == "nonparametric") {
                   test.fcn <- "wilcox.test"
                   p.val.string <- "Wilcoxon p-value"
+                  if (paired) 
+                    p.val.string <- paste("Paired", p.val.string)
                   if (is.null(test.arg.list)) {
                     test.arg.list <- list(conf.int = TRUE, paired = paired)
-                    if (paired) 
-                      p.val.string <- "Paired Wilcoxon p-value"
                   }
                   else {
                     if (all(is.na(pmatch(names(test.arg.list), 
@@ -457,31 +473,46 @@ function (x, method = ifelse(paired && paired.lines, "overplot",
                       "paired")))) {
                       index <- (1:length(test.arg.list))[!is.na(pmatch(names(test.arg.list), 
                         "paired"))]
-                      test.arg.list[[index]] <- paired
-                      if (unlist(test.arg.list[index])) 
-                        p.val.string <- "Paired Wilcoxon p-value"
+                      if (test.arg.list[[index]] != paired) {
+                        test.arg.list[[index]] <- paired
+                        warning(paste("The value of the component named 'paired' in", 
+                          "the argument 'test.arg.list' has been reset to the value", 
+                          "of the argument 'paired'."))
+                      }
                     }
                   }
                 }
                 else {
                   test.fcn <- "t.test"
                   p.val.string <- "t-test p-value"
+                  if (paired) 
+                    p.val.string <- paste("Paired", p.val.string)
                   if (is.null(test.arg.list)) {
-                    test.arg.list <- list(var.equal = TRUE, paired = paired)
-                    if (paired) 
-                      p.val.string <- "Paired t-test p-value"
-                  }
-                  else {
-                    if (!all(is.na(pmatch(names(test.arg.list), 
-                      "paired")))) {
-                      index <- (1:length(test.arg.list))[!is.na(pmatch(names(test.arg.list), 
-                        "paired"))]
-                      test.arg.list[[index]] <- paired
-                      if (unlist(test.arg.list[index])) 
-                        p.val.string <- "Paired t-test p-value"
+                    if (paired) {
+                      test.arg.list <- list(paired = paired)
                     }
                     else {
-                      if (is.null(test.arg.list) || all(is.na(pmatch(names(test.arg.list), 
+                      test.arg.list <- list(var.equal = TRUE, 
+                        paired = paired)
+                    }
+                  }
+                  else {
+                    if (all(is.na(pmatch(names(test.arg.list), 
+                      "paired")))) {
+                      test.arg.list <- c(test.arg.list, list(paired = paired))
+                    }
+                    else {
+                      index <- (1:length(test.arg.list))[!is.na(pmatch(names(test.arg.list), 
+                        "paired"))]
+                      if (test.arg.list[[index]] != paired) {
+                        test.arg.list[[index]] <- paired
+                        warning(paste("The value of the component named 'paired' in", 
+                          "the argument 'test.arg.list' has been reset to the value", 
+                          "of the argument 'paired'."))
+                      }
+                    }
+                    if (!paired) {
+                      if (all(is.na(pmatch(names(test.arg.list), 
                         "var.equal")))) {
                         test.arg.list <- c(test.arg.list, list(var.equal = TRUE))
                       }
@@ -527,8 +558,17 @@ function (x, method = ifelse(paired && paired.lines, "overplot",
                 if (plot.diff) {
                   usr <- par("usr")
                   if (!paired) {
-                    if (is.null(diff.lim)) 
-                      diff.lim <- range(pretty(range(ci)))
+                    if (is.null(diff.lim)) {
+                      if (vertical) {
+                        axis.hw <- diff(range(usr[3:4]))/2
+                      }
+                      else {
+                        axis.hw <- diff(range(usr[1:2]))/2
+                      }
+                      axis.ctr <- mean(ci)
+                      diff.lim <- range(c(axis.ctr - axis.hw, 
+                        axis.ctr + axis.hw, ci))
+                    }
                     if (is.null(diff.axis.label)) 
                       diff.axis.label <- "Difference Between Groups"
                     if (vertical) {
@@ -574,19 +614,23 @@ function (x, method = ifelse(paired && paired.lines, "overplot",
                     y.at <- at[3] - (ci.offset[3] * csize)/2
                     x <- groups[[2]] - groups[[1]]
                     y <- rep.int(y.at, length(x))
-                    if (method == 2L) 
+                    if (diff.method == 2L) 
                       y <- y + stats::runif(length(y), -jitter, 
                         jitter)
-                    else if (method == 3L) {
+                    else if (diff.method == 3L) {
                       xg <- split(x, factor(x))
                       xo <- lapply(xg, seq_along)
                       x <- unlist(xg, use.names = FALSE)
                       y <- rep.int(y.at, length(x)) + (unlist(xo, 
                         use.names = FALSE) - 1) * offset * csize
                     }
-                    if (is.null(diff.lim)) 
-                      diff.lim <- range(pretty(c(x, range(ci))), 
-                        na.rm = TRUE)
+                    if (is.null(diff.lim)) {
+                      rng <- range(x, ci, na.rm = TRUE)
+                      hw <- 0.04 * diff(rng)
+                      rng[1] <- rng[1] - hw
+                      rng[2] <- rng[2] + hw
+                      diff.lim <- range(pretty(rng))
+                    }
                     if (is.null(diff.axis.label)) 
                       diff.axis.label <- "Paired Difference"
                     if (vertical) {

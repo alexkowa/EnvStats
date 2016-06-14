@@ -17,8 +17,8 @@
 \arguments{
   \item{n.or.n1}{
   numeric vector of sample sizes.  When \code{sample.type="one.sample"}, 
-  \code{n.or.n1} denotes \eqn{n}, the number of observations in the single sample.  
-  When \code{sample.type="two.sample"}, \code{n.or.n1} denotes \eqn{n_1}, the number 
+  \code{n.or.n1} denotes \eqn{n}, the number of observations in the single sample.  When \cr
+  \code{sample.type="two.sample"}, \code{n.or.n1} denotes \eqn{n_1}, the number 
   of observations from group 1.  
   Missing (\code{NA}), undefined (\code{NaN}), and infinite (\code{Inf}, \code{-Inf}) 
   values are \bold{\emph{not}} allowed.
@@ -40,9 +40,9 @@
   \item{sample.type}{
   character string indicating whether to compute power based on a one-sample or 
   two-sample hypothesis test.  When \code{sample.type="one.sample"}, the computed 
-  power is based on a hypothesis test for a single mean.  When 
+  power is based on a hypothesis test for a single mean.  When \cr
   \code{sample.type="two.sample"}, the computed power is based on a hypothesis test 
-  for the difference between two means.  The default value is 
+  for the difference between two means.  The default value is \cr
   \code{sample.type="one.sample"} unless the argument \code{n2} is supplied.
 }
   \item{alternative}{
@@ -51,11 +51,12 @@
 }
   \item{two.sided.direction}{
   character string indicating the direction (positive or negative) for the 
-  scaled minimal detectable difference when \code{alternative="two.sided"}.  
-  When \code{two.sided.direction="greater"} (the default), the scaled minimal 
+  scaled minimal detectable difference when \code{alternative="two.sided"}.  When \cr
+  \code{two.sided.direction="greater"} (the default), the scaled minimal 
   detectable difference is positive.  When \code{two.sided.direction="less"}, 
   the scaled minimal detectable difference is negative.  This argument 
-  is ignored if \code{alternative="less"} or \code{alternative="greater"}.
+  is ignored if \cr
+  \code{alternative="less"} or \code{alternative="greater"}.
 }
   \item{approx}{
   logical scalar indicating whether to compute the power based on an approximation to 

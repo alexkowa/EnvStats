@@ -56,7 +56,7 @@
 }
   \item{scale.shift.null}{
   numeric scalar indicating the hypothesized value of \eqn{\tau}, the scale shift 
-  between the two distributions, under the null hypothesis.  The default value is 
+  between the two distributions, under the null hypothesis.  The default value is \cr
   \code{scale.shift.null=1}.  This argument is ignored if \code{shift.type="location"}.
 }
   \item{alternative}{
@@ -77,9 +77,10 @@
 }
   \item{surv.est}{
   character string indicating what method to use to estimate the survival function.  
-  The possible values are \code{"prentice"} (the default), \code{"kaplan-meier"}, 
+  The possible values are \code{"prentice"} (the default), \code{"kaplan-meier"}, \cr
   \code{"peto-peto"}, and \code{"altshuler"}.  When \code{test="logrank"} the  
-  argument \code{surv.est} is automatically set to \code{"altshuler"} and cannot 
+  argument \cr
+  \code{surv.est} is automatically set to \code{"altshuler"} and cannot 
   be changed by the user.  
   See the DETAILS section below for more information.
 }

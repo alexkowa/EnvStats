@@ -68,7 +68,8 @@
   \eqn{\lambda}:  based on the exact distribution of the estimator of 
   \eqn{\lambda} (\code{ci.type="exact"}), based on an approximation of 
   Pearson and Hartley (\code{ci.type="pearson.hartley.approx"}), or based on the 
-  normal approximation (\code{ci.type="normal.approx"}).
+  normal approximation \cr
+  (\code{ci.type="normal.approx"}).
 
   \emph{Exact Confidence Interval} (\code{ci.method="exact"}) \cr
   If \code{ci.type="two-sided"}, an exact \eqn{(1-\alpha)100\%} confidence interval 
@@ -114,7 +115,7 @@
   One-sided confidence intervals are constructed in a similar manner.
 }
 \value{
-  a list of class \code{"estimate"} containing the estimated parameters and other information.  
+  a list of class \code{"estimate"} containing the estimated parameters and other information. \cr 
   See \code{\link{estimate.object}} for details.
 }
 \references{

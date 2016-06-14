@@ -37,16 +37,16 @@
   random values are returned.
 }
   \item{mean1}{
-  vector of means of the first lognormal random variable.  
-  The default is \code{meanlog1=sqrt(exp(1) - 1)}.  
+  vector of means of the first lognormal random variable.  The default is \cr
+  \code{meanlog1=sqrt(exp(1) - 1)}.  
 }
   \item{cv1}{
   vector of coefficient of variations of the first lognormal random variable.  
   The default is \code{sdlog1=sqrt(exp(1) - 1)}.  
 }
   \item{mean2}{
-  vector of means of the second lognormal random variable.  
-  The default is \code{mean2=sqrt(exp(1) - 1)}.
+  vector of means of the second lognormal random variable.  The default is \cr
+  \code{mean2=sqrt(exp(1) - 1)}.
 }
   \item{cv2}{
   vector of coefficient of variations of the second lognormal random variable.  

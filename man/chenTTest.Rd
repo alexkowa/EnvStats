@@ -42,7 +42,7 @@
 }
   \item{conf.level}{
   numeric scalar between 0 and 1 indicating the confidence level associated with the 
-  confidence interval for the population mean.  The default value is 
+  confidence interval for the population mean.  The default value is \cr
   \code{conf.level=0.95}.
 }
   \item{ci.method}{

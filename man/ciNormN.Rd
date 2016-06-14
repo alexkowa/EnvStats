@@ -48,7 +48,7 @@
 }
   \item{n.max}{
   positive integer greater than 1 specifying the maximum sample size for the single 
-  group when \code{sample.type="one.sample"} or for group 1 when 
+  group when \code{sample.type="one.sample"} or for group 1 when \cr
   \code{sample.type="two.sample"}.  The default value is \code{n.max=5000}.
 }
   \item{tol}{

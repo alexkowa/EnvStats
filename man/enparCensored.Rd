@@ -42,16 +42,16 @@
 }
   \item{left.censored.min}{
   Only relevant for the case when \code{censoring.side="left"} and the smallest 
-  censored value is less than the smallest uncensored value.  In this 
-  case, \code{left.censored.min} must be a character string with the possible values 
+  censored value is less than the smallest uncensored value.  In this case, \cr
+  \code{left.censored.min} must be a character string with the possible values 
   \code{"DL"} (detection limit; the default), \code{"DL/2"} (half the detection limit), 
   or \code{"Ignore"}, or else a numeric scalar between 0 and the smallest censored 
   value.  See the DETAILS section for more information.
 }
   \item{right.censored.max}{
   Only relevant for the case when \code{censoring.side="right"} and the largest 
-  censored value is greater than the largest uncensored value.  In this 
-  case, \code{right.censored.max} must be a character string with the possible values 
+  censored value is greater than the largest uncensored value.  In this case, \cr
+  \code{right.censored.max} must be a character string with the possible values 
   \code{"DL"} (detection limit; the default) or \code{"Ignore"}, or else a numeric 
   scalar greater than or equal to the largest censored value.  
   See the DETAILS section for more information.
@@ -89,10 +89,10 @@
 }
   \item{ci.sample.size}{
   numeric scalar or a \code{NULL} object indicating what sample size to assume when 
-  computing the confidence interval for the mean when \code{ci.method="normal.approx"} 
-  and \code{pivot.statistic="t"}.  The default value is \code{ci.sample.size=NULL}, 
-  in which case \code{ci.sample.size} is equal to the number of uncensored observations.  
-  This argument is ignored if \code{ci=FALSE}.
+  computing the confidence interval for the mean when \cr
+  \code{ci.method="normal.approx"} and \code{pivot.statistic="t"}.  The default value is 
+  \code{ci.sample.size=NULL}, in which case \code{ci.sample.size} is equal to the number 
+  of uncensored observations.  This argument is ignored if \code{ci=FALSE}.
 }
   \item{n.bootstraps}{
   numeric scalar indicating how many bootstraps to use to construct the 

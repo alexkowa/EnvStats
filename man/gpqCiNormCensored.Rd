@@ -46,8 +46,10 @@
   \cr
   For singly censored data, possible values are \code{"mle"} (the default), 
   \code{"bcmle"}, \code{"qq.reg"}, \code{"qq.reg.w.cen.level"}, 
-  \code{"impute.w.qq.reg"}, \code{"impute.w.qq.reg.w.cen.level"}, 
-  \code{"impute.w.mle"}, \code{"iterative.impute.w.qq.reg"}, 
+  \code{"impute.w.qq.reg"}, \cr
+  \code{"impute.w.qq.reg.w.cen.level"}, 
+  \code{"impute.w.mle"}, \cr
+  \code{"iterative.impute.w.qq.reg"}, 
   \code{"m.est"}, and \code{"half.cen.level"}.  See the help file for 
   \code{\link{enormCensored}} for details. \cr
   \cr
@@ -71,7 +73,8 @@
 }
 \details{
   The functions \code{gpqCiNormSinglyCensored} and \code{gpqCiNormMultiplyCensored} 
-  are called by \code{\link{enormCensored}} when \code{ci.method="gpq"}.  They are 
+  are called by \cr
+  \code{\link{enormCensored}} when \code{ci.method="gpq"}.  They are 
   used to construct generalized pivotal quantities to create confidence intervals 
   for the mean \eqn{\mu} of an assumed normal distribution.
 

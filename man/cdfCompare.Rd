@@ -12,10 +12,11 @@
 }
 \usage{
   cdfCompare(x, y = NULL, discrete = FALSE, 
-    prob.method = ifelse(discrete, "emp.probs", "plot.pos"), 
-    plot.pos.con = NULL, distribution = "norm", param.list = NULL, 
-    estimate.params = is.null(param.list), est.arg.list = NULL, x.col = "blue", 
-    y.or.fitted.col = "black", x.lwd = 3 * par("cex"), y.or.fitted.lwd = 3 * par("cex"), 
+    prob.method = ifelse(discrete, "emp.probs", "plot.pos"), plot.pos.con = NULL, 
+    distribution = "norm", param.list = NULL, 
+    estimate.params = is.null(param.list), est.arg.list = NULL, 
+    x.col = "blue", y.or.fitted.col = "black", 
+    x.lwd = 3 * par("cex"), y.or.fitted.lwd = 3 * par("cex"), 
     x.lty = 1, y.or.fitted.lty = 2, digits = .Options$digits, ..., 
     type = ifelse(discrete, "s", "l"), main = NULL, xlab = NULL, ylab = NULL, 
     xlim = NULL, ylim = NULL)
@@ -59,7 +60,8 @@
   \item{distribution}{
   when \code{y} is not supplied, 
   a character string denoting the distribution abbreviation.  The default value is 
-  \code{distribution="norm"}.  See the help file for \code{\link{Distribution.df}} for a 
+  \code{distribution="norm"}.  See the help file for \cr
+  \code{\link{Distribution.df}} for a 
   list of possible distribution abbreviations.  This argument is ignored if \code{y} 
   is supplied.
 }
@@ -74,9 +76,9 @@
   when \code{y} is not supplied, 
   a logical scalar indicating whether to compute the cdf for \code{x} 
   based on estimating the distribution parameters (\code{estimate.params=TRUE}) or 
-  using the known distribution parameters specified in \code{param.list} 
-  (\code{estimate.params=FALSE}).  The default value is \code{TRUE} unless 
-  the argument \code{param.list} is supplied.  The argument \code{estimate.params} 
+  using the known distribution parameters specified in \code{param.list} \cr
+  (\code{estimate.params=FALSE}).  The default value is \code{TRUE} unless the argument \cr
+  \code{param.list} is supplied.  The argument \code{estimate.params} 
   is ignored if \code{y} is supplied.
 }
   \item{est.arg.list}{
@@ -102,7 +104,8 @@
   \item{y.or.fitted.col}{
   a numeric scalar or character string determining the color of the empirical cdf 
   (based on \code{y}) or the theoretical cdf line or points.  
-  The default value is \code{y.or.fitted.col="black"}.  See the entry for 
+  The default value is \cr
+  \code{y.or.fitted.col="black"}.  See the entry for 
   \code{col} in the help file for \code{\link{par}} for more information.
 }
   \item{x.lwd}{
@@ -159,19 +162,22 @@
 }
 \value{
   When \code{y} is supplied, \code{cdfCompare} invisibly returns a list with 
-  components \code{x.ecdf.list} and \code{y.ecdf.list}.  Each of these components 
-  is itself a list, with the components \code{Order.Statistics} and 
+  components:
+  \item{x.ecdf.list}{a list with components \code{Order.Statistics} and 
   \code{Cumulative.Probabilities}, giving coordinates of the points that have 
-  been plotted.
+  been plotted for the \code{x} values.}
+  \item{y.ecdf.list}{a list with components \code{Order.Statistics} and 
+  \code{Cumulative.Probabilities}, giving coordinates of the points that have 
+  been plotted for the \code{y} values.}
 
   When \code{y} is not supplied, \code{cdfCompare} invisibly returns a list with 
-  components \code{x.ecdf.list} and \code{fitted.cdf.list}.  
-  The component \code{x.ecdf.list} is itself a list with the components 
-  \code{Order.Statistics} and \code{Cumulative.Probabilities}, giving coordinates of 
-  the points that have been plotted for the \code{x} values.  
-  The component \code{fitted.cdf.list} is itself a list with the components 
-  \code{Quantiles} and \code{Cumulative.Probabilities}, giving coordinates of the 
-  points that have been plotted for the fitted cdf.
+  components:
+  \item{x.ecdf.list}{a list with components \code{Order.Statistics} and 
+  \code{Cumulative.Probabilities}, giving coordinates of the points that have 
+  been plotted for the \code{x} values.}
+  \item{fitted.cdf.list}{a list with components \code{Quantiles} and 
+  \code{Cumulative.Probabilities}, giving coordinates of the 
+  points that have been plotted for the fitted cdf.}
 }
 \references{
   Chambers, J.M., W.S. Cleveland, B. Kleiner, and P.A. Tukey. (1983). 

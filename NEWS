@@ -1,3 +1,55 @@
+Changes in Version 2.1.1, 2016.06.13:
+
+	o Updated the function stripChart(): 
+	  -- For the case when there are two independent groups and 
+	     plot.diff=TRUE and paired=TRUE:
+	     ++ Adjusted the default value of diff.lim.
+	     ++ Added the argument diff.method to indicate what method to use to 
+	        plot the paired differences.  The default value is diff.method="stack".
+	  -- For the case when there are two independent groups and 
+	     plot.diff=TRUE and paired=FALSE:
+	     ++ The default value for the argument diff.lim (which determines the 
+	        range on the axis associated with the confidence interval for the 
+	        difference between groups) is now on the same scale as the range of 
+	        the original observations.
+	     ++ The default location of the confidence interval for the difference 
+	        between groups has changed slightly.
+	  -- Fixed a bug for the case when ci.and.test='parametric' and the argument 
+	     test.arg.list contains components named 'paired' and 'var.equal'.
+	  -- When the argument test.arg.list is supplied with a component named 
+	     'paired' and the value of that component does not match the value of 
+	     the argument 'paired', the value of the component is set to the value of 
+	     the argument 'paired' and a warning is issued.
+	  -- Fixed a bug for the case when add=TRUE.
+
+	o Updated the function summaryStats():
+	  -- Takes the new argument 'paired' applicable to the case when there are 2 groups 
+	     that are paired observations. 
+	     ++ When paired=TRUE and p.value=TRUE, the paired t-test 
+	        or paired Wilcoxon test is performed.
+	  -- Fixed bug for the case when there are 2 independent groups, test="parametric", 
+	     and the argument 'test.arg.list' contains the component paired=TRUE.
+
+	o Updated the functions enormCensored() and elnormCensored():
+	  -- The argument 'method' now accepts the values "ROS" and "rROS" 
+	     (i.e., you can set method="ROS" or method="rROS").  
+	     ++ The ROS method denotes the Regression on Order Statistics method.  
+	        This method is equivalent to the already existing method 
+	        Quantile-Quantile Regression (method ="qq.reg").
+	     ++ The rROS method denotes the robust Regression on Order Statistics method.  
+	        This method is equivalent to the already existing method 
+	        Imputation Using Quantile-Quantile Regression (method ="impute.w.qq.reg").
+
+	o Updated the function elnormAltCensored():
+	  -- The argument 'method' now accepts the value "rROS" (i.e., you can set 
+	     method="rROS"), denoting the robust Regression on Order Statistics method.  
+	     This method is equivalent to the already existing method 
+	     Imputation Using Quantile-Quantile Regression (method ="impute.w.qq.reg").
+ 
+ 
+
+========================
+
 Changes in Version 2.1.0, 2016.04.18:
 
 	o Added the datasets ACE.13.TCE.df and Helsel.Hirsch.02.Mayfly.df.

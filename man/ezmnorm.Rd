@@ -105,7 +105,8 @@
 }
 \value{
   a list of class \code{"estimate"} containing the estimated parameters and other information.  
-  See \code{\link{estimate.object}} for details.
+  See \cr
+  \code{\link{estimate.object}} for details.
 
   The component called \code{parameters} is a numeric vector with the following 
   estimated parameters: 

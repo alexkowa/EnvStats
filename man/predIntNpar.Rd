@@ -45,7 +45,7 @@
   \code{ub} is used as the upper bound of the prediction interval.
 }
   \item{lb, ub}{
-  scalars indicating lower and upper bounds on the distribution.  By default, 
+  scalars indicating lower and upper bounds on the distribution.  By default, \cr
   \code{lb=-Inf} and \code{ub=Inf}.  If you are constructing a prediction interval for 
   a distribution that you know has a lower bound other than \code{-Inf} 
   (e.g., \code{0}), set \code{lb} to this value.  Similarly, if you know the 

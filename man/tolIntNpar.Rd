@@ -28,7 +28,8 @@
 }
   \item{conf.level}{
   a scalar between 0 and 1 indicating the confidence level associated with the \eqn{\beta}-content 
-  tolerance interval.  The default value is \code{conf.level=0.95}.  If \code{cov.type="content"}, 
+  tolerance interval.  The default value is \code{conf.level=0.95}.  If \cr
+  \code{cov.type="content"}, 
   you must supply a value for \code{coverage} or a value for \code{conf.level}, but not both.  
   If \code{cov.type="expectation"}, this argument is ignored.
 }
@@ -51,8 +52,8 @@
   the upper bound of the toleracne interval.  A value of 
   \code{n.plus.one.minus.utl.rank=1} (the default) means use the 
   first largest value of \code{x}, and in general a value of 
-  \code{n.plus.one.minus.utl.rank=}\eqn{i} means use the \eqn{i}'th largest value.  
-  If \code{ti.type="lower"}, 
+  \code{n.plus.one.minus.utl.rank=}\eqn{i} means use the \eqn{i}'th largest value.  If \cr
+  \code{ti.type="lower"}, 
   this argument is set equal to \code{0} and the value of \code{ub} is used as the upper 
   bound of the tolerance interval.
 }

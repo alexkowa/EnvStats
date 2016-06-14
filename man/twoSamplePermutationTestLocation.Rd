@@ -64,7 +64,7 @@
 }
   \item{tol}{
   numeric scalar indicating the tolerance to use for computing the p-value for the 
-  two-sample permutation test.  The default value is 
+  two-sample permutation test.  The default value is \cr
   \code{tol=sqrt(.Machine$double.eps)}.  See the DETAILS section below for more 
   information.
 }
@@ -265,7 +265,7 @@
 }
 \seealso{
   \code{\link{permutationTest.object}}, \code{\link{plot.permutationTest}}, 
-  \code{\link{oneSamplePermutationTest}}, 
+  \code{\link{oneSamplePermutationTest}}, \cr
   \code{\link{twoSamplePermutationTestProportion}}, 
   \link{Hypothesis Tests}, \code{\link[boot]{boot}}.
 }

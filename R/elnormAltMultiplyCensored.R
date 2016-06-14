@@ -34,8 +34,10 @@ function (x, censored, method = "mle", censoring.side = "left",
     if (length(unique(x.no.cen)) < 2) 
         stop("'x' must contain at least 2 non-missing, uncensored, distinct values.")
     N <- length(x)
-    method <- match.arg(method, c("mle", "qmvue", "bcmle", "impute.w.qq.reg", 
-        "half.cen.level"))
+    method <- match.arg(method, c("mle", "qmvue", "bcmle", "rROS", 
+        "impute.w.qq.reg", "half.cen.level"))
+    if (method == "rROS") 
+        method <- "impute.w.qq.reg"
     censoring.side <- match.arg(censoring.side, c("left", "right"))
     x.cen <- x[censored]
     c.vec <- table(x.cen)
@@ -98,7 +100,7 @@ function (x, censored, method = "mle", censoring.side = "left",
         }
         method.string <- switch(method, mle = "MLE", qmvue = "Quasi-MVUE", 
             bcmle = "Bias-Corrected MLE", impute.w.qq.reg = paste("Imputation with", 
-                space(33), "Q-Q Regression (ROS)", sep = ""), 
+                space(33), "Q-Q Regression (rROS)", sep = ""), 
             half.cen.level = "Half Censoring Level")
         ret.list <- list(distribution = "Lognormal", sample.size = N, 
             censoring.side = censoring.side, censoring.levels = cen.levels, 

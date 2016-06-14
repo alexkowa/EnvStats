@@ -37,12 +37,13 @@
   numeric vector of length 2 indicating the range of the x-variable to use 
   for the plot.  The default value depends on the value of \code{x.var}.  
   When \code{x.var="n"} the default value is \code{c(3,25)}.  When 
-  \code{x.var="slope.over.sigma"} and \code{alternative="greater"} or 
-  \code{alternative="two.sided"} and \code{two.sided.direction="greater"}, 
-  the default value is \code{c(0.1, 1)}.  When \code{x.var="slope.over.sigma"} and 
-  \code{alternative="less"} or \code{alternative="two.sided"} and 
+  \code{x.var="slope.over.sigma"} and \cr
+  \code{alternative="greater"} or 
+  \code{alternative="two.sided"} and \cr
+  \code{two.sided.direction="greater"}, the default value is \code{c(0.1, 1)}.  
+  When \code{x.var="slope.over.sigma"} and \code{alternative="less"} or \code{alternative="two.sided"} and 
   \code{two.sided.direction="less"}, the default value is \code{-c(1, 0.1)}.  
-  When \code{x.var="power"} the default value is 
+  When \code{x.var="power"} the default value is \cr
   \code{c(alpha + .Machine$double.eps, 0.95)}.  When \code{x.var="alpha"}, the 
   default value is \code{c(0.01, 0.2)}.
 }
@@ -56,11 +57,14 @@
   numeric scalar specifying the ratio of the true slope (\eqn{\beta_1}) to the 
   population standard deviation of the error terms (\eqn{\sigma}).  
   This is also called the "scaled slope".  When \code{alternative="greater"} or 
-  \code{alternative="two.sided"} and \code{two.sided.direction="greater"}, the default 
+  \code{alternative="two.sided"} and \cr
+  \code{two.sided.direction="greater"}, the default 
   value is \code{slope.over.sigma=0.1}.  When \code{alternative="less"} or 
-  \code{alternative="two.sided"} and \code{two.sided.direction="less"}, the default 
+  \code{alternative="two.sided"} and \cr
+  \code{two.sided.direction="less"}, the default 
   value is \code{delta.over.sigma=-0.1}.  This argument is ignored when 
-  \code{x.var="slope.over.sigma"} or \code{y.var="slope.over.sigma"}.
+  \code{x.var="slope.over.sigma"} or \cr
+  \code{y.var="slope.over.sigma"}.
 }
   \item{alpha}{
   numeric scalar between 0 and 1 indicating the Type I error level associated 
@@ -78,11 +82,10 @@
 }
   \item{two.sided.direction}{
   character string indicating the direction (positive or negative) for the 
-  scaled minimal detectable slope when \code{alternative="two.sided"}.  
-  When \code{two.sided.direction="greater"} (the default), the scaled minimal 
-  detectable slope is positive.  When \code{two.sided.direction="less"}, 
-  the scaled minimal detectable slope is negative.  This argument 
-  is ignored if \code{alternative="less"} or \code{alternative="greater"}.
+  scaled minimal detectable slope when \code{alternative="two.sided"}.  When \cr
+  \code{two.sided.direction="greater"} (the default), the scaled minimal detectable slope is positive.  
+  When \code{two.sided.direction="less"}, the scaled minimal detectable slope is negative.  
+  This argument is ignored if \code{alternative="less"} or \code{alternative="greater"}.
 }
   \item{approx}{
   logical scalar indicating whether to compute the power based on an approximation to 
@@ -121,9 +124,9 @@
 }
   \item{n.points}{
   a numeric scalar specifying how many (x,y) pairs to use to produce the plot.  
-  There are \code{n.points} x-values evenly spaced between 
-  \code{range.x.var[1]} and \code{range.x.var[2]}.  The default value is 
-  \code{n.points=50} unless \code{x.var="n"}, in which case 
+  There are \code{n.points} x-values evenly spaced between \code{range.x.var[1]} and \cr
+  \code{range.x.var[2]}.  The default value is 
+  \code{n.points=50} unless \code{x.var="n"}, in which case \cr
   \code{n.points=diff(range.x.var)+1}.
 }
   \item{plot.col}{

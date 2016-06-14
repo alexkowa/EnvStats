@@ -63,7 +63,7 @@
   The default value is \code{conf.level=0.95}.
 }
   \item{est.arg.list}{
-  for \code{predIntLnormAlt}, a list containing arguments to pass to the function 
+  for \code{predIntLnormAlt}, a list containing arguments to pass to the function \cr
   \code{\link{elnormAlt}} for estimating the mean and coefficient of variation.  
   The default value is \code{est.arg.list=NULL}, which implies the default values 
   will be used in the call to \code{\link{elnormAlt}}.
@@ -167,7 +167,8 @@
 \seealso{
   \code{\link{elnorm}}, \code{\link{elnormAlt}}, 
   \code{\link{predIntNorm}}, \code{\link{predIntNormK}}, 
-  \code{\link{predIntLnormSimultaneous}}, \code{\link{predIntLnormAltSimultaneous}}, 
+  \code{\link{predIntLnormSimultaneous}}, \cr
+  \code{\link{predIntLnormAltSimultaneous}}, 
   \code{\link{tolIntLnorm}},  \code{\link{tolIntLnormAlt}}, 
   \link{Lognormal}, \code{\link{estimate.object}}.
 }

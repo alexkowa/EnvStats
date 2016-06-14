@@ -67,7 +67,7 @@
 \note{
   The beta distribution takes real values between 0 and 1.  Special cases of the 
   beta are the \link[stats:Uniform]{Uniform}[0,1] when \code{shape1=1} and 
-  \code{shape2=1}, and the arcsin distribution when \code{shape1=0.5} and 
+  \code{shape2=1}, and the arcsin distribution when \code{shape1=0.5} and \cr
   \code{shape2=0.5}.  The arcsin distribution appears in the theory of random walks.  
   The beta distribution is used in Bayesian analyses as a conjugate to the binomial 
   distribution.

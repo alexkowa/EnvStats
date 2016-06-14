@@ -100,7 +100,7 @@
   distribution.  The smallest extreme value distribution is the limiting 
   distribution (as \eqn{n} approaches infinity) of the smallest value among 
   \eqn{n} independent random variables each having the same continuous distribution. 
-  If \eqn{X} has a largest extreme value distribution with parameters 
+  If \eqn{X} has a largest extreme value distribution with parameters \cr
   \code{location=}\eqn{\eta} and \code{scale=}\eqn{\theta}, then 
   \eqn{Y = -X} has a smallest extreme value distribution with parameters 
   \code{location=}\eqn{-\eta} and \code{scale=}\eqn{\theta}.  The smallest 

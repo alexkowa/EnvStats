@@ -36,17 +36,20 @@
 }
   \item{range.x.var}{
   numeric vector of length 2 indicating the range of the x-variable to use 
-  for the plot.  The default value depends on the value of \code{x.var}.  
-  When \code{x.var="n"} the default value is \code{c(2,50)}.  When 
-  \code{x.var="ratio.of.means"} and \code{alternative="greater"} or 
-  \code{alternative="two.sided"} and \code{two.sided.direction="greater"}, 
-  the default value is \code{c(1, 2)}.  When \code{x.var="delta"} and 
-  \code{alternative="less"} or \code{alternative="two.sided"} and 
-  \code{two.sided.direction="less"}, the default value is \code{c(0.5, 1)}.  
-  When \code{x.var="cv"} the default value is \code{c(0.5, 2)}.  When 
-  \code{x.var="power"} the default value is 
-  \code{c(alpha + .Machine$double.eps, 0.95)}.  When \code{x.var="alpha"}, the 
-  default value is \code{c(0.01, 0.2)}.
+  for the plot.  The default value depends on the value of \code{x.var}:
+  \itemize{
+    \item When \code{x.var="n"} the default value is \code{c(2,50)}.  
+    \item When \code{x.var="ratio.of.means"} and \code{alternative="greater"} or \cr
+      \code{alternative="two.sided"} and \code{two.sided.direction="greater"}, 
+      the default value is \code{c(1, 2)}.  
+    \item When \code{x.var="delta"} and \code{alternative="less"} or \cr
+      \code{alternative="two.sided"} and \code{two.sided.direction="less"}, 
+      the default value is \code{c(0.5, 1)}.  
+    \item When \code{x.var="cv"} the default value is \code{c(0.5, 2)}.  
+    \item When \code{x.var="power"} the default value is \cr
+      \code{c(alpha + .Machine$double.eps, 0.95)}.  
+    \item When \code{x.var="alpha"}, the default value is \code{c(0.01, 0.2)}.
+  }
 }
   \item{n.or.n1}{
   numeric scalar indicating the sample size.  The default value is 
@@ -69,12 +72,13 @@
   hypothesized mean.  When \code{sample.type="two.sample"}, this is the ratio of the 
   mean of the first population to the mean of the second population. 
 
-  When \code{alternative="greater"} or \code{alternative="two.sided"} and 
+  When \code{alternative="greater"} or \code{alternative="two.sided"} and \cr
   \code{two.sided.direction="greater"}, the default value is \code{ratio.of.means=2}.  
-  When \code{alternative="less"} or \code{alternative="two.sided"} and 
+  When \code{alternative="less"} or \cr
+  \code{alternative="two.sided"} and 
   \code{two.sided.direction="less"}, the default value is \code{ratio.of.means=0.5}.  
-  This argument is ignored when \code{x.var="ratio.of.means"} or 
-  \code{y.var="ratio.of.means"}.
+  This argument is ignored when \cr
+  \code{x.var="ratio.of.means"} or \code{y.var="ratio.of.means"}.
 }
   \item{cv}{
   numeric scalar: a positive value specifying the coefficient of 
@@ -93,9 +97,9 @@
   \item{sample.type}{
   character string indicating whether to compute power based on a one-sample or 
   two-sample hypothesis test.  When \code{sample.type="one.sample"}, the computed 
-  power is based on a hypothesis test for a single mean.  When 
+  power is based on a hypothesis test for a single mean.  When \cr
   \code{sample.type="two.sample"}, the computed power is based on a hypothesis test 
-  for the difference between two means.  The default value is 
+  for the difference between two means.  The default value is \cr
   \code{sample.type="one.sample"} unless the argument \code{n2} is supplied.
 }
   \item{alternative}{
@@ -104,11 +108,13 @@
 }
   \item{two.sided.direction}{
   character string indicating the direction (greater than 1 or less than 1) for the 
-  detectable ratio of means when \code{alternative="two.sided"}.  When 
+  detectable ratio of means when \code{alternative="two.sided"}.  When \cr
   \code{two.sided.direction="greater"} (the default), the detectable ratio of means 
-  is greater than 1.  When \code{two.sided.direction="less"}, the detectable ratio of 
+  is greater than 1.  When \cr
+  \code{two.sided.direction="less"}, the detectable ratio of 
   means is less than 1 (but greater than 0).  This argument is ignored if 
-  \code{alternative="less"} or \code{alternative="greater"}.
+  \code{alternative="less"} or \cr
+  \code{alternative="greater"}.
 }
   \item{approx}{
   logical scalar indicating whether to compute the power based on an approximation to 
@@ -149,9 +155,8 @@
 }
   \item{n.points}{
   a numeric scalar specifying how many (x,y) pairs to use to produce the plot.  
-  There are \code{n.points} x-values evenly spaced between 
-  \code{range.x.var[1]} and \code{range.x.var[2]}.  The default value is 
-  \code{n.points=100}.
+  There are \code{n.points} x-values evenly spaced between \code{range.x.var[1]} and \cr
+  \code{range.x.var[2]}.  The default value is \code{n.points=100}.
 }
   \item{plot.col}{
   a numeric scalar or character string determining the color of the plotted 

@@ -29,9 +29,9 @@
 }
   \item{p0.or.p2}{
   numeric vector of proportions.  When \code{sample.type="one.sample"}, 
-  this argument denotes the hypothesized value of \eqn{p}, the probability of dQuote{success}.  
+  this argument denotes the hypothesized value of \eqn{p}, the probability of \dQuote{success}.  
   When \code{sample.type="two.sample"}, this argument denotes the value of \eqn{p_2}, 
-  the probability of dQuote{success} in group 2.  The default value is \cr
+  the probability of \dQuote{success} in group 2.  The default value is \cr
   \code{p0.or.p2=0.5}.  Missing (\code{NA}), undefined (\code{NaN}), and infinite (\code{Inf}, \code{-Inf}) values are not allowed.
 }
   \item{alpha}{
@@ -59,8 +59,8 @@
 }
   \item{two.sided.direction}{
   character string indicating the direction (positive or negative) for the 
-  minimal detectable difference when \code{alternative="two.sided"}.  
-  When \code{two.sided.direction="greater"} (the default), the minimal 
+  minimal detectable difference when \code{alternative="two.sided"}.  When \cr
+  \code{two.sided.direction="greater"} (the default), the minimal 
   detectable difference is positive.  When \code{two.sided.direction="less"}, 
   the minimal detectable difference is negative.  This argument 
   is ignored if \code{alternative="less"} or \code{alternative="greater"}.
