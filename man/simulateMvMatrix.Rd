@@ -320,7 +320,7 @@
   From a Computer Code.  \emph{Technometrics} \bold{21}(2), 239--245.
 
   Millard, S.P. (2013).  \emph{EnvStats: an R Package for Environmental Statistics}.  
-  Springer, New York.
+  Springer, New York.  \url{http://www.springer.com/book/9781461484554}.
 
   Smith, A.E., P.B. Ryan, and J.S. Evans. (1992).  The Effect of Neglecting 
   Correlations When Propagating Uncertainty and Estimating the Population 

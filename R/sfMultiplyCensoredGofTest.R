@@ -54,10 +54,17 @@ function (x, censored, censoring.side = c("left", "right"), distribution = c("no
     if (K == 1 && ((censoring.side == "left" & cen.levels <= 
         min(x.no.cen)) || (censoring.side == "right" & cen.levels >= 
         max(x.no.cen)))) {
+        if (censoring.side == "left") {
+            string <- "and it is less than or equal to the smallest uncensored observation,"
+        }
+        else {
+            string <- "and it is greater than or equal to the largest uncensored observation,"
+        }
         warning(paste("Only one censoring level indicated by 'censored',", 
-            "so the function 'sfSinglyCensoredGofTest' was called."))
-        ret.list <- sfSinglyCensoredGofTest(x = x, censoring.side = censoring.side, 
-            distribution = distribution, est.arg.list = est.arg.list)
+            string, "so the function 'sfSinglyCensoredGofTest' was called."))
+        ret.list <- sfSinglyCensoredGofTest(x = x, censored = censored, 
+            censoring.side = censoring.side, distribution = distribution, 
+            est.arg.list = est.arg.list)
         ret.list$data.name <- data.name
         ret.list$censoring.name <- censoring.name
         ret.list$bad.obs <- bad.obs

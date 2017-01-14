@@ -33,9 +33,13 @@
   values are \bold{\emph{not}} allowed.
 }
   \item{delta.over.sigma}{
-  numeric vector specifying the ratio of the true difference (\eqn{\delta}) to the 
-  population standard deviation (\eqn{\sigma}).  This is also called the 
-  \dQuote{scaled difference}.  The default value is \code{delta.over.sigma=0}.
+  numeric vector specifying the ratio of the true difference \eqn{\delta}  
+  (\eqn{\delta = \mu - \mu_0} for the one-sample case and 
+  \eqn{\delta = \mu_1 - \mu_2} for the two-sample case) 
+  to the population standard deviation (\eqn{\sigma}).  This is also called the 
+  \dQuote{scaled difference}.  
+
+  The default value is \code{delta.over.sigma=0}.
 }
   \item{alpha}{
   numeric vector of numbers between 0 and 1 indicating the Type I error level 
@@ -51,7 +55,18 @@
 }
   \item{alternative}{
   character string indicating the kind of alternative hypothesis.  The possible values 
-  are \code{"two.sided"} (the default), \code{"greater"}, and \code{"less"}.
+  are: 
+
+  \itemize{
+    \item \code{"two.sided"} (the default).  \eqn{H_a: \mu \ne \mu_0} for the one-sample case and 
+    \eqn{H_a: \mu_1 \ne \mu_2} for the two-sample case. 
+
+    \item \code{"greater"}.  \eqn{H_a: \mu > \mu_0} for the one-sample case and 
+    \eqn{H_a: \mu_1 > \mu_2} for the two-sample case. 
+
+    \item \code{"less"}.  \eqn{H_a: \mu < \mu_0} for the one-sample case and 
+    \eqn{H_a: \mu_1 < \mu_2} for the two-sample case.
+  }
 }
   \item{approx}{
   logical scalar indicating whether to compute the power based on an approximation to 

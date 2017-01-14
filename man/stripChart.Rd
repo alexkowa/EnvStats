@@ -6,7 +6,7 @@
   1-D Scatter Plots with Confidence Intervals
 }
 \description{
-  \code{stripChart} is a modification of the \R function \code{\link{stripchart}}.  
+  \code{stripChart} is a modification of the \R function \code{\link[graphics]{stripchart}}.  
   It is a generic function used to produce one dimensional scatter 
   plots (or dot plots) of the given data, along with text indicating sample size and 
   estimates of location (mean or median) and scale (standard deviation 
@@ -58,7 +58,11 @@ stripChart(x, ...)
   or a numeric vector.  In the formula method, a symbolic specification of the form 
   \code{y ~ g} can be given, indicating the observations in the vector \code{y} are to be 
   grouped according to the levels of the factor \code{g} (the form \code{y ~ 1} indicates 
-  no grouping).  \code{NA}s are allowed in the data.
+  no grouping).  \code{NA}s are allowed in the data.  \cr
+  NOTE:  When the formula method is used and the argument \code{paired=TRUE} (see below), 
+  the data in the vector \code{y} must have the same number of observations for each level 
+  of the factor \code{g} and for each level sorted in the same way according to the 
+  pairing variable.
 }
   \item{data}{
   for the formula method, a data.frame (or list) from which the variables in \code{x} 
@@ -285,7 +289,7 @@ stripChart(x, ...)
   When \code{ci.and.test="nonparametric"}, confidence intervals for the population pseudo-median 
   are based on the Wilcoxon signed rank test (see \code{\link{wilcox.test}} and page 56 of 
   Hollander and Wolfe, 1999), and the test of group differences is based on the 
-  Wilcoxon rank sum test if there are two groups (see \code{\link{kruskal.test}}) and the 
+  Wilcoxon rank sum test if there are two groups (see \code{\link{wilcox.test}}) and the 
   Kruskal-Wallis test (see \code{\link{kruskal.test}}) if there are three or more groups.
 }
   \item{ci.arg.list}{
@@ -355,7 +359,11 @@ stripChart(x, ...)
   applicable only to the case when there are two groups: \cr
   logical scalar indicating whether the observations in the first group are paired with those 
   in the second group.  The default is \code{paired=FALSE}.  \cr
-  NOTE:  If the argument \code{test.arg.list} (see above) contains a component named \code{"paired"}, 
+  NOTE 1:  When the formula method for the argument \code{x} is used (see above) and the 
+  argument \code{paired=TRUE}, the data in the vector \code{y} must have the same number 
+  of observations for each level of the factor \code{g} and for each level sorted in the 
+  same way according to the pairing variable. \cr
+  NOTE 2:  If the argument \code{test.arg.list} (see above) contains a component named \code{"paired"}, 
   the value of that component is set to the value of the argument \code{paired}.
 }
   \item{paired.lines}{
@@ -582,6 +590,16 @@ the list also includes these components:
   # before and after remediation and use a paired t-test to 
   # test for a difference between periods.
 
+  ACE.13.TCE.df
+  #   TCE.mg.per.L Well Period
+  #1        20.900    1 Before
+  #2         9.170    2 Before
+  #3         5.960    3 Before
+  #...      ......   .. ......
+  #18        0.520    8  After
+  #19        3.060    9  After
+  #20        1.900   10  After
+
   dev.new()
   stripChart(TCE.mg.per.L ~ Period, data = ACE.13.TCE.df, 
     col = c("brown", "green"), p.value = TRUE, paired = TRUE, 
@@ -643,6 +661,16 @@ the list also includes these components:
   # Create one-dimensional scatterplots to compare the 
   # counts between locations and use a nonparametric test 
   # to compare counts above and below the outfalls.
+
+  Helsel.Hirsch.02.Mayfly.df
+  #   Mayfly.Count Stream Location
+  #1            12      1    Above
+  #2            15      2    Above
+  #3            11      3    Above
+  #...         ...     ..    .....
+  #22           60     10    Below
+  #23           53     11    Below
+  #24          124     12    Below
 
   dev.new()
   stripChart(Mayfly.Count ~ Location, data = Helsel.Hirsch.02.Mayfly.df, 

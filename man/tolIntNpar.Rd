@@ -231,13 +231,13 @@
   \link{Estimating Distribution Parameters}, \link{Estimating Distribution Quantiles}.
 }
 \examples{
-  # Generate 20 observations from a \link[=LognormalMixAlt]{lognormal mixture distribution}
+  # Generate 20 observations from a lognormal mixture distribution
   # with parameters mean1=1, cv1=0.5, mean2=5, cv2=1, and p.mix=0.1.  
   # The exact two-sided interval that contains 90\% of this distribution is given by: 
   # [0.682312, 13.32052].  Use tolIntNpar to construct a two-sided 90\% 
   # \eqn{\beta}-content tolerance interval.  Note that the associated confidence level 
   # is only 61%.  A larger sample size is required to obtain a larger confidence 
-  # level (see the help file for \link{tolIntNparN}). 
+  # level (see the help file for tolIntNparN). 
   # (Note: the call to set.seed simply allows you to reproduce this example.)
 
   set.seed(23) 

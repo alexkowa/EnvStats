@@ -8,9 +8,10 @@
   for them, without making any assumptions about the form of the distribution.
 }
 \usage{
-  eqnpar(x, p = 0.5, ci = FALSE, lcl.rank = NULL, ucl.rank = NULL, 
+  eqnpar(x, p = 0.5, type = 7, ci = FALSE, lcl.rank = NULL, ucl.rank = NULL, 
     lb = -Inf, ub = Inf, ci.type = "two-sided", 
-    ci.method = "exact", approx.conf.level = 0.95, digits = 0)
+    ci.method = "interpolate", digits = getOption("digits"), 
+    approx.conf.level = 0.95, min.coverage = TRUE, tol = 0)
 }
 \arguments{
   \item{x}{
@@ -21,6 +22,11 @@
   numeric vector of probabilities for which quantiles will be estimated.  
   All values of \code{p} must be between 0 and 1.  When \code{ci=TRUE}, \code{p} 
   must be a scalar. The default value is \code{p=0.5}.
+}
+  \item{type}{
+  an integer between 1 and 9 indicating which algorithm to use to estimate the 
+  quantile.  The default value is \code{type=7}.  See the help file for 
+  \code{\link[stats]{quantile}} for details.
 }
   \item{ci}{
   logical scalar indicating whether to compute a confidence interval for the quantile.  
@@ -56,9 +62,14 @@
 }
   \item{ci.method}{
   character string indicating the method to use to construct the confidence interval.  
-  The possible values are \code{"exact"} (the default) and \code{"normal.approx"}.  
-  See the DETAILS section for more information on these methods.  This argument is 
-  ignored if \code{ci=FALSE}, or \code{lcl.rank} and/or \code{ucl.rank} are supplied.
+  The possible values are \code{"interpolate"} (the default), \code{"exact"}, and 
+  \code{"normal.approx"}.  See the DETAILS section for more information on these methods.  
+  This argument is ignored if \code{ci=FALSE}, or \code{lcl.rank} and/or 
+  \code{ucl.rank} are supplied.
+}
+  \item{digits}{
+  an integer indicating the number of decimal places to round to when printing out 
+  the value of \code{100*p}. The default value is \code{digits=0}.
 }
   \item{approx.conf.level}{
   a scalar between 0 and 1 indicating the desired confidence level of the confidence 
@@ -66,9 +77,18 @@
   will not be exactly equal to \code{approx.conf.level} (see DETAILS).  This argument 
   is ignored if \code{ci=FALSE}, or \code{lcl.rank} and/or \code{ucl.rank} are supplied.
 }
-  \item{digits}{
-  an integer indicating the number of decimal places to round to when printing out 
-  the value of \code{100*p}. The default value is \code{digits=0}.
+  \item{min.coverage}{
+  for the case when \code{ci.method="exact"}, a logical scalar indicating whether the 
+  confidence interval should have a minimum coverage at least as great as the value 
+  of the argument \code{approx.conf.level}. The default value is \cr
+  \code{min.coverage=TRUE}.  This argument is ignored if \code{ci=FALSE} or 
+  \code{ci.method} is not equal to \code{"exact"}.
+}
+  \item{tol}{
+  for the case when \code{ci.method="exact"} and \code{min.coverage=FALSE}, 
+  a scalar between 0 and 1 indicating the maximum amount of coverage greater than 
+  the value of \code{approx.conf.level} the user is willing to allow.  
+  The default value is \code{tol=0}.
 }
 }
 \details{
@@ -92,112 +112,256 @@
   \deqn{Pr(X \le x_p) \ge p \;\;\;\;\;\; (3)}
   It can be shown (e.g., Conover, 1980, pp. 114-116) that for the \eqn{i}'th order 
   statistic:
-  \deqn{Pr[x_p < x_{(i)}] = F_{B(n,p)}[i-1]; \; i = 1, 2, \ldots, n \;\;\;\;\;\; (4)}
+  \deqn{Pr[x_p < x_{(i)}] = F_{B(n,p)}[i-1]; \; i = 1, 2, \ldots, n \;\;\;\;\;\; (4)} 
+  for a continuous distribution and 
+  \deqn{Pr[x_p < x_{(i)}] \le F_{B(n,p)}[i-1]; \; i = 1, 2, \ldots, n \;\;\;\;\;\; (5)} 
+  \deqn{Pr[x_p \le x_{(i)}] \ge F_{B(n,p)}[i-1]; \; i = 1, 2, \ldots, n \;\;\;\;\;\; (6)} 
+  for a discrete distribution, 
   where \eqn{F_{B(n,p)}[y]} denotes the cumulative distribution function of a 
   \link[stats:Binomial]{binomial random variable} with parameters \code{size=}\eqn{n} 
-  and \code{prob=}\eqn{p} evaluated at \eqn{y}.  This fact is used to construct exact 
+  and \code{prob=}\eqn{p} evaluated at \eqn{y}.  These facts are used to construct  
   confidence intervals for quantiles (see below).
   \cr
  
   \bold{Two-Sided Confidence Interval} (\code{ci.type="two-sided"}) \cr
   A two-sided nonparametric confidence interval for the \eqn{p}'th quantile is 
   constructed as:
-  \deqn{[x_{(r)}, x_{(s)}] \;\;\;\;\;\; (5)}
+  \deqn{[x_{(r)}, x_{(s)}] \;\;\;\;\;\; (7)}
   where
-  \deqn{1 \le r \le (n-1) \;\;\;\;\;\; (6)}
-  \deqn{2 \le s \le n \;\;\;\;\;\; (7)}
-  \deqn{r < s \;\;\;\;\;\; (8)}
+  \deqn{1 \le r \le (n-1) \;\;\;\;\;\; (8)}
+  \deqn{2 \le s \le n \;\;\;\;\;\; (9)}
+  \deqn{r < s \;\;\;\;\;\; (10)}
   Note that the argument \code{lcl.rank} corresponds to \eqn{r}, and the argument 
   \code{ucl.rank} corresponds to \eqn{s}.
 
   This confidence interval has an associated confidence level that is at least as 
   large as:
-  \deqn{F_{B(n,p)}[s-1] - F_{B(n,p)}[r-1] \;\;\;\;\;\; (9)}
+  \deqn{F_{B(n,p)}[s-1] - F_{B(n,p)}[r-1] \;\;\;\;\;\; (11)}
   for a discrete distribution and exactly equal to this value for a continuous 
-  distribution.  This is because:
+  distribution.  This is because by Equations (4)-(6) above:
   \deqn{Pr[x_{(r)} \le x_p \le x_{(s)}]}
   \deqn{= Pr[x_p \le x_{(s)}] - Pr[x_p < x_{(r)}]} 
-  \deqn{= Pr[x_p < x_{(s)}] + Pr[x_p = x_{(s)}] - Pr[x_p < x_{(r)}]}
-  \deqn{\ge Pr[x_p < x_{(s)}] - Pr[x_p < x_{(r)}]}
-  \deqn{= F_{B(n,p)}[s-1] - F_{B(n,p)}[r-1] \;\;\;\;\;\; (10)}
+  \deqn{\ge F_{B(n,p)}[s-1] - F_{B(n,p)}[r-1] \;\;\;\;\;\; (12)}
+  with equality if the distribution is continuous.
   \cr
 
   \emph{Exact Method} (\code{ci.method="exact"}) \cr
   When \code{lcl.rank} (\eqn{r}) and \code{ucl.rank} (\eqn{s}) are not supplied by 
-  the user, and \code{ci.method="exact"}, \eqn{r} and \eqn{s} are chosen such that 
-  \eqn{r} is the smallest integer satisfying equation (11) below, and \eqn{s} is 
-  initially set to the largest integer satisfying equation (12) below:
-  \deqn{F_{B(n,p)}[r-1] \ge \frac{\alpha}{2} \;\;\;\;\;\; (11)}
-  \deqn{F_{B(n,p)}[s-1] \le \frac{1-\alpha}{2} \;\;\;\;\;\; (12)}
-  where \eqn{\alpha = 1 -}\code{approx.conf.level}.  Let \eqn{r^*} and \eqn{s^*} 
-  denote the values of \eqn{r} and \eqn{s} chosen in this manner.  If
-  \deqn{F_{B(n,p)}[s^*] - F_{B(n,p)}[r^*-1] \le 1 - \alpha \;\;\;\;\;\; (13)}
-  then \eqn{s} is set to \eqn{s^* + 1}.
+  the user, and \code{ci.method="exact"}, \eqn{r} and \eqn{s} are initially chosen such that 
+  \eqn{r} is the smallest integer satisfying equation (13) below, and \eqn{s} is 
+  the largest integer satisfying equation (14) below:
+  \deqn{F_{B(n,p)}[r-1] \ge \frac{\alpha}{2} \;\;\;\;\;\; (13)}
+  \deqn{F_{B(n,p)}[s-1] \le 1-\frac{\alpha}{2} \;\;\;\;\;\; (14)}
+  where \eqn{\alpha = 1 -}\code{approx.conf.level}.  
+  The values of \eqn{r} and \eqn{s} are then each varied by \eqn{\pm 2} (with the 
+  restrictions \eqn{r \ge 1}, \eqn{s \le n}, and \eqn{r < s}), and confidence levels 
+  computed for each of these combinations.  If \code{min.coverage=TRUE}, the 
+  combination of \eqn{r} and \eqn{s} is selected that provides the closest coverage 
+  to \code{approx.conf.level}, with coverage greater than or equal to 
+  \code{approx.conf.level}.  If \code{min.coverage=FALSE}, the 
+  combination of \eqn{r} and \eqn{s} is selected that provides the closest coverage 
+  to \code{approx.conf.level}, with coverage less than or equal to 
+  \code{approx.conf.level + tol}.  
+
+  For this method, the confidence level associated with the confidence interval 
+  is exact if the underlying distribution is continuous.
   \cr
 
   \emph{Approximate Method} (\code{ci.method="approx"}) \cr
+  Here the term \dQuote{Approximate} simply refers to the method of initially 
+  choosing the ranks for the lower and upper bounds.  As for \code{ci.method="exact"}, 
+  the confidence level associated with the confidence interval is exact if the 
+  underlying distribution is continuous.  
+
   When \code{lcl.rank} (\eqn{r}) and \code{ucl.rank} (\eqn{s}) are not supplied by 
-  the user and \code{ci.method="normal.approx"}, \eqn{r} and \eqn{s} are chosen such 
-  that
-  \deqn{r = np - h \;\;\;\;\;\; (14)}
-  \deqn{s = np + h \;\;\;\;\;\; (15)}
-  \deqn{h = t_{n-1, 1-\alpha/2} \sqrt{np(1-p)} \;\;\;\;\;\; (16)}
-  where \eqn{t_{\nu,q}} denotes the \eqn{q}'th quantile of 
-  \link[stats:TDist]{Student's t-distribution} with \eqn{\nu} degrees of freedom, and 
-  then \eqn{r} and \eqn{s} are rounded to the nearest integer.
+  the user and \code{ci.method="normal.approx"}, \eqn{r} and \eqn{s} are initially chosen 
+  such that:
+  \deqn{r = np - h \;\;\;\;\;\; (15)}
+  \deqn{s = np + h \;\;\;\;\;\; (16)}
+  where
+  \deqn{h = t_{n-1, 1-\alpha/2} \sqrt{np(1-p)} \;\;\;\;\;\; (17)}
+  and \eqn{t_{\nu,q}} denotes the \eqn{q}'th quantile of 
+  \link[stats:TDist]{Student's t-distribution} with \eqn{\nu} degrees of freedom, 
+  and \eqn{\alpha = 1 -}\code{approx.conf.level} (Conover, 1980, p. 112).  
+  With the restictions that \eqn{r \ge 1} and \eqn{s \le n}, 
+  \eqn{r} is rounded down to the nearest integer \eqn{r = r^* = floor(r)} and 
+  \eqn{s} is rounded up to the nearest integer \eqn{s = s^* = ceiling(s)}.  
+  Again, with the restictions that \eqn{s \le n}, 
+  if the confidence level using \eqn{s = s^* + 1} and \eqn{r = r^*} is less than or equal 
+  to \code{approx.conf.level}, then \eqn{s} is set to \eqn{s = s^* + 1}.  
+  Once this has been checked, with the restriction that \eqn{r \ge 1}, 
+  if the confidence level using the current value of \eqn{s} 
+  and \eqn{r = r^* - 1} is less than or equal to \code{approx.conf.level}, then 
+  \eqn{r} is set to \eqn{r = r^* - 1}.
   \cr
+
+  \emph{Interpolate Method} (\code{ci.method="interpolate"}) \cr
+  Let \eqn{\gamma} denote the desired confidence level associated with the 
+  confidence interval for the \eqn{p}'th quantile.  
+  Based on the work of Hettmansperger and Sheather (1986), Nyblom (1992) showed that 
+  if \eqn{[-\infty, x_{(w+1)}]} is a one-sided upper confidence interval for the 
+  \eqn{p}'th quantile with associated confidence level \eqn{\gamma_{w+1}}, and 
+  \eqn{\gamma_{w+1} \ge \gamma \ge \gamma_{w}}, then the one-sided upper 
+  confidence interval
+  \deqn{[-\infty, (1-\lambda) x_{(w)} + \lambda x_{(w+1)}] \;\;\;\;\;\; (18)} 
+  where
+  \deqn{\lambda = \lambda(\beta, p, w, n)}
+  \deqn{= [ 1 + \frac{w(1-p)(\pi_{w+1}-\beta)}{(n-w)p(\beta-\pi_w)} ] ^ {-1} \;\;\;\;\;\; (19)}
+  \deqn{\pi_w = F_{B(n,p)}[w-1] \;\;\;\;\;\; (20)}
+  \deqn{\beta = \gamma \;\;\;\;\;\; (21)}
+  has associated confidence level approximately equal to \eqn{\gamma} for a wide 
+  range of distributions.  
+
+  Thus, to construct an approximate two-sided confidence interval for the 
+  \eqn{p}'th quantile with confidence level \eqn{\gamma}, if 
+  \eqn{[x_{(r)}, x_{(s)}]} has confidence level \eqn{\ge \gamma} and 
+  \eqn{[x_{(r+1)}, x_{(s-1)}]} has confidence level \eqn{\le \gamma}, then  
+  the lower bound of the two-sided confidence interval is computed as:
+  \deqn{(1-\lambda) x_{(r)} + \lambda x_{(r+1)} \;\;\;\;\;\; (21)}
+  where 
+  \deqn{\beta = \alpha/2; \;\;\;\; \alpha = 1 - \gamma \;\;\;\;\;\; (22)} 
+  and the upper bound of the two-sided confidence interval is computed as:
+  \deqn{(1-\lambda) x_{(s-1)} + \lambda x_{(s)} \;\;\;\;\;\; (23)}
+  where 
+  \deqn{\beta = 1 - \alpha/2 \;\;\;\;\;\; (24)}
+   
+  The values of \eqn{r} and \eqn{s} in Equations (21) and (23) are computed by 
+  using \code{ci.method="exact"} with the argument \code{min.coverage=TRUE}.  
+  \cr
+
+
 
   \bold{One-Sided Lower Confidence Interval} (\code{ci.type="lower"}) \cr
   A one-sided lower nonparametric confidence interval for the \eqn{p}'th quantile is 
   constructed as:
-  \deqn{[x_{(r)}, ub] \;\;\;\;\;\; (17)}
+  \deqn{[x_{(r)}, ub] \;\;\;\;\;\; (25)}
   where \eqn{ub} denotes the value of the \code{ub} argument (the user-supplied 
   upper bound).
   \cr
  
   \emph{Exact Method} (\code{ci.method="exact"}) \cr
   When \code{lcl.rank} (\eqn{r}) is not supplied by the user, and 
-  \code{ci.method="exact"}, \eqn{r} is chosen such that it is the smallest integer 
-  satisfying the following equation: 
-  \deqn{F_{B(n,p)}[r-1] \ge \alpha \;\;\;\;\;\; (18)}
+  \code{ci.method="exact"}, \eqn{r} is initially chosen such that it is the 
+  smallest integer satisfying the following equation: 
+  \deqn{F_{B(n,p)}[r-1] \ge \alpha \;\;\;\;\;\; (26)}
   where \eqn{\alpha = 1 - }\code{approx.conf.level}.
+  The value of \eqn{r} is varied by \eqn{\pm 2} (with the 
+  restrictions \eqn{r \ge 1} and \eqn{r \le n}), and confidence levels 
+  computed for each of these combinations.  If \code{min.coverage=TRUE}, the 
+  value of \eqn{r} is selected that provides the closest coverage 
+  to \code{approx.conf.level}, with coverage greater than or equal to 
+  \code{approx.conf.level}.  If \code{min.coverage=FALSE}, the 
+  value of \eqn{r}  is selected that provides the closest coverage 
+  to \code{approx.conf.level}, with coverage less than or equal to 
+  \code{approx.conf.level + tol}.  
+
+  For this method, the confidence level associated with the confidence interval 
+  is exact if the underlying distribution is continuous.
   \cr
  
   \emph{Approximate Method} (\code{ci.method="approx"}) \cr
   When \code{lcl.rank} (\eqn{r}) is not supplied by the user and 
-  \code{ci.method="normal.approx"}, \eqn{r} is chosen such that
-  \deqn{r = np - t_{n-1, 1-\alpha} \sqrt{np(1-p)} \;\;\;\;\;\; (19)}
-  and then \eqn{r} is rounded to the nearest integer.
+  \code{ci.method="normal.approx"}, \eqn{r} is initially chosen such that
+  \deqn{r = np - t_{n-1, 1-\alpha} \sqrt{np(1-p)} \;\;\;\;\;\; (27)}
+  With the restriction that \eqn{r \ge 1} and \eqn{r \le n}, 
+  if \code{p} is less than 0.5 then \eqn{r} is rounded up to the nearest integer, 
+  otherwise it is rounded down to the nearest integer.  Denote this value by 
+  \eqn{r^*}.  With the restriction that \eqn{r \ge 1}, if the confidence level using 
+  \eqn{r^* - 1} is less than or equal to \code{approx.conf.level}, then 
+  \eqn{r} is set to \eqn{r = r^* - 1}.
   \cr
- 
+
+  \emph{Interpolate Method} (\code{ci.method="interpolate"}) \cr
+  Let \eqn{\gamma} denote the desired confidence level associated with the 
+  confidence interval for the \eqn{p}'th quantile.  
+  To construct an approximate one-sided lower confidence interval for the 
+  \eqn{p}'th quantile with confidence level \eqn{\gamma}, if 
+  \eqn{[x_{(r)}, ub]} has confidence level \eqn{\ge \gamma} and 
+  \eqn{[x_{(r+1)}, ub]} has confidence level \eqn{\le \gamma}, then  
+  the lower bound of the confidence interval is computed as:
+  \deqn{(1-\lambda) x_{(r)} + \lambda x_{(r+1)} \;\;\;\;\;\; (28)}
+  where 
+  \deqn{\beta = \alpha; \;\;\;\; \alpha = 1 - \gamma \;\;\;\;\;\; (29)} 
+   
+  The value of \eqn{r} in Equation (28) is computed by  
+  using \code{ci.method="exact"} with the arguments 
+  \code{ci.type="lower"} and \code{min.coverage=TRUE}.  
+  \cr
+
+
+
   \bold{One-Sided Upper Confidence Interval} (\code{ci.type="upper"}) \cr
   A one-sided upper nonparametric confidence interval for the \eqn{p}'th quantile is 
   constructed as:
-  \deqn{[lb, x_{(s)}] \;\;\;\;\;\; (20)}
+  \deqn{[lb, x_{(s)}] \;\;\;\;\;\; (30)}
   where \eqn{lb} denotes the value of the \code{lb} argument (the user-supplied 
   lower bound).
   \cr
  
   \emph{Exact Method} (\code{ci.method="exact"}) \cr
   When \code{ucl.rank} (\eqn{s}) is not supplied by the user, and 
-  \code{ci.method="exact"}, \eqn{s} is chosen such that it is the largest integer 
-  satisfying the following equation: 
-  \deqn{F_{B(n,p)}[s-1] \le 1-\alpha \;\;\;\;\;\; (21)}
+  \code{ci.method="exact"}, \eqn{s} is initially chosen such that it is the 
+  largest integer satisfying the following equation: 
+  \deqn{F_{B(n,p)}[s-1] \le 1-\alpha \;\;\;\;\;\; (31)}
   where \eqn{\alpha = 1 - }\code{approx.conf.level}.
+  The value of \eqn{s} is varied by \eqn{\pm 2} (with the 
+  restrictions \eqn{s \ge 1} and \eqn{s \le n}), and confidence levels 
+  computed for each of these combinations.  If \code{min.coverage=TRUE}, the 
+  value of \eqn{s} is selected that provides the closest coverage 
+  to \code{approx.conf.level}, with coverage greater than or equal to 
+  \code{approx.conf.level}.  If \code{min.coverage=FALSE}, the 
+  value of \eqn{s}  is selected that provides the closest coverage 
+  to \code{approx.conf.level}, with coverage less than or equal to 
+  \code{approx.conf.level + tol}.  
+
+  For this method, the confidence level associated with the confidence interval 
+  is exact if the underlying distribution is continuous.
   \cr
  
   \emph{Approximate Method} (\code{ci.method="approx"}) \cr
   When \code{ucl.rank} (\eqn{s}) is not supplied by the user and 
-  \code{ci.method="normal.approx"}, \eqn{s} is chosen such that
-  \deqn{s = np + t_{n-1, 1-\alpha} \sqrt{np(1-p)} \;\;\;\;\;\; (22)}
-  and then \eqn{s} is rounded to the nearest integer.
+  \code{ci.method="normal.approx"}, \eqn{s} is initially chosen such that
+  \deqn{s = np + t_{n-1, 1-\alpha} \sqrt{np(1-p)} \;\;\;\;\;\; (31)}
+  With the restriction that \eqn{s \ge 1} and \eqn{s \le n}, 
+  if \code{p} is greater than 0.5 then \eqn{s} is rounded down to the nearest integer, 
+  otherwise it is rounded up to the nearest integer.  Denote this value by 
+  \eqn{s^*}.  With the restriction that \eqn{s \le n}, if the confidence level using 
+  \eqn{s^* + 1} is less than or equal to \code{approx.conf.level}, then 
+  \eqn{s} is set to \eqn{s = s^* + 1}.
+
+  For this method, the confidence level associated with the confidence interval 
+  is exact if the underlying distribution is continuous.
   \cr
+
+  \emph{Interpolate Method} (\code{ci.method="interpolate"}) \cr
+  Let \eqn{\gamma} denote the desired confidence level associated with the 
+  confidence interval for the \eqn{p}'th quantile.  
+  To construct an approximate one-sided upper confidence interval for the 
+  \eqn{p}'th quantile with confidence level \eqn{\gamma}, if 
+  \eqn{[lb, x_{(s)}]} has confidence level \eqn{\ge \gamma} and 
+  \eqn{[lb, x_{(s-1)}]} has confidence level \eqn{\le \gamma}, then  
+  the upper bound of the confidence interval is computed as:
+  \deqn{(1-\lambda) x_{(s-1)} + \lambda x_{(s)} \;\;\;\;\;\; (32)}
+  where 
+  \deqn{\beta = \gamma \;\;\;\;\;\; (33)} 
+   
+  The value of \eqn{s} in Equation (32) is computed by  
+  using \code{ci.method="exact"} with the arguments 
+  \code{ci.type = "upper"}, and \code{min.coverage=TRUE}.  
+  \cr
+
  
+
   \bold{Note on Value of Confidence Level} \cr
-  Because of the discrete nature of order statistics, no matter what the underlying 
-  distribution, the value of the confidence level associated with the nonparametric 
-  confidence interval for the \eqn{p}'th quantile will usually not be precisely 
-  equal to \code{approx.conf.level}.
+  Because of the discrete nature of order statistics, when \code{ci.method="exact"} or \cr
+  \code{ci.method="normal.approx"}, the value of the confidence level returned by 
+  \code{eqnpar} will usually differ from the desired confidence level indicated by 
+  the value of the argument \code{approx.conf.level}.  When \cr
+  \code{ci.method="interpolate"}, 
+  \code{eqnpar} returns for the confidence level the value of the argument 
+  \code{approx.conf.level}.  Nyblom (1992) and Hettmasperger and Sheather (1986) have 
+  shown that the Interpolate method produces confidence intervals with confidence levels 
+  quite close to the assumed confidence level for a wide range of distributions.
 }
 \value{
   a list of class \code{"estimate"} containing the estimated quantile(s) and other 
@@ -217,6 +381,12 @@
   Helsel, D.R., and R.M. Hirsch. (1992). \emph{Statistical Methods in Water Resources Research}. 
   Elsevier, New York, NY, pp.88-90.
 
+  Hettmansperger, T.P., and Sheather, S.J. (1986).  Confidence Intervals Based on 
+  Interpolated Order Statistics.  \emph{Statistics & Probability Letters}, \bold{4}, 75--79.
+
+  Nyblom, J. (1992).  Note on Interpolated Order Statistics.  
+  \emph{Statistics & Probability Letters}, \bold{14}, 129--131.
+
   USEPA. (2009).  \emph{Statistical Analysis of Groundwater Monitoring Data at RCRA Facilities, Unified Guidance}.
   EPA 530/R-09-007, March 2009.  Office of Resource Conservation and Recovery Program Implementation and Information Division.  
   U.S. Environmental Protection Agency, Washington, D.C.
@@ -226,6 +396,11 @@
 }
 \author{
     Steven P. Millard (\email{EnvStats@ProbStatInfo.com})
+
+    The author is grateful to Michael Hohle, Department of Mathematics, Stockholm University 
+    (\url{http://www.math.su.se/~hoehle}) for making me aware of the work of Nyblom (1992), 
+    and for suggesting improvements to the algorithm that was used in \pkg{EnvStats} 
+    Version 2.1.1 to construct a confidence interval when \code{ci.method="exact"}.
 }
 \note{
   Percentiles are sometimes used in environmental standards and regulations.  For example, 
@@ -252,13 +427,92 @@
   \link[=FcnsByCatTolInts]{Tolerance Intervals}, \code{\link{estimate.object}}.
 }
 \examples{
+
+  # The data frame ACE.13.TCE.df contains observations on 
+  # Trichloroethylene (TCE) concentrations (mg/L) at 
+  # 10 groundwater monitoring wells before and after remediation.  
+  #
+  # Compute the median concentration for each period along with 
+  # a 95\% confidence interval for the median.
+  #
+  # Before remediation:  20.3 [8.8, 35.9]
+  # After  remediation:   2.5 [0.8,  5.9]
+
+  with(ACE.13.TCE.df, 
+    eqnpar(TCE.mg.per.L[Period=="Before"], ci = TRUE))
+
+  #Results of Distribution Parameter Estimation
+  #--------------------------------------------
+
+  #Assumed Distribution:            None
+
+  #Estimated Quantile(s):           Median = 20.3
+
+  #Quantile Estimation Method:      Nonparametric
+
+  #Data:                            TCE.mg.per.L[Period == "Before"]
+
+  #Sample Size:                     10
+
+  #Confidence Interval for:         50'th %ile
+
+  #Confidence Interval Method:      interpolate (Nyblom, 1992)
+
+  #Confidence Interval Type:        two-sided
+
+  #Confidence Level:                95%
+
+  #Confidence Limit Rank(s):        2 9 
+  #                                 3 8 
+
+  #Confidence Interval:             LCL =  8.804775
+  #                                 UCL = 35.874775
+
+  #----------
+
+  with(ACE.13.TCE.df, eqnpar(TCE.mg.per.L[Period=="After"], ci = TRUE))
+
+  #Results of Distribution Parameter Estimation
+  #--------------------------------------------
+
+  #Assumed Distribution:            None
+
+  #Estimated Quantile(s):           Median = 2.48
+
+  #Quantile Estimation Method:      Nonparametric
+
+  #Data:                            TCE.mg.per.L[Period == "After"]
+
+  #Sample Size:                     10
+
+  #Confidence Interval for:         50'th %ile
+
+  #Confidence Interval Method:      interpolate (Nyblom, 1992)
+
+  #Confidence Interval Type:        two-sided
+
+  #Confidence Level:                95%
+
+  #Confidence Limit Rank(s):        2 9 
+  #                                 3 8 
+
+  #Confidence Interval:             LCL = 0.7810901
+  #                                 UCL = 5.8763063
+
+  #==========
+
   # Generate 20 observations from a cauchy distribution with parameters 
   # location=0, scale=1.  The true 75th percentile of this distribution is 1. 
-  # Use eqnpar to estimate the 75th percentile and construct a 90\% confidence interval. 
+  # Use eqnpar to estimate the 75th percentile and construct a 90% confidence interval. 
   # (Note: the call to set.seed simply allows you to reproduce this example.)
 
   set.seed(250) 
   dat <- rcauchy(20, location = 0, scale = 1) 
+
+  #-------------------------------------------------------
+  # First, use the default method, ci.method="interpolate"
+  #-------------------------------------------------------
+
   eqnpar(dat, p = 0.75, ci = TRUE, approx.conf.level = 0.9) 
 
   #Results of Distribution Parameter Estimation
@@ -276,26 +530,27 @@
   #
   #Confidence Interval for:         75'th %ile
   #
-  #Confidence Interval Method:      exact
+  #Confidence Interval Method:      interpolate (Nyblom, 1992)
   #
   #Confidence Interval Type:        two-sided
   #
-  #Confidence Level:                87.38755%
+  #Confidence Level:                90%
   #
-  #Confidence Limit Rank(s):        13 19 
+  #Confidence Limit Rank(s):        12 19 
+  #                                 13 18 
   #
-  #Confidence Interval:             LCL = 1.018038
-  #                                 UCL = 2.215660
+  #Confidence Interval:             LCL = 0.8191423
+  #                                 UCL = 2.1215570
 
   #----------
 
-  # In the above example, the true confidence level is 87\% instead of 90\%.  
-  # Let's try to construct a confidence interval with a confidence level that is 
-  # at least 90\% by supplying our own indices for the order statistics to use for 
-  # the confidence limits.  In the above example, the 13'th and 19'th order statistics 
-  # are used to construct the confidence interval.  Let's try the 12'th and 19'th:
+  #-------------------------------------------------------------
+  # Now use ci.method="exact".  
+  # Note that the returned confidence level is greater than 90%.
+  #-------------------------------------------------------------
 
-  eqnpar(dat, p = 0.75, ci = TRUE, lcl.rank = 12, ucl.rank = 19) 
+  eqnpar(dat, p = 0.75, ci = TRUE, approx.conf.level = 0.9, 
+    ci.method = "exact") 
 
   #Results of Distribution Parameter Estimation
   #--------------------------------------------
@@ -321,9 +576,85 @@
   #Confidence Limit Rank(s):        12 19 
   #
   #Confidence Interval:             LCL = 0.7494692
-  #                                 UCL = 2.215660
+  #                                 UCL = 2.2156601
 
   #----------
+
+  #----------------------------------------------------------
+  # Now use ci.method="exact" with min.coverage=FALSE.  
+  # Note that the returned confidence level is less than 90%.
+  #----------------------------------------------------------
+
+  eqnpar(dat, p = 0.75, ci = TRUE, approx.conf.level = 0.9, 
+    ci.method = "exact", min.coverage = FALSE, ) 
+
+  #Results of Distribution Parameter Estimation
+  #--------------------------------------------
+  #
+  #Assumed Distribution:            None
+  #
+  #Estimated Quantile(s):           75'th %ile = 1.524903
+  #
+  #Quantile Estimation Method:      Nonparametric
+  #
+  #Data:                            dat
+  #
+  #Sample Size:                     20
+  #
+  #Confidence Interval for:         75'th %ile
+  #
+  #Confidence Interval Method:      exact
+  #
+  #Confidence Interval Type:        two-sided
+  #
+  #Confidence Level:                89.50169%
+  #
+  #Confidence Limit Rank(s):        13 20 
+  #
+  #Confidence Interval:             LCL = 1.018038
+  #                                 UCL = 5.002399
+
+  #----------
+
+  #-----------------------------------------------------------
+  # Now supply our own bounds for the confidence interval.  
+  # The first example above based on the Interpolate method 
+  # used lcl.rank=12, ucl.rank=19 and lcl.rank=13, ucl.rank=18 
+  # and interpolated between these two confidence intervals.  
+  # Here we will specify lcl.rank=13 and ucl.rank=18.  The 
+  # resulting confidence level is 81%.  
+  #-----------------------------------------------------------
+
+  eqnpar(dat, p = 0.75, ci = TRUE, lcl.rank = 13, ucl.rank = 18) 
+
+  #Results of Distribution Parameter Estimation
+  #--------------------------------------------
+  #
+  #Assumed Distribution:            None
+  #
+  #Estimated Quantile(s):           75'th %ile = 1.524903
+  #
+  #Quantile Estimation Method:      Nonparametric
+  #
+  #Data:                            dat
+  #
+  #Sample Size:                     20
+  #
+  #Confidence Interval for:         75'th %ile
+  #
+  #Confidence Interval Method:      exact
+  #
+  #Confidence Interval Type:        two-sided
+  #
+  #Confidence Level:                80.69277%
+  #
+  #Confidence Limit Rank(s):        13 18 
+  #
+  #Confidence Interval:             LCL = 1.018038
+  #                                 UCL = 2.071172
+
+  #----------
+
   # Clean up
   rm(dat)
 
@@ -331,11 +662,14 @@
 
   # Modify Example 17-4 on page 17-21 of USEPA (2009).  This example uses 
   # copper concentrations (ppb) from 3 background wells to set an upper 
-  # limit for 2 compliance wells.  Here we will compute an upper 95\% confidence interval for 
-  # the 95'th percentile of the distribution of copper concentrations in the background wells.  
-  # The data are stored in EPA.92c.copper2.df.  Note that even though these data are 
-  # Type I left singly censored, it is still possible to compute an estimate of the 
-  # 95'th percentile. 
+  # limit for 2 compliance wells.  Here we will attempt to compute an upper 
+  # 95% confidence interval for the 95'th percentile of the distribution of 
+  # copper concentrations in the background wells.  
+  #
+  # The data are stored in EPA.92c.copper2.df.  
+  #
+  # Note that even though these data are Type I left singly censored, 
+  # it is still possible to compute an estimate of the 95'th percentile. 
 
   EPA.92c.copper2.df
   #   Copper.orig Copper Censored Month Well  Well.type
@@ -359,9 +693,27 @@
   #39         5.6    5.6    FALSE     7    5 Compliance
   #40          <5    5.0     TRUE     8    5 Compliance
 
+  # Because of the small sample size of n=24 observations, it is not possible 
+  # to create a nonparametric confidence interval for the 95th percentile 
+  # that has an associated confidence level of 95%.  If we tried to do this, 
+  # we would get an error message:
+
+  # with(EPA.92c.copper2.df, 
+  #    eqnpar(Copper[Well.type=="Background"], p = 0.95, ci = TRUE, lb = 0, 
+  #      ci.type = "upper", approx.conf.level = 0.95)) 
+  #
+  #Error in ci.qnpar.interpolate(x = c(5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5,  : 
+  #  Minimum coverage of 0.95 is not possible with the given sample size.
+
+  # So instead, we will use ci.method="exact" with min.coverage=FALSE 
+  # to construct the confidence interval.  Note that the associated 
+  # confidence level is only 71%.
+
   with(EPA.92c.copper2.df, 
-    eqnpar(Copper[Well.type=="Background"], p = 0.95, ci = TRUE, lb = 0, 
-      ci.type = "upper", approx.conf.level = 0.95)) 
+     eqnpar(Copper[Well.type=="Background"], p = 0.95, ci = TRUE, 
+        ci.method = "exact", min.coverage = FALSE, 
+        ci.type = "upper", lb = 0, 
+        approx.conf.level = 0.95)) 
 
   #Results of Distribution Parameter Estimation
   #--------------------------------------------
@@ -384,7 +736,7 @@
   #
   #Confidence Level:                70.8011%
   #
-  #Confidence Limit Rank(s):        24 
+  #Confidence Limit Rank(s):        NA 24 
   #
   #Confidence Interval:             LCL = 0.0
   #                                 UCL = 9.2
@@ -392,14 +744,15 @@
   #----------
 
   # For the above example, the true confidence level is 71\% instead of 95\%.  
-  # This is a function of the small sample size.  In fact, as Example 17-4 shows, the 
-  # largest quantile for which you can construct a nonparametric confidence interval that 
-  # will have associated confidence level of 95\% is the 88'th percentile:
-
+  # This is a function of the small sample size.  In fact, as Example 17-4 on 
+  # pages 17-21 of USEPA (2009) shows, the largest quantile for which you can 
+  # construct a nonparametric confidence interval that will have associated 
+  # confidence level of 95\% is the 88'th percentile:
 
   with(EPA.92c.copper2.df, 
     eqnpar(Copper[Well.type=="Background"], p = 0.88, ci = TRUE, 
-      ucl.rank = 24, lb = 0, ci.type = "upper", approx.conf.level = 0.95)) 
+      ci.type = "upper", lb = 0, ucl.rank = 24, 
+      approx.conf.level = 0.95)) 
 
   #Results of Distribution Parameter Estimation
   #--------------------------------------------
@@ -422,7 +775,7 @@
   #
   #Confidence Level:                95.3486%
   #
-  #Confidence Limit Rank(s):        24 
+  #Confidence Limit Rank(s):        NA 24 
   #
   #Confidence Interval:             LCL = 0.0
   #                                 UCL = 9.2
@@ -431,7 +784,7 @@
 
   # Reproduce Example 21-6 on pages 21-21 to 21-22 of USEPA (2009).  
   # Use 12 measurements of nitrate (mg/L) at a well used for drinking water 
-  # to determine with 95% confidence whether or not the infant-based, acute 
+  # to determine with 95\% confidence whether or not the infant-based, acute 
   # risk standard of 10 mg/L has been violated.  Assume that the risk 
   # standard represents an upper 95'th percentile limit on nitrate 
   # concentrations.  So what we need to do is construct a one-sided 
@@ -505,7 +858,7 @@
   #
   #Confidence Level:                98.04317%
   #
-  #Confidence Limit Rank(s):        10 
+  #Confidence Limit Rank(s):        10 NA 
   #
   #Confidence Interval:             LCL =  11
   #                                 UCL = Inf
@@ -514,6 +867,7 @@
 
   # Clean up
   #---------
+ 
   rm(conf.levels)
 }
 \keyword{ distribution }

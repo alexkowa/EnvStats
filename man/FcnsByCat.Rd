@@ -19,6 +19,7 @@
     \item \link[=FcnsByCatHypothTests]{Hypothesis Tests}
     \item \link[=FcnsByCatMCandRisk]{Monte Carlo Simulation and Risk Assessment}
     \item \link[=FcnsByCatPlotProbDists]{Plotting Probability Distributions}
+    \item \link[=FcnsByCatPlotUsingggplot2]{Plotting Using ggplot2}
     \item \link[=FcnsByCatPower]{Power and Sample Size Calculations}
     \item \link[=FcnsByCatPredInts]{Prediction Intervals}
     \item \link[=FcnsByCatPrintPlot]{Printing and Plotting Methods}

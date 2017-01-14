@@ -47,7 +47,19 @@
 }
   \item{alternative}{
   character string indicating the kind of alternative hypothesis.  The possible values 
-  are \code{"two.sided"} (the default), \code{"greater"}, and \code{"less"}.
+  are: 
+
+  \itemize{
+    \item \code{"two.sided"} (the default).  \eqn{H_a: \mu \ne \mu_0} for the one-sample case and 
+    \eqn{H_a: \mu_1 \ne \mu_2} for the two-sample case. 
+
+    \item \code{"greater"}.  \eqn{H_a: \mu > \mu_0} for the one-sample case and 
+    \eqn{H_a: \mu_1 > \mu_2} for the two-sample case. 
+
+    \item \code{"less"}.  \eqn{H_a: \mu < \mu_0} for the one-sample case and 
+    \eqn{H_a: \mu_1 < \mu_2} for the two-sample case.
+  }
+
 }
   \item{two.sided.direction}{
   character string indicating the direction (positive or negative) for the 

@@ -47,6 +47,8 @@ function (x, censored, censoring.side = c("left", "right"), lambda = {
     if (length(T1) > 1) 
         stop(paste("More than one censoring level. ", "Use 'boxcoxMultiplyCensored'."))
     x.no.cen <- x[!censored]
+    if (length(unique(x.no.cen)) < 2) 
+        stop("'x' must contain at least 2 non-missing, uncensored, distinct values.")
     if (censoring.side == "left") {
         if (T1 > min(x.no.cen)) 
             stop(paste("For singly left-censored data,", "all uncensored observations must be bigger than", 

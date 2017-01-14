@@ -15,8 +15,10 @@
 }
 \arguments{
   \item{delta.over.sigma}{
-  numeric vector specifying the ratio of the true difference (\eqn{\delta}) to the 
-  population standard deviation (\eqn{\sigma}).  This is also called the 
+  numeric vector specifying the ratio of the true difference \eqn{\delta}  
+  (\eqn{\delta = \mu - \mu_0} for the one-sample case and 
+  \eqn{\delta = \mu_1 - \mu_2} for the two-sample case) 
+  to the population standard deviation (\eqn{\sigma}).  This is also called the 
   \dQuote{scaled difference}.
 }
   \item{alpha}{
@@ -37,7 +39,19 @@
 }
   \item{alternative}{
   character string indicating the kind of alternative hypothesis.  The possible values 
-  are \code{"two.sided"} (the default), \code{"greater"}, and \code{"less"}.
+  are: 
+
+  \itemize{
+    \item \code{"two.sided"} (the default).  \eqn{H_a: \mu \ne \mu_0} for the one-sample case and 
+    \eqn{H_a: \mu_1 \ne \mu_2} for the two-sample case. 
+
+    \item \code{"greater"}.  \eqn{H_a: \mu > \mu_0} for the one-sample case and 
+    \eqn{H_a: \mu_1 > \mu_2} for the two-sample case. 
+
+    \item \code{"less"}.  \eqn{H_a: \mu < \mu_0} for the one-sample case and 
+    \eqn{H_a: \mu_1 < \mu_2} for the two-sample case.
+  }
+
 }
   \item{approx}{
   logical scalar indicating whether to compute the power based on an approximation to 
@@ -81,10 +95,13 @@
   scaled difference, and Type I error level. 
 }
 \value{
-  When \code{sample.type="one.sample"}, or \code{sample.type="two.sample"} 
-  and \code{n2} is not supplied (so equal sample sizes for each group is 
-  assumed), \code{tTestN} returns a numeric vector of sample sizes.  When 
-  \code{sample.type="two.sample"} and \code{n2} is supplied, 
+  When \code{sample.type="one.sample"}, \code{tTestN} returns a numeric vector of sample sizes.
+
+  When \code{sample.type="two.sample"} and \code{n2} is not supplied, 
+  equal sample sizes for each group is assumed and \code{tTestN} returns a numeric vector of 
+  sample sizes indicating the required sample size \emph{for each group}.  
+
+  When \code{sample.type="two.sample"} and \code{n2} is supplied, 
   \code{tTestN} returns a list with two components called \code{n1} and 
   \code{n2}, specifying the sample sizes for each group.
 }

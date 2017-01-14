@@ -1,7 +1,8 @@
 ci.qnpar <-
 function (x, p, lcl.rank = NULL, ucl.rank = NULL, lb = -Inf, 
-    ub = Inf, ci.type = c("two-sided", "lower", "upper"), ci.method = c("exact", 
-        "normal.approx"), approx.alpha = 0.05, digits = 0) 
+    ub = Inf, ci.type = "two-sided", ci.method = "interpolate", 
+    digits = getOption("digits"), approx.conf.level = 0.95, min.coverage = TRUE, 
+    tol = 0) 
 {
     x <- sort(x)
     n <- length(x)
@@ -19,12 +20,16 @@ function (x, p, lcl.rank = NULL, ucl.rank = NULL, lb = -Inf,
         if (!is.null.lcl.rank && is.null.ucl.rank) {
             lcl <- x[lcl.rank]
             ucl <- ub
+            ucl.rank <- NA
             ci.type <- "lower"
+            conf.level <- 1 - pbinom(lcl.rank - 1, n, p)
         }
         else if (is.null.lcl.rank && !is.null.ucl.rank) {
             lcl <- lb
+            lcl.rank <- NA
             ucl <- x[ucl.rank]
             ci.type <- "upper"
+            conf.level <- pbinom(ucl.rank - 1, n, p)
         }
         else {
             if (lcl.rank >= ucl.rank) 
@@ -32,64 +37,36 @@ function (x, p, lcl.rank = NULL, ucl.rank = NULL, lb = -Inf,
             lcl <- x[lcl.rank]
             ucl <- x[ucl.rank]
             ci.type <- "two-sided"
+            conf.level <- pbinom(ucl.rank - 1, n, p) - pbinom(lcl.rank - 
+                1, n, p)
         }
         ci.method <- "exact"
+        ci.limits <- c(lcl, ucl)
+        names(ci.limits) <- c("LCL", "UCL")
+        limit.ranks <- c(lcl.rank, ucl.rank)
     }
     else {
-        ci.type <- match.arg(ci.type)
-        ci.method <- match.arg(ci.method)
-        if (ci.method == "exact") {
-            switch(ci.type, `two-sided` = {
-                ao2 <- approx.alpha/2
-                lcl.rank <- qbinom(ao2, n, p) + 1
-                ucl.rank <- qbinom(1 - ao2, n, p)
-                if ((pbinom(ucl.rank, n, p) - pbinom(lcl.rank - 
-                  1, n, p)) <= 1 - approx.alpha) ucl.rank <- min(n, 
-                  ucl.rank + 1)
-                lcl <- x[lcl.rank]
-                ucl <- x[ucl.rank]
-            }, lower = {
-                lcl.rank <- qbinom(approx.alpha, n, p) + 1
-                lcl <- x[lcl.rank]
-                ucl <- ub
-            }, upper = {
-                ucl.rank <- qbinom(1 - approx.alpha, n, p)
-                lcl <- lb
-                ucl <- x[ucl.rank]
-            })
-        }
-        else {
-            vec <- round(ci.normal.approx(n * p, sqrt(n * p * 
-                (1 - p)), n, n - 1, ci.type, approx.alpha)$limits, 
-                0)
-            lcl.rank <- max(1, vec[1])
-            ucl.rank <- min(n, vec[2])
-            switch(ci.type, `two-sided` = {
-                if ((pbinom(ucl.rank, n, p) - pbinom(lcl.rank - 
-                  1, n, p)) <= 1 - approx.alpha) ucl.rank <- min(n, 
-                  ucl.rank + 1)
-                lcl <- x[lcl.rank]
-                ucl <- x[ucl.rank]
-            }, lower = {
-                lcl <- x[lcl.rank]
-                ucl <- ub
-            }, upper = {
-                lcl <- lb
-                ucl <- x[ucl.rank]
-            })
-        }
+        ci.type <- match.arg(ci.type, c("two-sided", "lower", 
+            "upper"))
+        ci.method <- match.arg(ci.method, c("interpolate", "exact", 
+            "normal.approx"))
+        arg.list <- list(x = x, n = n, p = p, lb = lb, ub = ub, 
+            ci.type = ci.type, approx.conf.level = approx.conf.level)
+        if (ci.method == "exact") 
+            arg.list <- c(arg.list, list(min.coverage = min.coverage, 
+                tol = tol))
+        ci.list <- do.call(paste("ci.qnpar", ci.method, sep = "."), 
+            arg.list)
+        ci.limits <- ci.list$ci.limits
+        limit.ranks <- ci.list$limit.ranks
+        conf.level <- ci.list$conf.level
+        ci.method <- ci.list$method
     }
-    conf.level <- switch(ci.type, `two-sided` = pbinom(ucl.rank - 
-        1, n, p) - pbinom(lcl.rank - 1, n, p), lower = 1 - pbinom(lcl.rank - 
-        1, n, p), upper = pbinom(ucl.rank - 1, n, p))
-    ci.limits <- c(lcl, ucl)
-    names(ci.limits) <- c("LCL", "UCL")
     pct <- round(100 * p, digits)
     ci.parameter <- paste(pct, number.suffix(pct), " %ile", sep = "")
     ret.obj <- list(name = "Confidence", parameter = ci.parameter, 
-        limit.ranks = c(lcl.rank, ucl.rank), limits = ci.limits, 
-        type = ci.type, method = ci.method, conf.level = conf.level, 
-        sample.size = n)
+        limit.ranks = limit.ranks, limits = ci.limits, type = ci.type, 
+        method = ci.method, conf.level = conf.level, sample.size = n)
     oldClass(ret.obj) <- "intervalEstimate"
     ret.obj
 }

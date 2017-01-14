@@ -21,7 +21,7 @@
 \section{Methods}{
   Generic functions that have methods for objects of class 
   \code{"boxcoxLm"} include: \cr
-  \code{link{plot}}, \code{\link{print}}.
+  \code{\link{plot}}, \code{\link{print}}.
 }
 \value{
   The following components must be included in a legitimate list of 

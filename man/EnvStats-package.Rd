@@ -16,7 +16,9 @@
   and extensive help that explains what these methods do, how to use them, 
   and where to find them in the literature.  It also includes numerous built-in data 
   sets from regulatory guidance documents and environmental statistics literature, and 
-  scripts reproducing analyses presented in the user's manual (Millard, 2013).
+  scripts reproducing analyses presented in the User's manual:   
+  \emph{EnvStats:  An R Package for Environmental Statistics} 
+  (Millard, 2013, \url{http://www.springer.com/book/9781461484554}).
 
   For a complete list of functions and datasets, you can do any of the following:
 
@@ -37,26 +39,27 @@
 \tabular{ll}{
 Package: \tab EnvStats\cr
 Type: \tab Package\cr
-Version: \tab 2.1.1\cr
-Date: \tab 2016-06-13\cr
+Version: \tab 2.2.1\cr
+Date: \tab 2017-01-06\cr
 License: \tab GPL (>=3)\cr
 LazyLoad: \tab yes\cr
 }
 
   A companion file \bold{EnvStats-manual.pdf} containing a listing of all the current help 
   files is located on the \R CRAN web site at 
-  \url{http://cran.r-project.org/web/packages/EnvStats/EnvStats.pdf} and also in the 
+  \url{https://cran.r-project.org/package=EnvStats/EnvStats.pdf}
+  and also in the 
   \bold{doc} subdirectory of the directory where the \pkg{EnvStats} package 
   was installed.  For example, if you installed R under Windows, this file might be located 
   in the directory \bold{C:\\Program Files\\R-*.**.*\\library\\EnvStats\\doc}, where 
-  \bold{*.**.*} denotes the version of R you are using (e.g., 3.2.5) or in the directory 
+  \bold{*.**.*} denotes the version of R you are using (e.g., 3.3.2) or in the directory 
   \bold{C:\\Users\\\emph{Name}\\Documents\\R\\win-library\\*.**.*\\EnvStats\\doc}, where 
   \bold{\emph{Name}} denotes your user name on the Windows operating system.
 
   EnvStats comes with companion scripts, located in the \bold{scripts} subdirectory of the 
   directory where the package was installed.  One set of scripts lets you reproduce the examples in 
-  the User's Manual (currently is still in preparation).  There are also scripts that let you reproduce 
-  examples from US EPA guidance documents.
+  the User's Manual.  There are also scripts that let you reproduce examples from 
+  US EPA guidance documents.
 
   See the \bold{References} section below for documentation for the predecessor to \pkg{EnvStats}, 
   \emph{EnvironmentalStats for S-PLUS} for Windows. 
@@ -66,9 +69,11 @@ LazyLoad: \tab yes\cr
   \itemize{
 
     \item 
-    New functions for computing \link[=FcnsByCatSumStats]{summary statistics} and 
+    New functions for computing \link[=FcnsByCatSumStats]{summary statistics}, as well as  
     creating \link[=FcnsByCatSumStats]{summary plots} to compare the distributions 
-    of groups side-by-side.
+    of groups side-by-side, including functions specifically designed to work with 
+    plots created with \code{\link[ggplot2]{ggplot}} 
+    (see \link[=FcnsByCatPlotUsingggplot2]{Plotting Using ggplot2}).
   
 
     \item 
@@ -164,7 +169,7 @@ Maintainer: Steven P. Millard <EnvStats@ProbStatInfo.com>
 }
 \references{
   Millard, S.P. (2013). \emph{EnvStats: An R Package for Environmental Statistics}. 
-  Springer, New York.
+  Springer, New York.  \url{http://www.springer.com/book/9781461484554}.
 
   Millard, S.P. (2002). \emph{EnvironmentalStats for S-PLUS: User's Manual for Version 2.0}. 
   Second Edition. Springer-Verlag, New York.

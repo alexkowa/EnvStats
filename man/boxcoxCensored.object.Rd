@@ -19,7 +19,7 @@
 \section{Methods}{
   Generic functions that have methods for objects of class 
   \code{"boxcoxCensored"} include: \cr
-  \code{link{plot}}, \code{\link{print}}.
+  \code{\link{plot}}, \code{\link{print}}.
 }
 \value{
   \strong{Required Components} \cr

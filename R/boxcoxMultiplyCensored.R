@@ -44,11 +44,23 @@ function (x, censored, censoring.side = c("left", "right"), lambda = {
         ret.list$bad.obs <- bad.obs
         return(ret.list)
     }
+    x.no.cen <- x[!censored]
+    if (length(unique(x.no.cen)) < 2) 
+        stop("'x' must contain at least 2 non-missing, uncensored, distinct values.")
     x.cen <- x[censored]
     cen.levels <- sort(unique(x.cen))
-    if (length(cen.levels) == 1) {
-        warning(paste("Only one censoring level, so the function", 
-            "'boxcoxSinglyCensored' was called."))
+    K <- length(cen.levels)
+    if (K == 1 && ((censoring.side == "left" & cen.levels <= 
+        min(x.no.cen)) || (censoring.side == "right" & cen.levels >= 
+        max(x.no.cen)))) {
+        if (censoring.side == "left") {
+            string <- "and it is less than or equal to the smallest uncensored observation,"
+        }
+        else {
+            string <- "and it is greater than or equal to the largest uncensored observation,"
+        }
+        warning(paste("Only one censoring level indicated by 'censored',", 
+            string, "so the function 'boxcoxSinglyCensored' was called."))
         ret.list <- boxcoxSinglyCensored(x = x, censored = censored, 
             censoring.side = censoring.side, lambda = lambda, 
             optimize = optimize, objective.name = objective.name, 

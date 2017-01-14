@@ -89,7 +89,7 @@
   from a \link[=LognormalAlt]{lognormal distribution}. 
 }
 \seealso{
-  \code{\link{geoMean}}, link{Lognormal}, \code{\link{elnorm}}, 
+  \code{\link{geoMean}}, \link{Lognormal}, \code{\link{elnorm}}, 
   \code{\link{summaryFull}}, \code{\link{Summary Statistics}}.
 }
 \examples{

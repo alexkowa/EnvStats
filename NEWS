@@ -1,3 +1,33 @@
+Changes in Version 2.2.1, 2017.01.13:
+
+	o Added the function geom_stripchart(), which is a geom that works under the package ggplot2 
+	  and is the analogue to the EnvStats function stripChart().  Also added the following 
+	  supporting functions for geom_stripchart():
+	  --stat_n_text:           beneath each group, displays text indicating the sample size.
+	  --stat_mean_sd_text:     above each group, displays text indicating the mean and standard deviation.
+	  --stat_median_iqr_text:  above each group, displays text indicating the median and interquartile range.
+	  --stat_test_text:        at top of panel, displays text indicating the test results comparing groups. 
+
+	o Updated the function eqnpar():
+	  -- Added the argument "type" to allow the user to specify how the estimated 
+	     quantile is computed.  This argument is passed to the quantile() function.
+	  -- Added the option ci.method="interpolate" (now the default).
+	  -- Changed the behavior when ci.method="exact".
+	  -- Changed the behavior when ci.method="normal.approx".
+
+	o Fixed bug in the function gofTestCensored() for the case when there is only 
+	  one censoring level but the sample is still considered to be multiply censored 
+	  because the censoring level is 
+	  larger than the smallest uncensored observation (left-censored data) or 
+	  smaller than the largest uncensored observation (right-censored data).
+
+	o Updated the help files for enormCensored(), elnormCensored(),  
+	  elnormAltCensored(), and gofTestCensored():
+	  -- The default value for prob.method is prob.method="hirsch-stedinger", 
+	     not "michael-schucany".
+
+========================
+
 Changes in Version 2.1.1, 2016.06.13:
 
 	o Updated the function stripChart(): 
@@ -46,8 +76,6 @@ Changes in Version 2.1.1, 2016.06.13:
 	     This method is equivalent to the already existing method 
 	     Imputation Using Quantile-Quantile Regression (method ="impute.w.qq.reg").
  
- 
-
 ========================
 
 Changes in Version 2.1.0, 2016.04.18:

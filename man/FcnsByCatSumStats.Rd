@@ -32,13 +32,19 @@
 
   \bold{Summary Plots} \cr
   \R comes with several functions for creating plots to summarize data, including 
-  \code{\link{hist}}, \code{\link{barplot}}, \code{\link{boxplot}}, 
-  \code{\link{dotchart}}, \code{\link{stripchart}}, and numerous others.  
+  \code{\link[graphics]{hist}}, \code{\link[graphics]{barplot}}, \code{\link[graphics]{boxplot}}, 
+  \code{\link[graphics]{dotchart}}, \code{\link[graphics]{stripchart}}, and numerous others.  
 
   The help file \link[=FcnsByCatPlotProbDists]{Plotting Probability Distributions} 
-  lists several \pkg{EnvStats} functions useful for producing summary plots as well.  
+  lists several \pkg{EnvStats} functions useful for producing summary plots as well. 
+ 
   In addition, the \pkg{EnvStats} function \code{\link{stripChart}} is a modification 
-  of \code{\link{stripchart}} that allows you to include summary statistics 
+  of \code{\link[graphics]{stripchart}} that allows you to include summary statistics 
   on the plot itself.
+
+  Finally, the help file \link[=FcnsByCatPlotUsingggplot2]{Plotting Using ggplot2} lists 
+  several \pkg{EnvStats} functions for adding information to plots produced with the 
+  \code{\link[ggplot2]{ggplot}} function, including the function \code{\link{geom_stripchart}}, 
+  which is an adaptation of the \pkg{EnvStats} function \code{\link{stripChart}}.  
 }
 \keyword{ package }

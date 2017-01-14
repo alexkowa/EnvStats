@@ -349,7 +349,7 @@
 \seealso{
   \code{\link{htest.object}}, \code{\link{acf}}, \code{\link{ar}}, 
   \code{\link{arima}}, \code{\link{arima.sim}}, 
-  \code{link{ts.plot}}, \code{\link{plot.ts}},  
+  \code{\link{ts.plot}}, \code{\link{plot.ts}},  
   \code{\link{lag.plot}}, \link{Hypothesis Tests}.
 }
 \examples{

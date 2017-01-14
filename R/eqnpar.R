@@ -1,7 +1,8 @@
 eqnpar <-
-function (x, p = 0.5, ci = FALSE, lcl.rank = NULL, ucl.rank = NULL, 
-    lb = -Inf, ub = Inf, ci.type = "two-sided", ci.method = "exact", 
-    approx.conf.level = 0.95, digits = 0) 
+function (x, p = 0.5, type = 7, ci = FALSE, lcl.rank = NULL, 
+    ucl.rank = NULL, lb = -Inf, ub = Inf, ci.type = "two-sided", 
+    ci.method = "interpolate", digits = getOption("digits"), 
+    approx.conf.level = 0.95, min.coverage = TRUE, tol = 0) 
 {
     if (!is.vector(x, mode = "numeric") & !is.factor(x)) 
         stop("'x' must be a numeric vector or a factor.")
@@ -25,7 +26,7 @@ function (x, p = 0.5, ci = FALSE, lcl.rank = NULL, ucl.rank = NULL,
     if (n < 2 || length(unique(x)) < 2) 
         stop(paste("'x' must contain at least 2 non-missing distinct values. ", 
             "This is not true for 'x' =", data.name))
-    q <- quantile(x, p)
+    q <- quantile(x, p, type = type)
     if (length(p) == 1 && p == 0.5) 
         names(q) <- "Median"
     else {
@@ -42,15 +43,21 @@ function (x, p = 0.5, ci = FALSE, lcl.rank = NULL, ucl.rank = NULL,
             stop("When 'ci' = TRUE, 'p' must be a scalar")
         ci.type <- match.arg(ci.type, c("two-sided", "lower", 
             "upper"))
-        ci.method <- match.arg(ci.method, c("exact", "normal.approx"))
+        ci.method <- match.arg(ci.method, c("interpolate", "exact", 
+            "normal.approx"))
         if (!is.numeric(approx.conf.level) || length(approx.conf.level) != 
             1 || approx.conf.level <= 0 || approx.conf.level >= 
             1) 
             stop("'approx.conf.level' must be a scalar between 0 and 1")
+        if (ci.type == "two-sided" && ci.method == "exact") {
+            if (!is.numeric(tol) || length(tol) != 1 || tol < 
+                0 || tol >= 1) 
+                stop("'tol' must be a scalar between 0 and 1")
+        }
         ci.obj <- ci.qnpar(x = x, p = p, lcl.rank = lcl.rank, 
             ucl.rank = ucl.rank, lb = lb, ub = ub, ci.type = ci.type, 
-            ci.method = ci.method, approx.alpha = 1 - approx.conf.level, 
-            digits = digits)
+            ci.method = ci.method, digits = digits, approx.conf.level = approx.conf.level, 
+            min.coverage = min.coverage, tol = tol)
         ret.list <- c(ret.list, list(interval = ci.obj))
     }
     oldClass(ret.list) <- "estimate"

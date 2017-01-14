@@ -135,7 +135,7 @@
     \code{"nelson"} (hazard plotting method of Nelson (1972)), \cr
     \code{"michael-schucany"} (generalization of the product-limit method due to Michael and Schucany (1986)), and \cr 
     \code{"hirsch-stedinger"} (generalization of the product-limit method due to Hirsch and Stedinger (1987)). \cr  
-    The default value is \code{prob.method="michael-schucany"}.  The \code{"nelson"} 
+    The default value is \code{prob.method="hirsch-stedinger"}.  The \code{"nelson"} 
     method is only available for \code{censoring.side="right"}.  
     See the DETAILS section and the help file for \code{\link{ppointsCensored}} 
     for more information.
