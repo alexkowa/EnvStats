@@ -8,7 +8,7 @@ importFrom("stats", "anova", "aov", "approx", "ar.yw", "arima",
            "binom.test", "cor", "dbeta", "dchisq", "dhyper", "dlnorm",
            "dnorm", "dpois", "formula", "integrate", "kruskal.test",
            "ks.test", "lm", "mad", "median", "model.frame", "na.pass",
-           "nlminb", "optim", "pbeta", "pbinom", "pchisq", "pf",
+           "nlminb", "optim", "pbeta", "pbinom", "pchisq", "pf", "pgamma", 
            "phyper", "plnorm", "pnbinom", "pnorm", "ppoints", "ppois",
            "prop.test", "pt", "qbeta", "qbinom", "qchisq", "qexp",
            "qf", "qgamma", "qgeom", "qhyper", "qlnorm", "qlogis",
@@ -45,7 +45,9 @@ export(anovaPE,
 	detectionLimitCalibrate, 
 	devd, 
         dgammaAlt,
-	dgevd, 
+	dgevd,
+	distChoose, 
+	distChooseCensored,
 	dlnormAlt, 
 	dlnormMix, 
 	dlnormMixAlt, 
@@ -284,9 +286,13 @@ export(anovaPE,
 	simulateVector,  
 	skewness, 
 	stat_n_text,
+	StatNText,
 	stat_mean_sd_text,
+	StatMeanSDText,
 	stat_median_iqr_text,
+	StatMedianIQRText,
 	stat_test_text,
+	StatTestText,
 	stripChart,
 	summaryFull, 
 	summaryStats,  
@@ -322,6 +328,8 @@ export(anovaPE,
 
 S3method(boxcox, default)
 S3method(boxcox, lm)
+S3method(distChoose, default)
+S3method(distChoose, formula)
 S3method(gofTest, default)
 S3method(gofTest, formula)
 S3method(gofGroupTest, default)
@@ -349,6 +357,7 @@ S3method(print, default)
 S3method(print, boxcox)
 S3method(print, boxcoxCensored)
 S3method(print, boxcoxLm)
+S3method(print, distChoose)
 S3method(print, estimate)
 S3method(print, estimateCensored)
 S3method(print, gof)

@@ -62,6 +62,20 @@ function (x, ...)
             format(x$parameters, nsmall = 0, ...), sep = " = "), 
             collapse = coll.string), "\n\n", sep = "")
     }
+    if (!is.null(x$crit.vals)) {
+        if (length(x$crit.vals) == 1) 
+            cat("Critical Value:", space(18), format(x$crit.vals, 
+                ...), "\n\n", sep = "")
+        else {
+            if (!is.null(names(x$crit.vals))) 
+                cat("Critical Values:", space(17), paste(paste(format(names(x$crit.vals), 
+                  justify = "left"), format(x$crit.vals, ...), 
+                  sep = " = "), collapse = coll.string), "\n\n", 
+                  sep = "")
+            else cat("Critical Values:", space(17), paste(format(x$crit.vals, 
+                ...), collapse = coll.string), "\n\n", sep = "")
+        }
+    }
     if (length(x$p.value) == 1) 
         cat("P-value:", space(25), format(x$p.value, ...), "\n\n", 
             sep = "")

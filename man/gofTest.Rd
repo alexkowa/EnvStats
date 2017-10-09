@@ -23,7 +23,7 @@ gofTest(y, ...)
   cut.points = NULL, param.list = NULL, 
   estimate.params = ifelse(is.null(param.list), TRUE, FALSE), 
   n.param.est = NULL, correct = NULL, digits = .Options$digits, 
-  exact = NULL, ws.method = "normal scores", warn = TRUE, 
+  exact = NULL, ws.method = "normal scores", warn = TRUE, keep.data = TRUE, 
   data.name = NULL, data.name.x = NULL, parent.of.data = NULL, 
   subset.expression = NULL, ...) 
 }
@@ -66,14 +66,25 @@ gofTest(y, ...)
   \code{-Inf}) values are allowed but will be removed.  
 }
   \item{test}{
-  character string defining which goodness-of-fit test to perform.  Possible values are:  
-  \code{"sw"} (Shapiro-Wilk; the default when \code{x} is NOT supplied), 
-  \code{"sf"} (Shapiro-Francia), 
-  \code{"ppcc"} (Probability Plot Correlation Coefficient), \code{"skew"} (Zero-skew), 
-  \code{"chisq"} (Chi-squared), 
-  \code{"ks"} (Kolmogorov-Smirnov; the default when \code{x} IS supplied), and 
-  \code{"ws"} (Wilk-Shapiro test for Uniform [0, 1] distribution).  When the argument 
-  \code{x} is supplied, you must set \code{test="ks"}, which is what \code{gofTest} 
+  character string defining which goodness-of-fit test to perform.  Possible values are:
+  \itemize{ 
+  \item \code{"sw"}. Shapiro-Wilk; the default when \code{x} is NOT supplied.
+  \item \code{"sf"}. Shapiro-Francia.
+  \item \code{"ppcc"}. Probability Plot Correlation Coefficient.
+  \item \code{"ad"}.  Anderson-Darling.
+  \item \code{"cmv"}. Cramer-von Mises.
+  \item \code{"lillie"}. Lilliefor.
+  \item \code{"skew"}. Zero-skew.
+  \item \code{"chisq"}. Chi-squared.
+  \item \code{"ks"}. Kolmogorov-Smirnov; the default when \code{x} IS supplied. 
+  \item \code{"ws"}. Wilk-Shapiro test for Uniform [0, 1] distribution.
+  \item \code{"proucl.ad.gamma"}. Anderson-Darling test for a gamma distribution using 
+    ProUCL critical values.
+  \item \code{"proucl.ks.gamma"}. Kolmogorov-Smirnov test for a gamma distribution using 
+    ProUCL critical values.  
+  }
+
+  When the argument \code{x} is supplied, you must set \code{test="ks"}, which is what \code{gofTest} 
   does by default.
 }
   \item{distribution}{
@@ -86,18 +97,22 @@ gofTest(y, ...)
   \code{"gamma"} (gamma), etc.), as well as mixed distributions involving the normal distribution 
   (i.e., \code{"zmnorm"} (zero-modified normal), \code{"zmlnorm"} (zero-modified lognormal (delta)), 
   and \cr
-  \code{"zmlnorm.alt"} (zero-modified lognormal with alternative parameterization)).
+  \code{"zmlnormAlt"} (zero-modified lognormal with alternative parameterization)).
 
-  When \code{test="skew"}, only the values \code{"norm"} (normal), \code{"lnorm"} (lognormal), 
-  \code{"lnorm.alt"} (lognormal with alternative parameterization), 
+  When \code{test="ad"}, \code{test="cvm"}, \code{test="lillie"}, or \code{test="skew"}, 
+  only the values \code{"norm"} (normal), \code{"lnorm"} (lognormal), 
+  \code{"lnormAlt"} (lognormal with alternative parameterization), 
   \code{"zmnorm"} (zero-modified normal), \code{"zmlnorm"} (zero-modified lognormal (delta)), and \cr
-  \code{"zmlnorm.alt"} (zero-modified lognormal with alternative parameterization) are allowed.
+  \code{"zmlnormAlt"} (zero-modified lognormal with alternative parameterization) are allowed.
 
   When \code{test="ks"}, any continuous distribution is allowed.
 
   When \code{test="chisq"}, any distribuiton is allowed.
 
   When \code{test="ws"}, this argument is ignored.
+
+  When \code{test="proucl.ad.gamma"} or \code{test="proucl.ks.gamma"}, you must set 
+  \code{distribution="gamma"} or \code{distribution="gammaAlt"}.
 }
   \item{est.arg.list}{
   a list of arguments to be passed to the function estimating the distribution parameters.  
@@ -112,7 +127,8 @@ gofTest(y, ...)
   \code{estimate.params=FALSE}.
 
 
-  When \code{test="sw"}, \code{test="sf"}, \code{test="ppcc"}, or \code{test="skew"}, 
+  When \code{test="sw"}, \code{test="sf"}, \code{test="ppcc"}, 
+  \code{test="ad"}, \code{test="cvm"}, \code{test="lillie"}, or \code{test="skew"}, 
   and you are testing for some form of normality (i.e., \link{Normal}, \link{Lognormal}, 
   \link[=Lognormal3]{Three-Parameter Lognormal}, 
   \link[=ZeroModifiedNormal]{Zero-Modified Normal}, or 
@@ -132,8 +148,8 @@ gofTest(y, ...)
   the estimated parameters are used to specify the null hypothesis of which distribution 
   the data are assumed to come from. 
 
-
-  When \code{test="ws"}, this argument is ignored.
+  When \code{test="ws"}, \code{test="proucl.ad.gamma"}, or \code{test="proucl.ks.gamma"}, 
+  this argument is ignored.
 }
   \item{alternative}{
   for the case when \code{test="ks"}, \code{test="skew"}, or \code{test="ws"}, 
@@ -153,7 +169,8 @@ gofTest(y, ...)
   \item{cut.points}{
   for the case when \code{test="chisq"}, a vector of cutpoints that defines the cells. 
   The element \code{x[i]} is allocated to cell \code{j} if \cr
-  \code{cut.points[j]} < \code{x[i]} \eqn{\le} \code{cut.points[j+1]}. If \code{x[i]} is less than or equal to the first cutpoint or 
+  \code{cut.points[j]} < \code{x[i]} \eqn{\le} \code{cut.points[j+1]}. 
+  If \code{x[i]} is less than or equal to the first cutpoint or 
   greater than the last cutpoint, then \code{x[i]} is treated as missing.  If the 
   hypothesized distribution is discrete, \code{cut.points} must be supplied.  The default 
   value is \code{cut.points=NULL}, in which case the cutpoints are determined by 
@@ -210,7 +227,11 @@ gofTest(y, ...)
   \item{warn}{
   logical scalar indicating whether to print a warning message when 
   observations with \code{NA}s, \code{NaN}s, or \code{Inf}s in 
-  \code{y} or \code{x} are removed.  The default value is \code{TRUE}.
+  \code{y} or \code{x} are removed.  The default value is \code{warn=TRUE}.
+}
+  \item{keep.data}{
+  logical scalar indicating whether to return the data used for the goodness-of-fit test.  
+  The default value is \code{keep.data=TRUE}.
 }
   \item{data.name}{
   character string indicating the name of the data used for argument \code{y}.
@@ -499,6 +520,31 @@ gofTest(y, ...)
     \deqn{v = log(\nu) + \frac{2}{\nu} \;\;\;\;\;\; (51)}
     \deqn{\sigma = 1.0308 - 0.26758 v \;\;\;\;\;\; (52)}
 
+    \emph{Testing Goodness-of-Fit for Any Continuous Distribution} \cr
+    The function \code{gofTest} extends the Shapiro-Francia test to test for 
+    goodness-of-fit for any continuous distribution by using the idea of 
+    Chen and Balakrishnan (1995), who proposed a general purpose approximate 
+    goodness-of-fit test based on the Cramer-von Mises or Anderson-Darling 
+    goodness-of-fit tests for normality.  The function \code{gofTest} modifies the 
+    approach of Chen and Balakrishnan (1995) by using the same first 2 steps, and then 
+    applying the Shapiro-Francia test:
+    \enumerate{
+      \item Let \eqn{\underline{x} = x_1, x_2, \ldots, x_n} denote the vector of 
+      \eqn{n} \bold{\emph{ordered}} observations.  
+      Compute cumulative probabilities for each \eqn{x_i} based on the 
+      cumulative distribution function for the hypothesized distribution.  That is, 
+      compute \eqn{p_i = F(x_i, \hat{\theta})} where \eqn{F(x, \theta)} denotes the 
+      hypothesized cumulative distribution function with parameter(s) \eqn{\theta}, 
+      and \eqn{\hat{\theta}} denotes the estimated parameter(s).
+
+      \item Compute standard normal deviates based on the computed cumulative 
+      probabilities: \cr 
+      \eqn{y_i = \Phi^{-1}(p_i)}
+
+      \item Perform the Shapiro-Francia goodness-of-fit test on the \eqn{y_i}'s.
+    }  
+
+
     \item \bold{Probability Plot Correlation Coefficient (PPCC) Goodness-of-Fit Test} (\code{test="ppcc"}).  
 
     The PPPCC goodness-of-fit test (Filliben, 1975; Looney and Gulledge, 1985) can be 
@@ -532,6 +578,73 @@ gofTest(y, ...)
     equivalent to the Weisberg-Bingham Approximation to the Shapiro-Francia 
     W'-Test (Weisberg and Bingham, 1975; Royston, 1993).  Thus the PPCC 
     goodness-of-fit test is equivalent to the Shapiro-Francia goodness-of-fit test.
+    \cr
+
+    \item \bold{Anderson-Darling Goodness-of-Fit Test} (\code{test="ad"}).  
+
+    The Anderson-Darling goodness-of-fit test (Stephens, 1986a; Thode, 2002) can be used to test the 
+    following hypothesized distributions:  
+    \link{Normal}, \link{Lognormal}, \link[=ZeroModifiedNormal]{Zero-Modified Normal}, 
+    or \link[=ZeroModifiedLognormal]{Zero-Modified Lognormal (Delta)}.
+
+    When \code{test="ad"}, the function \code{gofTest} calls the function 
+    \code{\link[nortest]{ad.test}} in the package \pkg{nortest}.  Documentation from that 
+    package is as follows:
+
+    The Anderson-Darling test is an EDF omnibus test for the composite hypothesis of normality. 
+    The test statistic is:
+    \deqn{A = -n - \frac{1}{n} \sum_{i=1}^n [2i - 1][ln(p_{(i)}) + ln(1 - p_{(n-i+1)})]}
+    where \eqn{p_{(i)} = \Phi([x_{(i)} - \bar{x}]/s)}.  Here, \eqn{\Phi} is the cumulative 
+    distribution function of the standard normal distribution, and \eqn{\bar{x}} and \eqn{s} 
+    are mean and standard deviation of the data values. The p-value is computed from the 
+    modified statistic \eqn{Z = A (1.0 + 0.75/n + 2.25/n^2)} according to Table 4.9 in 
+    Stephens [(1986a)].
+    \cr
+
+    \item \bold{Cramer-von Mises Goodness-of-Fit Test} (\code{test="cvm"}).  
+
+    The Cramer-von Mises goodness-of-fit test (Stephens, 1986a; Thode, 2002) can be used to test the 
+    following hypothesized distributions:  
+    \link{Normal}, \link{Lognormal}, \link[=ZeroModifiedNormal]{Zero-Modified Normal}, 
+    or \link[=ZeroModifiedLognormal]{Zero-Modified Lognormal (Delta)}.
+
+    When \code{test="cvm"}, the function \code{gofTest} calls the function 
+    \code{\link[nortest]{cvm.test}} in the package \pkg{nortest}.  Documentation from that 
+    package is as follows:
+
+    The Cramer-von Mises test is an EDF omnibus test for the composite hypothesis of normality. 
+    The test statistic is:
+    \deqn{W = \frac{1}{12n} + \sum_{i=1}^n \left(p_{(i)} - \frac{2i-1}{2n}\right)^2}
+    where \eqn{p_{(i)} = \Phi([x_{(i)} - \bar{x}]/s)}.  Here, \eqn{\Phi} is the cumulative 
+    distribution function of the standard normal distribution, and \eqn{\bar{x}} and \eqn{s} 
+    are mean and standard deviation of the data values. The p-value is computed from the 
+    modified statistic \eqn{Z = W (1.0 + 0.75/n)} according to Table 4.9 in Stephens [(1986a)].
+    \cr
+
+    \item \bold{Lilliefors Goodness-of-Fit Test} (\code{test="lillie"}).  
+
+    The Lilliefors goodness-of-fit test (Stephens, 1974; Dallal and Wilkinson, 1986; Thode, 2002) 
+    can be used to test the following hypothesized distributions:  
+    \link{Normal}, \link{Lognormal}, \link[=ZeroModifiedNormal]{Zero-Modified Normal}, 
+    or \link[=ZeroModifiedLognormal]{Zero-Modified Lognormal (Delta)}.
+
+    When \code{test="lillie"}, the function \code{gofTest} calls the function 
+    \code{\link[nortest]{lillie.test}} in the package \pkg{nortest}.  Documentation from that 
+    package is as follows:
+
+    The Lilliefors (Kolmogorov-Smirnov) test is an EDF omnibus test for the 
+    composite hypothesis of normality.  The test statistic is the 
+    maximal absolute difference between empirical and hypothetical cumulative 
+    distribution function.  It may be computed as \eqn{D = max\{D^+, D^-\}} with
+    \deqn{D^+ = \max_{i = 1, \ldots, n} \{i/n - p_{(i)}\}, \;\; D^- = \max_{i = 1, \ldots, n} \{p_{(i)} - (i-1)/n\} }
+    where \eqn{p_{(i)} = \Phi([x_{(i)} - \bar{x}]/s)}.  Here, \eqn{\Phi} is the cumulative 
+    distribution function of the standard normal distribution, and \eqn{\bar{x}} and \eqn{s} 
+    are mean and standard deviation of the data values. The p-value is computed from
+    the Dallal-Wilkinson (1986) formula, which is claimed to be only reliable when the 
+    p-value is smaller than 0.1.  If the Dallal-Wilkinson p-value turns out to be 
+    greater than 0.1, then the p-value is computed from the distribution of the 
+    modified statistic \eqn{Z = D (\sqrt{n} - 0.01 + 0.85/\sqrt{n})}, see Stephens (1974), 
+    the actual p-value formula being obtained by a simulation and approximation process.
     \cr
 
     \item \bold{Zero-Skew Goodness-of-Fit Test} (\code{test="skew"}).  
@@ -588,6 +701,32 @@ gofTest(y, ...)
     should be pre-specified and not estimated from the data, and if the distribution parameters 
     are estimated from the data you will receive a warning that this test is very conservative 
     (Type I error smaller than assumed; high Type II error) in this case.
+    \cr
+
+    \item \bold{ProUCL Kolmogorov-Smirnov Goodness-of-Fit Test for Gamma} (\code{test="proucl.ks.gamma"}).  
+
+    When \code{test="proucl.ks.gamma"}, the function \code{gofTest} calls the \R function 
+    \code{\link{ks.test}} to compute the Kolmogorov-Smirnov test statistic based on the 
+    maximum likelihood estimates of the shape and scale parameters (see \code{\link{egamma}}).  
+    The p-value is computed based on the simulated critical values given in 
+    \code{\link{ProUCL.Crit.Vals.for.KS.Test.for.Gamma.array}} (USEPA, 2015).  
+    The sample size must be between 5 and 1000, and the value of the maximum likelihood 
+    estimate of the shape parameter must be between 0.025 and 50.  The critical value 
+    for the test statistic is computed using the simulated critical values and 
+    linear interpolation.
+    \cr
+
+    \item \bold{ProUCL Anderson-Darling Goodness-of-Fit Test for Gamma} (\code{test="proucl.ad.gamma"}).  
+
+    When \code{test="proucl.ad.gamma"}, the function \code{gofTest} computes the 
+    Anderson-Darling test statistic (Stephens, 1986a, p.101) based on the 
+    maximum likelihood estimates of the shape and scale parameters (see \code{\link{egamma}}).  
+    The p-value is computed based on the simulated critical values given in 
+    \code{\link{ProUCL.Crit.Vals.for.AD.Test.for.Gamma.array}} (USEPA, 2015).
+    The sample size must be between 5 and 1000, and the value of the maximum likelihood 
+    estimate of the shape parameter must be between 0.025 and 50.  The critical value 
+    for the test statistic is computed using the simulated critical values and 
+    linear interpolation.
     \cr
 
     \item \bold{Chi-Squared Goodness-of-Fit Test} (\code{test="chisq"}).  
@@ -744,6 +883,14 @@ gofTest(y, ...)
   Exact Cumulative Distribution of the Kolmogorov-Smirnov Statistic for Small Samples (Algorithm 487). 
   \emph{Collected Algorithms from ACM} ??, ???-???.
 
+  Razali, N.M., and Y.B. Wah. (2011). Power Comparisons of Shapiro-Wilk, Kolmogorov-Smirnov, 
+  Lilliefors, and Anderson-Darling Tests.  \emph{Journal of Statistical Modeling and Analytics} 
+  \bold{2}(1), 21--33. 
+
+  Romao, X., Delgado, R., and A. Costa. (2010). An Empirical Power Comparison of Univariate 
+  Goodness-of-Fit Tests for Normality.  \emph{Journal of Statistical Computation and Simulation}
+  \bold{80}(5), 545--591.
+
   Royston, J.P. (1992a). Approximating the Shapiro-Wilk W-Test for Non-Normality. 
   \emph{Statistics and Computing} \bold{2}, 117-119.
 
@@ -778,8 +925,16 @@ gofTest(y, ...)
   Use of the Kolmogorov-Smirnov, Cramer-von Mises and Related Statistics Without Extensive Tables. 
   \emph{Journal of the Royal Statistical Society, Series B}, \bold{32}, 115-122.
 
+  Stephens, M.A. (1974). EDF Statistics for Goodness of Fit and Some Comparisons. 
+  \emph{Journal of the American Statistical Association} \bold{69}, 730-737.
+
   Stephens, M.A. (1986a). Tests Based on EDF Statistics. In D'Agostino, R. B., and M.A. Stevens, eds. 
   \emph{Goodness-of-Fit Techniques}. Marcel Dekker, New York.
+
+  Thode Jr., H.C. (2002). \emph{Testing for Normality}. Marcel Dekker, New York.
+
+  USEPA. (2015).  \emph{ProUCL Version 5.1.002 Technical Guide}.  EPA/600/R-07/041, October 2015.  
+  Office of Research and Development. U.S. Environmental Protection Agency, Washington, D.C.
 
   Verrill, S., and R.A. Johnson. (1987). 
   The Asymptotic Equivalence of Some Modified Shapiro-Wilk Statistics -- Complete and Censored Sample Cases. 
@@ -801,6 +956,9 @@ gofTest(y, ...)
 }
 \author{
   Steven P. Millard (\email{EnvStats@ProbStatInfo.com})
+
+  Juergen Gross and Uwe Ligges for the Anderson-Darling, Carmer-von Mises, and Lilliefors tests called 
+  from the package \pkg{nortest}.
 }
 \note{
   The Shapiro-Wilk test (Shapiro and Wilk, 1965) and the Shapiro-Francia test 
@@ -809,7 +967,10 @@ gofTest(y, ...)
   short-tailed (platykurtic) and skewed distributions, and least powerful against 
   symmetric, moderately long-tailed (leptokurtic) distributions.  Conversely, the 
   Shapiro-Francia test is more powerful against symmetric long-tailed distributions and 
-  less powerful against short-tailed distributions (Royston, 1992b; 1993).
+  less powerful against short-tailed distributions (Royston, 1992b; 1993).  
+  In general, the Shapiro-Wilk and Shapiro-Francia tests outperform the Anderson-Darling 
+  test, which in turn outperforms the Cramer-von Mises test, which in turn 
+  outperforms the Lilliefors test (Stephens, 1986a; Razali and Wah, 2011; Romao et al., 2010).
 
   The zero-skew goodness-of-fit test for normality is one of several tests that have 
   been proposed to test the assumption of a normal distribution (D'Agostino, 1986b).  
@@ -971,6 +1132,43 @@ gofTest(y, ...)
 
   #----------
 
+  # ProUCL Version of Komogorov-Smirnov goodness-of-fit test 
+  # for a Gamma Distribution (estimated parameters)
+  #---------------------------------------------------------
+
+  gofTest(dat, test = "proucl.ks.gamma", distribution = "gamma")
+
+  #Results of Goodness-of-Fit Test
+  #-------------------------------
+  #
+  #Test Method:                     ProUCL Kolmogorov-Smirnov Gamma GOF
+  #
+  #Hypothesized Distribution:       Gamma
+  #
+  #Estimated Parameter(s):          shape = 1.909462
+  #                                 scale = 4.056819
+  #
+  #Estimation Method:               MLE
+  #
+  #Data:                            dat
+  #
+  #Sample Size:                     20
+  #
+  #Test Statistic:                  D = 0.0988692
+  #
+  #Test Statistic Parameter:        n = 20
+  #
+  #Critical Values:                 D.0.01 = 0.228
+  #                                 D.0.05 = 0.196
+  #                                 D.0.10 = 0.180
+  #
+  #P-value:                         >= 0.10
+  #
+  #Alternative Hypothesis:          True cdf does not equal the
+  #                                 Gamma Distribution.
+
+  #----------
+
   # Chi-squared goodness-of-fit test (estimated parameters)
   #--------------------------------------------------------
 
@@ -1041,8 +1239,7 @@ gofTest(y, ...)
   # Test for a normal distribution:
   #--------------------------------
 
-  gof.list <- gofTest(Nickel.ppb ~ 1, 
-    data = EPA.09.Ex.10.1.nickel.df)
+  gof.list <- gofTest(Nickel.ppb ~ 1, data = EPA.09.Ex.10.1.nickel.df)
   gof.list
 
   #Results of Goodness-of-Fit Test
@@ -1080,8 +1277,7 @@ gofTest(y, ...)
   # Test for a lognormal distribution:
   #-----------------------------------
 
-  gofTest(Nickel.ppb ~ 1, 
-    data = EPA.09.Ex.10.1.nickel.df, 
+  gofTest(Nickel.ppb ~ 1, data = EPA.09.Ex.10.1.nickel.df, 
     dist = "lnorm")
 
   #Results of Goodness-of-Fit Test
@@ -1117,8 +1313,7 @@ gofTest(y, ...)
   # Mean and CV parameterization:
   #-----------------------------------------------
 
-  gofTest(Nickel.ppb ~ 1, 
-    data = EPA.09.Ex.10.1.nickel.df, 
+  gofTest(Nickel.ppb ~ 1, data = EPA.09.Ex.10.1.nickel.df, 
     dist = "lnormAlt")
 
   #Results of Goodness-of-Fit Test

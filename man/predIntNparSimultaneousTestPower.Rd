@@ -16,7 +16,7 @@
     n.plus.one.minus.upl.rank = ifelse(pi.type == "lower", 0, 1), 
     delta.over.sigma = 0, pi.type = "upper", r.shifted = r,  
     method = "approx", NMC = 100, ci = FALSE, ci.conf.level = 0.95, 
-    integrate.args.list = NULL) 
+    integrate.args.list = NULL, evNormOrdStats.method = "royston") 
 }
 \arguments{
   \item{n}{
@@ -110,6 +110,12 @@
   \item{integrate.args.list}{
   list of arguments to supply to the \code{\link{integrate}} function.  The default 
   value is \code{NULL}.
+}
+  \item{evNormOrdStats.method}{
+  character string indicating which method to use in the call to 
+  \code{\link{evNormOrdStatsScalar}} when \code{method="approx"}.  The default 
+  value is \code{evNormOrdStats.method="royston"}.  See the DETAILS section for 
+  more information.
 }
 }
 \details{
@@ -232,10 +238,13 @@
   \deqn{K = \Phi^{-1}(\frac{i - 0.5}{n}) \;\;\;\;\;\; (8)}
   where \eqn{\Phi} denotes the cumulative distribution function of the standard 
   normal distribution and \eqn{i} denotes the rank of the order statistic used 
-  as the prediction limit.  The function \cr
-  \code{predIntNparSimultaneousTestPower} 
-  uses the exact value of the expected value of the normal order statistic by 
-  calling the function \code{\link{evNormOrdStatsScalar}}.
+  as the prediction limit.  By default, the value of the argument \cr
+  \code{evNormOrdStats.method="royston"}, so the function 
+  \code{predIntNparSimultaneousTestPower} uses the exact value of the 
+  expected value of the normal order statistic in the call to 
+  \code{\link{evNormOrdStatsScalar}}.  You can change the 
+  method of computing the expected value of the normal order statistic by 
+  changing the value of the argument \code{evNormOrdStats.method}.
   \cr
 
   \emph{Power Based on Monte Carlo Simulation} (\code{method="simulate"}) \cr

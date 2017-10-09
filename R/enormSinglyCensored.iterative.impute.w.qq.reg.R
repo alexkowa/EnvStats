@@ -13,7 +13,7 @@ function (x, censored, N, T1, n.cen, censoring.side, ci, ci.method = "normal.app
     index <- 1:n.cen
     if (censoring.side == "right") 
         index <- N - index + 1
-    E.norm <- evNormOrdStats(N, approximate = TRUE)[index]
+    E.norm <- evNormOrdStats(N, method = "blom")[index]
     convergence <- match.arg(convergence)
     iter <- 1
     diff <- tol + 1

@@ -91,13 +91,13 @@
 
   Let \eqn{\underline{x}} denote a vector of \eqn{N} observations from a 
   \link[stats:GammaDist]{gamma distribution} with parameters 
-  \code{shape=}\eqn{\alpha} and \code{scale=}\eqn{\beta}.    
+  \code{shape=}\eqn{\kappa} and \code{scale=}\eqn{\theta}.    
   The relationship between these parameters and the mean \eqn{\mu} 
   and coefficient of variation \eqn{\tau} of this distribution is given by:
-  \deqn{\alpha = \tau^{-2} \;\;\;\;\;\; (1)}
-  \deqn{\beta = \mu/\alpha \;\;\;\;\;\; (2)}
-  \deqn{\mu = \alpha \; \beta \;\;\;\;\;\; (3)}
-  \deqn{\tau = \alpha^{-1/2} \;\;\;\;\;\; (4)}
+  \deqn{\kappa = \tau^{-2} \;\;\;\;\;\; (1)}
+  \deqn{\theta = \mu/\kappa \;\;\;\;\;\; (2)}
+  \deqn{\mu = \kappa \; \theta \;\;\;\;\;\; (3)}
+  \deqn{\tau = \kappa^{-1/2} \;\;\;\;\;\; (4)}
 
   Assume \eqn{n} (\eqn{0 < n < N}) of these 
   observations are known and \eqn{c} (\eqn{c=N-n}) of these observations are 
@@ -135,19 +135,19 @@
 
   \emph{Maximum Likelihood Estimation} (\code{method="mle"}) \cr
   For Type I left censored data, the likelihood function is given by:
-  \deqn{L(\alpha, \beta | \underline{x}) = {N \choose c_1 c_2 \ldots c_k n} \prod_{j=1}^k [F(T_j)]^{c_j} \prod_{i \in \Omega} f[x_{(i)}] \;\;\;\;\;\; (7)}
+  \deqn{L(\kappa, \theta | \underline{x}) = {N \choose c_1 c_2 \ldots c_k n} \prod_{j=1}^k [F(T_j)]^{c_j} \prod_{i \in \Omega} f[x_{(i)}] \;\;\;\;\;\; (7)}
   where \eqn{f} and \eqn{F} denote the probability density function (pdf) and 
   cumulative distribution function (cdf) of the population 
   (Cohen, 1963; Cohen, 1991, pp.6, 50).  That is,
-  \deqn{f(t) =  \frac{t^{\alpha-1} e^{-t/\beta}}{\beta^\alpha \Gamma(\alpha)} \;\;\;\;\;\; (8)}
-  (Johnson et al., 1994, p.343).  For left singly censored data, equation (7) 
+  \deqn{f(t) =  \frac{t^{\kappa-1} e^{-t/\theta}}{\theta^\kappa \Gamma(\kappa)} \;\;\;\;\;\; (8)}
+  (Johnson et al., 1994, p.343).  For left singly censored data, Equation (7) 
   simplifies to:
-  \deqn{L(\alpha, \beta | \underline{x}) = {N \choose c} [F(T)]^{c} \prod_{i = c+1}^n f[x_{(i)}] \;\;\;\;\;\; (9)}
+  \deqn{L(\kappa, \theta | \underline{x}) = {N \choose c} [F(T)]^{c} \prod_{i = c+1}^n f[x_{(i)}] \;\;\;\;\;\; (9)}
 
   Similarly, for Type I right censored data, the likelihood function is given by:
-  \deqn{L(\alpha, \beta | \underline{x}) = {N \choose c_1 c_2 \ldots c_k n} \prod_{j=1}^k [1 - F(T_j)]^{c_j} \prod_{i \in \Omega} f[x_{(i)}] \;\;\;\;\;\; (10)}
+  \deqn{L(\kappa, \theta | \underline{x}) = {N \choose c_1 c_2 \ldots c_k n} \prod_{j=1}^k [1 - F(T_j)]^{c_j} \prod_{i \in \Omega} f[x_{(i)}] \;\;\;\;\;\; (10)}
   and for right singly censored data this simplifies to:
-  \deqn{L(\alpha, \beta | \underline{x}) = {N \choose c} [1 - F(T)]^{c} \prod_{i = 1}^n f[x_{(i)}] \;\;\;\;\;\; (11)}
+  \deqn{L(\kappa, \theta | \underline{x}) = {N \choose c} [1 - F(T)]^{c} \prod_{i = 1}^n f[x_{(i)}] \;\;\;\;\;\; (11)}
 
   The maximum likelihood estimators are computed by minimizing the 
   negative log-likelihood function.
@@ -155,10 +155,7 @@
 
   \bold{Confidence Intervals} \cr
   This section explains how confidence intervals for the mean \eqn{\mu} are 
-  computed.  In this section, do not confuse the parameter \eqn{\alpha} used to 
-  define the confidence level of the confidence interval with the parameter 
-  \eqn{\alpha} that was used earlier to denote the shape parameter of the 
-  gamma distribution. 
+  computed. 
   \cr
 
   \emph{Likelihood Profile} (\code{ci.method="profile.likelihood"}) \cr
@@ -169,9 +166,9 @@
   confidence interval for the mean \eqn{\mu} while treating the coefficient of variation  
   \eqn{\tau} as a nuisance parameter.  Equation (7) above 
   shows the form of the likelihood function \eqn{L(\mu, \tau | \underline{x})} for 
-  multiply left-censored data, where \eqn{\mu} and \eqn{\tau} are defined by 
-  Equations (3) and (4), and Equation (10) shows the function for 
-  multiply right-censored data.
+  multiply left-censored data and Equation (10) shows the function for 
+  multiply right-censored data, where \eqn{\mu} and \eqn{\tau} are defined by 
+  Equations (3) and (4).
 
   Following Stryhn and Christensen (2003), denote the maximum likelihood estimates 
   of the mean and coefficient of variation by \eqn{(\mu^*, \tau^*)}.  The likelihood 

@@ -13,8 +13,9 @@
 }
 \usage{
   gofTestCensored(x, censored, censoring.side = "left", test = "sf", 
-    distribution = "norm", est.arg.list = NULL, prob.method = "hirsch-stedinger", 
-    plot.pos.con = 0.375)
+    distribution = "norm", est.arg.list = NULL, 
+    prob.method = "hirsch-stedinger", plot.pos.con = 0.375, 
+    keep.data = TRUE, data.name = NULL, censoring.name = NULL)
 }
 \arguments{
   \item{x}{
@@ -39,25 +40,41 @@
 }
   \item{test}{
   character string defining which goodness-of-fit test to perform.  Possible values are:  
-  \code{"sw"} (Shapiro-Wilk), 
-  \code{"sf"} (Shapiro-Francia; the default), and 
-  \code{"ppcc"} (Probability Plot Correlation Coefficient).  The Shapiro-Wilk test 
-  is only available for singly censored data.  If you have multiply censored data 
-  set \code{test="sf"} or \code{test="ppcc"}.  
+  \code{"sw"} Shapiro-Wilk. 
+  \code{"sf"} Shapiro-Francia; the default. 
+  \code{"ppcc"} Probability Plot Correlation Coefficient.  
+
+  The Shapiro-Wilk test is only available for singly censored data.  
+  
   See the DETAILS section for more information.
 }
   \item{distribution}{
   a character string denoting the abbreviation of the assumed distribution.  
-  Possible values are:  \cr
+  Only continous distributions are allowed.  See the help file for 
+  \code{\link{Distribution.df}} for a list of distributions and their abbreviations. 
+  Examples of possible values are:\cr
   \code{distribution="norm"} (\link{Normal} distribution; the default), \cr 
-  \code{distribution="lnorm"} (\link{Lognormal} distribution), and \cr
+  \code{distribution="lnorm"} (\link{Lognormal} distribution), \cr
   \code{distribution="lnormAlt"} (\link[=LognormalAlt]{Lognormal distribution, 
-  alternative parameterization}).  
+  alternative parameterization}, \cr
+  \code{distribution="gamma"} (\link[=GammaDist]{Gamma} distribution), \cr
+  \code{distribution="gammaAlt"} (\link[=GammaAlt]{Gamma} distribution,
+  alternative parameterization).
 
   The results for the goodness-of-fit test are 
   identical for \code{distribution="lnorm"} and \code{distribution="lnormAlt"}, the 
-  only difference in ouput being whether the returned estimated parameters are 
-  based on the log-scale or the original scale of the data.
+  only difference in ouput is that when \code{distribution="lnorm"} the 
+  returned estimated parameters are the mean and standard deviation based on the 
+  log-scale of the data, whereas when \code{distribution="lnormAlt"} the 
+  returned estimated parameters are the mean and coefficient of variation 
+  based on the original scale of the data.
+
+  Also, the results for the goodness-of-fit test are 
+  identical for \code{distribution="gamma"} and \code{distribution="gammaAlt"}, the 
+  only difference in ouput is that when \code{distribution="gamma"} the 
+  returned estimated parameters are the shape and scale, whereas when 
+  \code{distribution="lnormAlt"} the returned estimated parameters are the 
+  mean and coefficient of variation.
 }
   \item{est.arg.list}{
   a list of arguments to be passed to the function estimating the distribution 
@@ -89,6 +106,16 @@
   constant to use when \code{test="sf"} or \code{test="ppcc"}.  The default value is \cr
   \code{plot.pos.con=0.375}.  See the DETAILS section and the help file for \cr
   \code{\link{ppointsCensored}} for more information.
+}
+  \item{keep.data}{
+  logical scalar indicating whether to return the original data.  The 
+  default value is \code{keep.data=TRUE}.
+}
+  \item{data.name}{
+  optional character string indicating the name for the data used for argument \code{x}.
+}
+  \item{censoring.name}{
+  optional character string indicating the name for the data used for argument \code{censored}.
 }
 }
 \details{
@@ -202,6 +229,33 @@
   fairly accurate for Type I censored data as well.
   \cr
 
+  \emph{Testing Goodness-of-Fit for Any Continuous Distribution} \cr
+  The function \code{gofTestCensored} extends the Shapiro-Wilk test that 
+  accounts for censoring to test for goodness-of-fit for any continuous 
+  distribution by using the idea of Chen and Balakrishnan (1995), 
+  who proposed a general purpose approximate goodness-of-fit test based on 
+  the Cramer-von Mises or Anderson-Darling goodness-of-fit tests for normality.  
+  The function \code{gofTestCensored} modifies the approach of 
+  Chen and Balakrishnan (1995) by using the same first 2 steps, and then 
+  applying the Shapiro-Wilk test that accounts for censoring:
+  \enumerate{
+    \item Let \eqn{\underline{x} = x_1, x_2, \ldots, x_n} denote the vector of 
+    \eqn{n} \bold{\emph{ordered}} observations, ignoring censoring status.  
+    Compute cumulative probabilities for each \eqn{x_i} based on the 
+    cumulative distribution function for the hypothesized distribution.  That is, 
+    compute \eqn{p_i = F(x_i, \hat{\theta})}, where \eqn{F(x, \theta)} denotes the 
+    hypothesized cumulative distribution function with parameter(s) \eqn{\theta}, 
+    and \eqn{\hat{\theta}} denotes the estimated parameter(s) using an estimation 
+    method that accounts for censoring (e.g., assuming a \link[=GammaAlt]{Gamma} 
+    distribution with alternative parameterization, call the function 
+    \code{link{egammaAltCensored}}).
+    \item Compute standard normal deviates based on the computed cumulative 
+    probabilities: \cr 
+    \eqn{y_i = \Phi^{-1}(p_i)}
+    \item Perform the Shapiro-Wilk goodness-of-fit test (that accounts for 
+    censoring) on the \eqn{y_i}'s.
+  }  
+
   \bold{Shapiro-Francia Goodness-of-Fit Test} (\code{test="sf"}) \cr
   Equation (15) in the help file for \code{\link{gofTest}} shows that for the complete 
   ordered data \eqn{\underline{x}}, the Shapiro-Francia \eqn{W'}-statistic is the 
@@ -271,6 +325,33 @@
   requires further investigation.
   \cr
 
+  \emph{Testing Goodness-of-Fit for Any Continuous Distribution} \cr
+  The function \code{gofTestCensored} extends the Shapiro-Francia test that 
+  accounts for censoring to test for goodness-of-fit for any continuous 
+  distribution by using the idea of Chen and Balakrishnan (1995), 
+  who proposed a general purpose approximate goodness-of-fit test based on 
+  the Cramer-von Mises or Anderson-Darling goodness-of-fit tests for normality.  
+  The function \code{gofTestCensored} modifies the approach of 
+  Chen and Balakrishnan (1995) by using the same first 2 steps, and then 
+  applying the Shapiro-Francia test that accounts for censoring:
+  \enumerate{
+    \item Let \eqn{\underline{x} = x_1, x_2, \ldots, x_n} denote the vector of 
+    \eqn{n} \bold{\emph{ordered}} observations, ignoring censoring status.  
+    Compute cumulative probabilities for each \eqn{x_i} based on the 
+    cumulative distribution function for the hypothesized distribution.  That is, 
+    compute \eqn{p_i = F(x_i, \hat{\theta})} where \eqn{F(x, \theta)} denotes the 
+    hypothesized cumulative distribution function with parameter(s) \eqn{\theta}, 
+    and \eqn{\hat{\theta}} denotes the estimated parameter(s) using an estimation 
+    method that accounts for censoring (e.g., assuming a \link[=GammaAlt]{Gamma} 
+    distribution with alternative parameterization, call the function 
+    \code{link{egammaAltCensored}}).
+    \item Compute standard normal deviates based on the computed cumulative 
+    probabilities: \cr 
+    \eqn{y_i = \Phi^{-1}(p_i)}
+    \item Perform the Shapiro-Francia goodness-of-fit test (that accounts for 
+    censoring) on the \eqn{y_i}'s.
+  }  
+
   \bold{Probability Plot Correlation Coefficient (PPCC) Goodness-of-Fit Test} (\code{test="ppcc"}) \cr
   The function \code{gofTestCensored} computes the PPCC test statistic using Blom 
   plotting positions.  It can be shown that the square of this statistic is equivalent 
@@ -283,6 +364,10 @@
   test.  See the help files for \code{\link{gofCensored.object}} for details.
 }
 \references{
+  Birnbaum, Z.W., and F.H. Tingey. (1951). 
+  One-Sided Confidence Contours for Probability Distribution Functions. 
+  \emph{Annals of Mathematical Statistics} \bold{22}, 592-596.
+
   Blom, G. (1958). \emph{Statistical Estimates and Transformed Beta Variables}. 
   John Wiley and Sons, New York.
 
@@ -308,6 +393,9 @@
 
   D'Agostino, R.B., and G.L. Tietjen (1973). Approaches to the Null Distribution of \eqn{\sqrt{b1}}. 
   \emph{Biometrika} \bold{60}(1), 169-173.
+
+  Fisher, R.A. (1950). \emph{Statistical Methods for Research Workers}. 11'th Edition. 
+  Hafner Publishing Company, New York, pp.99-100.
 
   Gibbons, R.D., D.K. Bhaumik, and S. Aryal. (2009). 
   \emph{Statistical Methods for Groundwater Monitoring}, Second Edition.  
@@ -383,12 +471,12 @@
 }
 \examples{
   # Generate 30 observations from a gamma distribution with 
-  # parameters mean=10 and cv=1 and censor observations less than 5.
-  # Then test the hypothesis that these data came from a lognormal 
-  # distribution (alternative parameterization) using the Shapiro-Wilk test.
+  # parameters mean=10 and cv=1 and then censor observations less than 5.
+  # Then test the hypothesis that these data came from a gamma 
+  # distribution using the Shapiro-Wilk test.
   #
-  # The p-value for the complete data is p = 0.056, while  
-  # the p-value for the censored data is p = 0.11.
+  # The p-value for the complete data is p = 0.86, while  
+  # the p-value for the censored data is p = 0.52.
   # (Note:  the call to set.seed lets you reproduce this example.)
 
   set.seed(598)
@@ -405,6 +493,94 @@
   dat.censored <- dat
   censored <- dat.censored < 5
   dat.censored[censored] <- 5
+
+  # Results for complete data:
+  #---------------------------
+  gofTest(dat, test = "sw", dist = "gammaAlt")
+
+  #Results of Goodness-of-Fit Test
+  #-------------------------------
+  #
+  #Test Method:                     Shapiro-Wilk GOF Based on 
+  #                                 Chen & Balakrisnan (1995)
+  #
+  #Hypothesized Distribution:       Gamma
+  #
+  #Estimated Parameter(s):          mean = 12.4248552
+  #                                 cv   =  0.7901752
+  #
+  #Estimation Method:               MLE
+  #
+  #Data:                            dat
+  #
+  #Sample Size:                     30
+  #
+  #Test Statistic:                  W = 0.981471
+  #
+  #Test Statistic Parameter:        n = 30
+  #
+  #P-value:                         0.8631802
+  #
+  #Alternative Hypothesis:          True cdf does not equal the
+  #                                 Gamma Distribution.
+
+
+  # Results for censored data:
+  #---------------------------
+  gof.list <- gofTestCensored(dat.censored, censored, test = "sw", 
+    distribution = "gammaAlt")
+  gof.list  
+
+  #Results of Goodness-of-Fit Test
+  #Based on Type I Censored Data
+  #-------------------------------
+  #
+  #Test Method:                     Shapiro-Wilk GOF
+  #                                 (Singly Censored Data)
+  #                                 Based on Chen & Balakrisnan (1995)
+  #
+  #Hypothesized Distribution:       Gamma
+  #
+  #Censoring Side:                  left
+  #
+  #Censoring Level(s):              5 
+  #
+  #Estimated Parameter(s):          mean = 12.4911448
+  #                                 cv   =  0.7617343
+  #
+  #Estimation Method:               MLE
+  #
+  #Data:                            dat.censored
+  #
+  #Censoring Variable:              censored
+  #
+  #Sample Size:                     30
+  #
+  #Percent Censored:                23.3%
+  #
+  #Test Statistic:                  W = 0.9613711
+  #
+  #Test Statistic Parameters:       N     = 30.0000000
+  #                                 DELTA =  0.2333333
+  #
+  #P-value:                         0.522329
+  #
+  #Alternative Hypothesis:          True cdf does not equal the
+  #                                 Gamma Distribution.
+
+  # Plot the results for the censored data
+  #---------------------------------------
+  dev.new()
+  plot(gof.list)
+
+  #==========
+
+  # Continue the above example, but now test the hypothesis that 
+  # these data came from a lognormal distribution 
+  # (alternative parameterization) using the Shapiro-Wilk test.
+  #
+  # The p-value for the complete data is p = 0.056, while  
+  # the p-value for the censored data is p = 0.11.
 
   # Results for complete data:
   #---------------------------
@@ -539,7 +715,7 @@
 
   # Check the assumption that the silver data stored in Helsel.Cohn.88.silver.df 
   # follows a lognormal distribution and plot the goodness-of-fit test results.  
-  # Note that the the small p-value and the shape of the Q-Q plot 
+  # Note that the small p-value and the shape of the Q-Q plot 
   # (an inverted S-shape) suggests that the log transformation is not quite strong 
   # enough to "bring in" the tails (i.e., the log-transformed silver data has tails 
   # that are slightly too long relative to a normal distribution).  

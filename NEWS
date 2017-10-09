@@ -1,3 +1,56 @@
+Changes in Version 2.3.0, 2017.10.09:
+
+	o Updated the function gofTestCensored() to peform a goodness-of-fit test 
+	  using censored data for any continuous distribution that has an associated 
+	  estimation method for censored data.
+
+	o Added the function distChooseCensored() to automatically choose a distribution based on 
+	  a series of goodness-of-fit tests performed by calling the gofTestCensored() function.
+
+	o Added the function distChoose() to automatically choose a distribution based on 
+	  a series of goodness-of-fit tests performed by calling the gofTest() function.
+
+	o For the function egamma():
+	  --Now allows computation of one-sided lower and one-sided upper 
+	    confidence intervals when ci.method="profile.likelihood".
+	  --Added the option ci.method="chisq.adj", which uses the method of 
+	    Grice and Bain (1980) to compute a confidence interval for the mean.
+	    This is equivalent to the "adjusted gamma" method of ProUCL. 
+	  --Added the data object Grice.Bain.80.mat, which is used by egamma() when 
+	    ci.method="chisq.adj".  (See the help file for Grice.Bain.80.mat.)
+	  --Fixed the help file for the function egamma() so that it correctly states 
+	    that when method="bcmle" the scale parameter is computed based on the 
+	    bias-corrected mle of the shape parameter. 
+
+	o For the function gofTest():  added the options test="ad" (Anderson-Darling), 
+	  test="cvm" (Cramer-von Mises), test="lillie" (Lilliefors), 
+	  test="ProUCL.ad.gamma" and test="ProUCL.ks.gamma".  
+	  See the help file for gofTest() for more information.
+
+	o Due to issues with numerical integration, rewrote the functions 
+	  evNormOrdStats() and evNormOrdStatsScalar().  
+	  The argument 'approximate' has been replaced with the argument 'method', 
+	  although the argument 'approximate' is still available to use for 
+	  for backwards compatibility.  See the help file for more details.  
+	  I am grateful to Gwern Branwen (www.gwern.net) for bringing 
+	  these issues to my attention. 
+
+	o Fixed a typographical error in Equation (4) of the help file for 
+	  evNormOrdStats() and evNormOrdStatsScalar().
+
+	o Fixed minor bug in the function gofTest() that had resulted in an 
+	  incorrect names attribute for the "data" component of the returned list.
+
+	o The following ggproto objects have been exported so that advanced users who are 
+	  curious may see them.
+	  --StatNText:             Called by stat_n_text.
+	  --StatMeanSDText:        Called by stat_mean_sd_text.
+	  --StatMedianIQRText:     Called by stat_median_iqr_text.
+	  --StatTestText:          Called by stat_test_text. 
+
+
+========================
+
 Changes in Version 2.2.1, 2017.01.13:
 
 	o Added the function geom_stripchart(), which is a geom that works under the package ggplot2 

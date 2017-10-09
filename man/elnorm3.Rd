@@ -11,21 +11,23 @@
 \usage{
   elnorm3(x, method = "lmle", ci = FALSE, ci.parameter = "threshold", 
     ci.method = "avar", ci.type = "two-sided", conf.level = 0.95, 
-    threshold.lb.sd = 100)
+    threshold.lb.sd = 100, evNormOrdStats.method = "royston")
 }
 \arguments{
   \item{x}{
   numeric vector of observations.
 }
   \item{method}{
-  character string specifying the method of estimation.  Possible values are 
-  \code{"lmle"} (local maximum likelihood; the default), \code{"mme"} 
-  (method of moments), \code{"mmue"} (method of moments using an unbaised 
-  estimate of variance), \code{"mmme"} (modified method of moments due to Cohen 
-  and Whitten (1980)), \code{"zero.skew"} (zero-skewness estimator due to 
-  Griffiths (1980)), and \code{"royston.skew"} (estimator based on 
-  Royston's (1992b) index of skewness).  See the DETAILS section for more 
-  information on these estimation methods.
+  character string specifying the method of estimation.  Possible values are:
+  \itemize{ 
+    \item \code{"lmle"} (local maximum likelihood; the default)
+    \item \code{"mme"} (method of moments)
+    \item \code{"mmue"} (method of moments using an unbaised estimate of variance)
+    \item \code{"mmme"} (modified method of moments due to Cohen and Whitten (1980))
+    \item \code{"zero.skew"} (zero-skewness estimator due to Griffiths (1980))
+    \item \code{"royston.skew"} (estimator based on Royston's (1992b) index of skewness).  
+  }
+  See the DETAILS section for more information.
 }
   \item{ci}{
   logical scalar indicating whether to compute a confidence interval for either 
@@ -64,6 +66,11 @@
   The default value is \code{threshold.lb.sd=100}.  This argument is relevant only if 
   \code{method="lmle"}, \code{method="zero.skew"}, 
   \code{ci.method="likelihood.profile"}, and/or \code{ci.method="skewness"}.
+}
+  \item{evNormOrdStats.method}{
+  character string indicating which method to use in the call to 
+  \code{link{evNormOrdStatsScalar}} when \code{method="mmme"}.  See the DETAILS 
+  section for more information. 
 }
 }
 \details{

@@ -1,6 +1,6 @@
 ppccNormSinglyCensoredGofTest <-
-function (x, censored, censoring.side = c("left", "right"), distribution = c("norm", 
-    "lnorm", "lnormAlt"), est.arg.list = NULL) 
+function (x, censored, censoring.side = "left", distribution = "norm", 
+    est.arg.list = NULL) 
 {
     if (!is.vector(x, mode = "numeric") || is.factor(x)) 
         stop("'x' must be a numeric vector")
@@ -44,8 +44,9 @@ function (x, censored, censoring.side = c("left", "right"), distribution = c("no
     if (N < 20 || N > 5000) 
         warning(paste("Too few or too many observations.  This approximation only works", 
             "if the number of observations is between 20 and 5000."))
-    censoring.side <- match.arg(censoring.side)
-    distribution <- match.arg(distribution)
+    censoring.side <- match.arg(censoring.side, c("left", "right"))
+    distribution <- match.arg(distribution, c("norm", "lnorm", 
+        "lnormAlt"))
     if (any(distribution == c("lnorm", "lnormAlt")) && any(x <= 
         0)) 
         stop("All values of 'x' must be positive for a lognormal distribution")

@@ -1,6 +1,5 @@
 swGofTest <-
-function (x, distribution = c("norm", "lnorm", "lnormAlt", "lnorm3", 
-    "zmnorm", "zmlnorm", "zmlnormAlt"), est.arg.list = NULL) 
+function (x, distribution = "norm", est.arg.list = NULL) 
 {
     if (!is.vector(x, mode = "numeric") || is.factor(x)) 
         stop("'x' must be a numeric vector")
@@ -10,7 +9,8 @@ function (x, distribution = c("norm", "lnorm", "lnormAlt", "lnorm3",
         x <- x[x.ok]
         warning(paste(bad.obs, "observations with NA/NaN/Inf in 'x' removed."))
     }
-    distribution <- match.arg(distribution)
+    distribution <- match.arg(distribution, c("norm", "lnorm", 
+        "lnormAlt", "lnorm3", "zmnorm", "zmlnorm", "zmlnormAlt"))
     if (any(distribution == c("lnorm", "lnormAlt")) && any(x <= 
         0)) 
         stop("All values of 'x' must be positive for a lognormal distribution")

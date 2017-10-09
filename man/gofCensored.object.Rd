@@ -66,14 +66,26 @@
   \item{method}{character string indicating the name of the 
     goodness-of-fit test (e.g., \cr
     \code{"Shapiro-Wilk GOF"}).}
-  \item{data}{numeric vector containing the data actually used for 
-    the goodness-of-fit test (i.e., the original data without any 
-    missing or infinite values).}
   \item{data.name}{character string indicating the name of the data 
     object used for the goodness-of-fit test.}
   \item{censored}{logical vector indicating which observations are censored.}
   \item{censoring.name}{character string indicating the name of the object 
-    used to indicate the censoring.}
+    used to indicate the censoring.} \cr
+
+  \strong{Optional Components} \cr
+  The following components are included when the argument \code{keep.data} is 
+  set to \code{TRUE} in the call to the function producing the 
+  object of class \code{"gofCensored"}.
+  \item{data}{numeric vector containing the data actually used for 
+    the goodness-of-fit test (i.e., the original data without any 
+    missing or infinite values).}
+  \item{censored}{logical vector indicating the censoring status of the data 
+    actually used for the goodness-of-fit test.} \cr
+
+  The following component is included when the data object 
+  contains missing (\code{NA}), undefined (\code{NaN}) and/or infinite 
+  (\code{Inf}, \code{-Inf}) values.
+
   \item{bad.obs}{numeric scalar indicating the number of missing (\code{NA}), 
     undefined (\code{NaN}) and/or infinite (\code{Inf}, \code{-Inf}) 
     values that were removed from the data object prior to performing 

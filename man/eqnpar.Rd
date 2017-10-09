@@ -1,5 +1,6 @@
 \name{eqnpar}
 \alias{eqnpar}
+\encoding{latin1}
 \title{
   Estimate Quantiles of a Distribution Nonparametrically
 }
@@ -397,7 +398,8 @@
 \author{
     Steven P. Millard (\email{EnvStats@ProbStatInfo.com})
 
-    The author is grateful to Michael Hohle, Department of Mathematics, Stockholm University 
+    The author is grateful to Michael \enc{Höhle}{Hoehle}, 
+    Department of Mathematics, Stockholm University 
     (\url{http://www.math.su.se/~hoehle}) for making me aware of the work of Nyblom (1992), 
     and for suggesting improvements to the algorithm that was used in \pkg{EnvStats} 
     Version 2.1.1 to construct a confidence interval when \code{ci.method="exact"}.

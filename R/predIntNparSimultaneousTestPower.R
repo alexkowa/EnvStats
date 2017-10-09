@@ -3,7 +3,7 @@ function (n, n.median = 1, k = 1, m = 2, r = 1, rule = "k.of.m",
     lpl.rank = ifelse(pi.type == "upper", 0, 1), n.plus.one.minus.upl.rank = ifelse(pi.type == 
         "lower", 0, 1), delta.over.sigma = 0, pi.type = "upper", 
     r.shifted = r, method = "approx", NMC = 100, ci = FALSE, 
-    ci.conf.level = 0.95, integrate.args.list = NULL) 
+    ci.conf.level = 0.95, integrate.args.list = NULL, evNormOrdStats.method = "royston") 
 {
     rule <- match.arg(rule, c("k.of.m", "CA", "Modified.CA"), 
         several.ok = TRUE)
@@ -92,7 +92,7 @@ function (n, n.median = 1, k = 1, m = 2, r = 1, rule = "k.of.m",
     if (method == "approx") {
         K <- numeric(N)
         for (i in 1:N) K[i] <- evNormOrdStatsScalar(r = pl.rank[i], 
-            n = n[i])
+            n = n[i], method = evNormOrdStats.method)
         if (pi.type == "lower") 
             K <- -K
         for (i in 1:N) {

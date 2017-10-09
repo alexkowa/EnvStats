@@ -66,6 +66,10 @@
     missing or infinite values).}
   \item{data.name}{character string indicating the name of the data 
     object used for the goodness-of-fit test.}
+  \item{bad.obs}{numeric scalar indicating the number of missing (\code{NA}), 
+    undefined (\code{NaN}) and/or infinite (\code{Inf}, \code{-Inf}) 
+    values that were removed from the data object prior to performing 
+    the goodness-of-fit test.}
   \cr
 
   \emph{NOTE}: when the function \code{\link{gofTest}} is called with 
@@ -77,16 +81,6 @@
   \code{n.param.est}, \code{estimation.method}, and \code{z.value}. \cr
 
   \strong{Optional Components} \cr
-  The following component is included when the data object 
-  contains missing (\code{NA}), undefined (\code{NaN}) and/or infinite 
-  (\code{Inf}, \code{-Inf}) values.
-
-  \item{bad.obs}{numeric scalar indicating the number of missing (\code{NA}), 
-    undefined (\code{NaN}) and/or infinite (\code{Inf}, \code{-Inf}) 
-    values that were removed from the data object prior to performing 
-    the goodness-of-fit test.}
-  \cr
-
   The following components are included in the result of 
   calling \code{\link{gofTest}} with the argument \cr
   \code{test="chisq"} and may be used by the function 

@@ -1,7 +1,7 @@
 elnorm3 <-
 function (x, method = "lmle", ci = FALSE, ci.parameter = "threshold", 
     ci.method = "avar", ci.type = "two-sided", conf.level = 0.95, 
-    threshold.lb.sd = 100) 
+    threshold.lb.sd = 100, evNormOrdStats.method = "royston") 
 {
     if (!is.vector(x, mode = "numeric")) 
         stop("'x' must be a numeric vector.")
@@ -75,7 +75,7 @@ function (x, method = "lmle", ci = FALSE, ci.parameter = "threshold",
             nlminb.list <- nlminb(start = omega, objective = fcn.to.min, 
                 lower = 1 + sqrt(.Machine$double.eps), s2 = var.x, 
                 x.bar = mean.x, x1 = x1, EZ1.n = evNormOrdStatsScalar(r = 1, 
-                  n = n))
+                  n = n, method = evNormOrdStats.method))
             if (nlminb.list$convergence != 0) {
                 warning("Unable to solve for 'omega'")
                 threshold <- meanlog <- sdlog <- NA

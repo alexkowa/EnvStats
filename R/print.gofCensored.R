@@ -1,5 +1,6 @@
 print.gofCensored <-
-function (x, ...) 
+function (x, show.cen.levels = TRUE, pct.censored.digits = .Options$digits, 
+    ...) 
 {
     coll.string <- paste("\n", space(33), sep = "")
     cat("\nResults of Goodness-of-Fit Test\n")
@@ -10,8 +11,10 @@ function (x, ...)
         "\n\n", sep = "")
     cat("Censoring Side:", space(18), x$censoring.side, "\n\n", 
         sep = "")
-    cat("Censoring Level(s):", space(12), format(x$censoring.levels, 
-        nsmall = 0, justify = "left", ...), "\n\n")
+    if (show.cen.levels) {
+        cat("Censoring Level(s):", space(12), format(x$censoring.levels, 
+            nsmall = 0, justify = "left", ...), "\n\n")
+    }
     if (!is.null(x$n.param.est) && x$n.param.est > 0) {
         cat("Estimated Parameter(s):", space(10), paste(paste(format(names(x$distribution.parameters), 
             justify = "left"), format(x$distribution.parameters, 
@@ -47,7 +50,7 @@ function (x, ...)
             sep = "")
     }
     cat("Percent Censored:", space(16), round(x$percent.censored, 
-        1), "%", "\n\n", sep = "")
+        pct.censored.digits), "%", "\n\n", sep = "")
     cat("Test Statistic:", space(18), paste(paste(names(x$statistic), 
         format(x$statistic, nsmall = 0, ...), sep = " = "), collapse = coll.string), 
         "\n\n", sep = "")

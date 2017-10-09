@@ -1,11 +1,14 @@
 gofTestCensored <-
 function (x, censored, censoring.side = "left", test = "sf", 
     distribution = "norm", est.arg.list = NULL, prob.method = "hirsch-stedinger", 
-    plot.pos.con = 0.375) 
+    plot.pos.con = 0.375, keep.data = TRUE, data.name = NULL, 
+    censoring.name = NULL) 
 {
+    distribution <- check.distribution.args(distribution, check.params = FALSE)$dist.abb
     if (!is.vector(x, mode = "numeric")) 
         stop("'x' must be a numeric vector")
-    data.name <- deparse(substitute(x))
+    if (is.null(data.name)) 
+        data.name <- deparse(substitute(x))
     if (!is.vector(censored, mode = "numeric") & !is.vector(censored, 
         mode = "logical")) 
         stop("'censored' must be a logical or numeric vector")
@@ -17,20 +20,19 @@ function (x, censored, censoring.side = "left", test = "sf",
             stop(paste("When 'censored' is a numeric vector, all non-missing values of", 
                 "'censored' must be 0 (not censored) or 1 (censored)."))
     }
-    censoring.name <- deparse(substitute(censored))
+    if (is.null(censoring.name)) 
+        censoring.name <- deparse(substitute(censored))
     censoring.side <- match.arg(censoring.side, c("left", "right"))
     test <- match.arg(test, c("sw", "sf", "ppcc"))
     if (test == "ppcc") 
         test <- "ppccNorm"
-    distribution <- match.arg(distribution, c("norm", "lnorm", 
-        "lnormAlt"))
     if ((bad.obs <- sum(!(ok <- is.finite(x) & is.finite(as.numeric(censored))))) > 
         0) {
         is.not.finite.warning(x)
         is.not.finite.warning(as.numeric(censored))
         x <- x[ok]
         censored <- censored[ok]
-        warning(paste(bad.obs, "observations with NA/NaN/Inf in 'x' and 'censored' removed."))
+        warning(paste(bad.obs, "observations with NA/NaN/Inf in 'x' and/or 'censored' removed."))
     }
     if (is.numeric(censored)) 
         censored <- as.logical(censored)
@@ -81,16 +83,32 @@ function (x, censored, censoring.side = "left", test = "sf",
         censoring.type <- "SinglyCensored"
     }
     test.name <- paste(test, censoring.type, "GofTest", sep = "")
-    arg.list <- switch(test.name, swSinglyCensoredGofTest = , 
-        sfSinglyCensoredGofTest = , ppccNormSinglyCensoredGofTest = list(x = x, 
-            censored = censored, censoring.side = censoring.side, 
-            distribution = distribution, est.arg.list = est.arg.list), 
-        sfMultiplyCensoredGofTest = , ppccNormMultiplyCensoredGofTest = list(x = x, 
-            censored = censored, censoring.side = censoring.side, 
-            distribution = distribution, est.arg.list = est.arg.list, 
-            prob.method = prob.method, plot.pos.con = plot.pos.con))
+    if (!(distribution %in% c("norm", "lnorm", "lnormAlt"))) {
+        efcn <- paste("e", distribution, sep = "")
+        if (EnvStats::Distribution.df[distribution, "Type"] != 
+            "Continuous" || !exists(efcn, where = "package:EnvStats")) 
+            stop(paste("When the argument distribution is not equal to", 
+                "'norm', 'lnorm', or 'lnormAlt',", "it must indicate a continuous distribution, and", 
+                "there must exist an associated function", "to estimate the parameters in the presence of censored data.", 
+                "See the help file for 'EnvStats::Distribution.df' for more information."))
+        test.name <- paste(test, censoring.type, "GeneralGofTest", 
+            sep = "")
+    }
+    arg.list <- list(x = x, censored = censored, censoring.side = censoring.side, 
+        distribution = distribution, est.arg.list = est.arg.list)
+    if (multiple) 
+        arg.list <- c(arg.list, list(prob.method = prob.method, 
+            plot.pos.con = plot.pos.con))
     ret.list <- do.call(test.name, args = arg.list)
+    if (!keep.data) {
+        ret.list <- ret.list[!(names(ret.list) %in% c("data", 
+            "censored"))]
+        oldClass(ret.list) <- "gofCensored"
+    }
     ret.list$data.name <- data.name
     ret.list$censoring.name <- censoring.name
+    if (any(bad.obs > 0)) 
+        ret.list$bad.obs <- bad.obs
+    else ret.list$bad.obs <- NULL
     ret.list
 }

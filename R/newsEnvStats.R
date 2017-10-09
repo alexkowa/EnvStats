@@ -1,7 +1,5 @@
 newsEnvStats <-
 function () 
 {
-    newsfile <- file.path(system.file(package = "EnvStats"), 
-        "NEWS")
-    file.show(newsfile)
+    utils::news(package = "EnvStats")
 }

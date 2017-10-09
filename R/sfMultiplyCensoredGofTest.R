@@ -1,7 +1,6 @@
 sfMultiplyCensoredGofTest <-
-function (x, censored, censoring.side = c("left", "right"), distribution = c("norm", 
-    "lnorm", "lnormAlt"), est.arg.list = NULL, prob.method = c("hirsch-stedinger", 
-    "michael-schucany", "modified kaplan-meier", "nelson"), plot.pos.con = 0.375) 
+function (x, censored, censoring.side = "left", distribution = "norm", 
+    est.arg.list = NULL, prob.method = "hirsch-stedinger", plot.pos.con = 0.375) 
 {
     if (!is.vector(x, mode = "numeric") || is.factor(x)) 
         stop("'x' must be a numeric vector")
@@ -39,12 +38,14 @@ function (x, censored, censoring.side = c("left", "right"), distribution = c("no
     x.no.cen <- x[!censored]
     if (length(unique(x.no.cen)) < 2) 
         stop("'x' must contain at least 2 non-missing, uncensored, distinct values.")
-    censoring.side <- match.arg(censoring.side)
-    distribution <- match.arg(distribution)
+    censoring.side <- match.arg(censoring.side, c("left", "right"))
+    distribution <- match.arg(distribution, c("norm", "lnorm", 
+        "lnormAlt"))
     if (any(distribution == c("lnorm", "lnormAlt")) && any(x <= 
         0)) 
         stop("All values of 'x' must be positive for a lognormal distribution")
-    prob.method <- match.arg(prob.method)
+    prob.method <- match.arg(prob.method, c("hirsch-stedinger", 
+        "michael-schucany", "modified kaplan-meier", "nelson"))
     if (!is.vector(plot.pos.con, mode = "numeric") || length(plot.pos.con) != 
         1 || plot.pos.con < 0 || plot.pos.con > 1) 
         stop("'plot.pos.con' must be a numeric scalar between 0 and 1")

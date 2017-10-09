@@ -27,6 +27,8 @@ function (x, distribution, est.arg.list)
     ret.list$estimation.method <- est.list$method
     ret.list$alternative <- paste("True cdf does not equal the\n", 
         space(33), ret.list$distribution, " Distribution.", sep = "")
-    ret.list$method <- "Shapiro-Francia GOF Based on Chen & Balakrishnan (1995)"
+    sep.string <- paste("\n", space(33), sep = "")
+    ret.list$method <- paste("Shapiro-Francia GOF Based on", 
+        "Chen & Balakrisnan (1995)", sep = sep.string)
     ret.list
 }

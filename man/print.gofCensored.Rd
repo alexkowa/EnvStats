@@ -10,12 +10,21 @@
   this class is \code{\link{gofTestCensored}}.
 }
 \usage{
-\method{print}{gofCensored}(x, ...)
+\method{print}{gofCensored}(x, show.cen.levels = TRUE, 
+  pct.censored.digits = .Options$digits, ...)
 }
 \arguments{
   \item{x}{
   an object of class \code{"gofCensored"}.  See \code{\link{gofCensored.object}} for 
   details.
+}
+  \item{show.cen.levels}{
+  logical scalar indicating whether to print the censoring levels.  The default is 
+  \code{show.cen.levels=TRUE}.
+}
+  \item{pct.censored.digits}{
+  numeric scalar indicating the number of significant digits to print for the 
+  percent of censored observations.
 }
   \item{\dots}{
   arguments that can be supplied to the \code{\link[base]{format}} function.

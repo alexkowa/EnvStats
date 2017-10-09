@@ -43,12 +43,10 @@ function (x, method = "mle", ci = FALSE, ci.type = "two-sided",
         ci.type <- match.arg(ci.type, c("two-sided", "lower", 
             "upper"))
         ci.method <- match.arg(ci.method, c("normal.approx", 
-            "chisq.approx", "profile.likelihood"))
+            "chisq.approx", "chisq.adj", "profile.likelihood"))
         if (ci.method == "profile.likelihood") {
             if (method != "mle") 
                 stop("When ci.method=\"profile.likelihood\" you must set method=\"mle\"")
-            if (ci.type != "two-sided") 
-                stop("When ci.method=\"profile.likelihood\" you must set ci.type=\"two-sided\"")
         }
         normal.approx.transform <- match.arg(normal.approx.transform, 
             c("kulkarni.powar", "cube.root", "fourth.root"))
@@ -62,12 +60,25 @@ function (x, method = "mle", ci = FALSE, ci.type = "two-sided",
                 limits <- ci.obj$limits
                 names(limits) <- NULL
                 ci.obj <- ci.gamma.profile.likelihood(x = x, 
-                  shape.mle = shape, scale.mle = scale, conf.level = conf.level, 
-                  LCL.start = limits[1], UCL.start = limits[2])
+                  shape.mle = shape, scale.mle = scale, ci.type = ci.type, 
+                  conf.level = conf.level, LCL.start = limits[1], 
+                  UCL.start = limits[2])
             }
         }
-        else {
+        else if (ci.method == "chisq.approx") {
             ci.obj <- ci.gamma.chisq.approx(x = x, shape = shape, 
+                shape.est.method = method, ci.type = ci.type, 
+                conf.level = conf.level)
+        }
+        else {
+            if (n < 5 || conf.level > (1 - 0.005) || conf.level < 
+                (1 - 0.25)) 
+                stop(paste("When ci.method='chisq.adj' x", "must contain at least 5 non-missing values, and", 
+                  "conf.level must be between 0.75 and 0.995."))
+            if (n == 5 && conf.level >= 0.99) 
+                stop(paste("When ci.method='chisq.adj' and the sample size is 5,", 
+                  "conf.level must be less than 0.99."))
+            ci.obj <- ci.gamma.chisq.adj(x = x, shape = shape, 
                 shape.est.method = method, ci.type = ci.type, 
                 conf.level = conf.level)
         }

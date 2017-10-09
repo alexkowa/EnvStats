@@ -40,6 +40,16 @@
   \code{\link{print.gofOutlier}}          \tab S3 class method for printing an object of class \code{\link[=gofOutlier.object]{"gofOutlier"}}. \cr
   }
 
+
+  \bold{Choose a Distribution}
+
+  \tabular{ll}{
+  \emph{Function Name}                    \tab \emph{Description} \cr
+  \code{\link{distChoose}}                \tab Choose best fitting distribution based on goodness-of-fit tests. \cr
+  \code{\link{print.distChoose}}          \tab S3 class method for printing an object of class \code{\link[=distChoose.object]{"distChoose"}}. \cr
+  }
+
+
 }
 \keyword{ package }
 

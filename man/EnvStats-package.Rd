@@ -39,8 +39,8 @@
 \tabular{ll}{
 Package: \tab EnvStats\cr
 Type: \tab Package\cr
-Version: \tab 2.2.1\cr
-Date: \tab 2017-01-06\cr
+Version: \tab 2.3.0\cr
+Date: \tab 2017-10-09\cr
 License: \tab GPL (>=3)\cr
 LazyLoad: \tab yes\cr
 }
@@ -52,7 +52,7 @@ LazyLoad: \tab yes\cr
   \bold{doc} subdirectory of the directory where the \pkg{EnvStats} package 
   was installed.  For example, if you installed R under Windows, this file might be located 
   in the directory \bold{C:\\Program Files\\R-*.**.*\\library\\EnvStats\\doc}, where 
-  \bold{*.**.*} denotes the version of R you are using (e.g., 3.3.2) or in the directory 
+  \bold{*.**.*} denotes the version of R you are using (e.g., 3.3.4) or in the directory 
   \bold{C:\\Users\\\emph{Name}\\Documents\\R\\win-library\\*.**.*\\EnvStats\\doc}, where 
   \bold{\emph{Name}} denotes your user name on the Windows operating system.
 
@@ -104,7 +104,8 @@ LazyLoad: \tab yes\cr
         \item Quantile-Quantile Plots
         \item Results of Shaprio-Wilk test, Kolmogorov-Smirnov test, etc.
       }
-    Includes a new generalized goodness-of-fit test for any continuous distribution.    
+    Includes a new generalized goodness-of-fit test for any continuous distribution. 
+    Also includes a new function to choose among several candidate distributions.   
 
 
     \item
