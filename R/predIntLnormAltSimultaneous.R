@@ -4,7 +4,7 @@ function (x, n.geomean = 1, k = 1, m = 2, r = 1, rule = "k.of.m",
     K.tol = .Machine$double.eps^0.5, est.arg.list = NULL) 
 {
     rule <- match.arg(rule, c("k.of.m", "CA", "Modified.CA"))
-    pi.type <- match.arg(pi.type, c("upper", "lower"))
+    pi.type <- match.arg(pi.type, c("upper", "lower", "two-sided"))
     switch(rule, k.of.m = {
         if (!is.vector(n.geomean, mode = "numeric") || length(n.geomean) != 
             1 || n.geomean != trunc(n.geomean) || n.geomean < 
