@@ -4,7 +4,7 @@ function (x, n.mean = 1, k = 1, m = 2, r = 1, rule = "k.of.m",
     K.tol = .Machine$double.eps^0.5) 
 {
     rule <- match.arg(rule, c("k.of.m", "CA", "Modified.CA"))
-    pi.type <- match.arg(pi.type, c("upper", "lower"))
+    pi.type <- match.arg(pi.type, c("upper", "lower", "two-sided"))
     switch(rule, k.of.m = {
         if (!is.vector(k, mode = "numeric") || length(k) != 1 || 
             k != trunc(k) || k < 1 || !is.vector(n.mean, mode = "numeric") || 
