@@ -5,7 +5,7 @@ function (n, df = n - 1, n.mean = 1, k = 1, m = 2, r = 1, rule = "k.of.m",
 {
     rule <- match.arg(rule, c("k.of.m", "CA", "Modified.CA"), 
         several.ok = TRUE)
-    pi.type <- match.arg(pi.type, c("upper", "lower"))
+    pi.type <- match.arg(pi.type, c("upper", "lower", "two-sided"))
     if (!is.vector(n, mode = "numeric") || !all(is.finite(n)) || 
         any(n < 2)) 
         stop(paste("'n' must be a numeric vector", "with all elements greater than or equal to 2", 
