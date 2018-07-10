@@ -313,7 +313,7 @@
   dev.new()
   p + geom_stripchart(test.text = TRUE) + 
     labs(x = "Number of Cylinders", y = "Miles per Gallon")
-
+\dontrun{
   #==========
 
   # Example 3:
@@ -590,6 +590,7 @@
 
   graphics.off()
   rm(p)
+  }
 }
 \keyword{hplot}
 \keyword{htest}

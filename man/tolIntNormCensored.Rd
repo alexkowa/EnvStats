@@ -237,7 +237,7 @@
   #
   #Tolerance Interval:              LTL =     -Inf
   #                                 UTL = 13.25454
-
+\dontrun{
 
   # Note:  The true 90'th percentile is 13.84465
   #---------------------------------------------
@@ -313,6 +313,7 @@
   #
   # Tolerance Interval:              LTL =     -Inf
   #                                  UTL = 4.708904
+  }
 }
 \keyword{ distribution }
 \keyword{ htest }
