@@ -157,7 +157,7 @@
     "n=10, Confidence=99\%, and Various Sampling Frequencies", sep="\n"))
 
   #==========
-
+\dontrun{
   # Plot power vs. scaled minimal detectable difference for various sample sizes 
   # using a 5% significance level.
 
@@ -179,7 +179,7 @@
   # Clean up
   #---------
   graphics.off()
-
+}
 }
 \keyword{ distribution }
 \keyword{ htest }

@@ -232,7 +232,7 @@
   #Tolerance Interval:              LTL =  0.00000
   #                                 UTL = 16.85556
 
-
+\dontrun{
   # Note:  The true 90'th percentile is 20.55231
   #---------------------------------------------
   qlnormAlt(0.9, mean = 10, cv = 1)
@@ -309,6 +309,7 @@
   #
   #Tolerance Interval:              LTL =   0.0000
   #                                 UTL = 110.9305
+  }
 }
 \keyword{ distribution }
 \keyword{ htest }
