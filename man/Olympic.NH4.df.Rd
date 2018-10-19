@@ -44,7 +44,7 @@
 }
 \source{
   National Atmospheric Deposition Program, National Trends Network (NADP/NTN). \cr  
-  \url{http://nadp.isws.illinois.edu/sites/siteinfo.asp?id=WA14&net=NTN} \cr
+  \url{http://nadp.slh.wisc.edu/data/sites/siteDetails.aspx?net=NTN&id=WA14} \cr
   \url{http://nadp.isws.illinois.edu/NTN/}
 }
 \keyword{datasets}

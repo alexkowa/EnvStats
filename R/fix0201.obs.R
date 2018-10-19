@@ -2,29 +2,25 @@ fix0201.obs <-
 function (x, alpha = 2, beta = 1, iter = 60, converge = 1e-04) 
 {
     if (var(x[, 2]) > 1e-10) {
-        cat("warning - censoring values are not all the same", 
-            "\n")
+      warning("censoring values are not all the same")
     }
     realvalues <- x[x[, 2] < x[, 1], 1]
     pqlvalues <- x[x[, 2] >= x[, 1], 2]
     if (length(realvalues) == 0) 
-        cat("warning - No observed x, estimation will not work.", 
-            "\n")
+      warning("No observed x, estimation will not work.")
     if (length(pqlvalues) == 0) 
-        cat("note: There is no censored data, estimation will proceed.", 
+        message("note: There is no censored data, estimation will proceed.", 
             "\n")
     if (length(pqlvalues) > 0 & length(realvalues) > 0) 
-        cat("warning - cen and uncen present, fix0201.obs will not work", 
-            "\n")
+        warning("cen and uncen present, fix0201.obs will not work")
     N <- nrow(x)
     m.little <- length(realvalues)
     n.little <- length(pqlvalues)
     u <- mean(x[, 1])
     s <- sqrt(var(x[, 1]))
     if (s == 0) {
-        cat("error fix0201.obs - all data are the same value = ", 
-            u, "\n")
-        break
+        stop("error fix0201.obs - all data are the same value = ", 
+             u)
     }
     for (k in 1:iter) {
         real.z <- (realvalues - u)/s
@@ -52,7 +48,7 @@ function (x, alpha = 2, beta = 1, iter = 60, converge = 1e-04)
     mestimate <- matrix(c(iter, iterno, u, s, psi, chi), 1, 6, 
         dimnames = list(iter, labl[1:6]))
     if (iterno == iter) 
-        cat("no convergence ", "psi = ", psi, "chi = ", chi, 
+      message("no convergence ", "psi = ", psi, "chi = ", chi, 
             "\n")
     consistent <- fix0111(d = x[1, 2], alpha = alpha, beta = beta, 
         mu = u, sigma = s, eta = u, kappa = s)

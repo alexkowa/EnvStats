@@ -2,17 +2,14 @@ fix0101 <-
 function (x, alpha = 4, beta = 4, iter = 60, converge = 1e-05) 
 {
     if (var(x[, 2]) > 1e-10) {
-        cat("warning - censoring values are not all the same", 
-            "\n")
+      warning("censoring values are not all the same")
     }
     realvalues <- x[x[, 2] < x[, 1], 1]
     pqlvalues <- x[x[, 2] >= x[, 1], 2]
     if (length(realvalues) == 0) 
-        cat("warning - no observed x, algorithm will not work", 
-            "\n")
+        warning("no observed x, algorithm will not work")
     if (length(pqlvalues) == 0) 
-        cat("warning - no censored x, algorithm will not work", 
-            "\n")
+      warning("no censored x, algorithm will not work")
     N <- nrow(x)
     m.little <- length(realvalues)
     n.little <- length(pqlvalues)
@@ -35,7 +32,7 @@ function (x, alpha = 4, beta = 4, iter = 60, converge = 1e-05)
             0]) - s * sum(((pqlvalues[g20 > 0] + u) * g1.5[g20 > 
             0])/g20[g20 > 0]) + n.little * s^2
         if (is.na(expected.ss)) {
-            cat("warning - fix0101 expected.ss set to zero from NA")
+            warning("fix0101 expected.ss set to zero from NA")
             expected.ss <- 0
         }
         newsig <- sqrt((real.ss + expected.ss)/N)
@@ -44,8 +41,8 @@ function (x, alpha = 4, beta = 4, iter = 60, converge = 1e-05)
         u <- newmu
         s <- newsig
         if (is.na(eps)) {
-            cat("warning fix0101 eps==NA")
-            cat("eps = ", eps, " u = ", u, " s = ", s, " real.ss = ", 
+          warning("fix0101 eps==NA",
+            "eps = ", eps, " u = ", u, " s = ", s, " real.ss = ", 
                 real.ss, " expected.ss = ", expected.ss)
             break
         }

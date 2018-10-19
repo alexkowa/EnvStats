@@ -38,7 +38,7 @@
 }
 \source{
   Washington State Deparment of Ecology. \cr
-  \url{http://www.ecy.wa.gov/apps/watersheds/riv/station.asp?sta=04A100} \cr
-  \url{http://www.ecy.wa.gov/apps/watersheds/riv/parameters_ref.html}
+  \url{https://fortress.wa.gov/ecy/eap/riverwq/station.asp?theyear=&tab=final_data&scrolly=0&wria=04&sta=04A100} \cr
+  \url{https://ecology.wa.gov/Research-Data/Monitoring-assessment/River-stream-monitoring/Water-quality-monitoring/Using-river-stream-water-quality-data}
 }
 \keyword{datasets}
