@@ -1,134 +1,137 @@
+Changes in Version 2.4.0, 2019.01.14:
+  o Justin Jent added option for two-sided confidence intervals in predIntNormSimultaneous() and predIntNormSimultaneousK()
+
 Changes in Version 2.3.0, 2017.10.09:
 
-	o Updated the function gofTestCensored() to peform a goodness-of-fit test 
-	  using censored data for any continuous distribution that has an associated 
+	o Updated the function gofTestCensored() to peform a goodness-of-fit test
+	  using censored data for any continuous distribution that has an associated
 	  estimation method for censored data.
 
-	o Added the function distChooseCensored() to automatically choose a distribution based on 
+	o Added the function distChooseCensored() to automatically choose a distribution based on
 	  a series of goodness-of-fit tests performed by calling the gofTestCensored() function.
 
-	o Added the function distChoose() to automatically choose a distribution based on 
+	o Added the function distChoose() to automatically choose a distribution based on
 	  a series of goodness-of-fit tests performed by calling the gofTest() function.
 
 	o For the function egamma():
-	  --Now allows computation of one-sided lower and one-sided upper 
+	  --Now allows computation of one-sided lower and one-sided upper
 	    confidence intervals when ci.method="profile.likelihood".
-	  --Added the option ci.method="chisq.adj", which uses the method of 
+	  --Added the option ci.method="chisq.adj", which uses the method of
 	    Grice and Bain (1980) to compute a confidence interval for the mean.
-	    This is equivalent to the "adjusted gamma" method of ProUCL. 
-	  --Added the data object Grice.Bain.80.mat, which is used by egamma() when 
+	    This is equivalent to the "adjusted gamma" method of ProUCL.
+	  --Added the data object Grice.Bain.80.mat, which is used by egamma() when
 	    ci.method="chisq.adj".  (See the help file for Grice.Bain.80.mat.)
-	  --Fixed the help file for the function egamma() so that it correctly states 
-	    that when method="bcmle" the scale parameter is computed based on the 
-	    bias-corrected mle of the shape parameter. 
+	  --Fixed the help file for the function egamma() so that it correctly states
+	    that when method="bcmle" the scale parameter is computed based on the
+	    bias-corrected mle of the shape parameter.
 
-	o For the function gofTest():  added the options test="ad" (Anderson-Darling), 
-	  test="cvm" (Cramer-von Mises), test="lillie" (Lilliefors), 
-	  test="ProUCL.ad.gamma" and test="ProUCL.ks.gamma".  
+	o For the function gofTest():  added the options test="ad" (Anderson-Darling),
+	  test="cvm" (Cramer-von Mises), test="lillie" (Lilliefors),
+	  test="ProUCL.ad.gamma" and test="ProUCL.ks.gamma".
 	  See the help file for gofTest() for more information.
 
-	o Due to issues with numerical integration, rewrote the functions 
-	  evNormOrdStats() and evNormOrdStatsScalar().  
-	  The argument 'approximate' has been replaced with the argument 'method', 
-	  although the argument 'approximate' is still available to use for 
-	  for backwards compatibility.  See the help file for more details.  
-	  I am grateful to Gwern Branwen (www.gwern.net) for bringing 
-	  these issues to my attention. 
+	o Due to issues with numerical integration, rewrote the functions
+	  evNormOrdStats() and evNormOrdStatsScalar().
+	  The argument 'approximate' has been replaced with the argument 'method',
+	  although the argument 'approximate' is still available to use for
+	  for backwards compatibility.  See the help file for more details.
+	  I am grateful to Gwern Branwen (www.gwern.net) for bringing
+	  these issues to my attention.
 
-	o Fixed a typographical error in Equation (4) of the help file for 
+	o Fixed a typographical error in Equation (4) of the help file for
 	  evNormOrdStats() and evNormOrdStatsScalar().
 
-	o Fixed minor bug in the function gofTest() that had resulted in an 
+	o Fixed minor bug in the function gofTest() that had resulted in an
 	  incorrect names attribute for the "data" component of the returned list.
 
-	o The following ggproto objects have been exported so that advanced users who are 
+	o The following ggproto objects have been exported so that advanced users who are
 	  curious may see them.
 	  --StatNText:             Called by stat_n_text.
 	  --StatMeanSDText:        Called by stat_mean_sd_text.
 	  --StatMedianIQRText:     Called by stat_median_iqr_text.
-	  --StatTestText:          Called by stat_test_text. 
+	  --StatTestText:          Called by stat_test_text.
 
 
 ========================
 
 Changes in Version 2.2.1, 2017.01.13:
 
-	o Added the function geom_stripchart(), which is a geom that works under the package ggplot2 
-	  and is the analogue to the EnvStats function stripChart().  Also added the following 
+	o Added the function geom_stripchart(), which is a geom that works under the package ggplot2
+	  and is the analogue to the EnvStats function stripChart().  Also added the following
 	  supporting functions for geom_stripchart():
 	  --stat_n_text:           beneath each group, displays text indicating the sample size.
 	  --stat_mean_sd_text:     above each group, displays text indicating the mean and standard deviation.
 	  --stat_median_iqr_text:  above each group, displays text indicating the median and interquartile range.
-	  --stat_test_text:        at top of panel, displays text indicating the test results comparing groups. 
+	  --stat_test_text:        at top of panel, displays text indicating the test results comparing groups.
 
 	o Updated the function eqnpar():
-	  -- Added the argument "type" to allow the user to specify how the estimated 
+	  -- Added the argument "type" to allow the user to specify how the estimated
 	     quantile is computed.  This argument is passed to the quantile() function.
 	  -- Added the option ci.method="interpolate" (now the default).
 	  -- Changed the behavior when ci.method="exact".
 	  -- Changed the behavior when ci.method="normal.approx".
 
-	o Fixed bug in the function gofTestCensored() for the case when there is only 
-	  one censoring level but the sample is still considered to be multiply censored 
-	  because the censoring level is 
-	  larger than the smallest uncensored observation (left-censored data) or 
+	o Fixed bug in the function gofTestCensored() for the case when there is only
+	  one censoring level but the sample is still considered to be multiply censored
+	  because the censoring level is
+	  larger than the smallest uncensored observation (left-censored data) or
 	  smaller than the largest uncensored observation (right-censored data).
 
-	o Updated the help files for enormCensored(), elnormCensored(),  
+	o Updated the help files for enormCensored(), elnormCensored(),
 	  elnormAltCensored(), and gofTestCensored():
-	  -- The default value for prob.method is prob.method="hirsch-stedinger", 
+	  -- The default value for prob.method is prob.method="hirsch-stedinger",
 	     not "michael-schucany".
 
 ========================
 
 Changes in Version 2.1.1, 2016.06.13:
 
-	o Updated the function stripChart(): 
-	  -- For the case when there are two independent groups and 
+	o Updated the function stripChart():
+	  -- For the case when there are two independent groups and
 	     plot.diff=TRUE and paired=TRUE:
 	     ++ Adjusted the default value of diff.lim.
-	     ++ Added the argument diff.method to indicate what method to use to 
+	     ++ Added the argument diff.method to indicate what method to use to
 	        plot the paired differences.  The default value is diff.method="stack".
-	  -- For the case when there are two independent groups and 
+	  -- For the case when there are two independent groups and
 	     plot.diff=TRUE and paired=FALSE:
-	     ++ The default value for the argument diff.lim (which determines the 
-	        range on the axis associated with the confidence interval for the 
-	        difference between groups) is now on the same scale as the range of 
+	     ++ The default value for the argument diff.lim (which determines the
+	        range on the axis associated with the confidence interval for the
+	        difference between groups) is now on the same scale as the range of
 	        the original observations.
-	     ++ The default location of the confidence interval for the difference 
+	     ++ The default location of the confidence interval for the difference
 	        between groups has changed slightly.
-	  -- Fixed a bug for the case when ci.and.test='parametric' and the argument 
+	  -- Fixed a bug for the case when ci.and.test='parametric' and the argument
 	     test.arg.list contains components named 'paired' and 'var.equal'.
-	  -- When the argument test.arg.list is supplied with a component named 
-	     'paired' and the value of that component does not match the value of 
-	     the argument 'paired', the value of the component is set to the value of 
+	  -- When the argument test.arg.list is supplied with a component named
+	     'paired' and the value of that component does not match the value of
+	     the argument 'paired', the value of the component is set to the value of
 	     the argument 'paired' and a warning is issued.
 	  -- Fixed a bug for the case when add=TRUE.
 
 	o Updated the function summaryStats():
-	  -- Takes the new argument 'paired' applicable to the case when there are 2 groups 
-	     that are paired observations. 
-	     ++ When paired=TRUE and p.value=TRUE, the paired t-test 
+	  -- Takes the new argument 'paired' applicable to the case when there are 2 groups
+	     that are paired observations.
+	     ++ When paired=TRUE and p.value=TRUE, the paired t-test
 	        or paired Wilcoxon test is performed.
-	  -- Fixed bug for the case when there are 2 independent groups, test="parametric", 
+	  -- Fixed bug for the case when there are 2 independent groups, test="parametric",
 	     and the argument 'test.arg.list' contains the component paired=TRUE.
 
 	o Updated the functions enormCensored() and elnormCensored():
-	  -- The argument 'method' now accepts the values "ROS" and "rROS" 
-	     (i.e., you can set method="ROS" or method="rROS").  
-	     ++ The ROS method denotes the Regression on Order Statistics method.  
-	        This method is equivalent to the already existing method 
+	  -- The argument 'method' now accepts the values "ROS" and "rROS"
+	     (i.e., you can set method="ROS" or method="rROS").
+	     ++ The ROS method denotes the Regression on Order Statistics method.
+	        This method is equivalent to the already existing method
 	        Quantile-Quantile Regression (method ="qq.reg").
-	     ++ The rROS method denotes the robust Regression on Order Statistics method.  
-	        This method is equivalent to the already existing method 
+	     ++ The rROS method denotes the robust Regression on Order Statistics method.
+	        This method is equivalent to the already existing method
 	        Imputation Using Quantile-Quantile Regression (method ="impute.w.qq.reg").
 
 	o Updated the function elnormAltCensored():
-	  -- The argument 'method' now accepts the value "rROS" (i.e., you can set 
-	     method="rROS"), denoting the robust Regression on Order Statistics method.  
-	     This method is equivalent to the already existing method 
+	  -- The argument 'method' now accepts the value "rROS" (i.e., you can set
+	     method="rROS"), denoting the robust Regression on Order Statistics method.
+	     This method is equivalent to the already existing method
 	     Imputation Using Quantile-Quantile Regression (method ="impute.w.qq.reg").
- 
+
 ========================
 
 Changes in Version 2.1.0, 2016.04.18:
@@ -136,108 +139,108 @@ Changes in Version 2.1.0, 2016.04.18:
 	o Added the datasets ACE.13.TCE.df and Helsel.Hirsch.02.Mayfly.df.
 
 	o Updated summaryStats():
-	  -- Fixed bug so it does not return an error when the argument 'object' is a 
+	  -- Fixed bug so it does not return an error when the argument 'object' is a
 	     logical or character vector.
-	  -- Fixed bug so it uses the argument test.arg.list in the case when there 
+	  -- Fixed bug so it uses the argument test.arg.list in the case when there
 	     are 2 groups, test="parametric", and group.p.value.type="within".
-	  -- When p.value=TRUE and there are 2 groups, added estimate of difference in 
-	     location to output:  
-	     when test="parametric" shows the difference between the means, and  
-	     when test="nonparametric" shows the median of the difference between 
+	  -- When p.value=TRUE and there are 2 groups, added estimate of difference in
+	     location to output:
+	     when test="parametric" shows the difference between the means, and
+	     when test="nonparametric" shows the median of the difference between
 	     a sample from group 1 and a sample from group 2.
 
-	o Updated stripChart(): 
-	  -- Takes new argument 'plot.diff' applicable to the case when there are 2 groups.  
-	     ++ When plot.diff=TRUE and paired=FALSE, the confidence interval 
-	        for the difference between the two locations is displayed and the right axis 
-	        (when vertical=TRUE) or top axis (when vertical=FALSE) is labeled in units of 
-	        the confidence interval for the difference between the two locations. 
-	     ++ When plot.diff=TRUE and paired=TRUE, the paired differences are 
-	        displayed and the right axis (when vertical=TRUE) or 
-	        top axis (when vertical=FALSE) is labeled in units of the paired differences.  
-	        In addition, if show.ci=TRUE, the confidence interval based on the paired 
-	        differences is displayed. 
+	o Updated stripChart():
+	  -- Takes new argument 'plot.diff' applicable to the case when there are 2 groups.
+	     ++ When plot.diff=TRUE and paired=FALSE, the confidence interval
+	        for the difference between the two locations is displayed and the right axis
+	        (when vertical=TRUE) or top axis (when vertical=FALSE) is labeled in units of
+	        the confidence interval for the difference between the two locations.
+	     ++ When plot.diff=TRUE and paired=TRUE, the paired differences are
+	        displayed and the right axis (when vertical=TRUE) or
+	        top axis (when vertical=FALSE) is labeled in units of the paired differences.
+	        In addition, if show.ci=TRUE, the confidence interval based on the paired
+	        differences is displayed.
 
-	  -- Takes new argument 'paired' applicable to the case when there are 
-	     2 groups that are paired observations.  
-		++ When paired=TRUE and p.value=TRUE, the paired t-test 
+	  -- Takes new argument 'paired' applicable to the case when there are
+	     2 groups that are paired observations.
+		++ When paired=TRUE and p.value=TRUE, the paired t-test
 		   or paired Wilcoxon test is performed.
 
-	  -- Takes new argument 'paired.lines'.  
-	     When paired=TRUE and paired.lines=TRUE, lines are drawn between the 
+	  -- Takes new argument 'paired.lines'.
+	     When paired=TRUE and paired.lines=TRUE, lines are drawn between the
 	     paired observations.
 
-	  -- Takes new argument 'paired.lty'.  
-	     When paired=TRUE and paired.lines=TRUE, paired.lty is a vector indicating 
+	  -- Takes new argument 'paired.lty'.
+	     When paired=TRUE and paired.lines=TRUE, paired.lty is a vector indicating
 	     the line types to use to distinguish different paired observations.
 
-	  -- Takes new argument 'paired.lwd'.  
-	     When paired=TRUE and paired.lines=TRUE, paired.lwd is a scalar or vector 
+	  -- Takes new argument 'paired.lwd'.
+	     When paired=TRUE and paired.lines=TRUE, paired.lwd is a scalar or vector
              indicating the width of the lines used to distinguish different paired observations.
 
-	  -- Takes new argument 'paired.pch'.  
-	     When paired=TRUE and paired.lines=TRUE, paired.pch is a vector indicating 
+	  -- Takes new argument 'paired.pch'.
+	     When paired=TRUE and paired.lines=TRUE, paired.pch is a vector indicating
 	     the plotting symbols to use to distinguish different paired observations.
 
-	  -- Takes new argument 'paired.col'.  
-	     When paired=TRUE and paired.lines=TRUE, paired.col is a vector indicating 
-	     the color of the lines and/or plotting symbols to use to distinguish 
+	  -- Takes new argument 'paired.col'.
+	     When paired=TRUE and paired.lines=TRUE, paired.col is a vector indicating
+	     the color of the lines and/or plotting symbols to use to distinguish
 	     different paired observations.  This argument overrides the argument 'col'.
 
 	  -- Takes new argument 'diff.col'.
-	     ++ When plot.diff=TRUE and paired=TRUE, diff.col indicates the color 
-	        of the displayed paired differences and the color of the confidence 
+	     ++ When plot.diff=TRUE and paired=TRUE, diff.col indicates the color
+	        of the displayed paired differences and the color of the confidence
 	        interval when show.ci=TRUE.
-	     ++ When plot.diff=TRUE and paired=FALSE, diff.col indicates the color 
-	        of the confidence interval for the difference between the two means 
+	     ++ When plot.diff=TRUE and paired=FALSE, diff.col indicates the color
+	        of the confidence interval for the difference between the two means
 	        when show.ci=TRUE.
 	     ++ This argument overrides the argument 'col'.
 
 	  -- Takes new argument 'diff.pch'.
-	     ++ When plot.diff=TRUE and paired=TRUE, diff.pch indicates the plotting  
+	     ++ When plot.diff=TRUE and paired=TRUE, diff.pch indicates the plotting
 	        symbol for the displayed paired differences.
 	     ++ This argument overrides the argument 'pch'.
 
 	  -- Takes new arguments 'diff.name', 'diff.name.cex', and 'diff.axis.label'.
-	     ++ When plot.diff=TRUE, diff.name is a character string indicating the 
-	        the label for the difference between the two groups.  The default value 
-	        is Group 2 Name - Group 1 Name where Group 1 Name and Group 2 Name indicate 
+	     ++ When plot.diff=TRUE, diff.name is a character string indicating the
+	        the label for the difference between the two groups.  The default value
+	        is Group 2 Name - Group 1 Name where Group 1 Name and Group 2 Name indicate
 	        the name of the first and second groups, respectively.
-	     ++ When plot.diff=TRUE, diff.name.cex is a numeric scalar indicating 
-	        what value of cex to use to plot the character indicating the estimate of 
+	     ++ When plot.diff=TRUE, diff.name.cex is a numeric scalar indicating
+	        what value of cex to use to plot the character indicating the estimate of
 	        of the difference between groups 1 and 2.
-	     ++ When plot.diff=TRUE, diff.axis.label is a character string indicating the 
-	        the label for the axis associated with the difference between the two groups.  
-	        The default value is "Difference Between Groups" when paired=FALSE, and 
+	     ++ When plot.diff=TRUE, diff.axis.label is a character string indicating the
+	        the label for the axis associated with the difference between the two groups.
+	        The default value is "Difference Between Groups" when paired=FALSE, and
                 "Paired Difference" when paired=TRUE.
 
 	  -- Takes new arguments 'diff.lim' and 'diff.at'.
-	     ++ When plot.diff=TRUE, diff.lim is a numeric vector of length 2 indicating the 
+	     ++ When plot.diff=TRUE, diff.lim is a numeric vector of length 2 indicating the
                 limits to use for the axis associated with the difference between the two groups.
-	     ++ When plot.diff=TRUE, diff.at is a numeric vector indicating where to place  
+	     ++ When plot.diff=TRUE, diff.at is a numeric vector indicating where to place
                 tick marks on the axis associated with the difference between the two groups.
 
 	  -- Takes new arguments 'sep.line', 'sep.lty', 'sep.lwd', and 'sep.col'.
-	     ++ When plot.diff=TRUE, sep.line is a logical scalar indicating whether to 
+	     ++ When plot.diff=TRUE, sep.line is a logical scalar indicating whether to
 	        draw a line between the second group and the difference between groups 1 and 2.
 	        The default value is sep.line=TRUE.
-	     ++ When plot.diff=TRUE, sep.lty is a numeric scalar indicating the line type to 
-	        use to draw the line between the second group and difference between groups 
+	     ++ When plot.diff=TRUE, sep.lty is a numeric scalar indicating the line type to
+	        use to draw the line between the second group and difference between groups
 	        1 and 2.  The default value is sep.lty=2.
-	     ++ When plot.diff=TRUE, sep.lwd is a numeric scalar indicating the width of the 
-	        line to draw between the second group and difference between groups 
+	     ++ When plot.diff=TRUE, sep.lwd is a numeric scalar indicating the width of the
+	        line to draw between the second group and difference between groups
 	        1 and 2.  The default value is sep.lwd=cex.
-	     ++ When plot.diff=TRUE, sep.col is a numeric scalar or character string indicating 
-	        the color of the line to draw between the second group and difference between 
+	     ++ When plot.diff=TRUE, sep.col is a numeric scalar or character string indicating
+	        the color of the line to draw between the second group and difference between
 	        groups 1 and 2.  The default value is sep.col="gray".
 
 	  -- Takes new arguments 'plot.diff.mar'.
-	     ++ When plot.diff=TRUE and add = FALSE, plot.diff.mar is a numeric vector of 
-	        length 4 indicating the value of the mar graphics parameter to use for the plot.  
-	        The default value is c(5.1, 4.1, 4.1, 4.1), which differs from the usual 
-	        default value in that the value for side 4 is 4.1 instead of 2.1.  This allows 
-	        for room to add an axis and axis label on side 4 indicating that that axis 
-	        represents the difference between the 2 groups.  
+	     ++ When plot.diff=TRUE and add = FALSE, plot.diff.mar is a numeric vector of
+	        length 4 indicating the value of the mar graphics parameter to use for the plot.
+	        The default value is c(5.1, 4.1, 4.1, 4.1), which differs from the usual
+	        default value in that the value for side 4 is 4.1 instead of 2.1.  This allows
+	        for room to add an axis and axis label on side 4 indicating that that axis
+	        represents the difference between the 2 groups.
 
 	o Updated help files and fixed formatting issues in the PDF version.
 
@@ -246,19 +249,19 @@ Changes in Version 2.1.0, 2016.04.18:
 Changes in Version 2.0.2, 2015.11.17:
 
 	o Updated rosnerTest() and help file:
-	  -- The minimum number of non-missing, finite values in the argument x 
+	  -- The minimum number of non-missing, finite values in the argument x
 	     can now be 3 instead of 10.
-	  -- An updated version of Rosner's (1983) Table 1 is given in the help file.  
-	     The table shows the observed Type I error levels for various combinations of 
-	     sample sizes and values of k. 
-	  -- The conditions for when a warning is issued when warn=TRUE have been 
+	  -- An updated version of Rosner's (1983) Table 1 is given in the help file.
+	     The table shows the observed Type I error levels for various combinations of
+	     sample sizes and values of k.
+	  -- The conditions for when a warning is issued when warn=TRUE have been
 	     slightly altered.  See the help file for more information.
 
 	o Fixed bugs in stripChart.default() so that
-	  -- The title indicates the correct test when the argument 
+	  -- The title indicates the correct test when the argument
 	     test.arg.list includes the component paired=TRUE.
-	  -- Does not return an error when the first argument is not a 
-	     formula and there are missing values and p.value=TRUE.  
+	  -- Does not return an error when the first argument is not a
+	     formula and there are missing values and p.value=TRUE.
 
 	o Updated help files and fixed formatting issues in the PDF version.
 
@@ -266,14 +269,14 @@ Changes in Version 2.0.2, 2015.11.17:
 
 Changes in Version 2.0.1, 2015.05.24:
 
-	o Updated stripChart() by adding the arguments 
-	  ci.bar.lwd and nsmall.  
+	o Updated stripChart() by adding the arguments
+	  ci.bar.lwd and nsmall.
 	  See the help file for details.
 
-	o Fixed bug in summaryStats.formula() so that it will correctly 
+	o Fixed bug in summaryStats.formula() so that it will correctly
 	  deal with a character or logical vector as its first argument.
 
-	o Fixed bug in errorBar() so that it does not pass high-level 
+	o Fixed bug in errorBar() so that it does not pass high-level
 	  graphics arguments to segments().
 
 	o Updated help files and fixed formatting issues in the PDF version.
@@ -282,29 +285,29 @@ Changes in Version 2.0.1, 2015.05.24:
 
 Changes in Version 2.0.0, 2015.03.09:
 
-	o EnvStats contains a modified version of the R function predict.lm().  
-	  To comply with CRAN policy, added the generic function predict() and the 
-	  function predict.default(), and also updated the already existing (within 
+	o EnvStats contains a modified version of the R function predict.lm().
+	  To comply with CRAN policy, added the generic function predict() and the
+	  function predict.default(), and also updated the already existing (within
 	  EnvStats) predict.lm() function.
 
-	o EnvStats contains a modified version of the R function print.htest().  
-	  To comply with CRAN policy, added the generic function print() and the 
+	o EnvStats contains a modified version of the R function print.htest().
+	  To comply with CRAN policy, added the generic function print() and the
 	  function print.default().
 
-	o Included the function errorBar() in the NAMESPACE.  This function allows 
+	o Included the function errorBar() in the NAMESPACE.  This function allows
 	  the user to plot error bars.  See the help file for more information.
 
-	o Updated the function calibrate() to return an object of class "calibrate" 
+	o Updated the function calibrate() to return an object of class "calibrate"
 	  which inherits from class "lm".
 
-	o Included the function print.gofOutlier() in the NAMESPACE so that the results 
-	  print correctly for the function rosnerTest() to perform Rosner's test for 
+	o Included the function print.gofOutlier() in the NAMESPACE so that the results
+	  print correctly for the function rosnerTest() to perform Rosner's test for
 	  outliers assuming a normal (Gaussian) distribution.
 
-	o Updated summaryStats() so that it will accept a character or logical vector 
+	o Updated summaryStats() so that it will accept a character or logical vector
 	  as its first argument.
 
-	o Updated stripChart() so that it will accept a numeric matrix as its 
+	o Updated stripChart() so that it will accept a numeric matrix as its
 	  first argument.
 
 	o Fixed a bug in the function elnorm3() for the case when method="lmle".
@@ -316,87 +319,87 @@ Changes in Version 2.0.0, 2015.03.09:
 
 Changes in Version 1.0.3, 2014.10.20:
 
-	o Added the function rosnerTest to perform Rosner's test for outliers in a 
+	o Added the function rosnerTest to perform Rosner's test for outliers in a
 	  normal (Gaussian) distribution.
 
 	o Modified the function stripChart():
-		- The argument ci.offset is now allowed to be either a scalar or 
+		- The argument ci.offset is now allowed to be either a scalar or
 		  a vector of length equal to the number of groups.
-		- A new argument group.names.cex has been added to give explicit 
+		- A new argument group.names.cex has been added to give explicit
 		  control over the size of the group labels.
 
-	o Fixed a bug in gofTestCensored() for the case when the data contain only 
-	  one censored observation and the censored observation is larger than 
-	  the smallest non-censored observation for left-censored data or is smaller than 
-	  the largest non-censored observation for right-censored data. 
+	o Fixed a bug in gofTestCensored() for the case when the data contain only
+	  one censored observation and the censored observation is larger than
+	  the smallest non-censored observation for left-censored data or is smaller than
+	  the largest non-censored observation for right-censored data.
 
-	o Fixed a bug in anovaPE() that allowed the user to attempt to compute a 
-	  lack-of-fit and pure error anova table when there are not enough degrees of 
+	o Fixed a bug in anovaPE() that allowed the user to attempt to compute a
+	  lack-of-fit and pure error anova table when there are not enough degrees of
 	  freedom to do so.
 
-	o Fixed a bug in calibrate() to allow only models with enough degrees of 
-	  freedom to be tested for lack-of-fit via anovaPE.  Also added the arguments 
+	o Fixed a bug in calibrate() to allow only models with enough degrees of
+	  freedom to be tested for lack-of-fit via anovaPE.  Also added the arguments
 	  test.higher.orders and F.test.
 
 	o Modified detectionLimitCalibrate() as follows:
 
-	  + now returns not just the detection limit but both the decision limit 
-	    (on the scale of the signal) and the detection limit (on the scale of 
+	  + now returns not just the detection limit but both the decision limit
+	    (on the scale of the signal) and the detection limit (on the scale of
 	    the concentration).
 
 	  + changed the default value for the argument simultaneous to simultaneous=TRUE.
 
-	o Fixed a bug in signTest: values equal to the the argument mu were not 
+	o Fixed a bug in signTest: values equal to the the argument mu were not
           being discarded.  (Thanks to Ed Gilroy for pointing this out!).
 
-	o Fixed a bug in enparCensored: error message appeared when 
-	  ci.method="bootstrap".  (Thanks to Dennis Helsel for pointing this 
+	o Fixed a bug in enparCensored: error message appeared when
+	  ci.method="bootstrap".  (Thanks to Dennis Helsel for pointing this
 	  out!).
 
-	o Fixed a bug in enormCensored when method="mle", ci=TRUE, 
-	  ci.method="normal.approx", and ci.type="lower" or ci.type="upper":   
-	  LCL and UCL were switched.  (Thanks to Dennis Helsel for pointing 
+	o Fixed a bug in enormCensored when method="mle", ci=TRUE,
+	  ci.method="normal.approx", and ci.type="lower" or ci.type="upper":
+	  LCL and UCL were switched.  (Thanks to Dennis Helsel for pointing
 	  this out!).
 
-	o For enormCensored, elnormCensored, elnormAltCensored, egammaCensored, 
-	  egammaAltCensored, and epoisCensored, one-sided confidence intervals are 
-	  now available when ci.method="profile.likelihood". 
+	o For enormCensored, elnormCensored, elnormAltCensored, egammaCensored,
+	  egammaAltCensored, and epoisCensored, one-sided confidence intervals are
+	  now available when ci.method="profile.likelihood".
 
-	o For enparCensored, enormCensored, elnormCensored, elnormAltCensored, 
-	  egammaCensored, egammaAltCensored, and epoisCensored, arguments and results 
-	  returned when ci.method="bootstrap" have been updated: 
+	o For enparCensored, enormCensored, elnormCensored, elnormAltCensored,
+	  egammaCensored, egammaAltCensored, and epoisCensored, arguments and results
+	  returned when ci.method="bootstrap" have been updated:
 
-	  + The argument use.acc.con has been deprecated.  Bias-corrected 
-	    and accelerated (BCa) bootstrap results are now always computed 
-	    where the acceleration constant is estimated rather than allowing 
-	    the user to set it to 0 (i.e., setting use.acc.con=FALSE in 
-	    older versions of EnvStats).  Note that 1) code that explicitly 
-	    set use.acc.con=FALSE will no longer work for these functions, and 
-	    2) use.acc.con=FALSE was the default so results run previously 
-	    will not match what is now returned (even if the random seed is 
-	    set to the same value as was used before).  
+	  + The argument use.acc.con has been deprecated.  Bias-corrected
+	    and accelerated (BCa) bootstrap results are now always computed
+	    where the acceleration constant is estimated rather than allowing
+	    the user to set it to 0 (i.e., setting use.acc.con=FALSE in
+	    older versions of EnvStats).  Note that 1) code that explicitly
+	    set use.acc.con=FALSE will no longer work for these functions, and
+	    2) use.acc.con=FALSE was the default so results run previously
+	    will not match what is now returned (even if the random seed is
+	    set to the same value as was used before).
 
 	  + The argument ci.type is now allowed to be "lower" or "upper".
 
 	  + As before, there are two sets of confidence limits that are returned:
 
-	      * percentile confidence limits (denoted Pct.LCL and Pct.UCL) and 
+	      * percentile confidence limits (denoted Pct.LCL and Pct.UCL) and
 
-	      * bias-corrected and accelerated confidence limits (denoted 
+	      * bias-corrected and accelerated confidence limits (denoted
 	        BCa.LCL and BCa.UCL)
 
 	  + For enparCensored, a third set of confidence limits are also returned:
 
 	      * studentized confidence limits (denoted t.LCL and t.UCL)
 
-  
+
 	o Fixed bugs in oneSamplePermutationTest and twoSamplePermutationTestLocation:
 	  the default value of the argument seed is now set to seed=NULL.
 
-	o Fixed a bug in kendallSeasonalTrendTest: an error message appeared when 
+	o Fixed a bug in kendallSeasonalTrendTest: an error message appeared when
 	  the argument 'y' was supplied as a matrix and independent.obs=FALSE.
 
-	o Change all calls to the EnvStats global variable Distribution.df to 
+	o Change all calls to the EnvStats global variable Distribution.df to
 	  EnvStats::Distribution.df.
 
 	o Fixed formatting problems in the PDF version of the help files.
@@ -406,20 +409,20 @@ Changes in Version 1.0.3, 2014.10.20:
 Changes in Version 1.0.2, 2013.10.29:
 
 	o Changed the names of functions used for minimization in the following functions:
-	  
-	  ciBinomN.vec, elnorm3, enormMultiplyCensored.mle, enormSinglyCensored.mle, 
+
+	  ciBinomN.vec, elnorm3, enormMultiplyCensored.mle, enormSinglyCensored.mle,
 	  predIntPois
 
 ========================
 
 Changes in Version 1.0.1:
 
-	o Fixed bugs in the following functions that had misspelled variable 
+	o Fixed bugs in the following functions that had misspelled variable
 	  names or variables that had not been defined:
 
-	  ci.gamma.chisq.approx, ci.lnorm3.zero.skew, ciBinomN, eqlnorm, 
-	  plot.gofCensored, ppccNormMultiplyCensoredGofTest, 
-	  ppccNormSinglyCensoredGofTest, predIntPois, print.boxcox, 
+	  ci.gamma.chisq.approx, ci.lnorm3.zero.skew, ciBinomN, eqlnorm,
+	  plot.gofCensored, ppccNormMultiplyCensoredGofTest,
+	  ppccNormSinglyCensoredGofTest, predIntPois, print.boxcox,
 	  print.boxcoxCensored
 
 ========================
