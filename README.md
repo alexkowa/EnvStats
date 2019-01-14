@@ -8,4 +8,5 @@
 This is the development place for R-package EnvStats
 
 Author: Steven P. Millard
+
 Maintainer: Alexander Kowarik
