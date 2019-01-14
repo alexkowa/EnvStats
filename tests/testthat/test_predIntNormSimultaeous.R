@@ -39,7 +39,11 @@ test_that("predIntNormSimultaneous test 3",{
   expect_true(round(x,2)==13.28)
 })
 
-test_that("predIntNormSimultaneous test 3",{
+test_that("predIntNormSimultaneous test 4",{
+  nc <- 10
+  nw <- 50
+  SWFPR <- 0.1
+  conf.level <- (1 - SWFPR)^(1 / (nc * nw))
   log.Sulfate <- EPA.09.Ex.19.1.sulfate.df$log.Sulfate.mg.per.l
   pred.int.list.log <-
     predIntNormSimultaneous(x = log.Sulfate, k = 1, m = 3, r = 2,
