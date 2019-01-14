@@ -74,7 +74,7 @@ function (n, df = n - 1, n.mean = 1, k = 1, m = 2, r = 1, rule = "k.of.m",
         }, Modified.CA = {
             pred.int.norm.Modified.CA.on.r.K(n = n[i], df = df[i],
                 n.mean = n.mean[i], r = r[i], delta.over.sigma = delta.over.sigma[i],
-                pi.type = pi.type, conf.level = conf.level[i],
+                conf.level = conf.level[i],
                 K.tol = K.tol)
         })
     }
