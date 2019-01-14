@@ -65,11 +65,12 @@ function (n, df = n - 1, n.mean = 1, k = 1, m = 2, r = 1, rule = "k.of.m",
             pred.int.norm.k.of.m.on.r.K(n = n[i], df = df[i],
                 n.mean = n.mean[i], k = k[i], m = m[i], r = r[i],
                 delta.over.sigma = delta.over.sigma[i],
+                pi.type = pi.type,
                 conf.level = conf.level[i], K.tol = K.tol, integrate.args.list = integrate.args.list)
         }, CA = {
             pred.int.norm.CA.on.r.K(n = n[i], df = df[i], n.mean = n.mean[i],
                 m = m[i], r = r[i], delta.over.sigma = delta.over.sigma[i],
-                pi.type = pi.type, conf.level = conf.level[i],
+                conf.level = conf.level[i],
                 K.tol = K.tol)
         }, Modified.CA = {
             pred.int.norm.Modified.CA.on.r.K(n = n[i], df = df[i],
