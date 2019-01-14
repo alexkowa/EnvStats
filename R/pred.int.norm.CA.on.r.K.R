@@ -1,6 +1,5 @@
 pred.int.norm.CA.on.r.K <-
 function (n, df = n - 1, n.mean = 1, m = 2, r = 1, delta.over.sigma = 0,
-    pi.type = c("upper", "lower", "two-sided"),
     conf.level = 0.95, K.tol = .Machine$double.eps^(1/2),
     integrate.args.list = NULL)
 {
@@ -28,7 +27,6 @@ function (n, df = n - 1, n.mean = 1, m = 2, r = 1, delta.over.sigma = 0,
         stop("'delta.over.sigma' must be finite")
     if (conf.level <= 0 || conf.level >= 1)
         stop("'conf.level' must be between 0 and 1")
-    pi.type <- match.arg(pi.type)
     fcn.to.min <- function(K, n.weird, df.weird, m.weird, n.mean,
         r.weird, delta.over.sigma, conf.level, integrate.args.list) {
         (conf.level - pred.int.norm.CA.on.r.prob(n = n.weird,
