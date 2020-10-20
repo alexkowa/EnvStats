@@ -5,7 +5,7 @@
   Trichloroethylene Concentrations Before and After Remedation
 }
 \description{
-  Trichloroethylene (TCE) concentrations (mg/L) at 10 groundwater monitoring wells 
+  Trichloroethylene (TCE) concentrations (mg/L) at 10 groundwater monitoring wells
   before and after remediation.
 }
 \usage{data(ACE.13.TCE.df)}
@@ -18,9 +18,9 @@
   }
 }
 \source{
-  USACE. (2013).  \emph{Environmental Quality - Environmental Statistics}.  
-  Engineer Manual EM 200-1-16, 31 May 2013.  Department of the Army, 
-  U.S. Army Corps of Engineers, Washington, D.C. 20314-1000, p. M-10.   
-  \url{http://www.publications.usace.army.mil/Portals/76/Publications/EngineerManuals/EM_200-1-16.pdf}.
+  USACE. (2013).  \emph{Environmental Quality - Environmental Statistics}.
+  Engineer Manual EM 200-1-16, 31 May 2013.  Department of the Army,
+  U.S. Army Corps of Engineers, Washington, D.C. 20314-1000, p. M-10.
+  \url{https://www.publications.usace.army.mil/Portals/76/Publications/EngineerManuals/EM_200-1-16.pdf}.
 }
 \keyword{datasets}
