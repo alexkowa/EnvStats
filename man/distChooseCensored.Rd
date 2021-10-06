@@ -245,7 +245,7 @@ distChooseCensored(x, censored, censoring.side = "left", alpha = 0.05,
 
   Marsaglia, G., W.W. Tsang, and J. Wang. (2003). Evaluating Kolmogorov's distribution.
   \emph{Journal of Statistical Software}, \bold{8}(18).
-  \url{https://www.jstatsoft.org/v08/i18/}.
+  \url{https://doi.org/10.18637/jss.v008.i18}.
 
   Moore, D.S. (1986). Tests of Chi-Squared Type. In D'Agostino, R.B., and M.A. Stephens, eds.
   \emph{Goodness-of Fit Techniques}. Marcel Dekker, New York, pp.63-95.
