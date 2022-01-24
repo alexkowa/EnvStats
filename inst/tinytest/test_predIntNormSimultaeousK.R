@@ -1,26 +1,26 @@
 library(EnvStats)
 
-test_that("predIntNormSimultaneousK test",{
+# predIntNormSimultaneousK test"
   x <- predIntNormSimultaneousK(n = 8, k = 1, m = 3)
   expect_true(round(x,2)==.51)
-})
 
-test_that("predIntNormSimultaneousK CA test",{
+
+# predIntNormSimultaneousK CA test"
   x <- predIntNormSimultaneousK(n = 8, m = 3, rule = "CA")
   expect_true(round(x,2)==1.25)
-})
 
-test_that("predIntNormSimultaneousK Modified.CA test",{
+
+# predIntNormSimultaneousK Modified.CA test"
   x <- predIntNormSimultaneousK(n = 8, rule = "Modified.CA")
   expect_true(round(x,2)==0.84)
-})
 
-test_that("predIntNormSimultaneousK test 2",{
+
+# predIntNormSimultaneousK test 2"
   x <- predIntNormSimultaneousK(n = 8, k = 1, m = 3, r = 10)
   expect_true(round(x,2)==1.36)
-})
 
-test_that("predIntNormSimultaneousK test 3",{
+
+# predIntNormSimultaneousK test 3"
   x <- predIntNormSimultaneousK(n = 8, k = 1, m = 3, r = 10)
   expect_true(round(x,2)==1.36)
 
@@ -32,4 +32,4 @@ conf.level <- (1 - SWFPR)^(1 / (nc * nw))
 x <-- predIntNormSimultaneousK(n = 25, k = 1, m = 3, r = 2,
                          rule = "k.of.m", pi.type = "upper", conf.level = conf.level)
 expect_true(round(x,2)==-2.01)
-})
+
