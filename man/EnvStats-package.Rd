@@ -18,7 +18,7 @@
   sets from regulatory guidance documents and environmental statistics literature, and
   scripts reproducing analyses presented in the User's manual:
   \emph{EnvStats:  An R Package for Environmental Statistics}
-  (Millard, 2013, \url{https://www.springer.com/book/9781461484554}).
+  (Millard, 2013, \url{https://link.springer.com/book/9781461484554}).
 
   For a complete list of functions and datasets, you can do any of the following:
 
@@ -170,7 +170,7 @@ Maintainer: Steven P. Millard <EnvStats@ProbStatInfo.com>
 }
 \references{
   Millard, S.P. (2013). \emph{EnvStats: An R Package for Environmental Statistics}.
-  Springer, New York.  \url{https://www.springer.com/book/9781461484554}.
+  Springer, New York.  \url{https://link.springer.com/book/9781461484554}.
 
   Millard, S.P. (2002). \emph{EnvironmentalStats for S-PLUS: User's Manual for Version 2.0}.
   Second Edition. Springer-Verlag, New York.
