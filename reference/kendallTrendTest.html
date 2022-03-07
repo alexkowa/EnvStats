@@ -19,7 +19,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">EnvStats</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">2.6.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">2.7.0</span>
       </span>
     </div>
 
@@ -418,16 +418,126 @@
 <span class="r-in">  <span class="co">#-----------------------------------</span></span>
 <span class="r-in">  <span class="fu">kendallTrendTest</span><span class="op">(</span><span class="va">Sulfate.ppm</span> <span class="op">~</span> <span class="va">Sampling.Date</span>,</span>
 <span class="r-in">    data <span class="op">=</span> <span class="va">EPA.09.Ex.17.6.sulfate.df</span><span class="op">)</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $statistic</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>        z </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 5.107322 </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 	Kendall's Test for Trend (with continuity correction)</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $parameters</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> NULL</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> data:  Sulfate.ppmSampling.Date</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> z = 5.1073, p-value = 3.268e-07</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> alternative hypothesis: true tau is not equal to 0</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> sample estimates:</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $p.value</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>            z </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 3.267574e-07 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $estimate</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>           tau         slope     intercept </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>     0.7667984    26.6666667 -1909.3333333 </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $null.value</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> tau </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   0 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $alternative</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "two.sided"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $method</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "Kendall's Test for Trend\n                                 (with continuity correction)"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $estimation.method</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "slope:      Theil/Sen Estimator\n                                 intercept:  Conover's Estimator"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $sample.size</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] 23</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $data.name</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>               y               x </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   "Sulfate.ppm" "Sampling.Date" </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $bad.obs</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] 0</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $S</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] 194</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $var.S</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] 1428</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $slopes</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   [1] -650.000000 -480.000000 -366.666667 -260.000000 -150.000000 -116.666667</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   [7] -100.000000  -90.000000  -80.000000  -66.666667  -60.000000  -53.333333</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [13]  -50.000000  -42.857143  -41.666667  -40.000000  -30.000000  -25.000000</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [19]  -20.000000  -16.666667  -12.500000  -10.000000  -10.000000   -7.692308</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [25]   -6.666667   -5.555556   -3.703704    0.000000    0.000000    0.000000</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [31]    0.000000    0.000000    3.030303    3.333333    5.000000    6.000000</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [37]    6.382979    6.666667    7.692308    8.000000    8.695652    8.695652</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [43]    9.090909   10.000000   10.000000   10.000000   10.000000   10.000000</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [49]   10.000000   10.416667   10.526316   10.769231   10.909091   11.764706</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [55]   11.904762   12.000000   12.500000   13.157895   13.333333   13.333333</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [61]   13.333333   13.953488   13.953488   14.035088   14.285714   14.285714</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [67]   14.925373   15.000000   15.000000   15.000000   15.277778   15.384615</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [73]   16.000000   16.000000   16.363636   16.666667   16.935484   16.981132</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [79]   17.142857   17.142857   17.241379   17.391304   17.500000   18.604651</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [85]   18.750000   18.888889   20.000000   20.000000   20.000000   20.000000</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [91]   20.000000   20.000000   20.000000   20.000000   20.000000   20.000000</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [97]   20.754717   20.833333   21.052632   21.538462   21.666667   21.666667</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [103]   21.666667   21.818182   22.000000   22.222222   22.222222   22.222222</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [109]   22.500000   22.641509   22.857143   23.076923   23.333333   23.636364</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [115]   24.324324   24.444444   24.545455   25.000000   25.000000   25.000000</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [121]   25.000000   25.000000   25.000000   26.315789   26.666667   26.666667</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [127]   26.666667   26.984127   27.272727   27.419355   27.500000   27.500000</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [133]   27.586207   28.000000   28.000000   28.070175   28.571429   29.411765</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [139]   29.411765   29.787234   30.000000   30.000000   30.000000   30.000000</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [145]   31.428571   31.730769   31.746032   32.000000   32.142857   32.857143</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [151]   33.333333   33.333333   33.333333   33.333333   33.333333   33.333333</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [157]   33.333333   34.285714   34.375000   34.782609   34.883721   35.000000</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [163]   35.384615   35.555556   35.849057   36.000000   36.206897   36.363636</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [169]   37.142857   37.500000   38.181818   38.461538   39.166667   39.705882</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [175]   40.000000   40.000000   40.000000   41.176471   41.860465   42.000000</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [181]   42.000000   42.424242   43.750000   44.000000   45.000000   45.454545</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [187]   46.153846   46.666667   47.826087   48.000000   50.000000   50.000000</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [193]   50.000000   50.000000   50.000000   50.000000   50.000000   51.515152</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [199]   51.666667   52.083333   52.238806   53.333333   53.333333   53.750000</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [205]   54.285714   54.838710   55.000000   56.000000   56.666667   57.142857</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [211]   58.181818   58.461538   60.000000   60.000000   60.000000   60.000000</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [217]   60.526316   61.538462   62.500000   63.333333   64.285714   64.285714</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [223]   68.085106   71.428571   73.333333   75.000000   76.470588   78.378378</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [229]   80.000000   80.000000   87.500000  100.000000  100.000000  100.000000</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [235]  100.000000  100.000000  103.703704  104.545455  110.000000  114.285714</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [241]  125.000000  133.333333  140.000000  150.000000  150.000000  200.000000</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [247]  200.000000  200.000000  216.666667  250.000000  314.285714  360.000000</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [253] 1050.000000</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $interval</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $name</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "Confidence"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $parameter</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "slope"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $limits</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>      LCL      UCL </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 20.00000 35.71182 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $type</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "two-sided"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $method</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "Gilbert's Modification\n                                 of Theil/Sen Method"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $conf.level</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] 0.95</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $sample.size</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] 253</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> attr(,"class")</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "intervalEstimate"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $parent.of.data</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "EPA.09.Ex.17.6.sulfate.df"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> attr(,"class")</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "htestEnvStats"</span>
 <span class="r-in"></span>
 <span class="r-in">  <span class="co">#Results of Hypothesis Test</span></span>
 <span class="r-in">  <span class="co">#--------------------------</span></span>
