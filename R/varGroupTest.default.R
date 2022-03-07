@@ -1,21 +1,21 @@
 varGroupTest.default <-
-function (object, group, test = "Levene", correct = TRUE, data.name = NULL, 
-    group.name = NULL, parent.of.data = NULL, subset.expression = NULL, 
-    ...) 
+function (object, group, test = "Levene", correct = TRUE, data.name = NULL,
+    group.name = NULL, parent.of.data = NULL, subset.expression = NULL,
+    ...)
 {
     test <- match.arg(test, c("Levene", "Bartlett"))
-    if (is.null(data.name)) 
+    if (is.null(data.name))
         data.name <- deparse(substitute(object))
-    if (is.null(group.name)) 
+    if (is.null(group.name))
         group.name <- deparse(substitute(group))
     x <- as.vector(unlist(object))
-    if (!is.numeric(x)) 
+    if (!is.numeric(x))
         stop("All elements of 'object' must be numeric")
-    if (!is.factor(group)) 
+    if (!is.factor(group))
         group <- factor(unlist(group))
-    if (any(!is.finite(group))) 
+    if (any(!is.finite(group)))
         stop("NA's/Inf's not allowed in 'group'.")
-    if (length(x) != length(group)) 
+    if (length(x) != length(group))
         stop("'object' and 'group' must have the same number of elements.")
     x.list <- split(x, group)
     n.grps <- length(x.list)
@@ -32,15 +32,15 @@ function (object, group, test = "Levene", correct = TRUE, data.name = NULL,
         if (na.inf.flag <- any(!is.finite(x))) {
             for (i in 1:n.grps) {
                 x.i <- x.list[[i]]
-                if ((bad.obs <- sum(!(x.ok <- is.finite(x.i)))) > 
+                if ((bad.obs <- sum(!(x.ok <- is.finite(x.i)))) >
                   0) {
                   is.not.finite.warning(x.i)
                   x.i <- x.i[x.ok]
-                  warning(paste(bad.obs, "observations with NA/NaN/Inf in the group", 
+                  warning(paste(bad.obs, "observations with NA/NaN/Inf in the group",
                     c.names[i], "removed."))
-                  if (length(x.i) < 2 || all(x.i == x.i[1])) 
-                    stop(paste("There must be at least 2", "unique non-missing values in each group. ", 
-                      "This is not true for the following group: ", 
+                  if (length(x.i) < 2 || all(x.i == x.i[1]))
+                    stop(paste("There must be at least 2", "unique non-missing values in each group. ",
+                      "This is not true for the following group: ",
                       c.names[i]))
                   bad.obs.vec[i] <- bad.obs
                   x.list[[i]] <- x.i
@@ -65,7 +65,7 @@ function (object, group, test = "Levene", correct = TRUE, data.name = NULL,
             parameters <- aov.list[, "Df"]
             names(parameters) <- c("num df", "denom df")
             p.value <- aov.list[1, "Pr(>F)"]
-            method <- paste("Levene's Test for", "Homogenity of Variance", 
+            method <- paste("Levene's Test for", "Homogenity of Variance",
                 sep = sep.string)
         }, Bartlett = {
             df <- n.grps - 1
@@ -80,24 +80,24 @@ function (object, group, test = "Levene", correct = TRUE, data.name = NULL,
             names(statistic) <- "Chisq"
             parameters <- c(df = df)
             p.value <- 1 - pchisq(statistic, df = df)
-            string <- paste(ifelse(correct, "(With", "(Without"), 
+            string <- paste(ifelse(correct, "(With", "(Without"),
                 "Correction Factor)")
-            method <- paste("Bartlett's Test for", "Homogenity of Variance", 
+            method <- paste("Bartlett's Test for", "Homogenity of Variance",
                 string, sep = sep.string)
         })
         null.value <- 1
         names(null.value) <- "Ratio of each pair of variances"
-        ret.list <- list(statistic = statistic, parameters = parameters, 
-            p.value = p.value, estimate = estimate, null.value = null.value, 
-            alternative = paste("At least one variance differs"), 
+        ret.list <- list(statistic = statistic, parameters = parameters,
+            p.value = p.value, estimate = estimate, null.value = null.value,
+            alternative = paste("At least one variance differs"),
             method = method, data.name = data.name, grouping.variable = group.name)
-        if (!is.null(parent.of.data)) 
+        if (!is.null(parent.of.data))
             ret.list$parent.of.data <- parent.of.data
-        if (!is.null(subset.expression)) 
+        if (!is.null(subset.expression))
             ret.list$subset.expression <- subset.expression
-        ret.list <- c(ret.list, list(sample.size = sample.size.vec, 
+        ret.list <- c(ret.list, list(sample.size = sample.size.vec,
             bad.obs = bad.obs.vec))
-        oldClass(ret.list) <- "htest"
+        oldClass(ret.list) <- "htestEnvStats"
     }
     ret.list
 }
