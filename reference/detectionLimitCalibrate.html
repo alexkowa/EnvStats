@@ -52,7 +52,7 @@
     </div>
 
     <div id="ref-usage">
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="fu">detectionLimitCalibrate</span><span class="op">(</span><span class="va">object</span>, coverage <span class="op">=</span> <span class="fl">0.99</span>, simultaneous <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></code></pre></div>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">detectionLimitCalibrate</span><span class="op">(</span><span class="va">object</span>, coverage <span class="op">=</span> <span class="fl">0.99</span>, simultaneous <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></code></pre></div>
     </div>
 
     <div id="arguments">
@@ -60,13 +60,16 @@
     <dl><dt>object</dt>
 <dd><p>an object of class <code>"calibrate"</code> that is the result of calling the function 
   <code><a href="calibrate.html">calibrate</a></code>.</p></dd>
-<dt>coverage</dt>
+
+  <dt>coverage</dt>
 <dd><p>optional numeric scalar between 0 and 1 indicating the confidence level associated with 
   the prediction intervals used in determining the detection limit. 
   The default value is <code>coverage=0.99</code>.</p></dd>
-<dt>simultaneous</dt>
+
+  <dt>simultaneous</dt>
 <dd><p>optional logical scalar indicating whether to base the prediction intervals on 
   simultaneous or non-simultaneous prediction limits.  The default value is <br><code>simultaneous=TRUE</code>.</p></dd>
+
 </dl></div>
     <div id="details">
     <h2>Details</h2>
@@ -107,8 +110,13 @@
     </div>
     <div id="value">
     <h2>Value</h2>
-    <p>A numeric vector of length 2 indicating the signal detection limit and the concentration 
-  detection limit. This vector has two attributes called <code>coverage</code>  and <code>simultaneous</code> indicating the values of these arguments that were used in the 
+    
+
+<p>A numeric vector of length 2 indicating the signal detection limit and the concentration 
+  detection limit. This vector has two attributes called <code>coverage</code></p>
+ 
+
+<p>and <code>simultaneous</code> indicating the values of these arguments that were used in the 
   call to <code>detectionLimitCalibrate</code>.</p>
     </div>
     <div id="references">
@@ -223,41 +231,41 @@
 
     <div id="ref-examples">
     <h2>Examples</h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in">  <span class="co"># The data frame EPA.97.cadmium.111.df contains calibration </span></span>
-<span class="r-in">  <span class="co"># data for cadmium at mass 111 (ng/L) that appeared in </span></span>
-<span class="r-in">  <span class="co"># Gibbons et al. (1997b) and were provided to them by the U.S. EPA.</span></span>
-<span class="r-in">  <span class="co"># </span></span>
-<span class="r-in">  <span class="co"># The Example section in the help file for calibrate shows how to </span></span>
-<span class="r-in">  <span class="co"># plot these data along with the fitted calibration line and 99% </span></span>
-<span class="r-in">  <span class="co"># non-simultaneous prediction limits.  </span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co"># For the current example, we will compute the decision limit (7.68) </span></span>
-<span class="r-in">  <span class="co"># and detection limit (12.36 ng/L) based on using alpha = beta = 0.01 </span></span>
-<span class="r-in">  <span class="co"># and a linear calibration line with constant variance. See </span></span>
-<span class="r-in">  <span class="co"># Millard and Neerchal (2001, pp.566-575) for more details on this </span></span>
-<span class="r-in">  <span class="co"># example.</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="va">calibrate.list</span> <span class="op">&lt;-</span> <span class="fu"><a href="calibrate.html">calibrate</a></span><span class="op">(</span><span class="va">Cadmium</span> <span class="op">~</span> <span class="va">Spike</span>, data <span class="op">=</span> <span class="va">EPA.97.cadmium.111.df</span><span class="op">)</span> </span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="fu">detectionLimitCalibrate</span><span class="op">(</span><span class="va">calibrate.list</span>, simultaneous <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span> </span>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span>  <span class="co"># The data frame EPA.97.cadmium.111.df contains calibration </span></span></span>
+<span class="r-in"><span>  <span class="co"># data for cadmium at mass 111 (ng/L) that appeared in </span></span></span>
+<span class="r-in"><span>  <span class="co"># Gibbons et al. (1997b) and were provided to them by the U.S. EPA.</span></span></span>
+<span class="r-in"><span>  <span class="co"># </span></span></span>
+<span class="r-in"><span>  <span class="co"># The Example section in the help file for calibrate shows how to </span></span></span>
+<span class="r-in"><span>  <span class="co"># plot these data along with the fitted calibration line and 99% </span></span></span>
+<span class="r-in"><span>  <span class="co"># non-simultaneous prediction limits.  </span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co"># For the current example, we will compute the decision limit (7.68) </span></span></span>
+<span class="r-in"><span>  <span class="co"># and detection limit (12.36 ng/L) based on using alpha = beta = 0.01 </span></span></span>
+<span class="r-in"><span>  <span class="co"># and a linear calibration line with constant variance. See </span></span></span>
+<span class="r-in"><span>  <span class="co"># Millard and Neerchal (2001, pp.566-575) for more details on this </span></span></span>
+<span class="r-in"><span>  <span class="co"># example.</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="va">calibrate.list</span> <span class="op">&lt;-</span> <span class="fu"><a href="calibrate.html">calibrate</a></span><span class="op">(</span><span class="va">Cadmium</span> <span class="op">~</span> <span class="va">Spike</span>, data <span class="op">=</span> <span class="va">EPA.97.cadmium.111.df</span><span class="op">)</span> </span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="fu">detectionLimitCalibrate</span><span class="op">(</span><span class="va">calibrate.list</span>, simultaneous <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span> </span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>         Decision Limit (Signal) Detection Limit (Concentration) </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>                        7.677842                       12.364670 </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> attr(,"coverage")</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] 0.99</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> attr(,"simultaneous")</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] FALSE</span>
-<span class="r-in">  <span class="co">#        Decision Limit (Signal) Detection Limit (Concentration) </span></span>
-<span class="r-in">  <span class="co">#                       7.677842                       12.364670 </span></span>
-<span class="r-in">  <span class="co">#attr(,"coverage")</span></span>
-<span class="r-in">  <span class="co">#[1] 0.99</span></span>
-<span class="r-in">  <span class="co">#attr(,"simultaneous")</span></span>
-<span class="r-in">  <span class="co">#[1] FALSE</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="co">#----------</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="co"># Clean up</span></span>
-<span class="r-in">  <span class="co">#---------</span></span>
-<span class="r-in">  <span class="fu"><a href="https://rdrr.io/r/base/rm.html" class="external-link">rm</a></span><span class="op">(</span><span class="va">calibrate.list</span><span class="op">)</span> </span>
+<span class="r-in"><span>  <span class="co">#        Decision Limit (Signal) Detection Limit (Concentration) </span></span></span>
+<span class="r-in"><span>  <span class="co">#                       7.677842                       12.364670 </span></span></span>
+<span class="r-in"><span>  <span class="co">#attr(,"coverage")</span></span></span>
+<span class="r-in"><span>  <span class="co">#[1] 0.99</span></span></span>
+<span class="r-in"><span>  <span class="co">#attr(,"simultaneous")</span></span></span>
+<span class="r-in"><span>  <span class="co">#[1] FALSE</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="co">#----------</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="co"># Clean up</span></span></span>
+<span class="r-in"><span>  <span class="co">#---------</span></span></span>
+<span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/r/base/rm.html" class="external-link">rm</a></span><span class="op">(</span><span class="va">calibrate.list</span><span class="op">)</span> </span></span>
 </code></pre></div>
     </div>
   </div>
@@ -272,7 +280,7 @@
 </div>
 
 <div class="pkgdown">
-  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.2.</p>
+  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.6.</p>
 </div>
 
       </footer></div>

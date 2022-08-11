@@ -52,12 +52,12 @@
     </div>
 
     <div id="ref-usage">
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="fu">plotAovDesign</span><span class="op">(</span>x.var <span class="op">=</span> <span class="st">"n"</span>, y.var <span class="op">=</span> <span class="st">"power"</span>, range.x.var <span class="op">=</span> <span class="cn">NULL</span>, 
-    n.vec <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">25</span>, <span class="fl">25</span><span class="op">)</span>, mu.vec <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">0</span>, <span class="fl">1</span><span class="op">)</span>, sigma <span class="op">=</span> <span class="fl">1</span>, alpha <span class="op">=</span> <span class="fl">0.05</span>, power <span class="op">=</span> <span class="fl">0.95</span>, 
-    round.up <span class="op">=</span> <span class="cn">FALSE</span>, n.max <span class="op">=</span> <span class="fl">5000</span>, tol <span class="op">=</span> <span class="fl">1e-07</span>, maxiter <span class="op">=</span> <span class="fl">1000</span>, plot.it <span class="op">=</span> <span class="cn">TRUE</span>, 
-    add <span class="op">=</span> <span class="cn">FALSE</span>, n.points <span class="op">=</span> <span class="fl">50</span>, plot.col <span class="op">=</span> <span class="fl">1</span>, plot.lwd <span class="op">=</span> <span class="fl">3</span> <span class="op">*</span> <span class="fu"><a href="https://rdrr.io/r/graphics/par.html" class="external-link">par</a></span><span class="op">(</span><span class="st">"cex"</span><span class="op">)</span>, 
-    plot.lty <span class="op">=</span> <span class="fl">1</span>, digits <span class="op">=</span> <span class="va">.Options</span><span class="op">$</span><span class="va">digits</span>, main <span class="op">=</span> <span class="cn">NULL</span>, xlab <span class="op">=</span> <span class="cn">NULL</span>, ylab <span class="op">=</span> <span class="cn">NULL</span>, 
-    type <span class="op">=</span> <span class="st">"l"</span>, <span class="va">...</span><span class="op">)</span></code></pre></div>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">plotAovDesign</span><span class="op">(</span>x.var <span class="op">=</span> <span class="st">"n"</span>, y.var <span class="op">=</span> <span class="st">"power"</span>, range.x.var <span class="op">=</span> <span class="cn">NULL</span>, </span>
+<span>    n.vec <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">25</span>, <span class="fl">25</span><span class="op">)</span>, mu.vec <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">0</span>, <span class="fl">1</span><span class="op">)</span>, sigma <span class="op">=</span> <span class="fl">1</span>, alpha <span class="op">=</span> <span class="fl">0.05</span>, power <span class="op">=</span> <span class="fl">0.95</span>, </span>
+<span>    round.up <span class="op">=</span> <span class="cn">FALSE</span>, n.max <span class="op">=</span> <span class="fl">5000</span>, tol <span class="op">=</span> <span class="fl">1e-07</span>, maxiter <span class="op">=</span> <span class="fl">1000</span>, plot.it <span class="op">=</span> <span class="cn">TRUE</span>, </span>
+<span>    add <span class="op">=</span> <span class="cn">FALSE</span>, n.points <span class="op">=</span> <span class="fl">50</span>, plot.col <span class="op">=</span> <span class="fl">1</span>, plot.lwd <span class="op">=</span> <span class="fl">3</span> <span class="op">*</span> <span class="fu"><a href="https://rdrr.io/r/graphics/par.html" class="external-link">par</a></span><span class="op">(</span><span class="st">"cex"</span><span class="op">)</span>, </span>
+<span>    plot.lty <span class="op">=</span> <span class="fl">1</span>, digits <span class="op">=</span> <span class="va">.Options</span><span class="op">$</span><span class="va">digits</span>, main <span class="op">=</span> <span class="cn">NULL</span>, xlab <span class="op">=</span> <span class="cn">NULL</span>, ylab <span class="op">=</span> <span class="cn">NULL</span>, </span>
+<span>    type <span class="op">=</span> <span class="st">"l"</span>, <span class="va">...</span><span class="op">)</span></span></code></pre></div>
     </div>
 
     <div id="arguments">
@@ -66,80 +66,100 @@
 <dd><p>character string indicating what variable to use for the x-axis.  Possible values are 
   <code>"n"</code> (sample size; the default), <code>"power"</code> (power of the test), and 
   <code>"alpha"</code> (significance level of the test).</p></dd>
-<dt>y.var</dt>
+
+  <dt>y.var</dt>
 <dd><p>character string indicating what variable to use for the y-axis.  Possible values are 
   <code>"power"</code> (power of the test; the default) and <code>"n"</code> (sample size).</p></dd>
-<dt>range.x.var</dt>
+
+  <dt>range.x.var</dt>
 <dd><p>numeric vector of length 2 indicating the range of the x-variable to use for the plot.  
   The default value depends on the value of <code>x.var</code>.  When <code>x.var="n"</code> 
   the default value is <code>c(2,50)</code>.  When <code>x.var="power"</code> the default value is <br><code>c(alpha+.Machine$double.eps, 0.95)</code>.  When <code>x.var="alpha"</code>, the default 
   value is <code>c(0.01, 0.2)</code>.</p></dd>
-<dt>n.vec</dt>
+
+  <dt>n.vec</dt>
 <dd><p>numeric vector indicating the sample size for each group.  The default value is 
   <code>n.vec=c(25, 25)</code>.  Missing (<code>NA</code>), undefined (<code>NaN</code>), and 
   infinite (<code>Inf</code>, <code>-Inf</code>) values are not allowed.  This argument must be 
   the same length as <code>mu.vec</code>.  This argument is ignored if either 
   <code>x.var="n"</code> or <code>y.var="n"</code>.</p></dd>
-<dt>mu.vec</dt>
+
+  <dt>mu.vec</dt>
 <dd><p>numeric vector indicating the population mean for each group.  The default value is 
   <code>mu.vec=c(0, 1)</code>.  Missing (<code>NA</code>), undefined (<code>NaN</code>), and 
   infinite (<code>Inf</code>, <code>-Inf</code>) values are not allowed.  This argument must be 
   the same length as <code>n.vec</code>.</p></dd>
-<dt>sigma</dt>
+
+  <dt>sigma</dt>
 <dd><p>numeric scalar indicating the population standard deviation for all groups.  The default
   value is <code>sigma=1</code>.  Missing (<code>NA</code>), undefined (<code>NaN</code>), and 
   infinite (<code>Inf</code>, <code>-Inf</code>) values are not allowed.</p></dd>
-<dt>alpha</dt>
+
+  <dt>alpha</dt>
 <dd><p>numeric scalar between 0 and 1 indicating the Type I error level associated with the 
   hypothesis test.  The default value is <code>alpha=0.05</code>.  This argument is ignored 
   when <code>x.var="alpha"</code>.</p></dd>
-<dt>power</dt>
+
+  <dt>power</dt>
 <dd><p>numeric scalar between 0 and 1 indicating the power associated with the hypothesis 
   test.  The default value is <code>power=0.95</code>.  This argument is ignored when 
   <code>x.var="power"</code> or <code>y.var="power"</code>.</p></dd>
-<dt>round.up</dt>
+
+  <dt>round.up</dt>
 <dd><p>logical scalar indicating whether to round up the values of the computed sample 
   size(s) to the next smallest integer.  The default value is FALSE.  This argument 
   is ignored unless <code>y.var="n"</code>.</p></dd>
-<dt>n.max</dt>
+
+  <dt>n.max</dt>
 <dd><p>for the case when <code>y.var="n"</code>, a positive integer greater than 2 indicating the 
   maximum sample size per group.  The default value is <code>n.max=5000</code>.</p></dd>
-<dt>tol</dt>
+
+  <dt>tol</dt>
 <dd><p>for the case when <code>y.var="n"</code>, numeric scalar indicating the 
   tolerance to use in the <code><a href="https://rdrr.io/r/stats/uniroot.html" class="external-link">uniroot</a></code> search for the sample size.  
   The default value is <code>tol=1e-7</code>.</p></dd>
-<dt>maxiter</dt>
+
+  <dt>maxiter</dt>
 <dd><p>for the case when <code>y.var="n"</code>, positive integer greater then 1 indicating the 
   maximum number of iterations to use in the <code><a href="https://rdrr.io/r/stats/uniroot.html" class="external-link">uniroot</a></code> search for 
   the sample size.  The default value is <code>maxiter=1000</code>.</p></dd>
-<dt>plot.it</dt>
+
+  <dt>plot.it</dt>
 <dd><p>a logical scalar indicating whether to create a plot or add to the existing plot 
   (see <code>add</code>) on the current graphics device.  If <code>plot.it=FALSE</code>, no plot 
   is produced, but a list of (x,y) values is returned (see VALUE).  The default 
   value is <code>plot.it=TRUE</code>.</p></dd>
-<dt>add</dt>
+
+  <dt>add</dt>
 <dd><p>a logical scalar indicating whether to add the design plot to the existing plot 
   (<code>add=TRUE</code>), or to create a new plot (<code>add=FALSE</code>).  The default value is <br><code>add=FALSE</code>.  This argument is ignored if <code>plot.it=FALSE</code>.</p></dd>
-<dt>n.points</dt>
+
+  <dt>n.points</dt>
 <dd><p>a numeric scalar specifying how many (x,y) pairs to use to produce the plot.  There are 
   <code>n.points</code> x-values evenly spaced between <code>range.x.var[1]</code> and <br><code>range.x.var[2]</code>. The default value is <code>n.points=50</code>.</p></dd>
-<dt>plot.col</dt>
+
+  <dt>plot.col</dt>
 <dd><p>a numeric scalar or character string determining the color of the plotted line or points.  The default value 
   is <code>plot.col=1</code>.  See the entry for <code>col</code> in the help file for <code><a href="https://rdrr.io/r/graphics/par.html" class="external-link">par</a></code> 
   for more information.</p></dd>
-<dt>plot.lwd</dt>
+
+  <dt>plot.lwd</dt>
 <dd><p>a numeric scalar determining the width of the plotted line.  The default value is 
   <code>3*par("cex")</code>.  See the entry for <code>lwd</code> in the help file for <code><a href="https://rdrr.io/r/graphics/par.html" class="external-link">par</a></code> 
   for more information.</p></dd>
-<dt>plot.lty</dt>
+
+  <dt>plot.lty</dt>
 <dd><p>a numeric scalar determining the line type of the plotted line.  The default value is 
   <code>plot.lty=1</code>.  See the entry for <code>lty</code> in the help file for <code><a href="https://rdrr.io/r/graphics/par.html" class="external-link">par</a></code> 
   for more information.</p></dd>
-<dt>digits</dt>
+
+  <dt>digits</dt>
 <dd><p>a scalar indicating how many significant digits to print out on the plot.  The default 
   value is the current setting of <code><a href="https://rdrr.io/r/base/options.html" class="external-link">options</a>("digits")</code>.</p></dd>
-<dt>main, xlab, ylab, type, ...</dt>
+
+  <dt>main, xlab, ylab, type, ...</dt>
 <dd><p>additional graphical parameters (see <code><a href="https://rdrr.io/r/graphics/par.html" class="external-link">par</a></code>).</p></dd>
+
 </dl></div>
     <div id="details">
     <h2>Details</h2>
@@ -149,11 +169,14 @@
     </div>
     <div id="value">
     <h2>Value</h2>
-    <p><code>plotAovDesign</code> invisibly returns a list with components:</p>
+    <p></p>
+<p><code>plotAovDesign</code> invisibly returns a list with components:</p>
 <dl><dt>x.var</dt>
 <dd><p>x-coordinates of the points that have been or would have been plotted</p></dd>
-<dt>y.var</dt>
+
+  <dt>y.var</dt>
 <dd><p>y-coordinates of the points that have been or would have been plotted</p></dd>
+
 </dl></div>
     <div id="references">
     <h2>References</h2>
@@ -206,77 +229,77 @@
 
     <div id="ref-examples">
     <h2>Examples</h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in">  <span class="co"># Look at the relationship between power and sample size </span></span>
-<span class="r-in">  <span class="co"># for a one-way ANOVA, assuming k=2 groups, group means of </span></span>
-<span class="r-in">  <span class="co"># 0 and 1, a population standard deviation of 1, and a </span></span>
-<span class="r-in">  <span class="co"># 5% significance level:</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="fu"><a href="https://rdrr.io/r/grDevices/dev.html" class="external-link">dev.new</a></span><span class="op">(</span><span class="op">)</span></span>
-<span class="r-in">  <span class="fu">plotAovDesign</span><span class="op">(</span><span class="op">)</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="co">#--------------------------------------------------------------------</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="co"># Plot power vs. sample size for various levels of significance:</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="fu"><a href="https://rdrr.io/r/grDevices/dev.html" class="external-link">dev.new</a></span><span class="op">(</span><span class="op">)</span></span>
-<span class="r-in">  <span class="fu">plotAovDesign</span><span class="op">(</span>mu.vec <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">0</span>, <span class="fl">0.5</span>, <span class="fl">1</span><span class="op">)</span>, ylim<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">0</span>, <span class="fl">1</span><span class="op">)</span>, main<span class="op">=</span><span class="st">""</span><span class="op">)</span> </span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="fu">plotAovDesign</span><span class="op">(</span>mu.vec <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">0</span>, <span class="fl">0.5</span>, <span class="fl">1</span><span class="op">)</span>, alpha<span class="op">=</span><span class="fl">0.1</span>, add<span class="op">=</span><span class="cn">TRUE</span>, plot.col<span class="op">=</span><span class="fl">2</span><span class="op">)</span> </span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="fu">plotAovDesign</span><span class="op">(</span>mu.vec <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">0</span>, <span class="fl">0.5</span>, <span class="fl">1</span><span class="op">)</span>, alpha<span class="op">=</span><span class="fl">0.2</span>, add<span class="op">=</span><span class="cn">TRUE</span>, plot.col<span class="op">=</span><span class="fl">3</span><span class="op">)</span> </span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="fu"><a href="https://rdrr.io/r/graphics/legend.html" class="external-link">legend</a></span><span class="op">(</span><span class="fl">35</span>, <span class="fl">0.6</span>, <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"20%"</span>, <span class="st">"10%"</span>, <span class="st">"   5%"</span><span class="op">)</span>, lty<span class="op">=</span><span class="fl">1</span>, lwd <span class="op">=</span> <span class="fl">3</span>, col<span class="op">=</span><span class="fl">3</span><span class="op">:</span><span class="fl">1</span>, </span>
-<span class="r-in">    bty <span class="op">=</span> <span class="st">"n"</span><span class="op">)</span> </span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="fu"><a href="https://rdrr.io/r/graphics/mtext.html" class="external-link">mtext</a></span><span class="op">(</span><span class="st">"Power vs. Sample Size for One-Way ANOVA"</span>, line <span class="op">=</span> <span class="fl">3</span>, cex <span class="op">=</span> <span class="fl">1.25</span><span class="op">)</span></span>
-<span class="r-in">  <span class="fu"><a href="https://rdrr.io/r/graphics/mtext.html" class="external-link">mtext</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/expression.html" class="external-link">expression</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/paste.html" class="external-link">paste</a></span><span class="op">(</span><span class="st">"with "</span>, <span class="va">mu</span>, <span class="st">"=(0, 0.5, 1), "</span>, <span class="va">sigma</span>, </span>
-<span class="r-in">    <span class="st">"=1, and Various Significance Levels"</span>, sep<span class="op">=</span><span class="st">""</span><span class="op">)</span><span class="op">)</span>, </span>
-<span class="r-in">    line <span class="op">=</span> <span class="fl">1.5</span>, cex <span class="op">=</span> <span class="fl">1.25</span><span class="op">)</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="co">#--------------------------------------------------------------------</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="co"># The example on pages 5-11 to 5-14 of USEPA (1989b) shows </span></span>
-<span class="r-in">  <span class="co"># log-transformed concentrations of lead (mg/L) at two </span></span>
-<span class="r-in">  <span class="co"># background wells and four compliance wells, where </span></span>
-<span class="r-in">  <span class="co"># observations were taken once per month over four months </span></span>
-<span class="r-in">  <span class="co"># (the data are stored in EPA.89b.loglead.df).  </span></span>
-<span class="r-in">  <span class="co"># Assume the true mean levels at each well are </span></span>
-<span class="r-in">  <span class="co"># 3.9, 3.9, 4.5, 4.5, 4.5, and 5, respectively.  Plot the </span></span>
-<span class="r-in">  <span class="co"># power vs. sample size of a one-way ANOVA to test for mean </span></span>
-<span class="r-in">  <span class="co"># differences between wells.  Use alpha=0.05, and assume the </span></span>
-<span class="r-in">  <span class="co"># true standard deviation is equal to the one estimated </span></span>
-<span class="r-in">  <span class="co"># from the data in this example.</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="fu"><a href="https://rdrr.io/r/base/names.html" class="external-link">names</a></span><span class="op">(</span><span class="va">EPA.89b.loglead.df</span><span class="op">)</span> </span>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span>  <span class="co"># Look at the relationship between power and sample size </span></span></span>
+<span class="r-in"><span>  <span class="co"># for a one-way ANOVA, assuming k=2 groups, group means of </span></span></span>
+<span class="r-in"><span>  <span class="co"># 0 and 1, a population standard deviation of 1, and a </span></span></span>
+<span class="r-in"><span>  <span class="co"># 5% significance level:</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/r/grDevices/dev.html" class="external-link">dev.new</a></span><span class="op">(</span><span class="op">)</span></span></span>
+<span class="r-in"><span>  <span class="fu">plotAovDesign</span><span class="op">(</span><span class="op">)</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="co">#--------------------------------------------------------------------</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="co"># Plot power vs. sample size for various levels of significance:</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/r/grDevices/dev.html" class="external-link">dev.new</a></span><span class="op">(</span><span class="op">)</span></span></span>
+<span class="r-in"><span>  <span class="fu">plotAovDesign</span><span class="op">(</span>mu.vec <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">0</span>, <span class="fl">0.5</span>, <span class="fl">1</span><span class="op">)</span>, ylim<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">0</span>, <span class="fl">1</span><span class="op">)</span>, main<span class="op">=</span><span class="st">""</span><span class="op">)</span> </span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="fu">plotAovDesign</span><span class="op">(</span>mu.vec <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">0</span>, <span class="fl">0.5</span>, <span class="fl">1</span><span class="op">)</span>, alpha<span class="op">=</span><span class="fl">0.1</span>, add<span class="op">=</span><span class="cn">TRUE</span>, plot.col<span class="op">=</span><span class="fl">2</span><span class="op">)</span> </span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="fu">plotAovDesign</span><span class="op">(</span>mu.vec <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">0</span>, <span class="fl">0.5</span>, <span class="fl">1</span><span class="op">)</span>, alpha<span class="op">=</span><span class="fl">0.2</span>, add<span class="op">=</span><span class="cn">TRUE</span>, plot.col<span class="op">=</span><span class="fl">3</span><span class="op">)</span> </span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/r/graphics/legend.html" class="external-link">legend</a></span><span class="op">(</span><span class="fl">35</span>, <span class="fl">0.6</span>, <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"20%"</span>, <span class="st">"10%"</span>, <span class="st">"   5%"</span><span class="op">)</span>, lty<span class="op">=</span><span class="fl">1</span>, lwd <span class="op">=</span> <span class="fl">3</span>, col<span class="op">=</span><span class="fl">3</span><span class="op">:</span><span class="fl">1</span>, </span></span>
+<span class="r-in"><span>    bty <span class="op">=</span> <span class="st">"n"</span><span class="op">)</span> </span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/r/graphics/mtext.html" class="external-link">mtext</a></span><span class="op">(</span><span class="st">"Power vs. Sample Size for One-Way ANOVA"</span>, line <span class="op">=</span> <span class="fl">3</span>, cex <span class="op">=</span> <span class="fl">1.25</span><span class="op">)</span></span></span>
+<span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/r/graphics/mtext.html" class="external-link">mtext</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/expression.html" class="external-link">expression</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/paste.html" class="external-link">paste</a></span><span class="op">(</span><span class="st">"with "</span>, <span class="va">mu</span>, <span class="st">"=(0, 0.5, 1), "</span>, <span class="va">sigma</span>, </span></span>
+<span class="r-in"><span>    <span class="st">"=1, and Various Significance Levels"</span>, sep<span class="op">=</span><span class="st">""</span><span class="op">)</span><span class="op">)</span>, </span></span>
+<span class="r-in"><span>    line <span class="op">=</span> <span class="fl">1.5</span>, cex <span class="op">=</span> <span class="fl">1.25</span><span class="op">)</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="co">#--------------------------------------------------------------------</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="co"># The example on pages 5-11 to 5-14 of USEPA (1989b) shows </span></span></span>
+<span class="r-in"><span>  <span class="co"># log-transformed concentrations of lead (mg/L) at two </span></span></span>
+<span class="r-in"><span>  <span class="co"># background wells and four compliance wells, where </span></span></span>
+<span class="r-in"><span>  <span class="co"># observations were taken once per month over four months </span></span></span>
+<span class="r-in"><span>  <span class="co"># (the data are stored in EPA.89b.loglead.df).  </span></span></span>
+<span class="r-in"><span>  <span class="co"># Assume the true mean levels at each well are </span></span></span>
+<span class="r-in"><span>  <span class="co"># 3.9, 3.9, 4.5, 4.5, 4.5, and 5, respectively.  Plot the </span></span></span>
+<span class="r-in"><span>  <span class="co"># power vs. sample size of a one-way ANOVA to test for mean </span></span></span>
+<span class="r-in"><span>  <span class="co"># differences between wells.  Use alpha=0.05, and assume the </span></span></span>
+<span class="r-in"><span>  <span class="co"># true standard deviation is equal to the one estimated </span></span></span>
+<span class="r-in"><span>  <span class="co"># from the data in this example.</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/r/base/names.html" class="external-link">names</a></span><span class="op">(</span><span class="va">EPA.89b.loglead.df</span><span class="op">)</span> </span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] "LogLead"   "Month"     "Well"      "Well.type"</span>
-<span class="r-in">  <span class="co">#[1] "LogLead"   "Month"     "Well"      "Well.type"</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="co"># Perform the ANOVA and get the estimated sd </span></span>
-<span class="r-in">  <span class="va">aov.list</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/aov.html" class="external-link">aov</a></span><span class="op">(</span><span class="va">LogLead</span> <span class="op">~</span> <span class="va">Well</span>, data<span class="op">=</span><span class="va">EPA.89b.loglead.df</span><span class="op">)</span> </span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="fu"><a href="https://rdrr.io/r/base/summary.html" class="external-link">summary</a></span><span class="op">(</span><span class="va">aov.list</span><span class="op">)</span> </span>
+<span class="r-in"><span>  <span class="co">#[1] "LogLead"   "Month"     "Well"      "Well.type"</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="co"># Perform the ANOVA and get the estimated sd </span></span></span>
+<span class="r-in"><span>  <span class="va">aov.list</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/aov.html" class="external-link">aov</a></span><span class="op">(</span><span class="va">LogLead</span> <span class="op">~</span> <span class="va">Well</span>, data<span class="op">=</span><span class="va">EPA.89b.loglead.df</span><span class="op">)</span> </span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/r/base/summary.html" class="external-link">summary</a></span><span class="op">(</span><span class="va">aov.list</span><span class="op">)</span> </span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>             Df Sum Sq Mean Sq F value Pr(&gt;F)  </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Well         5  5.745  1.1489   3.347  0.026 *</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Residuals   18  6.179  0.3433                 </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> ---</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1</span>
-<span class="r-in">  <span class="co">#            Df Sum Sq Mean Sq F value  Pr(&gt;F)  </span></span>
-<span class="r-in">  <span class="co">#Well         5 5.7447 1.14895  3.3469 0.02599 *</span></span>
-<span class="r-in">  <span class="co">#Residuals   18 6.1791 0.34328                  </span></span>
-<span class="r-in">  <span class="co">#---</span></span>
-<span class="r-in">  <span class="co">#Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 '' 1</span></span>
-<span class="r-in"> </span>
-<span class="r-in">  <span class="co"># Now create the plot </span></span>
-<span class="r-in">  <span class="fu"><a href="https://rdrr.io/r/grDevices/dev.html" class="external-link">dev.new</a></span><span class="op">(</span><span class="op">)</span></span>
-<span class="r-in">  <span class="fu">plotAovDesign</span><span class="op">(</span>range.x.var <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">2</span>, <span class="fl">20</span><span class="op">)</span>, </span>
-<span class="r-in">    mu.vec <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">3.9</span>,<span class="fl">3.9</span>,<span class="fl">4.5</span>,<span class="fl">4.5</span>,<span class="fl">4.5</span>,<span class="fl">5</span><span class="op">)</span>, </span>
-<span class="r-in">    sigma<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/MathFun.html" class="external-link">sqrt</a></span><span class="op">(</span><span class="fl">0.34</span><span class="op">)</span>, </span>
-<span class="r-in">    ylim <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">0</span>, <span class="fl">1</span><span class="op">)</span>, digits<span class="op">=</span><span class="fl">2</span><span class="op">)</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="co"># Clean up</span></span>
-<span class="r-in">  <span class="co">#---------</span></span>
-<span class="r-in">  <span class="fu"><a href="https://rdrr.io/r/base/rm.html" class="external-link">rm</a></span><span class="op">(</span><span class="va">aov.list</span><span class="op">)</span></span>
-<span class="r-in">  <span class="fu"><a href="https://rdrr.io/r/grDevices/dev.html" class="external-link">graphics.off</a></span><span class="op">(</span><span class="op">)</span></span>
+<span class="r-in"><span>  <span class="co">#            Df Sum Sq Mean Sq F value  Pr(&gt;F)  </span></span></span>
+<span class="r-in"><span>  <span class="co">#Well         5 5.7447 1.14895  3.3469 0.02599 *</span></span></span>
+<span class="r-in"><span>  <span class="co">#Residuals   18 6.1791 0.34328                  </span></span></span>
+<span class="r-in"><span>  <span class="co">#---</span></span></span>
+<span class="r-in"><span>  <span class="co">#Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 '' 1</span></span></span>
+<span class="r-in"><span> </span></span>
+<span class="r-in"><span>  <span class="co"># Now create the plot </span></span></span>
+<span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/r/grDevices/dev.html" class="external-link">dev.new</a></span><span class="op">(</span><span class="op">)</span></span></span>
+<span class="r-in"><span>  <span class="fu">plotAovDesign</span><span class="op">(</span>range.x.var <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">2</span>, <span class="fl">20</span><span class="op">)</span>, </span></span>
+<span class="r-in"><span>    mu.vec <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">3.9</span>,<span class="fl">3.9</span>,<span class="fl">4.5</span>,<span class="fl">4.5</span>,<span class="fl">4.5</span>,<span class="fl">5</span><span class="op">)</span>, </span></span>
+<span class="r-in"><span>    sigma<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/MathFun.html" class="external-link">sqrt</a></span><span class="op">(</span><span class="fl">0.34</span><span class="op">)</span>, </span></span>
+<span class="r-in"><span>    ylim <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">0</span>, <span class="fl">1</span><span class="op">)</span>, digits<span class="op">=</span><span class="fl">2</span><span class="op">)</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="co"># Clean up</span></span></span>
+<span class="r-in"><span>  <span class="co">#---------</span></span></span>
+<span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/r/base/rm.html" class="external-link">rm</a></span><span class="op">(</span><span class="va">aov.list</span><span class="op">)</span></span></span>
+<span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/r/grDevices/dev.html" class="external-link">graphics.off</a></span><span class="op">(</span><span class="op">)</span></span></span>
 </code></pre></div>
     </div>
   </div>
@@ -291,7 +314,7 @@
 </div>
 
 <div class="pkgdown">
-  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.2.</p>
+  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.6.</p>
 </div>
 
       </footer></div>

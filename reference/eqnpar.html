@@ -52,10 +52,10 @@
     </div>
 
     <div id="ref-usage">
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="fu">eqnpar</span><span class="op">(</span><span class="va">x</span>, p <span class="op">=</span> <span class="fl">0.5</span>, type <span class="op">=</span> <span class="fl">7</span>, ci <span class="op">=</span> <span class="cn">FALSE</span>, lcl.rank <span class="op">=</span> <span class="cn">NULL</span>, ucl.rank <span class="op">=</span> <span class="cn">NULL</span>,
-    lb <span class="op">=</span> <span class="op">-</span><span class="cn">Inf</span>, ub <span class="op">=</span> <span class="cn">Inf</span>, ci.type <span class="op">=</span> <span class="st">"two-sided"</span>,
-    ci.method <span class="op">=</span> <span class="st">"interpolate"</span>, digits <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/options.html" class="external-link">getOption</a></span><span class="op">(</span><span class="st">"digits"</span><span class="op">)</span>,
-    approx.conf.level <span class="op">=</span> <span class="fl">0.95</span>, min.coverage <span class="op">=</span> <span class="cn">TRUE</span>, tol <span class="op">=</span> <span class="fl">0</span><span class="op">)</span></code></pre></div>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">eqnpar</span><span class="op">(</span><span class="va">x</span>, p <span class="op">=</span> <span class="fl">0.5</span>, type <span class="op">=</span> <span class="fl">7</span>, ci <span class="op">=</span> <span class="cn">FALSE</span>, lcl.rank <span class="op">=</span> <span class="cn">NULL</span>, ucl.rank <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>    lb <span class="op">=</span> <span class="op">-</span><span class="cn">Inf</span>, ub <span class="op">=</span> <span class="cn">Inf</span>, ci.type <span class="op">=</span> <span class="st">"two-sided"</span>,</span>
+<span>    ci.method <span class="op">=</span> <span class="st">"interpolate"</span>, digits <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/options.html" class="external-link">getOption</a></span><span class="op">(</span><span class="st">"digits"</span><span class="op">)</span>,</span>
+<span>    approx.conf.level <span class="op">=</span> <span class="fl">0.95</span>, min.coverage <span class="op">=</span> <span class="cn">TRUE</span>, tol <span class="op">=</span> <span class="fl">0</span><span class="op">)</span></span></code></pre></div>
     </div>
 
     <div id="arguments">
@@ -63,18 +63,22 @@
     <dl><dt>x</dt>
 <dd><p>a numeric vector of observations.  Missing (<code>NA</code>), undefined (<code>NaN</code>), and
   infinite (<code>Inf</code>, <code>-Inf</code>) values are allowed but will be removed.</p></dd>
-<dt>p</dt>
+
+  <dt>p</dt>
 <dd><p>numeric vector of probabilities for which quantiles will be estimated.
   All values of <code>p</code> must be between 0 and 1.  When <code>ci=TRUE</code>, <code>p</code>
   must be a scalar. The default value is <code>p=0.5</code>.</p></dd>
-<dt>type</dt>
+
+  <dt>type</dt>
 <dd><p>an integer between 1 and 9 indicating which algorithm to use to estimate the
   quantile.  The default value is <code>type=7</code>.  See the help file for
   <code><a href="https://rdrr.io/r/stats/quantile.html" class="external-link">quantile</a></code> for details.</p></dd>
-<dt>ci</dt>
+
+  <dt>ci</dt>
 <dd><p>logical scalar indicating whether to compute a confidence interval for the quantile.
   The default value is <code>ci=FALSE</code>.</p></dd>
-<dt>lcl.rank, ucl.rank</dt>
+
+  <dt>lcl.rank, ucl.rank</dt>
 <dd><p>positive integers indicating the ranks of the order statistics that are used
   for the lower and upper bounds of the confidence interval for the specified
   quantile.  Both arguments must be integers between 1 and the number of non-missing
@@ -87,41 +91,49 @@
   an upper confidence interval is constructed.  If both <code>lcl.rank</code> and
   <code>ucl.rank</code> are supplied, a two-sided confidence interval is constructed.
   These arguments are ignored if <code>ci=FALSE</code>.</p></dd>
-<dt>lb, ub</dt>
+
+  <dt>lb, ub</dt>
 <dd><p>scalars indicating lower and upper bounds on the distribution.  By default, <br><code>lb=-Inf</code> and <code>ub=Inf</code>.  If you are constructing a confidence interval
   for a quantile from a distribution that you know has a lower bound other than
   <code>-Inf</code> (e.g., <code>0</code>), set <code>lb</code> to this value.  Similarly, if you
   know the distribution has an upper bound other than <code>Inf</code>, set
   <code>ub</code> to this value.  These arguments are ignored if <code>ci=FALSE</code>.</p></dd>
-<dt>ci.type</dt>
+
+  <dt>ci.type</dt>
 <dd><p>character string indicating what kind of confidence interval to compute.
   The possible values are <code>"two-sided"</code> (the default), <code>"lower"</code>, and
   <code>"upper"</code>.  This argument is ignored if <code>ci=FALSE</code>, or
   <code>lcl.rank</code> and/or <code>ucl.rank</code> are supplied.</p></dd>
-<dt>ci.method</dt>
+
+  <dt>ci.method</dt>
 <dd><p>character string indicating the method to use to construct the confidence interval.
   The possible values are <code>"interpolate"</code> (the default), <code>"exact"</code>, and
   <code>"normal.approx"</code>.  See the DETAILS section for more information on these methods.
   This argument is ignored if <code>ci=FALSE</code>, or <code>lcl.rank</code> and/or
   <code>ucl.rank</code> are supplied.</p></dd>
-<dt>digits</dt>
+
+  <dt>digits</dt>
 <dd><p>an integer indicating the number of decimal places to round to when printing out
   the value of <code>100*p</code>. The default value is <code>digits=0</code>.</p></dd>
-<dt>approx.conf.level</dt>
+
+  <dt>approx.conf.level</dt>
 <dd><p>a scalar between 0 and 1 indicating the desired confidence level of the confidence
   interval.  The default value is <code>0.95</code>.  The true confidence level usually
   will not be exactly equal to <code>approx.conf.level</code> (see DETAILS).  This argument
   is ignored if <code>ci=FALSE</code>, or <code>lcl.rank</code> and/or <code>ucl.rank</code> are supplied.</p></dd>
-<dt>min.coverage</dt>
+
+  <dt>min.coverage</dt>
 <dd><p>for the case when <code>ci.method="exact"</code>, a logical scalar indicating whether the
   confidence interval should have a minimum coverage at least as great as the value
   of the argument <code>approx.conf.level</code>. The default value is <br><code>min.coverage=TRUE</code>.  This argument is ignored if <code>ci=FALSE</code> or
   <code>ci.method</code> is not equal to <code>"exact"</code>.</p></dd>
-<dt>tol</dt>
+
+  <dt>tol</dt>
 <dd><p>for the case when <code>ci.method="exact"</code> and <code>min.coverage=FALSE</code>,
   a scalar between 0 and 1 indicating the maximum amount of coverage greater than
   the value of <code>approx.conf.level</code> the user is willing to allow.
   The default value is <code>tol=0</code>.</p></dd>
+
 </dl></div>
     <div id="details">
     <h2>Details</h2>
@@ -371,8 +383,12 @@
     </div>
     <div id="value">
     <h2>Value</h2>
-    <p>a list of class <code>"estimate"</code> containing the estimated quantile(s) and other
-  information.  See <br><code><a href="estimate.object.html">estimate.object</a></code> for details.</p>
+    
+
+<p>a list of class <code>"estimate"</code> containing the estimated quantile(s) and other
+  information.  See <br></p>
+<p></p>
+<p><code><a href="estimate.object.html">estimate.object</a></code> for details.</p>
     </div>
     <div id="references">
     <h2>References</h2>
@@ -431,19 +447,19 @@
 
     <div id="ref-examples">
     <h2>Examples</h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"></span>
-<span class="r-in">  <span class="co"># The data frame ACE.13.TCE.df contains observations on</span></span>
-<span class="r-in">  <span class="co"># Trichloroethylene (TCE) concentrations (mg/L) at</span></span>
-<span class="r-in">  <span class="co"># 10 groundwater monitoring wells before and after remediation.</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co"># Compute the median concentration for each period along with</span></span>
-<span class="r-in">  <span class="co"># a 95% confidence interval for the median.</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co"># Before remediation:  20.3 [8.8, 35.9]</span></span>
-<span class="r-in">  <span class="co"># After  remediation:   2.5 [0.8,  5.9]</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="fu"><a href="https://rdrr.io/r/base/with.html" class="external-link">with</a></span><span class="op">(</span><span class="va">ACE.13.TCE.df</span>,</span>
-<span class="r-in">    <span class="fu">eqnpar</span><span class="op">(</span><span class="va">TCE.mg.per.L</span><span class="op">[</span><span class="va">Period</span><span class="op">==</span><span class="st">"Before"</span><span class="op">]</span>, ci <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span><span class="op">)</span></span>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="co"># The data frame ACE.13.TCE.df contains observations on</span></span></span>
+<span class="r-in"><span>  <span class="co"># Trichloroethylene (TCE) concentrations (mg/L) at</span></span></span>
+<span class="r-in"><span>  <span class="co"># 10 groundwater monitoring wells before and after remediation.</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co"># Compute the median concentration for each period along with</span></span></span>
+<span class="r-in"><span>  <span class="co"># a 95% confidence interval for the median.</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co"># Before remediation:  20.3 [8.8, 35.9]</span></span></span>
+<span class="r-in"><span>  <span class="co"># After  remediation:   2.5 [0.8,  5.9]</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/r/base/with.html" class="external-link">with</a></span><span class="op">(</span><span class="va">ACE.13.TCE.df</span>,</span></span>
+<span class="r-in"><span>    <span class="fu">eqnpar</span><span class="op">(</span><span class="va">TCE.mg.per.L</span><span class="op">[</span><span class="va">Period</span><span class="op">==</span><span class="st">"Before"</span><span class="op">]</span>, ci <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> $distribution</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] "None"</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
@@ -499,37 +515,37 @@
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> attr(,"class")</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] "estimate"</span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="co">#Results of Distribution Parameter Estimation</span></span>
-<span class="r-in">  <span class="co">#--------------------------------------------</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="co">#Assumed Distribution:            None</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="co">#Estimated Quantile(s):           Median = 20.3</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="co">#Quantile Estimation Method:      Nonparametric</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="co">#Data:                            TCE.mg.per.L[Period == "Before"]</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="co">#Sample Size:                     10</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="co">#Confidence Interval for:         50'th %ile</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="co">#Confidence Interval Method:      interpolate (Nyblom, 1992)</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="co">#Confidence Interval Type:        two-sided</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="co">#Confidence Level:                95%</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="co">#Confidence Limit Rank(s):        2 9</span></span>
-<span class="r-in">  <span class="co">#                                 3 8</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="co">#Confidence Interval:             LCL =  8.804775</span></span>
-<span class="r-in">  <span class="co">#                                 UCL = 35.874775</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="co">#----------</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="fu"><a href="https://rdrr.io/r/base/with.html" class="external-link">with</a></span><span class="op">(</span><span class="va">ACE.13.TCE.df</span>, <span class="fu">eqnpar</span><span class="op">(</span><span class="va">TCE.mg.per.L</span><span class="op">[</span><span class="va">Period</span><span class="op">==</span><span class="st">"After"</span><span class="op">]</span>, ci <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span><span class="op">)</span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="co">#Results of Distribution Parameter Estimation</span></span></span>
+<span class="r-in"><span>  <span class="co">#--------------------------------------------</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="co">#Assumed Distribution:            None</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="co">#Estimated Quantile(s):           Median = 20.3</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="co">#Quantile Estimation Method:      Nonparametric</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="co">#Data:                            TCE.mg.per.L[Period == "Before"]</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="co">#Sample Size:                     10</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="co">#Confidence Interval for:         50'th %ile</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="co">#Confidence Interval Method:      interpolate (Nyblom, 1992)</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="co">#Confidence Interval Type:        two-sided</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="co">#Confidence Level:                95%</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="co">#Confidence Limit Rank(s):        2 9</span></span></span>
+<span class="r-in"><span>  <span class="co">#                                 3 8</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="co">#Confidence Interval:             LCL =  8.804775</span></span></span>
+<span class="r-in"><span>  <span class="co">#                                 UCL = 35.874775</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="co">#----------</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/r/base/with.html" class="external-link">with</a></span><span class="op">(</span><span class="va">ACE.13.TCE.df</span>, <span class="fu">eqnpar</span><span class="op">(</span><span class="va">TCE.mg.per.L</span><span class="op">[</span><span class="va">Period</span><span class="op">==</span><span class="st">"After"</span><span class="op">]</span>, ci <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> $distribution</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] "None"</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
@@ -585,49 +601,49 @@
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> attr(,"class")</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] "estimate"</span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="co">#Results of Distribution Parameter Estimation</span></span>
-<span class="r-in">  <span class="co">#--------------------------------------------</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="co">#Assumed Distribution:            None</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="co">#Estimated Quantile(s):           Median = 2.48</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="co">#Quantile Estimation Method:      Nonparametric</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="co">#Data:                            TCE.mg.per.L[Period == "After"]</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="co">#Sample Size:                     10</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="co">#Confidence Interval for:         50'th %ile</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="co">#Confidence Interval Method:      interpolate (Nyblom, 1992)</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="co">#Confidence Interval Type:        two-sided</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="co">#Confidence Level:                95%</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="co">#Confidence Limit Rank(s):        2 9</span></span>
-<span class="r-in">  <span class="co">#                                 3 8</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="co">#Confidence Interval:             LCL = 0.7810901</span></span>
-<span class="r-in">  <span class="co">#                                 UCL = 5.8763063</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="co">#==========</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="co"># Generate 20 observations from a cauchy distribution with parameters</span></span>
-<span class="r-in">  <span class="co"># location=0, scale=1.  The true 75th percentile of this distribution is 1.</span></span>
-<span class="r-in">  <span class="co"># Use eqnpar to estimate the 75th percentile and construct a 90% confidence interval.</span></span>
-<span class="r-in">  <span class="co"># (Note: the call to set.seed simply allows you to reproduce this example.)</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="fu"><a href="https://rdrr.io/r/base/Random.html" class="external-link">set.seed</a></span><span class="op">(</span><span class="fl">250</span><span class="op">)</span></span>
-<span class="r-in">  <span class="va">dat</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/Cauchy.html" class="external-link">rcauchy</a></span><span class="op">(</span><span class="fl">20</span>, location <span class="op">=</span> <span class="fl">0</span>, scale <span class="op">=</span> <span class="fl">1</span><span class="op">)</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="co">#-------------------------------------------------------</span></span>
-<span class="r-in">  <span class="co"># First, use the default method, ci.method="interpolate"</span></span>
-<span class="r-in">  <span class="co">#-------------------------------------------------------</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="fu">eqnpar</span><span class="op">(</span><span class="va">dat</span>, p <span class="op">=</span> <span class="fl">0.75</span>, ci <span class="op">=</span> <span class="cn">TRUE</span>, approx.conf.level <span class="op">=</span> <span class="fl">0.9</span><span class="op">)</span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="co">#Results of Distribution Parameter Estimation</span></span></span>
+<span class="r-in"><span>  <span class="co">#--------------------------------------------</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="co">#Assumed Distribution:            None</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="co">#Estimated Quantile(s):           Median = 2.48</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="co">#Quantile Estimation Method:      Nonparametric</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="co">#Data:                            TCE.mg.per.L[Period == "After"]</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="co">#Sample Size:                     10</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="co">#Confidence Interval for:         50'th %ile</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="co">#Confidence Interval Method:      interpolate (Nyblom, 1992)</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="co">#Confidence Interval Type:        two-sided</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="co">#Confidence Level:                95%</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="co">#Confidence Limit Rank(s):        2 9</span></span></span>
+<span class="r-in"><span>  <span class="co">#                                 3 8</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="co">#Confidence Interval:             LCL = 0.7810901</span></span></span>
+<span class="r-in"><span>  <span class="co">#                                 UCL = 5.8763063</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="co">#==========</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="co"># Generate 20 observations from a cauchy distribution with parameters</span></span></span>
+<span class="r-in"><span>  <span class="co"># location=0, scale=1.  The true 75th percentile of this distribution is 1.</span></span></span>
+<span class="r-in"><span>  <span class="co"># Use eqnpar to estimate the 75th percentile and construct a 90% confidence interval.</span></span></span>
+<span class="r-in"><span>  <span class="co"># (Note: the call to set.seed simply allows you to reproduce this example.)</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/r/base/Random.html" class="external-link">set.seed</a></span><span class="op">(</span><span class="fl">250</span><span class="op">)</span></span></span>
+<span class="r-in"><span>  <span class="va">dat</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/Cauchy.html" class="external-link">rcauchy</a></span><span class="op">(</span><span class="fl">20</span>, location <span class="op">=</span> <span class="fl">0</span>, scale <span class="op">=</span> <span class="fl">1</span><span class="op">)</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="co">#-------------------------------------------------------</span></span></span>
+<span class="r-in"><span>  <span class="co"># First, use the default method, ci.method="interpolate"</span></span></span>
+<span class="r-in"><span>  <span class="co">#-------------------------------------------------------</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="fu">eqnpar</span><span class="op">(</span><span class="va">dat</span>, p <span class="op">=</span> <span class="fl">0.75</span>, ci <span class="op">=</span> <span class="cn">TRUE</span>, approx.conf.level <span class="op">=</span> <span class="fl">0.9</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> $distribution</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] "None"</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
@@ -683,43 +699,43 @@
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> attr(,"class")</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] "estimate"</span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="co">#Results of Distribution Parameter Estimation</span></span>
-<span class="r-in">  <span class="co">#--------------------------------------------</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Assumed Distribution:            None</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Estimated Quantile(s):           75'th %ile = 1.524903</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Quantile Estimation Method:      Nonparametric</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Data:                            dat</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Sample Size:                     20</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Confidence Interval for:         75'th %ile</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Confidence Interval Method:      interpolate (Nyblom, 1992)</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Confidence Interval Type:        two-sided</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Confidence Level:                90%</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Confidence Limit Rank(s):        12 19</span></span>
-<span class="r-in">  <span class="co">#                                 13 18</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Confidence Interval:             LCL = 0.8191423</span></span>
-<span class="r-in">  <span class="co">#                                 UCL = 2.1215570</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="co">#----------</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="co">#-------------------------------------------------------------</span></span>
-<span class="r-in">  <span class="co"># Now use ci.method="exact".</span></span>
-<span class="r-in">  <span class="co"># Note that the returned confidence level is greater than 90%.</span></span>
-<span class="r-in">  <span class="co">#-------------------------------------------------------------</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="fu">eqnpar</span><span class="op">(</span><span class="va">dat</span>, p <span class="op">=</span> <span class="fl">0.75</span>, ci <span class="op">=</span> <span class="cn">TRUE</span>, approx.conf.level <span class="op">=</span> <span class="fl">0.9</span>,</span>
-<span class="r-in">    ci.method <span class="op">=</span> <span class="st">"exact"</span><span class="op">)</span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="co">#Results of Distribution Parameter Estimation</span></span></span>
+<span class="r-in"><span>  <span class="co">#--------------------------------------------</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Assumed Distribution:            None</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Estimated Quantile(s):           75'th %ile = 1.524903</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Quantile Estimation Method:      Nonparametric</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Data:                            dat</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Sample Size:                     20</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Confidence Interval for:         75'th %ile</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Confidence Interval Method:      interpolate (Nyblom, 1992)</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Confidence Interval Type:        two-sided</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Confidence Level:                90%</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Confidence Limit Rank(s):        12 19</span></span></span>
+<span class="r-in"><span>  <span class="co">#                                 13 18</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Confidence Interval:             LCL = 0.8191423</span></span></span>
+<span class="r-in"><span>  <span class="co">#                                 UCL = 2.1215570</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="co">#----------</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="co">#-------------------------------------------------------------</span></span></span>
+<span class="r-in"><span>  <span class="co"># Now use ci.method="exact".</span></span></span>
+<span class="r-in"><span>  <span class="co"># Note that the returned confidence level is greater than 90%.</span></span></span>
+<span class="r-in"><span>  <span class="co">#-------------------------------------------------------------</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="fu">eqnpar</span><span class="op">(</span><span class="va">dat</span>, p <span class="op">=</span> <span class="fl">0.75</span>, ci <span class="op">=</span> <span class="cn">TRUE</span>, approx.conf.level <span class="op">=</span> <span class="fl">0.9</span>,</span></span>
+<span class="r-in"><span>    ci.method <span class="op">=</span> <span class="st">"exact"</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> $distribution</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] "None"</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
@@ -774,42 +790,42 @@
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> attr(,"class")</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] "estimate"</span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="co">#Results of Distribution Parameter Estimation</span></span>
-<span class="r-in">  <span class="co">#--------------------------------------------</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Assumed Distribution:            None</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Estimated Quantile(s):           75'th %ile = 1.524903</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Quantile Estimation Method:      Nonparametric</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Data:                            dat</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Sample Size:                     20</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Confidence Interval for:         75'th %ile</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Confidence Interval Method:      exact</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Confidence Interval Type:        two-sided</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Confidence Level:                93.47622%</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Confidence Limit Rank(s):        12 19</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Confidence Interval:             LCL = 0.7494692</span></span>
-<span class="r-in">  <span class="co">#                                 UCL = 2.2156601</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="co">#----------</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="co">#----------------------------------------------------------</span></span>
-<span class="r-in">  <span class="co"># Now use ci.method="exact" with min.coverage=FALSE.</span></span>
-<span class="r-in">  <span class="co"># Note that the returned confidence level is less than 90%.</span></span>
-<span class="r-in">  <span class="co">#----------------------------------------------------------</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="fu">eqnpar</span><span class="op">(</span><span class="va">dat</span>, p <span class="op">=</span> <span class="fl">0.75</span>, ci <span class="op">=</span> <span class="cn">TRUE</span>, approx.conf.level <span class="op">=</span> <span class="fl">0.9</span>,</span>
-<span class="r-in">    ci.method <span class="op">=</span> <span class="st">"exact"</span>, min.coverage <span class="op">=</span> <span class="cn">FALSE</span>, <span class="op">)</span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="co">#Results of Distribution Parameter Estimation</span></span></span>
+<span class="r-in"><span>  <span class="co">#--------------------------------------------</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Assumed Distribution:            None</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Estimated Quantile(s):           75'th %ile = 1.524903</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Quantile Estimation Method:      Nonparametric</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Data:                            dat</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Sample Size:                     20</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Confidence Interval for:         75'th %ile</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Confidence Interval Method:      exact</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Confidence Interval Type:        two-sided</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Confidence Level:                93.47622%</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Confidence Limit Rank(s):        12 19</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Confidence Interval:             LCL = 0.7494692</span></span></span>
+<span class="r-in"><span>  <span class="co">#                                 UCL = 2.2156601</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="co">#----------</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="co">#----------------------------------------------------------</span></span></span>
+<span class="r-in"><span>  <span class="co"># Now use ci.method="exact" with min.coverage=FALSE.</span></span></span>
+<span class="r-in"><span>  <span class="co"># Note that the returned confidence level is less than 90%.</span></span></span>
+<span class="r-in"><span>  <span class="co">#----------------------------------------------------------</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="fu">eqnpar</span><span class="op">(</span><span class="va">dat</span>, p <span class="op">=</span> <span class="fl">0.75</span>, ci <span class="op">=</span> <span class="cn">TRUE</span>, approx.conf.level <span class="op">=</span> <span class="fl">0.9</span>,</span></span>
+<span class="r-in"><span>    ci.method <span class="op">=</span> <span class="st">"exact"</span>, min.coverage <span class="op">=</span> <span class="cn">FALSE</span>, <span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> $distribution</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] "None"</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
@@ -864,45 +880,45 @@
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> attr(,"class")</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] "estimate"</span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="co">#Results of Distribution Parameter Estimation</span></span>
-<span class="r-in">  <span class="co">#--------------------------------------------</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Assumed Distribution:            None</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Estimated Quantile(s):           75'th %ile = 1.524903</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Quantile Estimation Method:      Nonparametric</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Data:                            dat</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Sample Size:                     20</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Confidence Interval for:         75'th %ile</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Confidence Interval Method:      exact</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Confidence Interval Type:        two-sided</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Confidence Level:                89.50169%</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Confidence Limit Rank(s):        13 20</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Confidence Interval:             LCL = 1.018038</span></span>
-<span class="r-in">  <span class="co">#                                 UCL = 5.002399</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="co">#----------</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="co">#-----------------------------------------------------------</span></span>
-<span class="r-in">  <span class="co"># Now supply our own bounds for the confidence interval.</span></span>
-<span class="r-in">  <span class="co"># The first example above based on the Interpolate method</span></span>
-<span class="r-in">  <span class="co"># used lcl.rank=12, ucl.rank=19 and lcl.rank=13, ucl.rank=18</span></span>
-<span class="r-in">  <span class="co"># and interpolated between these two confidence intervals.</span></span>
-<span class="r-in">  <span class="co"># Here we will specify lcl.rank=13 and ucl.rank=18.  The</span></span>
-<span class="r-in">  <span class="co"># resulting confidence level is 81%.</span></span>
-<span class="r-in">  <span class="co">#-----------------------------------------------------------</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="fu">eqnpar</span><span class="op">(</span><span class="va">dat</span>, p <span class="op">=</span> <span class="fl">0.75</span>, ci <span class="op">=</span> <span class="cn">TRUE</span>, lcl.rank <span class="op">=</span> <span class="fl">13</span>, ucl.rank <span class="op">=</span> <span class="fl">18</span><span class="op">)</span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="co">#Results of Distribution Parameter Estimation</span></span></span>
+<span class="r-in"><span>  <span class="co">#--------------------------------------------</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Assumed Distribution:            None</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Estimated Quantile(s):           75'th %ile = 1.524903</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Quantile Estimation Method:      Nonparametric</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Data:                            dat</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Sample Size:                     20</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Confidence Interval for:         75'th %ile</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Confidence Interval Method:      exact</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Confidence Interval Type:        two-sided</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Confidence Level:                89.50169%</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Confidence Limit Rank(s):        13 20</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Confidence Interval:             LCL = 1.018038</span></span></span>
+<span class="r-in"><span>  <span class="co">#                                 UCL = 5.002399</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="co">#----------</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="co">#-----------------------------------------------------------</span></span></span>
+<span class="r-in"><span>  <span class="co"># Now supply our own bounds for the confidence interval.</span></span></span>
+<span class="r-in"><span>  <span class="co"># The first example above based on the Interpolate method</span></span></span>
+<span class="r-in"><span>  <span class="co"># used lcl.rank=12, ucl.rank=19 and lcl.rank=13, ucl.rank=18</span></span></span>
+<span class="r-in"><span>  <span class="co"># and interpolated between these two confidence intervals.</span></span></span>
+<span class="r-in"><span>  <span class="co"># Here we will specify lcl.rank=13 and ucl.rank=18.  The</span></span></span>
+<span class="r-in"><span>  <span class="co"># resulting confidence level is 81%.</span></span></span>
+<span class="r-in"><span>  <span class="co">#-----------------------------------------------------------</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="fu">eqnpar</span><span class="op">(</span><span class="va">dat</span>, p <span class="op">=</span> <span class="fl">0.75</span>, ci <span class="op">=</span> <span class="cn">TRUE</span>, lcl.rank <span class="op">=</span> <span class="fl">13</span>, ucl.rank <span class="op">=</span> <span class="fl">18</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> $distribution</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] "None"</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
@@ -956,52 +972,52 @@
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> attr(,"class")</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] "estimate"</span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="co">#Results of Distribution Parameter Estimation</span></span>
-<span class="r-in">  <span class="co">#--------------------------------------------</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Assumed Distribution:            None</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Estimated Quantile(s):           75'th %ile = 1.524903</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Quantile Estimation Method:      Nonparametric</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Data:                            dat</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Sample Size:                     20</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Confidence Interval for:         75'th %ile</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Confidence Interval Method:      exact</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Confidence Interval Type:        two-sided</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Confidence Level:                80.69277%</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Confidence Limit Rank(s):        13 18</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Confidence Interval:             LCL = 1.018038</span></span>
-<span class="r-in">  <span class="co">#                                 UCL = 2.071172</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="co">#----------</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="co"># Clean up</span></span>
-<span class="r-in">  <span class="fu"><a href="https://rdrr.io/r/base/rm.html" class="external-link">rm</a></span><span class="op">(</span><span class="va">dat</span><span class="op">)</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="co">#==========</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="co"># Modify Example 17-4 on page 17-21 of USEPA (2009).  This example uses</span></span>
-<span class="r-in">  <span class="co"># copper concentrations (ppb) from 3 background wells to set an upper</span></span>
-<span class="r-in">  <span class="co"># limit for 2 compliance wells.  Here we will attempt to compute an upper</span></span>
-<span class="r-in">  <span class="co"># 95% confidence interval for the 95'th percentile of the distribution of</span></span>
-<span class="r-in">  <span class="co"># copper concentrations in the background wells.</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co"># The data are stored in EPA.92c.copper2.df.</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co"># Note that even though these data are Type I left singly censored,</span></span>
-<span class="r-in">  <span class="co"># it is still possible to compute an estimate of the 95'th percentile.</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="va">EPA.92c.copper2.df</span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="co">#Results of Distribution Parameter Estimation</span></span></span>
+<span class="r-in"><span>  <span class="co">#--------------------------------------------</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Assumed Distribution:            None</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Estimated Quantile(s):           75'th %ile = 1.524903</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Quantile Estimation Method:      Nonparametric</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Data:                            dat</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Sample Size:                     20</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Confidence Interval for:         75'th %ile</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Confidence Interval Method:      exact</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Confidence Interval Type:        two-sided</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Confidence Level:                80.69277%</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Confidence Limit Rank(s):        13 18</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Confidence Interval:             LCL = 1.018038</span></span></span>
+<span class="r-in"><span>  <span class="co">#                                 UCL = 2.071172</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="co">#----------</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="co"># Clean up</span></span></span>
+<span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/r/base/rm.html" class="external-link">rm</a></span><span class="op">(</span><span class="va">dat</span><span class="op">)</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="co">#==========</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="co"># Modify Example 17-4 on page 17-21 of USEPA (2009).  This example uses</span></span></span>
+<span class="r-in"><span>  <span class="co"># copper concentrations (ppb) from 3 background wells to set an upper</span></span></span>
+<span class="r-in"><span>  <span class="co"># limit for 2 compliance wells.  Here we will attempt to compute an upper</span></span></span>
+<span class="r-in"><span>  <span class="co"># 95% confidence interval for the 95'th percentile of the distribution of</span></span></span>
+<span class="r-in"><span>  <span class="co"># copper concentrations in the background wells.</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co"># The data are stored in EPA.92c.copper2.df.</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co"># Note that even though these data are Type I left singly censored,</span></span></span>
+<span class="r-in"><span>  <span class="co"># it is still possible to compute an estimate of the 95'th percentile.</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="va">EPA.92c.copper2.df</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>    Copper.orig Copper Censored Month Well  Well.type</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 1           &lt;5    5.0     TRUE     1    1 Background</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 2           &lt;5    5.0     TRUE     2    1 Background</span>
@@ -1043,48 +1059,48 @@
 <span class="r-out co"><span class="r-pr">#&gt;</span> 38          &lt;5    5.0     TRUE     6    5 Compliance</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 39         5.6    5.6    FALSE     7    5 Compliance</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 40          &lt;5    5.0     TRUE     8    5 Compliance</span>
-<span class="r-in">  <span class="co">#   Copper.orig Copper Censored Month Well  Well.type</span></span>
-<span class="r-in">  <span class="co">#1           &lt;5    5.0     TRUE     1    1 Background</span></span>
-<span class="r-in">  <span class="co">#2           &lt;5    5.0     TRUE     2    1 Background</span></span>
-<span class="r-in">  <span class="co">#3          7.5    7.5    FALSE     3    1 Background</span></span>
-<span class="r-in">  <span class="co">#...</span></span>
-<span class="r-in">  <span class="co">#9          9.2    9.2    FALSE     1    2 Background</span></span>
-<span class="r-in">  <span class="co">#10          &lt;5    5.0     TRUE     2    2 Background</span></span>
-<span class="r-in">  <span class="co">#11          &lt;5    5.0     TRUE     3    2 Background</span></span>
-<span class="r-in">  <span class="co">#...</span></span>
-<span class="r-in">  <span class="co">#17          &lt;5    5.0     TRUE     1    3 Background</span></span>
-<span class="r-in">  <span class="co">#18         5.4    5.4    FALSE     2    3 Background</span></span>
-<span class="r-in">  <span class="co">#19         6.7    6.7    FALSE     3    3 Background</span></span>
-<span class="r-in">  <span class="co">#...</span></span>
-<span class="r-in">  <span class="co">#29         6.2    6.2    FALSE     5    4 Compliance</span></span>
-<span class="r-in">  <span class="co">#30          &lt;5    5.0     TRUE     6    4 Compliance</span></span>
-<span class="r-in">  <span class="co">#31         7.8    7.8    FALSE     7    4 Compliance</span></span>
-<span class="r-in">  <span class="co">#...</span></span>
-<span class="r-in">  <span class="co">#38          &lt;5    5.0     TRUE     6    5 Compliance</span></span>
-<span class="r-in">  <span class="co">#39         5.6    5.6    FALSE     7    5 Compliance</span></span>
-<span class="r-in">  <span class="co">#40          &lt;5    5.0     TRUE     8    5 Compliance</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="co"># Because of the small sample size of n=24 observations, it is not possible</span></span>
-<span class="r-in">  <span class="co"># to create a nonparametric confidence interval for the 95th percentile</span></span>
-<span class="r-in">  <span class="co"># that has an associated confidence level of 95%.  If we tried to do this,</span></span>
-<span class="r-in">  <span class="co"># we would get an error message:</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="co"># with(EPA.92c.copper2.df,</span></span>
-<span class="r-in">  <span class="co">#    eqnpar(Copper[Well.type=="Background"], p = 0.95, ci = TRUE, lb = 0,</span></span>
-<span class="r-in">  <span class="co">#      ci.type = "upper", approx.conf.level = 0.95))</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Error in ci.qnpar.interpolate(x = c(5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5,  :</span></span>
-<span class="r-in">  <span class="co">#  Minimum coverage of 0.95 is not possible with the given sample size.</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="co"># So instead, we will use ci.method="exact" with min.coverage=FALSE</span></span>
-<span class="r-in">  <span class="co"># to construct the confidence interval.  Note that the associated</span></span>
-<span class="r-in">  <span class="co"># confidence level is only 71%.</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="fu"><a href="https://rdrr.io/r/base/with.html" class="external-link">with</a></span><span class="op">(</span><span class="va">EPA.92c.copper2.df</span>,</span>
-<span class="r-in">     <span class="fu">eqnpar</span><span class="op">(</span><span class="va">Copper</span><span class="op">[</span><span class="va">Well.type</span><span class="op">==</span><span class="st">"Background"</span><span class="op">]</span>, p <span class="op">=</span> <span class="fl">0.95</span>, ci <span class="op">=</span> <span class="cn">TRUE</span>,</span>
-<span class="r-in">        ci.method <span class="op">=</span> <span class="st">"exact"</span>, min.coverage <span class="op">=</span> <span class="cn">FALSE</span>,</span>
-<span class="r-in">        ci.type <span class="op">=</span> <span class="st">"upper"</span>, lb <span class="op">=</span> <span class="fl">0</span>,</span>
-<span class="r-in">        approx.conf.level <span class="op">=</span> <span class="fl">0.95</span><span class="op">)</span><span class="op">)</span></span>
+<span class="r-in"><span>  <span class="co">#   Copper.orig Copper Censored Month Well  Well.type</span></span></span>
+<span class="r-in"><span>  <span class="co">#1           &lt;5    5.0     TRUE     1    1 Background</span></span></span>
+<span class="r-in"><span>  <span class="co">#2           &lt;5    5.0     TRUE     2    1 Background</span></span></span>
+<span class="r-in"><span>  <span class="co">#3          7.5    7.5    FALSE     3    1 Background</span></span></span>
+<span class="r-in"><span>  <span class="co">#...</span></span></span>
+<span class="r-in"><span>  <span class="co">#9          9.2    9.2    FALSE     1    2 Background</span></span></span>
+<span class="r-in"><span>  <span class="co">#10          &lt;5    5.0     TRUE     2    2 Background</span></span></span>
+<span class="r-in"><span>  <span class="co">#11          &lt;5    5.0     TRUE     3    2 Background</span></span></span>
+<span class="r-in"><span>  <span class="co">#...</span></span></span>
+<span class="r-in"><span>  <span class="co">#17          &lt;5    5.0     TRUE     1    3 Background</span></span></span>
+<span class="r-in"><span>  <span class="co">#18         5.4    5.4    FALSE     2    3 Background</span></span></span>
+<span class="r-in"><span>  <span class="co">#19         6.7    6.7    FALSE     3    3 Background</span></span></span>
+<span class="r-in"><span>  <span class="co">#...</span></span></span>
+<span class="r-in"><span>  <span class="co">#29         6.2    6.2    FALSE     5    4 Compliance</span></span></span>
+<span class="r-in"><span>  <span class="co">#30          &lt;5    5.0     TRUE     6    4 Compliance</span></span></span>
+<span class="r-in"><span>  <span class="co">#31         7.8    7.8    FALSE     7    4 Compliance</span></span></span>
+<span class="r-in"><span>  <span class="co">#...</span></span></span>
+<span class="r-in"><span>  <span class="co">#38          &lt;5    5.0     TRUE     6    5 Compliance</span></span></span>
+<span class="r-in"><span>  <span class="co">#39         5.6    5.6    FALSE     7    5 Compliance</span></span></span>
+<span class="r-in"><span>  <span class="co">#40          &lt;5    5.0     TRUE     8    5 Compliance</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="co"># Because of the small sample size of n=24 observations, it is not possible</span></span></span>
+<span class="r-in"><span>  <span class="co"># to create a nonparametric confidence interval for the 95th percentile</span></span></span>
+<span class="r-in"><span>  <span class="co"># that has an associated confidence level of 95%.  If we tried to do this,</span></span></span>
+<span class="r-in"><span>  <span class="co"># we would get an error message:</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="co"># with(EPA.92c.copper2.df,</span></span></span>
+<span class="r-in"><span>  <span class="co">#    eqnpar(Copper[Well.type=="Background"], p = 0.95, ci = TRUE, lb = 0,</span></span></span>
+<span class="r-in"><span>  <span class="co">#      ci.type = "upper", approx.conf.level = 0.95))</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Error in ci.qnpar.interpolate(x = c(5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5,  :</span></span></span>
+<span class="r-in"><span>  <span class="co">#  Minimum coverage of 0.95 is not possible with the given sample size.</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="co"># So instead, we will use ci.method="exact" with min.coverage=FALSE</span></span></span>
+<span class="r-in"><span>  <span class="co"># to construct the confidence interval.  Note that the associated</span></span></span>
+<span class="r-in"><span>  <span class="co"># confidence level is only 71%.</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/r/base/with.html" class="external-link">with</a></span><span class="op">(</span><span class="va">EPA.92c.copper2.df</span>,</span></span>
+<span class="r-in"><span>     <span class="fu">eqnpar</span><span class="op">(</span><span class="va">Copper</span><span class="op">[</span><span class="va">Well.type</span><span class="op">==</span><span class="st">"Background"</span><span class="op">]</span>, p <span class="op">=</span> <span class="fl">0.95</span>, ci <span class="op">=</span> <span class="cn">TRUE</span>,</span></span>
+<span class="r-in"><span>        ci.method <span class="op">=</span> <span class="st">"exact"</span>, min.coverage <span class="op">=</span> <span class="cn">FALSE</span>,</span></span>
+<span class="r-in"><span>        ci.type <span class="op">=</span> <span class="st">"upper"</span>, lb <span class="op">=</span> <span class="fl">0</span>,</span></span>
+<span class="r-in"><span>        approx.conf.level <span class="op">=</span> <span class="fl">0.95</span><span class="op">)</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> $distribution</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] "None"</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
@@ -1138,45 +1154,45 @@
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> attr(,"class")</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] "estimate"</span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="co">#Results of Distribution Parameter Estimation</span></span>
-<span class="r-in">  <span class="co">#--------------------------------------------</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Assumed Distribution:            None</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Estimated Quantile(s):           95'th %ile = 7.925</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Quantile Estimation Method:      Nonparametric</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Data:                            Copper[Well.type == "Background"]</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Sample Size:                     24</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Confidence Interval for:         95'th %ile</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Confidence Interval Method:      exact</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Confidence Interval Type:        upper</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Confidence Level:                70.8011%</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Confidence Limit Rank(s):        NA 24</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Confidence Interval:             LCL = 0.0</span></span>
-<span class="r-in">  <span class="co">#                                 UCL = 9.2</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="co">#----------</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="co"># For the above example, the true confidence level is 71% instead of 95%.</span></span>
-<span class="r-in">  <span class="co"># This is a function of the small sample size.  In fact, as Example 17-4 on</span></span>
-<span class="r-in">  <span class="co"># pages 17-21 of USEPA (2009) shows, the largest quantile for which you can</span></span>
-<span class="r-in">  <span class="co"># construct a nonparametric confidence interval that will have associated</span></span>
-<span class="r-in">  <span class="co"># confidence level of 95% is the 88'th percentile:</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="fu"><a href="https://rdrr.io/r/base/with.html" class="external-link">with</a></span><span class="op">(</span><span class="va">EPA.92c.copper2.df</span>,</span>
-<span class="r-in">    <span class="fu">eqnpar</span><span class="op">(</span><span class="va">Copper</span><span class="op">[</span><span class="va">Well.type</span><span class="op">==</span><span class="st">"Background"</span><span class="op">]</span>, p <span class="op">=</span> <span class="fl">0.88</span>, ci <span class="op">=</span> <span class="cn">TRUE</span>,</span>
-<span class="r-in">      ci.type <span class="op">=</span> <span class="st">"upper"</span>, lb <span class="op">=</span> <span class="fl">0</span>, ucl.rank <span class="op">=</span> <span class="fl">24</span>,</span>
-<span class="r-in">      approx.conf.level <span class="op">=</span> <span class="fl">0.95</span><span class="op">)</span><span class="op">)</span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="co">#Results of Distribution Parameter Estimation</span></span></span>
+<span class="r-in"><span>  <span class="co">#--------------------------------------------</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Assumed Distribution:            None</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Estimated Quantile(s):           95'th %ile = 7.925</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Quantile Estimation Method:      Nonparametric</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Data:                            Copper[Well.type == "Background"]</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Sample Size:                     24</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Confidence Interval for:         95'th %ile</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Confidence Interval Method:      exact</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Confidence Interval Type:        upper</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Confidence Level:                70.8011%</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Confidence Limit Rank(s):        NA 24</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Confidence Interval:             LCL = 0.0</span></span></span>
+<span class="r-in"><span>  <span class="co">#                                 UCL = 9.2</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="co">#----------</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="co"># For the above example, the true confidence level is 71% instead of 95%.</span></span></span>
+<span class="r-in"><span>  <span class="co"># This is a function of the small sample size.  In fact, as Example 17-4 on</span></span></span>
+<span class="r-in"><span>  <span class="co"># pages 17-21 of USEPA (2009) shows, the largest quantile for which you can</span></span></span>
+<span class="r-in"><span>  <span class="co"># construct a nonparametric confidence interval that will have associated</span></span></span>
+<span class="r-in"><span>  <span class="co"># confidence level of 95% is the 88'th percentile:</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/r/base/with.html" class="external-link">with</a></span><span class="op">(</span><span class="va">EPA.92c.copper2.df</span>,</span></span>
+<span class="r-in"><span>    <span class="fu">eqnpar</span><span class="op">(</span><span class="va">Copper</span><span class="op">[</span><span class="va">Well.type</span><span class="op">==</span><span class="st">"Background"</span><span class="op">]</span>, p <span class="op">=</span> <span class="fl">0.88</span>, ci <span class="op">=</span> <span class="cn">TRUE</span>,</span></span>
+<span class="r-in"><span>      ci.type <span class="op">=</span> <span class="st">"upper"</span>, lb <span class="op">=</span> <span class="fl">0</span>, ucl.rank <span class="op">=</span> <span class="fl">24</span>,</span></span>
+<span class="r-in"><span>      approx.conf.level <span class="op">=</span> <span class="fl">0.95</span><span class="op">)</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> $distribution</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] "None"</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
@@ -1230,51 +1246,51 @@
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> attr(,"class")</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] "estimate"</span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="co">#Results of Distribution Parameter Estimation</span></span>
-<span class="r-in">  <span class="co">#--------------------------------------------</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Assumed Distribution:            None</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Estimated Quantile(s):           88'th %ile = 6.892</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Quantile Estimation Method:      Nonparametric</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Data:                            Copper[Well.type == "Background"]</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Sample Size:                     24</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Confidence Interval for:         88'th %ile</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Confidence Interval Method:      exact</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Confidence Interval Type:        upper</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Confidence Level:                95.3486%</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Confidence Limit Rank(s):        NA 24</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Confidence Interval:             LCL = 0.0</span></span>
-<span class="r-in">  <span class="co">#                                 UCL = 9.2</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="co">#==========</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="co"># Reproduce Example 21-6 on pages 21-21 to 21-22 of USEPA (2009).</span></span>
-<span class="r-in">  <span class="co"># Use 12 measurements of nitrate (mg/L) at a well used for drinking water</span></span>
-<span class="r-in">  <span class="co"># to determine with 95% confidence whether or not the infant-based, acute</span></span>
-<span class="r-in">  <span class="co"># risk standard of 10 mg/L has been violated.  Assume that the risk</span></span>
-<span class="r-in">  <span class="co"># standard represents an upper 95'th percentile limit on nitrate</span></span>
-<span class="r-in">  <span class="co"># concentrations.  So what we need to do is construct a one-sided</span></span>
-<span class="r-in">  <span class="co"># lower nonparametric confidence interval for the 95'th percentile</span></span>
-<span class="r-in">  <span class="co"># that has associated confidence level of no more than 95%, and we will</span></span>
-<span class="r-in">  <span class="co"># compare the lower confidence limit with the MCL of 10 mg/L.</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co"># The data for this example are stored in EPA.09.Ex.21.6.nitrate.df.</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="co"># Look at the data:</span></span>
-<span class="r-in">  <span class="co">#------------------</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="va">EPA.09.Ex.21.6.nitrate.df</span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="co">#Results of Distribution Parameter Estimation</span></span></span>
+<span class="r-in"><span>  <span class="co">#--------------------------------------------</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Assumed Distribution:            None</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Estimated Quantile(s):           88'th %ile = 6.892</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Quantile Estimation Method:      Nonparametric</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Data:                            Copper[Well.type == "Background"]</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Sample Size:                     24</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Confidence Interval for:         88'th %ile</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Confidence Interval Method:      exact</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Confidence Interval Type:        upper</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Confidence Level:                95.3486%</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Confidence Limit Rank(s):        NA 24</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Confidence Interval:             LCL = 0.0</span></span></span>
+<span class="r-in"><span>  <span class="co">#                                 UCL = 9.2</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="co">#==========</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="co"># Reproduce Example 21-6 on pages 21-21 to 21-22 of USEPA (2009).</span></span></span>
+<span class="r-in"><span>  <span class="co"># Use 12 measurements of nitrate (mg/L) at a well used for drinking water</span></span></span>
+<span class="r-in"><span>  <span class="co"># to determine with 95% confidence whether or not the infant-based, acute</span></span></span>
+<span class="r-in"><span>  <span class="co"># risk standard of 10 mg/L has been violated.  Assume that the risk</span></span></span>
+<span class="r-in"><span>  <span class="co"># standard represents an upper 95'th percentile limit on nitrate</span></span></span>
+<span class="r-in"><span>  <span class="co"># concentrations.  So what we need to do is construct a one-sided</span></span></span>
+<span class="r-in"><span>  <span class="co"># lower nonparametric confidence interval for the 95'th percentile</span></span></span>
+<span class="r-in"><span>  <span class="co"># that has associated confidence level of no more than 95%, and we will</span></span></span>
+<span class="r-in"><span>  <span class="co"># compare the lower confidence limit with the MCL of 10 mg/L.</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co"># The data for this example are stored in EPA.09.Ex.21.6.nitrate.df.</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="co"># Look at the data:</span></span></span>
+<span class="r-in"><span>  <span class="co">#------------------</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="va">EPA.09.Ex.21.6.nitrate.df</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>    Sampling.Date       Date Nitrate.mg.per.l.orig Nitrate.mg.per.l Censored</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 1      7/28/1999 1999-07-28                  &lt;5.0              5.0     TRUE</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 2       9/3/1999 1999-09-03                  12.3             12.3    FALSE</span>
@@ -1288,46 +1304,46 @@
 <span class="r-out co"><span class="r-pr">#&gt;</span> 10     9/16/2001 2001-09-16                  &lt;5.0              5.0     TRUE</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 11    11/26/2001 2001-11-26                   9.3              9.3    FALSE</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 12      3/2/2002 2002-03-02                  10.3             10.3    FALSE</span>
-<span class="r-in">  <span class="co">#   Sampling.Date       Date Nitrate.mg.per.l.orig Nitrate.mg.per.l Censored</span></span>
-<span class="r-in">  <span class="co">#1      7/28/1999 1999-07-28                  &lt;5.0              5.0     TRUE</span></span>
-<span class="r-in">  <span class="co">#2       9/3/1999 1999-09-03                  12.3             12.3    FALSE</span></span>
-<span class="r-in">  <span class="co">#3     11/24/1999 1999-11-24                  &lt;5.0              5.0     TRUE</span></span>
-<span class="r-in">  <span class="co">#4       5/3/2000 2000-05-03                  &lt;5.0              5.0     TRUE</span></span>
-<span class="r-in">  <span class="co">#5      7/14/2000 2000-07-14                   8.1              8.1    FALSE</span></span>
-<span class="r-in">  <span class="co">#6     10/31/2000 2000-10-31                  &lt;5.0              5.0     TRUE</span></span>
-<span class="r-in">  <span class="co">#7     12/14/2000 2000-12-14                    11             11.0    FALSE</span></span>
-<span class="r-in">  <span class="co">#8      3/27/2001 2001-03-27                  35.1             35.1    FALSE</span></span>
-<span class="r-in">  <span class="co">#9      6/13/2001 2001-06-13                  &lt;5.0              5.0     TRUE</span></span>
-<span class="r-in">  <span class="co">#10     9/16/2001 2001-09-16                  &lt;5.0              5.0     TRUE</span></span>
-<span class="r-in">  <span class="co">#11    11/26/2001 2001-11-26                   9.3              9.3    FALSE</span></span>
-<span class="r-in">  <span class="co">#12      3/2/2002 2002-03-02                  10.3             10.3    FALSE</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="co"># Determine what order statistic to use for the lower confidence limit</span></span>
-<span class="r-in">  <span class="co"># in order to achieve no more than 95% confidence.</span></span>
-<span class="r-in">  <span class="co">#---------------------------------------------------------------------</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="va">conf.levels</span> <span class="op">&lt;-</span> <span class="fu"><a href="ciNparConfLevel.html">ciNparConfLevel</a></span><span class="op">(</span>n <span class="op">=</span> <span class="fl">12</span>, p <span class="op">=</span> <span class="fl">0.95</span>, lcl.rank <span class="op">=</span> <span class="fl">1</span><span class="op">:</span><span class="fl">12</span>,</span>
-<span class="r-in">    ci.type <span class="op">=</span> <span class="st">"lower"</span><span class="op">)</span></span>
-<span class="r-in">  <span class="fu"><a href="https://rdrr.io/r/base/names.html" class="external-link">names</a></span><span class="op">(</span><span class="va">conf.levels</span><span class="op">)</span> <span class="op">&lt;-</span> <span class="fl">1</span><span class="op">:</span><span class="fl">12</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="fu"><a href="https://rdrr.io/r/base/Round.html" class="external-link">round</a></span><span class="op">(</span><span class="va">conf.levels</span>, <span class="fl">2</span><span class="op">)</span></span>
+<span class="r-in"><span>  <span class="co">#   Sampling.Date       Date Nitrate.mg.per.l.orig Nitrate.mg.per.l Censored</span></span></span>
+<span class="r-in"><span>  <span class="co">#1      7/28/1999 1999-07-28                  &lt;5.0              5.0     TRUE</span></span></span>
+<span class="r-in"><span>  <span class="co">#2       9/3/1999 1999-09-03                  12.3             12.3    FALSE</span></span></span>
+<span class="r-in"><span>  <span class="co">#3     11/24/1999 1999-11-24                  &lt;5.0              5.0     TRUE</span></span></span>
+<span class="r-in"><span>  <span class="co">#4       5/3/2000 2000-05-03                  &lt;5.0              5.0     TRUE</span></span></span>
+<span class="r-in"><span>  <span class="co">#5      7/14/2000 2000-07-14                   8.1              8.1    FALSE</span></span></span>
+<span class="r-in"><span>  <span class="co">#6     10/31/2000 2000-10-31                  &lt;5.0              5.0     TRUE</span></span></span>
+<span class="r-in"><span>  <span class="co">#7     12/14/2000 2000-12-14                    11             11.0    FALSE</span></span></span>
+<span class="r-in"><span>  <span class="co">#8      3/27/2001 2001-03-27                  35.1             35.1    FALSE</span></span></span>
+<span class="r-in"><span>  <span class="co">#9      6/13/2001 2001-06-13                  &lt;5.0              5.0     TRUE</span></span></span>
+<span class="r-in"><span>  <span class="co">#10     9/16/2001 2001-09-16                  &lt;5.0              5.0     TRUE</span></span></span>
+<span class="r-in"><span>  <span class="co">#11    11/26/2001 2001-11-26                   9.3              9.3    FALSE</span></span></span>
+<span class="r-in"><span>  <span class="co">#12      3/2/2002 2002-03-02                  10.3             10.3    FALSE</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="co"># Determine what order statistic to use for the lower confidence limit</span></span></span>
+<span class="r-in"><span>  <span class="co"># in order to achieve no more than 95% confidence.</span></span></span>
+<span class="r-in"><span>  <span class="co">#---------------------------------------------------------------------</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="va">conf.levels</span> <span class="op">&lt;-</span> <span class="fu"><a href="ciNparConfLevel.html">ciNparConfLevel</a></span><span class="op">(</span>n <span class="op">=</span> <span class="fl">12</span>, p <span class="op">=</span> <span class="fl">0.95</span>, lcl.rank <span class="op">=</span> <span class="fl">1</span><span class="op">:</span><span class="fl">12</span>,</span></span>
+<span class="r-in"><span>    ci.type <span class="op">=</span> <span class="st">"lower"</span><span class="op">)</span></span></span>
+<span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/r/base/names.html" class="external-link">names</a></span><span class="op">(</span><span class="va">conf.levels</span><span class="op">)</span> <span class="op">&lt;-</span> <span class="fl">1</span><span class="op">:</span><span class="fl">12</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/r/base/Round.html" class="external-link">round</a></span><span class="op">(</span><span class="va">conf.levels</span>, <span class="fl">2</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>    1    2    3    4    5    6    7    8    9   10   11   12 </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 1.00 1.00 1.00 1.00 1.00 1.00 1.00 1.00 1.00 0.98 0.88 0.54 </span>
-<span class="r-in">  <span class="co">#   1    2    3    4    5    6    7    8    9   10   11   12</span></span>
-<span class="r-in">  <span class="co">#1.00 1.00 1.00 1.00 1.00 1.00 1.00 1.00 1.00 0.98 0.88 0.54</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="co"># Using the 11'th largest observation for the lower confidence limit</span></span>
-<span class="r-in">  <span class="co"># yields a confidence level of 88%.  Using the 10'th largest</span></span>
-<span class="r-in">  <span class="co"># observation yields a confidence level of 98%.  The example in</span></span>
-<span class="r-in">  <span class="co"># USEPA (2009) uses the 10'th largest observation.</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co"># The 10'th largest observation is 11 mg/L which exceeds the</span></span>
-<span class="r-in">  <span class="co"># MCL of 10 mg/L, so there is evidence of contamination.</span></span>
-<span class="r-in">  <span class="co">#--------------------------------------------------------------------</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="fu"><a href="https://rdrr.io/r/base/with.html" class="external-link">with</a></span><span class="op">(</span><span class="va">EPA.09.Ex.21.6.nitrate.df</span>,</span>
-<span class="r-in">    <span class="fu">eqnpar</span><span class="op">(</span><span class="va">Nitrate.mg.per.l</span>, p <span class="op">=</span> <span class="fl">0.95</span>, ci <span class="op">=</span> <span class="cn">TRUE</span>,</span>
-<span class="r-in">      ci.type <span class="op">=</span> <span class="st">"lower"</span>, lcl.rank <span class="op">=</span> <span class="fl">10</span><span class="op">)</span><span class="op">)</span></span>
+<span class="r-in"><span>  <span class="co">#   1    2    3    4    5    6    7    8    9   10   11   12</span></span></span>
+<span class="r-in"><span>  <span class="co">#1.00 1.00 1.00 1.00 1.00 1.00 1.00 1.00 1.00 0.98 0.88 0.54</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="co"># Using the 11'th largest observation for the lower confidence limit</span></span></span>
+<span class="r-in"><span>  <span class="co"># yields a confidence level of 88%.  Using the 10'th largest</span></span></span>
+<span class="r-in"><span>  <span class="co"># observation yields a confidence level of 98%.  The example in</span></span></span>
+<span class="r-in"><span>  <span class="co"># USEPA (2009) uses the 10'th largest observation.</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co"># The 10'th largest observation is 11 mg/L which exceeds the</span></span></span>
+<span class="r-in"><span>  <span class="co"># MCL of 10 mg/L, so there is evidence of contamination.</span></span></span>
+<span class="r-in"><span>  <span class="co">#--------------------------------------------------------------------</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/r/base/with.html" class="external-link">with</a></span><span class="op">(</span><span class="va">EPA.09.Ex.21.6.nitrate.df</span>,</span></span>
+<span class="r-in"><span>    <span class="fu">eqnpar</span><span class="op">(</span><span class="va">Nitrate.mg.per.l</span>, p <span class="op">=</span> <span class="fl">0.95</span>, ci <span class="op">=</span> <span class="cn">TRUE</span>,</span></span>
+<span class="r-in"><span>      ci.type <span class="op">=</span> <span class="st">"lower"</span>, lcl.rank <span class="op">=</span> <span class="fl">10</span><span class="op">)</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> $distribution</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] "None"</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
@@ -1381,39 +1397,39 @@
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> attr(,"class")</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] "estimate"</span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="co">#Results of Distribution Parameter Estimation</span></span>
-<span class="r-in">  <span class="co">#--------------------------------------------</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Assumed Distribution:            None</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Estimated Quantile(s):           95'th %ile = 22.56</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Quantile Estimation Method:      Nonparametric</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Data:                            Nitrate.mg.per.l</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Sample Size:                     12</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Confidence Interval for:         95'th %ile</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Confidence Interval Method:      exact</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Confidence Interval Type:        lower</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Confidence Level:                98.04317%</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Confidence Limit Rank(s):        10 NA</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Confidence Interval:             LCL =  11</span></span>
-<span class="r-in">  <span class="co">#                                 UCL = Inf</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="co">#==========</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="co"># Clean up</span></span>
-<span class="r-in">  <span class="co">#---------</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="fu"><a href="https://rdrr.io/r/base/rm.html" class="external-link">rm</a></span><span class="op">(</span><span class="va">conf.levels</span><span class="op">)</span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="co">#Results of Distribution Parameter Estimation</span></span></span>
+<span class="r-in"><span>  <span class="co">#--------------------------------------------</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Assumed Distribution:            None</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Estimated Quantile(s):           95'th %ile = 22.56</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Quantile Estimation Method:      Nonparametric</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Data:                            Nitrate.mg.per.l</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Sample Size:                     12</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Confidence Interval for:         95'th %ile</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Confidence Interval Method:      exact</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Confidence Interval Type:        lower</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Confidence Level:                98.04317%</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Confidence Limit Rank(s):        10 NA</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Confidence Interval:             LCL =  11</span></span></span>
+<span class="r-in"><span>  <span class="co">#                                 UCL = Inf</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="co">#==========</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="co"># Clean up</span></span></span>
+<span class="r-in"><span>  <span class="co">#---------</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/r/base/rm.html" class="external-link">rm</a></span><span class="op">(</span><span class="va">conf.levels</span><span class="op">)</span></span></span>
 </code></pre></div>
     </div>
   </div>
@@ -1428,7 +1444,7 @@
 </div>
 
 <div class="pkgdown">
-  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.2.</p>
+  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.6.</p>
 </div>
 
       </footer></div>

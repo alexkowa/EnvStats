@@ -52,10 +52,10 @@
     </div>
 
     <div id="ref-usage">
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="fu">ciBinomHalfWidth</span><span class="op">(</span><span class="va">n.or.n1</span>, p.hat.or.p1.hat <span class="op">=</span> <span class="fl">0.5</span>, 
-    n2 <span class="op">=</span> <span class="va">n.or.n1</span>, p2.hat <span class="op">=</span> <span class="fl">0.4</span>, conf.level <span class="op">=</span> <span class="fl">0.95</span>, 
-    sample.type <span class="op">=</span> <span class="st">"one.sample"</span>, ci.method <span class="op">=</span> <span class="st">"score"</span>, 
-    correct <span class="op">=</span> <span class="cn">TRUE</span>, warn <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></code></pre></div>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">ciBinomHalfWidth</span><span class="op">(</span><span class="va">n.or.n1</span>, p.hat.or.p1.hat <span class="op">=</span> <span class="fl">0.5</span>, </span>
+<span>    n2 <span class="op">=</span> <span class="va">n.or.n1</span>, p2.hat <span class="op">=</span> <span class="fl">0.4</span>, conf.level <span class="op">=</span> <span class="fl">0.95</span>, </span>
+<span>    sample.type <span class="op">=</span> <span class="st">"one.sample"</span>, ci.method <span class="op">=</span> <span class="st">"score"</span>, </span>
+<span>    correct <span class="op">=</span> <span class="cn">TRUE</span>, warn <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></code></pre></div>
     </div>
 
     <div id="arguments">
@@ -68,7 +68,8 @@
   the number of observations from group 1. <br> 
   Missing (<code>NA</code>), undefined (<code>NaN</code>), and 
   infinite (<code>Inf</code>, <code>-Inf</code>) values are not allowed.</p></dd>
-<dt>p.hat.or.p1.hat</dt>
+
+  <dt>p.hat.or.p1.hat</dt>
 <dd><p>numeric vector of estimated proportions.  <br>
   When <code>sample.type="one.sample"</code>, <code>p.hat.or.p1.hat</code> denotes the 
   estimated value of \(p\), the probability of “success”. <br> 
@@ -77,37 +78,45 @@
   group 1.  <br>
   Missing (<code>NA</code>), undefined (<code>NaN</code>), and infinite 
   (<code>Inf</code>, <code>-Inf</code>) values are not allowed.</p></dd>
-<dt>n2</dt>
+
+  <dt>n2</dt>
 <dd><p>numeric vector of sample sizes for group 2.  The default value is the value of <code>n.or.n1</code>.  
   This argument is ignored when <code>sample.type="one.sample"</code>.  
   Missing (<code>NA</code>), undefined (<code>NaN</code>), and infinite (<code>Inf</code>, <code>-Inf</code>) values are not allowed.</p></dd>
-<dt>p2.hat</dt>
+
+  <dt>p2.hat</dt>
 <dd><p>numeric vector of estimated proportions for group 2. 
   This argument is ignored when <code>sample.type="one.sample"</code>.  
   Missing (<code>NA</code>), undefined (<code>NaN</code>), and infinite (<code>Inf</code>, <code>-Inf</code>) values are not allowed.</p></dd>
-<dt>conf.level</dt>
+
+  <dt>conf.level</dt>
 <dd><p>numeric vector of numbers between 0 and 1 indicating the confidence level associated with 
   the confidence interval(s).  The default value is <code>conf.level=0.95</code>.</p></dd>
-<dt>sample.type</dt>
+
+  <dt>sample.type</dt>
 <dd><p>character string indicating whether this is a one-sample or two-sample confidence interval.  
   When <code>sample.type="one.sample"</code>, the computed half-width is based on a confidence interval 
   for a single proportion.  When <br><code>sample.type="two.sample"</code>, the computed half-width is based 
   on a confidence interval for the difference between two proportions.  
   The default value is <code>sample.type="one.sample"</code> unless the 
   argument <code>n2</code> or <code>p2.hat</code> is supplied.</p></dd>
-<dt>ci.method</dt>
+
+  <dt>ci.method</dt>
 <dd><p>character string indicating which method to use to construct the confidence interval.  
   Possible values are <code>"score"</code> (the default), <code>"exact"</code>, <br><code>"adjusted Wald"</code>, and <code>"Wald"</code> (the <code>"Wald"</code> method is 
   <strong>never</strong> recommended but is included for historical purposes).  
   The exact method is only available for the one-sample case, i.e., 
   when <code>sample.type="one.sample"</code>.</p></dd>
-<dt>correct</dt>
+
+  <dt>correct</dt>
 <dd><p>logical scalar indicating whether to use the continuity correction when <br><code>ci.method="score"</code> or <code>ci.method="Wald"</code>.  <br>
   The default value is <code>correct=TRUE</code>.</p></dd>
-<dt>warn</dt>
+
+  <dt>warn</dt>
 <dd><p>logical scalar indicating whether to issue a warning when <br><code>ci.method="Wald"</code> for cases when the normal approximation to 
   the binomial distribution probably is not accurate.  
   The default value is <code>warn=TRUE</code>.</p></dd>
+
 </dl></div>
     <div id="details">
     <h2>Details</h2>
@@ -183,30 +192,57 @@
 </dl></div>
     <div id="value">
     <h2>Value</h2>
-    <p>a list with information about the half-widths, sample sizes, and 
-  estimated proportions.  
-<strong>One-Sample Case (<code>sample.type="one.sample"</code>)</strong>. <br>  When <code>sample.type="one.sample"</code>, the function <code>ciBinomHalfWidth</code>  returns a list with these components:</p>
+    
+
+<p>a list with information about the half-widths, sample sizes, and 
+  estimated proportions.</p>
+<p></p>
+<p><strong>One-Sample Case (<code>sample.type="one.sample"</code>)</strong>. <br></p>
+  
+
+<p>When <code>sample.type="one.sample"</code>, the function <code>ciBinomHalfWidth</code></p>
+ 
+
+<p>returns a list with these components:</p>
 <dl><dt>half.width</dt>
 <dd><p>the half-width(s) of the confidence interval(s)</p></dd>
-<dt>n</dt>
+
+  <dt>n</dt>
 <dd><p>the sample size(s) associated with the confidence interval(s)</p></dd>
-<dt>p.hat</dt>
+
+  <dt>p.hat</dt>
 <dd><p>the estimated proportion(s)</p></dd>
-<dt>method</dt>
+
+  <dt>method</dt>
 <dd><p>the method used to construct the confidence interval(s)</p></dd>
-</dl><p><strong>Two-Sample Case (<code>sample.type="two.sample"</code>)</strong>.  <br>  When <code>sample.type="two.sample"</code>, the function <code>ciBinomHalfWidth</code>  returns a list with these components:</p>
+
+
+
+  </dl><p><strong>Two-Sample Case (<code>sample.type="two.sample"</code>)</strong>.  <br></p>
+ 
+
+<p>When <code>sample.type="two.sample"</code>, the function <code>ciBinomHalfWidth</code></p>
+ 
+
+<p>returns a list with these components:</p>
 <dl><dt>half.width</dt>
 <dd><p>the half-width(s) of the confidence interval(s)</p></dd>
-<dt>n1</dt>
+
+  <dt>n1</dt>
 <dd><p>the sample size(s) for group 1 associated with the confidence interval(s)</p></dd>
-<dt>p1.hat</dt>
+
+  <dt>p1.hat</dt>
 <dd><p>the estimated proportion(s) for group 1</p></dd>
-<dt>n2</dt>
+
+  <dt>n2</dt>
 <dd><p>the sample size(s) for group 2 associated with the confidence interval(s)</p></dd>
-<dt>p2.hat</dt>
+
+  <dt>p2.hat</dt>
 <dd><p>the estimated proportion(s) for group 2</p></dd>
-<dt>method</dt>
+
+  <dt>method</dt>
 <dd><p>the method used to construct the confidence interval(s)</p></dd>
+
 </dl></div>
     <div id="references">
     <h2>References</h2>
@@ -273,10 +309,10 @@
 
     <div id="ref-examples">
     <h2>Examples</h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in">  <span class="co"># Look at how the half-width of a one-sample confidence interval </span></span>
-<span class="r-in">  <span class="co"># decreases with sample size:</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="fu">ciBinomHalfWidth</span><span class="op">(</span>n.or.n1 <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">10</span>, <span class="fl">50</span>, <span class="fl">100</span>, <span class="fl">500</span><span class="op">)</span><span class="op">)</span></span>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span>  <span class="co"># Look at how the half-width of a one-sample confidence interval </span></span></span>
+<span class="r-in"><span>  <span class="co"># decreases with sample size:</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="fu">ciBinomHalfWidth</span><span class="op">(</span>n.or.n1 <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">10</span>, <span class="fl">50</span>, <span class="fl">100</span>, <span class="fl">500</span><span class="op">)</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> $half.width</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] 0.26340691 0.13355486 0.09616847 0.04365873</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
@@ -289,29 +325,29 @@
 <span class="r-out co"><span class="r-pr">#&gt;</span> $method</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] "Score normal approximation, with continuity correction"</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-in">  <span class="co">#$half.width</span></span>
-<span class="r-in">  <span class="co">#[1] 0.26340691 0.13355486 0.09616847 0.04365873</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#$n</span></span>
-<span class="r-in">  <span class="co">#[1]  10  50 100 500</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#$p.hat</span></span>
-<span class="r-in">  <span class="co">#[1] 0.5 0.5 0.5 0.5</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#$method</span></span>
-<span class="r-in">  <span class="co">#[1] "Score normal approximation, with continuity correction"</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="co">#----------------------------------------------------------------</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="co"># Look at how the half-width of a one-sample confidence interval </span></span>
-<span class="r-in">  <span class="co"># tends to decrease as the estimated value of p decreases below </span></span>
-<span class="r-in">  <span class="co"># 0.5 or increases above 0.5:</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="fu"><a href="https://rdrr.io/r/base/seq.html" class="external-link">seq</a></span><span class="op">(</span><span class="fl">0.2</span>, <span class="fl">0.8</span>, by <span class="op">=</span> <span class="fl">0.1</span><span class="op">)</span> </span>
+<span class="r-in"><span>  <span class="co">#$half.width</span></span></span>
+<span class="r-in"><span>  <span class="co">#[1] 0.26340691 0.13355486 0.09616847 0.04365873</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#$n</span></span></span>
+<span class="r-in"><span>  <span class="co">#[1]  10  50 100 500</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#$p.hat</span></span></span>
+<span class="r-in"><span>  <span class="co">#[1] 0.5 0.5 0.5 0.5</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#$method</span></span></span>
+<span class="r-in"><span>  <span class="co">#[1] "Score normal approximation, with continuity correction"</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="co">#----------------------------------------------------------------</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="co"># Look at how the half-width of a one-sample confidence interval </span></span></span>
+<span class="r-in"><span>  <span class="co"># tends to decrease as the estimated value of p decreases below </span></span></span>
+<span class="r-in"><span>  <span class="co"># 0.5 or increases above 0.5:</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/r/base/seq.html" class="external-link">seq</a></span><span class="op">(</span><span class="fl">0.2</span>, <span class="fl">0.8</span>, by <span class="op">=</span> <span class="fl">0.1</span><span class="op">)</span> </span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] 0.2 0.3 0.4 0.5 0.6 0.7 0.8</span>
-<span class="r-in">  <span class="co">#[1] 0.2 0.3 0.4 0.5 0.6 0.7 0.8 </span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="fu">ciBinomHalfWidth</span><span class="op">(</span>n.or.n1 <span class="op">=</span> <span class="fl">30</span>, p.hat <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/seq.html" class="external-link">seq</a></span><span class="op">(</span><span class="fl">0.2</span>, <span class="fl">0.8</span>, by <span class="op">=</span> <span class="fl">0.1</span><span class="op">)</span><span class="op">)</span> </span>
+<span class="r-in"><span>  <span class="co">#[1] 0.2 0.3 0.4 0.5 0.6 0.7 0.8 </span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="fu">ciBinomHalfWidth</span><span class="op">(</span>n.or.n1 <span class="op">=</span> <span class="fl">30</span>, p.hat <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/seq.html" class="external-link">seq</a></span><span class="op">(</span><span class="fl">0.2</span>, <span class="fl">0.8</span>, by <span class="op">=</span> <span class="fl">0.1</span><span class="op">)</span><span class="op">)</span> </span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> $half.width</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] 0.1536299 0.1707256 0.1801322 0.1684587 0.1801322 0.1707256 0.1536299</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
@@ -324,25 +360,25 @@
 <span class="r-out co"><span class="r-pr">#&gt;</span> $method</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] "Score normal approximation, with continuity correction"</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-in">  <span class="co">#$half.width</span></span>
-<span class="r-in">  <span class="co">#[1] 0.1536299 0.1707256 0.1801322 0.1684587 0.1801322 0.1707256 </span></span>
-<span class="r-in">  <span class="co">#[7] 0.1536299</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#$n</span></span>
-<span class="r-in">  <span class="co">#[1] 30 30 30 30 30 30 30</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#$p.hat</span></span>
-<span class="r-in">  <span class="co">#[1] 0.2 0.3 0.4 0.5 0.6 0.7 0.8</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#$method</span></span>
-<span class="r-in">  <span class="co">#[1] "Score normal approximation, with continuity correction"</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="co">#----------------------------------------------------------------</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="co"># Look at how the half-width of a one-sample confidence interval </span></span>
-<span class="r-in">  <span class="co"># increases with increasing confidence level:</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="fu">ciBinomHalfWidth</span><span class="op">(</span>n.or.n1 <span class="op">=</span> <span class="fl">20</span>, conf.level <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">0.8</span>, <span class="fl">0.9</span>, <span class="fl">0.95</span>, <span class="fl">0.99</span><span class="op">)</span><span class="op">)</span> </span>
+<span class="r-in"><span>  <span class="co">#$half.width</span></span></span>
+<span class="r-in"><span>  <span class="co">#[1] 0.1536299 0.1707256 0.1801322 0.1684587 0.1801322 0.1707256 </span></span></span>
+<span class="r-in"><span>  <span class="co">#[7] 0.1536299</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#$n</span></span></span>
+<span class="r-in"><span>  <span class="co">#[1] 30 30 30 30 30 30 30</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#$p.hat</span></span></span>
+<span class="r-in"><span>  <span class="co">#[1] 0.2 0.3 0.4 0.5 0.6 0.7 0.8</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#$method</span></span></span>
+<span class="r-in"><span>  <span class="co">#[1] "Score normal approximation, with continuity correction"</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="co">#----------------------------------------------------------------</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="co"># Look at how the half-width of a one-sample confidence interval </span></span></span>
+<span class="r-in"><span>  <span class="co"># increases with increasing confidence level:</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="fu">ciBinomHalfWidth</span><span class="op">(</span>n.or.n1 <span class="op">=</span> <span class="fl">20</span>, conf.level <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">0.8</span>, <span class="fl">0.9</span>, <span class="fl">0.95</span>, <span class="fl">0.99</span><span class="op">)</span><span class="op">)</span> </span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> $half.width</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] 0.1377380 0.1725962 0.2007020 0.2495523</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
@@ -355,46 +391,46 @@
 <span class="r-out co"><span class="r-pr">#&gt;</span> $method</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] "Score normal approximation, with continuity correction"</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-in">  <span class="co">#$half.width</span></span>
-<span class="r-in">  <span class="co">#[1] 0.1377380 0.1725962 0.2007020 0.2495523</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#$n</span></span>
-<span class="r-in">  <span class="co">#[1] 20 20 20 20</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#$p.hat</span></span>
-<span class="r-in">  <span class="co">#[1] 0.5 0.5 0.5 0.5</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#$method</span></span>
-<span class="r-in">  <span class="co">#[1] "Score normal approximation, with continuity correction"</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="co">#----------------------------------------------------------------</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="co"># Compare the half-widths for a one-sample </span></span>
-<span class="r-in">  <span class="co"># confidence interval based on the different methods:</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="fu">ciBinomHalfWidth</span><span class="op">(</span>n.or.n1 <span class="op">=</span> <span class="fl">30</span>, ci.method <span class="op">=</span> <span class="st">"score"</span><span class="op">)</span><span class="op">$</span><span class="va">half.width</span></span>
+<span class="r-in"><span>  <span class="co">#$half.width</span></span></span>
+<span class="r-in"><span>  <span class="co">#[1] 0.1377380 0.1725962 0.2007020 0.2495523</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#$n</span></span></span>
+<span class="r-in"><span>  <span class="co">#[1] 20 20 20 20</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#$p.hat</span></span></span>
+<span class="r-in"><span>  <span class="co">#[1] 0.5 0.5 0.5 0.5</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#$method</span></span></span>
+<span class="r-in"><span>  <span class="co">#[1] "Score normal approximation, with continuity correction"</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="co">#----------------------------------------------------------------</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="co"># Compare the half-widths for a one-sample </span></span></span>
+<span class="r-in"><span>  <span class="co"># confidence interval based on the different methods:</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="fu">ciBinomHalfWidth</span><span class="op">(</span>n.or.n1 <span class="op">=</span> <span class="fl">30</span>, ci.method <span class="op">=</span> <span class="st">"score"</span><span class="op">)</span><span class="op">$</span><span class="va">half.width</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] 0.1684587</span>
-<span class="r-in">  <span class="co">#[1] 0.1684587</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="fu">ciBinomHalfWidth</span><span class="op">(</span>n.or.n1 <span class="op">=</span> <span class="fl">30</span>, ci.method <span class="op">=</span> <span class="st">"exact"</span><span class="op">)</span><span class="op">$</span><span class="va">half.width</span></span>
+<span class="r-in"><span>  <span class="co">#[1] 0.1684587</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="fu">ciBinomHalfWidth</span><span class="op">(</span>n.or.n1 <span class="op">=</span> <span class="fl">30</span>, ci.method <span class="op">=</span> <span class="st">"exact"</span><span class="op">)</span><span class="op">$</span><span class="va">half.width</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] 0.1870297</span>
-<span class="r-in">  <span class="co">#[1] 0.1870297</span></span>
-<span class="r-in"> </span>
-<span class="r-in">  <span class="fu">ciBinomHalfWidth</span><span class="op">(</span>n.or.n1 <span class="op">=</span> <span class="fl">30</span>, ci.method <span class="op">=</span> <span class="st">"adjusted Wald"</span><span class="op">)</span><span class="op">$</span><span class="va">half.width</span></span>
+<span class="r-in"><span>  <span class="co">#[1] 0.1870297</span></span></span>
+<span class="r-in"><span> </span></span>
+<span class="r-in"><span>  <span class="fu">ciBinomHalfWidth</span><span class="op">(</span>n.or.n1 <span class="op">=</span> <span class="fl">30</span>, ci.method <span class="op">=</span> <span class="st">"adjusted Wald"</span><span class="op">)</span><span class="op">$</span><span class="va">half.width</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] 0.1684587</span>
-<span class="r-in">  <span class="co">#[1] 0.1684587</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="fu">ciBinomHalfWidth</span><span class="op">(</span>n.or.n1 <span class="op">=</span> <span class="fl">30</span>, ci.method <span class="op">=</span> <span class="st">"Wald"</span><span class="op">)</span><span class="op">$</span><span class="va">half.width</span></span>
+<span class="r-in"><span>  <span class="co">#[1] 0.1684587</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="fu">ciBinomHalfWidth</span><span class="op">(</span>n.or.n1 <span class="op">=</span> <span class="fl">30</span>, ci.method <span class="op">=</span> <span class="st">"Wald"</span><span class="op">)</span><span class="op">$</span><span class="va">half.width</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] 0.1955861</span>
-<span class="r-in">  <span class="co">#[1] 0.1955861</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="co">#----------------------------------------------------------------</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="co"># Look at how the half-width of a two-sample </span></span>
-<span class="r-in">  <span class="co"># confidence interval decreases with increasing </span></span>
-<span class="r-in">  <span class="co"># sample sizes:</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="fu">ciBinomHalfWidth</span><span class="op">(</span>n.or.n1 <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">10</span>, <span class="fl">50</span>, <span class="fl">100</span>, <span class="fl">500</span><span class="op">)</span>, sample.type <span class="op">=</span> <span class="st">"two"</span><span class="op">)</span></span>
+<span class="r-in"><span>  <span class="co">#[1] 0.1955861</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="co">#----------------------------------------------------------------</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="co"># Look at how the half-width of a two-sample </span></span></span>
+<span class="r-in"><span>  <span class="co"># confidence interval decreases with increasing </span></span></span>
+<span class="r-in"><span>  <span class="co"># sample sizes:</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="fu">ciBinomHalfWidth</span><span class="op">(</span>n.or.n1 <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">10</span>, <span class="fl">50</span>, <span class="fl">100</span>, <span class="fl">500</span><span class="op">)</span>, sample.type <span class="op">=</span> <span class="st">"two"</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> $half.width</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] 0.53385652 0.21402654 0.14719748 0.06335658</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
@@ -413,23 +449,23 @@
 <span class="r-out co"><span class="r-pr">#&gt;</span> $method</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] "Score normal approximation, with continuity correction"</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-in">  <span class="co">#$half.width</span></span>
-<span class="r-in">  <span class="co">#[1] 0.53385652 0.21402654 0.14719748 0.06335658</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#$n1</span></span>
-<span class="r-in">  <span class="co">#[1]  10  50 100 500</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#$p1.hat</span></span>
-<span class="r-in">  <span class="co">#[1] 0.5 0.5 0.5 0.5</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#$n2</span></span>
-<span class="r-in">  <span class="co">#[1]  10  50 100 500</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#$p2.hat</span></span>
-<span class="r-in">  <span class="co">#[1] 0.4 0.4 0.4 0.4</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#$method</span></span>
-<span class="r-in">  <span class="co">#[1] "Score normal approximation, with continuity correction"</span></span>
+<span class="r-in"><span>  <span class="co">#$half.width</span></span></span>
+<span class="r-in"><span>  <span class="co">#[1] 0.53385652 0.21402654 0.14719748 0.06335658</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#$n1</span></span></span>
+<span class="r-in"><span>  <span class="co">#[1]  10  50 100 500</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#$p1.hat</span></span></span>
+<span class="r-in"><span>  <span class="co">#[1] 0.5 0.5 0.5 0.5</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#$n2</span></span></span>
+<span class="r-in"><span>  <span class="co">#[1]  10  50 100 500</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#$p2.hat</span></span></span>
+<span class="r-in"><span>  <span class="co">#[1] 0.4 0.4 0.4 0.4</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#$method</span></span></span>
+<span class="r-in"><span>  <span class="co">#[1] "Score normal approximation, with continuity correction"</span></span></span>
 </code></pre></div>
     </div>
   </div>
@@ -444,7 +480,7 @@
 </div>
 
 <div class="pkgdown">
-  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.2.</p>
+  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.6.</p>
 </div>
 
       </footer></div>

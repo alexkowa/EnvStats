@@ -60,52 +60,52 @@ The summary statistics include: sample size, number of missing values,
     </div>
 
     <div id="ref-usage">
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="fu">summaryStats</span><span class="op">(</span><span class="va">object</span>, <span class="va">...</span><span class="op">)</span>
-
-<span class="co"># S3 method for formula</span>
-<span class="fu">summaryStats</span><span class="op">(</span><span class="va">object</span>, data <span class="op">=</span> <span class="cn">NULL</span>, <span class="va">subset</span>, 
-  na.action <span class="op">=</span> <span class="va">na.pass</span>, <span class="va">...</span><span class="op">)</span>
-
-<span class="co"># S3 method for default</span>
-<span class="fu">summaryStats</span><span class="op">(</span><span class="va">object</span>, group <span class="op">=</span> <span class="cn">NULL</span>, 
-    drop.unused.levels <span class="op">=</span> <span class="cn">TRUE</span>, se <span class="op">=</span> <span class="cn">FALSE</span>, quartiles <span class="op">=</span> <span class="cn">FALSE</span>, 
-    digits <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/Extremes.html" class="external-link">max</a></span><span class="op">(</span><span class="fl">3</span>, <span class="fu"><a href="https://rdrr.io/r/base/options.html" class="external-link">getOption</a></span><span class="op">(</span><span class="st">"digits"</span><span class="op">)</span> <span class="op">-</span> <span class="fl">3</span><span class="op">)</span>, 
-    digit.type <span class="op">=</span> <span class="st">"round"</span>, drop0trailing <span class="op">=</span> <span class="cn">TRUE</span>, 
-    show.na <span class="op">=</span> <span class="cn">TRUE</span>, show.0.na <span class="op">=</span> <span class="cn">FALSE</span>, p.value <span class="op">=</span> <span class="cn">FALSE</span>, 
-    p.value.digits <span class="op">=</span> <span class="fl">2</span>, p.value.digit.type <span class="op">=</span> <span class="st">"signif"</span>, 
-    test <span class="op">=</span> <span class="st">"parametric"</span>, paired <span class="op">=</span> <span class="cn">FALSE</span>, test.arg.list <span class="op">=</span> <span class="cn">NULL</span>, 
-    combine.groups <span class="op">=</span> <span class="va">p.value</span>, rm.group.na <span class="op">=</span> <span class="cn">TRUE</span>, 
-    group.p.value.type <span class="op">=</span> <span class="cn">NULL</span>, alternative <span class="op">=</span> <span class="st">"two.sided"</span>, 
-    ci <span class="op">=</span> <span class="cn">NULL</span>, ci.between <span class="op">=</span> <span class="cn">NULL</span>, conf.level <span class="op">=</span> <span class="fl">0.95</span>, 
-    stats.in.rows <span class="op">=</span> <span class="cn">FALSE</span>, 
-    data.name <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/deparse.html" class="external-link">deparse</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/substitute.html" class="external-link">substitute</a></span><span class="op">(</span><span class="va">object</span><span class="op">)</span><span class="op">)</span>, <span class="va">...</span><span class="op">)</span>
-
-<span class="co"># S3 method for factor</span>
-<span class="fu">summaryStats</span><span class="op">(</span><span class="va">object</span>, group <span class="op">=</span> <span class="cn">NULL</span>, 
-    drop.unused.levels <span class="op">=</span> <span class="cn">TRUE</span>, 
-    digits <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/Extremes.html" class="external-link">max</a></span><span class="op">(</span><span class="fl">3</span>, <span class="fu"><a href="https://rdrr.io/r/base/options.html" class="external-link">getOption</a></span><span class="op">(</span><span class="st">"digits"</span><span class="op">)</span> <span class="op">-</span> <span class="fl">3</span><span class="op">)</span>, 
-    digit.type <span class="op">=</span> <span class="st">"round"</span>, drop0trailing <span class="op">=</span> <span class="cn">TRUE</span>,  
-    show.na <span class="op">=</span> <span class="cn">TRUE</span>, show.0.na <span class="op">=</span> <span class="cn">FALSE</span>, p.value <span class="op">=</span> <span class="cn">FALSE</span>, 
-    p.value.digits <span class="op">=</span> <span class="fl">2</span>, p.value.digit.type <span class="op">=</span> <span class="st">"signif"</span>, 
-    test <span class="op">=</span> <span class="st">"chisq"</span>, test.arg.list <span class="op">=</span> <span class="cn">NULL</span>, combine.levels <span class="op">=</span> <span class="cn">TRUE</span>, 
-    combine.groups <span class="op">=</span> <span class="cn">FALSE</span>, rm.group.na <span class="op">=</span> <span class="cn">TRUE</span>, 
-    ci <span class="op">=</span> <span class="va">p.value</span> <span class="op">&amp;</span> <span class="va">test</span> <span class="op">!=</span> <span class="st">"chisq"</span>, conf.level <span class="op">=</span> <span class="fl">0.95</span>, 
-    stats.in.rows <span class="op">=</span> <span class="cn">FALSE</span>, <span class="va">...</span><span class="op">)</span>
-
-<span class="co"># S3 method for character</span>
-<span class="fu">summaryStats</span><span class="op">(</span><span class="va">object</span>, <span class="va">...</span><span class="op">)</span>
-
-<span class="co"># S3 method for logical</span>
-<span class="fu">summaryStats</span><span class="op">(</span><span class="va">object</span>, <span class="va">...</span><span class="op">)</span>
-
-<span class="co"># S3 method for data.frame</span>
-<span class="fu">summaryStats</span><span class="op">(</span><span class="va">object</span>, <span class="va">...</span><span class="op">)</span>
-
-<span class="co"># S3 method for matrix</span>
-<span class="fu">summaryStats</span><span class="op">(</span><span class="va">object</span>, <span class="va">...</span><span class="op">)</span>
-
-<span class="co"># S3 method for list</span>
-<span class="fu">summaryStats</span><span class="op">(</span><span class="va">object</span>, <span class="va">...</span><span class="op">)</span></code></pre></div>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">summaryStats</span><span class="op">(</span><span class="va">object</span>, <span class="va">...</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># S3 method for formula</span></span>
+<span><span class="fu">summaryStats</span><span class="op">(</span><span class="va">object</span>, data <span class="op">=</span> <span class="cn">NULL</span>, <span class="va">subset</span>, </span>
+<span>  na.action <span class="op">=</span> <span class="va">na.pass</span>, <span class="va">...</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># S3 method for default</span></span>
+<span><span class="fu">summaryStats</span><span class="op">(</span><span class="va">object</span>, group <span class="op">=</span> <span class="cn">NULL</span>, </span>
+<span>    drop.unused.levels <span class="op">=</span> <span class="cn">TRUE</span>, se <span class="op">=</span> <span class="cn">FALSE</span>, quartiles <span class="op">=</span> <span class="cn">FALSE</span>, </span>
+<span>    digits <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/Extremes.html" class="external-link">max</a></span><span class="op">(</span><span class="fl">3</span>, <span class="fu"><a href="https://rdrr.io/r/base/options.html" class="external-link">getOption</a></span><span class="op">(</span><span class="st">"digits"</span><span class="op">)</span> <span class="op">-</span> <span class="fl">3</span><span class="op">)</span>, </span>
+<span>    digit.type <span class="op">=</span> <span class="st">"round"</span>, drop0trailing <span class="op">=</span> <span class="cn">TRUE</span>, </span>
+<span>    show.na <span class="op">=</span> <span class="cn">TRUE</span>, show.0.na <span class="op">=</span> <span class="cn">FALSE</span>, p.value <span class="op">=</span> <span class="cn">FALSE</span>, </span>
+<span>    p.value.digits <span class="op">=</span> <span class="fl">2</span>, p.value.digit.type <span class="op">=</span> <span class="st">"signif"</span>, </span>
+<span>    test <span class="op">=</span> <span class="st">"parametric"</span>, paired <span class="op">=</span> <span class="cn">FALSE</span>, test.arg.list <span class="op">=</span> <span class="cn">NULL</span>, </span>
+<span>    combine.groups <span class="op">=</span> <span class="va">p.value</span>, rm.group.na <span class="op">=</span> <span class="cn">TRUE</span>, </span>
+<span>    group.p.value.type <span class="op">=</span> <span class="cn">NULL</span>, alternative <span class="op">=</span> <span class="st">"two.sided"</span>, </span>
+<span>    ci <span class="op">=</span> <span class="cn">NULL</span>, ci.between <span class="op">=</span> <span class="cn">NULL</span>, conf.level <span class="op">=</span> <span class="fl">0.95</span>, </span>
+<span>    stats.in.rows <span class="op">=</span> <span class="cn">FALSE</span>, </span>
+<span>    data.name <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/deparse.html" class="external-link">deparse</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/substitute.html" class="external-link">substitute</a></span><span class="op">(</span><span class="va">object</span><span class="op">)</span><span class="op">)</span>, <span class="va">...</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># S3 method for factor</span></span>
+<span><span class="fu">summaryStats</span><span class="op">(</span><span class="va">object</span>, group <span class="op">=</span> <span class="cn">NULL</span>, </span>
+<span>    drop.unused.levels <span class="op">=</span> <span class="cn">TRUE</span>, </span>
+<span>    digits <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/Extremes.html" class="external-link">max</a></span><span class="op">(</span><span class="fl">3</span>, <span class="fu"><a href="https://rdrr.io/r/base/options.html" class="external-link">getOption</a></span><span class="op">(</span><span class="st">"digits"</span><span class="op">)</span> <span class="op">-</span> <span class="fl">3</span><span class="op">)</span>, </span>
+<span>    digit.type <span class="op">=</span> <span class="st">"round"</span>, drop0trailing <span class="op">=</span> <span class="cn">TRUE</span>,  </span>
+<span>    show.na <span class="op">=</span> <span class="cn">TRUE</span>, show.0.na <span class="op">=</span> <span class="cn">FALSE</span>, p.value <span class="op">=</span> <span class="cn">FALSE</span>, </span>
+<span>    p.value.digits <span class="op">=</span> <span class="fl">2</span>, p.value.digit.type <span class="op">=</span> <span class="st">"signif"</span>, </span>
+<span>    test <span class="op">=</span> <span class="st">"chisq"</span>, test.arg.list <span class="op">=</span> <span class="cn">NULL</span>, combine.levels <span class="op">=</span> <span class="cn">TRUE</span>, </span>
+<span>    combine.groups <span class="op">=</span> <span class="cn">FALSE</span>, rm.group.na <span class="op">=</span> <span class="cn">TRUE</span>, </span>
+<span>    ci <span class="op">=</span> <span class="va">p.value</span> <span class="op">&amp;</span> <span class="va">test</span> <span class="op">!=</span> <span class="st">"chisq"</span>, conf.level <span class="op">=</span> <span class="fl">0.95</span>, </span>
+<span>    stats.in.rows <span class="op">=</span> <span class="cn">FALSE</span>, <span class="va">...</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># S3 method for character</span></span>
+<span><span class="fu">summaryStats</span><span class="op">(</span><span class="va">object</span>, <span class="va">...</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># S3 method for logical</span></span>
+<span><span class="fu">summaryStats</span><span class="op">(</span><span class="va">object</span>, <span class="va">...</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># S3 method for data.frame</span></span>
+<span><span class="fu">summaryStats</span><span class="op">(</span><span class="va">object</span>, <span class="va">...</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># S3 method for matrix</span></span>
+<span><span class="fu">summaryStats</span><span class="op">(</span><span class="va">object</span>, <span class="va">...</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># S3 method for list</span></span>
+<span><span class="fu">summaryStats</span><span class="op">(</span><span class="va">object</span>, <span class="va">...</span><span class="op">)</span></span></code></pre></div>
     </div>
 
     <div id="arguments">
@@ -124,69 +124,85 @@ The summary statistics include: sample size, number of missing values,
   can be given, indicating the observations in the vector <code>y</code> are to be grouped 
   according to the levels of the factor <code>g</code> (the form <code>y ~ 1</code> indicates no grouping).  
   <code>NA</code>s are allowed in the data.</p></dd>
-<dt>data</dt>
+
+  <dt>data</dt>
 <dd><p>when <code>object</code> is a formula, <code>data</code> specifies an optional data frame, list or 
   environment (or object coercible by <code>as.data.frame</code> to a data frame) containing the 
   variables in the model.  If not found in <code>data</code>, the variables are taken from 
   <code>environment(formula)</code>, typically the environment from which <br><code>summaryStats</code> is called.</p></dd>
-<dt>subset</dt>
+
+  <dt>subset</dt>
 <dd><p>when <code>object</code> is a formula, <code>subset</code> specifies an optional vector specifying 
   a subset of observations to be used.</p></dd>
-<dt>na.action</dt>
+
+  <dt>na.action</dt>
 <dd><p>when <code>object</code> is a formula, <code>na.action</code> specifies a function which indicates 
   what should happen when the data contain <code>NA</code>s. The default is <code><a href="https://rdrr.io/r/stats/na.fail.html" class="external-link">na.pass</a></code>.</p></dd>
-<dt>group</dt>
+
+  <dt>group</dt>
 <dd><p>when <code>object</code> is a numeric vector or factor, <code>group</code> is a factor or character vector 
   indicating which group each observation belongs to.  When <code>object</code> is a matrix or data frame
   this argument is ignored and the columns define the groups.  When <code>object</code> is a formula, 
   this argument is ignored and the right-hand side of the formula specifies the grouping variable.</p></dd>
-<dt>drop.unused.levels</dt>
+
+  <dt>drop.unused.levels</dt>
 <dd><p>when <code>drop.unused.levels=TRUE</code>, groups with no observations are dropped.</p></dd>
-<dt>se</dt>
+
+  <dt>se</dt>
 <dd><p>for numeric data, logical scalar indicating whether to include 
   the standard error of the mean in the summary statistics.  
   The default value is <code>se=FALSE</code>.</p></dd>
-<dt>quartiles</dt>
+
+  <dt>quartiles</dt>
 <dd><p>for numeric data, logical scalar indicating whether to include 
   the estimated 25th and 75th percentiles in the summary statistics.  
   The default value is <br><code>quartiles=FALSE</code>.</p></dd>
-<dt>digits</dt>
+
+  <dt>digits</dt>
 <dd><p>integer indicating the number of digits to use for the summary statistics.  
   When <code>digit.type="signif"</code>, <code>digits</code> indicates the number of significant 
   digits.  When <code>digit.type="round"</code>, <code>digits</code> indicates the number of 
   decimal places to round to.  The default value is <code>max(3, getOption("digits") - 3)</code>, 
   that is, the maximum of 3 versus the current setting of the <code>"digits"</code> component 
   of <code>.Options</code> minus 3.</p></dd>
-<dt>digit.type</dt>
+
+  <dt>digit.type</dt>
 <dd><p>character string indicating whether the <code>digits</code> argument refers to significant digits 
   (<code>digit.type="signif"</code>), or how many decimal places to round to <br>
   (<code>digit.type="round"</code>, the default).</p></dd>
-<dt>drop0trailing</dt>
+
+  <dt>drop0trailing</dt>
 <dd><p>logical scalar indicating whether to drop trailing 0's when printing the summary statistics.  
   The value of this argument is added as an attribute to the returned list and is used by the 
   <code><a href="print.summaryStats.html">print.summaryStats</a></code> function.  The default value is <code>TRUE</code>.</p></dd>
-<dt>show.na</dt>
+
+  <dt>show.na</dt>
 <dd><p>logical scalar indicating whether to return the number of missing values.  
   The default value is <code>show.na=TRUE</code>.</p></dd>
-<dt>show.0.na</dt>
+
+  <dt>show.0.na</dt>
 <dd><p>logical scalar indicating whether to diplay the number of missing values in the case when 
   there are no missing values.  The default value is <br><code>show.0.na=FALSE</code>.</p></dd>
-<dt>p.value</dt>
+
+  <dt>p.value</dt>
 <dd><p>logical scalar indicating whether to return the p-value associated with a test of hypothesis.  
   The default value is <code>p.value=FALSE</code>.  
   <b>Numeric data:</b>  if there are no groups the p-value is associated with the t-test to test 
   whether the mean is different from 0; if there are groups see the explanation for the argument 
   <code>group.p.value.type</code> below.  <b>Factors:</b>  the p-value is associated with the test 
   specified by the argument <code>test</code> (see below).</p></dd>
-<dt>p.value.digits</dt>
+
+  <dt>p.value.digits</dt>
 <dd><p>integer indicating the number of digits to use for the p-value.  When <br><code>p.value.digit.type="signif"</code>, <code>p.value.digits</code> indicates the 
   number of significant digits.  When <code>p.value.digit.type="round"</code>, <code>p.value.digits</code> 
   indicates the number of decimal places to round to.  The default value is <br><code>p.value.digits=2</code>.</p></dd>
-<dt>p.value.digit.type</dt>
+
+  <dt>p.value.digit.type</dt>
 <dd><p>character string indicating whether the <code>p.value.digits</code> argument refers to 
   significant digits (<code>p.value.digit.type="signif"</code>, the default), or how many 
   decimal places to round to (<code>p.value.digit.type="round"</code>).</p></dd>
-<dt>test</dt>
+
+  <dt>test</dt>
 <dd><p><b>Numeric data:</b>  character string indicating whether to compute p-values and confidence 
   intervals based on parametric (<code>test="parametric"</code>; the default) or nonparametric 
   (<code>test="nonparametric"</code>) tests when <code>p.value=TRUE</code> and/or <code>ci=TRUE</code>.  
@@ -205,13 +221,15 @@ The summary statistics include: sample size, number of missing values,
   Fisher's exact test is only available when the number of levels in <code>group</code> is \(\ge 2\).  
   The exact binomial test is only available when <code>group</code> is not supplied and the number of levels 
   in <code>object</code> is 2.</p></dd>
-<dt>paired</dt>
+
+  <dt>paired</dt>
 <dd><p>applicable only to the case when there are two groups: <br>
   logical scalar indicating whether the observations in the first group are paired with those 
   in the second group.  The default is <code>paired=FALSE</code>.  
   NOTE:  If the argument <code>test.arg.list</code> (see below) contains a component named <code>paired</code>, 
   the value of that component is set to the value of the argument <code>paired</code>.</p></dd>
-<dt>test.arg.list</dt>
+
+  <dt>test.arg.list</dt>
 <dd><p>a list with additional arguments to pass to the test used to compute p-values and confidence 
   intervals.  For numeric data, when <code>test="parametric"</code>, <br><code>p.value=TRUE</code>, 
   <code>group.p.value.type="between"</code> and there are two groups, if this argument is 
@@ -219,16 +237,19 @@ The summary statistics include: sample size, number of missing values,
   Note that this overrides the default behavior of <code><a href="https://rdrr.io/r/stats/t.test.html" class="external-link">t.test</a></code> when there are two groups.  <br>
   NOTE: If <code>test.arg.list</code> contains a component named <code>paired</code>, the value of 
   that component is set to the value of the argument <code>paired</code> (see above).</p></dd>
-<dt>combine.groups</dt>
+
+  <dt>combine.groups</dt>
 <dd><p>logical scalar indicating whether to show summary statistics for all groups combined.  
   <b>Numeric data:</b>  the default value is <code>TRUE</code> if <code>p.value=TRUE</code>, otherwise <code>FALSE</code>.  
   <b>Factors:</b>  the default value is <code>FALSE</code>.</p></dd>
-<dt>rm.group.na</dt>
+
+  <dt>rm.group.na</dt>
 <dd><p>logical scalar indicating whether to remove missing values from the <code>group</code> argument.  
   If <code>rm.group.na=FALSE</code> and <code>group</code> contains missing values then an error is returned.  
   If <code>rm.group.na=TRUE</code> and <code>group</code> contains missing values then a warning is issued.  
   By default <code>rm.group.na=TRUE</code>.</p></dd>
-<dt>group.p.value.type</dt>
+
+  <dt>group.p.value.type</dt>
 <dd><p>for numeric data, character string indicating which p-value(s) to compute when 
   there is more than one group.  When <code>group.p.value.type="between"</code> (the default when 
   <code>combine.groups=TRUE</code>), the p-value is associated with the two-sample t-test (or the 
@@ -238,13 +259,15 @@ The summary statistics include: sample size, number of missing values,
   (the default when <code>combine.groups=FALSE</code>), the computed p-values for each group are 
   associated with the one-sample t-test (or Wilcox signed rank test) to test whether the group 
   mean (location) is different from 0.</p></dd>
-<dt>alternative</dt>
+
+  <dt>alternative</dt>
 <dd><p>for numeric data, character string indicating which alternative to assume 
   for p-values and confidence intervals.  Possible values are <code>"two.sided"</code> (the default), 
   <code>"less"</code>, and <code>"greater"</code>.  This argument is 
   ignored for p-values in the case of three or more groups when <code>group.p.value.type="between"</code>, 
   and is ignored for confidence intervals in the case of three or more groups when <br><code>ci.between=TRUE</code>.</p></dd>
-<dt>ci</dt>
+
+  <dt>ci</dt>
 <dd><p><b>Numeric data:</b>  logical scalar indicating whether to compute a confidence interval 
   for the mean or each group mean.  The default value is <code>FALSE</code> unless 
   <code>p.value=TRUE</code> and there are no groups, or when 
@@ -256,42 +279,59 @@ The summary statistics include: sample size, number of missing values,
   When <code>group</code> is supplied and the number of levels in <code>group</code> is 2, if <code>ci=TRUE</code> and 
   <code>test="prop"</code>, a confidence interval for the difference between <em>percents</em> (not proportions) 
   is computed, and if <code>test="fisher"</code> a confidence interval for the odds ratio is computed.</p></dd>
-<dt>ci.between</dt>
+
+  <dt>ci.between</dt>
 <dd><p>for numeric data, logical scalar indicating whether to compute a confidence interval 
   for the difference between group means when there are two groups.  
   The default value is <code>ci.between=TRUE</code> when <code>p.value=TRUE</code> 
   and <br><code>group.p.value.type="between"</code>, otherwise this argument is ignored.</p></dd>
-<dt>conf.level</dt>
+
+  <dt>conf.level</dt>
 <dd><p>numeric scalar between 0 and 1 indicating the confidence level associated with the confidence intervals.  
   The default value is <code>conf.level=0.95</code>.</p></dd>
-<dt>stats.in.rows</dt>
+
+  <dt>stats.in.rows</dt>
 <dd><p>logical scalar indicating whether to show the summary statistics in the rows or columns of the 
   output.  The default is <code>stats.in.rows=FALSE</code>.</p></dd>
-<dt>data.name</dt>
+
+  <dt>data.name</dt>
 <dd><p>character string indicating the name of the data used for the summary statistics.</p></dd>
-<dt>combine.levels</dt>
+
+  <dt>combine.levels</dt>
 <dd><p>for factors, a logical scalar indicating whether to compute summary statistics based on 
   combining all levels of a factor.</p></dd>
-<dt>...</dt>
+
+  <dt>...</dt>
 <dd><p>additional arguments affecting the summary statistics produced.</p></dd>
+
 </dl></div>
     <div id="value">
     <h2>Value</h2>
-    <p>an object of class <code>"summaryStats"</code> (see <code><a href="summaryStats.object.html">summaryStats.object</a></code>.  
+    
+
+<p>an object of class <code>"summaryStats"</code> (see <code><a href="summaryStats.object.html">summaryStats.object</a></code>.  
   Objects of class <code>"summaryStats"</code> are numeric matrices that contain the 
   summary statisics produced by a call to <code>summaryStats</code> or <code><a href="summaryFull.html">summaryFull</a></code>.  
   These objects have a special printing method that by default removes 
   trailing zeros for sample size entries and prints blanks for statistics that are 
-  normally displayed as <code>NA</code> (see <code><a href="print.summaryStats.html">print.summaryStats</a></code>).
-  Summary statistics for numeric data include sample size, mean, standard deviation, median, 
+  normally displayed as <code>NA</code> (see <code><a href="print.summaryStats.html">print.summaryStats</a></code>).</p>
+
+
+<p>Summary statistics for numeric data include sample size, mean, standard deviation, median, 
   min, and max.  Options include the standard error of the mean (when <code>se=TRUE</code>), 
   the estimated quartiles (when <code>quartiles=TRUE</code>), p-values (when <code>p.value=TRUE</code>),
-  and/or confidence intervals (when <code>ci=TRUE</code> and/or <code>ci.between=TRUE</code>).
-  Summary statistics for factors include the sample size for each level of the factor and the 
-  percent of the total for that level.  Options include a p-value (when <code>p.value=TRUE</code>).
-  Note that unlike the <span style="R">R</span> function <code><a href="https://rdrr.io/r/base/summary.html" class="external-link">summary</a></code> and the <span class="pkg">EnvStats</span> function 
-<code><a href="summaryFull.html">summaryFull</a></code>, by default the <code>digits</code> argument for the <span class="pkg">EnvStats</span> function 
-<code>summaryStats</code> refers to how many decimal places to round to, not how many 
+  and/or confidence intervals (when <code>ci=TRUE</code> and/or <code>ci.between=TRUE</code>).</p>
+
+
+<p>Summary statistics for factors include the sample size for each level of the factor and the 
+  percent of the total for that level.  Options include a p-value (when <code>p.value=TRUE</code>).</p>
+
+
+<p>Note that unlike the <span style="R">R</span> function <code><a href="https://rdrr.io/r/base/summary.html" class="external-link">summary</a></code> and the <span class="pkg">EnvStats</span> function</p>
+<p></p>
+<p><code><a href="summaryFull.html">summaryFull</a></code>, by default the <code>digits</code> argument for the <span class="pkg">EnvStats</span> function</p>
+<p></p>
+<p><code>summaryStats</code> refers to how many decimal places to round to, not how many 
   significant digits to use (see the explanation of the argument <code>digit.type</code> above).</p>
     </div>
     <div id="references">
@@ -317,16 +357,16 @@ The summary statistics include: sample size, number of missing values,
 
     <div id="ref-examples">
     <h2>Examples</h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in">  <span class="co"># The guidance document USEPA (1994b, pp. 6.22--6.25)</span></span>
-<span class="r-in">  <span class="co"># contains measures of 1,2,3,4-Tetrachlorobenzene (TcCB)</span></span>
-<span class="r-in">  <span class="co"># concentrations (in parts per billion) from soil samples</span></span>
-<span class="r-in">  <span class="co"># at a Reference area and a Cleanup area. These data are strored</span></span>
-<span class="r-in">  <span class="co"># in the data frame EPA.94b.tccb.df.</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="co">#----------</span></span>
-<span class="r-in">  <span class="co"># First, create summary statistics by area based on the log-transformed data. </span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="fu">summaryStats</span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/Log.html" class="external-link">log10</a></span><span class="op">(</span><span class="va">TcCB</span><span class="op">)</span> <span class="op">~</span> <span class="va">Area</span>, data <span class="op">=</span> <span class="va">EPA.94b.tccb.df</span><span class="op">)</span></span>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span>  <span class="co"># The guidance document USEPA (1994b, pp. 6.22--6.25)</span></span></span>
+<span class="r-in"><span>  <span class="co"># contains measures of 1,2,3,4-Tetrachlorobenzene (TcCB)</span></span></span>
+<span class="r-in"><span>  <span class="co"># concentrations (in parts per billion) from soil samples</span></span></span>
+<span class="r-in"><span>  <span class="co"># at a Reference area and a Cleanup area. These data are strored</span></span></span>
+<span class="r-in"><span>  <span class="co"># in the data frame EPA.94b.tccb.df.</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="co">#----------</span></span></span>
+<span class="r-in"><span>  <span class="co"># First, create summary statistics by area based on the log-transformed data. </span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="fu">summaryStats</span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/Log.html" class="external-link">log10</a></span><span class="op">(</span><span class="va">TcCB</span><span class="op">)</span> <span class="op">~</span> <span class="va">Area</span>, data <span class="op">=</span> <span class="va">EPA.94b.tccb.df</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>            N    Mean     SD  Median     Min    Max</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Cleanup   77 -0.2377 0.5908 -0.3665 -1.0458 2.2270</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Reference 47 -0.2691 0.2032 -0.2676 -0.6576 0.1239</span>
@@ -336,15 +376,15 @@ The summary statistics include: sample size, number of missing values,
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] FALSE</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> attr(,"drop0trailing")</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] TRUE</span>
-<span class="r-in">  <span class="co">#           N    Mean     SD  Median     Min    Max</span></span>
-<span class="r-in">  <span class="co">#Cleanup   77 -0.2377 0.5908 -0.3665 -1.0458 2.2270</span></span>
-<span class="r-in">  <span class="co">#Reference 47 -0.2691 0.2032 -0.2676 -0.6576 0.1239</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="co">#----------</span></span>
-<span class="r-in">  <span class="co"># Now create summary statistics by area based on the log-transformed data </span></span>
-<span class="r-in">  <span class="co"># and use the t-test to compare the areas.</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="fu">summaryStats</span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/Log.html" class="external-link">log10</a></span><span class="op">(</span><span class="va">TcCB</span><span class="op">)</span> <span class="op">~</span> <span class="va">Area</span>, data <span class="op">=</span> <span class="va">EPA.94b.tccb.df</span>, p.value <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span>
+<span class="r-in"><span>  <span class="co">#           N    Mean     SD  Median     Min    Max</span></span></span>
+<span class="r-in"><span>  <span class="co">#Cleanup   77 -0.2377 0.5908 -0.3665 -1.0458 2.2270</span></span></span>
+<span class="r-in"><span>  <span class="co">#Reference 47 -0.2691 0.2032 -0.2676 -0.6576 0.1239</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="co">#----------</span></span></span>
+<span class="r-in"><span>  <span class="co"># Now create summary statistics by area based on the log-transformed data </span></span></span>
+<span class="r-in"><span>  <span class="co"># and use the t-test to compare the areas.</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="fu">summaryStats</span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/Log.html" class="external-link">log10</a></span><span class="op">(</span><span class="va">TcCB</span><span class="op">)</span> <span class="op">~</span> <span class="va">Area</span>, data <span class="op">=</span> <span class="va">EPA.94b.tccb.df</span>, p.value <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>             N    Mean     SD  Median     Min    Max    Diff p.value.between</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Cleanup    77 -0.2377 0.5908 -0.3665 -1.0458 2.2270      NA              NA</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Reference  47 -0.2691 0.2032 -0.2676 -0.6576 0.1239      NA              NA</span>
@@ -359,9 +399,9 @@ The summary statistics include: sample size, number of missing values,
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] FALSE</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> attr(,"drop0trailing")</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] TRUE</span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="fu">summaryStats</span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/Log.html" class="external-link">log10</a></span><span class="op">(</span><span class="va">TcCB</span><span class="op">)</span> <span class="op">~</span> <span class="va">Area</span>, data <span class="op">=</span> <span class="va">EPA.94b.tccb.df</span>, </span>
-<span class="r-in">    p.value <span class="op">=</span> <span class="cn">TRUE</span>, stats.in.rows <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="fu">summaryStats</span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/Log.html" class="external-link">log10</a></span><span class="op">(</span><span class="va">TcCB</span><span class="op">)</span> <span class="op">~</span> <span class="va">Area</span>, data <span class="op">=</span> <span class="va">EPA.94b.tccb.df</span>, </span></span>
+<span class="r-in"><span>    p.value <span class="op">=</span> <span class="cn">TRUE</span>, stats.in.rows <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>                 Cleanup Reference Combined</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> N               77.0000   47.0000 124.0000</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Mean            -0.2377   -0.2691  -0.2496</span>
@@ -379,29 +419,29 @@ The summary statistics include: sample size, number of missing values,
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] TRUE</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> attr(,"drop0trailing")</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] TRUE</span>
-<span class="r-in">  <span class="co">#                Cleanup  Reference Combined</span></span>
-<span class="r-in">  <span class="co">#N                77       47       124     </span></span>
-<span class="r-in">  <span class="co">#Mean             -0.2377  -0.2691   -0.2496</span></span>
-<span class="r-in">  <span class="co">#SD                0.5908   0.2032    0.481 </span></span>
-<span class="r-in">  <span class="co">#Median           -0.3665  -0.2676   -0.3143</span></span>
-<span class="r-in">  <span class="co">#Min              -1.0458  -0.6576   -1.0458</span></span>
-<span class="r-in">  <span class="co">#Max               2.227    0.1239    2.227 </span></span>
-<span class="r-in">  <span class="co">#Diff                                -0.0313</span></span>
-<span class="r-in">  <span class="co">#p.value.between                      0.73  </span></span>
-<span class="r-in">  <span class="co">#95%.LCL.between                     -0.2082</span></span>
-<span class="r-in">  <span class="co">#95%.UCL.between                      0.1456</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="co">#====================================================================</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="co"># Page 9-3 of USEPA (2009) lists trichloroethene </span></span>
-<span class="r-in">  <span class="co"># concentrations (TCE; mg/L) collected from groundwater at two wells.</span></span>
-<span class="r-in">  <span class="co"># Here, the seven non-detects have been set to their detection limit.</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="co">#----------</span></span>
-<span class="r-in">  <span class="co"># First, compute summary statistics for all TCE observations.</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="fu">summaryStats</span><span class="op">(</span><span class="va">TCE.mg.per.L</span> <span class="op">~</span> <span class="fl">1</span>, data <span class="op">=</span> <span class="va">EPA.09.Table.9.1.TCE.df</span>, </span>
-<span class="r-in">    digits <span class="op">=</span> <span class="fl">3</span>, data.name <span class="op">=</span> <span class="st">"TCE"</span><span class="op">)</span></span>
+<span class="r-in"><span>  <span class="co">#                Cleanup  Reference Combined</span></span></span>
+<span class="r-in"><span>  <span class="co">#N                77       47       124     </span></span></span>
+<span class="r-in"><span>  <span class="co">#Mean             -0.2377  -0.2691   -0.2496</span></span></span>
+<span class="r-in"><span>  <span class="co">#SD                0.5908   0.2032    0.481 </span></span></span>
+<span class="r-in"><span>  <span class="co">#Median           -0.3665  -0.2676   -0.3143</span></span></span>
+<span class="r-in"><span>  <span class="co">#Min              -1.0458  -0.6576   -1.0458</span></span></span>
+<span class="r-in"><span>  <span class="co">#Max               2.227    0.1239    2.227 </span></span></span>
+<span class="r-in"><span>  <span class="co">#Diff                                -0.0313</span></span></span>
+<span class="r-in"><span>  <span class="co">#p.value.between                      0.73  </span></span></span>
+<span class="r-in"><span>  <span class="co">#95%.LCL.between                     -0.2082</span></span></span>
+<span class="r-in"><span>  <span class="co">#95%.UCL.between                      0.1456</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="co">#====================================================================</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="co"># Page 9-3 of USEPA (2009) lists trichloroethene </span></span></span>
+<span class="r-in"><span>  <span class="co"># concentrations (TCE; mg/L) collected from groundwater at two wells.</span></span></span>
+<span class="r-in"><span>  <span class="co"># Here, the seven non-detects have been set to their detection limit.</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="co">#----------</span></span></span>
+<span class="r-in"><span>  <span class="co"># First, compute summary statistics for all TCE observations.</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="fu">summaryStats</span><span class="op">(</span><span class="va">TCE.mg.per.L</span> <span class="op">~</span> <span class="fl">1</span>, data <span class="op">=</span> <span class="va">EPA.09.Table.9.1.TCE.df</span>, </span></span>
+<span class="r-in"><span>    digits <span class="op">=</span> <span class="fl">3</span>, data.name <span class="op">=</span> <span class="st">"TCE"</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>      N Mean    SD Median   Min  Max NA's N.Total</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> TCE 27 0.09 0.064    0.1 0.004 0.25    3      30</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> attr(,"class")</span>
@@ -410,11 +450,11 @@ The summary statistics include: sample size, number of missing values,
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] FALSE</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> attr(,"drop0trailing")</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] TRUE</span>
-<span class="r-in">  <span class="co">#     N Mean    SD Median   Min  Max NA's N.Total</span></span>
-<span class="r-in">  <span class="co">#TCE 27 0.09 0.064    0.1 0.004 0.25    3      30</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="fu">summaryStats</span><span class="op">(</span><span class="va">TCE.mg.per.L</span> <span class="op">~</span> <span class="fl">1</span>, data <span class="op">=</span> <span class="va">EPA.09.Table.9.1.TCE.df</span>,</span>
-<span class="r-in">    se <span class="op">=</span> <span class="cn">TRUE</span>, quartiles <span class="op">=</span> <span class="cn">TRUE</span>, digits <span class="op">=</span> <span class="fl">3</span>, data.name <span class="op">=</span> <span class="st">"TCE"</span><span class="op">)</span></span>
+<span class="r-in"><span>  <span class="co">#     N Mean    SD Median   Min  Max NA's N.Total</span></span></span>
+<span class="r-in"><span>  <span class="co">#TCE 27 0.09 0.064    0.1 0.004 0.25    3      30</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="fu">summaryStats</span><span class="op">(</span><span class="va">TCE.mg.per.L</span> <span class="op">~</span> <span class="fl">1</span>, data <span class="op">=</span> <span class="va">EPA.09.Table.9.1.TCE.df</span>,</span></span>
+<span class="r-in"><span>    se <span class="op">=</span> <span class="cn">TRUE</span>, quartiles <span class="op">=</span> <span class="cn">TRUE</span>, digits <span class="op">=</span> <span class="fl">3</span>, data.name <span class="op">=</span> <span class="st">"TCE"</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>      N Mean    SD    SE Median   Min  Max 1st Qu. 3rd Qu. NA's N.Total</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> TCE 27 0.09 0.064 0.012    0.1 0.004 0.25   0.031    0.12    3      30</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> attr(,"class")</span>
@@ -423,14 +463,14 @@ The summary statistics include: sample size, number of missing values,
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] FALSE</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> attr(,"drop0trailing")</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] TRUE</span>
-<span class="r-in">  <span class="co">#     N Mean    SD    SE Median   Min  Max 1st Qu. 3rd Qu. NA's N.Total</span></span>
-<span class="r-in">  <span class="co">#TCE 27 0.09 0.064 0.012    0.1 0.004 0.25   0.031    0.12    3      30</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="co">#----------</span></span>
-<span class="r-in">  <span class="co"># Now compute summary statistics by well.</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="fu">summaryStats</span><span class="op">(</span><span class="va">TCE.mg.per.L</span> <span class="op">~</span> <span class="va">Well</span>, data <span class="op">=</span> <span class="va">EPA.09.Table.9.1.TCE.df</span>, </span>
-<span class="r-in">    digits <span class="op">=</span> <span class="fl">3</span><span class="op">)</span></span>
+<span class="r-in"><span>  <span class="co">#     N Mean    SD    SE Median   Min  Max 1st Qu. 3rd Qu. NA's N.Total</span></span></span>
+<span class="r-in"><span>  <span class="co">#TCE 27 0.09 0.064 0.012    0.1 0.004 0.25   0.031    0.12    3      30</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="co">#----------</span></span></span>
+<span class="r-in"><span>  <span class="co"># Now compute summary statistics by well.</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="fu">summaryStats</span><span class="op">(</span><span class="va">TCE.mg.per.L</span> <span class="op">~</span> <span class="va">Well</span>, data <span class="op">=</span> <span class="va">EPA.09.Table.9.1.TCE.df</span>, </span></span>
+<span class="r-in"><span>    digits <span class="op">=</span> <span class="fl">3</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>         N  Mean    SD Median   Min  Max NA's N.Total</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Well.1 14 0.063 0.079  0.031 0.004 0.25    1      15</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Well.2 13 0.118 0.020  0.110 0.099 0.17    2      15</span>
@@ -440,12 +480,12 @@ The summary statistics include: sample size, number of missing values,
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] FALSE</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> attr(,"drop0trailing")</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] TRUE</span>
-<span class="r-in">  <span class="co">#        N  Mean    SD Median   Min  Max NA's N.Total</span></span>
-<span class="r-in">  <span class="co">#Well.1 14 0.063 0.079  0.031 0.004 0.25    1      15</span></span>
-<span class="r-in">  <span class="co">#Well.2 13 0.118 0.020  0.110 0.099 0.17    2      15</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="fu">summaryStats</span><span class="op">(</span><span class="va">TCE.mg.per.L</span> <span class="op">~</span> <span class="va">Well</span>, data <span class="op">=</span> <span class="va">EPA.09.Table.9.1.TCE.df</span>,</span>
-<span class="r-in">    digits <span class="op">=</span> <span class="fl">3</span>, stats.in.rows <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span>
+<span class="r-in"><span>  <span class="co">#        N  Mean    SD Median   Min  Max NA's N.Total</span></span></span>
+<span class="r-in"><span>  <span class="co">#Well.1 14 0.063 0.079  0.031 0.004 0.25    1      15</span></span></span>
+<span class="r-in"><span>  <span class="co">#Well.2 13 0.118 0.020  0.110 0.099 0.17    2      15</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="fu">summaryStats</span><span class="op">(</span><span class="va">TCE.mg.per.L</span> <span class="op">~</span> <span class="va">Well</span>, data <span class="op">=</span> <span class="va">EPA.09.Table.9.1.TCE.df</span>,</span></span>
+<span class="r-in"><span>    digits <span class="op">=</span> <span class="fl">3</span>, stats.in.rows <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>         Well.1 Well.2</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> N       14.000 13.000</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Mean     0.063  0.118</span>
@@ -461,19 +501,19 @@ The summary statistics include: sample size, number of missing values,
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] TRUE</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> attr(,"drop0trailing")</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] TRUE</span>
-<span class="r-in">  <span class="co">#        Well.1 Well.2</span></span>
-<span class="r-in">  <span class="co">#N       14     13    </span></span>
-<span class="r-in">  <span class="co">#Mean     0.063  0.118</span></span>
-<span class="r-in">  <span class="co">#SD       0.079  0.02 </span></span>
-<span class="r-in">  <span class="co">#Median   0.031  0.11 </span></span>
-<span class="r-in">  <span class="co">#Min      0.004  0.099</span></span>
-<span class="r-in">  <span class="co">#Max      0.25   0.17 </span></span>
-<span class="r-in">  <span class="co">#NA's     1      2    </span></span>
-<span class="r-in">  <span class="co">#N.Total 15     15 </span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="co"># If you want to keep trailing 0's, use the drop0trailing argument:</span></span>
-<span class="r-in">  <span class="fu">summaryStats</span><span class="op">(</span><span class="va">TCE.mg.per.L</span> <span class="op">~</span> <span class="va">Well</span>, data <span class="op">=</span> <span class="va">EPA.09.Table.9.1.TCE.df</span>,</span>
-<span class="r-in">    digits <span class="op">=</span> <span class="fl">3</span>, stats.in.rows <span class="op">=</span> <span class="cn">TRUE</span>, drop0trailing <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span>
+<span class="r-in"><span>  <span class="co">#        Well.1 Well.2</span></span></span>
+<span class="r-in"><span>  <span class="co">#N       14     13    </span></span></span>
+<span class="r-in"><span>  <span class="co">#Mean     0.063  0.118</span></span></span>
+<span class="r-in"><span>  <span class="co">#SD       0.079  0.02 </span></span></span>
+<span class="r-in"><span>  <span class="co">#Median   0.031  0.11 </span></span></span>
+<span class="r-in"><span>  <span class="co">#Min      0.004  0.099</span></span></span>
+<span class="r-in"><span>  <span class="co">#Max      0.25   0.17 </span></span></span>
+<span class="r-in"><span>  <span class="co">#NA's     1      2    </span></span></span>
+<span class="r-in"><span>  <span class="co">#N.Total 15     15 </span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="co"># If you want to keep trailing 0's, use the drop0trailing argument:</span></span></span>
+<span class="r-in"><span>  <span class="fu">summaryStats</span><span class="op">(</span><span class="va">TCE.mg.per.L</span> <span class="op">~</span> <span class="va">Well</span>, data <span class="op">=</span> <span class="va">EPA.09.Table.9.1.TCE.df</span>,</span></span>
+<span class="r-in"><span>    digits <span class="op">=</span> <span class="fl">3</span>, stats.in.rows <span class="op">=</span> <span class="cn">TRUE</span>, drop0trailing <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>         Well.1 Well.2</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> N       14.000 13.000</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Mean     0.063  0.118</span>
@@ -489,26 +529,26 @@ The summary statistics include: sample size, number of missing values,
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] TRUE</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> attr(,"drop0trailing")</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] FALSE</span>
-<span class="r-in">  <span class="co">#        Well.1 Well.2</span></span>
-<span class="r-in">  <span class="co">#N       14.000 13.000</span></span>
-<span class="r-in">  <span class="co">#Mean     0.063  0.118</span></span>
-<span class="r-in">  <span class="co">#SD       0.079  0.020</span></span>
-<span class="r-in">  <span class="co">#Median   0.031  0.110</span></span>
-<span class="r-in">  <span class="co">#Min      0.004  0.099</span></span>
-<span class="r-in">  <span class="co">#Max      0.250  0.170</span></span>
-<span class="r-in">  <span class="co">#NA's     1.000  2.000</span></span>
-<span class="r-in">  <span class="co">#N.Total 15.000 15.000</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="co">#====================================================================</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="co"># Page 13-3 of USEPA (2009) lists iron concentrations (ppm) in </span></span>
-<span class="r-in">  <span class="co"># groundwater collected from 6 wells.  </span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="co">#----------</span></span>
-<span class="r-in">  <span class="co"># First, compute summary statistics for each well.</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="fu">summaryStats</span><span class="op">(</span><span class="va">Iron.ppm</span> <span class="op">~</span> <span class="va">Well</span>, data <span class="op">=</span> <span class="va">EPA.09.Ex.13.1.iron.df</span>, </span>
-<span class="r-in">    combine.groups <span class="op">=</span> <span class="cn">FALSE</span>, digits <span class="op">=</span> <span class="fl">2</span>, stats.in.rows <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span>
+<span class="r-in"><span>  <span class="co">#        Well.1 Well.2</span></span></span>
+<span class="r-in"><span>  <span class="co">#N       14.000 13.000</span></span></span>
+<span class="r-in"><span>  <span class="co">#Mean     0.063  0.118</span></span></span>
+<span class="r-in"><span>  <span class="co">#SD       0.079  0.020</span></span></span>
+<span class="r-in"><span>  <span class="co">#Median   0.031  0.110</span></span></span>
+<span class="r-in"><span>  <span class="co">#Min      0.004  0.099</span></span></span>
+<span class="r-in"><span>  <span class="co">#Max      0.250  0.170</span></span></span>
+<span class="r-in"><span>  <span class="co">#NA's     1.000  2.000</span></span></span>
+<span class="r-in"><span>  <span class="co">#N.Total 15.000 15.000</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="co">#====================================================================</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="co"># Page 13-3 of USEPA (2009) lists iron concentrations (ppm) in </span></span></span>
+<span class="r-in"><span>  <span class="co"># groundwater collected from 6 wells.  </span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="co">#----------</span></span></span>
+<span class="r-in"><span>  <span class="co"># First, compute summary statistics for each well.</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="fu">summaryStats</span><span class="op">(</span><span class="va">Iron.ppm</span> <span class="op">~</span> <span class="va">Well</span>, data <span class="op">=</span> <span class="va">EPA.09.Ex.13.1.iron.df</span>, </span></span>
+<span class="r-in"><span>    combine.groups <span class="op">=</span> <span class="cn">FALSE</span>, digits <span class="op">=</span> <span class="fl">2</span>, stats.in.rows <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>        Well.1 Well.2 Well.3 Well.4 Well.5 Well.6</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> N        4.00   4.00   4.00   4.00   4.00   4.00</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Mean    47.01  55.74  90.86  70.43 145.24 156.32</span>
@@ -522,20 +562,20 @@ The summary statistics include: sample size, number of missing values,
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] TRUE</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> attr(,"drop0trailing")</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] TRUE</span>
-<span class="r-in">  <span class="co">#       Well.1 Well.2 Well.3 Well.4 Well.5 Well.6</span></span>
-<span class="r-in">  <span class="co">#N        4      4      4      4      4      4   </span></span>
-<span class="r-in">  <span class="co">#Mean    47.01  55.73  90.86  70.43 145.24 156.32</span></span>
-<span class="r-in">  <span class="co">#SD      12.4   20.34  59.35  25.95  92.16  51.2 </span></span>
-<span class="r-in">  <span class="co">#Median  50.05  57.05  76.73  76.95 137.66 171.93</span></span>
-<span class="r-in">  <span class="co">#Min     29.96  32.14  39.25  34.12  60.95  83.1 </span></span>
-<span class="r-in">  <span class="co">#Max     57.97  76.71 170.72  93.69 244.69 198.34</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="co">#----------</span></span>
-<span class="r-in">  <span class="co"># Note the large differences in standard deviations between wells.</span></span>
-<span class="r-in">  <span class="co"># Compute summary statistics for log(Iron), by Well.</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="fu">summaryStats</span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/Log.html" class="external-link">log</a></span><span class="op">(</span><span class="va">Iron.ppm</span><span class="op">)</span> <span class="op">~</span> <span class="va">Well</span>, data <span class="op">=</span> <span class="va">EPA.09.Ex.13.1.iron.df</span>, </span>
-<span class="r-in">    combine.groups <span class="op">=</span> <span class="cn">FALSE</span>, digits <span class="op">=</span> <span class="fl">2</span>, stats.in.rows <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span>
+<span class="r-in"><span>  <span class="co">#       Well.1 Well.2 Well.3 Well.4 Well.5 Well.6</span></span></span>
+<span class="r-in"><span>  <span class="co">#N        4      4      4      4      4      4   </span></span></span>
+<span class="r-in"><span>  <span class="co">#Mean    47.01  55.73  90.86  70.43 145.24 156.32</span></span></span>
+<span class="r-in"><span>  <span class="co">#SD      12.4   20.34  59.35  25.95  92.16  51.2 </span></span></span>
+<span class="r-in"><span>  <span class="co">#Median  50.05  57.05  76.73  76.95 137.66 171.93</span></span></span>
+<span class="r-in"><span>  <span class="co">#Min     29.96  32.14  39.25  34.12  60.95  83.1 </span></span></span>
+<span class="r-in"><span>  <span class="co">#Max     57.97  76.71 170.72  93.69 244.69 198.34</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="co">#----------</span></span></span>
+<span class="r-in"><span>  <span class="co"># Note the large differences in standard deviations between wells.</span></span></span>
+<span class="r-in"><span>  <span class="co"># Compute summary statistics for log(Iron), by Well.</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="fu">summaryStats</span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/Log.html" class="external-link">log</a></span><span class="op">(</span><span class="va">Iron.ppm</span><span class="op">)</span> <span class="op">~</span> <span class="va">Well</span>, data <span class="op">=</span> <span class="va">EPA.09.Ex.13.1.iron.df</span>, </span></span>
+<span class="r-in"><span>    combine.groups <span class="op">=</span> <span class="cn">FALSE</span>, digits <span class="op">=</span> <span class="fl">2</span>, stats.in.rows <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>        Well.1 Well.2 Well.3 Well.4 Well.5 Well.6</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> N        4.00   4.00   4.00   4.00   4.00   4.00</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Mean     3.82   3.97   4.35   4.19   4.80   5.00</span>
@@ -549,21 +589,21 @@ The summary statistics include: sample size, number of missing values,
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] TRUE</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> attr(,"drop0trailing")</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] TRUE</span>
-<span class="r-in">  <span class="co">#       Well.1 Well.2 Well.3 Well.4 Well.5 Well.6</span></span>
-<span class="r-in">  <span class="co">#N      4      4      4      4      4      4     </span></span>
-<span class="r-in">  <span class="co">#Mean   3.82   3.97   4.35   4.19   4.8    5     </span></span>
-<span class="r-in">  <span class="co">#SD     0.3    0.4    0.66   0.45   0.7    0.4   </span></span>
-<span class="r-in">  <span class="co">#Median 3.91   4.02   4.29   4.34   4.8    5.14  </span></span>
-<span class="r-in">  <span class="co">#Min    3.4    3.47   3.67   3.53   4.11   4.42  </span></span>
-<span class="r-in">  <span class="co">#Max    4.06   4.34   5.14   4.54   5.5    5.29</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="co">#----------</span></span>
-<span class="r-in">  <span class="co"># Include confidence intervals for the mean log(Fe) concentration</span></span>
-<span class="r-in">  <span class="co"># at each well, and also the p-value from the one-way </span></span>
-<span class="r-in">  <span class="co"># analysis of variance to test for a difference in well means.</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="fu">summaryStats</span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/Log.html" class="external-link">log</a></span><span class="op">(</span><span class="va">Iron.ppm</span><span class="op">)</span> <span class="op">~</span> <span class="va">Well</span>, data <span class="op">=</span> <span class="va">EPA.09.Ex.13.1.iron.df</span>, </span>
-<span class="r-in">    digits <span class="op">=</span> <span class="fl">1</span>, ci <span class="op">=</span> <span class="cn">TRUE</span>, p.value <span class="op">=</span> <span class="cn">TRUE</span>, stats.in.rows <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span>
+<span class="r-in"><span>  <span class="co">#       Well.1 Well.2 Well.3 Well.4 Well.5 Well.6</span></span></span>
+<span class="r-in"><span>  <span class="co">#N      4      4      4      4      4      4     </span></span></span>
+<span class="r-in"><span>  <span class="co">#Mean   3.82   3.97   4.35   4.19   4.8    5     </span></span></span>
+<span class="r-in"><span>  <span class="co">#SD     0.3    0.4    0.66   0.45   0.7    0.4   </span></span></span>
+<span class="r-in"><span>  <span class="co">#Median 3.91   4.02   4.29   4.34   4.8    5.14  </span></span></span>
+<span class="r-in"><span>  <span class="co">#Min    3.4    3.47   3.67   3.53   4.11   4.42  </span></span></span>
+<span class="r-in"><span>  <span class="co">#Max    4.06   4.34   5.14   4.54   5.5    5.29</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="co">#----------</span></span></span>
+<span class="r-in"><span>  <span class="co"># Include confidence intervals for the mean log(Fe) concentration</span></span></span>
+<span class="r-in"><span>  <span class="co"># at each well, and also the p-value from the one-way </span></span></span>
+<span class="r-in"><span>  <span class="co"># analysis of variance to test for a difference in well means.</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="fu">summaryStats</span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/Log.html" class="external-link">log</a></span><span class="op">(</span><span class="va">Iron.ppm</span><span class="op">)</span> <span class="op">~</span> <span class="va">Well</span>, data <span class="op">=</span> <span class="va">EPA.09.Ex.13.1.iron.df</span>, </span></span>
+<span class="r-in"><span>    digits <span class="op">=</span> <span class="fl">1</span>, ci <span class="op">=</span> <span class="cn">TRUE</span>, p.value <span class="op">=</span> <span class="cn">TRUE</span>, stats.in.rows <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>                 Well.1 Well.2 Well.3 Well.4 Well.5 Well.6 Combined</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> N                  4.0    4.0    4.0    4.0    4.0    4.0   24.000</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Mean               3.8    4.0    4.3    4.2    4.8    5.0    4.400</span>
@@ -580,44 +620,44 @@ The summary statistics include: sample size, number of missing values,
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] TRUE</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> attr(,"drop0trailing")</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] TRUE</span>
-<span class="r-in">  <span class="co">#                Well.1 Well.2 Well.3 Well.4 Well.5 Well.6 Combined</span></span>
-<span class="r-in">  <span class="co">#N                4      4      4      4      4      4     24      </span></span>
-<span class="r-in">  <span class="co">#Mean             3.8    4      4.3    4.2    4.8    5      4.4    </span></span>
-<span class="r-in">  <span class="co">#SD               0.3    0.4    0.7    0.5    0.7    0.4    0.6    </span></span>
-<span class="r-in">  <span class="co">#Median           3.9    4      4.3    4.3    4.8    5.1    4.3    </span></span>
-<span class="r-in">  <span class="co">#Min              3.4    3.5    3.7    3.5    4.1    4.4    3.4    </span></span>
-<span class="r-in">  <span class="co">#Max              4.1    4.3    5.1    4.5    5.5    5.3    5.5    </span></span>
-<span class="r-in">  <span class="co">#95%.LCL          3.3    3.3    3.3    3.5    3.7    4.4    4.1    </span></span>
-<span class="r-in">  <span class="co">#95%.UCL          4.3    4.6    5.4    4.9    5.9    5.6    4.6    </span></span>
-<span class="r-in">  <span class="co">#p.value.between                                            0.025 </span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="co">#====================================================================</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="co"># Using the built-in dataset HairEyeColor, summarize the frequencies </span></span>
-<span class="r-in">  <span class="co"># of hair color and test whether there is a difference in proportions.</span></span>
-<span class="r-in">  <span class="co"># NOTE:  The data that was originally factor data has already been </span></span>
-<span class="r-in">  <span class="co">#        collapsed into frequency counts by catetory in the object </span></span>
-<span class="r-in">  <span class="co">#        HairEyeColor.  In the examples in this section, we recreate </span></span>
-<span class="r-in">  <span class="co">#        the factor objects in order to show how summaryStats works </span></span>
-<span class="r-in">  <span class="co">#        for factor objects.</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="va">Hair</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/apply.html" class="external-link">apply</a></span><span class="op">(</span><span class="va">HairEyeColor</span>, <span class="fl">1</span>, <span class="va">sum</span><span class="op">)</span></span>
-<span class="r-in">  <span class="va">Hair</span></span>
+<span class="r-in"><span>  <span class="co">#                Well.1 Well.2 Well.3 Well.4 Well.5 Well.6 Combined</span></span></span>
+<span class="r-in"><span>  <span class="co">#N                4      4      4      4      4      4     24      </span></span></span>
+<span class="r-in"><span>  <span class="co">#Mean             3.8    4      4.3    4.2    4.8    5      4.4    </span></span></span>
+<span class="r-in"><span>  <span class="co">#SD               0.3    0.4    0.7    0.5    0.7    0.4    0.6    </span></span></span>
+<span class="r-in"><span>  <span class="co">#Median           3.9    4      4.3    4.3    4.8    5.1    4.3    </span></span></span>
+<span class="r-in"><span>  <span class="co">#Min              3.4    3.5    3.7    3.5    4.1    4.4    3.4    </span></span></span>
+<span class="r-in"><span>  <span class="co">#Max              4.1    4.3    5.1    4.5    5.5    5.3    5.5    </span></span></span>
+<span class="r-in"><span>  <span class="co">#95%.LCL          3.3    3.3    3.3    3.5    3.7    4.4    4.1    </span></span></span>
+<span class="r-in"><span>  <span class="co">#95%.UCL          4.3    4.6    5.4    4.9    5.9    5.6    4.6    </span></span></span>
+<span class="r-in"><span>  <span class="co">#p.value.between                                            0.025 </span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="co">#====================================================================</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="co"># Using the built-in dataset HairEyeColor, summarize the frequencies </span></span></span>
+<span class="r-in"><span>  <span class="co"># of hair color and test whether there is a difference in proportions.</span></span></span>
+<span class="r-in"><span>  <span class="co"># NOTE:  The data that was originally factor data has already been </span></span></span>
+<span class="r-in"><span>  <span class="co">#        collapsed into frequency counts by catetory in the object </span></span></span>
+<span class="r-in"><span>  <span class="co">#        HairEyeColor.  In the examples in this section, we recreate </span></span></span>
+<span class="r-in"><span>  <span class="co">#        the factor objects in order to show how summaryStats works </span></span></span>
+<span class="r-in"><span>  <span class="co">#        for factor objects.</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="va">Hair</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/apply.html" class="external-link">apply</a></span><span class="op">(</span><span class="va">HairEyeColor</span>, <span class="fl">1</span>, <span class="va">sum</span><span class="op">)</span></span></span>
+<span class="r-in"><span>  <span class="va">Hair</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Black Brown   Red Blond </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   108   286    71   127 </span>
-<span class="r-in">  <span class="co">#Black Brown   Red Blond </span></span>
-<span class="r-in">  <span class="co">#  108   286    71   127</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="va">Hair.color</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/names.html" class="external-link">names</a></span><span class="op">(</span><span class="va">Hair</span><span class="op">)</span></span>
-<span class="r-in">  <span class="va">Hair.fac</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/factor.html" class="external-link">factor</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/rep.html" class="external-link">rep</a></span><span class="op">(</span><span class="va">Hair.color</span>, times <span class="op">=</span> <span class="va">Hair</span><span class="op">)</span>, </span>
-<span class="r-in">    levels <span class="op">=</span> <span class="va">Hair.color</span><span class="op">)</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="co">#----------</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="co"># Compute summary statistics and perform the chi-square test </span></span>
-<span class="r-in">  <span class="co"># for equal proportions of hair color</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="fu">summaryStats</span><span class="op">(</span><span class="va">Hair.fac</span>, digits <span class="op">=</span> <span class="fl">1</span>, p.value <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span>
+<span class="r-in"><span>  <span class="co">#Black Brown   Red Blond </span></span></span>
+<span class="r-in"><span>  <span class="co">#  108   286    71   127</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="va">Hair.color</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/names.html" class="external-link">names</a></span><span class="op">(</span><span class="va">Hair</span><span class="op">)</span></span></span>
+<span class="r-in"><span>  <span class="va">Hair.fac</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/factor.html" class="external-link">factor</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/rep.html" class="external-link">rep</a></span><span class="op">(</span><span class="va">Hair.color</span>, times <span class="op">=</span> <span class="va">Hair</span><span class="op">)</span>, </span></span>
+<span class="r-in"><span>    levels <span class="op">=</span> <span class="va">Hair.color</span><span class="op">)</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="co">#----------</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="co"># Compute summary statistics and perform the chi-square test </span></span></span>
+<span class="r-in"><span>  <span class="co"># for equal proportions of hair color</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="fu">summaryStats</span><span class="op">(</span><span class="va">Hair.fac</span>, digits <span class="op">=</span> <span class="fl">1</span>, p.value <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>            N   Pct ChiSq_p</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Black    108  18.2      NA</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Brown    286  48.3      NA</span>
@@ -630,23 +670,23 @@ The summary statistics include: sample size, number of missing values,
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] FALSE</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> attr(,"drop0trailing")</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] TRUE</span>
-<span class="r-in">  <span class="co">#           N   Pct ChiSq_p</span></span>
-<span class="r-in">  <span class="co">#Black    108  18.2        </span></span>
-<span class="r-in">  <span class="co">#Brown    286  48.3        </span></span>
-<span class="r-in">  <span class="co">#Red       71  12.0        </span></span>
-<span class="r-in">  <span class="co">#Blond    127  21.5        </span></span>
-<span class="r-in">  <span class="co">#Combined 592 100.0 2.5e-39</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="co">#----------</span></span>
-<span class="r-in">  <span class="co"># Now test the hypothesis that 10% of the population from which </span></span>
-<span class="r-in">  <span class="co"># this sample was drawn has Red hair, and compute a 95% confidence </span></span>
-<span class="r-in">  <span class="co"># interval for the percent of subjects with red hair.</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="va">Red.Hair.fac</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/factor.html" class="external-link">factor</a></span><span class="op">(</span><span class="va">Hair.fac</span> <span class="op">==</span> <span class="st">"Red"</span>, levels <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="cn">TRUE</span>, <span class="cn">FALSE</span><span class="op">)</span>, </span>
-<span class="r-in">    labels <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"Red"</span>, <span class="st">"Not Red"</span><span class="op">)</span><span class="op">)</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="fu">summaryStats</span><span class="op">(</span><span class="va">Red.Hair.fac</span>, digits <span class="op">=</span> <span class="fl">1</span>, p.value <span class="op">=</span> <span class="cn">TRUE</span>, </span>
-<span class="r-in">    ci <span class="op">=</span> <span class="cn">TRUE</span>, test <span class="op">=</span> <span class="st">"binom"</span>, test.arg.list <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>p <span class="op">=</span> <span class="fl">0.1</span><span class="op">)</span><span class="op">)</span></span>
+<span class="r-in"><span>  <span class="co">#           N   Pct ChiSq_p</span></span></span>
+<span class="r-in"><span>  <span class="co">#Black    108  18.2        </span></span></span>
+<span class="r-in"><span>  <span class="co">#Brown    286  48.3        </span></span></span>
+<span class="r-in"><span>  <span class="co">#Red       71  12.0        </span></span></span>
+<span class="r-in"><span>  <span class="co">#Blond    127  21.5        </span></span></span>
+<span class="r-in"><span>  <span class="co">#Combined 592 100.0 2.5e-39</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="co">#----------</span></span></span>
+<span class="r-in"><span>  <span class="co"># Now test the hypothesis that 10% of the population from which </span></span></span>
+<span class="r-in"><span>  <span class="co"># this sample was drawn has Red hair, and compute a 95% confidence </span></span></span>
+<span class="r-in"><span>  <span class="co"># interval for the percent of subjects with red hair.</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="va">Red.Hair.fac</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/factor.html" class="external-link">factor</a></span><span class="op">(</span><span class="va">Hair.fac</span> <span class="op">==</span> <span class="st">"Red"</span>, levels <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="cn">TRUE</span>, <span class="cn">FALSE</span><span class="op">)</span>, </span></span>
+<span class="r-in"><span>    labels <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"Red"</span>, <span class="st">"Not Red"</span><span class="op">)</span><span class="op">)</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="fu">summaryStats</span><span class="op">(</span><span class="va">Red.Hair.fac</span>, digits <span class="op">=</span> <span class="fl">1</span>, p.value <span class="op">=</span> <span class="cn">TRUE</span>, </span></span>
+<span class="r-in"><span>    ci <span class="op">=</span> <span class="cn">TRUE</span>, test <span class="op">=</span> <span class="st">"binom"</span>, test.arg.list <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>p <span class="op">=</span> <span class="fl">0.1</span><span class="op">)</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>            N Pct Exact_p 95%.LCL 95%.UCL</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Red       71  12      NA     9.5    14.9</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Not Red  521  88      NA      NA      NA</span>
@@ -657,38 +697,38 @@ The summary statistics include: sample size, number of missing values,
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] FALSE</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> attr(,"drop0trailing")</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] TRUE</span>
-<span class="r-in">  <span class="co">#           N Pct Exact_p 95%.LCL 95%.UCL</span></span>
-<span class="r-in">  <span class="co">#Red       71  12             9.5    14.9</span></span>
-<span class="r-in">  <span class="co">#Not Red  521  88                        </span></span>
-<span class="r-in">  <span class="co">#Combined 592 100    0.11</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="co">#----------</span></span>
-<span class="r-in">  <span class="co"># Now test whether the percent of people with Green eyes is the </span></span>
-<span class="r-in">  <span class="co"># same for people with and without Red hair.</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="va">HairEye</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/apply.html" class="external-link">apply</a></span><span class="op">(</span><span class="va">HairEyeColor</span>, <span class="fl">1</span><span class="op">:</span><span class="fl">2</span>, <span class="va">sum</span><span class="op">)</span></span>
-<span class="r-in">  <span class="va">Hair.color</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/colnames.html" class="external-link">rownames</a></span><span class="op">(</span><span class="va">HairEye</span><span class="op">)</span></span>
-<span class="r-in">  <span class="va">Eye.color</span>  <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/colnames.html" class="external-link">colnames</a></span><span class="op">(</span><span class="va">HairEye</span><span class="op">)</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="va">n11</span> <span class="op">&lt;-</span>     <span class="va">HairEye</span><span class="op">[</span><span class="va">Hair.color</span> <span class="op">==</span> <span class="st">"Red"</span>, <span class="va">Eye.color</span> <span class="op">==</span> <span class="st">"Green"</span><span class="op">]</span></span>
-<span class="r-in">  <span class="va">n12</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/sum.html" class="external-link">sum</a></span><span class="op">(</span><span class="va">HairEye</span><span class="op">[</span><span class="va">Hair.color</span> <span class="op">==</span> <span class="st">"Red"</span>, <span class="va">Eye.color</span> <span class="op">!=</span> <span class="st">"Green"</span><span class="op">]</span><span class="op">)</span></span>
-<span class="r-in">  <span class="va">n21</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/sum.html" class="external-link">sum</a></span><span class="op">(</span><span class="va">HairEye</span><span class="op">[</span><span class="va">Hair.color</span> <span class="op">!=</span> <span class="st">"Red"</span>, <span class="va">Eye.color</span> <span class="op">==</span> <span class="st">"Green"</span><span class="op">]</span><span class="op">)</span></span>
-<span class="r-in">  <span class="va">n22</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/sum.html" class="external-link">sum</a></span><span class="op">(</span><span class="va">HairEye</span><span class="op">[</span><span class="va">Hair.color</span> <span class="op">!=</span> <span class="st">"Red"</span>, <span class="va">Eye.color</span> <span class="op">!=</span> <span class="st">"Green"</span><span class="op">]</span><span class="op">)</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="va">Hair.fac</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/factor.html" class="external-link">factor</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/rep.html" class="external-link">rep</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"Red"</span>, <span class="st">"Not Red"</span><span class="op">)</span>, <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="va">n11</span><span class="op">+</span><span class="va">n12</span>, <span class="va">n21</span><span class="op">+</span><span class="va">n22</span><span class="op">)</span><span class="op">)</span>, </span>
-<span class="r-in">    levels <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"Red"</span>, <span class="st">"Not Red"</span><span class="op">)</span><span class="op">)</span></span>
-<span class="r-in">  <span class="va">Eye.fac</span>  <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/factor.html" class="external-link">factor</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/rep.html" class="external-link">rep</a></span><span class="op">(</span><span class="st">"Green"</span>, <span class="va">n11</span><span class="op">)</span>, <span class="fu"><a href="https://rdrr.io/r/base/rep.html" class="external-link">rep</a></span><span class="op">(</span><span class="st">"Not Green"</span>, <span class="va">n12</span><span class="op">)</span>, </span>
-<span class="r-in">    <span class="fu"><a href="https://rdrr.io/r/base/rep.html" class="external-link">rep</a></span><span class="op">(</span><span class="st">"Green"</span>, <span class="va">n21</span><span class="op">)</span>, <span class="fu"><a href="https://rdrr.io/r/base/rep.html" class="external-link">rep</a></span><span class="op">(</span><span class="st">"Not Green"</span>, <span class="va">n22</span><span class="op">)</span><span class="op">)</span>, </span>
-<span class="r-in">    levels <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"Green"</span>, <span class="st">"Not Green"</span><span class="op">)</span><span class="op">)</span></span>
-<span class="r-in"></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="co">#----------</span></span>
-<span class="r-in">  <span class="co"># Here are the results using the chi-square test and computing </span></span>
-<span class="r-in">  <span class="co"># confidence limits for the difference between the two percentages</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="fu">summaryStats</span><span class="op">(</span><span class="va">Eye.fac</span>, group <span class="op">=</span> <span class="va">Hair.fac</span>, digits <span class="op">=</span> <span class="fl">1</span>, </span>
-<span class="r-in">    p.value <span class="op">=</span> <span class="cn">TRUE</span>, ci <span class="op">=</span> <span class="cn">TRUE</span>, test <span class="op">=</span> <span class="st">"prop"</span>, </span>
-<span class="r-in">    stats.in.rows <span class="op">=</span> <span class="cn">TRUE</span>, test.arg.list <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>correct <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span><span class="op">)</span></span>
+<span class="r-in"><span>  <span class="co">#           N Pct Exact_p 95%.LCL 95%.UCL</span></span></span>
+<span class="r-in"><span>  <span class="co">#Red       71  12             9.5    14.9</span></span></span>
+<span class="r-in"><span>  <span class="co">#Not Red  521  88                        </span></span></span>
+<span class="r-in"><span>  <span class="co">#Combined 592 100    0.11</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="co">#----------</span></span></span>
+<span class="r-in"><span>  <span class="co"># Now test whether the percent of people with Green eyes is the </span></span></span>
+<span class="r-in"><span>  <span class="co"># same for people with and without Red hair.</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="va">HairEye</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/apply.html" class="external-link">apply</a></span><span class="op">(</span><span class="va">HairEyeColor</span>, <span class="fl">1</span><span class="op">:</span><span class="fl">2</span>, <span class="va">sum</span><span class="op">)</span></span></span>
+<span class="r-in"><span>  <span class="va">Hair.color</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/colnames.html" class="external-link">rownames</a></span><span class="op">(</span><span class="va">HairEye</span><span class="op">)</span></span></span>
+<span class="r-in"><span>  <span class="va">Eye.color</span>  <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/colnames.html" class="external-link">colnames</a></span><span class="op">(</span><span class="va">HairEye</span><span class="op">)</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="va">n11</span> <span class="op">&lt;-</span>     <span class="va">HairEye</span><span class="op">[</span><span class="va">Hair.color</span> <span class="op">==</span> <span class="st">"Red"</span>, <span class="va">Eye.color</span> <span class="op">==</span> <span class="st">"Green"</span><span class="op">]</span></span></span>
+<span class="r-in"><span>  <span class="va">n12</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/sum.html" class="external-link">sum</a></span><span class="op">(</span><span class="va">HairEye</span><span class="op">[</span><span class="va">Hair.color</span> <span class="op">==</span> <span class="st">"Red"</span>, <span class="va">Eye.color</span> <span class="op">!=</span> <span class="st">"Green"</span><span class="op">]</span><span class="op">)</span></span></span>
+<span class="r-in"><span>  <span class="va">n21</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/sum.html" class="external-link">sum</a></span><span class="op">(</span><span class="va">HairEye</span><span class="op">[</span><span class="va">Hair.color</span> <span class="op">!=</span> <span class="st">"Red"</span>, <span class="va">Eye.color</span> <span class="op">==</span> <span class="st">"Green"</span><span class="op">]</span><span class="op">)</span></span></span>
+<span class="r-in"><span>  <span class="va">n22</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/sum.html" class="external-link">sum</a></span><span class="op">(</span><span class="va">HairEye</span><span class="op">[</span><span class="va">Hair.color</span> <span class="op">!=</span> <span class="st">"Red"</span>, <span class="va">Eye.color</span> <span class="op">!=</span> <span class="st">"Green"</span><span class="op">]</span><span class="op">)</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="va">Hair.fac</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/factor.html" class="external-link">factor</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/rep.html" class="external-link">rep</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"Red"</span>, <span class="st">"Not Red"</span><span class="op">)</span>, <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="va">n11</span><span class="op">+</span><span class="va">n12</span>, <span class="va">n21</span><span class="op">+</span><span class="va">n22</span><span class="op">)</span><span class="op">)</span>, </span></span>
+<span class="r-in"><span>    levels <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"Red"</span>, <span class="st">"Not Red"</span><span class="op">)</span><span class="op">)</span></span></span>
+<span class="r-in"><span>  <span class="va">Eye.fac</span>  <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/factor.html" class="external-link">factor</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/rep.html" class="external-link">rep</a></span><span class="op">(</span><span class="st">"Green"</span>, <span class="va">n11</span><span class="op">)</span>, <span class="fu"><a href="https://rdrr.io/r/base/rep.html" class="external-link">rep</a></span><span class="op">(</span><span class="st">"Not Green"</span>, <span class="va">n12</span><span class="op">)</span>, </span></span>
+<span class="r-in"><span>    <span class="fu"><a href="https://rdrr.io/r/base/rep.html" class="external-link">rep</a></span><span class="op">(</span><span class="st">"Green"</span>, <span class="va">n21</span><span class="op">)</span>, <span class="fu"><a href="https://rdrr.io/r/base/rep.html" class="external-link">rep</a></span><span class="op">(</span><span class="st">"Not Green"</span>, <span class="va">n22</span><span class="op">)</span><span class="op">)</span>, </span></span>
+<span class="r-in"><span>    levels <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"Green"</span>, <span class="st">"Not Green"</span><span class="op">)</span><span class="op">)</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="co">#----------</span></span></span>
+<span class="r-in"><span>  <span class="co"># Here are the results using the chi-square test and computing </span></span></span>
+<span class="r-in"><span>  <span class="co"># confidence limits for the difference between the two percentages</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="fu">summaryStats</span><span class="op">(</span><span class="va">Eye.fac</span>, group <span class="op">=</span> <span class="va">Hair.fac</span>, digits <span class="op">=</span> <span class="fl">1</span>, </span></span>
+<span class="r-in"><span>    p.value <span class="op">=</span> <span class="cn">TRUE</span>, ci <span class="op">=</span> <span class="cn">TRUE</span>, test <span class="op">=</span> <span class="st">"prop"</span>, </span></span>
+<span class="r-in"><span>    stats.in.rows <span class="op">=</span> <span class="cn">TRUE</span>, test.arg.list <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>correct <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>                 Green Not Green Combined</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Red(N)           14.0      57.0    71.00</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Red(Pct)         19.7      80.3   100.00</span>
@@ -703,22 +743,22 @@ The summary statistics include: sample size, number of missing values,
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] TRUE</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> attr(,"drop0trailing")</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] TRUE</span>
-<span class="r-in">  <span class="co">#                Green Not Green Combined</span></span>
-<span class="r-in">  <span class="co">#Red(N)           14    57        71     </span></span>
-<span class="r-in">  <span class="co">#Red(Pct)         19.7  80.3     100     </span></span>
-<span class="r-in">  <span class="co">#Not Red(N)       50   471       521     </span></span>
-<span class="r-in">  <span class="co">#Not Red(Pct)      9.6  90.4     100     </span></span>
-<span class="r-in">  <span class="co">#ChiSq_p                           0.01  </span></span>
-<span class="r-in">  <span class="co">#95%.LCL.between                   0.5   </span></span>
-<span class="r-in">  <span class="co">#95%.UCL.between                  19.7</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="co">#----------</span></span>
-<span class="r-in">  <span class="co"># Here are the results using Fisher's exact test and computing </span></span>
-<span class="r-in">  <span class="co"># confidence limits for the odds ratio</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="fu">summaryStats</span><span class="op">(</span><span class="va">Eye.fac</span>, group <span class="op">=</span> <span class="va">Hair.fac</span>, digits <span class="op">=</span> <span class="fl">1</span>, </span>
-<span class="r-in">    p.value <span class="op">=</span> <span class="cn">TRUE</span>, ci <span class="op">=</span> <span class="cn">TRUE</span>, test <span class="op">=</span> <span class="st">"fisher"</span>, </span>
-<span class="r-in">    stats.in.rows <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span>
+<span class="r-in"><span>  <span class="co">#                Green Not Green Combined</span></span></span>
+<span class="r-in"><span>  <span class="co">#Red(N)           14    57        71     </span></span></span>
+<span class="r-in"><span>  <span class="co">#Red(Pct)         19.7  80.3     100     </span></span></span>
+<span class="r-in"><span>  <span class="co">#Not Red(N)       50   471       521     </span></span></span>
+<span class="r-in"><span>  <span class="co">#Not Red(Pct)      9.6  90.4     100     </span></span></span>
+<span class="r-in"><span>  <span class="co">#ChiSq_p                           0.01  </span></span></span>
+<span class="r-in"><span>  <span class="co">#95%.LCL.between                   0.5   </span></span></span>
+<span class="r-in"><span>  <span class="co">#95%.UCL.between                  19.7</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="co">#----------</span></span></span>
+<span class="r-in"><span>  <span class="co"># Here are the results using Fisher's exact test and computing </span></span></span>
+<span class="r-in"><span>  <span class="co"># confidence limits for the odds ratio</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="fu">summaryStats</span><span class="op">(</span><span class="va">Eye.fac</span>, group <span class="op">=</span> <span class="va">Hair.fac</span>, digits <span class="op">=</span> <span class="fl">1</span>, </span></span>
+<span class="r-in"><span>    p.value <span class="op">=</span> <span class="cn">TRUE</span>, ci <span class="op">=</span> <span class="cn">TRUE</span>, test <span class="op">=</span> <span class="st">"fisher"</span>, </span></span>
+<span class="r-in"><span>    stats.in.rows <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>              Green Not Green Combined</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Red(N)        14.0      57.0   71.000</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Red(Pct)      19.7      80.3  100.000</span>
@@ -733,28 +773,28 @@ The summary statistics include: sample size, number of missing values,
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] TRUE</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> attr(,"drop0trailing")</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] TRUE</span>
-<span class="r-in">  <span class="co">#             Green Not Green Combined</span></span>
-<span class="r-in">  <span class="co">#Red(N)        14    57        71     </span></span>
-<span class="r-in">  <span class="co">#Red(Pct)      19.7  80.3     100     </span></span>
-<span class="r-in">  <span class="co">#Not Red(N)    50   471       521     </span></span>
-<span class="r-in">  <span class="co">#Not Red(Pct)   9.6  90.4     100     </span></span>
-<span class="r-in">  <span class="co">#Fisher_p                       0.015 </span></span>
-<span class="r-in">  <span class="co">#95%.LCL.OR                     1.1   </span></span>
-<span class="r-in">  <span class="co">#95%.UCL.OR                     4.6 </span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="fu"><a href="https://rdrr.io/r/base/rm.html" class="external-link">rm</a></span><span class="op">(</span><span class="va">Hair</span>, <span class="va">Hair.color</span>, <span class="va">Hair.fac</span>, <span class="va">Red.Hair.fac</span>, <span class="va">HairEye</span>, <span class="va">Eye.color</span>, </span>
-<span class="r-in">    <span class="va">n11</span>, <span class="va">n12</span>, <span class="va">n21</span>, <span class="va">n22</span>, <span class="va">Eye.fac</span><span class="op">)</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="co">#====================================================================</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="co"># The data set EPA.89b.cadmium.df contains information on </span></span>
-<span class="r-in">  <span class="co"># cadmium concentrations in groundwater collected from a</span></span>
-<span class="r-in">  <span class="co"># background and compliance well.  Compare detection frequencies </span></span>
-<span class="r-in">  <span class="co"># between the well types and test for a difference using </span></span>
-<span class="r-in">  <span class="co"># Fisher's exact test.</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="fu">summaryStats</span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/factor.html" class="external-link">factor</a></span><span class="op">(</span><span class="va">Censored</span><span class="op">)</span> <span class="op">~</span> <span class="va">Well.type</span>, data <span class="op">=</span> <span class="va">EPA.89b.cadmium.df</span>, </span>
-<span class="r-in">    digits <span class="op">=</span> <span class="fl">1</span>, p.value <span class="op">=</span> <span class="cn">TRUE</span>, test <span class="op">=</span> <span class="st">"fisher"</span><span class="op">)</span></span>
+<span class="r-in"><span>  <span class="co">#             Green Not Green Combined</span></span></span>
+<span class="r-in"><span>  <span class="co">#Red(N)        14    57        71     </span></span></span>
+<span class="r-in"><span>  <span class="co">#Red(Pct)      19.7  80.3     100     </span></span></span>
+<span class="r-in"><span>  <span class="co">#Not Red(N)    50   471       521     </span></span></span>
+<span class="r-in"><span>  <span class="co">#Not Red(Pct)   9.6  90.4     100     </span></span></span>
+<span class="r-in"><span>  <span class="co">#Fisher_p                       0.015 </span></span></span>
+<span class="r-in"><span>  <span class="co">#95%.LCL.OR                     1.1   </span></span></span>
+<span class="r-in"><span>  <span class="co">#95%.UCL.OR                     4.6 </span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/r/base/rm.html" class="external-link">rm</a></span><span class="op">(</span><span class="va">Hair</span>, <span class="va">Hair.color</span>, <span class="va">Hair.fac</span>, <span class="va">Red.Hair.fac</span>, <span class="va">HairEye</span>, <span class="va">Eye.color</span>, </span></span>
+<span class="r-in"><span>    <span class="va">n11</span>, <span class="va">n12</span>, <span class="va">n21</span>, <span class="va">n22</span>, <span class="va">Eye.fac</span><span class="op">)</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="co">#====================================================================</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="co"># The data set EPA.89b.cadmium.df contains information on </span></span></span>
+<span class="r-in"><span>  <span class="co"># cadmium concentrations in groundwater collected from a</span></span></span>
+<span class="r-in"><span>  <span class="co"># background and compliance well.  Compare detection frequencies </span></span></span>
+<span class="r-in"><span>  <span class="co"># between the well types and test for a difference using </span></span></span>
+<span class="r-in"><span>  <span class="co"># Fisher's exact test.</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="fu">summaryStats</span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/factor.html" class="external-link">factor</a></span><span class="op">(</span><span class="va">Censored</span><span class="op">)</span> <span class="op">~</span> <span class="va">Well.type</span>, data <span class="op">=</span> <span class="va">EPA.89b.cadmium.df</span>, </span></span>
+<span class="r-in"><span>    digits <span class="op">=</span> <span class="fl">1</span>, p.value <span class="op">=</span> <span class="cn">TRUE</span>, test <span class="op">=</span> <span class="st">"fisher"</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>          Background(N) Background(Pct) Compliance(N) Compliance(Pct) Fisher_p</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> FALSE                8            33.3            24            37.5       NA</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> TRUE                16            66.7            40            62.5       NA</span>
@@ -769,10 +809,10 @@ The summary statistics include: sample size, number of missing values,
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] FALSE</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> attr(,"drop0trailing")</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] TRUE</span>
-<span class="r-in"></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="fu">summaryStats</span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/factor.html" class="external-link">factor</a></span><span class="op">(</span><span class="va">Censored</span><span class="op">)</span> <span class="op">~</span> <span class="va">Well.type</span>, data <span class="op">=</span> <span class="va">EPA.89b.cadmium.df</span>, </span>
-<span class="r-in">    digits <span class="op">=</span> <span class="fl">1</span>, p.value <span class="op">=</span> <span class="cn">TRUE</span>, test <span class="op">=</span> <span class="st">"fisher"</span>, stats.in.rows <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="fu">summaryStats</span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/factor.html" class="external-link">factor</a></span><span class="op">(</span><span class="va">Censored</span><span class="op">)</span> <span class="op">~</span> <span class="va">Well.type</span>, data <span class="op">=</span> <span class="va">EPA.89b.cadmium.df</span>, </span></span>
+<span class="r-in"><span>    digits <span class="op">=</span> <span class="fl">1</span>, p.value <span class="op">=</span> <span class="cn">TRUE</span>, test <span class="op">=</span> <span class="st">"fisher"</span>, stats.in.rows <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>                 FALSE TRUE Combined</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Background(N)     8.0 16.0    24.00</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Background(Pct)  33.3 66.7   100.00</span>
@@ -787,30 +827,30 @@ The summary statistics include: sample size, number of missing values,
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] TRUE</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> attr(,"drop0trailing")</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] TRUE</span>
-<span class="r-in">  <span class="co">#                FALSE TRUE  Combined</span></span>
-<span class="r-in">  <span class="co">#Background(N)     8    16    24     </span></span>
-<span class="r-in">  <span class="co">#Background(Pct)  33.3  66.7 100     </span></span>
-<span class="r-in">  <span class="co">#Compliance(N)    24    40    64     </span></span>
-<span class="r-in">  <span class="co">#Compliance(Pct)  37.5  62.5 100     </span></span>
-<span class="r-in">  <span class="co">#Fisher_p                      0.81  </span></span>
-<span class="r-in">  <span class="co">#95%.LCL.OR                    0.3   </span></span>
-<span class="r-in">  <span class="co">#95%.UCL.OR                    2.5</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="co">#====================================================================</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="co">#--------------------</span></span>
-<span class="r-in">  <span class="co"># Paired Observations</span></span>
-<span class="r-in">  <span class="co">#--------------------</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="co"># The data frame ACE.13.TCE.df contians paired observations of </span></span>
-<span class="r-in">  <span class="co"># trichloroethylene (TCE; mg/L) at 10 groundwater monitoring wells </span></span>
-<span class="r-in">  <span class="co"># before and after remediation.</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co"># Compare TCE concentrations before and after remediation and </span></span>
-<span class="r-in">  <span class="co"># use a paired t-test to test for a difference between periods.</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="fu">summaryStats</span><span class="op">(</span><span class="va">TCE.mg.per.L</span> <span class="op">~</span> <span class="va">Period</span>, data <span class="op">=</span> <span class="va">ACE.13.TCE.df</span>, </span>
-<span class="r-in">    p.value <span class="op">=</span> <span class="cn">TRUE</span>, paired <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span>
+<span class="r-in"><span>  <span class="co">#                FALSE TRUE  Combined</span></span></span>
+<span class="r-in"><span>  <span class="co">#Background(N)     8    16    24     </span></span></span>
+<span class="r-in"><span>  <span class="co">#Background(Pct)  33.3  66.7 100     </span></span></span>
+<span class="r-in"><span>  <span class="co">#Compliance(N)    24    40    64     </span></span></span>
+<span class="r-in"><span>  <span class="co">#Compliance(Pct)  37.5  62.5 100     </span></span></span>
+<span class="r-in"><span>  <span class="co">#Fisher_p                      0.81  </span></span></span>
+<span class="r-in"><span>  <span class="co">#95%.LCL.OR                    0.3   </span></span></span>
+<span class="r-in"><span>  <span class="co">#95%.UCL.OR                    2.5</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="co">#====================================================================</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="co">#--------------------</span></span></span>
+<span class="r-in"><span>  <span class="co"># Paired Observations</span></span></span>
+<span class="r-in"><span>  <span class="co">#--------------------</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="co"># The data frame ACE.13.TCE.df contians paired observations of </span></span></span>
+<span class="r-in"><span>  <span class="co"># trichloroethylene (TCE; mg/L) at 10 groundwater monitoring wells </span></span></span>
+<span class="r-in"><span>  <span class="co"># before and after remediation.</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co"># Compare TCE concentrations before and after remediation and </span></span></span>
+<span class="r-in"><span>  <span class="co"># use a paired t-test to test for a difference between periods.</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="fu">summaryStats</span><span class="op">(</span><span class="va">TCE.mg.per.L</span> <span class="op">~</span> <span class="va">Period</span>, data <span class="op">=</span> <span class="va">ACE.13.TCE.df</span>, </span></span>
+<span class="r-in"><span>    p.value <span class="op">=</span> <span class="cn">TRUE</span>, paired <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>           N    Mean      SD Median   Min  Max     Diff paired.p.value.between</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Before   10 21.6240 13.5113 20.300 5.960 41.5       NA                     NA</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> After    10  3.6329  3.5544  2.480 0.272 10.7       NA                     NA</span>
@@ -825,10 +865,10 @@ The summary statistics include: sample size, number of missing values,
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] FALSE</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> attr(,"drop0trailing")</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] TRUE</span>
-<span class="r-in"></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="fu">summaryStats</span><span class="op">(</span><span class="va">TCE.mg.per.L</span> <span class="op">~</span> <span class="va">Period</span>, data <span class="op">=</span> <span class="va">ACE.13.TCE.df</span>, </span>
-<span class="r-in">    p.value <span class="op">=</span> <span class="cn">TRUE</span>, paired <span class="op">=</span> <span class="cn">TRUE</span>, stats.in.rows <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="fu">summaryStats</span><span class="op">(</span><span class="va">TCE.mg.per.L</span> <span class="op">~</span> <span class="va">Period</span>, data <span class="op">=</span> <span class="va">ACE.13.TCE.df</span>, </span></span>
+<span class="r-in"><span>    p.value <span class="op">=</span> <span class="cn">TRUE</span>, paired <span class="op">=</span> <span class="cn">TRUE</span>, stats.in.rows <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>                         Before   After Combined</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> N                      10.0000 10.0000  20.0000</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Mean                   21.6240  3.6329  12.6284</span>
@@ -846,25 +886,25 @@ The summary statistics include: sample size, number of missing values,
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] TRUE</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> attr(,"drop0trailing")</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] TRUE</span>
-<span class="r-in">  <span class="co">#                       Before   After    Combined</span></span>
-<span class="r-in">  <span class="co">#N                       10       10       20     </span></span>
-<span class="r-in">  <span class="co">#Mean                    21.624    3.6329  12.6284</span></span>
-<span class="r-in">  <span class="co">#SD                      13.5113   3.5544  13.3281</span></span>
-<span class="r-in">  <span class="co">#Median                  20.3      2.48     8.475 </span></span>
-<span class="r-in">  <span class="co">#Min                      5.96     0.272    0.272 </span></span>
-<span class="r-in">  <span class="co">#Max                     41.5     10.7     41.5   </span></span>
-<span class="r-in">  <span class="co">#Diff                                     -17.9911</span></span>
-<span class="r-in">  <span class="co">#paired.p.value.between                     0.0027</span></span>
-<span class="r-in">  <span class="co">#95%.LCL.between                          -27.9097</span></span>
-<span class="r-in">  <span class="co">#95%.UCL.between                           -8.0725</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="co">#==========</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="co"># Repeat the last example, but use a one-sided alternative since </span></span>
-<span class="r-in">  <span class="co"># remediation should decrease TCE concentration.</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="fu">summaryStats</span><span class="op">(</span><span class="va">TCE.mg.per.L</span> <span class="op">~</span> <span class="va">Period</span>, data <span class="op">=</span> <span class="va">ACE.13.TCE.df</span>, </span>
-<span class="r-in">    p.value <span class="op">=</span> <span class="cn">TRUE</span>, paired <span class="op">=</span> <span class="cn">TRUE</span>, alternative <span class="op">=</span> <span class="st">"less"</span><span class="op">)</span></span>
+<span class="r-in"><span>  <span class="co">#                       Before   After    Combined</span></span></span>
+<span class="r-in"><span>  <span class="co">#N                       10       10       20     </span></span></span>
+<span class="r-in"><span>  <span class="co">#Mean                    21.624    3.6329  12.6284</span></span></span>
+<span class="r-in"><span>  <span class="co">#SD                      13.5113   3.5544  13.3281</span></span></span>
+<span class="r-in"><span>  <span class="co">#Median                  20.3      2.48     8.475 </span></span></span>
+<span class="r-in"><span>  <span class="co">#Min                      5.96     0.272    0.272 </span></span></span>
+<span class="r-in"><span>  <span class="co">#Max                     41.5     10.7     41.5   </span></span></span>
+<span class="r-in"><span>  <span class="co">#Diff                                     -17.9911</span></span></span>
+<span class="r-in"><span>  <span class="co">#paired.p.value.between                     0.0027</span></span></span>
+<span class="r-in"><span>  <span class="co">#95%.LCL.between                          -27.9097</span></span></span>
+<span class="r-in"><span>  <span class="co">#95%.UCL.between                           -8.0725</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="co">#==========</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="co"># Repeat the last example, but use a one-sided alternative since </span></span></span>
+<span class="r-in"><span>  <span class="co"># remediation should decrease TCE concentration.</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="fu">summaryStats</span><span class="op">(</span><span class="va">TCE.mg.per.L</span> <span class="op">~</span> <span class="va">Period</span>, data <span class="op">=</span> <span class="va">ACE.13.TCE.df</span>, </span></span>
+<span class="r-in"><span>    p.value <span class="op">=</span> <span class="cn">TRUE</span>, paired <span class="op">=</span> <span class="cn">TRUE</span>, alternative <span class="op">=</span> <span class="st">"less"</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>           N    Mean      SD Median   Min  Max     Diff</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Before   10 21.6240 13.5113 20.300 5.960 41.5       NA</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> After    10  3.6329  3.5544  2.480 0.272 10.7       NA</span>
@@ -879,11 +919,11 @@ The summary statistics include: sample size, number of missing values,
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] FALSE</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> attr(,"drop0trailing")</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] TRUE</span>
-<span class="r-in"></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="fu">summaryStats</span><span class="op">(</span><span class="va">TCE.mg.per.L</span> <span class="op">~</span> <span class="va">Period</span>, data <span class="op">=</span> <span class="va">ACE.13.TCE.df</span>, </span>
-<span class="r-in">    p.value <span class="op">=</span> <span class="cn">TRUE</span>, paired <span class="op">=</span> <span class="cn">TRUE</span>, alternative <span class="op">=</span> <span class="st">"less"</span>, </span>
-<span class="r-in">    stats.in.rows <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="fu">summaryStats</span><span class="op">(</span><span class="va">TCE.mg.per.L</span> <span class="op">~</span> <span class="va">Period</span>, data <span class="op">=</span> <span class="va">ACE.13.TCE.df</span>, </span></span>
+<span class="r-in"><span>    p.value <span class="op">=</span> <span class="cn">TRUE</span>, paired <span class="op">=</span> <span class="cn">TRUE</span>, alternative <span class="op">=</span> <span class="st">"less"</span>, </span></span>
+<span class="r-in"><span>    stats.in.rows <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>                              Before   After Combined</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> N                           10.0000 10.0000  20.0000</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Mean                        21.6240  3.6329  12.6284</span>
@@ -901,17 +941,17 @@ The summary statistics include: sample size, number of missing values,
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] TRUE</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> attr(,"drop0trailing")</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] TRUE</span>
-<span class="r-in">  <span class="co">#                            Before   After    Combined</span></span>
-<span class="r-in">  <span class="co">#N                            10       10       20     </span></span>
-<span class="r-in">  <span class="co">#Mean                         21.624    3.6329  12.6284</span></span>
-<span class="r-in">  <span class="co">#SD                           13.5113   3.5544  13.3281</span></span>
-<span class="r-in">  <span class="co">#Median                       20.3      2.48     8.475 </span></span>
-<span class="r-in">  <span class="co">#Min                           5.96     0.272    0.272 </span></span>
-<span class="r-in">  <span class="co">#Max                          41.5     10.7     41.5   </span></span>
-<span class="r-in">  <span class="co">#Diff                                          -17.9911</span></span>
-<span class="r-in">  <span class="co">#paired.p.value.between.less                     0.0013</span></span>
-<span class="r-in">  <span class="co">#95%.LCL.between                                   -Inf</span></span>
-<span class="r-in">  <span class="co">#95%.UCL.between                                -9.9537</span></span>
+<span class="r-in"><span>  <span class="co">#                            Before   After    Combined</span></span></span>
+<span class="r-in"><span>  <span class="co">#N                            10       10       20     </span></span></span>
+<span class="r-in"><span>  <span class="co">#Mean                         21.624    3.6329  12.6284</span></span></span>
+<span class="r-in"><span>  <span class="co">#SD                           13.5113   3.5544  13.3281</span></span></span>
+<span class="r-in"><span>  <span class="co">#Median                       20.3      2.48     8.475 </span></span></span>
+<span class="r-in"><span>  <span class="co">#Min                           5.96     0.272    0.272 </span></span></span>
+<span class="r-in"><span>  <span class="co">#Max                          41.5     10.7     41.5   </span></span></span>
+<span class="r-in"><span>  <span class="co">#Diff                                          -17.9911</span></span></span>
+<span class="r-in"><span>  <span class="co">#paired.p.value.between.less                     0.0013</span></span></span>
+<span class="r-in"><span>  <span class="co">#95%.LCL.between                                   -Inf</span></span></span>
+<span class="r-in"><span>  <span class="co">#95%.UCL.between                                -9.9537</span></span></span>
 </code></pre></div>
     </div>
   </div>
@@ -926,7 +966,7 @@ The summary statistics include: sample size, number of missing values,
 </div>
 
 <div class="pkgdown">
-  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.2.</p>
+  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.6.</p>
 </div>
 
       </footer></div>

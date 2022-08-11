@@ -66,41 +66,41 @@
     </div>
 
     <div id="ref-usage">
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="fu">stripChart</span><span class="op">(</span><span class="va">x</span>, <span class="va">...</span><span class="op">)</span>
-
-<span class="co"># S3 method for formula</span>
-<span class="fu">stripChart</span><span class="op">(</span><span class="va">x</span>, data <span class="op">=</span> <span class="cn">NULL</span>, dlab <span class="op">=</span> <span class="cn">NULL</span>, 
-    <span class="va">subset</span>, na.action <span class="op">=</span> <span class="cn">NULL</span>, <span class="va">...</span><span class="op">)</span>
-
-<span class="co"># S3 method for default</span>
-<span class="fu">stripChart</span><span class="op">(</span><span class="va">x</span>, 
-    method <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/ifelse.html" class="external-link">ifelse</a></span><span class="op">(</span><span class="va">paired</span> <span class="op">&amp;&amp;</span> <span class="va">paired.lines</span>, <span class="st">"overplot"</span>, <span class="st">"stack"</span><span class="op">)</span>, 
-    seed <span class="op">=</span> <span class="fl">47</span>, jitter <span class="op">=</span> <span class="fl">0.1</span> <span class="op">*</span> <span class="va">cex</span>, offset <span class="op">=</span> <span class="fl">1</span><span class="op">/</span><span class="fl">2</span>, vertical <span class="op">=</span> <span class="cn">TRUE</span>, 
-    <span class="va">group.names</span>, group.names.cex <span class="op">=</span> <span class="va">cex</span>, drop.unused.levels <span class="op">=</span> <span class="cn">TRUE</span>, 
-    add <span class="op">=</span> <span class="cn">FALSE</span>, at <span class="op">=</span> <span class="cn">NULL</span>, xlim <span class="op">=</span> <span class="cn">NULL</span>, ylim <span class="op">=</span> <span class="cn">NULL</span>, ylab <span class="op">=</span> <span class="cn">NULL</span>, 
-    xlab <span class="op">=</span> <span class="cn">NULL</span>, dlab <span class="op">=</span> <span class="st">""</span>, glab <span class="op">=</span> <span class="st">""</span>, log <span class="op">=</span> <span class="st">""</span>, pch <span class="op">=</span> <span class="fl">1</span>, col <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/graphics/par.html" class="external-link">par</a></span><span class="op">(</span><span class="st">"fg"</span><span class="op">)</span>, 
-    cex <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/graphics/par.html" class="external-link">par</a></span><span class="op">(</span><span class="st">"cex"</span><span class="op">)</span>, points.cex <span class="op">=</span> <span class="va">cex</span>, axes <span class="op">=</span> <span class="cn">TRUE</span>, frame.plot <span class="op">=</span> <span class="va">axes</span>, 
-    show.ci <span class="op">=</span> <span class="cn">TRUE</span>, location.pch <span class="op">=</span> <span class="fl">16</span>, location.cex <span class="op">=</span> <span class="va">cex</span>, 
-    conf.level <span class="op">=</span> <span class="fl">0.95</span>, min.n.for.ci <span class="op">=</span> <span class="fl">2</span>, 
-    ci.offset <span class="op">=</span> <span class="fl">3</span><span class="op">/</span><span class="fu"><a href="https://rdrr.io/r/base/ifelse.html" class="external-link">ifelse</a></span><span class="op">(</span><span class="va">n</span> <span class="op">&gt;</span> <span class="fl">2</span>, <span class="op">(</span><span class="va">n</span><span class="op">-</span><span class="fl">1</span><span class="op">)</span><span class="op">^</span><span class="op">(</span><span class="fl">1</span><span class="op">/</span><span class="fl">3</span><span class="op">)</span>, <span class="fl">1</span><span class="op">)</span>, ci.bar.lwd <span class="op">=</span> <span class="va">cex</span>, 
-    ci.bar.ends <span class="op">=</span> <span class="cn">TRUE</span>, ci.bar.ends.size <span class="op">=</span> <span class="fl">0.5</span> <span class="op">*</span> <span class="va">cex</span>, ci.bar.gap <span class="op">=</span> <span class="cn">FALSE</span>, 
-    n.text <span class="op">=</span> <span class="st">"bottom"</span>, n.text.line <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/ifelse.html" class="external-link">ifelse</a></span><span class="op">(</span><span class="va">n.text</span> <span class="op">==</span> <span class="st">"bottom"</span>, <span class="fl">2</span>, <span class="fl">0</span><span class="op">)</span>, 
-    n.text.cex <span class="op">=</span> <span class="va">cex</span>, location.scale.text <span class="op">=</span> <span class="st">"top"</span>, 
-    location.scale.digits <span class="op">=</span> <span class="fl">1</span>, nsmall <span class="op">=</span> <span class="va">location.scale.digits</span>, 
-    location.scale.text.line <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/ifelse.html" class="external-link">ifelse</a></span><span class="op">(</span><span class="va">location.scale.text</span> <span class="op">==</span> <span class="st">"top"</span>, <span class="fl">0</span>, <span class="fl">3.5</span><span class="op">)</span>, 
-    location.scale.text.cex <span class="op">=</span> 
-      <span class="va">cex</span> <span class="op">*</span> <span class="fl">0.8</span> <span class="op">*</span> <span class="fu"><a href="https://rdrr.io/r/base/ifelse.html" class="external-link">ifelse</a></span><span class="op">(</span><span class="va">n</span> <span class="op">&gt;</span> <span class="fl">6</span>, <span class="fu"><a href="https://rdrr.io/r/base/Extremes.html" class="external-link">max</a></span><span class="op">(</span><span class="fl">0.4</span>, <span class="fl">1</span> <span class="op">-</span> <span class="op">(</span><span class="va">n</span><span class="op">-</span><span class="fl">6</span><span class="op">)</span> <span class="op">*</span> <span class="fl">0.06</span><span class="op">)</span>, <span class="fl">1</span><span class="op">)</span>, 
-    p.value <span class="op">=</span> <span class="cn">FALSE</span>, p.value.digits <span class="op">=</span> <span class="fl">3</span>, p.value.line <span class="op">=</span> <span class="fl">2</span>, p.value.cex <span class="op">=</span> <span class="va">cex</span>, 
-    group.difference.ci <span class="op">=</span> <span class="va">p.value</span>, group.difference.conf.level <span class="op">=</span> <span class="fl">0.95</span>, 
-    group.difference.digits <span class="op">=</span> <span class="va">location.scale.digits</span>, 
-    ci.and.test <span class="op">=</span> <span class="st">"parametric"</span>, ci.arg.list <span class="op">=</span> <span class="cn">NULL</span>, test.arg.list <span class="op">=</span> <span class="cn">NULL</span>, 
-    alternative <span class="op">=</span> <span class="st">"two.sided"</span>, plot.diff <span class="op">=</span> <span class="cn">FALSE</span>, diff.col <span class="op">=</span> <span class="va">col</span><span class="op">[</span><span class="fl">1</span><span class="op">]</span>, 
-    diff.method <span class="op">=</span> <span class="st">"stack"</span>, diff.pch <span class="op">=</span> <span class="va">pch</span><span class="op">[</span><span class="fl">1</span><span class="op">]</span>, paired <span class="op">=</span> <span class="cn">FALSE</span>, paired.lines <span class="op">=</span> <span class="va">paired</span>, 
-    paired.lty <span class="op">=</span> <span class="fl">1</span><span class="op">:</span><span class="fl">6</span>, paired.lwd <span class="op">=</span> <span class="fl">1</span>, paired.pch <span class="op">=</span> <span class="fl">1</span><span class="op">:</span><span class="fl">14</span>, paired.col <span class="op">=</span> <span class="cn">NULL</span>, 
-    diff.name <span class="op">=</span> <span class="cn">NULL</span>, diff.name.cex <span class="op">=</span> <span class="va">group.names.cex</span>, sep.line <span class="op">=</span> <span class="cn">TRUE</span>, 
-    sep.lty <span class="op">=</span> <span class="fl">2</span>, sep.lwd <span class="op">=</span> <span class="va">cex</span>, sep.col <span class="op">=</span> <span class="st">"gray"</span>, diff.lim <span class="op">=</span> <span class="cn">NULL</span>, 
-    diff.at <span class="op">=</span> <span class="cn">NULL</span>, diff.axis.label <span class="op">=</span> <span class="cn">NULL</span>, 
-    plot.diff.mar <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">5</span>, <span class="fl">4</span>, <span class="fl">4</span>, <span class="fl">4</span><span class="op">)</span> <span class="op">+</span> <span class="fl">0.1</span>, <span class="va">...</span><span class="op">)</span></code></pre></div>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">stripChart</span><span class="op">(</span><span class="va">x</span>, <span class="va">...</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># S3 method for formula</span></span>
+<span><span class="fu">stripChart</span><span class="op">(</span><span class="va">x</span>, data <span class="op">=</span> <span class="cn">NULL</span>, dlab <span class="op">=</span> <span class="cn">NULL</span>, </span>
+<span>    <span class="va">subset</span>, na.action <span class="op">=</span> <span class="cn">NULL</span>, <span class="va">...</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># S3 method for default</span></span>
+<span><span class="fu">stripChart</span><span class="op">(</span><span class="va">x</span>, </span>
+<span>    method <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/ifelse.html" class="external-link">ifelse</a></span><span class="op">(</span><span class="va">paired</span> <span class="op">&amp;&amp;</span> <span class="va">paired.lines</span>, <span class="st">"overplot"</span>, <span class="st">"stack"</span><span class="op">)</span>, </span>
+<span>    seed <span class="op">=</span> <span class="fl">47</span>, jitter <span class="op">=</span> <span class="fl">0.1</span> <span class="op">*</span> <span class="va">cex</span>, offset <span class="op">=</span> <span class="fl">1</span><span class="op">/</span><span class="fl">2</span>, vertical <span class="op">=</span> <span class="cn">TRUE</span>, </span>
+<span>    <span class="va">group.names</span>, group.names.cex <span class="op">=</span> <span class="va">cex</span>, drop.unused.levels <span class="op">=</span> <span class="cn">TRUE</span>, </span>
+<span>    add <span class="op">=</span> <span class="cn">FALSE</span>, at <span class="op">=</span> <span class="cn">NULL</span>, xlim <span class="op">=</span> <span class="cn">NULL</span>, ylim <span class="op">=</span> <span class="cn">NULL</span>, ylab <span class="op">=</span> <span class="cn">NULL</span>, </span>
+<span>    xlab <span class="op">=</span> <span class="cn">NULL</span>, dlab <span class="op">=</span> <span class="st">""</span>, glab <span class="op">=</span> <span class="st">""</span>, log <span class="op">=</span> <span class="st">""</span>, pch <span class="op">=</span> <span class="fl">1</span>, col <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/graphics/par.html" class="external-link">par</a></span><span class="op">(</span><span class="st">"fg"</span><span class="op">)</span>, </span>
+<span>    cex <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/graphics/par.html" class="external-link">par</a></span><span class="op">(</span><span class="st">"cex"</span><span class="op">)</span>, points.cex <span class="op">=</span> <span class="va">cex</span>, axes <span class="op">=</span> <span class="cn">TRUE</span>, frame.plot <span class="op">=</span> <span class="va">axes</span>, </span>
+<span>    show.ci <span class="op">=</span> <span class="cn">TRUE</span>, location.pch <span class="op">=</span> <span class="fl">16</span>, location.cex <span class="op">=</span> <span class="va">cex</span>, </span>
+<span>    conf.level <span class="op">=</span> <span class="fl">0.95</span>, min.n.for.ci <span class="op">=</span> <span class="fl">2</span>, </span>
+<span>    ci.offset <span class="op">=</span> <span class="fl">3</span><span class="op">/</span><span class="fu"><a href="https://rdrr.io/r/base/ifelse.html" class="external-link">ifelse</a></span><span class="op">(</span><span class="va">n</span> <span class="op">&gt;</span> <span class="fl">2</span>, <span class="op">(</span><span class="va">n</span><span class="op">-</span><span class="fl">1</span><span class="op">)</span><span class="op">^</span><span class="op">(</span><span class="fl">1</span><span class="op">/</span><span class="fl">3</span><span class="op">)</span>, <span class="fl">1</span><span class="op">)</span>, ci.bar.lwd <span class="op">=</span> <span class="va">cex</span>, </span>
+<span>    ci.bar.ends <span class="op">=</span> <span class="cn">TRUE</span>, ci.bar.ends.size <span class="op">=</span> <span class="fl">0.5</span> <span class="op">*</span> <span class="va">cex</span>, ci.bar.gap <span class="op">=</span> <span class="cn">FALSE</span>, </span>
+<span>    n.text <span class="op">=</span> <span class="st">"bottom"</span>, n.text.line <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/ifelse.html" class="external-link">ifelse</a></span><span class="op">(</span><span class="va">n.text</span> <span class="op">==</span> <span class="st">"bottom"</span>, <span class="fl">2</span>, <span class="fl">0</span><span class="op">)</span>, </span>
+<span>    n.text.cex <span class="op">=</span> <span class="va">cex</span>, location.scale.text <span class="op">=</span> <span class="st">"top"</span>, </span>
+<span>    location.scale.digits <span class="op">=</span> <span class="fl">1</span>, nsmall <span class="op">=</span> <span class="va">location.scale.digits</span>, </span>
+<span>    location.scale.text.line <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/ifelse.html" class="external-link">ifelse</a></span><span class="op">(</span><span class="va">location.scale.text</span> <span class="op">==</span> <span class="st">"top"</span>, <span class="fl">0</span>, <span class="fl">3.5</span><span class="op">)</span>, </span>
+<span>    location.scale.text.cex <span class="op">=</span> </span>
+<span>      <span class="va">cex</span> <span class="op">*</span> <span class="fl">0.8</span> <span class="op">*</span> <span class="fu"><a href="https://rdrr.io/r/base/ifelse.html" class="external-link">ifelse</a></span><span class="op">(</span><span class="va">n</span> <span class="op">&gt;</span> <span class="fl">6</span>, <span class="fu"><a href="https://rdrr.io/r/base/Extremes.html" class="external-link">max</a></span><span class="op">(</span><span class="fl">0.4</span>, <span class="fl">1</span> <span class="op">-</span> <span class="op">(</span><span class="va">n</span><span class="op">-</span><span class="fl">6</span><span class="op">)</span> <span class="op">*</span> <span class="fl">0.06</span><span class="op">)</span>, <span class="fl">1</span><span class="op">)</span>, </span>
+<span>    p.value <span class="op">=</span> <span class="cn">FALSE</span>, p.value.digits <span class="op">=</span> <span class="fl">3</span>, p.value.line <span class="op">=</span> <span class="fl">2</span>, p.value.cex <span class="op">=</span> <span class="va">cex</span>, </span>
+<span>    group.difference.ci <span class="op">=</span> <span class="va">p.value</span>, group.difference.conf.level <span class="op">=</span> <span class="fl">0.95</span>, </span>
+<span>    group.difference.digits <span class="op">=</span> <span class="va">location.scale.digits</span>, </span>
+<span>    ci.and.test <span class="op">=</span> <span class="st">"parametric"</span>, ci.arg.list <span class="op">=</span> <span class="cn">NULL</span>, test.arg.list <span class="op">=</span> <span class="cn">NULL</span>, </span>
+<span>    alternative <span class="op">=</span> <span class="st">"two.sided"</span>, plot.diff <span class="op">=</span> <span class="cn">FALSE</span>, diff.col <span class="op">=</span> <span class="va">col</span><span class="op">[</span><span class="fl">1</span><span class="op">]</span>, </span>
+<span>    diff.method <span class="op">=</span> <span class="st">"stack"</span>, diff.pch <span class="op">=</span> <span class="va">pch</span><span class="op">[</span><span class="fl">1</span><span class="op">]</span>, paired <span class="op">=</span> <span class="cn">FALSE</span>, paired.lines <span class="op">=</span> <span class="va">paired</span>, </span>
+<span>    paired.lty <span class="op">=</span> <span class="fl">1</span><span class="op">:</span><span class="fl">6</span>, paired.lwd <span class="op">=</span> <span class="fl">1</span>, paired.pch <span class="op">=</span> <span class="fl">1</span><span class="op">:</span><span class="fl">14</span>, paired.col <span class="op">=</span> <span class="cn">NULL</span>, </span>
+<span>    diff.name <span class="op">=</span> <span class="cn">NULL</span>, diff.name.cex <span class="op">=</span> <span class="va">group.names.cex</span>, sep.line <span class="op">=</span> <span class="cn">TRUE</span>, </span>
+<span>    sep.lty <span class="op">=</span> <span class="fl">2</span>, sep.lwd <span class="op">=</span> <span class="va">cex</span>, sep.col <span class="op">=</span> <span class="st">"gray"</span>, diff.lim <span class="op">=</span> <span class="cn">NULL</span>, </span>
+<span>    diff.at <span class="op">=</span> <span class="cn">NULL</span>, diff.axis.label <span class="op">=</span> <span class="cn">NULL</span>, </span>
+<span>    plot.diff.mar <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">5</span>, <span class="fl">4</span>, <span class="fl">4</span>, <span class="fl">4</span><span class="op">)</span> <span class="op">+</span> <span class="fl">0.1</span>, <span class="va">...</span><span class="op">)</span></span></code></pre></div>
     </div>
 
     <div id="arguments">
@@ -116,21 +116,26 @@
   the data in the vector <code>y</code> must have the same number of observations for each level 
   of the factor <code>g</code> and for each level sorted in the same way according to the 
   pairing variable.</p></dd>
-<dt>data</dt>
+
+  <dt>data</dt>
 <dd><p>for the formula method, a data.frame (or list) from which the variables in <code>x</code> 
   should be taken.</p></dd>
-<dt>subset</dt>
+
+  <dt>subset</dt>
 <dd><p>for the formula method, an optional vector specifying a subset of observations to be 
   used for plotting.</p></dd>
-<dt>na.action</dt>
+
+  <dt>na.action</dt>
 <dd><p>for the formula method, a function which indicates what should happen when the data 
   contain <code>NA</code>s.  The default is to ignore missing values in either the response or 
   the group.</p></dd>
-<dt>...</dt>
+
+  <dt>...</dt>
 <dd><p>additional parameters passed to the default method, or by it to <code><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot</a></code>, 
   <code><a href="https://rdrr.io/r/graphics/points.html" class="external-link">points</a></code>, <code><a href="https://rdrr.io/r/graphics/axis.html" class="external-link">axis</a></code>, and <code><a href="https://rdrr.io/r/graphics/title.html" class="external-link">title</a></code> to control the 
   appearance of the plot.</p></dd>
-<dt>method</dt>
+
+  <dt>method</dt>
 <dd><p>the method to be used to separate coincident points.  When <code>method="stack"</code> 
   coincident points are stacked, when <code>method="jitter"</code> coincident points are 
   jittered, and when <code>method="overplot"</code> coincident points are overplotted.  
@@ -138,148 +143,190 @@
   default value is <code>method="overplot"</code>, otherewise the default method is 
   <code>method="stack"</code> (which differs from the default value for the <span style="R">R</span> function 
   <code><a href="https://rdrr.io/r/graphics/stripchart.html" class="external-link">stripchart</a></code>, which uses <br><code>method="overplot"</code> by default).</p></dd>
-<dt>seed</dt>
+
+  <dt>seed</dt>
 <dd><p>when <code>method="jitter"</code> is used, the argument <code>seed</code> is passed to 
   the <span style="R">R</span> function <code><a href="https://rdrr.io/r/base/Random.html" class="external-link">set.seed</a></code>.  Since jittering depends on the 
   <span style="R">R</span> random number generator, using the same value of <code>seed</code> each time 
   the same data are plotted with <code>stripChart</code> ensures that the resulting 
   plot is the same.</p></dd>
-<dt>jitter</dt>
+
+  <dt>jitter</dt>
 <dd><p>when <code>method="jitter"</code> is used, <code>jitter</code> gives the amount of jittering applied.</p></dd>
-<dt>offset</dt>
+
+  <dt>offset</dt>
 <dd><p>when stacking is used, points are stacked this many line-heights (symbol widths) apart.</p></dd>
-<dt>vertical</dt>
+
+  <dt>vertical</dt>
 <dd><p>when <code>vertical=TRUE</code> (the default), the plots are drawn vertically rather than horizontally.</p></dd>
-<dt>group.names</dt>
+
+  <dt>group.names</dt>
 <dd><p>group labels which will be printed alongside (or underneath) each plot.</p></dd>
-<dt>group.names.cex</dt>
+
+  <dt>group.names.cex</dt>
 <dd><p>numeric scalar indicating the amount by which the group labels should be scaled 
   relative to the default (see the help file for <code><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot.default</a></code>).  
   The default is the current value of the graphics parameter <code>cex</code>.</p></dd>
-<dt>drop.unused.levels</dt>
+
+  <dt>drop.unused.levels</dt>
 <dd><p>when <code>drop.unused.levels=TRUE</code>, groups with no observations are dropped.</p></dd>
-<dt>add</dt>
+
+  <dt>add</dt>
 <dd><p>logical, if true <em>add</em> the chart to the current plot.</p></dd>
-<dt>at</dt>
+
+  <dt>at</dt>
 <dd><p>numeric vector giving the locations where the charts should be drawn, 
   particularly when <code>add=TRUE</code>; defaults to <code>1:n</code> where <code>n</code> 
   is the number of groups.</p></dd>
-<dt>xlim, ylim</dt>
+
+  <dt>xlim, ylim</dt>
 <dd><p>plot limits: see <code><a href="https://rdrr.io/r/graphics/plot.window.html" class="external-link">plot.window</a></code>.</p></dd>
-<dt>ylab, xlab</dt>
+
+  <dt>ylab, xlab</dt>
 <dd><p>labels: see <code><a href="https://rdrr.io/r/graphics/title.html" class="external-link">title</a></code>.</p></dd>
-<dt>dlab, glab</dt>
+
+  <dt>dlab, glab</dt>
 <dd><p>alternate way to specify axis labels.  The <code>dlab</code> and <code>glab</code> labels may be used 
   instead of <code>xlab</code> and <code>ylab</code> if those are not specified.  <code>dlab</code> applies 
   to the continuous data axis (the \(y\)-axis unless <code>vertical=FALSE</code>), 
   and <code>glab</code> to the group axis.</p></dd>
-<dt>log</dt>
+
+  <dt>log</dt>
 <dd><p>on which axes to use a log scale: see <code><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot.default</a></code>.</p></dd>
-<dt>pch, col, cex</dt>
+
+  <dt>pch, col, cex</dt>
 <dd><p>Graphical parameters: see <code><a href="https://rdrr.io/r/graphics/par.html" class="external-link">par</a></code>.</p></dd>
-<dt>points.cex</dt>
+
+  <dt>points.cex</dt>
 <dd><p>Sets the <code>cex</code> value for the points plotted.</p></dd>
-<dt>axes, frame.plot</dt>
+
+  <dt>axes, frame.plot</dt>
 <dd><p>Axis control: see <code><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot.default</a></code>.</p></dd>
-<dt>show.ci</dt>
+
+  <dt>show.ci</dt>
 <dd><p>logical scalar indicating whether to plot the confidence interval.  The default is 
   <code>show.ci=TRUE</code>.</p></dd>
-<dt>location.pch</dt>
+
+  <dt>location.pch</dt>
 <dd><p>integer indicating which plotting character to use to indicate the estimate of location 
   (mean or median) for each group (see the help file for <code><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot.default</a></code>).  
   The default is <code>location.pch=16</code>, a filled circle.</p></dd>
-<dt>location.cex</dt>
+
+  <dt>location.cex</dt>
 <dd><p>numeric scalar giving the amount by which the plotting characters indicating the 
   estimate of location for each group should be scaled relative to the default 
   (see the help file for <code><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot.default</a></code>).  The default is the current 
   value of the graphics parameter <code>cex</code>.</p></dd>
-<dt>conf.level</dt>
+
+  <dt>conf.level</dt>
 <dd><p>numeric scalar between 0 and 1 indicating the confidence level associated with the 
   confidence interval for the group location (population mean or median).  
   The default value is <code>conf.level=0.95</code>.</p></dd>
-<dt>min.n.for.ci</dt>
+
+  <dt>min.n.for.ci</dt>
 <dd><p>integer indicating the minimum sample size required in order to plot a confidence interval 
   for the group location.  The default value is <code>min.n.for.ci=2</code>.</p></dd>
-<dt>ci.offset</dt>
+
+  <dt>ci.offset</dt>
 <dd><p>numeric scalar or vector of length equal to the number of groups (<code>n</code>) in units of 
   <code>cex</code> indicating the amount of space between the line showing the confidence interval 
   and tick mark associated with a particular group.  The default value depends on the number of 
   groups and is given by <br><code>3/ifelse(n &gt; 2, (n-1)^(1/3), 1)</code>.</p></dd>
-<dt>ci.bar.lwd</dt>
+
+  <dt>ci.bar.lwd</dt>
 <dd><p>numeric scalar indicating the line width for the confidence interval bars.
   The default is the current value of the graphics parameter <code>cex</code>.</p></dd>
-<dt>ci.bar.ends</dt>
+
+  <dt>ci.bar.ends</dt>
 <dd><p>logical scalar indicating whether to add flat ends to the confidence interval bars.  
   The default value is <code>ci.bar.ends=TRUE</code>.</p></dd>
-<dt>ci.bar.ends.size</dt>
+
+  <dt>ci.bar.ends.size</dt>
 <dd><p>numeric scalar in units of <code>cxy</code> indicating the size of confidence interval 
   bar ends.  The default value is half of the current value of <code>cex</code>.</p></dd>
-<dt>ci.bar.gap</dt>
+
+  <dt>ci.bar.gap</dt>
 <dd><p>logical scalar indicating with to add a gap between the estimate of group location and the 
   confidence interval bar.  The default value is <code>ci.bar.gap=FALSE</code>.</p></dd>
-<dt>n.text</dt>
+
+  <dt>n.text</dt>
 <dd><p>character string indicating whether and where to indicate the sample size for each group.  
   Possible values are <code>"bottom"</code> (the default), <code>"top"</code>, and <code>"none"</code>.</p></dd>
-<dt>n.text.line</dt>
+
+  <dt>n.text.line</dt>
 <dd><p>integer indicating on which plot margin line to show the sample sizes for each group.  The 
   default value is <code>n.text.line=2</code> when <code>n.text="bottom"</code> and <code>0</code> otherwise.</p></dd>
-<dt>n.text.cex</dt>
+
+  <dt>n.text.cex</dt>
 <dd><p>numeric scalar giving the amount by which the text indicating the sample size for 
   each group should be scaled relative to the default (see the help file for <br><code><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot.default</a></code>).  The default is the current value of the graphics 
   parameter <code>cex</code>.</p></dd>
-<dt>location.scale.text</dt>
+
+  <dt>location.scale.text</dt>
 <dd><p>character string indicating whether and where to indicate the estimates of location 
   (mean or median) and scale (standard deviation or interquartile range) for each group.  
   Possible values are <code>"top"</code> (the default), <code>"bottom"</code>, and <code>"none"</code>.</p></dd>
-<dt>location.scale.digits</dt>
+
+  <dt>location.scale.digits</dt>
 <dd><p>integer indicating the number of digits to round the estimates of location and scale.  The 
   default value is <code>location.scale.digits=1</code>.</p></dd>
-<dt>nsmall</dt>
+
+  <dt>nsmall</dt>
 <dd><p>integer passed to the function <code><a href="https://rdrr.io/r/base/format.html" class="external-link">format</a></code> indicating the the minimum 
   number of digits to the right of the decimal point for the estimates of location 
   and scale.  The default value is the value of <code>location.scale.digits</code>, which 
   forces all estimates of location and scale have the same number of digits to the 
   right of the decimal point (including, possibly, trailing zeros).  To omit trailing zeros, 
   set <code>nsmall=0</code>.</p></dd>
-<dt>location.scale.text.line</dt>
+
+  <dt>location.scale.text.line</dt>
 <dd><p>integer indicating on which plot margin line to show the estimates of location and scale 
   for each group.  The default value is <br><code>location.scale.text.line=0</code> when <code>n.text="top"</code> and <code>3.5</code> otherwise.</p></dd>
-<dt>location.scale.text.cex</dt>
+
+  <dt>location.scale.text.cex</dt>
 <dd><p>numeric scalar giving the amount by which the text indicating the estimates of 
   location and scale for each group should be scaled relative to the default 
   (see the help file for <code><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot.default</a></code>).  The default depends on the 
   number of groups and is given by 
   <code>cex * 0.8 * ifelse(n &gt; 6, max(0.4, 1 - (n-6) * 0.06), 1)</code>, 
   where <code>cex</code> denotes the current value of the graphics parameter <code>cex</code>.</p></dd>
-<dt>p.value</dt>
+
+  <dt>p.value</dt>
 <dd><p>logical scalar indicating whether to show the p-value associated with testing whether all groups 
   have the same population location.  The default value is <code>p.value=FALSE</code>.  
   The p-value is displayed at the top of the graph.</p></dd>
-<dt>p.value.digits</dt>
+
+  <dt>p.value.digits</dt>
 <dd><p>integer indicating the number of digits to round to when displaying the p-value associated with 
   the test of equal group locations.  The default value is <br><code>p.value.digits=3</code>.</p></dd>
-<dt>p.value.line</dt>
+
+  <dt>p.value.line</dt>
 <dd><p>integer indicating on which plot margin line to show the p-value associated with the test of 
   equal group locations.  The default value is <code>p.value.line=2</code>.</p></dd>
-<dt>p.value.cex</dt>
+
+  <dt>p.value.cex</dt>
 <dd><p>numeric scalar giving the amount by which the text indicating the p-value associated 
   with the test of equal group locations should be scaled relative to the default 
   (see the help file for <code><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot.default</a></code>).  
   The default is the current value of the graphics parameter <code>cex</code>.</p></dd>
-<dt>group.difference.ci</dt>
+
+  <dt>group.difference.ci</dt>
 <dd><p>for the case when there are just 2 groups, a logical scalar indicating whether to display  
   the confidence interval for the difference between group locations.  The default is 
   the value of the <code>p.value</code> argument.  The confidence interval is displayed at the 
   top of the graph in the format [Lower CI, Upper CI].</p></dd>
-<dt>group.difference.conf.level</dt>
+
+  <dt>group.difference.conf.level</dt>
 <dd><p>for the case when there are just 2 groups, a numeric scalar between 0 and 1 
   indicating the confidence level associated with the confidence interval for the 
   difference between group locations.  The default is <code>conf.level=0.95</code>.</p></dd>
-<dt>group.difference.digits</dt>
+
+  <dt>group.difference.digits</dt>
 <dd><p>for the case when there are just 2 groups, an integer indicating the number of digits to 
   round to when displaying the confidence interval for the difference between group locations.  
   The default value is <br><code>group.difference.digits=location.scale.digits</code>.</p></dd>
-<dt>ci.and.test</dt>
+
+  <dt>ci.and.test</dt>
 <dd><p>character string indicating whether confidence intervals and tests should be based on parametric 
   or nonparametric (<code>ci.and.test="nonparametric"</code>) methods.  
   When <code>ci.and.test="parametric"</code> (the default), confidence intervals for the population mean 
@@ -291,10 +338,12 @@
   Hollander and Wolfe, 1999), and the test of group differences is based on the 
   Wilcoxon rank sum test if there are two groups (see <code><a href="https://rdrr.io/r/stats/wilcox.test.html" class="external-link">wilcox.test</a></code>) and the 
   Kruskal-Wallis test (see <code><a href="https://rdrr.io/r/stats/kruskal.test.html" class="external-link">kruskal.test</a></code>) if there are three or more groups.</p></dd>
-<dt>ci.arg.list</dt>
+
+  <dt>ci.arg.list</dt>
 <dd><p>an optional list of arguments to pass to the function used to compute confidence intervals.  
   The default value is <code>ci.arg.list=NULL</code>.</p></dd>
-<dt>test.arg.list</dt>
+
+  <dt>test.arg.list</dt>
 <dd><p>an optional list of arguments to pass to the function used to test for group differences in location.  
   The default value is <code>test.arg.list=NULL</code>.  In particular, in the case when there are two groups, 
   <code>ci.and.test="parametric"</code>, and <code>ci.arg.list</code> is <code>NULL</code> or does not contain a 
@@ -302,11 +351,13 @@
   component <code>var.equal=TRUE</code>, which is not the default behavior of <code><a href="https://rdrr.io/r/stats/t.test.html" class="external-link">t.test</a></code>. <br> 
   NOTE: If <code>test.arg.list</code> contains a component named <code>"paired"</code>, the value of 
   that component is set to the value of the argument <code>paired</code> (see below).</p></dd>
-<dt>alternative</dt>
+
+  <dt>alternative</dt>
 <dd><p>character string describing the alternative hypothesis for the test of group differences in the 
   case when there are two groups.  Possible values are <code>"two.sided"</code> (the default), 
   <code>"less"</code>, and <code>"greater"</code>.</p></dd>
-<dt>plot.diff</dt>
+
+  <dt>plot.diff</dt>
 <dd><p>applicable only to the case when there are two groups: <br>  
   logical scalar indicating whether to plot the confidence interval for the difference between 
   the groups.  The default is <code>plot.diff=FALSE</code>.</p>
@@ -326,22 +377,26 @@
   the confidence interval for the mean of the paired differences is displayed, and 
   if <br><code>ci.and.test="nonparametric"</code> the confidence interval for the pseudomedian 
   is displayed (see the help file for <code><a href="https://rdrr.io/r/stats/wilcox.test.html" class="external-link">wilcox.test</a></code>.</p></dd>
-<dt>diff.col</dt>
+
+  <dt>diff.col</dt>
 <dd><p>applicable only to the case when there are two groups and <code>plot.diff=TRUE</code>: <br> 
   numeric or character scalar indicating what color to use for the confidence interval for 
   the difference in locations between the two groups.  When <code>paired=TRUE</code>, this 
   argument also controls the color of the paired differences.  
   The default is <code>diff.col=col[1]</code>.</p></dd>
-<dt>diff.method</dt>
+
+  <dt>diff.method</dt>
 <dd><p>applicable only to the case when there are two groups, <code>plot.diff=TRUE</code>, and <code>paired=TRUE</code>: <br>
   the method to be used to separate coincident points for the paired differences.  
   The default value is <code>diff.method="stack"</code>.  Other options are <br><code>diff.method="jitter"</code> 
   and <code>diff.method="overplot"</code>.  See the explanation for the argument <code>method</code> above.</p></dd>
-<dt>diff.pch</dt>
+
+  <dt>diff.pch</dt>
 <dd><p>applicable only to the case when there are two groups, <code>plot.diff=TRUE</code>, and <code>paired=TRUE</code>: <br>
   numeric or character scalar indicating what plotting symbol to use for the paired differences.  
   The default is <code>diff.pch=pch[1]</code>.</p></dd>
-<dt>paired</dt>
+
+  <dt>paired</dt>
 <dd><p>applicable only to the case when there are two groups: <br>
   logical scalar indicating whether the observations in the first group are paired with those 
   in the second group.  The default is <code>paired=FALSE</code>.  <br>
@@ -351,28 +406,34 @@
   same way according to the pairing variable. <br>
   NOTE 2:  If the argument <code>test.arg.list</code> (see above) contains a component named <code>"paired"</code>, 
   the value of that component is set to the value of the argument <code>paired</code>.</p></dd>
-<dt>paired.lines</dt>
+
+  <dt>paired.lines</dt>
 <dd><p>applicable only to the case when there are two groups and <code>paired=TRUE</code>: <br>
   logical scalar indicating whether to join the paired observations with lines.  
   The default value is the value of the argument <code>paired</code>.</p></dd>
-<dt>paired.lty</dt>
+
+  <dt>paired.lty</dt>
 <dd><p>applicable only to the case when there are two groups, <code>paired=TRUE</code>, and <br><code>paired.lines=TRUE</code>: <br> 
   numeric vector indicating the line types to use to join the paired observations with lines.  
   The default value is <code>paired.lty=1:6</code>.</p></dd>
-<dt>paired.lwd</dt>
+
+  <dt>paired.lwd</dt>
 <dd><p>applicable only to the case when there are two groups, <code>paired=TRUE</code>, and <br><code>paired.lines=TRUE</code>: <br> 
   numeric vector indicating the widths of the lines used to join the paired observations with lines.  
   The default value is <code>paired.lwd=1</code>.</p></dd>
-<dt>paired.pch</dt>
+
+  <dt>paired.pch</dt>
 <dd><p>applicable only to the case when there are two groups, <code>paired=TRUE</code>, and <br><code>paired.lines=TRUE</code>: <br>
   numeric vector indicating the plotting characters to use at each end of the lines used to 
   join the paired observations with lines.  The default value is <br><code>paired.pch=1:14</code>.</p></dd>
-<dt>paired.col</dt>
+
+  <dt>paired.col</dt>
 <dd><p>applicable only to the case when there are two groups, <code>paired=TRUE</code>, and <br><code>paired.lines=TRUE</code>: <br> 
   character or numeric vector indicating the colors for the lines (and plotting characters) 
   used to join the paired observations with lines.  The default value is <code>paired.col=NULL</code>, 
   in which case the vector becomes <br><code>c("black", "red", "green3", "blue", "magenta", "darkgreen",</code> <br><code>"purple", "orange", "darkolivegreen", "steelblue", "darkgray")</code>.</p></dd>
-<dt>diff.name</dt>
+
+  <dt>diff.name</dt>
 <dd><p>applicable only to the case when there are two groups and <code>plot.diff=TRUE</code>: <br> 
   character scalar indicating the label to use for the confidence interval for the 
   difference between groups.  For the case when <code>paired=TRUE</code>, this label also 
@@ -380,35 +441,41 @@
   in which case the label is "group 2 - group 1", where group 1 and group 2 denote the names for 
   the each group.  For example, if group 1 is labeled "A" and group 2 is labeled "B", then 
   the default value is <code>diff.name="B-A"</code>.</p></dd>
-<dt>diff.name.cex</dt>
+
+  <dt>diff.name.cex</dt>
 <dd><p>applicable only to the case when there are two groups and <code>plot.diff=TRUE</code>: <br> 
   numeric scalar indicating the amount by which the label for group differences 
   should be scaled relative to the default (see the help file for <code><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot.default</a></code>).  
   The default value is <code>diff.name.cex=group.names.cex</code>.</p></dd>
-<dt>sep.line</dt>
+
+  <dt>sep.line</dt>
 <dd><p>applicable only to the case when there are two groups and <code>plot.diff=TRUE</code>: <br> 
   logical scalar indicating whether to draw a line between the strip charts for the two 
   groups and the confidence interval for the difference between the two groups (and paired 
   differences when <code>paired=TRUE</code>).  The default value is <br><code>sep.line=TRUE</code>.</p></dd>
-<dt>sep.lty</dt>
+
+  <dt>sep.lty</dt>
 <dd><p>applicable only to the case when there are two groups, <code>plot.diff=TRUE</code>, and 
   <code>sep.line=TRUE</code>: <br> 
   numeric scalar indicating the line type to use for the line drawn between the strip charts 
   for the two groups and the confidence interval for the difference between the two groups.   
   The default value is <code>sep.lty=2</code>.</p></dd>
-<dt>sep.lwd</dt>
+
+  <dt>sep.lwd</dt>
 <dd><p>applicable only to the case when there are two groups, <code>plot.diff=TRUE</code>, and 
   <code>sep.line=TRUE</code>: <br> 
   numeric scalar indicating the line width to use for the line drawn between the strip charts 
   for the two groups and the confidence interval for the difference between the two groups.   
   The default value is the current value of the graphics parameter <code>cex</code>.</p></dd>
-<dt>sep.col</dt>
+
+  <dt>sep.col</dt>
 <dd><p>applicable only to the case when there are two groups, <code>plot.diff=TRUE</code>, and 
   <code>sep.line=TRUE</code>: <br> 
   numeric or character scalar indicating the color of the line drawn between the strip charts 
   for the two groups and the confidence interval for the difference between the two groups.   
   The default value is <code>sep.col="gray"</code>.</p></dd>
-<dt>diff.lim</dt>
+
+  <dt>diff.lim</dt>
 <dd><p>applicable only to the case when there are two groups and <code>plot.diff=TRUE</code>: <br> 
   numeric vector of length 2 indicating the limits to use for the axis associated with the 
   confidence interval for the difference between the two groups.  
@@ -416,46 +483,56 @@
   the mean of the confidence interval for the difference in locations.  
   When <br><code>paired=TRUE</code>, the default value is <code>range(pretty(c(X, range(CI))))</code> where 
   <code>X</code> denotes the vector containing the paired differences.</p></dd>
-<dt>diff.at</dt>
+
+  <dt>diff.at</dt>
 <dd><p>applicable only to the case when there are two groups and <code>plot.diff=TRUE</code>: <br> 
   numeric vector indicating the locations of the tick marks for the axis associated with the 
   confidence interval for the difference between groups (see the explanation for the argument 
   <code>at</code> in the help file for <code><a href="https://rdrr.io/r/graphics/axis.html" class="external-link">axis</a></code>).  The default value is <code>diff.at=NULL</code>, 
   in which case default values are used for the locations of the tick marks.</p></dd>
-<dt>diff.axis.label</dt>
+
+  <dt>diff.axis.label</dt>
 <dd><p>applicable only to the case when there are two groups and <code>plot.diff=TRUE</code>: <br> 
   character string indicating the label to use for the axis associated with the 
   confidence interval for the difference between groups.  When <code>paired=FALSE</code> the 
   default value is <code>"Difference Between Groups"</code>, and when <code>paired=TRUE</code> the 
   default value is <code>"Paired Difference"</code>.</p></dd>
-<dt>plot.diff.mar</dt>
+
+  <dt>plot.diff.mar</dt>
 <dd><p>applicable only to the case when there are two groups, <code>plot.diff=TRUE</code>, and <code>add=FALSE</code>: <br> 
   numeric vector of length 4 indicating the number of lines in the plotting margins 
   (see the explanation for the argument <code>mar</code> in the help file for <code><a href="https://rdrr.io/r/graphics/par.html" class="external-link">par</a></code>). 
   The default value is <code>plot.diff.mar = c(5, 4, 4, 4) + 0.1</code>.</p></dd>
+
 </dl></div>
     <div id="value">
     <h2>Value</h2>
-    <p><code>stripChart</code> invisibly returns a list with the following components:</p>
+    <p></p>
+<p><code>stripChart</code> invisibly returns a list with the following components:</p>
 <dl><dt>group.centers</dt>
 <dd><p>numeric vector of values on the group axis (the \(x\)-axis unless 
     <code>vertical=FALSE</code>) indicating the centers of the groups.</p></dd>
-<dt>group.stats</dt>
+
+  <dt>group.stats</dt>
 <dd><p>a matrix with the number of rows equal to the number of groups and 
     six columns indicating the sample size of the group (N), the estimate of the group 
     location parameter (Mean or Median), the estimate of the group scale (SD or IQR), 
     the lower confidence limit for the group location parameter (LCL), 
     the upper confidence limit for the group location parameter (UCL), and the 
     confidence level associated with the confidence interval (Conf.Level)</p></dd>
+
+
 </dl><p>In addition, if the argument <code>p.value=TRUE</code> and/or 1) there are two groups and 2) <code>plot.diff=TRUE</code>, 
 the list also includes these components:</p>
 <dl><dt>group.difference.p.value</dt>
 <dd><p>numeric scalar indicating the p-value associated with 
     the test of equal group locations.</p></dd>
-<dt>group.difference.conf.int</dt>
+
+  <dt>group.difference.conf.int</dt>
 <dd><p>numeric vector of two elements indicating the confidence 
     interval for the difference between the group locations.  Only present when there are 
     two groups.</p></dd>
+
 </dl></div>
     <div id="references">
     <h2>References</h2>
@@ -478,87 +555,87 @@ the list also includes these components:</p>
 
     <div id="ref-examples">
     <h2>Examples</h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in">  <span class="co">#------------------------</span></span>
-<span class="r-in">  <span class="co"># Two Independent Samples</span></span>
-<span class="r-in">  <span class="co">#------------------------</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="co"># The guidance document USEPA (1994b, pp. 6.22--6.25) </span></span>
-<span class="r-in">  <span class="co"># contains measures of 1,2,3,4-Tetrachlorobenzene (TcCB) </span></span>
-<span class="r-in">  <span class="co"># concentrations (in parts per billion) from soil samples </span></span>
-<span class="r-in">  <span class="co"># at a Reference area and a Cleanup area.  These data are strored </span></span>
-<span class="r-in">  <span class="co"># in the data frame EPA.94b.tccb.df.  </span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co"># First create one-dimensional scatterplots to compare the </span></span>
-<span class="r-in">  <span class="co"># TcCB concentrations between the areas and use a nonparametric </span></span>
-<span class="r-in">  <span class="co"># test to test for a difference between areas.</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="fu"><a href="https://rdrr.io/r/grDevices/dev.html" class="external-link">dev.new</a></span><span class="op">(</span><span class="op">)</span></span>
-<span class="r-in">  <span class="fu">stripChart</span><span class="op">(</span><span class="va">TcCB</span> <span class="op">~</span> <span class="va">Area</span>, data <span class="op">=</span> <span class="va">EPA.94b.tccb.df</span>, col <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"red"</span>, <span class="st">"blue"</span><span class="op">)</span>, </span>
-<span class="r-in">    p.value <span class="op">=</span> <span class="cn">TRUE</span>, ci.and.test <span class="op">=</span> <span class="st">"nonparametric"</span>, </span>
-<span class="r-in">    ylab <span class="op">=</span> <span class="st">"TcCB (ppb)"</span><span class="op">)</span></span>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span>  <span class="co">#------------------------</span></span></span>
+<span class="r-in"><span>  <span class="co"># Two Independent Samples</span></span></span>
+<span class="r-in"><span>  <span class="co">#------------------------</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="co"># The guidance document USEPA (1994b, pp. 6.22--6.25) </span></span></span>
+<span class="r-in"><span>  <span class="co"># contains measures of 1,2,3,4-Tetrachlorobenzene (TcCB) </span></span></span>
+<span class="r-in"><span>  <span class="co"># concentrations (in parts per billion) from soil samples </span></span></span>
+<span class="r-in"><span>  <span class="co"># at a Reference area and a Cleanup area.  These data are strored </span></span></span>
+<span class="r-in"><span>  <span class="co"># in the data frame EPA.94b.tccb.df.  </span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co"># First create one-dimensional scatterplots to compare the </span></span></span>
+<span class="r-in"><span>  <span class="co"># TcCB concentrations between the areas and use a nonparametric </span></span></span>
+<span class="r-in"><span>  <span class="co"># test to test for a difference between areas.</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/r/grDevices/dev.html" class="external-link">dev.new</a></span><span class="op">(</span><span class="op">)</span></span></span>
+<span class="r-in"><span>  <span class="fu">stripChart</span><span class="op">(</span><span class="va">TcCB</span> <span class="op">~</span> <span class="va">Area</span>, data <span class="op">=</span> <span class="va">EPA.94b.tccb.df</span>, col <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"red"</span>, <span class="st">"blue"</span><span class="op">)</span>, </span></span>
+<span class="r-in"><span>    p.value <span class="op">=</span> <span class="cn">TRUE</span>, ci.and.test <span class="op">=</span> <span class="st">"nonparametric"</span>, </span></span>
+<span class="r-in"><span>    ylab <span class="op">=</span> <span class="st">"TcCB (ppb)"</span><span class="op">)</span></span></span>
 <span class="r-wrn co"><span class="r-pr">#&gt;</span> <span class="warning">Warning: </span>cannot compute exact p-value with ties</span>
 <span class="r-wrn co"><span class="r-pr">#&gt;</span> <span class="warning">Warning: </span>cannot compute exact confidence interval with ties</span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="co">#----------</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="co"># Now log-transform the TcCB data and use a parametric test</span></span>
-<span class="r-in">  <span class="co"># to compare the areas.</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="fu"><a href="https://rdrr.io/r/grDevices/dev.html" class="external-link">dev.new</a></span><span class="op">(</span><span class="op">)</span></span>
-<span class="r-in">  <span class="fu">stripChart</span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/Log.html" class="external-link">log10</a></span><span class="op">(</span><span class="va">TcCB</span><span class="op">)</span> <span class="op">~</span> <span class="va">Area</span>, data <span class="op">=</span> <span class="va">EPA.94b.tccb.df</span>, col <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"red"</span>, <span class="st">"blue"</span><span class="op">)</span>, </span>
-<span class="r-in">    p.value <span class="op">=</span> <span class="cn">TRUE</span>, ylab <span class="op">=</span> <span class="st">"log10 [ TcCB (ppb) ]"</span><span class="op">)</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="co">#----------</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="co"># Repeat the above procedure, but also plot the confidence interval  </span></span>
-<span class="r-in">  <span class="co"># for the difference between the means.</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="fu"><a href="https://rdrr.io/r/grDevices/dev.html" class="external-link">dev.new</a></span><span class="op">(</span><span class="op">)</span></span>
-<span class="r-in">  <span class="fu">stripChart</span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/Log.html" class="external-link">log10</a></span><span class="op">(</span><span class="va">TcCB</span><span class="op">)</span> <span class="op">~</span> <span class="va">Area</span>, data <span class="op">=</span> <span class="va">EPA.94b.tccb.df</span>, col <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"red"</span>, <span class="st">"blue"</span><span class="op">)</span>, </span>
-<span class="r-in">    p.value <span class="op">=</span> <span class="cn">TRUE</span>, plot.diff <span class="op">=</span> <span class="cn">TRUE</span>, diff.col <span class="op">=</span> <span class="st">"black"</span>, </span>
-<span class="r-in">    ylab <span class="op">=</span> <span class="st">"log10 [ TcCB (ppb) ]"</span><span class="op">)</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="co">#----------</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="co"># Repeat the above procedure, but allow the variances to differ.</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="fu"><a href="https://rdrr.io/r/grDevices/dev.html" class="external-link">dev.new</a></span><span class="op">(</span><span class="op">)</span></span>
-<span class="r-in">  <span class="fu">stripChart</span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/Log.html" class="external-link">log10</a></span><span class="op">(</span><span class="va">TcCB</span><span class="op">)</span> <span class="op">~</span> <span class="va">Area</span>, data <span class="op">=</span> <span class="va">EPA.94b.tccb.df</span>, col <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"red"</span>, <span class="st">"blue"</span><span class="op">)</span>,</span>
-<span class="r-in">    p.value <span class="op">=</span> <span class="cn">TRUE</span>, plot.diff <span class="op">=</span> <span class="cn">TRUE</span>, diff.col <span class="op">=</span> <span class="st">"black"</span>, </span>
-<span class="r-in">    ylab <span class="op">=</span> <span class="st">"log10 [ TcCB (ppb) ]"</span>, test.arg.list <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>var.equal <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span><span class="op">)</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="co">#----------</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="co"># Repeat the above procedure, but jitter the points instead of </span></span>
-<span class="r-in">  <span class="co"># stacking them.</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="fu"><a href="https://rdrr.io/r/grDevices/dev.html" class="external-link">dev.new</a></span><span class="op">(</span><span class="op">)</span></span>
-<span class="r-in">  <span class="fu">stripChart</span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/Log.html" class="external-link">log10</a></span><span class="op">(</span><span class="va">TcCB</span><span class="op">)</span> <span class="op">~</span> <span class="va">Area</span>, data <span class="op">=</span> <span class="va">EPA.94b.tccb.df</span>, col <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"red"</span>, <span class="st">"blue"</span><span class="op">)</span>,</span>
-<span class="r-in">    p.value <span class="op">=</span> <span class="cn">TRUE</span>, plot.diff <span class="op">=</span> <span class="cn">TRUE</span>, diff.col <span class="op">=</span> <span class="st">"black"</span>, </span>
-<span class="r-in">    ylab <span class="op">=</span> <span class="st">"log10 [ TcCB (ppb) ]"</span>, test.arg.list <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>var.equal <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span>, </span>
-<span class="r-in">    method <span class="op">=</span> <span class="st">"jitter"</span>, ci.offset <span class="op">=</span> <span class="fl">4</span><span class="op">)</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="co">#---------- </span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="co"># Clean up</span></span>
-<span class="r-in">  <span class="co">#---------</span></span>
-<span class="r-in">  <span class="fu"><a href="https://rdrr.io/r/grDevices/dev.html" class="external-link">graphics.off</a></span><span class="op">(</span><span class="op">)</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="co">#====================</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="co">#--------------------</span></span>
-<span class="r-in">  <span class="co"># Paired Observations</span></span>
-<span class="r-in">  <span class="co">#--------------------</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="co"># The data frame ACE.13.TCE.df contians paired observations of </span></span>
-<span class="r-in">  <span class="co"># trichloroethylene (TCE; mg/L) at 10 groundwater monitoring wells </span></span>
-<span class="r-in">  <span class="co"># before and after remediation.</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co"># Create one-dimensional scatterplots to compare TCE concentrations </span></span>
-<span class="r-in">  <span class="co"># before and after remediation and use a paired t-test to </span></span>
-<span class="r-in">  <span class="co"># test for a difference between periods.</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="va">ACE.13.TCE.df</span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="co">#----------</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="co"># Now log-transform the TcCB data and use a parametric test</span></span></span>
+<span class="r-in"><span>  <span class="co"># to compare the areas.</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/r/grDevices/dev.html" class="external-link">dev.new</a></span><span class="op">(</span><span class="op">)</span></span></span>
+<span class="r-in"><span>  <span class="fu">stripChart</span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/Log.html" class="external-link">log10</a></span><span class="op">(</span><span class="va">TcCB</span><span class="op">)</span> <span class="op">~</span> <span class="va">Area</span>, data <span class="op">=</span> <span class="va">EPA.94b.tccb.df</span>, col <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"red"</span>, <span class="st">"blue"</span><span class="op">)</span>, </span></span>
+<span class="r-in"><span>    p.value <span class="op">=</span> <span class="cn">TRUE</span>, ylab <span class="op">=</span> <span class="st">"log10 [ TcCB (ppb) ]"</span><span class="op">)</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="co">#----------</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="co"># Repeat the above procedure, but also plot the confidence interval  </span></span></span>
+<span class="r-in"><span>  <span class="co"># for the difference between the means.</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/r/grDevices/dev.html" class="external-link">dev.new</a></span><span class="op">(</span><span class="op">)</span></span></span>
+<span class="r-in"><span>  <span class="fu">stripChart</span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/Log.html" class="external-link">log10</a></span><span class="op">(</span><span class="va">TcCB</span><span class="op">)</span> <span class="op">~</span> <span class="va">Area</span>, data <span class="op">=</span> <span class="va">EPA.94b.tccb.df</span>, col <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"red"</span>, <span class="st">"blue"</span><span class="op">)</span>, </span></span>
+<span class="r-in"><span>    p.value <span class="op">=</span> <span class="cn">TRUE</span>, plot.diff <span class="op">=</span> <span class="cn">TRUE</span>, diff.col <span class="op">=</span> <span class="st">"black"</span>, </span></span>
+<span class="r-in"><span>    ylab <span class="op">=</span> <span class="st">"log10 [ TcCB (ppb) ]"</span><span class="op">)</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="co">#----------</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="co"># Repeat the above procedure, but allow the variances to differ.</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/r/grDevices/dev.html" class="external-link">dev.new</a></span><span class="op">(</span><span class="op">)</span></span></span>
+<span class="r-in"><span>  <span class="fu">stripChart</span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/Log.html" class="external-link">log10</a></span><span class="op">(</span><span class="va">TcCB</span><span class="op">)</span> <span class="op">~</span> <span class="va">Area</span>, data <span class="op">=</span> <span class="va">EPA.94b.tccb.df</span>, col <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"red"</span>, <span class="st">"blue"</span><span class="op">)</span>,</span></span>
+<span class="r-in"><span>    p.value <span class="op">=</span> <span class="cn">TRUE</span>, plot.diff <span class="op">=</span> <span class="cn">TRUE</span>, diff.col <span class="op">=</span> <span class="st">"black"</span>, </span></span>
+<span class="r-in"><span>    ylab <span class="op">=</span> <span class="st">"log10 [ TcCB (ppb) ]"</span>, test.arg.list <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>var.equal <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span><span class="op">)</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="co">#----------</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="co"># Repeat the above procedure, but jitter the points instead of </span></span></span>
+<span class="r-in"><span>  <span class="co"># stacking them.</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/r/grDevices/dev.html" class="external-link">dev.new</a></span><span class="op">(</span><span class="op">)</span></span></span>
+<span class="r-in"><span>  <span class="fu">stripChart</span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/Log.html" class="external-link">log10</a></span><span class="op">(</span><span class="va">TcCB</span><span class="op">)</span> <span class="op">~</span> <span class="va">Area</span>, data <span class="op">=</span> <span class="va">EPA.94b.tccb.df</span>, col <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"red"</span>, <span class="st">"blue"</span><span class="op">)</span>,</span></span>
+<span class="r-in"><span>    p.value <span class="op">=</span> <span class="cn">TRUE</span>, plot.diff <span class="op">=</span> <span class="cn">TRUE</span>, diff.col <span class="op">=</span> <span class="st">"black"</span>, </span></span>
+<span class="r-in"><span>    ylab <span class="op">=</span> <span class="st">"log10 [ TcCB (ppb) ]"</span>, test.arg.list <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>var.equal <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span>, </span></span>
+<span class="r-in"><span>    method <span class="op">=</span> <span class="st">"jitter"</span>, ci.offset <span class="op">=</span> <span class="fl">4</span><span class="op">)</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="co">#---------- </span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="co"># Clean up</span></span></span>
+<span class="r-in"><span>  <span class="co">#---------</span></span></span>
+<span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/r/grDevices/dev.html" class="external-link">graphics.off</a></span><span class="op">(</span><span class="op">)</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="co">#====================</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="co">#--------------------</span></span></span>
+<span class="r-in"><span>  <span class="co"># Paired Observations</span></span></span>
+<span class="r-in"><span>  <span class="co">#--------------------</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="co"># The data frame ACE.13.TCE.df contians paired observations of </span></span></span>
+<span class="r-in"><span>  <span class="co"># trichloroethylene (TCE; mg/L) at 10 groundwater monitoring wells </span></span></span>
+<span class="r-in"><span>  <span class="co"># before and after remediation.</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co"># Create one-dimensional scatterplots to compare TCE concentrations </span></span></span>
+<span class="r-in"><span>  <span class="co"># before and after remediation and use a paired t-test to </span></span></span>
+<span class="r-in"><span>  <span class="co"># test for a difference between periods.</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="va">ACE.13.TCE.df</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>    TCE.mg.per.L Well Period</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 1        20.900    1 Before</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 2         9.170    2 Before</span>
@@ -580,78 +657,78 @@ the list also includes these components:</p>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 18        0.520    8  After</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 19        3.060    9  After</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 20        1.900   10  After</span>
-<span class="r-in">  <span class="co">#   TCE.mg.per.L Well Period</span></span>
-<span class="r-in">  <span class="co">#1        20.900    1 Before</span></span>
-<span class="r-in">  <span class="co">#2         9.170    2 Before</span></span>
-<span class="r-in">  <span class="co">#3         5.960    3 Before</span></span>
-<span class="r-in">  <span class="co">#...      ......   .. ......</span></span>
-<span class="r-in">  <span class="co">#18        0.520    8  After</span></span>
-<span class="r-in">  <span class="co">#19        3.060    9  After</span></span>
-<span class="r-in">  <span class="co">#20        1.900   10  After</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="fu"><a href="https://rdrr.io/r/grDevices/dev.html" class="external-link">dev.new</a></span><span class="op">(</span><span class="op">)</span></span>
-<span class="r-in">  <span class="fu">stripChart</span><span class="op">(</span><span class="va">TCE.mg.per.L</span> <span class="op">~</span> <span class="va">Period</span>, data <span class="op">=</span> <span class="va">ACE.13.TCE.df</span>, </span>
-<span class="r-in">    col <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"brown"</span>, <span class="st">"green"</span><span class="op">)</span>, p.value <span class="op">=</span> <span class="cn">TRUE</span>, paired <span class="op">=</span> <span class="cn">TRUE</span>, </span>
-<span class="r-in">    ylab <span class="op">=</span> <span class="st">"TCE (mg/L)"</span><span class="op">)</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="co">#----------</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="co"># Repeat the above procedure, but also plot the confidence interval  </span></span>
-<span class="r-in">  <span class="co"># for the mean of the paired differences.</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="fu"><a href="https://rdrr.io/r/grDevices/dev.html" class="external-link">dev.new</a></span><span class="op">(</span><span class="op">)</span></span>
-<span class="r-in">  <span class="fu">stripChart</span><span class="op">(</span><span class="va">TCE.mg.per.L</span> <span class="op">~</span> <span class="va">Period</span>, data <span class="op">=</span> <span class="va">ACE.13.TCE.df</span>, </span>
-<span class="r-in">    col <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"brown"</span>, <span class="st">"green"</span><span class="op">)</span>, p.value <span class="op">=</span> <span class="cn">TRUE</span>, paired <span class="op">=</span> <span class="cn">TRUE</span>, </span>
-<span class="r-in">    ylab <span class="op">=</span> <span class="st">"TCE (mg/L)"</span>, plot.diff <span class="op">=</span> <span class="cn">TRUE</span>, diff.col <span class="op">=</span> <span class="st">"blue"</span><span class="op">)</span></span>
-<span class="r-in"></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="co">#==========</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="co"># Repeat the last two examples, but use a one-sided alternative since </span></span>
-<span class="r-in">  <span class="co"># remediation should decrease TCE concentration.</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="fu"><a href="https://rdrr.io/r/grDevices/dev.html" class="external-link">dev.new</a></span><span class="op">(</span><span class="op">)</span></span>
-<span class="r-in">  <span class="fu">stripChart</span><span class="op">(</span><span class="va">TCE.mg.per.L</span> <span class="op">~</span> <span class="va">Period</span>, data <span class="op">=</span> <span class="va">ACE.13.TCE.df</span>, </span>
-<span class="r-in">    col <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"brown"</span>, <span class="st">"green"</span><span class="op">)</span>, p.value <span class="op">=</span> <span class="cn">TRUE</span>, paired <span class="op">=</span> <span class="cn">TRUE</span>, </span>
-<span class="r-in">    ylab <span class="op">=</span> <span class="st">"TCE (mg/L)"</span>, alternative <span class="op">=</span> <span class="st">"less"</span>, </span>
-<span class="r-in">    group.difference.digits <span class="op">=</span> <span class="fl">2</span><span class="op">)</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="co">#----------</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="co"># Repeat the above procedure, but also plot the confidence interval  </span></span>
-<span class="r-in">  <span class="co"># for the mean of the paired differences.</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co"># NOTE: Although stripChart can *report* one-sided confidence intervals </span></span>
-<span class="r-in">  <span class="co">#       for the difference between two groups (see above example), </span></span>
-<span class="r-in">  <span class="co">#       when *plotting* the confidence interval for the difference, </span></span>
-<span class="r-in">  <span class="co">#       only two-sided CIs are allowed.  </span></span>
-<span class="r-in">  <span class="co">#       Here, we will set the confidence level of the confidence </span></span>
-<span class="r-in">  <span class="co">#       interval for the mean of the paired differences to 90%, </span></span>
-<span class="r-in">  <span class="co">#       so that the upper bound of the CI corresponds to the upper </span></span>
-<span class="r-in">  <span class="co">#       bound of a 95% one-sided CI.</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="fu"><a href="https://rdrr.io/r/grDevices/dev.html" class="external-link">dev.new</a></span><span class="op">(</span><span class="op">)</span></span>
-<span class="r-in">  <span class="fu">stripChart</span><span class="op">(</span><span class="va">TCE.mg.per.L</span> <span class="op">~</span> <span class="va">Period</span>, data <span class="op">=</span> <span class="va">ACE.13.TCE.df</span>, </span>
-<span class="r-in">    col <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"brown"</span>, <span class="st">"green"</span><span class="op">)</span>, p.value <span class="op">=</span> <span class="cn">TRUE</span>, paired <span class="op">=</span> <span class="cn">TRUE</span>, </span>
-<span class="r-in">    ylab <span class="op">=</span> <span class="st">"TCE (mg/L)"</span>, group.difference.digits <span class="op">=</span> <span class="fl">2</span>, </span>
-<span class="r-in">    plot.diff <span class="op">=</span> <span class="cn">TRUE</span>, diff.col <span class="op">=</span> <span class="st">"blue"</span>, group.difference.conf.level <span class="op">=</span> <span class="fl">0.9</span><span class="op">)</span></span>
-<span class="r-in"></span>
-<span class="r-in"> <span class="co">#---------- </span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="co"># Clean up</span></span>
-<span class="r-in">  <span class="co">#---------</span></span>
-<span class="r-in">  <span class="fu"><a href="https://rdrr.io/r/grDevices/dev.html" class="external-link">graphics.off</a></span><span class="op">(</span><span class="op">)</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="co">#==========</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="co"># The data frame Helsel.Hirsch.02.Mayfly.df contains paired counts</span></span>
-<span class="r-in">  <span class="co"># of mayfly nymphs above and below industrial outfalls in 12 streams.  </span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co"># Create one-dimensional scatterplots to compare the </span></span>
-<span class="r-in">  <span class="co"># counts between locations and use a nonparametric test </span></span>
-<span class="r-in">  <span class="co"># to compare counts above and below the outfalls.</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="va">Helsel.Hirsch.02.Mayfly.df</span></span>
+<span class="r-in"><span>  <span class="co">#   TCE.mg.per.L Well Period</span></span></span>
+<span class="r-in"><span>  <span class="co">#1        20.900    1 Before</span></span></span>
+<span class="r-in"><span>  <span class="co">#2         9.170    2 Before</span></span></span>
+<span class="r-in"><span>  <span class="co">#3         5.960    3 Before</span></span></span>
+<span class="r-in"><span>  <span class="co">#...      ......   .. ......</span></span></span>
+<span class="r-in"><span>  <span class="co">#18        0.520    8  After</span></span></span>
+<span class="r-in"><span>  <span class="co">#19        3.060    9  After</span></span></span>
+<span class="r-in"><span>  <span class="co">#20        1.900   10  After</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/r/grDevices/dev.html" class="external-link">dev.new</a></span><span class="op">(</span><span class="op">)</span></span></span>
+<span class="r-in"><span>  <span class="fu">stripChart</span><span class="op">(</span><span class="va">TCE.mg.per.L</span> <span class="op">~</span> <span class="va">Period</span>, data <span class="op">=</span> <span class="va">ACE.13.TCE.df</span>, </span></span>
+<span class="r-in"><span>    col <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"brown"</span>, <span class="st">"green"</span><span class="op">)</span>, p.value <span class="op">=</span> <span class="cn">TRUE</span>, paired <span class="op">=</span> <span class="cn">TRUE</span>, </span></span>
+<span class="r-in"><span>    ylab <span class="op">=</span> <span class="st">"TCE (mg/L)"</span><span class="op">)</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="co">#----------</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="co"># Repeat the above procedure, but also plot the confidence interval  </span></span></span>
+<span class="r-in"><span>  <span class="co"># for the mean of the paired differences.</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/r/grDevices/dev.html" class="external-link">dev.new</a></span><span class="op">(</span><span class="op">)</span></span></span>
+<span class="r-in"><span>  <span class="fu">stripChart</span><span class="op">(</span><span class="va">TCE.mg.per.L</span> <span class="op">~</span> <span class="va">Period</span>, data <span class="op">=</span> <span class="va">ACE.13.TCE.df</span>, </span></span>
+<span class="r-in"><span>    col <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"brown"</span>, <span class="st">"green"</span><span class="op">)</span>, p.value <span class="op">=</span> <span class="cn">TRUE</span>, paired <span class="op">=</span> <span class="cn">TRUE</span>, </span></span>
+<span class="r-in"><span>    ylab <span class="op">=</span> <span class="st">"TCE (mg/L)"</span>, plot.diff <span class="op">=</span> <span class="cn">TRUE</span>, diff.col <span class="op">=</span> <span class="st">"blue"</span><span class="op">)</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="co">#==========</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="co"># Repeat the last two examples, but use a one-sided alternative since </span></span></span>
+<span class="r-in"><span>  <span class="co"># remediation should decrease TCE concentration.</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/r/grDevices/dev.html" class="external-link">dev.new</a></span><span class="op">(</span><span class="op">)</span></span></span>
+<span class="r-in"><span>  <span class="fu">stripChart</span><span class="op">(</span><span class="va">TCE.mg.per.L</span> <span class="op">~</span> <span class="va">Period</span>, data <span class="op">=</span> <span class="va">ACE.13.TCE.df</span>, </span></span>
+<span class="r-in"><span>    col <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"brown"</span>, <span class="st">"green"</span><span class="op">)</span>, p.value <span class="op">=</span> <span class="cn">TRUE</span>, paired <span class="op">=</span> <span class="cn">TRUE</span>, </span></span>
+<span class="r-in"><span>    ylab <span class="op">=</span> <span class="st">"TCE (mg/L)"</span>, alternative <span class="op">=</span> <span class="st">"less"</span>, </span></span>
+<span class="r-in"><span>    group.difference.digits <span class="op">=</span> <span class="fl">2</span><span class="op">)</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="co">#----------</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="co"># Repeat the above procedure, but also plot the confidence interval  </span></span></span>
+<span class="r-in"><span>  <span class="co"># for the mean of the paired differences.</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co"># NOTE: Although stripChart can *report* one-sided confidence intervals </span></span></span>
+<span class="r-in"><span>  <span class="co">#       for the difference between two groups (see above example), </span></span></span>
+<span class="r-in"><span>  <span class="co">#       when *plotting* the confidence interval for the difference, </span></span></span>
+<span class="r-in"><span>  <span class="co">#       only two-sided CIs are allowed.  </span></span></span>
+<span class="r-in"><span>  <span class="co">#       Here, we will set the confidence level of the confidence </span></span></span>
+<span class="r-in"><span>  <span class="co">#       interval for the mean of the paired differences to 90%, </span></span></span>
+<span class="r-in"><span>  <span class="co">#       so that the upper bound of the CI corresponds to the upper </span></span></span>
+<span class="r-in"><span>  <span class="co">#       bound of a 95% one-sided CI.</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/r/grDevices/dev.html" class="external-link">dev.new</a></span><span class="op">(</span><span class="op">)</span></span></span>
+<span class="r-in"><span>  <span class="fu">stripChart</span><span class="op">(</span><span class="va">TCE.mg.per.L</span> <span class="op">~</span> <span class="va">Period</span>, data <span class="op">=</span> <span class="va">ACE.13.TCE.df</span>, </span></span>
+<span class="r-in"><span>    col <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"brown"</span>, <span class="st">"green"</span><span class="op">)</span>, p.value <span class="op">=</span> <span class="cn">TRUE</span>, paired <span class="op">=</span> <span class="cn">TRUE</span>, </span></span>
+<span class="r-in"><span>    ylab <span class="op">=</span> <span class="st">"TCE (mg/L)"</span>, group.difference.digits <span class="op">=</span> <span class="fl">2</span>, </span></span>
+<span class="r-in"><span>    plot.diff <span class="op">=</span> <span class="cn">TRUE</span>, diff.col <span class="op">=</span> <span class="st">"blue"</span>, group.difference.conf.level <span class="op">=</span> <span class="fl">0.9</span><span class="op">)</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span> <span class="co">#---------- </span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="co"># Clean up</span></span></span>
+<span class="r-in"><span>  <span class="co">#---------</span></span></span>
+<span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/r/grDevices/dev.html" class="external-link">graphics.off</a></span><span class="op">(</span><span class="op">)</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="co">#==========</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="co"># The data frame Helsel.Hirsch.02.Mayfly.df contains paired counts</span></span></span>
+<span class="r-in"><span>  <span class="co"># of mayfly nymphs above and below industrial outfalls in 12 streams.  </span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co"># Create one-dimensional scatterplots to compare the </span></span></span>
+<span class="r-in"><span>  <span class="co"># counts between locations and use a nonparametric test </span></span></span>
+<span class="r-in"><span>  <span class="co"># to compare counts above and below the outfalls.</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="va">Helsel.Hirsch.02.Mayfly.df</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>    Mayfly.Count Stream Location</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 1            12      1    Above</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 2            15      2    Above</span>
@@ -677,44 +754,44 @@ the list also includes these components:</p>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 22           60     10    Below</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 23           53     11    Below</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 24          124     12    Below</span>
-<span class="r-in">  <span class="co">#   Mayfly.Count Stream Location</span></span>
-<span class="r-in">  <span class="co">#1            12      1    Above</span></span>
-<span class="r-in">  <span class="co">#2            15      2    Above</span></span>
-<span class="r-in">  <span class="co">#3            11      3    Above</span></span>
-<span class="r-in">  <span class="co">#...         ...     ..    .....</span></span>
-<span class="r-in">  <span class="co">#22           60     10    Below</span></span>
-<span class="r-in">  <span class="co">#23           53     11    Below</span></span>
-<span class="r-in">  <span class="co">#24          124     12    Below</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="fu"><a href="https://rdrr.io/r/grDevices/dev.html" class="external-link">dev.new</a></span><span class="op">(</span><span class="op">)</span></span>
-<span class="r-in">  <span class="fu">stripChart</span><span class="op">(</span><span class="va">Mayfly.Count</span> <span class="op">~</span> <span class="va">Location</span>, data <span class="op">=</span> <span class="va">Helsel.Hirsch.02.Mayfly.df</span>, </span>
-<span class="r-in">    col <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"green"</span>, <span class="st">"brown"</span><span class="op">)</span>, p.value <span class="op">=</span> <span class="cn">TRUE</span>, paired <span class="op">=</span> <span class="cn">TRUE</span>, </span>
-<span class="r-in">    ci.and.test <span class="op">=</span> <span class="st">"nonparametric"</span>, ylab <span class="op">=</span> <span class="st">"Number of Mayfly Nymphs"</span><span class="op">)</span></span>
+<span class="r-in"><span>  <span class="co">#   Mayfly.Count Stream Location</span></span></span>
+<span class="r-in"><span>  <span class="co">#1            12      1    Above</span></span></span>
+<span class="r-in"><span>  <span class="co">#2            15      2    Above</span></span></span>
+<span class="r-in"><span>  <span class="co">#3            11      3    Above</span></span></span>
+<span class="r-in"><span>  <span class="co">#...         ...     ..    .....</span></span></span>
+<span class="r-in"><span>  <span class="co">#22           60     10    Below</span></span></span>
+<span class="r-in"><span>  <span class="co">#23           53     11    Below</span></span></span>
+<span class="r-in"><span>  <span class="co">#24          124     12    Below</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/r/grDevices/dev.html" class="external-link">dev.new</a></span><span class="op">(</span><span class="op">)</span></span></span>
+<span class="r-in"><span>  <span class="fu">stripChart</span><span class="op">(</span><span class="va">Mayfly.Count</span> <span class="op">~</span> <span class="va">Location</span>, data <span class="op">=</span> <span class="va">Helsel.Hirsch.02.Mayfly.df</span>, </span></span>
+<span class="r-in"><span>    col <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"green"</span>, <span class="st">"brown"</span><span class="op">)</span>, p.value <span class="op">=</span> <span class="cn">TRUE</span>, paired <span class="op">=</span> <span class="cn">TRUE</span>, </span></span>
+<span class="r-in"><span>    ci.and.test <span class="op">=</span> <span class="st">"nonparametric"</span>, ylab <span class="op">=</span> <span class="st">"Number of Mayfly Nymphs"</span><span class="op">)</span></span></span>
 <span class="r-wrn co"><span class="r-pr">#&gt;</span> <span class="warning">Warning: </span>cannot compute exact p-value with ties</span>
 <span class="r-wrn co"><span class="r-pr">#&gt;</span> <span class="warning">Warning: </span>cannot compute exact confidence interval with ties</span>
 <span class="r-wrn co"><span class="r-pr">#&gt;</span> <span class="warning">Warning: </span>cannot compute exact p-value with ties</span>
 <span class="r-wrn co"><span class="r-pr">#&gt;</span> <span class="warning">Warning: </span>cannot compute exact confidence interval with ties</span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="co">#---------- </span></span>
-<span class="r-in"> </span>
-<span class="r-in">  <span class="co"># Repeat the above procedure, but also plot the confidence interval  </span></span>
-<span class="r-in">  <span class="co"># for the pseudomedian of the paired differences.</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="fu"><a href="https://rdrr.io/r/grDevices/dev.html" class="external-link">dev.new</a></span><span class="op">(</span><span class="op">)</span></span>
-<span class="r-in">  <span class="fu">stripChart</span><span class="op">(</span><span class="va">Mayfly.Count</span> <span class="op">~</span> <span class="va">Location</span>, data <span class="op">=</span> <span class="va">Helsel.Hirsch.02.Mayfly.df</span>, </span>
-<span class="r-in">    col <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"green"</span>, <span class="st">"brown"</span><span class="op">)</span>, p.value <span class="op">=</span> <span class="cn">TRUE</span>, paired <span class="op">=</span> <span class="cn">TRUE</span>, </span>
-<span class="r-in">    ci.and.test <span class="op">=</span> <span class="st">"nonparametric"</span>, ylab <span class="op">=</span> <span class="st">"Number of Mayfly Nymphs"</span>, </span>
-<span class="r-in">    plot.diff <span class="op">=</span> <span class="cn">TRUE</span>, diff.col <span class="op">=</span> <span class="st">"blue"</span><span class="op">)</span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="co">#---------- </span></span></span>
+<span class="r-in"><span> </span></span>
+<span class="r-in"><span>  <span class="co"># Repeat the above procedure, but also plot the confidence interval  </span></span></span>
+<span class="r-in"><span>  <span class="co"># for the pseudomedian of the paired differences.</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/r/grDevices/dev.html" class="external-link">dev.new</a></span><span class="op">(</span><span class="op">)</span></span></span>
+<span class="r-in"><span>  <span class="fu">stripChart</span><span class="op">(</span><span class="va">Mayfly.Count</span> <span class="op">~</span> <span class="va">Location</span>, data <span class="op">=</span> <span class="va">Helsel.Hirsch.02.Mayfly.df</span>, </span></span>
+<span class="r-in"><span>    col <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"green"</span>, <span class="st">"brown"</span><span class="op">)</span>, p.value <span class="op">=</span> <span class="cn">TRUE</span>, paired <span class="op">=</span> <span class="cn">TRUE</span>, </span></span>
+<span class="r-in"><span>    ci.and.test <span class="op">=</span> <span class="st">"nonparametric"</span>, ylab <span class="op">=</span> <span class="st">"Number of Mayfly Nymphs"</span>, </span></span>
+<span class="r-in"><span>    plot.diff <span class="op">=</span> <span class="cn">TRUE</span>, diff.col <span class="op">=</span> <span class="st">"blue"</span><span class="op">)</span></span></span>
 <span class="r-wrn co"><span class="r-pr">#&gt;</span> <span class="warning">Warning: </span>cannot compute exact p-value with ties</span>
 <span class="r-wrn co"><span class="r-pr">#&gt;</span> <span class="warning">Warning: </span>cannot compute exact confidence interval with ties</span>
 <span class="r-wrn co"><span class="r-pr">#&gt;</span> <span class="warning">Warning: </span>cannot compute exact p-value with ties</span>
 <span class="r-wrn co"><span class="r-pr">#&gt;</span> <span class="warning">Warning: </span>cannot compute exact confidence interval with ties</span>
-<span class="r-in"></span>
-<span class="r-in"> <span class="co">#---------- </span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="co"># Clean up</span></span>
-<span class="r-in">  <span class="co">#---------</span></span>
-<span class="r-in">  <span class="fu"><a href="https://rdrr.io/r/grDevices/dev.html" class="external-link">graphics.off</a></span><span class="op">(</span><span class="op">)</span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span> <span class="co">#---------- </span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="co"># Clean up</span></span></span>
+<span class="r-in"><span>  <span class="co">#---------</span></span></span>
+<span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/r/grDevices/dev.html" class="external-link">graphics.off</a></span><span class="op">(</span><span class="op">)</span></span></span>
 </code></pre></div>
     </div>
   </div>
@@ -729,7 +806,7 @@ the list also includes these components:</p>
 </div>
 
 <div class="pkgdown">
-  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.2.</p>
+  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.6.</p>
 </div>
 
       </footer></div>

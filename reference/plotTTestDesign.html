@@ -52,17 +52,17 @@
     </div>
 
     <div id="ref-usage">
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="fu">plotTTestDesign</span><span class="op">(</span>x.var <span class="op">=</span> <span class="st">"n"</span>, y.var <span class="op">=</span> <span class="st">"power"</span>, range.x.var <span class="op">=</span> <span class="cn">NULL</span>, 
-    n.or.n1 <span class="op">=</span> <span class="fl">25</span>, n2 <span class="op">=</span> <span class="va">n.or.n1</span>, 
-    delta.over.sigma <span class="op">=</span> <span class="kw"><a href="https://rdrr.io/r/base/switch.html" class="external-link">switch</a></span><span class="op">(</span><span class="va">alternative</span>, greater <span class="op">=</span> <span class="fl">0.5</span>, less <span class="op">=</span> <span class="op">-</span><span class="fl">0.5</span>, 
-      two.sided <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/ifelse.html" class="external-link">ifelse</a></span><span class="op">(</span><span class="va">two.sided.direction</span> <span class="op">==</span> <span class="st">"greater"</span>, <span class="fl">0.5</span>, <span class="op">-</span><span class="fl">0.5</span><span class="op">)</span><span class="op">)</span>, 
-    alpha <span class="op">=</span> <span class="fl">0.05</span>, power <span class="op">=</span> <span class="fl">0.95</span>, 
-    sample.type <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/ifelse.html" class="external-link">ifelse</a></span><span class="op">(</span><span class="op">!</span><span class="fu"><a href="https://rdrr.io/r/base/missing.html" class="external-link">missing</a></span><span class="op">(</span><span class="va">n2</span><span class="op">)</span>, <span class="st">"two.sample"</span>, <span class="st">"one.sample"</span><span class="op">)</span>, 
-    alternative <span class="op">=</span> <span class="st">"two.sided"</span>, two.sided.direction <span class="op">=</span> <span class="st">"greater"</span>, approx <span class="op">=</span> <span class="cn">FALSE</span>, 
-    round.up <span class="op">=</span> <span class="cn">FALSE</span>, n.max <span class="op">=</span> <span class="fl">5000</span>, tol <span class="op">=</span> <span class="fl">1e-07</span>, maxiter <span class="op">=</span> <span class="fl">1000</span>, plot.it <span class="op">=</span> <span class="cn">TRUE</span>, 
-    add <span class="op">=</span> <span class="cn">FALSE</span>, n.points <span class="op">=</span> <span class="fl">50</span>, plot.col <span class="op">=</span> <span class="st">"black"</span>, plot.lwd <span class="op">=</span> <span class="fl">3</span> <span class="op">*</span> <span class="fu"><a href="https://rdrr.io/r/graphics/par.html" class="external-link">par</a></span><span class="op">(</span><span class="st">"cex"</span><span class="op">)</span>, 
-    plot.lty <span class="op">=</span> <span class="fl">1</span>, digits <span class="op">=</span> <span class="va">.Options</span><span class="op">$</span><span class="va">digits</span>, <span class="va">...</span>, main <span class="op">=</span> <span class="cn">NULL</span>, xlab <span class="op">=</span> <span class="cn">NULL</span>, 
-    ylab <span class="op">=</span> <span class="cn">NULL</span>, type <span class="op">=</span> <span class="st">"l"</span><span class="op">)</span></code></pre></div>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">plotTTestDesign</span><span class="op">(</span>x.var <span class="op">=</span> <span class="st">"n"</span>, y.var <span class="op">=</span> <span class="st">"power"</span>, range.x.var <span class="op">=</span> <span class="cn">NULL</span>, </span>
+<span>    n.or.n1 <span class="op">=</span> <span class="fl">25</span>, n2 <span class="op">=</span> <span class="va">n.or.n1</span>, </span>
+<span>    delta.over.sigma <span class="op">=</span> <span class="kw"><a href="https://rdrr.io/r/base/switch.html" class="external-link">switch</a></span><span class="op">(</span><span class="va">alternative</span>, greater <span class="op">=</span> <span class="fl">0.5</span>, less <span class="op">=</span> <span class="op">-</span><span class="fl">0.5</span>, </span>
+<span>      two.sided <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/ifelse.html" class="external-link">ifelse</a></span><span class="op">(</span><span class="va">two.sided.direction</span> <span class="op">==</span> <span class="st">"greater"</span>, <span class="fl">0.5</span>, <span class="op">-</span><span class="fl">0.5</span><span class="op">)</span><span class="op">)</span>, </span>
+<span>    alpha <span class="op">=</span> <span class="fl">0.05</span>, power <span class="op">=</span> <span class="fl">0.95</span>, </span>
+<span>    sample.type <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/ifelse.html" class="external-link">ifelse</a></span><span class="op">(</span><span class="op">!</span><span class="fu"><a href="https://rdrr.io/r/base/missing.html" class="external-link">missing</a></span><span class="op">(</span><span class="va">n2</span><span class="op">)</span>, <span class="st">"two.sample"</span>, <span class="st">"one.sample"</span><span class="op">)</span>, </span>
+<span>    alternative <span class="op">=</span> <span class="st">"two.sided"</span>, two.sided.direction <span class="op">=</span> <span class="st">"greater"</span>, approx <span class="op">=</span> <span class="cn">FALSE</span>, </span>
+<span>    round.up <span class="op">=</span> <span class="cn">FALSE</span>, n.max <span class="op">=</span> <span class="fl">5000</span>, tol <span class="op">=</span> <span class="fl">1e-07</span>, maxiter <span class="op">=</span> <span class="fl">1000</span>, plot.it <span class="op">=</span> <span class="cn">TRUE</span>, </span>
+<span>    add <span class="op">=</span> <span class="cn">FALSE</span>, n.points <span class="op">=</span> <span class="fl">50</span>, plot.col <span class="op">=</span> <span class="st">"black"</span>, plot.lwd <span class="op">=</span> <span class="fl">3</span> <span class="op">*</span> <span class="fu"><a href="https://rdrr.io/r/graphics/par.html" class="external-link">par</a></span><span class="op">(</span><span class="st">"cex"</span><span class="op">)</span>, </span>
+<span>    plot.lty <span class="op">=</span> <span class="fl">1</span>, digits <span class="op">=</span> <span class="va">.Options</span><span class="op">$</span><span class="va">digits</span>, <span class="va">...</span>, main <span class="op">=</span> <span class="cn">NULL</span>, xlab <span class="op">=</span> <span class="cn">NULL</span>, </span>
+<span>    ylab <span class="op">=</span> <span class="cn">NULL</span>, type <span class="op">=</span> <span class="st">"l"</span><span class="op">)</span></span></code></pre></div>
     </div>
 
     <div id="arguments">
@@ -72,12 +72,14 @@
   Possible values are <code>"n"</code> (sample size; the default), 
   <code>"delta.over.sigma"</code> (scaled minimal detectable difference), <code>"power"</code> 
   (power of the test), and <code>"alpha"</code> (significance level of the test).</p></dd>
-<dt>y.var</dt>
+
+  <dt>y.var</dt>
 <dd><p>character string indicating what variable to use for the y-axis.  
   Possible values are <code>"power"</code> (power of the test; the default), 
   <code>"delta.over.sigma"</code> (scaled minimal detectable difference), and 
   <code>"n"</code> (sample size).</p></dd>
-<dt>range.x.var</dt>
+
+  <dt>range.x.var</dt>
 <dd><p>numeric vector of length 2 indicating the range of the x-variable to use 
   for the plot.  The default value depends on the value of <code>x.var</code>.  
   When <code>x.var="n"</code> the default value is <code>c(2,50)</code>.  When 
@@ -87,7 +89,8 @@
   <code>alternative="less"</code> or <br><code>alternative="two.sided"</code> and <code>two.sided.direction="less"</code>, the default value is 
   <code>-c(2, 0.5)</code>. When <code>x.var="power"</code> the default value is <br><code>c(alpha + .Machine$double.eps, 0.95)</code>.  When <code>x.var="alpha"</code>, the 
   default value is <code>c(0.01, 0.2)</code>.</p></dd>
-<dt>n.or.n1</dt>
+
+  <dt>n.or.n1</dt>
 <dd><p>numeric scalar indicating the sample size.  The default value is 
   <code>n.or.n1=25</code>.  When <code>sample.type="one.sample"</code>, <code>n.or.n1</code> 
   denotes the number of observations in the single sample.  When 
@@ -95,12 +98,14 @@
   observations from group 1.  Missing (<code>NA</code>), undefined (<code>NaN</code>), 
   and infinite (<code>Inf</code>, <code>-Inf</code>) values are not allowed.  This 
   argument is ignored if either <code>x.var="n"</code> or <code>y.var="n"</code>.</p></dd>
-<dt>n2</dt>
+
+  <dt>n2</dt>
 <dd><p>numeric scalar indicating the sample size for group 2.  The default value 
   is the value of <code>n.or.n1</code>.  Missing (<code>NA</code>), undefined (<code>NaN</code>), 
   and infinite (<code>Inf</code>, <code>-Inf</code>) values are not allowed.  This 
   argument is ignored when <code>sample.type="one.sample"</code>.</p></dd>
-<dt>delta.over.sigma</dt>
+
+  <dt>delta.over.sigma</dt>
 <dd><p>numeric scalar specifying the ratio of the true difference (\(\delta\)) to the 
   population standard deviation (\(\sigma\)).  This is also called the 
   "scaled difference".  When <code>alternative="greater"</code> or 
@@ -109,83 +114,102 @@
   <code>alternative="two.sided"</code> and <br><code>two.sided.direction="less"</code>, the default 
   value is <code>delta.over.sigma=-0.5</code>.  This argument is ignored when 
   <code>x.var="delta.over.sigma"</code> or <br><code>y.var="delta.over.sigma"</code>.</p></dd>
-<dt>alpha</dt>
+
+  <dt>alpha</dt>
 <dd><p>numeric scalar between 0 and 1 indicating the Type I error level associated 
   with the hypothesis test.  The default value is <code>alpha=0.05</code>.  
   This argument is ignored when <code>x.var="alpha"</code>.</p></dd>
-<dt>power</dt>
+
+  <dt>power</dt>
 <dd><p>numeric scalar between 0 and 1 indicating the power associated with the 
   hypothesis test.  The default value is <code>power=0.95</code>.  This argument is 
   ignored when <code>x.var="power"</code> or <code>y.var="power"</code>.</p></dd>
-<dt>sample.type</dt>
+
+  <dt>sample.type</dt>
 <dd><p>character string indicating whether the design is based on a one-sample or 
   two-sample t-test.  When <code>sample.type="one.sample"</code>, the computations 
   for the plot are based on a one-sample t-test.  When 
   <code>sample.type="two.sample"</code>, the computations for the plot are based on a 
   two-sample t-test.  The default value is <code>sample.type="one.sample"</code>.</p></dd>
-<dt>alternative</dt>
+
+  <dt>alternative</dt>
 <dd><p>character string indicating the kind of alternative hypothesis.  The possible 
   values are <code>"two.sided"</code> (the default), <code>"less"</code>, and <code>"greater"</code>.</p></dd>
-<dt>two.sided.direction</dt>
+
+  <dt>two.sided.direction</dt>
 <dd><p>character string indicating the direction (positive or negative) for the scaled 
   minimal detectable difference when <code>alternative="two.sided"</code>.  When <br><code>two.sided.direction="greater"</code> (the default), the scaled minimal detectable 
   difference is positive.  When <code>two.sided.direction="less"</code>, the scaled minimal 
   detectable difference is negative.  This argument is ignored unless <br><code>alternative="two.sided"</code> and either <code>x.var="delta"</code> or 
   <code>y.var="delta"</code>.</p></dd>
-<dt>approx</dt>
+
+  <dt>approx</dt>
 <dd><p>logical scalar indicating whether to compute the power based on an approximation 
   to the non-central t-distribution. The default value is <code>approx=FALSE</code>.</p></dd>
-<dt>round.up</dt>
+
+  <dt>round.up</dt>
 <dd><p>logical scalar indicating whether to round up the values of the computed sample 
   size(s) to the next smallest integer.  The default value is <code>round.up=FALSE</code>.  
   This argument is ignored unless <code>y.var="n"</code>.</p></dd>
-<dt>n.max</dt>
+
+  <dt>n.max</dt>
 <dd><p>for the case when <code>y.var="n"</code>, a positive integer greater than 1 indicating 
   the maximum sample size when <code>sample.type="one.sample"</code> or the maximum sample 
   size for group 1 when <code>sample.type="two.sample"</code>.  The default value is 
   <code>n.max=5000</code>.</p></dd>
-<dt>tol</dt>
+
+  <dt>tol</dt>
 <dd><p>numeric scalar relevant to the case when <code>y.var="n"</code> or 
   <code>y.var="delta.over.sigma"</code>.  
   This argument is passed to the <code>uniroot</code> function and indicates the tolerance 
   to use in the search algorithm.  The default value is <code>tol=1e-7</code>.</p></dd>
-<dt>maxiter</dt>
+  
+  <dt>maxiter</dt>
 <dd><p>numeric scalar relevant to the case when <code>y.var="n"</code> and <code>approx=FALSE</code> 
   (i.e., when the power is based on the exact test), or when 
   <code>y.var="delta.over.sigma"</code>.  This argument is passed to the 
   <code><a href="https://rdrr.io/r/stats/uniroot.html" class="external-link">uniroot</a></code> function and is a positive integer indicating the 
   maximum number of iterations.  The default value is <code>maxiter=1000</code>.</p></dd>
-<dt>plot.it</dt>
+
+  <dt>plot.it</dt>
 <dd><p>a logical scalar indicating whether to create a new plot or add to the existing plot 
   (see <code>add</code>) on the current graphics device.  If <code>plot.it=FALSE</code>, no plot 
   is produced, but a list of (x,y) values is returned (see VALUE).  The default value 
   is <code>plot.it=TRUE</code>.</p></dd>
-<dt>add</dt>
+
+  <dt>add</dt>
 <dd><p>a logical scalar indicating whether to add the design plot to the 
   existing plot (<code>add=TRUE</code>), or to create a plot from scratch 
   (<code>add=FALSE</code>).  The default value is <code>add=FALSE</code>.  
   This argument is ignored if <code>plot.it=FALSE</code>.</p></dd>
-<dt>n.points</dt>
+
+  <dt>n.points</dt>
 <dd><p>a numeric scalar specifying how many (x,y) pairs to use to produce the plot.  
   There are <code>n.points</code> x-values evenly spaced between <code>range.x.var[1]</code> and <br><code>range.x.var[2]</code>.  The default value is <code>n.points=50</code>.</p></dd>
-<dt>plot.col</dt>
+
+  <dt>plot.col</dt>
 <dd><p>a numeric scalar or character string determining the color of the plotted 
   line or points.  The default value is <code>plot.col="black"</code>.  See the 
   entry for <code>col</code> in the help file for <code><a href="https://rdrr.io/r/graphics/par.html" class="external-link">par</a></code> 
   for more information.</p></dd>
-<dt>plot.lwd</dt>
+
+  <dt>plot.lwd</dt>
 <dd><p>a numeric scalar determining the width of the plotted line.  The default value is 
   <code>3*par("cex")</code>.  See the entry for <code>lwd</code> in the help file for <code><a href="https://rdrr.io/r/graphics/par.html" class="external-link">par</a></code> 
   for more information.</p></dd>
-<dt>plot.lty</dt>
+
+  <dt>plot.lty</dt>
 <dd><p>a numeric scalar determining the line type of the plotted line.  The default value is 
   <code>plot.lty=1</code>.  See the entry for <code>lty</code> in the help file for <code><a href="https://rdrr.io/r/graphics/par.html" class="external-link">par</a></code> 
   for more information.</p></dd>
-<dt>digits</dt>
+
+  <dt>digits</dt>
 <dd><p>a scalar indicating how many significant digits to print out on the plot.  The default 
   value is the current setting of <code><a href="https://rdrr.io/r/base/options.html" class="external-link">options</a>("digits")</code>.</p></dd>
-<dt>main, xlab, ylab, type, ...</dt>
+
+  <dt>main, xlab, ylab, type, ...</dt>
 <dd><p>additional graphical parameters (see <code><a href="https://rdrr.io/r/graphics/par.html" class="external-link">par</a></code>).</p></dd>
+
 </dl></div>
     <div id="details">
     <h2>Details</h2>
@@ -196,8 +220,10 @@
     </div>
     <div id="value">
     <h2>Value</h2>
-    <p><code>plotTTestDesign</code> invisibly returns a list with components 
-<code>x.var</code> and <code>y.var</code>, giving coordinates of the points that have 
+    <p></p>
+<p><code>plotTTestDesign</code> invisibly returns a list with components</p>
+<p></p>
+<p><code>x.var</code> and <code>y.var</code>, giving coordinates of the points that have 
   been or would have been plotted.</p>
     </div>
     <div id="references">
@@ -222,67 +248,67 @@
 
     <div id="ref-examples">
     <h2>Examples</h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in">  <span class="co"># Look at the relationship between power and sample size for a two-sample t-test, </span></span>
-<span class="r-in">  <span class="co"># assuming a scaled difference of 0.5 and a 5% significance level:</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="fu"><a href="https://rdrr.io/r/grDevices/dev.html" class="external-link">dev.new</a></span><span class="op">(</span><span class="op">)</span></span>
-<span class="r-in">  <span class="fu">plotTTestDesign</span><span class="op">(</span>sample.type <span class="op">=</span> <span class="st">"two"</span><span class="op">)</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="co">#----------</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="co"># For a two-sample t-test, plot sample size vs. the scaled minimal detectable </span></span>
-<span class="r-in">  <span class="co"># difference for various levels of power, using a 5% significance level:</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="fu"><a href="https://rdrr.io/r/grDevices/dev.html" class="external-link">dev.new</a></span><span class="op">(</span><span class="op">)</span></span>
-<span class="r-in">  <span class="fu">plotTTestDesign</span><span class="op">(</span>x.var <span class="op">=</span> <span class="st">"delta.over.sigma"</span>, y.var <span class="op">=</span> <span class="st">"n"</span>, sample.type <span class="op">=</span> <span class="st">"two"</span>, </span>
-<span class="r-in">    ylim <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">0</span>, <span class="fl">110</span><span class="op">)</span>, main<span class="op">=</span><span class="st">""</span><span class="op">)</span> </span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="fu">plotTTestDesign</span><span class="op">(</span>x.var <span class="op">=</span> <span class="st">"delta.over.sigma"</span>, y.var <span class="op">=</span> <span class="st">"n"</span>, sample.type <span class="op">=</span> <span class="st">"two"</span>, </span>
-<span class="r-in">    power <span class="op">=</span> <span class="fl">0.9</span>, add <span class="op">=</span> <span class="cn">TRUE</span>, plot.col <span class="op">=</span> <span class="st">"red"</span><span class="op">)</span> </span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="fu">plotTTestDesign</span><span class="op">(</span>x.var <span class="op">=</span> <span class="st">"delta.over.sigma"</span>, y.var <span class="op">=</span> <span class="st">"n"</span>, sample.type <span class="op">=</span> <span class="st">"two"</span>, </span>
-<span class="r-in">    power <span class="op">=</span> <span class="fl">0.8</span>, add <span class="op">=</span> <span class="cn">TRUE</span>, plot.col <span class="op">=</span> <span class="st">"blue"</span><span class="op">)</span> </span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="fu"><a href="https://rdrr.io/r/graphics/legend.html" class="external-link">legend</a></span><span class="op">(</span><span class="st">"topright"</span>, <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"95%"</span>, <span class="st">"90%"</span>, <span class="st">"80%"</span><span class="op">)</span>, lty <span class="op">=</span> <span class="fl">1</span>, </span>
-<span class="r-in">    lwd <span class="op">=</span> <span class="fl">3</span> <span class="op">*</span> <span class="fu"><a href="https://rdrr.io/r/graphics/par.html" class="external-link">par</a></span><span class="op">(</span><span class="st">"cex"</span><span class="op">)</span>, col <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"black"</span>, <span class="st">"red"</span>, <span class="st">"blue"</span><span class="op">)</span>, bty <span class="op">=</span> <span class="st">"n"</span><span class="op">)</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="fu"><a href="https://rdrr.io/r/graphics/title.html" class="external-link">title</a></span><span class="op">(</span>main <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/paste.html" class="external-link">paste</a></span><span class="op">(</span><span class="st">"Sample Size vs. Scaled Difference for"</span>, </span>
-<span class="r-in">    <span class="st">"Two-Sample t-Test, with Alpha=0.05 and Various Powers"</span>, </span>
-<span class="r-in">    sep<span class="op">=</span><span class="st">"\n"</span><span class="op">)</span><span class="op">)</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="co">#==========</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="co"># Modifying the example on pages 21-4 to 21-5 of USEPA (2009), look at </span></span>
-<span class="r-in">  <span class="co"># power versus scaled minimal detectable difference for various sample </span></span>
-<span class="r-in">  <span class="co"># sizes in the context of the problem of using a one-sample t-test to </span></span>
-<span class="r-in">  <span class="co"># compare the mean for the well with the MCL of 7 ppb.  Use alpha = 0.01, </span></span>
-<span class="r-in">  <span class="co"># assume an upper one-sided alternative (i.e., compliance well mean larger </span></span>
-<span class="r-in">  <span class="co"># than 7 ppb).</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="fu"><a href="https://rdrr.io/r/grDevices/dev.html" class="external-link">dev.new</a></span><span class="op">(</span><span class="op">)</span></span>
-<span class="r-in">  <span class="fu">plotTTestDesign</span><span class="op">(</span>x.var <span class="op">=</span> <span class="st">"delta.over.sigma"</span>, y.var <span class="op">=</span> <span class="st">"power"</span>, </span>
-<span class="r-in">    range.x.var <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">0.5</span>, <span class="fl">2</span><span class="op">)</span>, n.or.n1 <span class="op">=</span> <span class="fl">8</span>, alpha <span class="op">=</span> <span class="fl">0.01</span>, </span>
-<span class="r-in">    alternative <span class="op">=</span> <span class="st">"greater"</span>, ylim <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">0</span>, <span class="fl">1</span><span class="op">)</span>, main <span class="op">=</span> <span class="st">""</span><span class="op">)</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="fu">plotTTestDesign</span><span class="op">(</span>x.var <span class="op">=</span> <span class="st">"delta.over.sigma"</span>, y.var <span class="op">=</span> <span class="st">"power"</span>, </span>
-<span class="r-in">    range.x.var <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">0.5</span>, <span class="fl">2</span><span class="op">)</span>, n.or.n1 <span class="op">=</span> <span class="fl">6</span>, alpha <span class="op">=</span> <span class="fl">0.01</span>, </span>
-<span class="r-in">    alternative <span class="op">=</span> <span class="st">"greater"</span>, add <span class="op">=</span> <span class="cn">TRUE</span>, plot.col <span class="op">=</span> <span class="st">"red"</span><span class="op">)</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="fu">plotTTestDesign</span><span class="op">(</span>x.var <span class="op">=</span> <span class="st">"delta.over.sigma"</span>, y.var <span class="op">=</span> <span class="st">"power"</span>, </span>
-<span class="r-in">    range.x.var <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">0.5</span>, <span class="fl">2</span><span class="op">)</span>, n.or.n1 <span class="op">=</span> <span class="fl">4</span>, alpha <span class="op">=</span> <span class="fl">0.01</span>, </span>
-<span class="r-in">    alternative <span class="op">=</span> <span class="st">"greater"</span>, add <span class="op">=</span> <span class="cn">TRUE</span>, plot.col <span class="op">=</span> <span class="st">"blue"</span><span class="op">)</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="fu"><a href="https://rdrr.io/r/graphics/legend.html" class="external-link">legend</a></span><span class="op">(</span><span class="st">"topleft"</span>, <span class="fu"><a href="https://rdrr.io/r/base/paste.html" class="external-link">paste</a></span><span class="op">(</span><span class="st">"N ="</span>, <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">8</span>, <span class="fl">6</span>, <span class="fl">4</span><span class="op">)</span><span class="op">)</span>, lty <span class="op">=</span> <span class="fl">1</span>, lwd <span class="op">=</span> <span class="fl">3</span> <span class="op">*</span> <span class="fu"><a href="https://rdrr.io/r/graphics/par.html" class="external-link">par</a></span><span class="op">(</span><span class="st">"cex"</span><span class="op">)</span>, </span>
-<span class="r-in">    col <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"black"</span>, <span class="st">"red"</span>, <span class="st">"blue"</span><span class="op">)</span>, bty <span class="op">=</span> <span class="st">"n"</span><span class="op">)</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="fu"><a href="https://rdrr.io/r/graphics/title.html" class="external-link">title</a></span><span class="op">(</span>main <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/paste.html" class="external-link">paste</a></span><span class="op">(</span><span class="st">"Power vs. Scaled Difference for One-Sample t-Test"</span>, </span>
-<span class="r-in">    <span class="st">"with Alpha=0.01 and Various Sample Sizes"</span>, sep<span class="op">=</span><span class="st">"\n"</span><span class="op">)</span><span class="op">)</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="co">#==========</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="co"># Clean up</span></span>
-<span class="r-in">  <span class="co">#---------</span></span>
-<span class="r-in">  <span class="fu"><a href="https://rdrr.io/r/grDevices/dev.html" class="external-link">graphics.off</a></span><span class="op">(</span><span class="op">)</span></span>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span>  <span class="co"># Look at the relationship between power and sample size for a two-sample t-test, </span></span></span>
+<span class="r-in"><span>  <span class="co"># assuming a scaled difference of 0.5 and a 5% significance level:</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/r/grDevices/dev.html" class="external-link">dev.new</a></span><span class="op">(</span><span class="op">)</span></span></span>
+<span class="r-in"><span>  <span class="fu">plotTTestDesign</span><span class="op">(</span>sample.type <span class="op">=</span> <span class="st">"two"</span><span class="op">)</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="co">#----------</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="co"># For a two-sample t-test, plot sample size vs. the scaled minimal detectable </span></span></span>
+<span class="r-in"><span>  <span class="co"># difference for various levels of power, using a 5% significance level:</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/r/grDevices/dev.html" class="external-link">dev.new</a></span><span class="op">(</span><span class="op">)</span></span></span>
+<span class="r-in"><span>  <span class="fu">plotTTestDesign</span><span class="op">(</span>x.var <span class="op">=</span> <span class="st">"delta.over.sigma"</span>, y.var <span class="op">=</span> <span class="st">"n"</span>, sample.type <span class="op">=</span> <span class="st">"two"</span>, </span></span>
+<span class="r-in"><span>    ylim <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">0</span>, <span class="fl">110</span><span class="op">)</span>, main<span class="op">=</span><span class="st">""</span><span class="op">)</span> </span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="fu">plotTTestDesign</span><span class="op">(</span>x.var <span class="op">=</span> <span class="st">"delta.over.sigma"</span>, y.var <span class="op">=</span> <span class="st">"n"</span>, sample.type <span class="op">=</span> <span class="st">"two"</span>, </span></span>
+<span class="r-in"><span>    power <span class="op">=</span> <span class="fl">0.9</span>, add <span class="op">=</span> <span class="cn">TRUE</span>, plot.col <span class="op">=</span> <span class="st">"red"</span><span class="op">)</span> </span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="fu">plotTTestDesign</span><span class="op">(</span>x.var <span class="op">=</span> <span class="st">"delta.over.sigma"</span>, y.var <span class="op">=</span> <span class="st">"n"</span>, sample.type <span class="op">=</span> <span class="st">"two"</span>, </span></span>
+<span class="r-in"><span>    power <span class="op">=</span> <span class="fl">0.8</span>, add <span class="op">=</span> <span class="cn">TRUE</span>, plot.col <span class="op">=</span> <span class="st">"blue"</span><span class="op">)</span> </span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/r/graphics/legend.html" class="external-link">legend</a></span><span class="op">(</span><span class="st">"topright"</span>, <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"95%"</span>, <span class="st">"90%"</span>, <span class="st">"80%"</span><span class="op">)</span>, lty <span class="op">=</span> <span class="fl">1</span>, </span></span>
+<span class="r-in"><span>    lwd <span class="op">=</span> <span class="fl">3</span> <span class="op">*</span> <span class="fu"><a href="https://rdrr.io/r/graphics/par.html" class="external-link">par</a></span><span class="op">(</span><span class="st">"cex"</span><span class="op">)</span>, col <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"black"</span>, <span class="st">"red"</span>, <span class="st">"blue"</span><span class="op">)</span>, bty <span class="op">=</span> <span class="st">"n"</span><span class="op">)</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/r/graphics/title.html" class="external-link">title</a></span><span class="op">(</span>main <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/paste.html" class="external-link">paste</a></span><span class="op">(</span><span class="st">"Sample Size vs. Scaled Difference for"</span>, </span></span>
+<span class="r-in"><span>    <span class="st">"Two-Sample t-Test, with Alpha=0.05 and Various Powers"</span>, </span></span>
+<span class="r-in"><span>    sep<span class="op">=</span><span class="st">"\n"</span><span class="op">)</span><span class="op">)</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="co">#==========</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="co"># Modifying the example on pages 21-4 to 21-5 of USEPA (2009), look at </span></span></span>
+<span class="r-in"><span>  <span class="co"># power versus scaled minimal detectable difference for various sample </span></span></span>
+<span class="r-in"><span>  <span class="co"># sizes in the context of the problem of using a one-sample t-test to </span></span></span>
+<span class="r-in"><span>  <span class="co"># compare the mean for the well with the MCL of 7 ppb.  Use alpha = 0.01, </span></span></span>
+<span class="r-in"><span>  <span class="co"># assume an upper one-sided alternative (i.e., compliance well mean larger </span></span></span>
+<span class="r-in"><span>  <span class="co"># than 7 ppb).</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/r/grDevices/dev.html" class="external-link">dev.new</a></span><span class="op">(</span><span class="op">)</span></span></span>
+<span class="r-in"><span>  <span class="fu">plotTTestDesign</span><span class="op">(</span>x.var <span class="op">=</span> <span class="st">"delta.over.sigma"</span>, y.var <span class="op">=</span> <span class="st">"power"</span>, </span></span>
+<span class="r-in"><span>    range.x.var <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">0.5</span>, <span class="fl">2</span><span class="op">)</span>, n.or.n1 <span class="op">=</span> <span class="fl">8</span>, alpha <span class="op">=</span> <span class="fl">0.01</span>, </span></span>
+<span class="r-in"><span>    alternative <span class="op">=</span> <span class="st">"greater"</span>, ylim <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">0</span>, <span class="fl">1</span><span class="op">)</span>, main <span class="op">=</span> <span class="st">""</span><span class="op">)</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="fu">plotTTestDesign</span><span class="op">(</span>x.var <span class="op">=</span> <span class="st">"delta.over.sigma"</span>, y.var <span class="op">=</span> <span class="st">"power"</span>, </span></span>
+<span class="r-in"><span>    range.x.var <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">0.5</span>, <span class="fl">2</span><span class="op">)</span>, n.or.n1 <span class="op">=</span> <span class="fl">6</span>, alpha <span class="op">=</span> <span class="fl">0.01</span>, </span></span>
+<span class="r-in"><span>    alternative <span class="op">=</span> <span class="st">"greater"</span>, add <span class="op">=</span> <span class="cn">TRUE</span>, plot.col <span class="op">=</span> <span class="st">"red"</span><span class="op">)</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="fu">plotTTestDesign</span><span class="op">(</span>x.var <span class="op">=</span> <span class="st">"delta.over.sigma"</span>, y.var <span class="op">=</span> <span class="st">"power"</span>, </span></span>
+<span class="r-in"><span>    range.x.var <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">0.5</span>, <span class="fl">2</span><span class="op">)</span>, n.or.n1 <span class="op">=</span> <span class="fl">4</span>, alpha <span class="op">=</span> <span class="fl">0.01</span>, </span></span>
+<span class="r-in"><span>    alternative <span class="op">=</span> <span class="st">"greater"</span>, add <span class="op">=</span> <span class="cn">TRUE</span>, plot.col <span class="op">=</span> <span class="st">"blue"</span><span class="op">)</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/r/graphics/legend.html" class="external-link">legend</a></span><span class="op">(</span><span class="st">"topleft"</span>, <span class="fu"><a href="https://rdrr.io/r/base/paste.html" class="external-link">paste</a></span><span class="op">(</span><span class="st">"N ="</span>, <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">8</span>, <span class="fl">6</span>, <span class="fl">4</span><span class="op">)</span><span class="op">)</span>, lty <span class="op">=</span> <span class="fl">1</span>, lwd <span class="op">=</span> <span class="fl">3</span> <span class="op">*</span> <span class="fu"><a href="https://rdrr.io/r/graphics/par.html" class="external-link">par</a></span><span class="op">(</span><span class="st">"cex"</span><span class="op">)</span>, </span></span>
+<span class="r-in"><span>    col <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"black"</span>, <span class="st">"red"</span>, <span class="st">"blue"</span><span class="op">)</span>, bty <span class="op">=</span> <span class="st">"n"</span><span class="op">)</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/r/graphics/title.html" class="external-link">title</a></span><span class="op">(</span>main <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/paste.html" class="external-link">paste</a></span><span class="op">(</span><span class="st">"Power vs. Scaled Difference for One-Sample t-Test"</span>, </span></span>
+<span class="r-in"><span>    <span class="st">"with Alpha=0.01 and Various Sample Sizes"</span>, sep<span class="op">=</span><span class="st">"\n"</span><span class="op">)</span><span class="op">)</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="co">#==========</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="co"># Clean up</span></span></span>
+<span class="r-in"><span>  <span class="co">#---------</span></span></span>
+<span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/r/grDevices/dev.html" class="external-link">graphics.off</a></span><span class="op">(</span><span class="op">)</span></span></span>
 </code></pre></div>
     </div>
   </div>
@@ -297,7 +323,7 @@
 </div>
 
 <div class="pkgdown">
-  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.2.</p>
+  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.6.</p>
 </div>
 
       </footer></div>

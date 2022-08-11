@@ -56,9 +56,9 @@
     </div>
 
     <div id="ref-usage">
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="fu">predIntNormSimultaneousTestPower</span><span class="op">(</span><span class="va">n</span>, df <span class="op">=</span> <span class="va">n</span> <span class="op">-</span> <span class="fl">1</span>, n.mean <span class="op">=</span> <span class="fl">1</span>, k <span class="op">=</span> <span class="fl">1</span>, m <span class="op">=</span> <span class="fl">2</span>, r <span class="op">=</span> <span class="fl">1</span>, 
-    rule <span class="op">=</span> <span class="st">"k.of.m"</span>, delta.over.sigma <span class="op">=</span> <span class="fl">0</span>, pi.type <span class="op">=</span> <span class="st">"upper"</span>, conf.level <span class="op">=</span> <span class="fl">0.95</span>, 
-    r.shifted <span class="op">=</span> <span class="va">r</span>, K.tol <span class="op">=</span> <span class="va">.Machine</span><span class="op">$</span><span class="va">double.eps</span><span class="op">^</span><span class="fl">0.5</span>, integrate.args.list <span class="op">=</span> <span class="cn">NULL</span><span class="op">)</span></code></pre></div>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">predIntNormSimultaneousTestPower</span><span class="op">(</span><span class="va">n</span>, df <span class="op">=</span> <span class="va">n</span> <span class="op">-</span> <span class="fl">1</span>, n.mean <span class="op">=</span> <span class="fl">1</span>, k <span class="op">=</span> <span class="fl">1</span>, m <span class="op">=</span> <span class="fl">2</span>, r <span class="op">=</span> <span class="fl">1</span>, </span>
+<span>    rule <span class="op">=</span> <span class="st">"k.of.m"</span>, delta.over.sigma <span class="op">=</span> <span class="fl">0</span>, pi.type <span class="op">=</span> <span class="st">"upper"</span>, conf.level <span class="op">=</span> <span class="fl">0.95</span>, </span>
+<span>    r.shifted <span class="op">=</span> <span class="va">r</span>, K.tol <span class="op">=</span> <span class="va">.Machine</span><span class="op">$</span><span class="va">double.eps</span><span class="op">^</span><span class="fl">0.5</span>, integrate.args.list <span class="op">=</span> <span class="cn">NULL</span><span class="op">)</span></span></code></pre></div>
     </div>
 
     <div id="arguments">
@@ -66,34 +66,41 @@
     <dl><dt>n</dt>
 <dd><p>vector of positive integers greater than 2 indicating the sample size upon which 
   the prediction interval is based.</p></dd>
-<dt>df</dt>
+
+  <dt>df</dt>
 <dd><p>vector of positive integers indicating the degrees of freedom associated with 
   the sample size.  The default value is <code>df=n-1</code>.</p></dd>
-<dt>n.mean</dt>
+
+  <dt>n.mean</dt>
 <dd><p>positive integer specifying the sample size associated with the future averages.  
   The default value is <code>n.mean=1</code> (i.e., individual observations).  Note that all 
   future averages must be based on the same sample size.</p></dd>
-<dt>k</dt>
+
+  <dt>k</dt>
 <dd><p>for the \(k\)-of-\(m\) rule (<code>rule="k.of.m"</code>), vector of positive integers 
   specifying the minimum number of observations (or averages) out of \(m\) 
   observations (or averages) (all obtained on one future sampling “occassion”) 
   the prediction interval should contain with confidence level <code>conf.level</code>.  
   The default value is <code>k=1</code>.  This argument is ignored when the argument 
   <code>rule</code> is not equal to <code>"k.of.m"</code>.</p></dd>
-<dt>m</dt>
+
+  <dt>m</dt>
 <dd><p>vector of positive integers specifying the maximum number of future observations (or 
   averages) on one future sampling “occasion”.  
   The default value is <code>m=2</code>, except when <code>rule="Modified.CA"</code>, in which 
   case this argument is ignored and <code>m</code> is automatically set equal to <code>4</code>.</p></dd>
-<dt>r</dt>
+
+  <dt>r</dt>
 <dd><p>vector of positive integers specifying the number of future sampling “occasions”.  
   The default value is <code>r=1</code>.</p></dd>
-<dt>rule</dt>
+
+  <dt>rule</dt>
 <dd><p>character string specifying which rule to use.  The possible values are 
   <code>"k.of.m"</code> (\(k\)-of-\(m\) rule; the default), <code>"CA"</code> (California rule), 
   and <code>"Modified.CA"</code> (modified California rule).  
   See the DETAILS section below for more information.</p></dd>
-<dt>delta.over.sigma</dt>
+
+  <dt>delta.over.sigma</dt>
 <dd><p>numeric vector indicating the ratio \(\Delta/\sigma\).  The quantity 
   \(\Delta\) (delta) denotes the difference between the mean of the population 
   that was sampled to construct the prediction interval, and the mean of the 
@@ -101,28 +108,34 @@
   \(\sigma\) (sigma) denotes the population standard deviation for both populations.  
   See the DETAILS section below for more information.  The default value is 
   <code>delta.over.sigma=0</code>.</p></dd>
-<dt>pi.type</dt>
+
+  <dt>pi.type</dt>
 <dd><p>character string indicating what kind of prediction interval to compute.  
   The possible values are <code>pi.type="upper"</code> (the default), and 
   <code>pi.type="lower"</code>.</p></dd>
-<dt>conf.level</dt>
+
+  <dt>conf.level</dt>
 <dd><p>vector of values between 0 and 1 indicating the confidence level of the prediction interval.  
   The default value is <code>conf.level=0.95</code>.</p></dd>
-<dt>r.shifted</dt>
+
+  <dt>r.shifted</dt>
 <dd><p>vector of positive integers specifying the number of future sampling occasions for 
   which the scaled mean is shifted by \(\Delta/\sigma\).  All values must be 
   integeters between <code>1</code> and the corresponding element of <code>r</code>.  
   The default value is <code>r.shifted=r</code>.</p></dd>
-<dt>K.tol</dt>
+
+  <dt>K.tol</dt>
 <dd><p>numeric scalar indicating the tolerance to use in the nonlinear search algorithm to 
   compute \(K\).  The default value is <code>K.tol=.Machine$double.eps^(1/2)</code>.  
   For many applications, the value of \(K\) needs to be known only to the second 
   decimal place, in which case setting <code>K.tol=1e-4</code> will speed up computation a 
   bit.</p></dd>
-<dt>integrate.args.list</dt>
+
+  <dt>integrate.args.list</dt>
 <dd><p>a list of arguments to supply to the <code><a href="https://rdrr.io/r/stats/integrate.html" class="external-link">integrate</a></code> function.  The 
   default value is <code>integrate.args.list=NULL</code> which means that the 
   default values of <code><a href="https://rdrr.io/r/stats/integrate.html" class="external-link">integrate</a></code> are used.</p></dd>
+
 </dl></div>
     <div id="details">
     <h2>Details</h2>
@@ -293,7 +306,9 @@
     </div>
     <div id="value">
     <h2>Value</h2>
-    <p>vector of values between 0 and 1 equal to the probability that 
+    
+
+<p>vector of values between 0 and 1 equal to the probability that 
   the rule will be violated.</p>
     </div>
     <div id="references">
@@ -324,146 +339,146 @@
 
     <div id="ref-examples">
     <h2>Examples</h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in">  <span class="co"># For the k-of-m rule with n=4, k=1, m=3, and r=1, show how the power increases </span></span>
-<span class="r-in">  <span class="co"># as delta.over.sigma increases. Assume a 95% upper prediction interval.</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="fu">predIntNormSimultaneousTestPower</span><span class="op">(</span>n <span class="op">=</span> <span class="fl">4</span>, m <span class="op">=</span> <span class="fl">3</span>, delta.over.sigma <span class="op">=</span> <span class="fl">0</span><span class="op">:</span><span class="fl">2</span><span class="op">)</span> </span>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span>  <span class="co"># For the k-of-m rule with n=4, k=1, m=3, and r=1, show how the power increases </span></span></span>
+<span class="r-in"><span>  <span class="co"># as delta.over.sigma increases. Assume a 95% upper prediction interval.</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="fu">predIntNormSimultaneousTestPower</span><span class="op">(</span>n <span class="op">=</span> <span class="fl">4</span>, m <span class="op">=</span> <span class="fl">3</span>, delta.over.sigma <span class="op">=</span> <span class="fl">0</span><span class="op">:</span><span class="fl">2</span><span class="op">)</span> </span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] 0.0500000 0.2954156 0.7008558</span>
-<span class="r-in">  <span class="co">#[1] 0.0500000 0.2954156 0.7008558</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="co">#----------</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="co"># Look at how the power increases with sample size for an upper one-sided </span></span>
-<span class="r-in">  <span class="co"># prediction interval using the k-of-m rule with k=1, m=3, r=20, </span></span>
-<span class="r-in">  <span class="co"># delta.over.sigma=2, and a confidence level of 95%.</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="fu">predIntNormSimultaneousTestPower</span><span class="op">(</span>n <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">4</span>, <span class="fl">8</span><span class="op">)</span>, m <span class="op">=</span> <span class="fl">3</span>, r <span class="op">=</span> <span class="fl">20</span>, delta.over.sigma <span class="op">=</span> <span class="fl">2</span><span class="op">)</span> </span>
+<span class="r-in"><span>  <span class="co">#[1] 0.0500000 0.2954156 0.7008558</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="co">#----------</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="co"># Look at how the power increases with sample size for an upper one-sided </span></span></span>
+<span class="r-in"><span>  <span class="co"># prediction interval using the k-of-m rule with k=1, m=3, r=20, </span></span></span>
+<span class="r-in"><span>  <span class="co"># delta.over.sigma=2, and a confidence level of 95%.</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="fu">predIntNormSimultaneousTestPower</span><span class="op">(</span>n <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">4</span>, <span class="fl">8</span><span class="op">)</span>, m <span class="op">=</span> <span class="fl">3</span>, r <span class="op">=</span> <span class="fl">20</span>, delta.over.sigma <span class="op">=</span> <span class="fl">2</span><span class="op">)</span> </span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] 0.6075972 0.9240924</span>
-<span class="r-in">  <span class="co">#[1] 0.6075972 0.9240924</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="co">#----------</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="co"># Compare the power for the 1-of-3 rule with the power for the California and </span></span>
-<span class="r-in">  <span class="co"># Modified California rules, based on a 95% upper prediction interval and </span></span>
-<span class="r-in">  <span class="co"># delta.over.sigma=2.  Assume a sample size of n=8.  Note that in this case the </span></span>
-<span class="r-in">  <span class="co"># power for the Modified California rule is greater than the power for the </span></span>
-<span class="r-in">  <span class="co"># 1-of-3 rule and California rule.</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="fu">predIntNormSimultaneousTestPower</span><span class="op">(</span>n <span class="op">=</span> <span class="fl">8</span>, k <span class="op">=</span> <span class="fl">1</span>, m <span class="op">=</span> <span class="fl">3</span>, delta.over.sigma <span class="op">=</span> <span class="fl">2</span><span class="op">)</span> </span>
+<span class="r-in"><span>  <span class="co">#[1] 0.6075972 0.9240924</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="co">#----------</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="co"># Compare the power for the 1-of-3 rule with the power for the California and </span></span></span>
+<span class="r-in"><span>  <span class="co"># Modified California rules, based on a 95% upper prediction interval and </span></span></span>
+<span class="r-in"><span>  <span class="co"># delta.over.sigma=2.  Assume a sample size of n=8.  Note that in this case the </span></span></span>
+<span class="r-in"><span>  <span class="co"># power for the Modified California rule is greater than the power for the </span></span></span>
+<span class="r-in"><span>  <span class="co"># 1-of-3 rule and California rule.</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="fu">predIntNormSimultaneousTestPower</span><span class="op">(</span>n <span class="op">=</span> <span class="fl">8</span>, k <span class="op">=</span> <span class="fl">1</span>, m <span class="op">=</span> <span class="fl">3</span>, delta.over.sigma <span class="op">=</span> <span class="fl">2</span><span class="op">)</span> </span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] 0.788171</span>
-<span class="r-in">  <span class="co">#[1] 0.788171 </span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="fu">predIntNormSimultaneousTestPower</span><span class="op">(</span>n <span class="op">=</span> <span class="fl">8</span>, m <span class="op">=</span> <span class="fl">3</span>, rule <span class="op">=</span> <span class="st">"CA"</span>, delta.over.sigma <span class="op">=</span> <span class="fl">2</span><span class="op">)</span> </span>
+<span class="r-in"><span>  <span class="co">#[1] 0.788171 </span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="fu">predIntNormSimultaneousTestPower</span><span class="op">(</span>n <span class="op">=</span> <span class="fl">8</span>, m <span class="op">=</span> <span class="fl">3</span>, rule <span class="op">=</span> <span class="st">"CA"</span>, delta.over.sigma <span class="op">=</span> <span class="fl">2</span><span class="op">)</span> </span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] 0.7160434</span>
-<span class="r-in">  <span class="co">#[1] 0.7160434 </span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="fu">predIntNormSimultaneousTestPower</span><span class="op">(</span>n <span class="op">=</span> <span class="fl">8</span>, rule <span class="op">=</span> <span class="st">"Modified.CA"</span>, delta.over.sigma <span class="op">=</span> <span class="fl">2</span><span class="op">)</span> </span>
+<span class="r-in"><span>  <span class="co">#[1] 0.7160434 </span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="fu">predIntNormSimultaneousTestPower</span><span class="op">(</span>n <span class="op">=</span> <span class="fl">8</span>, rule <span class="op">=</span> <span class="st">"Modified.CA"</span>, delta.over.sigma <span class="op">=</span> <span class="fl">2</span><span class="op">)</span> </span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] 0.8143687</span>
-<span class="r-in">  <span class="co">#[1] 0.8143687</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="co">#----------</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="co"># Show how the power for an upper 95% simultaneous prediction limit increases </span></span>
-<span class="r-in">  <span class="co"># as the number of future sampling occasions r increases.  Here, we'll use the </span></span>
-<span class="r-in">  <span class="co"># 1-of-3 rule with n=8 and delta.over.sigma=1.</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="fu">predIntNormSimultaneousTestPower</span><span class="op">(</span>n <span class="op">=</span> <span class="fl">8</span>, k <span class="op">=</span> <span class="fl">1</span>, m <span class="op">=</span> <span class="fl">3</span>, r<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">1</span>, <span class="fl">2</span>, <span class="fl">5</span>, <span class="fl">10</span><span class="op">)</span>, </span>
-<span class="r-in">    delta.over.sigma <span class="op">=</span> <span class="fl">1</span><span class="op">)</span> </span>
+<span class="r-in"><span>  <span class="co">#[1] 0.8143687</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="co">#----------</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="co"># Show how the power for an upper 95% simultaneous prediction limit increases </span></span></span>
+<span class="r-in"><span>  <span class="co"># as the number of future sampling occasions r increases.  Here, we'll use the </span></span></span>
+<span class="r-in"><span>  <span class="co"># 1-of-3 rule with n=8 and delta.over.sigma=1.</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="fu">predIntNormSimultaneousTestPower</span><span class="op">(</span>n <span class="op">=</span> <span class="fl">8</span>, k <span class="op">=</span> <span class="fl">1</span>, m <span class="op">=</span> <span class="fl">3</span>, r<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">1</span>, <span class="fl">2</span>, <span class="fl">5</span>, <span class="fl">10</span><span class="op">)</span>, </span></span>
+<span class="r-in"><span>    delta.over.sigma <span class="op">=</span> <span class="fl">1</span><span class="op">)</span> </span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] 0.3492512 0.4032111 0.4503603 0.4633773</span>
-<span class="r-in">  <span class="co">#[1] 0.3492512 0.4032111 0.4503603 0.4633773</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="co">#==========</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="co"># USEPA (2009) contains an example on page 19-23 that involves monitoring </span></span>
-<span class="r-in">  <span class="co"># nw=100 compliance wells at a large facility with minimal natural spatial </span></span>
-<span class="r-in">  <span class="co"># variation every 6 months for nc=20 separate chemicals.  </span></span>
-<span class="r-in">  <span class="co"># There are n=25 background measurements for each chemical to use to create</span></span>
-<span class="r-in">  <span class="co"># simultaneous prediction intervals.  We would like to determine which kind of</span></span>
-<span class="r-in">  <span class="co"># resampling plan based on normal distribution simultaneous prediction intervals to</span></span>
-<span class="r-in">  <span class="co"># use (1-of-m, 1-of-m based on means, or Modified California) in order to have</span></span>
-<span class="r-in">  <span class="co"># adequate power of detecting an increase in chemical concentration at any of the</span></span>
-<span class="r-in">  <span class="co"># 100 wells while at the same time maintaining a site-wide false positive rate</span></span>
-<span class="r-in">  <span class="co"># (SWFPR) of 10% per year over all 4,000 comparisons </span></span>
-<span class="r-in">  <span class="co"># (100 wells x 20 chemicals x semi-annual sampling).</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="co"># The function predIntNormSimultaneousTestPower includes the argument "r" </span></span>
-<span class="r-in">  <span class="co"># that is the number of future sampling occasions (r=2 in this case because </span></span>
-<span class="r-in">  <span class="co"># we are performing semi-annual sampling), so to compute the individual test </span></span>
-<span class="r-in">  <span class="co"># Type I error level alpha.test (and thus the individual test confidence level), </span></span>
-<span class="r-in">  <span class="co"># we only need to worry about the number of wells (100) and the number of </span></span>
-<span class="r-in">  <span class="co"># constituents (20): alpha.test = 1-(1-alpha)^(1/(nw x nc)).  The individual </span></span>
-<span class="r-in">  <span class="co"># confidence level is simply 1-alpha.test.  Plugging in 0.1 for alpha, </span></span>
-<span class="r-in">  <span class="co"># 100 for nw, and 20 for nc yields an individual test confidence level of </span></span>
-<span class="r-in">  <span class="co"># 1-alpha.test = 0.9999473.</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="va">nc</span> <span class="op">&lt;-</span> <span class="fl">20</span></span>
-<span class="r-in">  <span class="va">nw</span> <span class="op">&lt;-</span> <span class="fl">100</span></span>
-<span class="r-in">  <span class="va">conf.level</span> <span class="op">&lt;-</span> <span class="op">(</span><span class="fl">1</span> <span class="op">-</span> <span class="fl">0.1</span><span class="op">)</span><span class="op">^</span><span class="op">(</span><span class="fl">1</span> <span class="op">/</span> <span class="op">(</span><span class="va">nc</span> <span class="op">*</span> <span class="va">nw</span><span class="op">)</span><span class="op">)</span></span>
-<span class="r-in">  <span class="va">conf.level</span></span>
+<span class="r-in"><span>  <span class="co">#[1] 0.3492512 0.4032111 0.4503603 0.4633773</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="co">#==========</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="co"># USEPA (2009) contains an example on page 19-23 that involves monitoring </span></span></span>
+<span class="r-in"><span>  <span class="co"># nw=100 compliance wells at a large facility with minimal natural spatial </span></span></span>
+<span class="r-in"><span>  <span class="co"># variation every 6 months for nc=20 separate chemicals.  </span></span></span>
+<span class="r-in"><span>  <span class="co"># There are n=25 background measurements for each chemical to use to create</span></span></span>
+<span class="r-in"><span>  <span class="co"># simultaneous prediction intervals.  We would like to determine which kind of</span></span></span>
+<span class="r-in"><span>  <span class="co"># resampling plan based on normal distribution simultaneous prediction intervals to</span></span></span>
+<span class="r-in"><span>  <span class="co"># use (1-of-m, 1-of-m based on means, or Modified California) in order to have</span></span></span>
+<span class="r-in"><span>  <span class="co"># adequate power of detecting an increase in chemical concentration at any of the</span></span></span>
+<span class="r-in"><span>  <span class="co"># 100 wells while at the same time maintaining a site-wide false positive rate</span></span></span>
+<span class="r-in"><span>  <span class="co"># (SWFPR) of 10% per year over all 4,000 comparisons </span></span></span>
+<span class="r-in"><span>  <span class="co"># (100 wells x 20 chemicals x semi-annual sampling).</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="co"># The function predIntNormSimultaneousTestPower includes the argument "r" </span></span></span>
+<span class="r-in"><span>  <span class="co"># that is the number of future sampling occasions (r=2 in this case because </span></span></span>
+<span class="r-in"><span>  <span class="co"># we are performing semi-annual sampling), so to compute the individual test </span></span></span>
+<span class="r-in"><span>  <span class="co"># Type I error level alpha.test (and thus the individual test confidence level), </span></span></span>
+<span class="r-in"><span>  <span class="co"># we only need to worry about the number of wells (100) and the number of </span></span></span>
+<span class="r-in"><span>  <span class="co"># constituents (20): alpha.test = 1-(1-alpha)^(1/(nw x nc)).  The individual </span></span></span>
+<span class="r-in"><span>  <span class="co"># confidence level is simply 1-alpha.test.  Plugging in 0.1 for alpha, </span></span></span>
+<span class="r-in"><span>  <span class="co"># 100 for nw, and 20 for nc yields an individual test confidence level of </span></span></span>
+<span class="r-in"><span>  <span class="co"># 1-alpha.test = 0.9999473.</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="va">nc</span> <span class="op">&lt;-</span> <span class="fl">20</span></span></span>
+<span class="r-in"><span>  <span class="va">nw</span> <span class="op">&lt;-</span> <span class="fl">100</span></span></span>
+<span class="r-in"><span>  <span class="va">conf.level</span> <span class="op">&lt;-</span> <span class="op">(</span><span class="fl">1</span> <span class="op">-</span> <span class="fl">0.1</span><span class="op">)</span><span class="op">^</span><span class="op">(</span><span class="fl">1</span> <span class="op">/</span> <span class="op">(</span><span class="va">nc</span> <span class="op">*</span> <span class="va">nw</span><span class="op">)</span><span class="op">)</span></span></span>
+<span class="r-in"><span>  <span class="va">conf.level</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] 0.9999473</span>
-<span class="r-in">  <span class="co">#[1] 0.9999473</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="co"># Now we can compute the power of any particular sampling strategy using</span></span>
-<span class="r-in">  <span class="co"># predIntNormSimultaneousTestPower.  For example, here is the power of </span></span>
-<span class="r-in">  <span class="co"># detecting an increase of three standard deviations in concentration using </span></span>
-<span class="r-in">  <span class="co"># the prediction interval based on the "1-of-2" resampling rule:</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="fu">predIntNormSimultaneousTestPower</span><span class="op">(</span>n <span class="op">=</span> <span class="fl">25</span>, k <span class="op">=</span> <span class="fl">1</span>, m <span class="op">=</span> <span class="fl">2</span>, r <span class="op">=</span> <span class="fl">2</span>, rule <span class="op">=</span> <span class="st">"k.of.m"</span>, </span>
-<span class="r-in">    delta.over.sigma <span class="op">=</span> <span class="fl">3</span>,  pi.type <span class="op">=</span> <span class="st">"upper"</span>, conf.level <span class="op">=</span> <span class="va">conf.level</span><span class="op">)</span></span>
+<span class="r-in"><span>  <span class="co">#[1] 0.9999473</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="co"># Now we can compute the power of any particular sampling strategy using</span></span></span>
+<span class="r-in"><span>  <span class="co"># predIntNormSimultaneousTestPower.  For example, here is the power of </span></span></span>
+<span class="r-in"><span>  <span class="co"># detecting an increase of three standard deviations in concentration using </span></span></span>
+<span class="r-in"><span>  <span class="co"># the prediction interval based on the "1-of-2" resampling rule:</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="fu">predIntNormSimultaneousTestPower</span><span class="op">(</span>n <span class="op">=</span> <span class="fl">25</span>, k <span class="op">=</span> <span class="fl">1</span>, m <span class="op">=</span> <span class="fl">2</span>, r <span class="op">=</span> <span class="fl">2</span>, rule <span class="op">=</span> <span class="st">"k.of.m"</span>, </span></span>
+<span class="r-in"><span>    delta.over.sigma <span class="op">=</span> <span class="fl">3</span>,  pi.type <span class="op">=</span> <span class="st">"upper"</span>, conf.level <span class="op">=</span> <span class="va">conf.level</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] 0.3900202</span>
-<span class="r-in">  <span class="co">#[1] 0.3900202</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="co"># The following commands will reproduce the table shown in Step 2 on page</span></span>
-<span class="r-in">  <span class="co"># 19-23 of USEPA (2009).  Because these commands can take more than a few </span></span>
-<span class="r-in">  <span class="co"># seconds to execute, we have commented them out here.  To run this example, </span></span>
-<span class="r-in">  <span class="co"># just remove the pound signs (#) that are in front of R commands.</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="co">#rule.vec &lt;- c(rep("k.of.m", 3), "Modified.CA",  rep("k.of.m", 3))</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="co">#m.vec &lt;- c(2, 3, 4, 4, 1, 2, 1)</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="co">#n.mean.vec &lt;- c(rep(1, 4), 2, 2, 3)</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="co">#n.scenarios &lt;- length(rule.vec)</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="co">#K.vec &lt;- numeric(n.scenarios)</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="co">#Power.vec &lt;- numeric(n.scenarios)</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="co">#K.vec &lt;- predIntNormSimultaneousK(n = 25, k = 1, m = m.vec,  n.mean = n.mean.vec, </span></span>
-<span class="r-in">  <span class="co">#  r = 2, rule = rule.vec,  pi.type = "upper", conf.level = conf.level)</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="co">#Power.vec &lt;- predIntNormSimultaneousTestPower(n = 25, k = 1, m = m.vec, </span></span>
-<span class="r-in">  <span class="co">#  n.mean = n.mean.vec, r = 2, rule = rule.vec,  delta.over.sigma = 3, </span></span>
-<span class="r-in">  <span class="co">#  pi.type = "upper",  conf.level = conf.level)</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="co">#Power.df &lt;- data.frame(Rule = rule.vec, k = rep(1, n.scenarios),  m = m.vec, </span></span>
-<span class="r-in">  <span class="co">#  N.Mean = n.mean.vec, K = round(K.vec, 2),  Power = round(Power.vec, 2),</span></span>
-<span class="r-in">  <span class="co">#  Total.Samples = m.vec * n.mean.vec)</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="co">#Power.df</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="co">#         Rule k m N.Mean    K Power Total.Samples</span></span>
-<span class="r-in">  <span class="co">#1      k.of.m 1 2      1 3.16  0.39             2</span></span>
-<span class="r-in">  <span class="co">#2      k.of.m 1 3      1 2.33  0.65             3</span></span>
-<span class="r-in">  <span class="co">#3      k.of.m 1 4      1 1.83  0.81             4</span></span>
-<span class="r-in">  <span class="co">#4 Modified.CA 1 4      1 2.57  0.71             4</span></span>
-<span class="r-in">  <span class="co">#5      k.of.m 1 1      2 3.62  0.41             2</span></span>
-<span class="r-in">  <span class="co">#6      k.of.m 1 2      2 2.33  0.85             4</span></span>
-<span class="r-in">  <span class="co">#7      k.of.m 1 1      3 2.99  0.71             3</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="co"># The above table shows the K-multipliers for each prediction interval, along with</span></span>
-<span class="r-in">  <span class="co"># the power of detecting a change in concentration of three standard deviations at</span></span>
-<span class="r-in">  <span class="co"># any of the 100 wells during the course of a year, for each of the sampling</span></span>
-<span class="r-in">  <span class="co"># strategies considered.  The last three rows of the table correspond to sampling</span></span>
-<span class="r-in">  <span class="co"># strategies that involve using the mean of two or three observations.</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="co">#==========</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="co"># Clean up</span></span>
-<span class="r-in">  <span class="co">#---------</span></span>
-<span class="r-in">  <span class="fu"><a href="https://rdrr.io/r/base/rm.html" class="external-link">rm</a></span><span class="op">(</span><span class="va">nc</span>, <span class="va">nw</span>, <span class="va">conf.level</span>, <span class="va">rule.vec</span>, <span class="va">m.vec</span>, <span class="va">n.mean.vec</span>, <span class="va">n.scenarios</span>, <span class="va">K.vec</span>, </span>
-<span class="r-in">    <span class="va">Power.vec</span>, <span class="va">Power.df</span><span class="op">)</span></span>
+<span class="r-in"><span>  <span class="co">#[1] 0.3900202</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="co"># The following commands will reproduce the table shown in Step 2 on page</span></span></span>
+<span class="r-in"><span>  <span class="co"># 19-23 of USEPA (2009).  Because these commands can take more than a few </span></span></span>
+<span class="r-in"><span>  <span class="co"># seconds to execute, we have commented them out here.  To run this example, </span></span></span>
+<span class="r-in"><span>  <span class="co"># just remove the pound signs (#) that are in front of R commands.</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="co">#rule.vec &lt;- c(rep("k.of.m", 3), "Modified.CA",  rep("k.of.m", 3))</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="co">#m.vec &lt;- c(2, 3, 4, 4, 1, 2, 1)</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="co">#n.mean.vec &lt;- c(rep(1, 4), 2, 2, 3)</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="co">#n.scenarios &lt;- length(rule.vec)</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="co">#K.vec &lt;- numeric(n.scenarios)</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="co">#Power.vec &lt;- numeric(n.scenarios)</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="co">#K.vec &lt;- predIntNormSimultaneousK(n = 25, k = 1, m = m.vec,  n.mean = n.mean.vec, </span></span></span>
+<span class="r-in"><span>  <span class="co">#  r = 2, rule = rule.vec,  pi.type = "upper", conf.level = conf.level)</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="co">#Power.vec &lt;- predIntNormSimultaneousTestPower(n = 25, k = 1, m = m.vec, </span></span></span>
+<span class="r-in"><span>  <span class="co">#  n.mean = n.mean.vec, r = 2, rule = rule.vec,  delta.over.sigma = 3, </span></span></span>
+<span class="r-in"><span>  <span class="co">#  pi.type = "upper",  conf.level = conf.level)</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="co">#Power.df &lt;- data.frame(Rule = rule.vec, k = rep(1, n.scenarios),  m = m.vec, </span></span></span>
+<span class="r-in"><span>  <span class="co">#  N.Mean = n.mean.vec, K = round(K.vec, 2),  Power = round(Power.vec, 2),</span></span></span>
+<span class="r-in"><span>  <span class="co">#  Total.Samples = m.vec * n.mean.vec)</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="co">#Power.df</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="co">#         Rule k m N.Mean    K Power Total.Samples</span></span></span>
+<span class="r-in"><span>  <span class="co">#1      k.of.m 1 2      1 3.16  0.39             2</span></span></span>
+<span class="r-in"><span>  <span class="co">#2      k.of.m 1 3      1 2.33  0.65             3</span></span></span>
+<span class="r-in"><span>  <span class="co">#3      k.of.m 1 4      1 1.83  0.81             4</span></span></span>
+<span class="r-in"><span>  <span class="co">#4 Modified.CA 1 4      1 2.57  0.71             4</span></span></span>
+<span class="r-in"><span>  <span class="co">#5      k.of.m 1 1      2 3.62  0.41             2</span></span></span>
+<span class="r-in"><span>  <span class="co">#6      k.of.m 1 2      2 2.33  0.85             4</span></span></span>
+<span class="r-in"><span>  <span class="co">#7      k.of.m 1 1      3 2.99  0.71             3</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="co"># The above table shows the K-multipliers for each prediction interval, along with</span></span></span>
+<span class="r-in"><span>  <span class="co"># the power of detecting a change in concentration of three standard deviations at</span></span></span>
+<span class="r-in"><span>  <span class="co"># any of the 100 wells during the course of a year, for each of the sampling</span></span></span>
+<span class="r-in"><span>  <span class="co"># strategies considered.  The last three rows of the table correspond to sampling</span></span></span>
+<span class="r-in"><span>  <span class="co"># strategies that involve using the mean of two or three observations.</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="co">#==========</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="co"># Clean up</span></span></span>
+<span class="r-in"><span>  <span class="co">#---------</span></span></span>
+<span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/r/base/rm.html" class="external-link">rm</a></span><span class="op">(</span><span class="va">nc</span>, <span class="va">nw</span>, <span class="va">conf.level</span>, <span class="va">rule.vec</span>, <span class="va">m.vec</span>, <span class="va">n.mean.vec</span>, <span class="va">n.scenarios</span>, <span class="va">K.vec</span>, </span></span>
+<span class="r-in"><span>    <span class="va">Power.vec</span>, <span class="va">Power.df</span><span class="op">)</span></span></span>
 <span class="r-wrn co"><span class="r-pr">#&gt;</span> <span class="warning">Warning: </span>object 'rule.vec' not found</span>
 <span class="r-wrn co"><span class="r-pr">#&gt;</span> <span class="warning">Warning: </span>object 'm.vec' not found</span>
 <span class="r-wrn co"><span class="r-pr">#&gt;</span> <span class="warning">Warning: </span>object 'n.mean.vec' not found</span>
@@ -485,7 +500,7 @@
 </div>
 
 <div class="pkgdown">
-  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.2.</p>
+  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.6.</p>
 </div>
 
       </footer></div>

@@ -54,10 +54,10 @@
     </div>
 
     <div id="ref-usage">
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="fu">tTestLnormAltN</span><span class="op">(</span><span class="va">ratio.of.means</span>, cv <span class="op">=</span> <span class="fl">1</span>, alpha <span class="op">=</span> <span class="fl">0.05</span>, power <span class="op">=</span> <span class="fl">0.95</span>, 
-    sample.type <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/ifelse.html" class="external-link">ifelse</a></span><span class="op">(</span><span class="op">!</span><span class="fu"><a href="https://rdrr.io/r/base/NULL.html" class="external-link">is.null</a></span><span class="op">(</span><span class="va">n2</span><span class="op">)</span>, <span class="st">"two.sample"</span>, <span class="st">"one.sample"</span><span class="op">)</span>, 
-    alternative <span class="op">=</span> <span class="st">"two.sided"</span>, approx <span class="op">=</span> <span class="cn">FALSE</span>, n2 <span class="op">=</span> <span class="cn">NULL</span>, round.up <span class="op">=</span> <span class="cn">TRUE</span>, 
-    n.max <span class="op">=</span> <span class="fl">5000</span>, tol <span class="op">=</span> <span class="fl">1e-07</span>, maxiter <span class="op">=</span> <span class="fl">1000</span><span class="op">)</span></code></pre></div>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">tTestLnormAltN</span><span class="op">(</span><span class="va">ratio.of.means</span>, cv <span class="op">=</span> <span class="fl">1</span>, alpha <span class="op">=</span> <span class="fl">0.05</span>, power <span class="op">=</span> <span class="fl">0.95</span>, </span>
+<span>    sample.type <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/ifelse.html" class="external-link">ifelse</a></span><span class="op">(</span><span class="op">!</span><span class="fu"><a href="https://rdrr.io/r/base/NULL.html" class="external-link">is.null</a></span><span class="op">(</span><span class="va">n2</span><span class="op">)</span>, <span class="st">"two.sample"</span>, <span class="st">"one.sample"</span><span class="op">)</span>, </span>
+<span>    alternative <span class="op">=</span> <span class="st">"two.sided"</span>, approx <span class="op">=</span> <span class="cn">FALSE</span>, n2 <span class="op">=</span> <span class="cn">NULL</span>, round.up <span class="op">=</span> <span class="cn">TRUE</span>, </span>
+<span>    n.max <span class="op">=</span> <span class="fl">5000</span>, tol <span class="op">=</span> <span class="fl">1e-07</span>, maxiter <span class="op">=</span> <span class="fl">1000</span><span class="op">)</span></span></code></pre></div>
     </div>
 
     <div id="arguments">
@@ -68,50 +68,62 @@
   hypothesized mean.  When <code>sample.type="two.sample"</code>, this is the ratio of the 
   mean of the first population to the mean of the second population.  The default 
   value is <code>ratio.of.means=1</code>.</p></dd>
-<dt>cv</dt>
+
+  <dt>cv</dt>
 <dd><p>numeric vector of positive value(s) specifying the coefficient of 
   variation.  When <code>sample.type="one.sample"</code>, this is the population coefficient 
   of variation.  When <code>sample.type="two.sample"</code>, this is the coefficient of 
   variation for both the first and second population.  The default value is <code>cv=1</code>.</p></dd>
-<dt>alpha</dt>
+
+  <dt>alpha</dt>
 <dd><p>numeric vector of numbers between 0 and 1 indicating the Type I error level 
   associated with the hypothesis test.  The default value is <code>alpha=0.05</code>.</p></dd>
-<dt>power</dt>
+
+  <dt>power</dt>
 <dd><p>numeric vector of numbers between 0 and 1 indicating the power  
   associated with the hypothesis test.  The default value is <code>power=0.95</code>.</p></dd>
-<dt>sample.type</dt>
+
+  <dt>sample.type</dt>
 <dd><p>character string indicating whether to compute power based on a one-sample or 
   two-sample hypothesis test.  When <code>sample.type="one.sample"</code>, the computed 
   power is based on a hypothesis test for a single mean.  When <br><code>sample.type="two.sample"</code>, the computed power is based on a hypothesis test 
   for the difference between two means.  The default value is <br><code>sample.type="one.sample"</code> unless the argument <code>n2</code> is supplied.</p></dd>
-<dt>alternative</dt>
+
+  <dt>alternative</dt>
 <dd><p>character string indicating the kind of alternative hypothesis.  The possible values 
   are <code>"two.sided"</code> (the default), <code>"greater"</code>, and <code>"less"</code>.</p></dd>
-<dt>approx</dt>
+
+  <dt>approx</dt>
 <dd><p>logical scalar indicating whether to compute the power based on an approximation to 
   the non-central t-distribution.  The default value is <code>FALSE</code>.</p></dd>
-<dt>n2</dt>
+
+  <dt>n2</dt>
 <dd><p>numeric vector of sample sizes for group 2.  The default value is 
   <code>NULL</code> in which case it is assumed that the sample sizes for groups 
   1 and 2 are equal.  
   This argument is ignored when <code>sample.type="one.sample"</code>. 
   Missing (<code>NA</code>), undefined (<code>NaN</code>), and infinite (<code>Inf</code>, <code>-Inf</code>) 
   values are <b><em>not</em></b> allowed.</p></dd>
-<dt>round.up</dt>
+
+  <dt>round.up</dt>
 <dd><p>logical scalar indicating whether to round up the values of the computed 
   sample size(s) to the next smallest integer.  The default value is 
   <code>TRUE</code>.</p></dd>
-<dt>n.max</dt>
+
+  <dt>n.max</dt>
 <dd><p>positive integer greater than 1 indicating the maximum sample size when <br><code>sample.type="one.sample"</code> or the maximum sample size for group 1 
   when <code>sample.type="two.sample"</code>.  The default value is <code>n.max=5000</code>.</p></dd>
-<dt>tol</dt>
+
+  <dt>tol</dt>
 <dd><p>numeric scalar indicating the toloerance to use in the 
   <code><a href="https://rdrr.io/r/stats/uniroot.html" class="external-link">uniroot</a></code> search algorithm.  
   The default value is <code>tol=1e-7</code>.</p></dd>
-<dt>maxiter</dt>
+
+  <dt>maxiter</dt>
 <dd><p>positive integer indicating the maximum number of iterations 
   argument to pass to the <code><a href="https://rdrr.io/r/stats/uniroot.html" class="external-link">uniroot</a></code> function.  The default 
   value is <code>maxiter=1000</code>.</p></dd>
+
 </dl></div>
     <div id="details">
     <h2>Details</h2>
@@ -127,11 +139,19 @@
     </div>
     <div id="value">
     <h2>Value</h2>
-    <p>When <code>sample.type="one.sample"</code>, or <code>sample.type="two.sample"</code>  and <code>n2</code> is not supplied (so equal sample sizes for each group is 
-  assumed), <code>tTestLnormAltN</code> returns a numeric vector of sample sizes.  When 
-<code>sample.type="two.sample"</code> and <code>n2</code> is supplied, 
-<code>tTestLnormAltN</code> returns a list with two components called <code>n1</code> and 
-<code>n2</code>, specifying the sample sizes for each group.</p>
+    
+
+<p>When <code>sample.type="one.sample"</code>, or <code>sample.type="two.sample"</code></p>
+ 
+
+<p>and <code>n2</code> is not supplied (so equal sample sizes for each group is 
+  assumed), <code>tTestLnormAltN</code> returns a numeric vector of sample sizes.  When</p>
+<p></p>
+<p><code>sample.type="two.sample"</code> and <code>n2</code> is supplied,</p>
+<p></p>
+<p><code>tTestLnormAltN</code> returns a list with two components called <code>n1</code> and</p>
+<p></p>
+<p><code>n2</code>, specifying the sample sizes for each group.</p>
     </div>
     <div id="references">
     <h2>References</h2>
@@ -154,160 +174,160 @@
 
     <div id="ref-examples">
     <h2>Examples</h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in">  <span class="co"># Look at how the required sample size for the one-sample test increases with </span></span>
-<span class="r-in">  <span class="co"># increasing required power:</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="fu"><a href="https://rdrr.io/r/base/seq.html" class="external-link">seq</a></span><span class="op">(</span><span class="fl">0.5</span>, <span class="fl">0.9</span>, by <span class="op">=</span> <span class="fl">0.1</span><span class="op">)</span> </span>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span>  <span class="co"># Look at how the required sample size for the one-sample test increases with </span></span></span>
+<span class="r-in"><span>  <span class="co"># increasing required power:</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/r/base/seq.html" class="external-link">seq</a></span><span class="op">(</span><span class="fl">0.5</span>, <span class="fl">0.9</span>, by <span class="op">=</span> <span class="fl">0.1</span><span class="op">)</span> </span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] 0.5 0.6 0.7 0.8 0.9</span>
-<span class="r-in">  <span class="co"># [1] 0.5 0.6 0.7 0.8 0.9 </span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="fu">tTestLnormAltN</span><span class="op">(</span>ratio.of.means <span class="op">=</span> <span class="fl">1.5</span>, power <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/seq.html" class="external-link">seq</a></span><span class="op">(</span><span class="fl">0.5</span>, <span class="fl">0.9</span>, by <span class="op">=</span> <span class="fl">0.1</span><span class="op">)</span><span class="op">)</span> </span>
+<span class="r-in"><span>  <span class="co"># [1] 0.5 0.6 0.7 0.8 0.9 </span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="fu">tTestLnormAltN</span><span class="op">(</span>ratio.of.means <span class="op">=</span> <span class="fl">1.5</span>, power <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/seq.html" class="external-link">seq</a></span><span class="op">(</span><span class="fl">0.5</span>, <span class="fl">0.9</span>, by <span class="op">=</span> <span class="fl">0.1</span><span class="op">)</span><span class="op">)</span> </span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] 19 23 28 36 47</span>
-<span class="r-in">  <span class="co"># [1] 19 23 28 36 47</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="co">#----------</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="co"># Repeat the last example, but compute the sample size based on the approximate </span></span>
-<span class="r-in">  <span class="co"># power instead of the exact power:</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="fu">tTestLnormAltN</span><span class="op">(</span>ratio.of.means <span class="op">=</span> <span class="fl">1.5</span>, power <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/seq.html" class="external-link">seq</a></span><span class="op">(</span><span class="fl">0.5</span>, <span class="fl">0.9</span>, by <span class="op">=</span> <span class="fl">0.1</span><span class="op">)</span>, approx <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span> </span>
+<span class="r-in"><span>  <span class="co"># [1] 19 23 28 36 47</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="co">#----------</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="co"># Repeat the last example, but compute the sample size based on the approximate </span></span></span>
+<span class="r-in"><span>  <span class="co"># power instead of the exact power:</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="fu">tTestLnormAltN</span><span class="op">(</span>ratio.of.means <span class="op">=</span> <span class="fl">1.5</span>, power <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/seq.html" class="external-link">seq</a></span><span class="op">(</span><span class="fl">0.5</span>, <span class="fl">0.9</span>, by <span class="op">=</span> <span class="fl">0.1</span><span class="op">)</span>, approx <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span> </span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] 19 23 29 36 47</span>
-<span class="r-in">  <span class="co"># [1] 19 23 29 36 47</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="co">#==========</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="co"># Look at how the required sample size for the two-sample t-test decreases with </span></span>
-<span class="r-in">  <span class="co"># increasing ratio of means:</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="fu"><a href="https://rdrr.io/r/base/seq.html" class="external-link">seq</a></span><span class="op">(</span><span class="fl">1.5</span>, <span class="fl">2</span>, by <span class="op">=</span> <span class="fl">0.1</span><span class="op">)</span> </span>
+<span class="r-in"><span>  <span class="co"># [1] 19 23 29 36 47</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="co">#==========</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="co"># Look at how the required sample size for the two-sample t-test decreases with </span></span></span>
+<span class="r-in"><span>  <span class="co"># increasing ratio of means:</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/r/base/seq.html" class="external-link">seq</a></span><span class="op">(</span><span class="fl">1.5</span>, <span class="fl">2</span>, by <span class="op">=</span> <span class="fl">0.1</span><span class="op">)</span> </span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] 1.5 1.6 1.7 1.8 1.9 2.0</span>
-<span class="r-in">  <span class="co">#[1] 1.5 1.6 1.7 1.8 1.9 2.0 </span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="fu">tTestLnormAltN</span><span class="op">(</span>ratio.of.means <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/seq.html" class="external-link">seq</a></span><span class="op">(</span><span class="fl">1.5</span>, <span class="fl">2</span>, by <span class="op">=</span> <span class="fl">0.1</span><span class="op">)</span>, sample.type <span class="op">=</span> <span class="st">"two"</span><span class="op">)</span> </span>
+<span class="r-in"><span>  <span class="co">#[1] 1.5 1.6 1.7 1.8 1.9 2.0 </span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="fu">tTestLnormAltN</span><span class="op">(</span>ratio.of.means <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/seq.html" class="external-link">seq</a></span><span class="op">(</span><span class="fl">1.5</span>, <span class="fl">2</span>, by <span class="op">=</span> <span class="fl">0.1</span><span class="op">)</span>, sample.type <span class="op">=</span> <span class="st">"two"</span><span class="op">)</span> </span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] 111  83  65  54  45  39</span>
-<span class="r-in">  <span class="co">#[1] 111  83  65  54  45  39</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="co">#----------</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="co"># Look at how the required sample size for the two-sample t-test decreases with </span></span>
-<span class="r-in">  <span class="co"># increasing values of Type I error:</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="fu">tTestLnormAltN</span><span class="op">(</span>ratio.of.means <span class="op">=</span> <span class="fl">1.5</span>, alpha <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">0.001</span>, <span class="fl">0.01</span>, <span class="fl">0.05</span>, <span class="fl">0.1</span><span class="op">)</span>, </span>
-<span class="r-in">    sample.type <span class="op">=</span> <span class="st">"two"</span><span class="op">)</span> </span>
+<span class="r-in"><span>  <span class="co">#[1] 111  83  65  54  45  39</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="co">#----------</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="co"># Look at how the required sample size for the two-sample t-test decreases with </span></span></span>
+<span class="r-in"><span>  <span class="co"># increasing values of Type I error:</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="fu">tTestLnormAltN</span><span class="op">(</span>ratio.of.means <span class="op">=</span> <span class="fl">1.5</span>, alpha <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">0.001</span>, <span class="fl">0.01</span>, <span class="fl">0.05</span>, <span class="fl">0.1</span><span class="op">)</span>, </span></span>
+<span class="r-in"><span>    sample.type <span class="op">=</span> <span class="st">"two"</span><span class="op">)</span> </span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] 209 152 111  92</span>
-<span class="r-in">  <span class="co">#[1] 209 152 111  92</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="co">#----------</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="co"># For the two-sample t-test, compare the total sample size required to detect a </span></span>
-<span class="r-in">  <span class="co"># ratio of means of 2 for equal sample sizes versus the case when the sample size </span></span>
-<span class="r-in">  <span class="co"># for the second group is constrained to be 30.  Assume a coefficient of variation </span></span>
-<span class="r-in">  <span class="co"># of 1, a 5% significance level, and 95% power.  Note that for the case of equal </span></span>
-<span class="r-in">  <span class="co"># sample sizes, a total of 78 samples (39+39) are required, whereas when n2 is </span></span>
-<span class="r-in">  <span class="co"># constrained to be 30, a total of 84 samples (54 + 30) are required.</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="fu">tTestLnormAltN</span><span class="op">(</span>ratio.of.means <span class="op">=</span> <span class="fl">2</span>, sample.type <span class="op">=</span> <span class="st">"two"</span><span class="op">)</span> </span>
+<span class="r-in"><span>  <span class="co">#[1] 209 152 111  92</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="co">#----------</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="co"># For the two-sample t-test, compare the total sample size required to detect a </span></span></span>
+<span class="r-in"><span>  <span class="co"># ratio of means of 2 for equal sample sizes versus the case when the sample size </span></span></span>
+<span class="r-in"><span>  <span class="co"># for the second group is constrained to be 30.  Assume a coefficient of variation </span></span></span>
+<span class="r-in"><span>  <span class="co"># of 1, a 5% significance level, and 95% power.  Note that for the case of equal </span></span></span>
+<span class="r-in"><span>  <span class="co"># sample sizes, a total of 78 samples (39+39) are required, whereas when n2 is </span></span></span>
+<span class="r-in"><span>  <span class="co"># constrained to be 30, a total of 84 samples (54 + 30) are required.</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="fu">tTestLnormAltN</span><span class="op">(</span>ratio.of.means <span class="op">=</span> <span class="fl">2</span>, sample.type <span class="op">=</span> <span class="st">"two"</span><span class="op">)</span> </span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] 39</span>
-<span class="r-in">  <span class="co">#[1] 39 </span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="fu">tTestLnormAltN</span><span class="op">(</span>ratio.of.means <span class="op">=</span> <span class="fl">2</span>, n2 <span class="op">=</span> <span class="fl">30</span><span class="op">)</span> </span>
+<span class="r-in"><span>  <span class="co">#[1] 39 </span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="fu">tTestLnormAltN</span><span class="op">(</span>ratio.of.means <span class="op">=</span> <span class="fl">2</span>, n2 <span class="op">=</span> <span class="fl">30</span><span class="op">)</span> </span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> $n1</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] 54</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> $n2</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] 30</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-in">  <span class="co">#$n1: </span></span>
-<span class="r-in">  <span class="co">#[1] 54 </span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#$n2: </span></span>
-<span class="r-in">  <span class="co">#[1] 30</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="co">#==========</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="co"># The guidance document Soil Screening Guidance: Technical Background Document </span></span>
-<span class="r-in">  <span class="co"># (USEPA, 1996c, Part 4) discusses sampling design and sample size calculations </span></span>
-<span class="r-in">  <span class="co"># for studies to determine whether the soil at a potentially contaminated site </span></span>
-<span class="r-in">  <span class="co"># needs to be investigated for possible remedial action. Let 'theta' denote the </span></span>
-<span class="r-in">  <span class="co"># average concentration of the chemical of concern.  The guidance document </span></span>
-<span class="r-in">  <span class="co"># establishes the following goals for the decision rule (USEPA, 1996c, p.87):</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#     Pr[Decide Don't Investigate | theta &gt; 2 * SSL] = 0.05</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#     Pr[Decide to Investigate | theta &lt;= (SSL/2)] = 0.2</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co"># where SSL denotes the pre-established soil screening level.</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co"># These goals translate into a Type I error of 0.2 for the null hypothesis</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#     H0: [theta / (SSL/2)] &lt;= 1</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co"># and a power of 95% for the specific alternative hypothesis</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#     Ha: [theta / (SSL/2)] = 4</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co"># Assuming a lognormal distribution and the above values for Type I error and </span></span>
-<span class="r-in">  <span class="co"># power, determine the required samples sizes associated with various values of </span></span>
-<span class="r-in">  <span class="co"># the coefficient of variation for the one-sample test.  Based on these calculations, </span></span>
-<span class="r-in">  <span class="co"># you need to take at least 6 soil samples to satisfy the requirements for the </span></span>
-<span class="r-in">  <span class="co"># Type I and Type II errors when the coefficient of variation is 2.</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="va">cv</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">0.5</span>, <span class="fl">1</span>, <span class="fl">2</span><span class="op">)</span></span>
-<span class="r-in">  <span class="va">N</span> <span class="op">&lt;-</span> <span class="fu">tTestLnormAltN</span><span class="op">(</span>ratio.of.means <span class="op">=</span> <span class="fl">4</span>, cv <span class="op">=</span> <span class="va">cv</span>, alpha <span class="op">=</span> <span class="fl">0.2</span>, </span>
-<span class="r-in">    alternative <span class="op">=</span> <span class="st">"greater"</span><span class="op">)</span> </span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="fu"><a href="https://rdrr.io/r/base/names.html" class="external-link">names</a></span><span class="op">(</span><span class="va">N</span><span class="op">)</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/paste.html" class="external-link">paste</a></span><span class="op">(</span><span class="st">"CV="</span>, <span class="va">cv</span>, sep <span class="op">=</span> <span class="st">""</span><span class="op">)</span></span>
-<span class="r-in">  <span class="va">N</span></span>
+<span class="r-in"><span>  <span class="co">#$n1: </span></span></span>
+<span class="r-in"><span>  <span class="co">#[1] 54 </span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#$n2: </span></span></span>
+<span class="r-in"><span>  <span class="co">#[1] 30</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="co">#==========</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="co"># The guidance document Soil Screening Guidance: Technical Background Document </span></span></span>
+<span class="r-in"><span>  <span class="co"># (USEPA, 1996c, Part 4) discusses sampling design and sample size calculations </span></span></span>
+<span class="r-in"><span>  <span class="co"># for studies to determine whether the soil at a potentially contaminated site </span></span></span>
+<span class="r-in"><span>  <span class="co"># needs to be investigated for possible remedial action. Let 'theta' denote the </span></span></span>
+<span class="r-in"><span>  <span class="co"># average concentration of the chemical of concern.  The guidance document </span></span></span>
+<span class="r-in"><span>  <span class="co"># establishes the following goals for the decision rule (USEPA, 1996c, p.87):</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#     Pr[Decide Don't Investigate | theta &gt; 2 * SSL] = 0.05</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#     Pr[Decide to Investigate | theta &lt;= (SSL/2)] = 0.2</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co"># where SSL denotes the pre-established soil screening level.</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co"># These goals translate into a Type I error of 0.2 for the null hypothesis</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#     H0: [theta / (SSL/2)] &lt;= 1</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co"># and a power of 95% for the specific alternative hypothesis</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#     Ha: [theta / (SSL/2)] = 4</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co"># Assuming a lognormal distribution and the above values for Type I error and </span></span></span>
+<span class="r-in"><span>  <span class="co"># power, determine the required samples sizes associated with various values of </span></span></span>
+<span class="r-in"><span>  <span class="co"># the coefficient of variation for the one-sample test.  Based on these calculations, </span></span></span>
+<span class="r-in"><span>  <span class="co"># you need to take at least 6 soil samples to satisfy the requirements for the </span></span></span>
+<span class="r-in"><span>  <span class="co"># Type I and Type II errors when the coefficient of variation is 2.</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="va">cv</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">0.5</span>, <span class="fl">1</span>, <span class="fl">2</span><span class="op">)</span></span></span>
+<span class="r-in"><span>  <span class="va">N</span> <span class="op">&lt;-</span> <span class="fu">tTestLnormAltN</span><span class="op">(</span>ratio.of.means <span class="op">=</span> <span class="fl">4</span>, cv <span class="op">=</span> <span class="va">cv</span>, alpha <span class="op">=</span> <span class="fl">0.2</span>, </span></span>
+<span class="r-in"><span>    alternative <span class="op">=</span> <span class="st">"greater"</span><span class="op">)</span> </span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/r/base/names.html" class="external-link">names</a></span><span class="op">(</span><span class="va">N</span><span class="op">)</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/paste.html" class="external-link">paste</a></span><span class="op">(</span><span class="st">"CV="</span>, <span class="va">cv</span>, sep <span class="op">=</span> <span class="st">""</span><span class="op">)</span></span></span>
+<span class="r-in"><span>  <span class="va">N</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> CV=0.5   CV=1   CV=2 </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>      2      3      6 </span>
-<span class="r-in">  <span class="co">#CV=0.5   CV=1   CV=2 </span></span>
-<span class="r-in">  <span class="co">#     2      3      6 </span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="co">#----------</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="co"># Repeat the last example, but use the approximate power calculation instead of the </span></span>
-<span class="r-in">  <span class="co"># exact. Using the approximate power calculation, you need 7 soil samples when the </span></span>
-<span class="r-in">  <span class="co"># coefficient of variation is 2 (because the approximation underestimates the </span></span>
-<span class="r-in">  <span class="co"># true power).</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="va">N</span> <span class="op">&lt;-</span> <span class="fu">tTestLnormAltN</span><span class="op">(</span>ratio.of.means <span class="op">=</span> <span class="fl">4</span>, cv <span class="op">=</span> <span class="va">cv</span>, alpha <span class="op">=</span> <span class="fl">0.2</span>, </span>
-<span class="r-in">    alternative <span class="op">=</span> <span class="st">"greater"</span>, approx <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span> </span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="fu"><a href="https://rdrr.io/r/base/names.html" class="external-link">names</a></span><span class="op">(</span><span class="va">N</span><span class="op">)</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/paste.html" class="external-link">paste</a></span><span class="op">(</span><span class="st">"CV="</span>, <span class="va">cv</span>, sep <span class="op">=</span> <span class="st">""</span><span class="op">)</span></span>
-<span class="r-in">  <span class="va">N</span></span>
+<span class="r-in"><span>  <span class="co">#CV=0.5   CV=1   CV=2 </span></span></span>
+<span class="r-in"><span>  <span class="co">#     2      3      6 </span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="co">#----------</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="co"># Repeat the last example, but use the approximate power calculation instead of the </span></span></span>
+<span class="r-in"><span>  <span class="co"># exact. Using the approximate power calculation, you need 7 soil samples when the </span></span></span>
+<span class="r-in"><span>  <span class="co"># coefficient of variation is 2 (because the approximation underestimates the </span></span></span>
+<span class="r-in"><span>  <span class="co"># true power).</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="va">N</span> <span class="op">&lt;-</span> <span class="fu">tTestLnormAltN</span><span class="op">(</span>ratio.of.means <span class="op">=</span> <span class="fl">4</span>, cv <span class="op">=</span> <span class="va">cv</span>, alpha <span class="op">=</span> <span class="fl">0.2</span>, </span></span>
+<span class="r-in"><span>    alternative <span class="op">=</span> <span class="st">"greater"</span>, approx <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span> </span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/r/base/names.html" class="external-link">names</a></span><span class="op">(</span><span class="va">N</span><span class="op">)</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/paste.html" class="external-link">paste</a></span><span class="op">(</span><span class="st">"CV="</span>, <span class="va">cv</span>, sep <span class="op">=</span> <span class="st">""</span><span class="op">)</span></span></span>
+<span class="r-in"><span>  <span class="va">N</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> CV=0.5   CV=1   CV=2 </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>      3      5      7 </span>
-<span class="r-in">  <span class="co">#CV=0.5   CV=1   CV=2 </span></span>
-<span class="r-in">  <span class="co">#     3      5      7</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="co">#----------</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="co"># Repeat the last example, but use a Type I error of 0.05.</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="va">N</span> <span class="op">&lt;-</span> <span class="fu">tTestLnormAltN</span><span class="op">(</span>ratio.of.means <span class="op">=</span> <span class="fl">4</span>, cv <span class="op">=</span> <span class="va">cv</span>, alternative <span class="op">=</span> <span class="st">"greater"</span>, </span>
-<span class="r-in">    approx <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span> </span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="fu"><a href="https://rdrr.io/r/base/names.html" class="external-link">names</a></span><span class="op">(</span><span class="va">N</span><span class="op">)</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/paste.html" class="external-link">paste</a></span><span class="op">(</span><span class="st">"CV="</span>, <span class="va">cv</span>, sep <span class="op">=</span> <span class="st">""</span><span class="op">)</span></span>
-<span class="r-in">  <span class="va">N</span></span>
+<span class="r-in"><span>  <span class="co">#CV=0.5   CV=1   CV=2 </span></span></span>
+<span class="r-in"><span>  <span class="co">#     3      5      7</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="co">#----------</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="co"># Repeat the last example, but use a Type I error of 0.05.</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="va">N</span> <span class="op">&lt;-</span> <span class="fu">tTestLnormAltN</span><span class="op">(</span>ratio.of.means <span class="op">=</span> <span class="fl">4</span>, cv <span class="op">=</span> <span class="va">cv</span>, alternative <span class="op">=</span> <span class="st">"greater"</span>, </span></span>
+<span class="r-in"><span>    approx <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span> </span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/r/base/names.html" class="external-link">names</a></span><span class="op">(</span><span class="va">N</span><span class="op">)</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/paste.html" class="external-link">paste</a></span><span class="op">(</span><span class="st">"CV="</span>, <span class="va">cv</span>, sep <span class="op">=</span> <span class="st">""</span><span class="op">)</span></span></span>
+<span class="r-in"><span>  <span class="va">N</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> CV=0.5   CV=1   CV=2 </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>      4      6     12 </span>
-<span class="r-in">  <span class="co">#CV=0.5   CV=1   CV=2 </span></span>
-<span class="r-in">  <span class="co">#     4      6     12</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="co">#==========</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="co"># Reproduce the second column of Table 2 in van Belle and Martin (1993, p.167).</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="fu">tTestLnormAltN</span><span class="op">(</span>ratio.of.means <span class="op">=</span> <span class="fl">1.10</span>, cv <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/seq.html" class="external-link">seq</a></span><span class="op">(</span><span class="fl">0.1</span>, <span class="fl">0.8</span>, by <span class="op">=</span> <span class="fl">0.1</span><span class="op">)</span>, </span>
-<span class="r-in">    power <span class="op">=</span> <span class="fl">0.8</span>, sample.type <span class="op">=</span> <span class="st">"two.sample"</span>, approx <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span> </span>
+<span class="r-in"><span>  <span class="co">#CV=0.5   CV=1   CV=2 </span></span></span>
+<span class="r-in"><span>  <span class="co">#     4      6     12</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="co">#==========</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="co"># Reproduce the second column of Table 2 in van Belle and Martin (1993, p.167).</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="fu">tTestLnormAltN</span><span class="op">(</span>ratio.of.means <span class="op">=</span> <span class="fl">1.10</span>, cv <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/seq.html" class="external-link">seq</a></span><span class="op">(</span><span class="fl">0.1</span>, <span class="fl">0.8</span>, by <span class="op">=</span> <span class="fl">0.1</span><span class="op">)</span>, </span></span>
+<span class="r-in"><span>    power <span class="op">=</span> <span class="fl">0.8</span>, sample.type <span class="op">=</span> <span class="st">"two.sample"</span>, approx <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span> </span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1]  19  69 150 258 387 533 691 856</span>
-<span class="r-in">  <span class="co">#[1]  19  69 150 258 387 533 691 856</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="co">#==========</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="co"># Clean up</span></span>
-<span class="r-in">  <span class="co">#---------</span></span>
-<span class="r-in">  <span class="fu"><a href="https://rdrr.io/r/base/rm.html" class="external-link">rm</a></span><span class="op">(</span><span class="va">cv</span>, <span class="va">N</span><span class="op">)</span></span>
+<span class="r-in"><span>  <span class="co">#[1]  19  69 150 258 387 533 691 856</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="co">#==========</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="co"># Clean up</span></span></span>
+<span class="r-in"><span>  <span class="co">#---------</span></span></span>
+<span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/r/base/rm.html" class="external-link">rm</a></span><span class="op">(</span><span class="va">cv</span>, <span class="va">N</span><span class="op">)</span></span></span>
 </code></pre></div>
     </div>
   </div>
@@ -322,7 +342,7 @@
 </div>
 
 <div class="pkgdown">
-  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.2.</p>
+  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.6.</p>
 </div>
 
       </footer></div>

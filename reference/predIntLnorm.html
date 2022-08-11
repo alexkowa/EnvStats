@@ -60,11 +60,11 @@
     </div>
 
     <div id="ref-usage">
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="fu">predIntLnorm</span><span class="op">(</span><span class="va">x</span>, n.geomean <span class="op">=</span> <span class="fl">1</span>, k <span class="op">=</span> <span class="fl">1</span>, method <span class="op">=</span> <span class="st">"Bonferroni"</span>, 
-    pi.type <span class="op">=</span> <span class="st">"two-sided"</span>, conf.level <span class="op">=</span> <span class="fl">0.95</span><span class="op">)</span>
-
-  <span class="fu">predIntLnormAlt</span><span class="op">(</span><span class="va">x</span>, n.geomean <span class="op">=</span> <span class="fl">1</span>, k <span class="op">=</span> <span class="fl">1</span>, method <span class="op">=</span> <span class="st">"Bonferroni"</span>, 
-    pi.type <span class="op">=</span> <span class="st">"two-sided"</span>, conf.level <span class="op">=</span> <span class="fl">0.95</span>, est.arg.list <span class="op">=</span> <span class="cn">NULL</span><span class="op">)</span></code></pre></div>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">predIntLnorm</span><span class="op">(</span><span class="va">x</span>, n.geomean <span class="op">=</span> <span class="fl">1</span>, k <span class="op">=</span> <span class="fl">1</span>, method <span class="op">=</span> <span class="st">"Bonferroni"</span>, </span>
+<span>    pi.type <span class="op">=</span> <span class="st">"two-sided"</span>, conf.level <span class="op">=</span> <span class="fl">0.95</span><span class="op">)</span></span>
+<span></span>
+<span>  <span class="fu">predIntLnormAlt</span><span class="op">(</span><span class="va">x</span>, n.geomean <span class="op">=</span> <span class="fl">1</span>, k <span class="op">=</span> <span class="fl">1</span>, method <span class="op">=</span> <span class="st">"Bonferroni"</span>, </span>
+<span>    pi.type <span class="op">=</span> <span class="st">"two-sided"</span>, conf.level <span class="op">=</span> <span class="fl">0.95</span>, est.arg.list <span class="op">=</span> <span class="cn">NULL</span><span class="op">)</span></span></code></pre></div>
     </div>
 
     <div id="arguments">
@@ -80,32 +80,39 @@
 <p>If <code>x</code> is a numeric vector, 
   missing (<code>NA</code>), undefined (<code>NaN</code>), and infinite (<code>Inf</code>, <code>-Inf</code>) 
   values are allowed but will be removed.</p></dd>
-<dt>n.geomean</dt>
+
+  <dt>n.geomean</dt>
 <dd><p>positive integer specifying the sample size associated with the \(k\) future 
   geometric means.  The default value is <code>n.geomean=1</code> (i.e., individual 
   observations).  Note that all future geometric means must be based on the same 
   sample size.</p></dd>
-<dt>k</dt>
+
+  <dt>k</dt>
 <dd><p>positive integer specifying the number of future observations or geometric means the 
   prediction interval should contain with confidence level <code>conf.level</code>.  
   The default value is <code>k=1</code>.</p></dd>
-<dt>method</dt>
+
+  <dt>method</dt>
 <dd><p>character string specifying the method to use if the number of future observations 
   (<code>k</code>) is greater than 1.  The possible values are <code>method="Bonferroni"</code> 
   (approximate method based on Bonferonni inequality; the default), and <br><code>method="exact"</code> (exact method due to Dunnett, 1955).  See the DETAILS section 
   of <code><a href="predIntNormK.html">predIntNormK</a></code> for more information.  
   This argument is ignored if <code>k=1</code>.</p></dd>
-<dt>pi.type</dt>
+
+  <dt>pi.type</dt>
 <dd><p>character string indicating what kind of prediction interval to compute.  
   The possible values are <code>pi.type="two-sided"</code> (the default), 
   <code>pi.type="lower"</code>, and <code>pi.type="upper"</code>.</p></dd>
-<dt>conf.level</dt>
+
+  <dt>conf.level</dt>
 <dd><p>a scalar between 0 and 1 indicating the confidence level of the prediction interval.  
   The default value is <code>conf.level=0.95</code>.</p></dd>
-<dt>est.arg.list</dt>
+
+  <dt>est.arg.list</dt>
 <dd><p>for <code>predIntLnormAlt</code>, a list containing arguments to pass to the function <br><code><a href="elnormAlt.html">elnormAlt</a></code> for estimating the mean and coefficient of variation.  
   The default value is <code>est.arg.list=NULL</code>, which implies the default values 
   will be used in the call to <code><a href="elnormAlt.html">elnormAlt</a></code>.</p></dd>
+
 </dl></div>
     <div id="details">
     <h2>Details</h2>
@@ -121,13 +128,22 @@
     </div>
     <div id="value">
     <h2>Value</h2>
-    <p>If <code>x</code> is a numeric vector, a list of class 
-<code>"estimate"</code> containing the estimated parameters, the prediction interval, 
-  and other information.  See the help file for <br><code><a href="estimate.object.html">estimate.object</a></code> for details.
-  If <code>x</code> is the result of calling an estimation function, 
-<code>predIntLnorm</code> returns a list whose class is the same as <code>x</code>.  
-  The list contains the same components as <code>x</code>, as well as a component called 
-<code>interval</code> containing the prediction interval information.  
+    
+
+<p>If <code>x</code> is a numeric vector, a list of class</p>
+<p></p>
+<p><code>"estimate"</code> containing the estimated parameters, the prediction interval, 
+  and other information.  See the help file for <br></p>
+<p></p>
+<p><code><a href="estimate.object.html">estimate.object</a></code> for details.</p>
+
+
+<p>If <code>x</code> is the result of calling an estimation function,</p>
+<p></p>
+<p><code>predIntLnorm</code> returns a list whose class is the same as <code>x</code>.  
+  The list contains the same components as <code>x</code>, as well as a component called</p>
+<p></p>
+<p><code>interval</code> containing the prediction interval information.  
   If <code>x</code> already has a component called <code>interval</code>, this component is 
   replaced with the prediction interval information.</p>
     </div>
@@ -199,16 +215,16 @@
 
     <div id="ref-examples">
     <h2>Examples</h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in">  <span class="co"># Generate 20 observations from a lognormal distribution with parameters </span></span>
-<span class="r-in">  <span class="co"># meanlog=0 and sdlog=1.  The exact two-sided 90% prediction interval for </span></span>
-<span class="r-in">  <span class="co"># k=1 future observation is given by: [exp(-1.645), exp(1.645)] = [0.1930, 5.181]. </span></span>
-<span class="r-in">  <span class="co"># Use predIntLnorm to estimate the distribution parameters, and construct a </span></span>
-<span class="r-in">  <span class="co"># two-sided 90% prediction interval.</span></span>
-<span class="r-in">  <span class="co"># (Note: the call to set.seed simply allows you to reproduce this example.)</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="fu"><a href="https://rdrr.io/r/base/Random.html" class="external-link">set.seed</a></span><span class="op">(</span><span class="fl">47</span><span class="op">)</span> </span>
-<span class="r-in">  <span class="va">dat</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/Lognormal.html" class="external-link">rlnorm</a></span><span class="op">(</span><span class="fl">20</span>, meanlog <span class="op">=</span> <span class="fl">0</span>, sdlog <span class="op">=</span> <span class="fl">1</span><span class="op">)</span> </span>
-<span class="r-in">  <span class="fu">predIntLnorm</span><span class="op">(</span><span class="va">dat</span>, conf <span class="op">=</span> <span class="fl">0.9</span><span class="op">)</span></span>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span>  <span class="co"># Generate 20 observations from a lognormal distribution with parameters </span></span></span>
+<span class="r-in"><span>  <span class="co"># meanlog=0 and sdlog=1.  The exact two-sided 90% prediction interval for </span></span></span>
+<span class="r-in"><span>  <span class="co"># k=1 future observation is given by: [exp(-1.645), exp(1.645)] = [0.1930, 5.181]. </span></span></span>
+<span class="r-in"><span>  <span class="co"># Use predIntLnorm to estimate the distribution parameters, and construct a </span></span></span>
+<span class="r-in"><span>  <span class="co"># two-sided 90% prediction interval.</span></span></span>
+<span class="r-in"><span>  <span class="co"># (Note: the call to set.seed simply allows you to reproduce this example.)</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/r/base/Random.html" class="external-link">set.seed</a></span><span class="op">(</span><span class="fl">47</span><span class="op">)</span> </span></span>
+<span class="r-in"><span>  <span class="va">dat</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/Lognormal.html" class="external-link">rlnorm</a></span><span class="op">(</span><span class="fl">20</span>, meanlog <span class="op">=</span> <span class="fl">0</span>, sdlog <span class="op">=</span> <span class="fl">1</span><span class="op">)</span> </span></span>
+<span class="r-in"><span>  <span class="fu">predIntLnorm</span><span class="op">(</span><span class="va">dat</span>, conf <span class="op">=</span> <span class="fl">0.9</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> $distribution</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] "Lognormal"</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
@@ -265,41 +281,41 @@
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> attr(,"class")</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] "estimate"</span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="co">#Results of Distribution Parameter Estimation</span></span>
-<span class="r-in">  <span class="co">#--------------------------------------------</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Assumed Distribution:            Lognormal</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Estimated Parameter(s):          meanlog = -0.1035722</span></span>
-<span class="r-in">  <span class="co">#                                 sdlog   =  0.9106429</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Estimation Method:               mvue</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Data:                            dat</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Sample Size:                     20</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Prediction Interval Method:      exact</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Prediction Interval Type:        two-sided</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Confidence Level:                90%</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Number of Future Observations:   1</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Prediction Interval:             LPL = 0.1795898</span></span>
-<span class="r-in">  <span class="co">#                                 UPL = 4.5264399</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="co">#----------</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="co"># Repeat the above example, but do it in two steps.  </span></span>
-<span class="r-in">  <span class="co"># First create a list called est.list containing information about the </span></span>
-<span class="r-in">  <span class="co"># estimated parameters, then create the prediction interval.</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="va">est.list</span> <span class="op">&lt;-</span> <span class="fu"><a href="elnorm.html">elnorm</a></span><span class="op">(</span><span class="va">dat</span><span class="op">)</span> </span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="va">est.list</span> </span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="co">#Results of Distribution Parameter Estimation</span></span></span>
+<span class="r-in"><span>  <span class="co">#--------------------------------------------</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Assumed Distribution:            Lognormal</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Estimated Parameter(s):          meanlog = -0.1035722</span></span></span>
+<span class="r-in"><span>  <span class="co">#                                 sdlog   =  0.9106429</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Estimation Method:               mvue</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Data:                            dat</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Sample Size:                     20</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Prediction Interval Method:      exact</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Prediction Interval Type:        two-sided</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Confidence Level:                90%</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Number of Future Observations:   1</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Prediction Interval:             LPL = 0.1795898</span></span></span>
+<span class="r-in"><span>  <span class="co">#                                 UPL = 4.5264399</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="co">#----------</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="co"># Repeat the above example, but do it in two steps.  </span></span></span>
+<span class="r-in"><span>  <span class="co"># First create a list called est.list containing information about the </span></span></span>
+<span class="r-in"><span>  <span class="co"># estimated parameters, then create the prediction interval.</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="va">est.list</span> <span class="op">&lt;-</span> <span class="fu"><a href="elnorm.html">elnorm</a></span><span class="op">(</span><span class="va">dat</span><span class="op">)</span> </span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="va">est.list</span> </span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> $distribution</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] "Lognormal"</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
@@ -324,21 +340,21 @@
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> attr(,"class")</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] "estimate"</span>
-<span class="r-in">  <span class="co">#Results of Distribution Parameter Estimation</span></span>
-<span class="r-in">  <span class="co">#--------------------------------------------</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Assumed Distribution:            Lognormal</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Estimated Parameter(s):          meanlog = -0.1035722</span></span>
-<span class="r-in">  <span class="co">#                                 sdlog   =  0.9106429</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Estimation Method:               mvue</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Data:                            dat</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Sample Size:                     20</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="fu">predIntLnorm</span><span class="op">(</span><span class="va">est.list</span>, conf <span class="op">=</span> <span class="fl">0.9</span><span class="op">)</span></span>
+<span class="r-in"><span>  <span class="co">#Results of Distribution Parameter Estimation</span></span></span>
+<span class="r-in"><span>  <span class="co">#--------------------------------------------</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Assumed Distribution:            Lognormal</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Estimated Parameter(s):          meanlog = -0.1035722</span></span></span>
+<span class="r-in"><span>  <span class="co">#                                 sdlog   =  0.9106429</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Estimation Method:               mvue</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Data:                            dat</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Sample Size:                     20</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="fu">predIntLnorm</span><span class="op">(</span><span class="va">est.list</span>, conf <span class="op">=</span> <span class="fl">0.9</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> $distribution</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] "Lognormal"</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
@@ -395,40 +411,40 @@
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> attr(,"class")</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] "estimate"</span>
-<span class="r-in">  <span class="co">#Results of Distribution Parameter Estimation</span></span>
-<span class="r-in">  <span class="co">#--------------------------------------------</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Assumed Distribution:            Lognormal</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Estimated Parameter(s):          meanlog = -0.1035722</span></span>
-<span class="r-in">  <span class="co">#                                 sdlog   =  0.9106429</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Estimation Method:               mvue</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Data:                            dat</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Sample Size:                     20</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Prediction Interval Method:      exact</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Prediction Interval Type:        two-sided</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Confidence Level:                90%</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Number of Future Observations:   1</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Prediction Interval:             LPL = 0.1795898</span></span>
-<span class="r-in">  <span class="co">#                                 UPL = 4.5264399</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="co">#----------</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="co"># Using the same data from the first example, create a one-sided </span></span>
-<span class="r-in">  <span class="co"># upper 99% prediction limit for the next 3 geometric means of order 2 </span></span>
-<span class="r-in">  <span class="co"># (i.e., each of the 3 future geometric means is based on a sample size </span></span>
-<span class="r-in">  <span class="co"># of 2 future observations).</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="fu">predIntLnorm</span><span class="op">(</span><span class="va">dat</span>, n.geomean <span class="op">=</span> <span class="fl">2</span>, k <span class="op">=</span> <span class="fl">3</span>, conf.level <span class="op">=</span> <span class="fl">0.99</span>, </span>
-<span class="r-in">    pi.type <span class="op">=</span> <span class="st">"upper"</span><span class="op">)</span></span>
+<span class="r-in"><span>  <span class="co">#Results of Distribution Parameter Estimation</span></span></span>
+<span class="r-in"><span>  <span class="co">#--------------------------------------------</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Assumed Distribution:            Lognormal</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Estimated Parameter(s):          meanlog = -0.1035722</span></span></span>
+<span class="r-in"><span>  <span class="co">#                                 sdlog   =  0.9106429</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Estimation Method:               mvue</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Data:                            dat</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Sample Size:                     20</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Prediction Interval Method:      exact</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Prediction Interval Type:        two-sided</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Confidence Level:                90%</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Number of Future Observations:   1</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Prediction Interval:             LPL = 0.1795898</span></span></span>
+<span class="r-in"><span>  <span class="co">#                                 UPL = 4.5264399</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="co">#----------</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="co"># Using the same data from the first example, create a one-sided </span></span></span>
+<span class="r-in"><span>  <span class="co"># upper 99% prediction limit for the next 3 geometric means of order 2 </span></span></span>
+<span class="r-in"><span>  <span class="co"># (i.e., each of the 3 future geometric means is based on a sample size </span></span></span>
+<span class="r-in"><span>  <span class="co"># of 2 future observations).</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="fu">predIntLnorm</span><span class="op">(</span><span class="va">dat</span>, n.geomean <span class="op">=</span> <span class="fl">2</span>, k <span class="op">=</span> <span class="fl">3</span>, conf.level <span class="op">=</span> <span class="fl">0.99</span>, </span></span>
+<span class="r-in"><span>    pi.type <span class="op">=</span> <span class="st">"upper"</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> $distribution</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] "Lognormal"</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
@@ -485,73 +501,73 @@
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> attr(,"class")</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] "estimate"</span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="co">#Results of Distribution Parameter Estimation</span></span>
-<span class="r-in">  <span class="co">#--------------------------------------------</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Assumed Distribution:            Lognormal</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Estimated Parameter(s):          meanlog = -0.1035722</span></span>
-<span class="r-in">  <span class="co">#                                 sdlog   =  0.9106429</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Estimation Method:               mvue</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Data:                            dat</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Sample Size:                     20</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Prediction Interval Method:      Bonferroni</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Prediction Interval Type:        upper</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Confidence Level:                99%</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Number of Future</span></span>
-<span class="r-in">  <span class="co">#Geometric Means:                 3</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Sample Size for</span></span>
-<span class="r-in">  <span class="co">#Geometric Means:                 2</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Prediction Interval:             LPL = 0.000000</span></span>
-<span class="r-in">  <span class="co">#                                 UPL = 7.047571</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="co">#----------</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="co"># Compare the result above that is based on the Bonferroni method </span></span>
-<span class="r-in">  <span class="co"># with the exact method</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="fu">predIntLnorm</span><span class="op">(</span><span class="va">dat</span>, n.geomean <span class="op">=</span> <span class="fl">2</span>, k <span class="op">=</span> <span class="fl">3</span>, conf.level <span class="op">=</span> <span class="fl">0.99</span>, </span>
-<span class="r-in">    pi.type <span class="op">=</span> <span class="st">"upper"</span>, method <span class="op">=</span> <span class="st">"exact"</span><span class="op">)</span><span class="op">$</span><span class="va">interval</span><span class="op">$</span><span class="va">limits</span><span class="op">[</span><span class="st">"UPL"</span><span class="op">]</span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="co">#Results of Distribution Parameter Estimation</span></span></span>
+<span class="r-in"><span>  <span class="co">#--------------------------------------------</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Assumed Distribution:            Lognormal</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Estimated Parameter(s):          meanlog = -0.1035722</span></span></span>
+<span class="r-in"><span>  <span class="co">#                                 sdlog   =  0.9106429</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Estimation Method:               mvue</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Data:                            dat</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Sample Size:                     20</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Prediction Interval Method:      Bonferroni</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Prediction Interval Type:        upper</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Confidence Level:                99%</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Number of Future</span></span></span>
+<span class="r-in"><span>  <span class="co">#Geometric Means:                 3</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Sample Size for</span></span></span>
+<span class="r-in"><span>  <span class="co">#Geometric Means:                 2</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Prediction Interval:             LPL = 0.000000</span></span></span>
+<span class="r-in"><span>  <span class="co">#                                 UPL = 7.047571</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="co">#----------</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="co"># Compare the result above that is based on the Bonferroni method </span></span></span>
+<span class="r-in"><span>  <span class="co"># with the exact method</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="fu">predIntLnorm</span><span class="op">(</span><span class="va">dat</span>, n.geomean <span class="op">=</span> <span class="fl">2</span>, k <span class="op">=</span> <span class="fl">3</span>, conf.level <span class="op">=</span> <span class="fl">0.99</span>, </span></span>
+<span class="r-in"><span>    pi.type <span class="op">=</span> <span class="st">"upper"</span>, method <span class="op">=</span> <span class="st">"exact"</span><span class="op">)</span><span class="op">$</span><span class="va">interval</span><span class="op">$</span><span class="va">limits</span><span class="op">[</span><span class="st">"UPL"</span><span class="op">]</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>     UPL </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 7.00316 </span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="co">#    UPL </span></span>
-<span class="r-in">  <span class="co">#7.00316</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="co">#----------</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="co"># Clean up</span></span>
-<span class="r-in">  <span class="fu"><a href="https://rdrr.io/r/base/rm.html" class="external-link">rm</a></span><span class="op">(</span><span class="va">dat</span>, <span class="va">est.list</span><span class="op">)</span></span>
-<span class="r-in">  </span>
-<span class="r-in">  <span class="co">#--------------------------------------------------------------------</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="co"># Example 18-2 of USEPA (2009, p.18-15) shows how to construct a 99% </span></span>
-<span class="r-in">  <span class="co"># upper prediction interval for the log-scale mean of 4 future observations </span></span>
-<span class="r-in">  <span class="co"># (future mean of order 4) assuming a lognormal distribution based on </span></span>
-<span class="r-in">  <span class="co"># chrysene concentrations (ppb) in groundwater at 2 background wells.  </span></span>
-<span class="r-in">  <span class="co"># Data were collected once per month over 4 months at the 2 background </span></span>
-<span class="r-in">  <span class="co"># wells, and also at a compliance well.  </span></span>
-<span class="r-in">  <span class="co"># The question to be answered is whether there is evidence of </span></span>
-<span class="r-in">  <span class="co"># contamination at the compliance well.</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="co"># Here we will follow the example, but look at the geometric mean </span></span>
-<span class="r-in">  <span class="co"># instead of the log-scale mean.</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="co">#----------</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="co"># The data for this example are stored in EPA.09.Ex.18.2.chrysene.df.</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="va">EPA.09.Ex.18.2.chrysene.df</span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="co">#    UPL </span></span></span>
+<span class="r-in"><span>  <span class="co">#7.00316</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="co">#----------</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="co"># Clean up</span></span></span>
+<span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/r/base/rm.html" class="external-link">rm</a></span><span class="op">(</span><span class="va">dat</span>, <span class="va">est.list</span><span class="op">)</span></span></span>
+<span class="r-in"><span>  </span></span>
+<span class="r-in"><span>  <span class="co">#--------------------------------------------------------------------</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="co"># Example 18-2 of USEPA (2009, p.18-15) shows how to construct a 99% </span></span></span>
+<span class="r-in"><span>  <span class="co"># upper prediction interval for the log-scale mean of 4 future observations </span></span></span>
+<span class="r-in"><span>  <span class="co"># (future mean of order 4) assuming a lognormal distribution based on </span></span></span>
+<span class="r-in"><span>  <span class="co"># chrysene concentrations (ppb) in groundwater at 2 background wells.  </span></span></span>
+<span class="r-in"><span>  <span class="co"># Data were collected once per month over 4 months at the 2 background </span></span></span>
+<span class="r-in"><span>  <span class="co"># wells, and also at a compliance well.  </span></span></span>
+<span class="r-in"><span>  <span class="co"># The question to be answered is whether there is evidence of </span></span></span>
+<span class="r-in"><span>  <span class="co"># contamination at the compliance well.</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="co"># Here we will follow the example, but look at the geometric mean </span></span></span>
+<span class="r-in"><span>  <span class="co"># instead of the log-scale mean.</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="co">#----------</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="co"># The data for this example are stored in EPA.09.Ex.18.2.chrysene.df.</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="va">EPA.09.Ex.18.2.chrysene.df</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>    Month   Well  Well.type Chrysene.ppb</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 1      1 Well.1 Background          6.9</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 2      2 Well.1 Background         27.3</span>
@@ -565,34 +581,34 @@
 <span class="r-out co"><span class="r-pr">#&gt;</span> 10     2 Well.3 Compliance         48.9</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 11     3 Well.3 Compliance         30.1</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 12     4 Well.3 Compliance         38.1</span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="co">#   Month   Well  Well.type Chrysene.ppb</span></span>
-<span class="r-in">  <span class="co">#1      1 Well.1 Background          6.9</span></span>
-<span class="r-in">  <span class="co">#2      2 Well.1 Background         27.3</span></span>
-<span class="r-in">  <span class="co">#3      3 Well.1 Background         10.8</span></span>
-<span class="r-in">  <span class="co">#4      4 Well.1 Background          8.9</span></span>
-<span class="r-in">  <span class="co">#5      1 Well.2 Background         15.1</span></span>
-<span class="r-in">  <span class="co">#6      2 Well.2 Background          7.2</span></span>
-<span class="r-in">  <span class="co">#7      3 Well.2 Background         48.4</span></span>
-<span class="r-in">  <span class="co">#8      4 Well.2 Background          7.8</span></span>
-<span class="r-in">  <span class="co">#9      1 Well.3 Compliance         68.0</span></span>
-<span class="r-in">  <span class="co">#10     2 Well.3 Compliance         48.9</span></span>
-<span class="r-in">  <span class="co">#11     3 Well.3 Compliance         30.1</span></span>
-<span class="r-in">  <span class="co">#12     4 Well.3 Compliance         38.1 </span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="va">Chrysene.bkgd</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/with.html" class="external-link">with</a></span><span class="op">(</span><span class="va">EPA.09.Ex.18.2.chrysene.df</span>, </span>
-<span class="r-in">    <span class="va">Chrysene.ppb</span><span class="op">[</span><span class="va">Well.type</span> <span class="op">==</span> <span class="st">"Background"</span><span class="op">]</span><span class="op">)</span></span>
-<span class="r-in">  <span class="va">Chrysene.cmpl</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/with.html" class="external-link">with</a></span><span class="op">(</span><span class="va">EPA.09.Ex.18.2.chrysene.df</span>, </span>
-<span class="r-in">    <span class="va">Chrysene.ppb</span><span class="op">[</span><span class="va">Well.type</span> <span class="op">==</span> <span class="st">"Compliance"</span><span class="op">]</span><span class="op">)</span></span>
-<span class="r-in"></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="co">#----------</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="co"># A Shapiro-Wilks goodness-of-fit test for normality indicates  </span></span>
-<span class="r-in">  <span class="co"># we should reject the assumption of normality and assume a </span></span>
-<span class="r-in">  <span class="co"># lognormal distribution for the background well data:</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="fu"><a href="gofTest.html">gofTest</a></span><span class="op">(</span><span class="va">Chrysene.bkgd</span><span class="op">)</span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="co">#   Month   Well  Well.type Chrysene.ppb</span></span></span>
+<span class="r-in"><span>  <span class="co">#1      1 Well.1 Background          6.9</span></span></span>
+<span class="r-in"><span>  <span class="co">#2      2 Well.1 Background         27.3</span></span></span>
+<span class="r-in"><span>  <span class="co">#3      3 Well.1 Background         10.8</span></span></span>
+<span class="r-in"><span>  <span class="co">#4      4 Well.1 Background          8.9</span></span></span>
+<span class="r-in"><span>  <span class="co">#5      1 Well.2 Background         15.1</span></span></span>
+<span class="r-in"><span>  <span class="co">#6      2 Well.2 Background          7.2</span></span></span>
+<span class="r-in"><span>  <span class="co">#7      3 Well.2 Background         48.4</span></span></span>
+<span class="r-in"><span>  <span class="co">#8      4 Well.2 Background          7.8</span></span></span>
+<span class="r-in"><span>  <span class="co">#9      1 Well.3 Compliance         68.0</span></span></span>
+<span class="r-in"><span>  <span class="co">#10     2 Well.3 Compliance         48.9</span></span></span>
+<span class="r-in"><span>  <span class="co">#11     3 Well.3 Compliance         30.1</span></span></span>
+<span class="r-in"><span>  <span class="co">#12     4 Well.3 Compliance         38.1 </span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="va">Chrysene.bkgd</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/with.html" class="external-link">with</a></span><span class="op">(</span><span class="va">EPA.09.Ex.18.2.chrysene.df</span>, </span></span>
+<span class="r-in"><span>    <span class="va">Chrysene.ppb</span><span class="op">[</span><span class="va">Well.type</span> <span class="op">==</span> <span class="st">"Background"</span><span class="op">]</span><span class="op">)</span></span></span>
+<span class="r-in"><span>  <span class="va">Chrysene.cmpl</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/with.html" class="external-link">with</a></span><span class="op">(</span><span class="va">EPA.09.Ex.18.2.chrysene.df</span>, </span></span>
+<span class="r-in"><span>    <span class="va">Chrysene.ppb</span><span class="op">[</span><span class="va">Well.type</span> <span class="op">==</span> <span class="st">"Compliance"</span><span class="op">]</span><span class="op">)</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="co">#----------</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="co"># A Shapiro-Wilks goodness-of-fit test for normality indicates  </span></span></span>
+<span class="r-in"><span>  <span class="co"># we should reject the assumption of normality and assume a </span></span></span>
+<span class="r-in"><span>  <span class="co"># lognormal distribution for the background well data:</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="fu"><a href="gofTest.html">gofTest</a></span><span class="op">(</span><span class="va">Chrysene.bkgd</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> $distribution</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] "Normal"</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
@@ -643,33 +659,33 @@
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> attr(,"class")</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] "gof"</span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="co">#Results of Goodness-of-Fit Test</span></span>
-<span class="r-in">  <span class="co">#-------------------------------</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Test Method:                     Shapiro-Wilk GOF</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Hypothesized Distribution:       Normal</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Estimated Parameter(s):          mean = 16.55000</span></span>
-<span class="r-in">  <span class="co">#                                 sd   = 14.54441</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Estimation Method:               mvue</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Data:                            Chrysene.bkgd</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Sample Size:                     8</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Test Statistic:                  W = 0.7289006</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Test Statistic Parameter:        n = 8</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#P-value:                         0.004759859</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Alternative Hypothesis:          True cdf does not equal the</span></span>
-<span class="r-in">  <span class="co">#                                 Normal Distribution.</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="fu"><a href="gofTest.html">gofTest</a></span><span class="op">(</span><span class="va">Chrysene.bkgd</span>, dist <span class="op">=</span> <span class="st">"lnorm"</span><span class="op">)</span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="co">#Results of Goodness-of-Fit Test</span></span></span>
+<span class="r-in"><span>  <span class="co">#-------------------------------</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Test Method:                     Shapiro-Wilk GOF</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Hypothesized Distribution:       Normal</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Estimated Parameter(s):          mean = 16.55000</span></span></span>
+<span class="r-in"><span>  <span class="co">#                                 sd   = 14.54441</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Estimation Method:               mvue</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Data:                            Chrysene.bkgd</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Sample Size:                     8</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Test Statistic:                  W = 0.7289006</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Test Statistic Parameter:        n = 8</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#P-value:                         0.004759859</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Alternative Hypothesis:          True cdf does not equal the</span></span></span>
+<span class="r-in"><span>  <span class="co">#                                 Normal Distribution.</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="fu"><a href="gofTest.html">gofTest</a></span><span class="op">(</span><span class="va">Chrysene.bkgd</span>, dist <span class="op">=</span> <span class="st">"lnorm"</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> $distribution</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] "Lognormal"</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
@@ -720,39 +736,39 @@
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> attr(,"class")</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] "gof"</span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="co">#Results of Goodness-of-Fit Test</span></span>
-<span class="r-in">  <span class="co">#-------------------------------</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Test Method:                     Shapiro-Wilk GOF</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Hypothesized Distribution:       Lognormal</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Estimated Parameter(s):          meanlog = 2.5533006</span></span>
-<span class="r-in">  <span class="co">#                                 sdlog   = 0.7060038</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Estimation Method:               mvue</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Data:                            Chrysene.bkgd</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Sample Size:                     8</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Test Statistic:                  W = 0.8546352</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Test Statistic Parameter:        n = 8</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#P-value:                         0.1061057</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Alternative Hypothesis:          True cdf does not equal the</span></span>
-<span class="r-in">  <span class="co">#                                 Lognormal Distribution.</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="co">#----------</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="co"># Here is the one-sided 99% upper prediction limit for </span></span>
-<span class="r-in">  <span class="co"># a geometric mean based on 4 future observations:</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="fu">predIntLnorm</span><span class="op">(</span><span class="va">Chrysene.bkgd</span>, n.geomean <span class="op">=</span> <span class="fl">4</span>, k <span class="op">=</span> <span class="fl">1</span>, </span>
-<span class="r-in">    conf.level <span class="op">=</span> <span class="fl">0.99</span>, pi.type <span class="op">=</span> <span class="st">"upper"</span><span class="op">)</span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="co">#Results of Goodness-of-Fit Test</span></span></span>
+<span class="r-in"><span>  <span class="co">#-------------------------------</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Test Method:                     Shapiro-Wilk GOF</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Hypothesized Distribution:       Lognormal</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Estimated Parameter(s):          meanlog = 2.5533006</span></span></span>
+<span class="r-in"><span>  <span class="co">#                                 sdlog   = 0.7060038</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Estimation Method:               mvue</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Data:                            Chrysene.bkgd</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Sample Size:                     8</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Test Statistic:                  W = 0.8546352</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Test Statistic Parameter:        n = 8</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#P-value:                         0.1061057</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Alternative Hypothesis:          True cdf does not equal the</span></span></span>
+<span class="r-in"><span>  <span class="co">#                                 Lognormal Distribution.</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="co">#----------</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="co"># Here is the one-sided 99% upper prediction limit for </span></span></span>
+<span class="r-in"><span>  <span class="co"># a geometric mean based on 4 future observations:</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="fu">predIntLnorm</span><span class="op">(</span><span class="va">Chrysene.bkgd</span>, n.geomean <span class="op">=</span> <span class="fl">4</span>, k <span class="op">=</span> <span class="fl">1</span>, </span></span>
+<span class="r-in"><span>    conf.level <span class="op">=</span> <span class="fl">0.99</span>, pi.type <span class="op">=</span> <span class="st">"upper"</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> $distribution</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] "Lognormal"</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
@@ -809,60 +825,60 @@
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> attr(,"class")</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] "estimate"</span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="co">#Results of Distribution Parameter Estimation</span></span>
-<span class="r-in">  <span class="co">#--------------------------------------------</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Assumed Distribution:            Lognormal</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Estimated Parameter(s):          meanlog = 2.5533006</span></span>
-<span class="r-in">  <span class="co">#                                 sdlog   = 0.7060038</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Estimation Method:               mvue</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Data:                            Chrysene.bkgd</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Sample Size:                     8</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Prediction Interval Method:      exact</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Prediction Interval Type:        upper</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Confidence Level:                99%</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Number of Future</span></span>
-<span class="r-in">  <span class="co">#Geometric Means:                 1</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Sample Size for</span></span>
-<span class="r-in">  <span class="co">#Geometric Means:                 4</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Prediction Interval:             LPL =  0.00000</span></span>
-<span class="r-in">  <span class="co">#                                 UPL = 46.96613</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="va">UPL</span> <span class="op">&lt;-</span> <span class="fu">predIntLnorm</span><span class="op">(</span><span class="va">Chrysene.bkgd</span>, n.geomean <span class="op">=</span> <span class="fl">4</span>, k <span class="op">=</span> <span class="fl">1</span>, </span>
-<span class="r-in">    conf.level <span class="op">=</span> <span class="fl">0.99</span>, pi.type <span class="op">=</span> <span class="st">"upper"</span><span class="op">)</span><span class="op">$</span><span class="va">interval</span><span class="op">$</span><span class="va">limits</span><span class="op">[</span><span class="st">"UPL"</span><span class="op">]</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="va">UPL</span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="co">#Results of Distribution Parameter Estimation</span></span></span>
+<span class="r-in"><span>  <span class="co">#--------------------------------------------</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Assumed Distribution:            Lognormal</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Estimated Parameter(s):          meanlog = 2.5533006</span></span></span>
+<span class="r-in"><span>  <span class="co">#                                 sdlog   = 0.7060038</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Estimation Method:               mvue</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Data:                            Chrysene.bkgd</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Sample Size:                     8</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Prediction Interval Method:      exact</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Prediction Interval Type:        upper</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Confidence Level:                99%</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Number of Future</span></span></span>
+<span class="r-in"><span>  <span class="co">#Geometric Means:                 1</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Sample Size for</span></span></span>
+<span class="r-in"><span>  <span class="co">#Geometric Means:                 4</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Prediction Interval:             LPL =  0.00000</span></span></span>
+<span class="r-in"><span>  <span class="co">#                                 UPL = 46.96613</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="va">UPL</span> <span class="op">&lt;-</span> <span class="fu">predIntLnorm</span><span class="op">(</span><span class="va">Chrysene.bkgd</span>, n.geomean <span class="op">=</span> <span class="fl">4</span>, k <span class="op">=</span> <span class="fl">1</span>, </span></span>
+<span class="r-in"><span>    conf.level <span class="op">=</span> <span class="fl">0.99</span>, pi.type <span class="op">=</span> <span class="st">"upper"</span><span class="op">)</span><span class="op">$</span><span class="va">interval</span><span class="op">$</span><span class="va">limits</span><span class="op">[</span><span class="st">"UPL"</span><span class="op">]</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="va">UPL</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>      UPL </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 46.96613 </span>
-<span class="r-in">  <span class="co">#     UPL </span></span>
-<span class="r-in">  <span class="co">#46.96613</span></span>
-<span class="r-in">  </span>
-<span class="r-in">  <span class="co"># Is there evidence of contamination at the compliance well?</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="fu"><a href="geoMean.html">geoMean</a></span><span class="op">(</span><span class="va">Chrysene.cmpl</span><span class="op">)</span></span>
+<span class="r-in"><span>  <span class="co">#     UPL </span></span></span>
+<span class="r-in"><span>  <span class="co">#46.96613</span></span></span>
+<span class="r-in"><span>  </span></span>
+<span class="r-in"><span>  <span class="co"># Is there evidence of contamination at the compliance well?</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="fu"><a href="geoMean.html">geoMean</a></span><span class="op">(</span><span class="va">Chrysene.cmpl</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] 44.19034</span>
-<span class="r-in">  <span class="co">#[1] 44.19034</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="co"># Since the geometric mean at the compliance well is less than </span></span>
-<span class="r-in">  <span class="co"># the upper prediction limit, there is no evidence of contamination.</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="co">#----------</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="co"># Cleanup</span></span>
-<span class="r-in">  <span class="co">#--------</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="fu"><a href="https://rdrr.io/r/base/rm.html" class="external-link">rm</a></span><span class="op">(</span><span class="va">Chrysene.bkgd</span>, <span class="va">Chrysene.cmpl</span>, <span class="va">UPL</span><span class="op">)</span></span>
+<span class="r-in"><span>  <span class="co">#[1] 44.19034</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="co"># Since the geometric mean at the compliance well is less than </span></span></span>
+<span class="r-in"><span>  <span class="co"># the upper prediction limit, there is no evidence of contamination.</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="co">#----------</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="co"># Cleanup</span></span></span>
+<span class="r-in"><span>  <span class="co">#--------</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/r/base/rm.html" class="external-link">rm</a></span><span class="op">(</span><span class="va">Chrysene.bkgd</span>, <span class="va">Chrysene.cmpl</span>, <span class="va">UPL</span><span class="op">)</span></span></span>
 </code></pre></div>
     </div>
   </div>
@@ -877,7 +893,7 @@
 </div>
 
 <div class="pkgdown">
-  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.2.</p>
+  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.6.</p>
 </div>
 
       </footer></div>

@@ -56,11 +56,11 @@
     </div>
 
     <div id="ref-usage">
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="fu">distChooseCensored</span><span class="op">(</span><span class="va">x</span>, <span class="va">censored</span>, censoring.side <span class="op">=</span> <span class="st">"left"</span>, alpha <span class="op">=</span> <span class="fl">0.05</span>,
-    method <span class="op">=</span> <span class="st">"sf"</span>, choices <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"norm"</span>, <span class="st">"gamma"</span>, <span class="st">"lnorm"</span><span class="op">)</span>,
-    est.arg.list <span class="op">=</span> <span class="cn">NULL</span>, prob.method <span class="op">=</span> <span class="st">"hirsch-stedinger"</span>,
-    plot.pos.con <span class="op">=</span> <span class="fl">0.375</span>, warn <span class="op">=</span> <span class="cn">TRUE</span>, keep.data <span class="op">=</span> <span class="cn">TRUE</span>,
-    data.name <span class="op">=</span> <span class="cn">NULL</span>, censoring.name <span class="op">=</span> <span class="cn">NULL</span><span class="op">)</span></code></pre></div>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">distChooseCensored</span><span class="op">(</span><span class="va">x</span>, <span class="va">censored</span>, censoring.side <span class="op">=</span> <span class="st">"left"</span>, alpha <span class="op">=</span> <span class="fl">0.05</span>,</span>
+<span>    method <span class="op">=</span> <span class="st">"sf"</span>, choices <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"norm"</span>, <span class="st">"gamma"</span>, <span class="st">"lnorm"</span><span class="op">)</span>,</span>
+<span>    est.arg.list <span class="op">=</span> <span class="cn">NULL</span>, prob.method <span class="op">=</span> <span class="st">"hirsch-stedinger"</span>,</span>
+<span>    plot.pos.con <span class="op">=</span> <span class="fl">0.375</span>, warn <span class="op">=</span> <span class="cn">TRUE</span>, keep.data <span class="op">=</span> <span class="cn">TRUE</span>,</span>
+<span>    data.name <span class="op">=</span> <span class="cn">NULL</span>, censoring.name <span class="op">=</span> <span class="cn">NULL</span><span class="op">)</span></span></code></pre></div>
     </div>
 
     <div id="arguments">
@@ -70,7 +70,8 @@
   Missing (<code>NA</code>), undefined (<code>NaN</code>), and
   infinite (<code>Inf</code>, <code>-Inf</code>) values are allowed but will be
   removed.</p></dd>
-<dt>censored</dt>
+
+  <dt>censored</dt>
 <dd><p>numeric or logical vector indicating which values of <code>x</code> are censored.
   This must be the same length as <code>x</code>.  If the mode of <code>censored</code> is
   <code>"logical"</code>, <code>TRUE</code> values correspond to elements of <code>x</code> that
@@ -79,28 +80,33 @@
   it must contain only <code>1</code>'s and <code>0</code>'s; <code>1</code> corresponds to
   <code>TRUE</code> and <code>0</code> corresponds to <code>FALSE</code>.  Missing (<code>NA</code>)
   values are allowed but will be removed.</p></dd>
-<dt>censoring.side</dt>
+
+  <dt>censoring.side</dt>
 <dd><p>character string indicating on which side the censoring occurs.  The possible
   values are <code>"left"</code> (the default) and <code>"right"</code>.</p></dd>
-<dt>alpha</dt>
+
+  <dt>alpha</dt>
 <dd><p>numeric scalar between 0 and 1 specifying the Type I error associated with each
   goodness-of-fit test.  When <code>method="proucl"</code> the only allowed values for
   <code>alpha</code> are 0.01, 0.05, and 0.1.  The default value is <code>alpha=0.05</code>.</p></dd>
-<dt>method</dt>
+
+  <dt>method</dt>
 <dd><p>character string defining which method to use.  Possible values are:</p><ul><li><p><code>"sw"</code>. Shapiro-Wilk.</p></li>
 <li><p><code>"sf"</code>. Shapiro-Francia; the default.</p></li>
 <li><p><code>"ppcc"</code>. Probability Plot Correlation Coefficient.</p></li>
 <li><p><code>"proucl"</code>.  ProUCL.</p></li>
 </ul><p>The Shapiro-Wilk method is only available for singly censored data.</p>
 <p>See the DETAILS section for more information.</p></dd>
-<dt>choices</dt>
+
+  <dt>choices</dt>
 <dd><p>a character vector denoting the distribution abbreviations of the candidate
   distributions.  See the help file for <code><a href="Distribution.df.html">Distribution.df</a></code> for a list
   of distributions and their abbreviations.
   The default value is <code>choices=c("norm", "gamma", "lnorm")</code>,
   indicating the <a href="https://rdrr.io/r/stats/Normal.html" class="external-link">Normal</a>, <a href="https://rdrr.io/r/stats/family.html" class="external-link">Gamma</a>,  and <a href="https://rdrr.io/r/stats/Lognormal.html" class="external-link">Lognormal</a> distributions.</p>
 <p>This argument is ignored when <code>method="proucl"</code>.</p></dd>
-<dt>est.arg.list</dt>
+
+  <dt>est.arg.list</dt>
 <dd><p>a list containing one or more lists of arguments to be passed to the
   function(s) estimating the distribution parameters.  The name(s) of
   the components of the list must be equal to or a subset of the values of the
@@ -118,7 +124,8 @@
   component of the returned object, but the choice of the method of estimation
   has no effect on the goodness-of-fit test statistic or p-value.</p>
 <p>This argument is ignored when <code>method="proucl"</code>.</p></dd>
-<dt>prob.method</dt>
+
+  <dt>prob.method</dt>
 <dd><p>character string indicating what method to use to compute the plotting positions
   (empirical probabilities) when <code>test="sf"</code> or <code>test="ppcc"</code>.
   Possible values are:</p><ul><li><p><code>"modified kaplan-meier"</code> (modification of product-limit method of
@@ -133,21 +140,27 @@
   the <code>"modified kaplan-meier"</code> method is only available for
   <code>censoring.side="left"</code>.  See the help files for
   <code><a href="gofTestCensored.html">gofTestCensored</a></code> and <code><a href="ppointsCensored.html">ppointsCensored</a></code> for more information.</p></dd>
-<dt>plot.pos.con</dt>
+
+  <dt>plot.pos.con</dt>
 <dd><p>numeric scalar between 0 and 1 containing the value of the plotting position
   constant to use when <code>test="sf"</code> or <code>test="ppcc"</code>.  The default value is <br><code>plot.pos.con=0.375</code>.  See the help files for <code><a href="gofTestCensored.html">gofTestCensored</a></code> and
   <code><a href="ppointsCensored.html">ppointsCensored</a></code> for more information.</p></dd>
-<dt>warn</dt>
+
+  <dt>warn</dt>
 <dd><p>logical scalar indicating whether to print a warning message when
   observations with <code>NA</code>s, <code>NaN</code>s, or <code>Inf</code>s in
   <code>y</code> are removed.  The default value is <code>warn=TRUE</code>.</p></dd>
-<dt>keep.data</dt>
+
+  <dt>keep.data</dt>
 <dd><p>logical scalar indicating whether to return the original data.  The
   default value is <code>keep.data=TRUE</code>.</p></dd>
-<dt>data.name</dt>
+
+  <dt>data.name</dt>
 <dd><p>optional character string indicating the name of the data used for argument <code>x</code>.</p></dd>
-<dt>censoring.name</dt>
+
+  <dt>censoring.name</dt>
 <dd><p>optional character string indicating the name for the data used for argument <code>censored</code>.</p></dd>
+
 </dl></div>
     <div id="details">
     <h2>Details</h2>
@@ -195,9 +208,13 @@
 </ol></div>
     <div id="value">
     <h2>Value</h2>
-    <p>a list of class <code>"distChooseCensored"</code> containing the results of the goodness-of-fit tests.
+    
+
+<p>a list of class <code>"distChooseCensored"</code> containing the results of the goodness-of-fit tests.
   Objects of class <code>"distChooseCensored"</code> have a special printing method.
-  See the help file for <br><code><a href="distChooseCensored.object.html">distChooseCensored.object</a></code> for details.</p>
+  See the help file for <br></p>
+<p></p>
+<p><code><a href="distChooseCensored.object.html">distChooseCensored.object</a></code> for details.</p>
     </div>
     <div id="references">
     <h2>References</h2>
@@ -238,7 +255,7 @@
   <em>Giornale dell' Istituto Italiano degle Attuari</em> <b>4</b>, 83-91.</p>
 <p>Marsaglia, G., W.W. Tsang, and J. Wang. (2003). Evaluating Kolmogorov's distribution.
   <em>Journal of Statistical Software</em>, <b>8</b>(18).
-  doi: <a href="https://doi.org/10.18637/jss.v008.i18" class="external-link">10.18637/jss.v008.i18</a>
+  <a href="https://doi.org/10.18637/jss.v008.i18" class="external-link">doi:10.18637/jss.v008.i18</a>
 .</p>
 <p>Moore, D.S. (1986). Tests of Chi-Squared Type. In D'Agostino, R.B., and M.A. Stephens, eds.
   <em>Goodness-of Fit Techniques</em>. Marcel Dekker, New York, pp.63-95.</p>
@@ -311,51 +328,51 @@
 
     <div id="ref-examples">
     <h2>Examples</h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in">  <span class="co"># Generate 30 observations from a gamma distribution with</span></span>
-<span class="r-in">  <span class="co"># parameters mean=10 and cv=1 and then censor observations less than 5.</span></span>
-<span class="r-in">  <span class="co"># Then:</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co"># 1) Call distChooseCensored using the Shapiro-Wilk method and specify</span></span>
-<span class="r-in">  <span class="co">#    choices of the</span></span>
-<span class="r-in">  <span class="co">#      normal,</span></span>
-<span class="r-in">  <span class="co">#      gamma (alternative parameterzation), and</span></span>
-<span class="r-in">  <span class="co">#      lognormal (alternative parameterization)</span></span>
-<span class="r-in">  <span class="co">#    distributions.</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co"># 2) Compare the results in 1) above with the results using the</span></span>
-<span class="r-in">  <span class="co">#    ProUCL method.</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co"># Notes:  The call to set.seed lets you reproduce this example.</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#         The ProUCL method chooses the Normal distribution, whereas the</span></span>
-<span class="r-in">  <span class="co">#         Shapiro-Wilk method chooses the Gamma distribution.</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="fu"><a href="https://rdrr.io/r/base/Random.html" class="external-link">set.seed</a></span><span class="op">(</span><span class="fl">598</span><span class="op">)</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="va">dat</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/sort.html" class="external-link">sort</a></span><span class="op">(</span><span class="fu"><a href="GammaAlt.html">rgammaAlt</a></span><span class="op">(</span><span class="fl">30</span>, mean <span class="op">=</span> <span class="fl">10</span>, cv <span class="op">=</span> <span class="fl">1</span><span class="op">)</span><span class="op">)</span></span>
-<span class="r-in">  <span class="va">dat</span></span>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span>  <span class="co"># Generate 30 observations from a gamma distribution with</span></span></span>
+<span class="r-in"><span>  <span class="co"># parameters mean=10 and cv=1 and then censor observations less than 5.</span></span></span>
+<span class="r-in"><span>  <span class="co"># Then:</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co"># 1) Call distChooseCensored using the Shapiro-Wilk method and specify</span></span></span>
+<span class="r-in"><span>  <span class="co">#    choices of the</span></span></span>
+<span class="r-in"><span>  <span class="co">#      normal,</span></span></span>
+<span class="r-in"><span>  <span class="co">#      gamma (alternative parameterzation), and</span></span></span>
+<span class="r-in"><span>  <span class="co">#      lognormal (alternative parameterization)</span></span></span>
+<span class="r-in"><span>  <span class="co">#    distributions.</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co"># 2) Compare the results in 1) above with the results using the</span></span></span>
+<span class="r-in"><span>  <span class="co">#    ProUCL method.</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co"># Notes:  The call to set.seed lets you reproduce this example.</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#         The ProUCL method chooses the Normal distribution, whereas the</span></span></span>
+<span class="r-in"><span>  <span class="co">#         Shapiro-Wilk method chooses the Gamma distribution.</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/r/base/Random.html" class="external-link">set.seed</a></span><span class="op">(</span><span class="fl">598</span><span class="op">)</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="va">dat</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/sort.html" class="external-link">sort</a></span><span class="op">(</span><span class="fu"><a href="GammaAlt.html">rgammaAlt</a></span><span class="op">(</span><span class="fl">30</span>, mean <span class="op">=</span> <span class="fl">10</span>, cv <span class="op">=</span> <span class="fl">1</span><span class="op">)</span><span class="op">)</span></span></span>
+<span class="r-in"><span>  <span class="va">dat</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  [1]  0.5313509  1.4741833  1.9936208  2.7980636  3.4509840  3.7987348</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  [7]  4.5542952  5.5207531  5.5253596  5.7177872  5.7513827  9.1086375</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [13]  9.8444090 10.6247123 10.9304922 11.7925398 13.3432689 13.9562777</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [19] 14.6029065 15.0563342 15.8730642 16.0039936 16.6910715 17.0288922</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [25] 17.8507891 19.1105522 20.2657141 26.3815970 30.2912797 42.8726101</span>
-<span class="r-in">  <span class="co"># [1]  0.5313509  1.4741833  1.9936208  2.7980636  3.4509840</span></span>
-<span class="r-in">  <span class="co"># [6]  3.7987348  4.5542952  5.5207531  5.5253596  5.7177872</span></span>
-<span class="r-in">  <span class="co">#[11]  5.7513827  9.1086375  9.8444090 10.6247123 10.9304922</span></span>
-<span class="r-in">  <span class="co">#[16] 11.7925398 13.3432689 13.9562777 14.6029065 15.0563342</span></span>
-<span class="r-in">  <span class="co">#[21] 15.8730642 16.0039936 16.6910715 17.0288922 17.8507891</span></span>
-<span class="r-in">  <span class="co">#[26] 19.1105522 20.2657141 26.3815970 30.2912797 42.8726101</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="va">dat.censored</span> <span class="op">&lt;-</span> <span class="va">dat</span></span>
-<span class="r-in">  <span class="va">censored</span> <span class="op">&lt;-</span> <span class="va">dat.censored</span> <span class="op">&lt;</span> <span class="fl">5</span></span>
-<span class="r-in">  <span class="va">dat.censored</span><span class="op">[</span><span class="va">censored</span><span class="op">]</span> <span class="op">&lt;-</span> <span class="fl">5</span></span>
-<span class="r-in"></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="co"># 1) Call distChooseCensored using the Shapiro-Wilk method.</span></span>
-<span class="r-in">  <span class="co">#----------------------------------------------------------</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="fu">distChooseCensored</span><span class="op">(</span><span class="va">dat.censored</span>, <span class="va">censored</span>, method <span class="op">=</span> <span class="st">"sw"</span>,</span>
-<span class="r-in">    choices <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"norm"</span>, <span class="st">"gammaAlt"</span>, <span class="st">"lnormAlt"</span><span class="op">)</span><span class="op">)</span></span>
+<span class="r-in"><span>  <span class="co"># [1]  0.5313509  1.4741833  1.9936208  2.7980636  3.4509840</span></span></span>
+<span class="r-in"><span>  <span class="co"># [6]  3.7987348  4.5542952  5.5207531  5.5253596  5.7177872</span></span></span>
+<span class="r-in"><span>  <span class="co">#[11]  5.7513827  9.1086375  9.8444090 10.6247123 10.9304922</span></span></span>
+<span class="r-in"><span>  <span class="co">#[16] 11.7925398 13.3432689 13.9562777 14.6029065 15.0563342</span></span></span>
+<span class="r-in"><span>  <span class="co">#[21] 15.8730642 16.0039936 16.6910715 17.0288922 17.8507891</span></span></span>
+<span class="r-in"><span>  <span class="co">#[26] 19.1105522 20.2657141 26.3815970 30.2912797 42.8726101</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="va">dat.censored</span> <span class="op">&lt;-</span> <span class="va">dat</span></span></span>
+<span class="r-in"><span>  <span class="va">censored</span> <span class="op">&lt;-</span> <span class="va">dat.censored</span> <span class="op">&lt;</span> <span class="fl">5</span></span></span>
+<span class="r-in"><span>  <span class="va">dat.censored</span><span class="op">[</span><span class="va">censored</span><span class="op">]</span> <span class="op">&lt;-</span> <span class="fl">5</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="co"># 1) Call distChooseCensored using the Shapiro-Wilk method.</span></span></span>
+<span class="r-in"><span>  <span class="co">#----------------------------------------------------------</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="fu">distChooseCensored</span><span class="op">(</span><span class="va">dat.censored</span>, <span class="va">censored</span>, method <span class="op">=</span> <span class="st">"sw"</span>,</span></span>
+<span class="r-in"><span>    choices <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"norm"</span>, <span class="st">"gammaAlt"</span>, <span class="st">"lnormAlt"</span><span class="op">)</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> $choices</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] "Normal"    "Gamma"     "Lognormal"</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
@@ -583,58 +600,58 @@
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> attr(,"class")</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] "distChooseCensored"</span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="co">#Results of Choosing Distribution</span></span>
-<span class="r-in">  <span class="co">#--------------------------------</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Candidate Distributions:         Normal</span></span>
-<span class="r-in">  <span class="co">#                                 Gamma</span></span>
-<span class="r-in">  <span class="co">#                                 Lognormal</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Choice Method:                   Shapiro-Wilk</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Type I Error per Test:           0.05</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Decision:                        Gamma</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Estimated Parameter(s):          mean = 12.4911448</span></span>
-<span class="r-in">  <span class="co">#                                 cv   =  0.7617343</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Estimation Method:               MLE</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Data:                            dat.censored</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Sample Size:                     30</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Censoring Side:                  left</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Censoring Variable:              censored</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Censoring Level(s):              5</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Percent Censored:                23.33333%</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Test Results:</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#  Normal</span></span>
-<span class="r-in">  <span class="co">#    Test Statistic:              W = 0.9372741</span></span>
-<span class="r-in">  <span class="co">#    P-value:                     0.1704876</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#  Gamma</span></span>
-<span class="r-in">  <span class="co">#    Test Statistic:              W = 0.9613711</span></span>
-<span class="r-in">  <span class="co">#    P-value:                     0.522329</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#  Lognormal</span></span>
-<span class="r-in">  <span class="co">#    Test Statistic:              W = 0.9292406</span></span>
-<span class="r-in">  <span class="co">#    P-value:                     0.114511</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="co">#--------------------</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="co"># 2) Compare the results in 1) above with the results using the</span></span>
-<span class="r-in">  <span class="co">#    ProUCL method.</span></span>
-<span class="r-in">  <span class="co">#---------------------------------------------------------------</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="fu">distChooseCensored</span><span class="op">(</span><span class="va">dat.censored</span>, <span class="va">censored</span>, method <span class="op">=</span> <span class="st">"proucl"</span><span class="op">)</span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="co">#Results of Choosing Distribution</span></span></span>
+<span class="r-in"><span>  <span class="co">#--------------------------------</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Candidate Distributions:         Normal</span></span></span>
+<span class="r-in"><span>  <span class="co">#                                 Gamma</span></span></span>
+<span class="r-in"><span>  <span class="co">#                                 Lognormal</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Choice Method:                   Shapiro-Wilk</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Type I Error per Test:           0.05</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Decision:                        Gamma</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Estimated Parameter(s):          mean = 12.4911448</span></span></span>
+<span class="r-in"><span>  <span class="co">#                                 cv   =  0.7617343</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Estimation Method:               MLE</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Data:                            dat.censored</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Sample Size:                     30</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Censoring Side:                  left</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Censoring Variable:              censored</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Censoring Level(s):              5</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Percent Censored:                23.33333%</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Test Results:</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#  Normal</span></span></span>
+<span class="r-in"><span>  <span class="co">#    Test Statistic:              W = 0.9372741</span></span></span>
+<span class="r-in"><span>  <span class="co">#    P-value:                     0.1704876</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#  Gamma</span></span></span>
+<span class="r-in"><span>  <span class="co">#    Test Statistic:              W = 0.9613711</span></span></span>
+<span class="r-in"><span>  <span class="co">#    P-value:                     0.522329</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#  Lognormal</span></span></span>
+<span class="r-in"><span>  <span class="co">#    Test Statistic:              W = 0.9292406</span></span></span>
+<span class="r-in"><span>  <span class="co">#    P-value:                     0.114511</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="co">#--------------------</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="co"># 2) Compare the results in 1) above with the results using the</span></span></span>
+<span class="r-in"><span>  <span class="co">#    ProUCL method.</span></span></span>
+<span class="r-in"><span>  <span class="co">#---------------------------------------------------------------</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="fu">distChooseCensored</span><span class="op">(</span><span class="va">dat.censored</span>, <span class="va">censored</span>, method <span class="op">=</span> <span class="st">"proucl"</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> $choices</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] "Normal"    "Gamma"     "Lognormal"</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
@@ -999,100 +1016,100 @@
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> attr(,"class")</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] "distChooseCensored"</span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="co">#Results of Choosing Distribution</span></span>
-<span class="r-in">  <span class="co">#--------------------------------</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Candidate Distributions:         Normal</span></span>
-<span class="r-in">  <span class="co">#                                 Gamma</span></span>
-<span class="r-in">  <span class="co">#                                 Lognormal</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Choice Method:                   ProUCL</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Type I Error per Test:           0.05</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Decision:                        Normal</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Estimated Parameter(s):          mean = 15.397584</span></span>
-<span class="r-in">  <span class="co">#                                 sd   =  8.688302</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Estimation Method:               mvue</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Data:                            dat.censored</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Sample Size:                     30</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Censoring Side:                  left</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Censoring Variable:              censored</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Censoring Level(s):              5</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Percent Censored:                23.33333%</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#ProUCL Sample Size:              23</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Test Results:</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#  Normal</span></span>
-<span class="r-in">  <span class="co">#    Shapiro-Wilk GOF</span></span>
-<span class="r-in">  <span class="co">#      Test Statistic:            W = 0.861652</span></span>
-<span class="r-in">  <span class="co">#      P-value:                   0.004457924</span></span>
-<span class="r-in">  <span class="co">#    Lilliefors (Kolmogorov-Smirnov) GOF</span></span>
-<span class="r-in">  <span class="co">#      Test Statistic:            D = 0.1714435</span></span>
-<span class="r-in">  <span class="co">#      P-value:                   0.07794315</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#  Gamma</span></span>
-<span class="r-in">  <span class="co">#    ProUCL Anderson-Darling Gamma GOF</span></span>
-<span class="r-in">  <span class="co">#      Test Statistic:            A = 0.3805556</span></span>
-<span class="r-in">  <span class="co">#      P-value:                   &gt;= 0.10</span></span>
-<span class="r-in">  <span class="co">#    ProUCL Kolmogorov-Smirnov Gamma GOF</span></span>
-<span class="r-in">  <span class="co">#      Test Statistic:            D = 0.1035271</span></span>
-<span class="r-in">  <span class="co">#      P-value:                   &gt;= 0.10</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#  Lognormal</span></span>
-<span class="r-in">  <span class="co">#    Shapiro-Wilk GOF</span></span>
-<span class="r-in">  <span class="co">#      Test Statistic:            W = 0.9532604</span></span>
-<span class="r-in">  <span class="co">#      P-value:                   0.3414187</span></span>
-<span class="r-in">  <span class="co">#    Lilliefors (Kolmogorov-Smirnov) GOF</span></span>
-<span class="r-in">  <span class="co">#      Test Statistic:            D = 0.115588</span></span>
-<span class="r-in">  <span class="co">#      P-value:                   0.5899259</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="co">#--------------------</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="co"># Clean up</span></span>
-<span class="r-in">  <span class="co">#---------</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="fu"><a href="https://rdrr.io/r/base/rm.html" class="external-link">rm</a></span><span class="op">(</span><span class="va">dat</span>, <span class="va">censored</span>, <span class="va">dat.censored</span><span class="op">)</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="co">#====================================================================</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="co"># Check the assumption that the silver data stored in Helsel.Cohn.88.silver.df</span></span>
-<span class="r-in">  <span class="co"># follows a lognormal distribution.</span></span>
-<span class="r-in">  <span class="co"># Note that the small p-value and the shape of the Q-Q plot</span></span>
-<span class="r-in">  <span class="co"># (an inverted S-shape) suggests that the log transformation is not quite strong</span></span>
-<span class="r-in">  <span class="co"># enough to "bring in" the tails (i.e., the log-transformed silver data has tails</span></span>
-<span class="r-in">  <span class="co"># that are slightly too long relative to a normal distribution).</span></span>
-<span class="r-in">  <span class="co"># Helsel and Cohn (1988, p.2002) note that the gross outlier of 560 mg/L tends to</span></span>
-<span class="r-in">  <span class="co"># make the shape of the data resemble a gamma distribution, but</span></span>
-<span class="r-in">  <span class="co"># the distChooseCensored function decision is neither Gamma nor Lognormal,</span></span>
-<span class="r-in">  <span class="co"># but instead Nonparametric.</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="co"># First create a lognormal Q-Q plot</span></span>
-<span class="r-in">  <span class="co">#----------------------------------</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="fu"><a href="https://rdrr.io/r/grDevices/dev.html" class="external-link">dev.new</a></span><span class="op">(</span><span class="op">)</span></span>
-<span class="r-in">  <span class="fu"><a href="https://rdrr.io/r/base/with.html" class="external-link">with</a></span><span class="op">(</span><span class="va">Helsel.Cohn.88.silver.df</span>,</span>
-<span class="r-in">    <span class="fu"><a href="qqPlotCensored.html">qqPlotCensored</a></span><span class="op">(</span><span class="va">Ag</span>, <span class="va">Censored</span>, distribution <span class="op">=</span> <span class="st">"lnorm"</span>,</span>
-<span class="r-in">      points.col <span class="op">=</span> <span class="st">"blue"</span>, add.line <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span><span class="op">)</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="co">#----------</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="co"># Now call the distChooseCensored function using the default settings.</span></span>
-<span class="r-in">  <span class="co">#---------------------------------------------------------------------</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="fu"><a href="https://rdrr.io/r/base/with.html" class="external-link">with</a></span><span class="op">(</span><span class="va">Helsel.Cohn.88.silver.df</span>,</span>
-<span class="r-in">    <span class="fu">distChooseCensored</span><span class="op">(</span><span class="va">Ag</span>, <span class="va">Censored</span><span class="op">)</span><span class="op">)</span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="co">#Results of Choosing Distribution</span></span></span>
+<span class="r-in"><span>  <span class="co">#--------------------------------</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Candidate Distributions:         Normal</span></span></span>
+<span class="r-in"><span>  <span class="co">#                                 Gamma</span></span></span>
+<span class="r-in"><span>  <span class="co">#                                 Lognormal</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Choice Method:                   ProUCL</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Type I Error per Test:           0.05</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Decision:                        Normal</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Estimated Parameter(s):          mean = 15.397584</span></span></span>
+<span class="r-in"><span>  <span class="co">#                                 sd   =  8.688302</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Estimation Method:               mvue</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Data:                            dat.censored</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Sample Size:                     30</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Censoring Side:                  left</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Censoring Variable:              censored</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Censoring Level(s):              5</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Percent Censored:                23.33333%</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#ProUCL Sample Size:              23</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Test Results:</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#  Normal</span></span></span>
+<span class="r-in"><span>  <span class="co">#    Shapiro-Wilk GOF</span></span></span>
+<span class="r-in"><span>  <span class="co">#      Test Statistic:            W = 0.861652</span></span></span>
+<span class="r-in"><span>  <span class="co">#      P-value:                   0.004457924</span></span></span>
+<span class="r-in"><span>  <span class="co">#    Lilliefors (Kolmogorov-Smirnov) GOF</span></span></span>
+<span class="r-in"><span>  <span class="co">#      Test Statistic:            D = 0.1714435</span></span></span>
+<span class="r-in"><span>  <span class="co">#      P-value:                   0.07794315</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#  Gamma</span></span></span>
+<span class="r-in"><span>  <span class="co">#    ProUCL Anderson-Darling Gamma GOF</span></span></span>
+<span class="r-in"><span>  <span class="co">#      Test Statistic:            A = 0.3805556</span></span></span>
+<span class="r-in"><span>  <span class="co">#      P-value:                   &gt;= 0.10</span></span></span>
+<span class="r-in"><span>  <span class="co">#    ProUCL Kolmogorov-Smirnov Gamma GOF</span></span></span>
+<span class="r-in"><span>  <span class="co">#      Test Statistic:            D = 0.1035271</span></span></span>
+<span class="r-in"><span>  <span class="co">#      P-value:                   &gt;= 0.10</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#  Lognormal</span></span></span>
+<span class="r-in"><span>  <span class="co">#    Shapiro-Wilk GOF</span></span></span>
+<span class="r-in"><span>  <span class="co">#      Test Statistic:            W = 0.9532604</span></span></span>
+<span class="r-in"><span>  <span class="co">#      P-value:                   0.3414187</span></span></span>
+<span class="r-in"><span>  <span class="co">#    Lilliefors (Kolmogorov-Smirnov) GOF</span></span></span>
+<span class="r-in"><span>  <span class="co">#      Test Statistic:            D = 0.115588</span></span></span>
+<span class="r-in"><span>  <span class="co">#      P-value:                   0.5899259</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="co">#--------------------</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="co"># Clean up</span></span></span>
+<span class="r-in"><span>  <span class="co">#---------</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/r/base/rm.html" class="external-link">rm</a></span><span class="op">(</span><span class="va">dat</span>, <span class="va">censored</span>, <span class="va">dat.censored</span><span class="op">)</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="co">#====================================================================</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="co"># Check the assumption that the silver data stored in Helsel.Cohn.88.silver.df</span></span></span>
+<span class="r-in"><span>  <span class="co"># follows a lognormal distribution.</span></span></span>
+<span class="r-in"><span>  <span class="co"># Note that the small p-value and the shape of the Q-Q plot</span></span></span>
+<span class="r-in"><span>  <span class="co"># (an inverted S-shape) suggests that the log transformation is not quite strong</span></span></span>
+<span class="r-in"><span>  <span class="co"># enough to "bring in" the tails (i.e., the log-transformed silver data has tails</span></span></span>
+<span class="r-in"><span>  <span class="co"># that are slightly too long relative to a normal distribution).</span></span></span>
+<span class="r-in"><span>  <span class="co"># Helsel and Cohn (1988, p.2002) note that the gross outlier of 560 mg/L tends to</span></span></span>
+<span class="r-in"><span>  <span class="co"># make the shape of the data resemble a gamma distribution, but</span></span></span>
+<span class="r-in"><span>  <span class="co"># the distChooseCensored function decision is neither Gamma nor Lognormal,</span></span></span>
+<span class="r-in"><span>  <span class="co"># but instead Nonparametric.</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="co"># First create a lognormal Q-Q plot</span></span></span>
+<span class="r-in"><span>  <span class="co">#----------------------------------</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/r/grDevices/dev.html" class="external-link">dev.new</a></span><span class="op">(</span><span class="op">)</span></span></span>
+<span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/r/base/with.html" class="external-link">with</a></span><span class="op">(</span><span class="va">Helsel.Cohn.88.silver.df</span>,</span></span>
+<span class="r-in"><span>    <span class="fu"><a href="qqPlotCensored.html">qqPlotCensored</a></span><span class="op">(</span><span class="va">Ag</span>, <span class="va">Censored</span>, distribution <span class="op">=</span> <span class="st">"lnorm"</span>,</span></span>
+<span class="r-in"><span>      points.col <span class="op">=</span> <span class="st">"blue"</span>, add.line <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span><span class="op">)</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="co">#----------</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="co"># Now call the distChooseCensored function using the default settings.</span></span></span>
+<span class="r-in"><span>  <span class="co">#---------------------------------------------------------------------</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/r/base/with.html" class="external-link">with</a></span><span class="op">(</span><span class="va">Helsel.Cohn.88.silver.df</span>,</span></span>
+<span class="r-in"><span>    <span class="fu">distChooseCensored</span><span class="op">(</span><span class="va">Ag</span>, <span class="va">Censored</span><span class="op">)</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> $choices</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] "Normal"    "Gamma"     "Lognormal"</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
@@ -1321,77 +1338,77 @@
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> attr(,"class")</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] "distChooseCensored"</span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="co">#Results of Choosing Distribution</span></span>
-<span class="r-in">  <span class="co">#--------------------------------</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Candidate Distributions:         Normal</span></span>
-<span class="r-in">  <span class="co">#                                 Gamma</span></span>
-<span class="r-in">  <span class="co">#                                 Lognormal</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Choice Method:                   Shapiro-Francia</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Type I Error per Test:           0.05</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Decision:                        Nonparametric</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Data:                            Ag</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Sample Size:                     56</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Censoring Side:                  left</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Censoring Variable:              Censored</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Censoring Level(s):               0.1  0.2  0.3  0.5  1.0  2.0  2.5  5.0  6.0 10.0 20.0 25.0</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Percent Censored:                60.71429%</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Test Results:</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#  Normal</span></span>
-<span class="r-in">  <span class="co">#    Test Statistic:              W = 0.3065529</span></span>
-<span class="r-in">  <span class="co">#    P-value:                     8.346126e-08</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#  Gamma</span></span>
-<span class="r-in">  <span class="co">#    Test Statistic:              W = 0.6254148</span></span>
-<span class="r-in">  <span class="co">#    P-value:                     1.884155e-05</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#  Lognormal</span></span>
-<span class="r-in">  <span class="co">#    Test Statistic:              W = 0.8957198</span></span>
-<span class="r-in">  <span class="co">#    P-value:                     0.03490314</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="co">#----------</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="co"># Clean up</span></span>
-<span class="r-in">  <span class="co">#---------</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="fu"><a href="https://rdrr.io/r/grDevices/dev.html" class="external-link">graphics.off</a></span><span class="op">(</span><span class="op">)</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="co">#====================================================================</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="co"># Chapter 15 of USEPA (2009) gives several examples of looking</span></span>
-<span class="r-in">  <span class="co"># at normal Q-Q plots and estimating the mean and standard deviation</span></span>
-<span class="r-in">  <span class="co"># for manganese concentrations (ppb) in groundwater at five background</span></span>
-<span class="r-in">  <span class="co"># wells (USEPA, 2009, p. 15-10).  The Q-Q plot shown in Figure 15-4</span></span>
-<span class="r-in">  <span class="co"># on page 15-13 clearly indicates that the Lognormal distribution</span></span>
-<span class="r-in">  <span class="co"># is a good fit for these data.</span></span>
-<span class="r-in">  <span class="co"># In EnvStats these data are stored in the data frame EPA.09.Ex.15.1.manganese.df.</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="co"># Here we will call the distChooseCensored function to determine</span></span>
-<span class="r-in">  <span class="co"># whether the data appear to come from a normal, gamma, or lognormal</span></span>
-<span class="r-in">  <span class="co"># distribution.</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co"># Note that using the Probability Plot Correlation Coefficient method</span></span>
-<span class="r-in">  <span class="co"># (equivalent to using the Shapiro-Francia method) yields a decision of</span></span>
-<span class="r-in">  <span class="co"># Lognormal, but using the ProUCL method yields a decision of Gamma.</span></span>
-<span class="r-in">  <span class="co">#----------------------------------------------------------------------</span></span>
-<span class="r-in"></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="co"># First look at the data:</span></span>
-<span class="r-in">  <span class="co">#-----------------------</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="va">EPA.09.Ex.15.1.manganese.df</span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="co">#Results of Choosing Distribution</span></span></span>
+<span class="r-in"><span>  <span class="co">#--------------------------------</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Candidate Distributions:         Normal</span></span></span>
+<span class="r-in"><span>  <span class="co">#                                 Gamma</span></span></span>
+<span class="r-in"><span>  <span class="co">#                                 Lognormal</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Choice Method:                   Shapiro-Francia</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Type I Error per Test:           0.05</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Decision:                        Nonparametric</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Data:                            Ag</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Sample Size:                     56</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Censoring Side:                  left</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Censoring Variable:              Censored</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Censoring Level(s):               0.1  0.2  0.3  0.5  1.0  2.0  2.5  5.0  6.0 10.0 20.0 25.0</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Percent Censored:                60.71429%</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Test Results:</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#  Normal</span></span></span>
+<span class="r-in"><span>  <span class="co">#    Test Statistic:              W = 0.3065529</span></span></span>
+<span class="r-in"><span>  <span class="co">#    P-value:                     8.346126e-08</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#  Gamma</span></span></span>
+<span class="r-in"><span>  <span class="co">#    Test Statistic:              W = 0.6254148</span></span></span>
+<span class="r-in"><span>  <span class="co">#    P-value:                     1.884155e-05</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#  Lognormal</span></span></span>
+<span class="r-in"><span>  <span class="co">#    Test Statistic:              W = 0.8957198</span></span></span>
+<span class="r-in"><span>  <span class="co">#    P-value:                     0.03490314</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="co">#----------</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="co"># Clean up</span></span></span>
+<span class="r-in"><span>  <span class="co">#---------</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/r/grDevices/dev.html" class="external-link">graphics.off</a></span><span class="op">(</span><span class="op">)</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="co">#====================================================================</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="co"># Chapter 15 of USEPA (2009) gives several examples of looking</span></span></span>
+<span class="r-in"><span>  <span class="co"># at normal Q-Q plots and estimating the mean and standard deviation</span></span></span>
+<span class="r-in"><span>  <span class="co"># for manganese concentrations (ppb) in groundwater at five background</span></span></span>
+<span class="r-in"><span>  <span class="co"># wells (USEPA, 2009, p. 15-10).  The Q-Q plot shown in Figure 15-4</span></span></span>
+<span class="r-in"><span>  <span class="co"># on page 15-13 clearly indicates that the Lognormal distribution</span></span></span>
+<span class="r-in"><span>  <span class="co"># is a good fit for these data.</span></span></span>
+<span class="r-in"><span>  <span class="co"># In EnvStats these data are stored in the data frame EPA.09.Ex.15.1.manganese.df.</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="co"># Here we will call the distChooseCensored function to determine</span></span></span>
+<span class="r-in"><span>  <span class="co"># whether the data appear to come from a normal, gamma, or lognormal</span></span></span>
+<span class="r-in"><span>  <span class="co"># distribution.</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co"># Note that using the Probability Plot Correlation Coefficient method</span></span></span>
+<span class="r-in"><span>  <span class="co"># (equivalent to using the Shapiro-Francia method) yields a decision of</span></span></span>
+<span class="r-in"><span>  <span class="co"># Lognormal, but using the ProUCL method yields a decision of Gamma.</span></span></span>
+<span class="r-in"><span>  <span class="co">#----------------------------------------------------------------------</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="co"># First look at the data:</span></span></span>
+<span class="r-in"><span>  <span class="co">#-----------------------</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="va">EPA.09.Ex.15.1.manganese.df</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>    Sample   Well Manganese.Orig.ppb Manganese.ppb Censored</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 1       1 Well.1                 &lt;5           5.0     TRUE</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 2       2 Well.1               12.1          12.1    FALSE</span>
@@ -1418,42 +1435,42 @@
 <span class="r-out co"><span class="r-pr">#&gt;</span> 23      3 Well.5                3.3           3.3    FALSE</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 24      4 Well.5                8.4           8.4    FALSE</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 25      5 Well.5                 &lt;2           2.0     TRUE</span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="co">#   Sample   Well Manganese.Orig.ppb Manganese.ppb Censored</span></span>
-<span class="r-in">  <span class="co">#1       1 Well.1                 &lt;5           5.0     TRUE</span></span>
-<span class="r-in">  <span class="co">#2       2 Well.1               12.1          12.1    FALSE</span></span>
-<span class="r-in">  <span class="co">#3       3 Well.1               16.9          16.9    FALSE</span></span>
-<span class="r-in">  <span class="co">#...</span></span>
-<span class="r-in">  <span class="co">#23      3 Well.5                3.3           3.3    FALSE</span></span>
-<span class="r-in">  <span class="co">#24      4 Well.5                8.4           8.4    FALSE</span></span>
-<span class="r-in">  <span class="co">#25      5 Well.5                 &lt;2           2.0     TRUE</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="fu"><a href="longToWide.html">longToWide</a></span><span class="op">(</span><span class="va">EPA.09.Ex.15.1.manganese.df</span>,</span>
-<span class="r-in">    <span class="st">"Manganese.Orig.ppb"</span>, <span class="st">"Sample"</span>, <span class="st">"Well"</span>,</span>
-<span class="r-in">    paste.row.name <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="co">#   Sample   Well Manganese.Orig.ppb Manganese.ppb Censored</span></span></span>
+<span class="r-in"><span>  <span class="co">#1       1 Well.1                 &lt;5           5.0     TRUE</span></span></span>
+<span class="r-in"><span>  <span class="co">#2       2 Well.1               12.1          12.1    FALSE</span></span></span>
+<span class="r-in"><span>  <span class="co">#3       3 Well.1               16.9          16.9    FALSE</span></span></span>
+<span class="r-in"><span>  <span class="co">#...</span></span></span>
+<span class="r-in"><span>  <span class="co">#23      3 Well.5                3.3           3.3    FALSE</span></span></span>
+<span class="r-in"><span>  <span class="co">#24      4 Well.5                8.4           8.4    FALSE</span></span></span>
+<span class="r-in"><span>  <span class="co">#25      5 Well.5                 &lt;2           2.0     TRUE</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="fu"><a href="longToWide.html">longToWide</a></span><span class="op">(</span><span class="va">EPA.09.Ex.15.1.manganese.df</span>,</span></span>
+<span class="r-in"><span>    <span class="st">"Manganese.Orig.ppb"</span>, <span class="st">"Sample"</span>, <span class="st">"Well"</span>,</span></span>
+<span class="r-in"><span>    paste.row.name <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>          Well.1 Well.2 Well.3 Well.4 Well.5</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Sample.1     &lt;5     &lt;5     &lt;5    6.3   17.9</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Sample.2   12.1    7.7    5.3   11.9   22.7</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Sample.3   16.9   53.6   12.6     10    3.3</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Sample.4   21.6    9.5  106.3     &lt;2    8.4</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Sample.5     &lt;2   45.9   34.5   77.2     &lt;2</span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="co">#         Well.1 Well.2 Well.3 Well.4 Well.5</span></span>
-<span class="r-in">  <span class="co">#Sample.1     &lt;5     &lt;5     &lt;5    6.3   17.9</span></span>
-<span class="r-in">  <span class="co">#Sample.2   12.1    7.7    5.3   11.9   22.7</span></span>
-<span class="r-in">  <span class="co">#Sample.3   16.9   53.6   12.6     10    3.3</span></span>
-<span class="r-in">  <span class="co">#Sample.4   21.6    9.5  106.3     &lt;2    8.4</span></span>
-<span class="r-in">  <span class="co">#Sample.5     &lt;2   45.9   34.5   77.2     &lt;2</span></span>
-<span class="r-in"></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="co"># Use distChooseCensored with the probability plot correlation method,</span></span>
-<span class="r-in">  <span class="co"># and for the gamma and lognormal distribution specify the</span></span>
-<span class="r-in">  <span class="co"># mean and CV parameterization:</span></span>
-<span class="r-in">  <span class="co">#------------------------------------------------------------</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="fu"><a href="https://rdrr.io/r/base/with.html" class="external-link">with</a></span><span class="op">(</span><span class="va">EPA.09.Ex.15.1.manganese.df</span>,</span>
-<span class="r-in">    <span class="fu">distChooseCensored</span><span class="op">(</span><span class="va">Manganese.ppb</span>, <span class="va">Censored</span>,</span>
-<span class="r-in">      choices <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"norm"</span>, <span class="st">"gamma"</span>, <span class="st">"lnormAlt"</span><span class="op">)</span>, method <span class="op">=</span> <span class="st">"ppcc"</span><span class="op">)</span><span class="op">)</span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="co">#         Well.1 Well.2 Well.3 Well.4 Well.5</span></span></span>
+<span class="r-in"><span>  <span class="co">#Sample.1     &lt;5     &lt;5     &lt;5    6.3   17.9</span></span></span>
+<span class="r-in"><span>  <span class="co">#Sample.2   12.1    7.7    5.3   11.9   22.7</span></span></span>
+<span class="r-in"><span>  <span class="co">#Sample.3   16.9   53.6   12.6     10    3.3</span></span></span>
+<span class="r-in"><span>  <span class="co">#Sample.4   21.6    9.5  106.3     &lt;2    8.4</span></span></span>
+<span class="r-in"><span>  <span class="co">#Sample.5     &lt;2   45.9   34.5   77.2     &lt;2</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="co"># Use distChooseCensored with the probability plot correlation method,</span></span></span>
+<span class="r-in"><span>  <span class="co"># and for the gamma and lognormal distribution specify the</span></span></span>
+<span class="r-in"><span>  <span class="co"># mean and CV parameterization:</span></span></span>
+<span class="r-in"><span>  <span class="co">#------------------------------------------------------------</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/r/base/with.html" class="external-link">with</a></span><span class="op">(</span><span class="va">EPA.09.Ex.15.1.manganese.df</span>,</span></span>
+<span class="r-in"><span>    <span class="fu">distChooseCensored</span><span class="op">(</span><span class="va">Manganese.ppb</span>, <span class="va">Censored</span>,</span></span>
+<span class="r-in"><span>      choices <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"norm"</span>, <span class="st">"gamma"</span>, <span class="st">"lnormAlt"</span><span class="op">)</span>, method <span class="op">=</span> <span class="st">"ppcc"</span><span class="op">)</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> $choices</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] "Normal"    "Gamma"     "Lognormal"</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
@@ -1679,58 +1696,58 @@
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> attr(,"class")</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] "distChooseCensored"</span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="co">#Results of Choosing Distribution</span></span>
-<span class="r-in">  <span class="co">#--------------------------------</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Candidate Distributions:         Normal</span></span>
-<span class="r-in">  <span class="co">#                                 Gamma</span></span>
-<span class="r-in">  <span class="co">#                                 Lognormal</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Choice Method:                   PPCC</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Type I Error per Test:           0.05</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Decision:                        Lognormal</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Estimated Parameter(s):          mean = 23.003987</span></span>
-<span class="r-in">  <span class="co">#                                 cv   =  2.300772</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Estimation Method:               MLE</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Data:                            Manganese.ppb</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Sample Size:                     25</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Censoring Side:                  left</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Censoring Variable:              Censored</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Censoring Level(s):              2 5</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Percent Censored:                24%</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Test Results:</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#  Normal</span></span>
-<span class="r-in">  <span class="co">#    Test Statistic:              r = 0.9147686</span></span>
-<span class="r-in">  <span class="co">#    P-value:                     0.004662658</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#  Gamma</span></span>
-<span class="r-in">  <span class="co">#    Test Statistic:              r = 0.9844875</span></span>
-<span class="r-in">  <span class="co">#    P-value:                     0.6836625</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#  Lognormal</span></span>
-<span class="r-in">  <span class="co">#    Test Statistic:              r = 0.9931982</span></span>
-<span class="r-in">  <span class="co">#    P-value:                     0.9767731</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="co">#--------------------</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="co"># Repeat the above example using the ProUCL method.</span></span>
-<span class="r-in">  <span class="co">#--------------------------------------------------</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="fu"><a href="https://rdrr.io/r/base/with.html" class="external-link">with</a></span><span class="op">(</span><span class="va">EPA.09.Ex.15.1.manganese.df</span>,</span>
-<span class="r-in">    <span class="fu">distChooseCensored</span><span class="op">(</span><span class="va">Manganese.ppb</span>, <span class="va">Censored</span>, method <span class="op">=</span> <span class="st">"proucl"</span><span class="op">)</span><span class="op">)</span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="co">#Results of Choosing Distribution</span></span></span>
+<span class="r-in"><span>  <span class="co">#--------------------------------</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Candidate Distributions:         Normal</span></span></span>
+<span class="r-in"><span>  <span class="co">#                                 Gamma</span></span></span>
+<span class="r-in"><span>  <span class="co">#                                 Lognormal</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Choice Method:                   PPCC</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Type I Error per Test:           0.05</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Decision:                        Lognormal</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Estimated Parameter(s):          mean = 23.003987</span></span></span>
+<span class="r-in"><span>  <span class="co">#                                 cv   =  2.300772</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Estimation Method:               MLE</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Data:                            Manganese.ppb</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Sample Size:                     25</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Censoring Side:                  left</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Censoring Variable:              Censored</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Censoring Level(s):              2 5</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Percent Censored:                24%</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Test Results:</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#  Normal</span></span></span>
+<span class="r-in"><span>  <span class="co">#    Test Statistic:              r = 0.9147686</span></span></span>
+<span class="r-in"><span>  <span class="co">#    P-value:                     0.004662658</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#  Gamma</span></span></span>
+<span class="r-in"><span>  <span class="co">#    Test Statistic:              r = 0.9844875</span></span></span>
+<span class="r-in"><span>  <span class="co">#    P-value:                     0.6836625</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#  Lognormal</span></span></span>
+<span class="r-in"><span>  <span class="co">#    Test Statistic:              r = 0.9931982</span></span></span>
+<span class="r-in"><span>  <span class="co">#    P-value:                     0.9767731</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="co">#--------------------</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="co"># Repeat the above example using the ProUCL method.</span></span></span>
+<span class="r-in"><span>  <span class="co">#--------------------------------------------------</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/r/base/with.html" class="external-link">with</a></span><span class="op">(</span><span class="va">EPA.09.Ex.15.1.manganese.df</span>,</span></span>
+<span class="r-in"><span>    <span class="fu">distChooseCensored</span><span class="op">(</span><span class="va">Manganese.ppb</span>, <span class="va">Censored</span>, method <span class="op">=</span> <span class="st">"proucl"</span><span class="op">)</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> $choices</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] "Normal"    "Gamma"     "Lognormal"</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
@@ -2093,142 +2110,142 @@
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> attr(,"class")</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] "distChooseCensored"</span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="co">#Results of Choosing Distribution</span></span>
-<span class="r-in">  <span class="co">#--------------------------------</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Candidate Distributions:         Normal</span></span>
-<span class="r-in">  <span class="co">#                                 Gamma</span></span>
-<span class="r-in">  <span class="co">#                                 Lognormal</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Choice Method:                   ProUCL</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Type I Error per Test:           0.05</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Decision:                        Gamma</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Estimated Parameter(s):          shape =  1.284882</span></span>
-<span class="r-in">  <span class="co">#                                 scale = 19.813413</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Estimation Method:               MLE</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Data:                            Manganese.ppb</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Sample Size:                     25</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Censoring Side:                  left</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Censoring Variable:              Censored</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Censoring Level(s):              2 5</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Percent Censored:                24%</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#ProUCL Sample Size:              19</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Test Results:</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#  Normal</span></span>
-<span class="r-in">  <span class="co">#    Shapiro-Wilk GOF</span></span>
-<span class="r-in">  <span class="co">#      Test Statistic:            W = 0.7423947</span></span>
-<span class="r-in">  <span class="co">#      P-value:                   0.0001862975</span></span>
-<span class="r-in">  <span class="co">#    Lilliefors (Kolmogorov-Smirnov) GOF</span></span>
-<span class="r-in">  <span class="co">#      Test Statistic:            D = 0.2768771</span></span>
-<span class="r-in">  <span class="co">#      P-value:                   0.0004771155</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#  Gamma</span></span>
-<span class="r-in">  <span class="co">#    ProUCL Anderson-Darling Gamma GOF</span></span>
-<span class="r-in">  <span class="co">#      Test Statistic:            A = 0.6857121</span></span>
-<span class="r-in">  <span class="co">#      P-value:                   0.05 &lt;= p &lt; 0.10</span></span>
-<span class="r-in">  <span class="co">#    ProUCL Kolmogorov-Smirnov Gamma GOF</span></span>
-<span class="r-in">  <span class="co">#      Test Statistic:            D = 0.1830034</span></span>
-<span class="r-in">  <span class="co">#      P-value:                   &gt;= 0.10</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#  Lognormal</span></span>
-<span class="r-in">  <span class="co">#    Shapiro-Wilk GOF</span></span>
-<span class="r-in">  <span class="co">#      Test Statistic:            W = 0.969805</span></span>
-<span class="r-in">  <span class="co">#      P-value:                   0.7725528</span></span>
-<span class="r-in">  <span class="co">#    Lilliefors (Kolmogorov-Smirnov) GOF</span></span>
-<span class="r-in">  <span class="co">#      Test Statistic:            D = 0.138547</span></span>
-<span class="r-in">  <span class="co">#      P-value:                   0.4385195</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="co">#====================================================================</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="kw">if</span> <span class="op">(</span><span class="cn">FALSE</span><span class="op">)</span> <span class="op">{</span></span>
-<span class="r-in">  <span class="co"># 1) Simulate 1000 trials where for each trial you:</span></span>
-<span class="r-in">  <span class="co">#    a) Generate 30 observations from a Gamma distribution with</span></span>
-<span class="r-in">  <span class="co">#       parameters mean = 10 and CV = 1.</span></span>
-<span class="r-in">  <span class="co">#    b) Censor observations less than 5 (the 39th percentile).</span></span>
-<span class="r-in">  <span class="co">#    c) Use distChooseCensored with the Shapiro-Francia method.</span></span>
-<span class="r-in">  <span class="co">#    d) Use distChooseCensored with the ProUCL method.</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#  2) Compare the proportion of times the</span></span>
-<span class="r-in">  <span class="co">#     Normal vs. Gamma vs. Lognormal vs. Nonparametric distribution</span></span>
-<span class="r-in">  <span class="co">#     is chosen for c) and d) above.</span></span>
-<span class="r-in">  <span class="co">#------------------------------------------------------------------</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="fu"><a href="https://rdrr.io/r/base/Random.html" class="external-link">set.seed</a></span><span class="op">(</span><span class="fl">58</span><span class="op">)</span></span>
-<span class="r-in">  <span class="va">N</span> <span class="op">&lt;-</span> <span class="fl">1000</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="va">Choose.fac</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/factor.html" class="external-link">factor</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/rep.html" class="external-link">rep</a></span><span class="op">(</span><span class="st">""</span>, <span class="va">N</span><span class="op">)</span>, levels <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"Normal"</span>, <span class="st">"Gamma"</span>, <span class="st">"Lognormal"</span>, <span class="st">"Nonparametric"</span><span class="op">)</span><span class="op">)</span></span>
-<span class="r-in">  <span class="va">Choose.df</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html" class="external-link">data.frame</a></span><span class="op">(</span>SW <span class="op">=</span> <span class="va">Choose.fac</span>, ProUCL <span class="op">=</span> <span class="va">Choose.fac</span><span class="op">)</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="kw">for</span><span class="op">(</span><span class="va">i</span> <span class="kw">in</span> <span class="fl">1</span><span class="op">:</span><span class="va">N</span><span class="op">)</span> <span class="op">{</span></span>
-<span class="r-in">    <span class="va">dat</span> <span class="op">&lt;-</span> <span class="fu"><a href="GammaAlt.html">rgammaAlt</a></span><span class="op">(</span><span class="fl">30</span>, mean <span class="op">=</span> <span class="fl">10</span>, cv <span class="op">=</span> <span class="fl">1</span><span class="op">)</span></span>
-<span class="r-in">    <span class="va">censored</span> <span class="op">&lt;-</span> <span class="va">dat</span> <span class="op">&lt;</span> <span class="fl">5</span></span>
-<span class="r-in">    <span class="va">dat</span><span class="op">[</span><span class="va">censored</span><span class="op">]</span> <span class="op">&lt;-</span> <span class="fl">5</span></span>
-<span class="r-in">    <span class="va">Choose.df</span><span class="op">[</span><span class="va">i</span>, <span class="st">"SW"</span><span class="op">]</span>     <span class="op">&lt;-</span> <span class="fu">distChooseCensored</span><span class="op">(</span><span class="va">dat</span>, <span class="va">censored</span>, method <span class="op">=</span> <span class="st">"sw"</span><span class="op">)</span><span class="op">$</span><span class="va">decision</span></span>
-<span class="r-in">    <span class="va">Choose.df</span><span class="op">[</span><span class="va">i</span>, <span class="st">"ProUCL"</span><span class="op">]</span> <span class="op">&lt;-</span> <span class="fu">distChooseCensored</span><span class="op">(</span><span class="va">dat</span>, <span class="va">censored</span>, method <span class="op">=</span> <span class="st">"proucl"</span><span class="op">)</span><span class="op">$</span><span class="va">decision</span></span>
-<span class="r-in">  <span class="op">}</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="fu"><a href="summaryStats.html">summaryStats</a></span><span class="op">(</span><span class="va">Choose.df</span>, digits <span class="op">=</span> <span class="fl">0</span><span class="op">)</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="co">#                ProUCL(N) ProUCL(Pct) SW(N) SW(Pct)</span></span>
-<span class="r-in">  <span class="co">#Normal              520          52   398      40</span></span>
-<span class="r-in">  <span class="co">#Gamma               336          34   375      38</span></span>
-<span class="r-in">  <span class="co">#Lognormal           105          10   221      22</span></span>
-<span class="r-in">  <span class="co">#Nonparametric        39           4     6       1</span></span>
-<span class="r-in">  <span class="co">#Combined           1000         100  1000     100</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="co">#--------------------</span></span>
-<span class="r-in"></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="co"># Repeat above example for the Lognormal Distribution with mean=10 and CV = 1.</span></span>
-<span class="r-in">  <span class="co"># In this case, 5 is the 34th percentile.</span></span>
-<span class="r-in">  <span class="co">#-----------------------------------------------------------------------------</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="fu"><a href="https://rdrr.io/r/base/Random.html" class="external-link">set.seed</a></span><span class="op">(</span><span class="fl">297</span><span class="op">)</span></span>
-<span class="r-in">  <span class="va">N</span> <span class="op">&lt;-</span> <span class="fl">1000</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="va">Choose.fac</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/factor.html" class="external-link">factor</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/rep.html" class="external-link">rep</a></span><span class="op">(</span><span class="st">""</span>, <span class="va">N</span><span class="op">)</span>, levels <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"Normal"</span>, <span class="st">"Gamma"</span>, <span class="st">"Lognormal"</span>, <span class="st">"Nonparametric"</span><span class="op">)</span><span class="op">)</span></span>
-<span class="r-in">  <span class="va">Choose.df</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html" class="external-link">data.frame</a></span><span class="op">(</span>SW <span class="op">=</span> <span class="va">Choose.fac</span>, ProUCL <span class="op">=</span> <span class="va">Choose.fac</span><span class="op">)</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="kw">for</span><span class="op">(</span><span class="va">i</span> <span class="kw">in</span> <span class="fl">1</span><span class="op">:</span><span class="va">N</span><span class="op">)</span> <span class="op">{</span></span>
-<span class="r-in">    <span class="va">dat</span> <span class="op">&lt;-</span> <span class="fu"><a href="LognormalAlt.html">rlnormAlt</a></span><span class="op">(</span><span class="fl">30</span>, mean <span class="op">=</span> <span class="fl">10</span>, cv <span class="op">=</span> <span class="fl">1</span><span class="op">)</span></span>
-<span class="r-in">    <span class="va">censored</span> <span class="op">&lt;-</span> <span class="va">dat</span> <span class="op">&lt;</span> <span class="fl">5</span></span>
-<span class="r-in">    <span class="va">dat</span><span class="op">[</span><span class="va">censored</span><span class="op">]</span> <span class="op">&lt;-</span> <span class="fl">5</span></span>
-<span class="r-in">    <span class="va">Choose.df</span><span class="op">[</span><span class="va">i</span>, <span class="st">"SW"</span><span class="op">]</span>     <span class="op">&lt;-</span> <span class="fu">distChooseCensored</span><span class="op">(</span><span class="va">dat</span>, <span class="va">censored</span>, method <span class="op">=</span> <span class="st">"sf"</span><span class="op">)</span><span class="op">$</span><span class="va">decision</span></span>
-<span class="r-in">    <span class="va">Choose.df</span><span class="op">[</span><span class="va">i</span>, <span class="st">"ProUCL"</span><span class="op">]</span> <span class="op">&lt;-</span> <span class="fu">distChooseCensored</span><span class="op">(</span><span class="va">dat</span>, <span class="va">censored</span>, method <span class="op">=</span> <span class="st">"proucl"</span><span class="op">)</span><span class="op">$</span><span class="va">decision</span></span>
-<span class="r-in">  <span class="op">}</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="fu"><a href="summaryStats.html">summaryStats</a></span><span class="op">(</span><span class="va">Choose.df</span>, digits <span class="op">=</span> <span class="fl">0</span><span class="op">)</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="co">#              ProUCL(N) ProUCL(Pct) SW(N) SW(Pct)</span></span>
-<span class="r-in">  <span class="co">#Normal              277          28    92       9</span></span>
-<span class="r-in">  <span class="co">#Gamma               393          39   231      23</span></span>
-<span class="r-in">  <span class="co">#Lognormal           190          19   624      62</span></span>
-<span class="r-in">  <span class="co">#Nonparametric       140          14    53       5</span></span>
-<span class="r-in">  <span class="co">#Combined           1000         100  1000     100</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="co">#--------------------</span></span>
-<span class="r-in"></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="co"># Clean up</span></span>
-<span class="r-in">  <span class="co">#---------</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="fu"><a href="https://rdrr.io/r/base/rm.html" class="external-link">rm</a></span><span class="op">(</span><span class="va">N</span>, <span class="va">Choose.fac</span>, <span class="va">Choose.df</span>, <span class="va">i</span>, <span class="va">dat</span>, <span class="va">censored</span><span class="op">)</span></span>
-<span class="r-in">  <span class="op">}</span></span>
-<span class="r-in"></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="co">#Results of Choosing Distribution</span></span></span>
+<span class="r-in"><span>  <span class="co">#--------------------------------</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Candidate Distributions:         Normal</span></span></span>
+<span class="r-in"><span>  <span class="co">#                                 Gamma</span></span></span>
+<span class="r-in"><span>  <span class="co">#                                 Lognormal</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Choice Method:                   ProUCL</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Type I Error per Test:           0.05</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Decision:                        Gamma</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Estimated Parameter(s):          shape =  1.284882</span></span></span>
+<span class="r-in"><span>  <span class="co">#                                 scale = 19.813413</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Estimation Method:               MLE</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Data:                            Manganese.ppb</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Sample Size:                     25</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Censoring Side:                  left</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Censoring Variable:              Censored</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Censoring Level(s):              2 5</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Percent Censored:                24%</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#ProUCL Sample Size:              19</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Test Results:</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#  Normal</span></span></span>
+<span class="r-in"><span>  <span class="co">#    Shapiro-Wilk GOF</span></span></span>
+<span class="r-in"><span>  <span class="co">#      Test Statistic:            W = 0.7423947</span></span></span>
+<span class="r-in"><span>  <span class="co">#      P-value:                   0.0001862975</span></span></span>
+<span class="r-in"><span>  <span class="co">#    Lilliefors (Kolmogorov-Smirnov) GOF</span></span></span>
+<span class="r-in"><span>  <span class="co">#      Test Statistic:            D = 0.2768771</span></span></span>
+<span class="r-in"><span>  <span class="co">#      P-value:                   0.0004771155</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#  Gamma</span></span></span>
+<span class="r-in"><span>  <span class="co">#    ProUCL Anderson-Darling Gamma GOF</span></span></span>
+<span class="r-in"><span>  <span class="co">#      Test Statistic:            A = 0.6857121</span></span></span>
+<span class="r-in"><span>  <span class="co">#      P-value:                   0.05 &lt;= p &lt; 0.10</span></span></span>
+<span class="r-in"><span>  <span class="co">#    ProUCL Kolmogorov-Smirnov Gamma GOF</span></span></span>
+<span class="r-in"><span>  <span class="co">#      Test Statistic:            D = 0.1830034</span></span></span>
+<span class="r-in"><span>  <span class="co">#      P-value:                   &gt;= 0.10</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#  Lognormal</span></span></span>
+<span class="r-in"><span>  <span class="co">#    Shapiro-Wilk GOF</span></span></span>
+<span class="r-in"><span>  <span class="co">#      Test Statistic:            W = 0.969805</span></span></span>
+<span class="r-in"><span>  <span class="co">#      P-value:                   0.7725528</span></span></span>
+<span class="r-in"><span>  <span class="co">#    Lilliefors (Kolmogorov-Smirnov) GOF</span></span></span>
+<span class="r-in"><span>  <span class="co">#      Test Statistic:            D = 0.138547</span></span></span>
+<span class="r-in"><span>  <span class="co">#      P-value:                   0.4385195</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="co">#====================================================================</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="kw">if</span> <span class="op">(</span><span class="cn">FALSE</span><span class="op">)</span> <span class="op">{</span></span></span>
+<span class="r-in"><span>  <span class="co"># 1) Simulate 1000 trials where for each trial you:</span></span></span>
+<span class="r-in"><span>  <span class="co">#    a) Generate 30 observations from a Gamma distribution with</span></span></span>
+<span class="r-in"><span>  <span class="co">#       parameters mean = 10 and CV = 1.</span></span></span>
+<span class="r-in"><span>  <span class="co">#    b) Censor observations less than 5 (the 39th percentile).</span></span></span>
+<span class="r-in"><span>  <span class="co">#    c) Use distChooseCensored with the Shapiro-Francia method.</span></span></span>
+<span class="r-in"><span>  <span class="co">#    d) Use distChooseCensored with the ProUCL method.</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#  2) Compare the proportion of times the</span></span></span>
+<span class="r-in"><span>  <span class="co">#     Normal vs. Gamma vs. Lognormal vs. Nonparametric distribution</span></span></span>
+<span class="r-in"><span>  <span class="co">#     is chosen for c) and d) above.</span></span></span>
+<span class="r-in"><span>  <span class="co">#------------------------------------------------------------------</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/r/base/Random.html" class="external-link">set.seed</a></span><span class="op">(</span><span class="fl">58</span><span class="op">)</span></span></span>
+<span class="r-in"><span>  <span class="va">N</span> <span class="op">&lt;-</span> <span class="fl">1000</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="va">Choose.fac</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/factor.html" class="external-link">factor</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/rep.html" class="external-link">rep</a></span><span class="op">(</span><span class="st">""</span>, <span class="va">N</span><span class="op">)</span>, levels <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"Normal"</span>, <span class="st">"Gamma"</span>, <span class="st">"Lognormal"</span>, <span class="st">"Nonparametric"</span><span class="op">)</span><span class="op">)</span></span></span>
+<span class="r-in"><span>  <span class="va">Choose.df</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html" class="external-link">data.frame</a></span><span class="op">(</span>SW <span class="op">=</span> <span class="va">Choose.fac</span>, ProUCL <span class="op">=</span> <span class="va">Choose.fac</span><span class="op">)</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="kw">for</span><span class="op">(</span><span class="va">i</span> <span class="kw">in</span> <span class="fl">1</span><span class="op">:</span><span class="va">N</span><span class="op">)</span> <span class="op">{</span></span></span>
+<span class="r-in"><span>    <span class="va">dat</span> <span class="op">&lt;-</span> <span class="fu"><a href="GammaAlt.html">rgammaAlt</a></span><span class="op">(</span><span class="fl">30</span>, mean <span class="op">=</span> <span class="fl">10</span>, cv <span class="op">=</span> <span class="fl">1</span><span class="op">)</span></span></span>
+<span class="r-in"><span>    <span class="va">censored</span> <span class="op">&lt;-</span> <span class="va">dat</span> <span class="op">&lt;</span> <span class="fl">5</span></span></span>
+<span class="r-in"><span>    <span class="va">dat</span><span class="op">[</span><span class="va">censored</span><span class="op">]</span> <span class="op">&lt;-</span> <span class="fl">5</span></span></span>
+<span class="r-in"><span>    <span class="va">Choose.df</span><span class="op">[</span><span class="va">i</span>, <span class="st">"SW"</span><span class="op">]</span>     <span class="op">&lt;-</span> <span class="fu">distChooseCensored</span><span class="op">(</span><span class="va">dat</span>, <span class="va">censored</span>, method <span class="op">=</span> <span class="st">"sw"</span><span class="op">)</span><span class="op">$</span><span class="va">decision</span></span></span>
+<span class="r-in"><span>    <span class="va">Choose.df</span><span class="op">[</span><span class="va">i</span>, <span class="st">"ProUCL"</span><span class="op">]</span> <span class="op">&lt;-</span> <span class="fu">distChooseCensored</span><span class="op">(</span><span class="va">dat</span>, <span class="va">censored</span>, method <span class="op">=</span> <span class="st">"proucl"</span><span class="op">)</span><span class="op">$</span><span class="va">decision</span></span></span>
+<span class="r-in"><span>  <span class="op">}</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="fu"><a href="summaryStats.html">summaryStats</a></span><span class="op">(</span><span class="va">Choose.df</span>, digits <span class="op">=</span> <span class="fl">0</span><span class="op">)</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="co">#                ProUCL(N) ProUCL(Pct) SW(N) SW(Pct)</span></span></span>
+<span class="r-in"><span>  <span class="co">#Normal              520          52   398      40</span></span></span>
+<span class="r-in"><span>  <span class="co">#Gamma               336          34   375      38</span></span></span>
+<span class="r-in"><span>  <span class="co">#Lognormal           105          10   221      22</span></span></span>
+<span class="r-in"><span>  <span class="co">#Nonparametric        39           4     6       1</span></span></span>
+<span class="r-in"><span>  <span class="co">#Combined           1000         100  1000     100</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="co">#--------------------</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="co"># Repeat above example for the Lognormal Distribution with mean=10 and CV = 1.</span></span></span>
+<span class="r-in"><span>  <span class="co"># In this case, 5 is the 34th percentile.</span></span></span>
+<span class="r-in"><span>  <span class="co">#-----------------------------------------------------------------------------</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/r/base/Random.html" class="external-link">set.seed</a></span><span class="op">(</span><span class="fl">297</span><span class="op">)</span></span></span>
+<span class="r-in"><span>  <span class="va">N</span> <span class="op">&lt;-</span> <span class="fl">1000</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="va">Choose.fac</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/factor.html" class="external-link">factor</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/rep.html" class="external-link">rep</a></span><span class="op">(</span><span class="st">""</span>, <span class="va">N</span><span class="op">)</span>, levels <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"Normal"</span>, <span class="st">"Gamma"</span>, <span class="st">"Lognormal"</span>, <span class="st">"Nonparametric"</span><span class="op">)</span><span class="op">)</span></span></span>
+<span class="r-in"><span>  <span class="va">Choose.df</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html" class="external-link">data.frame</a></span><span class="op">(</span>SW <span class="op">=</span> <span class="va">Choose.fac</span>, ProUCL <span class="op">=</span> <span class="va">Choose.fac</span><span class="op">)</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="kw">for</span><span class="op">(</span><span class="va">i</span> <span class="kw">in</span> <span class="fl">1</span><span class="op">:</span><span class="va">N</span><span class="op">)</span> <span class="op">{</span></span></span>
+<span class="r-in"><span>    <span class="va">dat</span> <span class="op">&lt;-</span> <span class="fu"><a href="LognormalAlt.html">rlnormAlt</a></span><span class="op">(</span><span class="fl">30</span>, mean <span class="op">=</span> <span class="fl">10</span>, cv <span class="op">=</span> <span class="fl">1</span><span class="op">)</span></span></span>
+<span class="r-in"><span>    <span class="va">censored</span> <span class="op">&lt;-</span> <span class="va">dat</span> <span class="op">&lt;</span> <span class="fl">5</span></span></span>
+<span class="r-in"><span>    <span class="va">dat</span><span class="op">[</span><span class="va">censored</span><span class="op">]</span> <span class="op">&lt;-</span> <span class="fl">5</span></span></span>
+<span class="r-in"><span>    <span class="va">Choose.df</span><span class="op">[</span><span class="va">i</span>, <span class="st">"SW"</span><span class="op">]</span>     <span class="op">&lt;-</span> <span class="fu">distChooseCensored</span><span class="op">(</span><span class="va">dat</span>, <span class="va">censored</span>, method <span class="op">=</span> <span class="st">"sf"</span><span class="op">)</span><span class="op">$</span><span class="va">decision</span></span></span>
+<span class="r-in"><span>    <span class="va">Choose.df</span><span class="op">[</span><span class="va">i</span>, <span class="st">"ProUCL"</span><span class="op">]</span> <span class="op">&lt;-</span> <span class="fu">distChooseCensored</span><span class="op">(</span><span class="va">dat</span>, <span class="va">censored</span>, method <span class="op">=</span> <span class="st">"proucl"</span><span class="op">)</span><span class="op">$</span><span class="va">decision</span></span></span>
+<span class="r-in"><span>  <span class="op">}</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="fu"><a href="summaryStats.html">summaryStats</a></span><span class="op">(</span><span class="va">Choose.df</span>, digits <span class="op">=</span> <span class="fl">0</span><span class="op">)</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="co">#              ProUCL(N) ProUCL(Pct) SW(N) SW(Pct)</span></span></span>
+<span class="r-in"><span>  <span class="co">#Normal              277          28    92       9</span></span></span>
+<span class="r-in"><span>  <span class="co">#Gamma               393          39   231      23</span></span></span>
+<span class="r-in"><span>  <span class="co">#Lognormal           190          19   624      62</span></span></span>
+<span class="r-in"><span>  <span class="co">#Nonparametric       140          14    53       5</span></span></span>
+<span class="r-in"><span>  <span class="co">#Combined           1000         100  1000     100</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="co">#--------------------</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="co"># Clean up</span></span></span>
+<span class="r-in"><span>  <span class="co">#---------</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/r/base/rm.html" class="external-link">rm</a></span><span class="op">(</span><span class="va">N</span>, <span class="va">Choose.fac</span>, <span class="va">Choose.df</span>, <span class="va">i</span>, <span class="va">dat</span>, <span class="va">censored</span><span class="op">)</span></span></span>
+<span class="r-in"><span>  <span class="op">}</span></span></span>
+<span class="r-in"><span></span></span>
 </code></pre></div>
     </div>
   </div>
@@ -2243,7 +2260,7 @@
 </div>
 
 <div class="pkgdown">
-  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.2.</p>
+  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.6.</p>
 </div>
 
       </footer></div>

@@ -54,17 +54,17 @@
     </div>
 
     <div id="ref-usage">
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="fu">kendallTrendTest</span><span class="op">(</span><span class="va">y</span>, <span class="va">...</span><span class="op">)</span>
-
-<span class="co"># S3 method for formula</span>
-<span class="fu">kendallTrendTest</span><span class="op">(</span><span class="va">y</span>, data <span class="op">=</span> <span class="cn">NULL</span>, <span class="va">subset</span>,
-  na.action <span class="op">=</span> <span class="va">na.pass</span>, <span class="va">...</span><span class="op">)</span>
-
-<span class="co"># S3 method for default</span>
-<span class="fu">kendallTrendTest</span><span class="op">(</span><span class="va">y</span>, x <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/seq.html" class="external-link">seq</a></span><span class="op">(</span>along <span class="op">=</span> <span class="va">y</span><span class="op">)</span>,
-  alternative <span class="op">=</span> <span class="st">"two.sided"</span>, correct <span class="op">=</span> <span class="cn">TRUE</span>, ci.slope <span class="op">=</span> <span class="cn">TRUE</span>,
-  conf.level <span class="op">=</span> <span class="fl">0.95</span>, warn <span class="op">=</span> <span class="cn">TRUE</span>, data.name <span class="op">=</span> <span class="cn">NULL</span>, data.name.x <span class="op">=</span> <span class="cn">NULL</span>,
-  parent.of.data <span class="op">=</span> <span class="cn">NULL</span>, subset.expression <span class="op">=</span> <span class="cn">NULL</span>, <span class="va">...</span><span class="op">)</span></code></pre></div>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">kendallTrendTest</span><span class="op">(</span><span class="va">y</span>, <span class="va">...</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># S3 method for formula</span></span>
+<span><span class="fu">kendallTrendTest</span><span class="op">(</span><span class="va">y</span>, data <span class="op">=</span> <span class="cn">NULL</span>, <span class="va">subset</span>,</span>
+<span>  na.action <span class="op">=</span> <span class="va">na.pass</span>, <span class="va">...</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># S3 method for default</span></span>
+<span><span class="fu">kendallTrendTest</span><span class="op">(</span><span class="va">y</span>, x <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/seq.html" class="external-link">seq</a></span><span class="op">(</span>along <span class="op">=</span> <span class="va">y</span><span class="op">)</span>,</span>
+<span>  alternative <span class="op">=</span> <span class="st">"two.sided"</span>, correct <span class="op">=</span> <span class="cn">TRUE</span>, ci.slope <span class="op">=</span> <span class="cn">TRUE</span>,</span>
+<span>  conf.level <span class="op">=</span> <span class="fl">0.95</span>, warn <span class="op">=</span> <span class="cn">TRUE</span>, data.name <span class="op">=</span> <span class="cn">NULL</span>, data.name.x <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>  parent.of.data <span class="op">=</span> <span class="cn">NULL</span>, subset.expression <span class="op">=</span> <span class="cn">NULL</span>, <span class="va">...</span><span class="op">)</span></span></code></pre></div>
     </div>
 
     <div id="arguments">
@@ -81,55 +81,70 @@
   <code>kendallTrendTest.default</code>.  Missing (<code>NA</code>), undefined (<code>NaN</code>),
   and infinite (<code>Inf</code>, <code>-Inf</code>) values are allowed but will be
   removed.</p></dd>
-<dt>data</dt>
+
+  <dt>data</dt>
 <dd><p>specifies an optional data frame, list or environment (or object coercible by
   <code>as.data.frame</code> to a data frame) containing the variables in the model.
   If not found in <code>data</code>, the variables are taken from <code>environment(formula)</code>,
   typically the environment from which <code>kendallTrendTest</code> is called.</p></dd>
-<dt>subset</dt>
+
+  <dt>subset</dt>
 <dd><p>specifies an optional vector specifying a subset of observations to be used.</p></dd>
-<dt>na.action</dt>
+
+  <dt>na.action</dt>
 <dd><p>specifies a function which indicates what should happen when the data contain <code>NA</code>s.
   The default is <code><a href="https://rdrr.io/r/stats/na.fail.html" class="external-link">na.pass</a></code>.</p></dd>
-<dt>x</dt>
+
+  <dt>x</dt>
 <dd><p>numeric vector of "predictor" values.  The length of <code>x</code> must equal the length of <code>y</code>.
   Missing (<code>NA</code>), undefined (<code>NaN</code>), and infinite (<code>Inf</code>, <code>-Inf</code>) values are
   allowed but will be removed.  The default value of <code>x</code> is the vector
   of numbers \(1, 2, \dots, n\) where \(n\) is the number of elements in
   <code>y</code>.</p></dd>
-<dt>alternative</dt>
+
+  <dt>alternative</dt>
 <dd><p>character string indicating the kind of alternative hypothesis.  The
   possible values are <code>"two.sided"</code> (tau not equal to 0; the default),
   <code>"less"</code> (tau less than 0), and <code>"greater"</code> (tau greater than 0).</p></dd>
-<dt>correct</dt>
+
+  <dt>correct</dt>
 <dd><p>logical scalar indicating whether to use the correction for continuity in
   computing the \(z\)-statistic that is based on the test statistic \(S\).
   The default value is <code>TRUE</code>.</p></dd>
-<dt>ci.slope</dt>
+
+  <dt>ci.slope</dt>
 <dd><p>logical scalar indicating whether to compute a confidence interval for the
   slope.  The default value is <code>TRUE</code>.</p></dd>
-<dt>conf.level</dt>
+
+  <dt>conf.level</dt>
 <dd><p>numeric scalar between 0 and 1 indicating the confidence level associated
   with the confidence interval for the slope.  The default value is
   <code>0.95</code>.</p></dd>
-<dt>warn</dt>
+
+  <dt>warn</dt>
 <dd><p>logical scalar indicating whether to print a warning message when
   <code>y</code> does not contain at least two non-missing values,
   or when <code>x</code> does not contain at least two unique non-missing values.
   The default value is <code>TRUE</code>.</p></dd>
-<dt>data.name</dt>
+
+  <dt>data.name</dt>
 <dd><p>character string indicating the name of the data used for the trend test.
   The default value is <code>deparse(substitute(y))</code>.</p></dd>
-<dt>data.name.x</dt>
+
+  <dt>data.name.x</dt>
 <dd><p>character string indicating the name of the data used for the predictor variable x.
   If <code>x</code> is not supplied this argument is ignored.  When <code>x</code> is supplied,
   the default value is <code>deparse(substitute(x))</code>.</p></dd>
-<dt>parent.of.data</dt>
+
+  <dt>parent.of.data</dt>
 <dd><p>character string indicating the source of the data used for the trend test.</p></dd>
-<dt>subset.expression</dt>
+
+  <dt>subset.expression</dt>
 <dd><p>character string indicating the expression used to subset the data.</p></dd>
-<dt>...</dt>
+
+  <dt>...</dt>
 <dd><p>additional arguments affecting the test for trend.</p></dd>
+
 </dl></div>
     <div id="details">
     <h2>Details</h2>
@@ -292,17 +307,23 @@
     </div>
     <div id="value">
     <h2>Value</h2>
-    <p>A list of class <code>"htest"</code> containing the results of the hypothesis
+    
+
+<p>A list of class <code>"htest"</code> containing the results of the hypothesis
   test.  See the help file for <code><a href="htest.object.html">htest.object</a></code> for details.
-  In addition, the following components are part of the list returned by
-<code>kendallTrendTest</code>:</p>
+  In addition, the following components are part of the list returned by</p>
+<p></p>
+<p><code>kendallTrendTest</code>:</p>
 <dl><dt>S</dt>
 <dd><p>The value of the Kendall S-statistic.</p></dd>
-<dt>var.S</dt>
+
+  <dt>var.S</dt>
 <dd><p>The variance of the Kendall S-statistic.</p></dd>
-<dt>slopes</dt>
+
+  <dt>slopes</dt>
 <dd><p>A numeric vector of all possible two-point slope estimates.
     This component is used by the function <code><a href="kendallSeasonalTrendTest.html">kendallSeasonalTrendTest</a></code>.</p></dd>
+
 </dl></div>
     <div id="references">
     <h2>References</h2>
@@ -380,11 +401,11 @@
 
     <div id="ref-examples">
     <h2>Examples</h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in">  <span class="co"># Reproduce Example 17-6 on page 17-33 of USEPA (2009).  This example</span></span>
-<span class="r-in">  <span class="co"># tests for trend in sulfate concentrations (ppm) collected at various</span></span>
-<span class="r-in">  <span class="co"># months between 1989 and 1996.</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">EPA.09.Ex.17.6.sulfate.df</span><span class="op">)</span></span>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span>  <span class="co"># Reproduce Example 17-6 on page 17-33 of USEPA (2009).  This example</span></span></span>
+<span class="r-in"><span>  <span class="co"># tests for trend in sulfate concentrations (ppm) collected at various</span></span></span>
+<span class="r-in"><span>  <span class="co"># months between 1989 and 1996.</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">EPA.09.Ex.17.6.sulfate.df</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   Sample.No Year Month Sampling.Date       Date Sulfate.ppm</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 1         1   89     6          89.6 1989-06-01         480</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 2         2   89     8          89.8 1989-08-01         450</span>
@@ -392,32 +413,32 @@
 <span class="r-out co"><span class="r-pr">#&gt;</span> 4         4   90     3          90.3 1990-03-01         520</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 5         5   90     6          90.6 1990-06-01         485</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 6         6   90     8          90.8 1990-08-01         510</span>
-<span class="r-in">  <span class="co">#  Sample.No Year Month Sampling.Date       Date Sulfate.ppm</span></span>
-<span class="r-in">  <span class="co">#1         1   89     6          89.6 1989-06-01         480</span></span>
-<span class="r-in">  <span class="co">#2         2   89     8          89.8 1989-08-01         450</span></span>
-<span class="r-in">  <span class="co">#3         3   90     1          90.1 1990-01-01         490</span></span>
-<span class="r-in">  <span class="co">#4         4   90     3          90.3 1990-03-01         520</span></span>
-<span class="r-in">  <span class="co">#5         5   90     6          90.6 1990-06-01         485</span></span>
-<span class="r-in">  <span class="co">#6         6   90     8          90.8 1990-08-01         510</span></span>
-<span class="r-in"></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="co"># Plot the data</span></span>
-<span class="r-in">  <span class="co">#--------------</span></span>
-<span class="r-in">  <span class="fu"><a href="https://rdrr.io/r/grDevices/dev.html" class="external-link">dev.new</a></span><span class="op">(</span><span class="op">)</span></span>
-<span class="r-in">  <span class="fu"><a href="https://rdrr.io/r/base/with.html" class="external-link">with</a></span><span class="op">(</span><span class="va">EPA.09.Ex.17.6.sulfate.df</span>,</span>
-<span class="r-in">    <span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">Sampling.Date</span>, <span class="va">Sulfate.ppm</span>, pch <span class="op">=</span> <span class="fl">15</span>, ylim <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">400</span>, <span class="fl">900</span><span class="op">)</span>,</span>
-<span class="r-in">    xlab <span class="op">=</span> <span class="st">"Sampling Date"</span>, ylab <span class="op">=</span> <span class="st">"Sulfate Conc (ppm)"</span>,</span>
-<span class="r-in">    main <span class="op">=</span> <span class="st">"Figure 17-6. Time Series Plot of \nSulfate Concentrations (ppm)"</span><span class="op">)</span></span>
-<span class="r-in">  <span class="op">)</span></span>
-<span class="r-in">  <span class="va">Sulfate.fit</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/lm.html" class="external-link">lm</a></span><span class="op">(</span><span class="va">Sulfate.ppm</span> <span class="op">~</span> <span class="va">Sampling.Date</span>,</span>
-<span class="r-in">    data <span class="op">=</span> <span class="va">EPA.09.Ex.17.6.sulfate.df</span><span class="op">)</span></span>
-<span class="r-in">  <span class="fu"><a href="https://rdrr.io/r/graphics/abline.html" class="external-link">abline</a></span><span class="op">(</span><span class="va">Sulfate.fit</span>, lty <span class="op">=</span> <span class="fl">2</span><span class="op">)</span></span>
-<span class="r-in"></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="co"># Perform the Kendall test for trend</span></span>
-<span class="r-in">  <span class="co">#-----------------------------------</span></span>
-<span class="r-in">  <span class="fu">kendallTrendTest</span><span class="op">(</span><span class="va">Sulfate.ppm</span> <span class="op">~</span> <span class="va">Sampling.Date</span>,</span>
-<span class="r-in">    data <span class="op">=</span> <span class="va">EPA.09.Ex.17.6.sulfate.df</span><span class="op">)</span></span>
+<span class="r-in"><span>  <span class="co">#  Sample.No Year Month Sampling.Date       Date Sulfate.ppm</span></span></span>
+<span class="r-in"><span>  <span class="co">#1         1   89     6          89.6 1989-06-01         480</span></span></span>
+<span class="r-in"><span>  <span class="co">#2         2   89     8          89.8 1989-08-01         450</span></span></span>
+<span class="r-in"><span>  <span class="co">#3         3   90     1          90.1 1990-01-01         490</span></span></span>
+<span class="r-in"><span>  <span class="co">#4         4   90     3          90.3 1990-03-01         520</span></span></span>
+<span class="r-in"><span>  <span class="co">#5         5   90     6          90.6 1990-06-01         485</span></span></span>
+<span class="r-in"><span>  <span class="co">#6         6   90     8          90.8 1990-08-01         510</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="co"># Plot the data</span></span></span>
+<span class="r-in"><span>  <span class="co">#--------------</span></span></span>
+<span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/r/grDevices/dev.html" class="external-link">dev.new</a></span><span class="op">(</span><span class="op">)</span></span></span>
+<span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/r/base/with.html" class="external-link">with</a></span><span class="op">(</span><span class="va">EPA.09.Ex.17.6.sulfate.df</span>,</span></span>
+<span class="r-in"><span>    <span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">Sampling.Date</span>, <span class="va">Sulfate.ppm</span>, pch <span class="op">=</span> <span class="fl">15</span>, ylim <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">400</span>, <span class="fl">900</span><span class="op">)</span>,</span></span>
+<span class="r-in"><span>    xlab <span class="op">=</span> <span class="st">"Sampling Date"</span>, ylab <span class="op">=</span> <span class="st">"Sulfate Conc (ppm)"</span>,</span></span>
+<span class="r-in"><span>    main <span class="op">=</span> <span class="st">"Figure 17-6. Time Series Plot of \nSulfate Concentrations (ppm)"</span><span class="op">)</span></span></span>
+<span class="r-in"><span>  <span class="op">)</span></span></span>
+<span class="r-in"><span>  <span class="va">Sulfate.fit</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/lm.html" class="external-link">lm</a></span><span class="op">(</span><span class="va">Sulfate.ppm</span> <span class="op">~</span> <span class="va">Sampling.Date</span>,</span></span>
+<span class="r-in"><span>    data <span class="op">=</span> <span class="va">EPA.09.Ex.17.6.sulfate.df</span><span class="op">)</span></span></span>
+<span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/r/graphics/abline.html" class="external-link">abline</a></span><span class="op">(</span><span class="va">Sulfate.fit</span>, lty <span class="op">=</span> <span class="fl">2</span><span class="op">)</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="co"># Perform the Kendall test for trend</span></span></span>
+<span class="r-in"><span>  <span class="co">#-----------------------------------</span></span></span>
+<span class="r-in"><span>  <span class="fu">kendallTrendTest</span><span class="op">(</span><span class="va">Sulfate.ppm</span> <span class="op">~</span> <span class="va">Sampling.Date</span>,</span></span>
+<span class="r-in"><span>    data <span class="op">=</span> <span class="va">EPA.09.Ex.17.6.sulfate.df</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> $statistic</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>        z </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 5.107322 </span>
@@ -538,52 +559,52 @@
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> attr(,"class")</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] "htestEnvStats"</span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="co">#Results of Hypothesis Test</span></span>
-<span class="r-in">  <span class="co">#--------------------------</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Null Hypothesis:                 tau = 0</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Alternative Hypothesis:          True tau is not equal to 0</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Test Name:                       Kendall's Test for Trend</span></span>
-<span class="r-in">  <span class="co">#                                 (with continuity correction)</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Estimated Parameter(s):          tau       =     0.7667984</span></span>
-<span class="r-in">  <span class="co">#                                 slope     =    26.6666667</span></span>
-<span class="r-in">  <span class="co">#                                 intercept = -1909.3333333</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Estimation Method:               slope:      Theil/Sen Estimator</span></span>
-<span class="r-in">  <span class="co">#                                 intercept:  Conover's Estimator</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Data:                            y = Sulfate.ppm</span></span>
-<span class="r-in">  <span class="co">#                                 x = Sampling.Date</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Data Source:                     EPA.09.Ex.17.6.sulfate.df</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Sample Size:                     23</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Test Statistic:                  z = 5.107322</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#P-value:                         3.267574e-07</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Confidence Interval for:         slope</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Confidence Interval Method:      Gilbert's Modification</span></span>
-<span class="r-in">  <span class="co">#                                 of Theil/Sen Method</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Confidence Interval Type:        two-sided</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Confidence Level:                95%</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Confidence Interval:             LCL = 20.00000</span></span>
-<span class="r-in">  <span class="co">#                                 UCL = 35.71182</span></span>
-<span class="r-in"></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="co"># Clean up</span></span>
-<span class="r-in">  <span class="co">#---------</span></span>
-<span class="r-in">  <span class="fu"><a href="https://rdrr.io/r/base/rm.html" class="external-link">rm</a></span><span class="op">(</span><span class="va">Sulfate.fit</span><span class="op">)</span></span>
-<span class="r-in">  <span class="fu"><a href="https://rdrr.io/r/grDevices/dev.html" class="external-link">graphics.off</a></span><span class="op">(</span><span class="op">)</span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="co">#Results of Hypothesis Test</span></span></span>
+<span class="r-in"><span>  <span class="co">#--------------------------</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Null Hypothesis:                 tau = 0</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Alternative Hypothesis:          True tau is not equal to 0</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Test Name:                       Kendall's Test for Trend</span></span></span>
+<span class="r-in"><span>  <span class="co">#                                 (with continuity correction)</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Estimated Parameter(s):          tau       =     0.7667984</span></span></span>
+<span class="r-in"><span>  <span class="co">#                                 slope     =    26.6666667</span></span></span>
+<span class="r-in"><span>  <span class="co">#                                 intercept = -1909.3333333</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Estimation Method:               slope:      Theil/Sen Estimator</span></span></span>
+<span class="r-in"><span>  <span class="co">#                                 intercept:  Conover's Estimator</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Data:                            y = Sulfate.ppm</span></span></span>
+<span class="r-in"><span>  <span class="co">#                                 x = Sampling.Date</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Data Source:                     EPA.09.Ex.17.6.sulfate.df</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Sample Size:                     23</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Test Statistic:                  z = 5.107322</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#P-value:                         3.267574e-07</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Confidence Interval for:         slope</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Confidence Interval Method:      Gilbert's Modification</span></span></span>
+<span class="r-in"><span>  <span class="co">#                                 of Theil/Sen Method</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Confidence Interval Type:        two-sided</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Confidence Level:                95%</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Confidence Interval:             LCL = 20.00000</span></span></span>
+<span class="r-in"><span>  <span class="co">#                                 UCL = 35.71182</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="co"># Clean up</span></span></span>
+<span class="r-in"><span>  <span class="co">#---------</span></span></span>
+<span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/r/base/rm.html" class="external-link">rm</a></span><span class="op">(</span><span class="va">Sulfate.fit</span><span class="op">)</span></span></span>
+<span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/r/grDevices/dev.html" class="external-link">graphics.off</a></span><span class="op">(</span><span class="op">)</span></span></span>
 </code></pre></div>
     </div>
   </div>
@@ -598,7 +619,7 @@
 </div>
 
 <div class="pkgdown">
-  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.2.</p>
+  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.6.</p>
 </div>
 
       </footer></div>

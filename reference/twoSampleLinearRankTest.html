@@ -60,8 +60,8 @@
     </div>
 
     <div id="ref-usage">
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="fu">twoSampleLinearRankTest</span><span class="op">(</span><span class="va">x</span>, <span class="va">y</span>, location.shift.null <span class="op">=</span> <span class="fl">0</span>, scale.shift.null <span class="op">=</span> <span class="fl">1</span>, 
-    alternative <span class="op">=</span> <span class="st">"two.sided"</span>, test <span class="op">=</span> <span class="st">"wilcoxon"</span>, shift.type <span class="op">=</span> <span class="st">"location"</span><span class="op">)</span></code></pre></div>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">twoSampleLinearRankTest</span><span class="op">(</span><span class="va">x</span>, <span class="va">y</span>, location.shift.null <span class="op">=</span> <span class="fl">0</span>, scale.shift.null <span class="op">=</span> <span class="fl">1</span>, </span>
+<span>    alternative <span class="op">=</span> <span class="st">"two.sided"</span>, test <span class="op">=</span> <span class="st">"wilcoxon"</span>, shift.type <span class="op">=</span> <span class="st">"location"</span><span class="op">)</span></span></code></pre></div>
     </div>
 
     <div id="arguments">
@@ -70,28 +70,35 @@
 <dd><p>numeric vector of values for the first sample.  
   Missing (<code>NA</code>), undefined (<code>NaN</code>), and infinite (<code>Inf</code>, 
   <code>-Inf</code>) values are allowed but will be removed.</p></dd>
-<dt>y</dt>
+
+  <dt>y</dt>
 <dd><p>numeric vector of values for the second sample.  
   Missing (<code>NA</code>), undefined (<code>NaN</code>), and infinite (<code>Inf</code>, 
   <code>-Inf</code>) values are allowed but will be removed.</p></dd>
-<dt>location.shift.null</dt>
+
+  <dt>location.shift.null</dt>
 <dd><p>numeric scalar indicating the hypothesized value of \(\Delta\), the location 
   shift between the two distributions, under the null hypothesis.  The default value is 
   <code>location.shift.null=0</code>.  This argument is ignored if <code>shift.type="scale"</code>.</p></dd>
-<dt>scale.shift.null</dt>
+
+  <dt>scale.shift.null</dt>
 <dd><p>numeric scalar indicating the hypothesized value of \(\tau\), the scale shift 
   between the two distributions, under the null hypothesis.  The default value is <br><code>scale.shift.null=1</code>.  This argument is ignored if <code>shift.type="location"</code>.</p></dd>
-<dt>alternative</dt>
+
+  <dt>alternative</dt>
 <dd><p>character string indicating the kind of alternative hypothesis.  The possible values 
   are <code>"two.sided"</code> (the default), <code>"less"</code>, and <code>"greater"</code>.  See the 
   DETAILS section below for more information.</p></dd>
-<dt>test</dt>
+
+  <dt>test</dt>
 <dd><p>character string indicating which linear rank test to use.  The possible values are: 
   <code>"wilcoxon"</code> (the default), <code>"normal.scores"</code>, <code>"moods.median"</code>, and  
   <code>"savage.scores"</code>.</p></dd>
-<dt>shift.type</dt>
+
+  <dt>shift.type</dt>
 <dd><p>character string indicating which kind of shift is being tested.  The possible values 
   are <code>"location"</code> (the default) and <code>"scale"</code>.</p></dd>
+
 </dl></div>
     <div id="details">
     <h2>Details</h2>
@@ -275,7 +282,9 @@
     </div>
     <div id="value">
     <h2>Value</h2>
-    <p>a list of class <code>"htest"</code> containing the results of the hypothesis test.  
+    
+
+<p>a list of class <code>"htest"</code> containing the results of the hypothesis test.  
   See the help file for <code><a href="htest.object.html">htest.object</a></code> for details.</p>
     </div>
     <div id="references">
@@ -336,19 +345,19 @@
 
     <div id="ref-examples">
     <h2>Examples</h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in">  <span class="co"># Generate 15 observations from a normal distribution with parameters </span></span>
-<span class="r-in">  <span class="co"># mean=3 and sd=1.  Call these the observations from the reference group. </span></span>
-<span class="r-in">  <span class="co"># Generate 10 observations from a normal distribution with parameters </span></span>
-<span class="r-in">  <span class="co"># mean=3.5 and sd=1.  Call these the observations from the treatment group. </span></span>
-<span class="r-in">  <span class="co"># Compare the results of calling wilcox.test to those of calling </span></span>
-<span class="r-in">  <span class="co"># twoSampleLinearRankTest with test="normal.scores".</span></span>
-<span class="r-in">  <span class="co"># (The call to set.seed allows you to reproduce this example.)</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="fu"><a href="https://rdrr.io/r/base/Random.html" class="external-link">set.seed</a></span><span class="op">(</span><span class="fl">346</span><span class="op">)</span> </span>
-<span class="r-in">  <span class="va">x</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/Normal.html" class="external-link">rnorm</a></span><span class="op">(</span><span class="fl">15</span>, mean <span class="op">=</span> <span class="fl">3</span><span class="op">)</span> </span>
-<span class="r-in">  <span class="va">y</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/Normal.html" class="external-link">rnorm</a></span><span class="op">(</span><span class="fl">10</span>, mean <span class="op">=</span> <span class="fl">3.5</span><span class="op">)</span> </span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="fu"><a href="https://rdrr.io/r/stats/wilcox.test.html" class="external-link">wilcox.test</a></span><span class="op">(</span><span class="va">x</span>, <span class="va">y</span><span class="op">)</span> </span>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span>  <span class="co"># Generate 15 observations from a normal distribution with parameters </span></span></span>
+<span class="r-in"><span>  <span class="co"># mean=3 and sd=1.  Call these the observations from the reference group. </span></span></span>
+<span class="r-in"><span>  <span class="co"># Generate 10 observations from a normal distribution with parameters </span></span></span>
+<span class="r-in"><span>  <span class="co"># mean=3.5 and sd=1.  Call these the observations from the treatment group. </span></span></span>
+<span class="r-in"><span>  <span class="co"># Compare the results of calling wilcox.test to those of calling </span></span></span>
+<span class="r-in"><span>  <span class="co"># twoSampleLinearRankTest with test="normal.scores".</span></span></span>
+<span class="r-in"><span>  <span class="co"># (The call to set.seed allows you to reproduce this example.)</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/r/base/Random.html" class="external-link">set.seed</a></span><span class="op">(</span><span class="fl">346</span><span class="op">)</span> </span></span>
+<span class="r-in"><span>  <span class="va">x</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/Normal.html" class="external-link">rnorm</a></span><span class="op">(</span><span class="fl">15</span>, mean <span class="op">=</span> <span class="fl">3</span><span class="op">)</span> </span></span>
+<span class="r-in"><span>  <span class="va">y</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/Normal.html" class="external-link">rnorm</a></span><span class="op">(</span><span class="fl">10</span>, mean <span class="op">=</span> <span class="fl">3.5</span><span class="op">)</span> </span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/r/stats/wilcox.test.html" class="external-link">wilcox.test</a></span><span class="op">(</span><span class="va">x</span>, <span class="va">y</span><span class="op">)</span> </span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 	Wilcoxon rank sum exact test</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
@@ -356,24 +365,24 @@
 <span class="r-out co"><span class="r-pr">#&gt;</span> W = 32, p-value = 0.01628</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> alternative hypothesis: true location shift is not equal to 0</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="co">#Results of Hypothesis Test</span></span>
-<span class="r-in">  <span class="co">#--------------------------</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Null Hypothesis:                 location shift = 0</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Alternative Hypothesis:          True location shift is not equal to 0</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Test Name:                       Wilcoxon rank sum test</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Data:                            x and y</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Test Statistic:                  W = 32</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#P-value:                         0.0162759</span></span>
-<span class="r-in"></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="fu">twoSampleLinearRankTest</span><span class="op">(</span><span class="va">x</span>, <span class="va">y</span>, test <span class="op">=</span> <span class="st">"normal.scores"</span><span class="op">)</span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="co">#Results of Hypothesis Test</span></span></span>
+<span class="r-in"><span>  <span class="co">#--------------------------</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Null Hypothesis:                 location shift = 0</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Alternative Hypothesis:          True location shift is not equal to 0</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Test Name:                       Wilcoxon rank sum test</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Data:                            x and y</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Test Statistic:                  W = 32</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#P-value:                         0.0162759</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="fu">twoSampleLinearRankTest</span><span class="op">(</span><span class="va">x</span>, <span class="va">y</span>, test <span class="op">=</span> <span class="st">"normal.scores"</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> $statistic</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>         z </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> -2.431099 </span>
@@ -414,57 +423,57 @@
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> attr(,"class")</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] "htestEnvStats"</span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="co">#Results of Hypothesis Test</span></span>
-<span class="r-in">  <span class="co">#--------------------------</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Null Hypothesis:                 Fy(t) = Fx(t)</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Alternative Hypothesis:          Fy(t) != Fx(t) for at least one t</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Test Name:                       Two-Sample Linear Rank Test:</span></span>
-<span class="r-in">  <span class="co">#                                 Normal Scores Test</span></span>
-<span class="r-in">  <span class="co">#                                 Based on Normal Approximation</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Data:                            x = x</span></span>
-<span class="r-in">  <span class="co">#                                 y = y</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Sample Sizes:                    nx = 15</span></span>
-<span class="r-in">  <span class="co">#                                 ny = 10</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Test Statistic:                  z = -2.431099</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#P-value:                         0.01505308</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="co">#----------</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="co"># Clean up</span></span>
-<span class="r-in">  <span class="co">#---------</span></span>
-<span class="r-in">  <span class="fu"><a href="https://rdrr.io/r/base/rm.html" class="external-link">rm</a></span><span class="op">(</span><span class="va">x</span>, <span class="va">y</span><span class="op">)</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="co">#==========</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="co"># Following Example 6.6 on pages 6.22-6.26 of USEPA (1994b), perform the </span></span>
-<span class="r-in">  <span class="co"># Wilcoxon Rank Sum test for the TcCB data (stored in EPA.94b.tccb.df).  </span></span>
-<span class="r-in">  <span class="co"># There are m=47 observations from the reference area and n=77 observations </span></span>
-<span class="r-in">  <span class="co"># from the cleanup unit.  Then compare the results using the other available </span></span>
-<span class="r-in">  <span class="co"># linear rank tests.  Note that Mood's median test yields a p-value less </span></span>
-<span class="r-in">  <span class="co"># than 0.10, while the other tests yield non-significant p-values.  </span></span>
-<span class="r-in">  <span class="co"># In this case, Mood's median test is picking up the residual contamination </span></span>
-<span class="r-in">  <span class="co"># in the cleanup unit. (See the example in the help file for quantileTest.)</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="fu"><a href="https://rdrr.io/r/base/names.html" class="external-link">names</a></span><span class="op">(</span><span class="va">EPA.94b.tccb.df</span><span class="op">)</span> </span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="co">#Results of Hypothesis Test</span></span></span>
+<span class="r-in"><span>  <span class="co">#--------------------------</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Null Hypothesis:                 Fy(t) = Fx(t)</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Alternative Hypothesis:          Fy(t) != Fx(t) for at least one t</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Test Name:                       Two-Sample Linear Rank Test:</span></span></span>
+<span class="r-in"><span>  <span class="co">#                                 Normal Scores Test</span></span></span>
+<span class="r-in"><span>  <span class="co">#                                 Based on Normal Approximation</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Data:                            x = x</span></span></span>
+<span class="r-in"><span>  <span class="co">#                                 y = y</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Sample Sizes:                    nx = 15</span></span></span>
+<span class="r-in"><span>  <span class="co">#                                 ny = 10</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Test Statistic:                  z = -2.431099</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#P-value:                         0.01505308</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="co">#----------</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="co"># Clean up</span></span></span>
+<span class="r-in"><span>  <span class="co">#---------</span></span></span>
+<span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/r/base/rm.html" class="external-link">rm</a></span><span class="op">(</span><span class="va">x</span>, <span class="va">y</span><span class="op">)</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="co">#==========</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="co"># Following Example 6.6 on pages 6.22-6.26 of USEPA (1994b), perform the </span></span></span>
+<span class="r-in"><span>  <span class="co"># Wilcoxon Rank Sum test for the TcCB data (stored in EPA.94b.tccb.df).  </span></span></span>
+<span class="r-in"><span>  <span class="co"># There are m=47 observations from the reference area and n=77 observations </span></span></span>
+<span class="r-in"><span>  <span class="co"># from the cleanup unit.  Then compare the results using the other available </span></span></span>
+<span class="r-in"><span>  <span class="co"># linear rank tests.  Note that Mood's median test yields a p-value less </span></span></span>
+<span class="r-in"><span>  <span class="co"># than 0.10, while the other tests yield non-significant p-values.  </span></span></span>
+<span class="r-in"><span>  <span class="co"># In this case, Mood's median test is picking up the residual contamination </span></span></span>
+<span class="r-in"><span>  <span class="co"># in the cleanup unit. (See the example in the help file for quantileTest.)</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/r/base/names.html" class="external-link">names</a></span><span class="op">(</span><span class="va">EPA.94b.tccb.df</span><span class="op">)</span> </span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] "TcCB.orig" "TcCB"      "Censored"  "Area"     </span>
-<span class="r-in">  <span class="co">#[1] "TcCB.orig" "TcCB"      "Censored"  "Area" </span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="fu"><a href="https://rdrr.io/r/base/summary.html" class="external-link">summary</a></span><span class="op">(</span><span class="va">EPA.94b.tccb.df</span><span class="op">$</span><span class="va">Area</span><span class="op">)</span> </span>
+<span class="r-in"><span>  <span class="co">#[1] "TcCB.orig" "TcCB"      "Censored"  "Area" </span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/r/base/summary.html" class="external-link">summary</a></span><span class="op">(</span><span class="va">EPA.94b.tccb.df</span><span class="op">$</span><span class="va">Area</span><span class="op">)</span> </span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   Cleanup Reference </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>        77        47 </span>
-<span class="r-in">  <span class="co">#  Cleanup Reference </span></span>
-<span class="r-in">  <span class="co">#       77        47</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="fu"><a href="https://rdrr.io/r/base/with.html" class="external-link">with</a></span><span class="op">(</span><span class="va">EPA.94b.tccb.df</span>, </span>
-<span class="r-in">    <span class="fu">twoSampleLinearRankTest</span><span class="op">(</span><span class="va">TcCB</span><span class="op">[</span><span class="va">Area</span><span class="op">==</span><span class="st">"Cleanup"</span><span class="op">]</span>, <span class="va">TcCB</span><span class="op">[</span><span class="va">Area</span><span class="op">==</span><span class="st">"Reference"</span><span class="op">]</span><span class="op">)</span><span class="op">)</span></span>
+<span class="r-in"><span>  <span class="co">#  Cleanup Reference </span></span></span>
+<span class="r-in"><span>  <span class="co">#       77        47</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/r/base/with.html" class="external-link">with</a></span><span class="op">(</span><span class="va">EPA.94b.tccb.df</span>, </span></span>
+<span class="r-in"><span>    <span class="fu">twoSampleLinearRankTest</span><span class="op">(</span><span class="va">TcCB</span><span class="op">[</span><span class="va">Area</span><span class="op">==</span><span class="st">"Cleanup"</span><span class="op">]</span>, <span class="va">TcCB</span><span class="op">[</span><span class="va">Area</span><span class="op">==</span><span class="st">"Reference"</span><span class="op">]</span><span class="op">)</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> $statistic</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>         z </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> -1.171872 </span>
@@ -505,45 +514,45 @@
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> attr(,"class")</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] "htestEnvStats"</span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="co">#Results of Hypothesis Test</span></span>
-<span class="r-in">  <span class="co">#--------------------------</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Null Hypothesis:                 Fy(t) = Fx(t)</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Alternative Hypothesis:          Fy(t) != Fx(t) for at least one t</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Test Name:                       Two-Sample Linear Rank Test:</span></span>
-<span class="r-in">  <span class="co">#                                 Wilcoxon Rank Sum Test</span></span>
-<span class="r-in">  <span class="co">#                                 Based on Normal Approximation</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Data:                            x = TcCB[Area == "Cleanup"]  </span></span>
-<span class="r-in">  <span class="co">#                                 y = TcCB[Area == "Reference"]</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Sample Sizes:                    nx = 77</span></span>
-<span class="r-in">  <span class="co">#                                 ny = 47</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Test Statistic:                  z = -1.171872</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#P-value:                         0.2412485</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="fu"><a href="https://rdrr.io/r/base/with.html" class="external-link">with</a></span><span class="op">(</span><span class="va">EPA.94b.tccb.df</span>, </span>
-<span class="r-in">    <span class="fu">twoSampleLinearRankTest</span><span class="op">(</span><span class="va">TcCB</span><span class="op">[</span><span class="va">Area</span><span class="op">==</span><span class="st">"Cleanup"</span><span class="op">]</span>, </span>
-<span class="r-in">      <span class="va">TcCB</span><span class="op">[</span><span class="va">Area</span><span class="op">==</span><span class="st">"Reference"</span><span class="op">]</span>, test<span class="op">=</span><span class="st">"normal.scores"</span><span class="op">)</span><span class="op">)</span><span class="op">$</span><span class="va">p.value</span> </span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="co">#Results of Hypothesis Test</span></span></span>
+<span class="r-in"><span>  <span class="co">#--------------------------</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Null Hypothesis:                 Fy(t) = Fx(t)</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Alternative Hypothesis:          Fy(t) != Fx(t) for at least one t</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Test Name:                       Two-Sample Linear Rank Test:</span></span></span>
+<span class="r-in"><span>  <span class="co">#                                 Wilcoxon Rank Sum Test</span></span></span>
+<span class="r-in"><span>  <span class="co">#                                 Based on Normal Approximation</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Data:                            x = TcCB[Area == "Cleanup"]  </span></span></span>
+<span class="r-in"><span>  <span class="co">#                                 y = TcCB[Area == "Reference"]</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Sample Sizes:                    nx = 77</span></span></span>
+<span class="r-in"><span>  <span class="co">#                                 ny = 47</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Test Statistic:                  z = -1.171872</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#P-value:                         0.2412485</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/r/base/with.html" class="external-link">with</a></span><span class="op">(</span><span class="va">EPA.94b.tccb.df</span>, </span></span>
+<span class="r-in"><span>    <span class="fu">twoSampleLinearRankTest</span><span class="op">(</span><span class="va">TcCB</span><span class="op">[</span><span class="va">Area</span><span class="op">==</span><span class="st">"Cleanup"</span><span class="op">]</span>, </span></span>
+<span class="r-in"><span>      <span class="va">TcCB</span><span class="op">[</span><span class="va">Area</span><span class="op">==</span><span class="st">"Reference"</span><span class="op">]</span>, test<span class="op">=</span><span class="st">"normal.scores"</span><span class="op">)</span><span class="op">)</span><span class="op">$</span><span class="va">p.value</span> </span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] 0.3399484</span>
-<span class="r-in">  <span class="co">#[1] 0.3399484 </span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="fu"><a href="https://rdrr.io/r/base/with.html" class="external-link">with</a></span><span class="op">(</span><span class="va">EPA.94b.tccb.df</span>, </span>
-<span class="r-in">    <span class="fu">twoSampleLinearRankTest</span><span class="op">(</span><span class="va">TcCB</span><span class="op">[</span><span class="va">Area</span><span class="op">==</span><span class="st">"Cleanup"</span><span class="op">]</span>, </span>
-<span class="r-in">      <span class="va">TcCB</span><span class="op">[</span><span class="va">Area</span><span class="op">==</span><span class="st">"Reference"</span><span class="op">]</span>, test<span class="op">=</span><span class="st">"moods.median"</span><span class="op">)</span><span class="op">)</span><span class="op">$</span><span class="va">p.value</span> </span>
+<span class="r-in"><span>  <span class="co">#[1] 0.3399484 </span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/r/base/with.html" class="external-link">with</a></span><span class="op">(</span><span class="va">EPA.94b.tccb.df</span>, </span></span>
+<span class="r-in"><span>    <span class="fu">twoSampleLinearRankTest</span><span class="op">(</span><span class="va">TcCB</span><span class="op">[</span><span class="va">Area</span><span class="op">==</span><span class="st">"Cleanup"</span><span class="op">]</span>, </span></span>
+<span class="r-in"><span>      <span class="va">TcCB</span><span class="op">[</span><span class="va">Area</span><span class="op">==</span><span class="st">"Reference"</span><span class="op">]</span>, test<span class="op">=</span><span class="st">"moods.median"</span><span class="op">)</span><span class="op">)</span><span class="op">$</span><span class="va">p.value</span> </span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] 0.09707393</span>
-<span class="r-in">  <span class="co">#[1] 0.09707393</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="fu"><a href="https://rdrr.io/r/base/with.html" class="external-link">with</a></span><span class="op">(</span><span class="va">EPA.94b.tccb.df</span>, </span>
-<span class="r-in">    <span class="fu">twoSampleLinearRankTest</span><span class="op">(</span><span class="va">TcCB</span><span class="op">[</span><span class="va">Area</span><span class="op">==</span><span class="st">"Cleanup"</span><span class="op">]</span>, </span>
-<span class="r-in">      <span class="va">TcCB</span><span class="op">[</span><span class="va">Area</span><span class="op">==</span><span class="st">"Reference"</span><span class="op">]</span>, test<span class="op">=</span><span class="st">"savage.scores"</span><span class="op">)</span><span class="op">)</span><span class="op">$</span><span class="va">p.value</span> </span>
+<span class="r-in"><span>  <span class="co">#[1] 0.09707393</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/r/base/with.html" class="external-link">with</a></span><span class="op">(</span><span class="va">EPA.94b.tccb.df</span>, </span></span>
+<span class="r-in"><span>    <span class="fu">twoSampleLinearRankTest</span><span class="op">(</span><span class="va">TcCB</span><span class="op">[</span><span class="va">Area</span><span class="op">==</span><span class="st">"Cleanup"</span><span class="op">]</span>, </span></span>
+<span class="r-in"><span>      <span class="va">TcCB</span><span class="op">[</span><span class="va">Area</span><span class="op">==</span><span class="st">"Reference"</span><span class="op">]</span>, test<span class="op">=</span><span class="st">"savage.scores"</span><span class="op">)</span><span class="op">)</span><span class="op">$</span><span class="va">p.value</span> </span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] 0.2884351</span>
-<span class="r-in">  <span class="co">#[1] 0.2884351</span></span>
+<span class="r-in"><span>  <span class="co">#[1] 0.2884351</span></span></span>
 </code></pre></div>
     </div>
   </div>
@@ -558,7 +567,7 @@
 </div>
 
 <div class="pkgdown">
-  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.2.</p>
+  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.6.</p>
 </div>
 
       </footer></div>

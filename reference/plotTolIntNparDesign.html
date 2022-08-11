@@ -52,13 +52,13 @@
     </div>
 
     <div id="ref-usage">
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="fu">plotTolIntNparDesign</span><span class="op">(</span>x.var <span class="op">=</span> <span class="st">"n"</span>, y.var <span class="op">=</span> <span class="st">"conf.level"</span>, range.x.var <span class="op">=</span> <span class="cn">NULL</span>, n <span class="op">=</span> <span class="fl">25</span>, 
-    coverage <span class="op">=</span> <span class="fl">0.95</span>, conf.level <span class="op">=</span> <span class="fl">0.95</span>, ti.type <span class="op">=</span> <span class="st">"two.sided"</span>, cov.type <span class="op">=</span> <span class="st">"content"</span>, 
-    ltl.rank <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/ifelse.html" class="external-link">ifelse</a></span><span class="op">(</span><span class="va">ti.type</span> <span class="op">==</span> <span class="st">"upper"</span>, <span class="fl">0</span>, <span class="fl">1</span><span class="op">)</span>, 
-    n.plus.one.minus.utl.rank <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/ifelse.html" class="external-link">ifelse</a></span><span class="op">(</span><span class="va">ti.type</span> <span class="op">==</span> <span class="st">"lower"</span>, <span class="fl">0</span>, <span class="fl">1</span><span class="op">)</span>, plot.it <span class="op">=</span> <span class="cn">TRUE</span>, 
-    add <span class="op">=</span> <span class="cn">FALSE</span>, n.points <span class="op">=</span> <span class="fl">100</span>, plot.col <span class="op">=</span> <span class="st">"black"</span>, plot.lwd <span class="op">=</span> <span class="fl">3</span> <span class="op">*</span> <span class="fu"><a href="https://rdrr.io/r/graphics/par.html" class="external-link">par</a></span><span class="op">(</span><span class="st">"cex"</span><span class="op">)</span>, 
-    plot.lty <span class="op">=</span> <span class="fl">1</span>, digits <span class="op">=</span> <span class="va">.Options</span><span class="op">$</span><span class="va">digits</span>, cex.main <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/graphics/par.html" class="external-link">par</a></span><span class="op">(</span><span class="st">"cex"</span><span class="op">)</span>, <span class="va">...</span>, main <span class="op">=</span> <span class="cn">NULL</span>, 
-    xlab <span class="op">=</span> <span class="cn">NULL</span>, ylab <span class="op">=</span> <span class="cn">NULL</span>, type <span class="op">=</span> <span class="st">"l"</span><span class="op">)</span></code></pre></div>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">plotTolIntNparDesign</span><span class="op">(</span>x.var <span class="op">=</span> <span class="st">"n"</span>, y.var <span class="op">=</span> <span class="st">"conf.level"</span>, range.x.var <span class="op">=</span> <span class="cn">NULL</span>, n <span class="op">=</span> <span class="fl">25</span>, </span>
+<span>    coverage <span class="op">=</span> <span class="fl">0.95</span>, conf.level <span class="op">=</span> <span class="fl">0.95</span>, ti.type <span class="op">=</span> <span class="st">"two.sided"</span>, cov.type <span class="op">=</span> <span class="st">"content"</span>, </span>
+<span>    ltl.rank <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/ifelse.html" class="external-link">ifelse</a></span><span class="op">(</span><span class="va">ti.type</span> <span class="op">==</span> <span class="st">"upper"</span>, <span class="fl">0</span>, <span class="fl">1</span><span class="op">)</span>, </span>
+<span>    n.plus.one.minus.utl.rank <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/ifelse.html" class="external-link">ifelse</a></span><span class="op">(</span><span class="va">ti.type</span> <span class="op">==</span> <span class="st">"lower"</span>, <span class="fl">0</span>, <span class="fl">1</span><span class="op">)</span>, plot.it <span class="op">=</span> <span class="cn">TRUE</span>, </span>
+<span>    add <span class="op">=</span> <span class="cn">FALSE</span>, n.points <span class="op">=</span> <span class="fl">100</span>, plot.col <span class="op">=</span> <span class="st">"black"</span>, plot.lwd <span class="op">=</span> <span class="fl">3</span> <span class="op">*</span> <span class="fu"><a href="https://rdrr.io/r/graphics/par.html" class="external-link">par</a></span><span class="op">(</span><span class="st">"cex"</span><span class="op">)</span>, </span>
+<span>    plot.lty <span class="op">=</span> <span class="fl">1</span>, digits <span class="op">=</span> <span class="va">.Options</span><span class="op">$</span><span class="va">digits</span>, cex.main <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/graphics/par.html" class="external-link">par</a></span><span class="op">(</span><span class="st">"cex"</span><span class="op">)</span>, <span class="va">...</span>, main <span class="op">=</span> <span class="cn">NULL</span>, </span>
+<span>    xlab <span class="op">=</span> <span class="cn">NULL</span>, ylab <span class="op">=</span> <span class="cn">NULL</span>, type <span class="op">=</span> <span class="st">"l"</span><span class="op">)</span></span></code></pre></div>
     </div>
 
     <div id="arguments">
@@ -67,78 +67,96 @@
 <dd><p>character string indicating what variable to use for the x-axis.  Possible values are 
   <code>"n"</code> (sample size; the default), <code>"coverage"</code> (the coverage), and <code>"conf.level"</code> 
   (the confidence level).</p></dd>
-<dt>y.var</dt>
+
+  <dt>y.var</dt>
 <dd><p>character string indicating what variable to use for the y-axis.  Possible values are 
   <code>"conf.level"</code> (the confidence level; the default), <code>"n"</code> (sample size), and 
   <code>"coverage"</code> (the coverage).</p></dd>
-<dt>range.x.var</dt>
+
+  <dt>range.x.var</dt>
 <dd><p>numeric vector of length 2 indicating the range of the x-variable to use for the plot.  The 
   default value depends on the value of <code>x.var</code>.  When <code>x.var="n"</code> the default value is 
   <code>c(2,50)</code>.  When <code>x.var="coverage"</code> or <code>x.var="conf"</code>, the default value is 
   <code>c(0.5, 0.99)</code>.</p></dd>
-<dt>n</dt>
+
+  <dt>n</dt>
 <dd><p>numeric scalar indicating the sample size.  The default value is <br><code>max(25, lpl.rank + n.plus.one.minus.upl.rank + 1)</code>.  
   Missing (<code>NA</code>), undefined (<code>NaN</code>), and infinite (<code>Inf</code>, <code>-Inf</code>) 
   values are not allowed.  
   This argument is ignored if either <code>x.var="n"</code> or <code>y.var="n"</code>.</p></dd>
-<dt>coverage</dt>
+
+  <dt>coverage</dt>
 <dd><p>numeric scalar between 0 and 1 specifying the coverage of the tolerance interval.  The default 
   value is <code>coverage=0.95</code>.  This argument is ignored if <br><code>x.var="coverage"</code> or <code>y.var="coverage"</code>.</p></dd>
-<dt>conf.level</dt>
+
+  <dt>conf.level</dt>
 <dd><p>a scalar between 0 and 1 indicating the confidence level associated with the tolerance interval.  
   The default value is <code>conf.level=0.95</code>.  This argument is ignored if <code>x.var="conf.level"</code> 
   or <code>y.var="conf.level"</code>, or if <br><code>cov.type="expectation"</code>.</p></dd>
-<dt>ti.type</dt>
+
+  <dt>ti.type</dt>
 <dd><p>character string indicating what kind of tolerance interval to compute.  
   The possible values are <code>"two-sided"</code> (the default), <code>"lower"</code>, and 
   <code>"upper"</code>.</p></dd>
-<dt>cov.type</dt>
+
+  <dt>cov.type</dt>
 <dd><p>character string specifying the coverage type for the tolerance interval.  
   The possible values are <code>"content"</code> (\(\beta\)-content; the default), and 
   <code>"expectation"</code> (\(\beta\)-expectation).</p></dd>
-<dt>ltl.rank</dt>
+
+  <dt>ltl.rank</dt>
 <dd><p>vector of positive integers indicating the rank of the order statistic to use for the lower bound 
   of the tolerance interval.  If <code>ti.type="two-sided"</code> or <br><code>ti.type="lower"</code>, 
   the default value is <code>ltl.rank=1</code> (implying the minimum value of <code>x</code> is used 
   as the lower bound of the tolerance interval).  If <br><code>ti.type="upper"</code>, this argument 
   is set equal to <code>0</code>.</p></dd>
-<dt>n.plus.one.minus.utl.rank</dt>
+
+  <dt>n.plus.one.minus.utl.rank</dt>
 <dd><p>vector of positive integers related to the rank of the order statistic to use for 
   the upper bound of the tolerance interval.  A value of 
   <code>n.plus.one.minus.utl.rank=1</code> (the default) means use the 
   first largest value, and in general a value of <br><code>n.plus.one.minus.utl.rank=</code>\(i\) means use the \(i\)'th largest value.  
   If <br><code>ti.type="lower"</code>, this argument is set equal to <code>0</code>.</p></dd>
-<dt>plot.it</dt>
+
+  <dt>plot.it</dt>
 <dd><p>a logical scalar indicating whether to create a plot or add to the 
   existing plot (see <code>add</code>) on the current graphics device.  If 
   <code>plot.it=FALSE</code>, no plot is produced, but a list of (x,y) values 
   is returned (see VALUE).  The default value is <code>plot.it=TRUE</code>.</p></dd>
-<dt>add</dt>
+
+  <dt>add</dt>
 <dd><p>a logical scalar indicating whether to add the design plot to the 
   existing plot (<code>add=TRUE</code>), or to create a plot from scratch 
   (<code>add=FALSE</code>).  The default value is <code>add=FALSE</code>.  
   This argument is ignored if <code>plot.it=FALSE</code>.</p></dd>
-<dt>n.points</dt>
+
+  <dt>n.points</dt>
 <dd><p>a numeric scalar specifying how many (x,y) pairs to use to produce the plot.  
   There are <code>n.points</code> x-values evenly spaced between <code>range.x.var[1]</code> and <br><code>range.x.var[2]</code>.  The default value is <code>n.points=100</code>.</p></dd>
-<dt>plot.col</dt>
+
+  <dt>plot.col</dt>
 <dd><p>a numeric scalar or character string determining the color of the plotted 
   line or points.  The default value is <code>plot.col="black"</code>.  See the 
   entry for <code>col</code> in the help file for <code><a href="https://rdrr.io/r/graphics/par.html" class="external-link">par</a></code> 
   for more information.</p></dd>
-<dt>plot.lwd</dt>
+
+  <dt>plot.lwd</dt>
 <dd><p>a numeric scalar determining the width of the plotted line.  The default value is 
   <code>3*par("cex")</code>.  See the entry for <code>lwd</code> in the help file for <code><a href="https://rdrr.io/r/graphics/par.html" class="external-link">par</a></code> 
   for more information.</p></dd>
-<dt>plot.lty</dt>
+
+  <dt>plot.lty</dt>
 <dd><p>a numeric scalar determining the line type of the plotted line.  The default value is 
   <code>plot.lty=1</code>.  See the entry for <code>lty</code> in the help file for <code><a href="https://rdrr.io/r/graphics/par.html" class="external-link">par</a></code> 
   for more information.</p></dd>
-<dt>digits</dt>
+
+  <dt>digits</dt>
 <dd><p>a scalar indicating how many significant digits to print out on the plot.  The default 
   value is the current setting of <code><a href="https://rdrr.io/r/base/options.html" class="external-link">options</a>("digits")</code>.</p></dd>
-<dt>cex.main, main, xlab, ylab, type, ...</dt>
+
+  <dt>cex.main, main, xlab, ylab, type, ...</dt>
 <dd><p>additional graphical parameters (see <code><a href="https://rdrr.io/r/graphics/par.html" class="external-link">par</a></code>).</p></dd>
+
 </dl></div>
     <div id="details">
     <h2>Details</h2>
@@ -150,8 +168,10 @@
     </div>
     <div id="value">
     <h2>Value</h2>
-    <p><code>plotTolIntNparDesign</code> invisibly returns a list with components 
-<code>x.var</code> and <code>y.var</code>, giving coordinates of the points that 
+    <p></p>
+<p><code>plotTolIntNparDesign</code> invisibly returns a list with components</p>
+<p></p>
+<p><code>x.var</code> and <code>y.var</code>, giving coordinates of the points that 
   have been or would have been plotted.</p>
     </div>
     <div id="references">
@@ -180,51 +200,51 @@
 
     <div id="ref-examples">
     <h2>Examples</h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in">  <span class="co"># Look at the relationship between confidence level and sample size for a two-sided </span></span>
-<span class="r-in">  <span class="co"># nonparametric tolerance interval.</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="fu"><a href="https://rdrr.io/r/grDevices/dev.html" class="external-link">dev.new</a></span><span class="op">(</span><span class="op">)</span></span>
-<span class="r-in">  <span class="fu">plotTolIntNparDesign</span><span class="op">(</span><span class="op">)</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="co">#==========</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="co"># Plot confidence level vs. sample size for various values of coverage:</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="fu"><a href="https://rdrr.io/r/grDevices/dev.html" class="external-link">dev.new</a></span><span class="op">(</span><span class="op">)</span></span>
-<span class="r-in">  <span class="fu">plotTolIntNparDesign</span><span class="op">(</span>coverage <span class="op">=</span> <span class="fl">0.7</span>, ylim <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">0</span>,<span class="fl">1</span><span class="op">)</span>, main <span class="op">=</span> <span class="st">""</span><span class="op">)</span> </span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="fu">plotTolIntNparDesign</span><span class="op">(</span>coverage <span class="op">=</span> <span class="fl">0.8</span>, add <span class="op">=</span> <span class="cn">TRUE</span>, plot.col <span class="op">=</span> <span class="st">"red"</span><span class="op">)</span> </span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="fu">plotTolIntNparDesign</span><span class="op">(</span>coverage <span class="op">=</span> <span class="fl">0.9</span>, add <span class="op">=</span> <span class="cn">TRUE</span>, plot.col <span class="op">=</span> <span class="st">"blue"</span><span class="op">)</span> </span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="fu"><a href="https://rdrr.io/r/graphics/legend.html" class="external-link">legend</a></span><span class="op">(</span><span class="st">"bottomright"</span>, <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"coverage = 70%"</span>, <span class="st">"coverage = 80%"</span>, <span class="st">"coverage = 90%"</span><span class="op">)</span>, lty<span class="op">=</span><span class="fl">1</span>, </span>
-<span class="r-in">    lwd <span class="op">=</span> <span class="fl">3</span> <span class="op">*</span> <span class="fu"><a href="https://rdrr.io/r/graphics/par.html" class="external-link">par</a></span><span class="op">(</span><span class="st">"cex"</span><span class="op">)</span>, col <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"black"</span>, <span class="st">"red"</span>, <span class="st">"blue"</span><span class="op">)</span>, bty <span class="op">=</span> <span class="st">"n"</span><span class="op">)</span> </span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="fu"><a href="https://rdrr.io/r/graphics/title.html" class="external-link">title</a></span><span class="op">(</span>main <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/paste.html" class="external-link">paste</a></span><span class="op">(</span><span class="st">"Confidence Level vs. Sample Size for Nonparametric TI"</span>, </span>
-<span class="r-in">    <span class="st">"with Various Levels of Coverage"</span>, sep <span class="op">=</span> <span class="st">"\n"</span><span class="op">)</span><span class="op">)</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="co">#==========</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="co"># Example 17-4 on page 17-21 of USEPA (2009) uses copper concentrations (ppb) from 3 </span></span>
-<span class="r-in">  <span class="co"># background wells to set an upper limit for 2 compliance wells.  There are 6 observations </span></span>
-<span class="r-in">  <span class="co"># per well, and the maximum value from the 3 wells is set to the 95% confidence upper </span></span>
-<span class="r-in">  <span class="co"># tolerance limit, and we need to determine the coverage of this tolerance interval.  </span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="fu"><a href="tolIntNparCoverage.html">tolIntNparCoverage</a></span><span class="op">(</span>n <span class="op">=</span> <span class="fl">24</span>, conf.level <span class="op">=</span> <span class="fl">0.95</span>, ti.type <span class="op">=</span> <span class="st">"upper"</span><span class="op">)</span></span>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span>  <span class="co"># Look at the relationship between confidence level and sample size for a two-sided </span></span></span>
+<span class="r-in"><span>  <span class="co"># nonparametric tolerance interval.</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/r/grDevices/dev.html" class="external-link">dev.new</a></span><span class="op">(</span><span class="op">)</span></span></span>
+<span class="r-in"><span>  <span class="fu">plotTolIntNparDesign</span><span class="op">(</span><span class="op">)</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="co">#==========</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="co"># Plot confidence level vs. sample size for various values of coverage:</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/r/grDevices/dev.html" class="external-link">dev.new</a></span><span class="op">(</span><span class="op">)</span></span></span>
+<span class="r-in"><span>  <span class="fu">plotTolIntNparDesign</span><span class="op">(</span>coverage <span class="op">=</span> <span class="fl">0.7</span>, ylim <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">0</span>,<span class="fl">1</span><span class="op">)</span>, main <span class="op">=</span> <span class="st">""</span><span class="op">)</span> </span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="fu">plotTolIntNparDesign</span><span class="op">(</span>coverage <span class="op">=</span> <span class="fl">0.8</span>, add <span class="op">=</span> <span class="cn">TRUE</span>, plot.col <span class="op">=</span> <span class="st">"red"</span><span class="op">)</span> </span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="fu">plotTolIntNparDesign</span><span class="op">(</span>coverage <span class="op">=</span> <span class="fl">0.9</span>, add <span class="op">=</span> <span class="cn">TRUE</span>, plot.col <span class="op">=</span> <span class="st">"blue"</span><span class="op">)</span> </span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/r/graphics/legend.html" class="external-link">legend</a></span><span class="op">(</span><span class="st">"bottomright"</span>, <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"coverage = 70%"</span>, <span class="st">"coverage = 80%"</span>, <span class="st">"coverage = 90%"</span><span class="op">)</span>, lty<span class="op">=</span><span class="fl">1</span>, </span></span>
+<span class="r-in"><span>    lwd <span class="op">=</span> <span class="fl">3</span> <span class="op">*</span> <span class="fu"><a href="https://rdrr.io/r/graphics/par.html" class="external-link">par</a></span><span class="op">(</span><span class="st">"cex"</span><span class="op">)</span>, col <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"black"</span>, <span class="st">"red"</span>, <span class="st">"blue"</span><span class="op">)</span>, bty <span class="op">=</span> <span class="st">"n"</span><span class="op">)</span> </span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/r/graphics/title.html" class="external-link">title</a></span><span class="op">(</span>main <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/paste.html" class="external-link">paste</a></span><span class="op">(</span><span class="st">"Confidence Level vs. Sample Size for Nonparametric TI"</span>, </span></span>
+<span class="r-in"><span>    <span class="st">"with Various Levels of Coverage"</span>, sep <span class="op">=</span> <span class="st">"\n"</span><span class="op">)</span><span class="op">)</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="co">#==========</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="co"># Example 17-4 on page 17-21 of USEPA (2009) uses copper concentrations (ppb) from 3 </span></span></span>
+<span class="r-in"><span>  <span class="co"># background wells to set an upper limit for 2 compliance wells.  There are 6 observations </span></span></span>
+<span class="r-in"><span>  <span class="co"># per well, and the maximum value from the 3 wells is set to the 95% confidence upper </span></span></span>
+<span class="r-in"><span>  <span class="co"># tolerance limit, and we need to determine the coverage of this tolerance interval.  </span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="fu"><a href="tolIntNparCoverage.html">tolIntNparCoverage</a></span><span class="op">(</span>n <span class="op">=</span> <span class="fl">24</span>, conf.level <span class="op">=</span> <span class="fl">0.95</span>, ti.type <span class="op">=</span> <span class="st">"upper"</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] 0.8826538</span>
-<span class="r-in">  <span class="co">#[1] 0.8826538</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="co"># Here we will modify the example and look at confidence level versus coverage for </span></span>
-<span class="r-in">  <span class="co"># a set sample size of n = 24.</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="fu"><a href="https://rdrr.io/r/grDevices/dev.html" class="external-link">dev.new</a></span><span class="op">(</span><span class="op">)</span></span>
-<span class="r-in">  <span class="fu">plotTolIntNparDesign</span><span class="op">(</span>x.var <span class="op">=</span> <span class="st">"coverage"</span>, y.var <span class="op">=</span> <span class="st">"conf.level"</span>, n <span class="op">=</span> <span class="fl">24</span>, ti.type <span class="op">=</span> <span class="st">"upper"</span><span class="op">)</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="co">#==========</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="co"># Clean up</span></span>
-<span class="r-in">  <span class="co">#---------</span></span>
-<span class="r-in">  <span class="fu"><a href="https://rdrr.io/r/grDevices/dev.html" class="external-link">graphics.off</a></span><span class="op">(</span><span class="op">)</span></span>
+<span class="r-in"><span>  <span class="co">#[1] 0.8826538</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="co"># Here we will modify the example and look at confidence level versus coverage for </span></span></span>
+<span class="r-in"><span>  <span class="co"># a set sample size of n = 24.</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/r/grDevices/dev.html" class="external-link">dev.new</a></span><span class="op">(</span><span class="op">)</span></span></span>
+<span class="r-in"><span>  <span class="fu">plotTolIntNparDesign</span><span class="op">(</span>x.var <span class="op">=</span> <span class="st">"coverage"</span>, y.var <span class="op">=</span> <span class="st">"conf.level"</span>, n <span class="op">=</span> <span class="fl">24</span>, ti.type <span class="op">=</span> <span class="st">"upper"</span><span class="op">)</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="co">#==========</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="co"># Clean up</span></span></span>
+<span class="r-in"><span>  <span class="co">#---------</span></span></span>
+<span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/r/grDevices/dev.html" class="external-link">graphics.off</a></span><span class="op">(</span><span class="op">)</span></span></span>
 </code></pre></div>
     </div>
   </div>
@@ -239,7 +259,7 @@
 </div>
 
 <div class="pkgdown">
-  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.2.</p>
+  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.6.</p>
 </div>
 
       </footer></div>

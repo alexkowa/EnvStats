@@ -52,8 +52,8 @@
     </div>
 
     <div id="ref-usage">
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="fu">varTest</span><span class="op">(</span><span class="va">x</span>, alternative <span class="op">=</span> <span class="st">"two.sided"</span>, conf.level <span class="op">=</span> <span class="fl">0.95</span>, 
-    sigma.squared <span class="op">=</span> <span class="fl">1</span>, data.name <span class="op">=</span> <span class="cn">NULL</span><span class="op">)</span></code></pre></div>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">varTest</span><span class="op">(</span><span class="va">x</span>, alternative <span class="op">=</span> <span class="st">"two.sided"</span>, conf.level <span class="op">=</span> <span class="fl">0.95</span>, </span>
+<span>    sigma.squared <span class="op">=</span> <span class="fl">1</span>, data.name <span class="op">=</span> <span class="cn">NULL</span><span class="op">)</span></span></code></pre></div>
     </div>
 
     <div id="arguments">
@@ -61,17 +61,22 @@
     <dl><dt>x</dt>
 <dd><p>numeric vector of observations.  Missing (<code>NA</code>), undefined (<code>NaN</code>), and 
   infinite (<code>Inf</code>, <code>-Inf</code>) values are allowed but will be removed.</p></dd>
-<dt>alternative</dt>
+
+  <dt>alternative</dt>
 <dd><p>character string indicating the kind of alternative hypothesis.  The possible values are 
   <code>"two.sided"</code> (the default), <code>"greater"</code>, and <code>"less"</code>.</p></dd>
-<dt>conf.level</dt>
+
+  <dt>conf.level</dt>
 <dd><p>numeric scalar between 0 and 1 indicating the confidence level associated with the confidence 
   interval for the population variance.  The default value is <br><code>conf.level=0.95</code>.</p></dd>
-<dt>sigma.squared</dt>
+
+  <dt>sigma.squared</dt>
 <dd><p>a numeric scalar indicating the hypothesized value of the variance.  The default value is 
   <code>sigma.squared=1</code>.</p></dd>
-<dt>data.name</dt>
+
+  <dt>data.name</dt>
 <dd><p>character string indicating the name of the data used for the test of variance.</p></dd>
+
 </dl></div>
     <div id="details">
     <h2>Details</h2>
@@ -82,7 +87,9 @@
     </div>
     <div id="value">
     <h2>Value</h2>
-    <p>A list of class <code>"htest"</code> containing the results of the hypothesis test.  
+    
+
+<p>A list of class <code>"htest"</code> containing the results of the hypothesis test.  
   See the help file for <code><a href="htest.object.html">htest.object</a></code> for details.</p>
     </div>
     <div id="references">
@@ -128,15 +135,15 @@
 
     <div id="ref-examples">
     <h2>Examples</h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in">  <span class="co"># Generate 20 observations from a normal distribution with parameters </span></span>
-<span class="r-in">  <span class="co"># mean=2 and sd=1.  Test the null hypothesis that the true variance is </span></span>
-<span class="r-in">  <span class="co"># equal to 0.5 against the alternative that the true variance is not </span></span>
-<span class="r-in">  <span class="co"># equal to 0.5.  </span></span>
-<span class="r-in">  <span class="co"># (Note: the call to set.seed allows you to reproduce this example).</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="fu"><a href="https://rdrr.io/r/base/Random.html" class="external-link">set.seed</a></span><span class="op">(</span><span class="fl">23</span><span class="op">)</span> </span>
-<span class="r-in">  <span class="va">dat</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/Normal.html" class="external-link">rnorm</a></span><span class="op">(</span><span class="fl">20</span>, mean <span class="op">=</span> <span class="fl">2</span>, sd <span class="op">=</span> <span class="fl">1</span><span class="op">)</span> </span>
-<span class="r-in">  <span class="fu">varTest</span><span class="op">(</span><span class="va">dat</span>, sigma.squared <span class="op">=</span> <span class="fl">0.5</span><span class="op">)</span> </span>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span>  <span class="co"># Generate 20 observations from a normal distribution with parameters </span></span></span>
+<span class="r-in"><span>  <span class="co"># mean=2 and sd=1.  Test the null hypothesis that the true variance is </span></span></span>
+<span class="r-in"><span>  <span class="co"># equal to 0.5 against the alternative that the true variance is not </span></span></span>
+<span class="r-in"><span>  <span class="co"># equal to 0.5.  </span></span></span>
+<span class="r-in"><span>  <span class="co"># (Note: the call to set.seed allows you to reproduce this example).</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/r/base/Random.html" class="external-link">set.seed</a></span><span class="op">(</span><span class="fl">23</span><span class="op">)</span> </span></span>
+<span class="r-in"><span>  <span class="va">dat</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/Normal.html" class="external-link">rnorm</a></span><span class="op">(</span><span class="fl">20</span>, mean <span class="op">=</span> <span class="fl">2</span>, sd <span class="op">=</span> <span class="fl">1</span><span class="op">)</span> </span></span>
+<span class="r-in"><span>  <span class="fu">varTest</span><span class="op">(</span><span class="va">dat</span>, sigma.squared <span class="op">=</span> <span class="fl">0.5</span><span class="op">)</span> </span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> $statistic</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Chi-Squared </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>     28.6409 </span>
@@ -173,34 +180,34 @@
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> attr(,"class")</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] "htestEnvStats"</span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="co">#Results of Hypothesis Test</span></span>
-<span class="r-in">  <span class="co">#--------------------------</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Null Hypothesis:                 variance = 0.5</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Alternative Hypothesis:          True variance is not equal to 0.5</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Test Name:                       Chi-Squared Test on Variance</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Estimated Parameter(s):          variance = 0.753708</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Data:                            dat</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Test Statistic:                  Chi-Squared = 28.64090</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Test Statistic Parameter:        df = 19</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#P-value:                         0.1436947</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#95% Confidence Interval:         LCL = 0.4359037</span></span>
-<span class="r-in">  <span class="co">#                                 UCL = 1.6078623</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="co"># Note that in this case we would not reject the </span></span>
-<span class="r-in">  <span class="co"># null hypothesis at the 5% or even the 10% level.</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="co"># Clean up</span></span>
-<span class="r-in">  <span class="fu"><a href="https://rdrr.io/r/base/rm.html" class="external-link">rm</a></span><span class="op">(</span><span class="va">dat</span><span class="op">)</span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="co">#Results of Hypothesis Test</span></span></span>
+<span class="r-in"><span>  <span class="co">#--------------------------</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Null Hypothesis:                 variance = 0.5</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Alternative Hypothesis:          True variance is not equal to 0.5</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Test Name:                       Chi-Squared Test on Variance</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Estimated Parameter(s):          variance = 0.753708</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Data:                            dat</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Test Statistic:                  Chi-Squared = 28.64090</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Test Statistic Parameter:        df = 19</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#P-value:                         0.1436947</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#95% Confidence Interval:         LCL = 0.4359037</span></span></span>
+<span class="r-in"><span>  <span class="co">#                                 UCL = 1.6078623</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="co"># Note that in this case we would not reject the </span></span></span>
+<span class="r-in"><span>  <span class="co"># null hypothesis at the 5% or even the 10% level.</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="co"># Clean up</span></span></span>
+<span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/r/base/rm.html" class="external-link">rm</a></span><span class="op">(</span><span class="va">dat</span><span class="op">)</span></span></span>
 </code></pre></div>
     </div>
   </div>
@@ -215,7 +222,7 @@
 </div>
 
 <div class="pkgdown">
-  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.2.</p>
+  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.6.</p>
 </div>
 
       </footer></div>

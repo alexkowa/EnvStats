@@ -62,10 +62,10 @@ The errorBar function is a modified version of the S function
     </div>
 
     <div id="ref-usage">
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="fu">errorBar</span><span class="op">(</span><span class="va">x</span>, y <span class="op">=</span> <span class="cn">NULL</span>, <span class="va">lower</span>, <span class="va">upper</span>, incr <span class="op">=</span> <span class="cn">TRUE</span>, draw.lower <span class="op">=</span> <span class="cn">TRUE</span>, 
-    draw.upper <span class="op">=</span> <span class="cn">TRUE</span>, bar.ends <span class="op">=</span> <span class="cn">TRUE</span>, gap <span class="op">=</span> <span class="cn">TRUE</span>, add <span class="op">=</span> <span class="cn">FALSE</span>, 
-    horizontal <span class="op">=</span> <span class="cn">FALSE</span>, gap.size <span class="op">=</span> <span class="fl">0.75</span>, bar.ends.size <span class="op">=</span> <span class="fl">1</span>, col <span class="op">=</span> <span class="fl">1</span>, 
-    <span class="va">...</span>, xlab <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/deparse.html" class="external-link">deparse</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/substitute.html" class="external-link">substitute</a></span><span class="op">(</span><span class="va">x</span><span class="op">)</span><span class="op">)</span>, <span class="va">xlim</span>, <span class="va">ylim</span><span class="op">)</span></code></pre></div>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">errorBar</span><span class="op">(</span><span class="va">x</span>, y <span class="op">=</span> <span class="cn">NULL</span>, <span class="va">lower</span>, <span class="va">upper</span>, incr <span class="op">=</span> <span class="cn">TRUE</span>, draw.lower <span class="op">=</span> <span class="cn">TRUE</span>, </span>
+<span>    draw.upper <span class="op">=</span> <span class="cn">TRUE</span>, bar.ends <span class="op">=</span> <span class="cn">TRUE</span>, gap <span class="op">=</span> <span class="cn">TRUE</span>, add <span class="op">=</span> <span class="cn">FALSE</span>, </span>
+<span>    horizontal <span class="op">=</span> <span class="cn">FALSE</span>, gap.size <span class="op">=</span> <span class="fl">0.75</span>, bar.ends.size <span class="op">=</span> <span class="fl">1</span>, col <span class="op">=</span> <span class="fl">1</span>, </span>
+<span>    <span class="va">...</span>, xlab <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/deparse.html" class="external-link">deparse</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/substitute.html" class="external-link">substitute</a></span><span class="op">(</span><span class="va">x</span><span class="op">)</span><span class="op">)</span>, <span class="va">xlim</span>, <span class="va">ylim</span><span class="op">)</span></span></code></pre></div>
     </div>
 
     <div id="arguments">
@@ -83,36 +83,44 @@ The errorBar function is a modified version of the S function
   and <code>x</code> is plotted on the \(y\)-axis.</p>
 <p>Missing values (<code>NA</code>s) are allowed; points containing missing values are omitted 
   from the plot.</p></dd>
-<dt>lower</dt>
+
+  <dt>lower</dt>
 <dd><p>pointwise lower limits of the error bars.  This may be a single number or a vector 
   the same length as <code>x</code> and <code>y</code>.  If <code>incr=TRUE</code>, then <code>lower</code> is 
   expected to contain the lower half widths of the error bars.  If <code>incr=FALSE</code>, 
   then <code>lower</code> contains the coordinates of the lower limits in terms of <code>x</code> or 
   <code>y</code>, depending on the orientation of the bars.</p></dd>
-<dt>upper</dt>
+
+  <dt>upper</dt>
 <dd><p>pointwise upper limits of the error bars.  This may be a single number or a vector the 
   same length as <code>x</code> and <code>y</code>.  If <code>incr=TRUE</code>, then <code>upper</code> is 
   expected to contain the upper half widths of the error bars.  If <code>incr=FALSE</code>, 
   then upper contains the coordinates of the upper limits in terms of <code>x</code> or <code>y</code>, 
   depending on the orientation of the bars.  If <code>upper</code> is missing, the upper limits 
   are drawn symmetric to the lower limits.</p></dd>
-<dt>incr</dt>
+
+  <dt>incr</dt>
 <dd><p>logical scalar indicating whether the values in <code>lower</code> and <code>upper</code> represent 
   increments.  If <code>incr=TRUE</code> (the default), then <code>lower</code> and <code>upper</code> are 
   assumed to represent half the widths of the error bars (increments).</p></dd>
-<dt>draw.lower</dt>
+
+  <dt>draw.lower</dt>
 <dd><p>logical scalar indicating whether to draw the lower error bar.  
   The default is <code>draw.lower=TRUE</code>.</p></dd>
-<dt>draw.upper</dt>
+
+  <dt>draw.upper</dt>
 <dd><p>logical scalar indicating whether to draw the upper error bar.  
   The default is <code>draw.upper=TRUE</code>.</p></dd>
-<dt>bar.ends</dt>
+
+  <dt>bar.ends</dt>
 <dd><p>logical scalar indicating whether flat bars should be drawn at the endpoints.  The 
   default is <code>bar.ends=TRUE</code>.</p></dd>
-<dt>gap</dt>
+
+  <dt>gap</dt>
 <dd><p>logical scalar indicating whether gaps should be left around the points to emphasize 
   their locations.  The default is <code>gap=TRUE</code>.</p></dd>
-<dt>add</dt>
+
+  <dt>add</dt>
 <dd><p>logical scalar indicating whether error bars should be added to the current plot.  
   If <code>add=TRUE</code> and a graphics device is open, the error bars are added to the 
   plot in the open device and no axes are drawn.  In this case, you should use the 
@@ -120,17 +128,23 @@ The errorBar function is a modified version of the S function
   otherwise, “Lines out of bounds” warnings are generated.  
   If <code>add=FALSE</code> (the default), a new coordinate system is set up for the 
   error bar plot and axes are drawn.</p></dd>
-<dt>horizontal</dt>
+
+  <dt>horizontal</dt>
 <dd><p>logical scalar indicating whether the error bars should be oriented horizontally 
   (<code>horizontal=TRUE</code>) or vertically (<code>horizontal=FALSE</code>; the default).</p></dd>
-<dt>gap.size</dt>
+
+  <dt>gap.size</dt>
 <dd><p>numeric scalar controlling the width of the gap.</p></dd>
-<dt>bar.ends.size</dt>
+
+  <dt>bar.ends.size</dt>
 <dd><p>numeric scalar controlling the length of the bar ends.</p></dd>
-<dt>col</dt>
+
+  <dt>col</dt>
 <dd><p>numeric or character vector indicating the color(s) of the bars.</p></dd>
-<dt>xlab, xlim, ylim, ...</dt>
+
+  <dt>xlab, xlim, ylim, ...</dt>
 <dd><p>additional graphical parameters (see <code><a href="https://rdrr.io/r/graphics/par.html" class="external-link">par</a></code>).</p></dd>
+
 </dl></div>
     <div id="details">
     <h2>Details</h2>
@@ -138,15 +152,18 @@ The errorBar function is a modified version of the S function
     </div>
     <div id="value">
     <h2>Value</h2>
-    <p><code>errorBar</code> invisibly returns a list with the following components:</p>
+    <p></p>
+<p><code>errorBar</code> invisibly returns a list with the following components:</p>
 <dl><dt>group.centers</dt>
 <dd><p>numeric vector of values on the group axis (the \(x\)-axis unless 
     <code>horizontal=TRUE</code>) indicating the centers of the groups.</p></dd>
-<dt>group.stats</dt>
+
+  <dt>group.stats</dt>
 <dd><p>a matrix with the number of rows equal to the number of groups and 
     three columns indicating the group location parameter (Center), 
     the lower limit for the error bar (Lower), and 
     the upper limit for the error bar (Upper).</p></dd>
+
 </dl></div>
     <div id="references">
     <h2>References</h2>
@@ -166,52 +183,52 @@ The errorBar function is a modified version of the S function
 
     <div id="ref-examples">
     <h2>Examples</h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in">  <span class="co"># The guidance document USEPA (1994b, pp. 6.22--6.25) </span></span>
-<span class="r-in">  <span class="co"># contains measures of 1,2,3,4-Tetrachlorobenzene (TcCB) </span></span>
-<span class="r-in">  <span class="co"># concentrations (in parts per billion) from soil samples </span></span>
-<span class="r-in">  <span class="co"># at a Reference area and a Cleanup area.  These data are strored </span></span>
-<span class="r-in">  <span class="co"># in the data frame EPA.94b.tccb.df.  </span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co"># Using the log-transformed data, create </span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co"># 1. A dynamite plot (bar plot showing mean plus 1 SE)</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co"># 2. A confidence interval plot.</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="va">TcCB.mat</span> <span class="op">&lt;-</span> <span class="fu"><a href="summaryStats.html">summaryStats</a></span><span class="op">(</span><span class="va">TcCB</span> <span class="op">~</span> <span class="va">Area</span>, data <span class="op">=</span> <span class="va">EPA.94b.tccb.df</span>, </span>
-<span class="r-in">      se <span class="op">=</span> <span class="cn">TRUE</span>, ci <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span>
-<span class="r-in">  <span class="va">Means</span> <span class="op">&lt;-</span> <span class="va">TcCB.mat</span><span class="op">[</span>, <span class="st">"Mean"</span><span class="op">]</span></span>
-<span class="r-in">  <span class="va">SEs</span>   <span class="op">&lt;-</span> <span class="va">TcCB.mat</span><span class="op">[</span>, <span class="st">"SE"</span><span class="op">]</span></span>
-<span class="r-in">  <span class="va">LCLs</span>  <span class="op">&lt;-</span> <span class="va">TcCB.mat</span><span class="op">[</span>, <span class="st">"95%.LCL"</span><span class="op">]</span></span>
-<span class="r-in">  <span class="va">UCLs</span>  <span class="op">&lt;-</span> <span class="va">TcCB.mat</span><span class="op">[</span>, <span class="st">"95%.UCL"</span><span class="op">]</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="co"># Dynamite Plot</span></span>
-<span class="r-in">  <span class="co">#--------------</span></span>
-<span class="r-in">  <span class="fu"><a href="https://rdrr.io/r/grDevices/dev.html" class="external-link">dev.new</a></span><span class="op">(</span><span class="op">)</span></span>
-<span class="r-in">  <span class="va">group.centers</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/graphics/barplot.html" class="external-link">barplot</a></span><span class="op">(</span><span class="va">Means</span>, col <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"red"</span>, <span class="st">"blue"</span><span class="op">)</span>, </span>
-<span class="r-in">    ylim <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/range.html" class="external-link">range</a></span><span class="op">(</span><span class="fl">0</span>, <span class="va">Means</span>, <span class="va">Means</span> <span class="op">+</span> <span class="va">SEs</span><span class="op">)</span>, ylab <span class="op">=</span> <span class="st">"TcCB (ppb)"</span>, </span>
-<span class="r-in">    main <span class="op">=</span> <span class="st">"Dynamite Plot for TcCB Data"</span><span class="op">)</span></span>
-<span class="r-in">  <span class="fu">errorBar</span><span class="op">(</span>x <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/vector.html" class="external-link">as.vector</a></span><span class="op">(</span><span class="va">group.centers</span><span class="op">)</span>, y <span class="op">=</span> <span class="va">Means</span>, </span>
-<span class="r-in">    lower <span class="op">=</span> <span class="va">SEs</span>, draw.lower <span class="op">=</span> <span class="cn">FALSE</span>, gap <span class="op">=</span> <span class="cn">FALSE</span>, </span>
-<span class="r-in">    col <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"red"</span>, <span class="st">"blue"</span><span class="op">)</span>, add <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span>
-<span class="r-in"></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="co"># Confidence Interval Plot</span></span>
-<span class="r-in">  <span class="co">#-------------------------</span></span>
-<span class="r-in">  <span class="va">xlim</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/graphics/par.html" class="external-link">par</a></span><span class="op">(</span><span class="st">"usr"</span><span class="op">)</span><span class="op">[</span><span class="fl">1</span><span class="op">:</span><span class="fl">2</span><span class="op">]</span></span>
-<span class="r-in">  <span class="fu"><a href="https://rdrr.io/r/grDevices/dev.html" class="external-link">dev.new</a></span><span class="op">(</span><span class="op">)</span></span>
-<span class="r-in">  <span class="fu">errorBar</span><span class="op">(</span>x <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/vector.html" class="external-link">as.vector</a></span><span class="op">(</span><span class="va">group.centers</span><span class="op">)</span>, y <span class="op">=</span> <span class="va">Means</span>, </span>
-<span class="r-in">    lower <span class="op">=</span> <span class="va">LCLs</span>, upper <span class="op">=</span> <span class="va">UCLs</span>, incr <span class="op">=</span> <span class="cn">FALSE</span>, gap <span class="op">=</span> <span class="cn">FALSE</span>, </span>
-<span class="r-in">    col <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"red"</span>, <span class="st">"blue"</span><span class="op">)</span>, xlim <span class="op">=</span> <span class="va">xlim</span>, xaxt <span class="op">=</span> <span class="st">"n"</span>, </span>
-<span class="r-in">    xlab <span class="op">=</span> <span class="st">""</span>, ylab <span class="op">=</span> <span class="st">"TcCB (ppb)"</span>, </span>
-<span class="r-in">    main <span class="op">=</span> <span class="st">"Confidence Interval Plot for TcCB Data"</span><span class="op">)</span></span>
-<span class="r-in">  <span class="fu"><a href="https://rdrr.io/r/graphics/axis.html" class="external-link">axis</a></span><span class="op">(</span><span class="fl">1</span>, at <span class="op">=</span> <span class="va">group.centers</span>, labels <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/dimnames.html" class="external-link">dimnames</a></span><span class="op">(</span><span class="va">TcCB.mat</span><span class="op">)</span><span class="op">[[</span><span class="fl">1</span><span class="op">]</span><span class="op">]</span><span class="op">)</span></span>
-<span class="r-in"></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="co"># Clean up</span></span>
-<span class="r-in">  <span class="co">#---------</span></span>
-<span class="r-in">  <span class="fu"><a href="https://rdrr.io/r/base/rm.html" class="external-link">rm</a></span><span class="op">(</span><span class="va">TcCB.mat</span>, <span class="va">Means</span>, <span class="va">SEs</span>, <span class="va">LCLs</span>, <span class="va">UCLs</span>, <span class="va">group.centers</span>, <span class="va">xlim</span><span class="op">)</span></span>
-<span class="r-in">  <span class="fu"><a href="https://rdrr.io/r/grDevices/dev.html" class="external-link">graphics.off</a></span><span class="op">(</span><span class="op">)</span></span>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span>  <span class="co"># The guidance document USEPA (1994b, pp. 6.22--6.25) </span></span></span>
+<span class="r-in"><span>  <span class="co"># contains measures of 1,2,3,4-Tetrachlorobenzene (TcCB) </span></span></span>
+<span class="r-in"><span>  <span class="co"># concentrations (in parts per billion) from soil samples </span></span></span>
+<span class="r-in"><span>  <span class="co"># at a Reference area and a Cleanup area.  These data are strored </span></span></span>
+<span class="r-in"><span>  <span class="co"># in the data frame EPA.94b.tccb.df.  </span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co"># Using the log-transformed data, create </span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co"># 1. A dynamite plot (bar plot showing mean plus 1 SE)</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co"># 2. A confidence interval plot.</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="va">TcCB.mat</span> <span class="op">&lt;-</span> <span class="fu"><a href="summaryStats.html">summaryStats</a></span><span class="op">(</span><span class="va">TcCB</span> <span class="op">~</span> <span class="va">Area</span>, data <span class="op">=</span> <span class="va">EPA.94b.tccb.df</span>, </span></span>
+<span class="r-in"><span>      se <span class="op">=</span> <span class="cn">TRUE</span>, ci <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></span>
+<span class="r-in"><span>  <span class="va">Means</span> <span class="op">&lt;-</span> <span class="va">TcCB.mat</span><span class="op">[</span>, <span class="st">"Mean"</span><span class="op">]</span></span></span>
+<span class="r-in"><span>  <span class="va">SEs</span>   <span class="op">&lt;-</span> <span class="va">TcCB.mat</span><span class="op">[</span>, <span class="st">"SE"</span><span class="op">]</span></span></span>
+<span class="r-in"><span>  <span class="va">LCLs</span>  <span class="op">&lt;-</span> <span class="va">TcCB.mat</span><span class="op">[</span>, <span class="st">"95%.LCL"</span><span class="op">]</span></span></span>
+<span class="r-in"><span>  <span class="va">UCLs</span>  <span class="op">&lt;-</span> <span class="va">TcCB.mat</span><span class="op">[</span>, <span class="st">"95%.UCL"</span><span class="op">]</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="co"># Dynamite Plot</span></span></span>
+<span class="r-in"><span>  <span class="co">#--------------</span></span></span>
+<span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/r/grDevices/dev.html" class="external-link">dev.new</a></span><span class="op">(</span><span class="op">)</span></span></span>
+<span class="r-in"><span>  <span class="va">group.centers</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/graphics/barplot.html" class="external-link">barplot</a></span><span class="op">(</span><span class="va">Means</span>, col <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"red"</span>, <span class="st">"blue"</span><span class="op">)</span>, </span></span>
+<span class="r-in"><span>    ylim <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/range.html" class="external-link">range</a></span><span class="op">(</span><span class="fl">0</span>, <span class="va">Means</span>, <span class="va">Means</span> <span class="op">+</span> <span class="va">SEs</span><span class="op">)</span>, ylab <span class="op">=</span> <span class="st">"TcCB (ppb)"</span>, </span></span>
+<span class="r-in"><span>    main <span class="op">=</span> <span class="st">"Dynamite Plot for TcCB Data"</span><span class="op">)</span></span></span>
+<span class="r-in"><span>  <span class="fu">errorBar</span><span class="op">(</span>x <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/vector.html" class="external-link">as.vector</a></span><span class="op">(</span><span class="va">group.centers</span><span class="op">)</span>, y <span class="op">=</span> <span class="va">Means</span>, </span></span>
+<span class="r-in"><span>    lower <span class="op">=</span> <span class="va">SEs</span>, draw.lower <span class="op">=</span> <span class="cn">FALSE</span>, gap <span class="op">=</span> <span class="cn">FALSE</span>, </span></span>
+<span class="r-in"><span>    col <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"red"</span>, <span class="st">"blue"</span><span class="op">)</span>, add <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="co"># Confidence Interval Plot</span></span></span>
+<span class="r-in"><span>  <span class="co">#-------------------------</span></span></span>
+<span class="r-in"><span>  <span class="va">xlim</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/graphics/par.html" class="external-link">par</a></span><span class="op">(</span><span class="st">"usr"</span><span class="op">)</span><span class="op">[</span><span class="fl">1</span><span class="op">:</span><span class="fl">2</span><span class="op">]</span></span></span>
+<span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/r/grDevices/dev.html" class="external-link">dev.new</a></span><span class="op">(</span><span class="op">)</span></span></span>
+<span class="r-in"><span>  <span class="fu">errorBar</span><span class="op">(</span>x <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/vector.html" class="external-link">as.vector</a></span><span class="op">(</span><span class="va">group.centers</span><span class="op">)</span>, y <span class="op">=</span> <span class="va">Means</span>, </span></span>
+<span class="r-in"><span>    lower <span class="op">=</span> <span class="va">LCLs</span>, upper <span class="op">=</span> <span class="va">UCLs</span>, incr <span class="op">=</span> <span class="cn">FALSE</span>, gap <span class="op">=</span> <span class="cn">FALSE</span>, </span></span>
+<span class="r-in"><span>    col <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"red"</span>, <span class="st">"blue"</span><span class="op">)</span>, xlim <span class="op">=</span> <span class="va">xlim</span>, xaxt <span class="op">=</span> <span class="st">"n"</span>, </span></span>
+<span class="r-in"><span>    xlab <span class="op">=</span> <span class="st">""</span>, ylab <span class="op">=</span> <span class="st">"TcCB (ppb)"</span>, </span></span>
+<span class="r-in"><span>    main <span class="op">=</span> <span class="st">"Confidence Interval Plot for TcCB Data"</span><span class="op">)</span></span></span>
+<span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/r/graphics/axis.html" class="external-link">axis</a></span><span class="op">(</span><span class="fl">1</span>, at <span class="op">=</span> <span class="va">group.centers</span>, labels <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/dimnames.html" class="external-link">dimnames</a></span><span class="op">(</span><span class="va">TcCB.mat</span><span class="op">)</span><span class="op">[[</span><span class="fl">1</span><span class="op">]</span><span class="op">]</span><span class="op">)</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="co"># Clean up</span></span></span>
+<span class="r-in"><span>  <span class="co">#---------</span></span></span>
+<span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/r/base/rm.html" class="external-link">rm</a></span><span class="op">(</span><span class="va">TcCB.mat</span>, <span class="va">Means</span>, <span class="va">SEs</span>, <span class="va">LCLs</span>, <span class="va">UCLs</span>, <span class="va">group.centers</span>, <span class="va">xlim</span><span class="op">)</span></span></span>
+<span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/r/grDevices/dev.html" class="external-link">graphics.off</a></span><span class="op">(</span><span class="op">)</span></span></span>
 </code></pre></div>
     </div>
   </div>
@@ -226,7 +243,7 @@ The errorBar function is a modified version of the S function
 </div>
 
 <div class="pkgdown">
-  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.2.</p>
+  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.6.</p>
 </div>
 
       </footer></div>

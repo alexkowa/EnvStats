@@ -54,32 +54,39 @@
     </div>
 
     <div id="ref-usage">
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="fu">dtri</span><span class="op">(</span><span class="va">x</span>, min <span class="op">=</span> <span class="fl">0</span>, max <span class="op">=</span> <span class="fl">1</span>, mode <span class="op">=</span> <span class="fl">1</span><span class="op">/</span><span class="fl">2</span><span class="op">)</span>
-  <span class="fu">ptri</span><span class="op">(</span><span class="va">q</span>, min <span class="op">=</span> <span class="fl">0</span>, max <span class="op">=</span> <span class="fl">1</span>, mode <span class="op">=</span> <span class="fl">1</span><span class="op">/</span><span class="fl">2</span><span class="op">)</span>
-  <span class="fu">qtri</span><span class="op">(</span><span class="va">p</span>, min <span class="op">=</span> <span class="fl">0</span>, max <span class="op">=</span> <span class="fl">1</span>, mode <span class="op">=</span> <span class="fl">1</span><span class="op">/</span><span class="fl">2</span><span class="op">)</span>
-  <span class="fu">rtri</span><span class="op">(</span><span class="va">n</span>, min <span class="op">=</span> <span class="fl">0</span>, max <span class="op">=</span> <span class="fl">1</span>, mode <span class="op">=</span> <span class="fl">1</span><span class="op">/</span><span class="fl">2</span><span class="op">)</span></code></pre></div>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">dtri</span><span class="op">(</span><span class="va">x</span>, min <span class="op">=</span> <span class="fl">0</span>, max <span class="op">=</span> <span class="fl">1</span>, mode <span class="op">=</span> <span class="fl">1</span><span class="op">/</span><span class="fl">2</span><span class="op">)</span></span>
+<span>  <span class="fu">ptri</span><span class="op">(</span><span class="va">q</span>, min <span class="op">=</span> <span class="fl">0</span>, max <span class="op">=</span> <span class="fl">1</span>, mode <span class="op">=</span> <span class="fl">1</span><span class="op">/</span><span class="fl">2</span><span class="op">)</span></span>
+<span>  <span class="fu">qtri</span><span class="op">(</span><span class="va">p</span>, min <span class="op">=</span> <span class="fl">0</span>, max <span class="op">=</span> <span class="fl">1</span>, mode <span class="op">=</span> <span class="fl">1</span><span class="op">/</span><span class="fl">2</span><span class="op">)</span></span>
+<span>  <span class="fu">rtri</span><span class="op">(</span><span class="va">n</span>, min <span class="op">=</span> <span class="fl">0</span>, max <span class="op">=</span> <span class="fl">1</span>, mode <span class="op">=</span> <span class="fl">1</span><span class="op">/</span><span class="fl">2</span><span class="op">)</span></span></code></pre></div>
     </div>
 
     <div id="arguments">
     <h2>Arguments</h2>
     <dl><dt>x</dt>
 <dd><p>vector of quantiles.  Missing values (<code>NA</code>s) are allowed.</p></dd>
-<dt>q</dt>
+
+  <dt>q</dt>
 <dd><p>vector of quantiles.  Missing values (<code>NA</code>s) are allowed.</p></dd>
-<dt>p</dt>
+
+  <dt>p</dt>
 <dd><p>vector of probabilities between 0 and 1.  Missing values (<code>NA</code>s) are allowed.</p></dd>
-<dt>n</dt>
+
+  <dt>n</dt>
 <dd><p>sample size.  If <code>length(n)</code> is larger than 1, then <code>length(n)</code> 
   random values are returned.</p></dd>
-<dt>min</dt>
+
+  <dt>min</dt>
 <dd><p>vector of minimum values of the distribution of the random variable.  
   The default value is <code>min=0</code>.</p></dd>
-<dt>max</dt>
+
+  <dt>max</dt>
 <dd><p>vector of maximum values of the random variable.  
   The default value is <code>max=1</code>.</p></dd>
-<dt>mode</dt>
+
+  <dt>mode</dt>
 <dd><p>vector of modes of the random variable.  
   The default value is <code>mode=1/2</code>.</p></dd>
+
 </dl></div>
     <div id="details">
     <h2>Details</h2>
@@ -102,8 +109,10 @@
     </div>
     <div id="value">
     <h2>Value</h2>
-    <p><code>dtri</code> gives the density, <code>ptri</code> gives the distribution function, 
-<code>qtri</code> gives the quantile function, and <code>rtri</code> generates random 
+    <p></p>
+<p><code>dtri</code> gives the density, <code>ptri</code> gives the distribution function,</p>
+<p></p>
+<p><code>qtri</code> gives the quantile function, and <code>rtri</code> generates random 
   deviates.</p>
     </div>
     <div id="references">
@@ -137,41 +146,41 @@
 
     <div id="ref-examples">
     <h2>Examples</h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in">  <span class="co"># Density of a triangular distribution with parameters </span></span>
-<span class="r-in">  <span class="co"># min=10, max=15, and mode=12, evaluated at 12, 13 and 14: </span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="fu">dtri</span><span class="op">(</span><span class="fl">12</span><span class="op">:</span><span class="fl">14</span>, <span class="fl">10</span>, <span class="fl">15</span>, <span class="fl">12</span><span class="op">)</span> </span>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span>  <span class="co"># Density of a triangular distribution with parameters </span></span></span>
+<span class="r-in"><span>  <span class="co"># min=10, max=15, and mode=12, evaluated at 12, 13 and 14: </span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="fu">dtri</span><span class="op">(</span><span class="fl">12</span><span class="op">:</span><span class="fl">14</span>, <span class="fl">10</span>, <span class="fl">15</span>, <span class="fl">12</span><span class="op">)</span> </span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] 0.4000000 0.2666667 0.1333333</span>
-<span class="r-in">  <span class="co">#[1] 0.4000000 0.2666667 0.1333333</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="co">#----------</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="co"># The cdf of a triangular distribution with parameters </span></span>
-<span class="r-in">  <span class="co"># min=2, max=7, and mode=5, evaluated at 3, 4, and 5: </span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="fu">ptri</span><span class="op">(</span><span class="fl">3</span><span class="op">:</span><span class="fl">5</span>, <span class="fl">2</span>, <span class="fl">7</span>, <span class="fl">5</span><span class="op">)</span> </span>
+<span class="r-in"><span>  <span class="co">#[1] 0.4000000 0.2666667 0.1333333</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="co">#----------</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="co"># The cdf of a triangular distribution with parameters </span></span></span>
+<span class="r-in"><span>  <span class="co"># min=2, max=7, and mode=5, evaluated at 3, 4, and 5: </span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="fu">ptri</span><span class="op">(</span><span class="fl">3</span><span class="op">:</span><span class="fl">5</span>, <span class="fl">2</span>, <span class="fl">7</span>, <span class="fl">5</span><span class="op">)</span> </span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] 0.06666667 0.26666667 0.60000000</span>
-<span class="r-in">  <span class="co">#[1] 0.06666667 0.26666667 0.60000000</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="co">#----------</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="co"># The 25'th percentile of a triangular distribution with parameters </span></span>
-<span class="r-in">  <span class="co"># min=1, max=4, and mode=3: </span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="fu">qtri</span><span class="op">(</span><span class="fl">0.25</span>, <span class="fl">1</span>, <span class="fl">4</span>, <span class="fl">3</span><span class="op">)</span> </span>
+<span class="r-in"><span>  <span class="co">#[1] 0.06666667 0.26666667 0.60000000</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="co">#----------</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="co"># The 25'th percentile of a triangular distribution with parameters </span></span></span>
+<span class="r-in"><span>  <span class="co"># min=1, max=4, and mode=3: </span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="fu">qtri</span><span class="op">(</span><span class="fl">0.25</span>, <span class="fl">1</span>, <span class="fl">4</span>, <span class="fl">3</span><span class="op">)</span> </span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] 2.224745</span>
-<span class="r-in">  <span class="co">#[1] 2.224745</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="co">#----------</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="co"># A random sample of 4 numbers from a triangular distribution with </span></span>
-<span class="r-in">  <span class="co"># parameters min=3 , max=20, and mode=12. </span></span>
-<span class="r-in">  <span class="co"># (Note: the call to set.seed simply allows you to reproduce this example.)</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="fu"><a href="https://rdrr.io/r/base/Random.html" class="external-link">set.seed</a></span><span class="op">(</span><span class="fl">10</span><span class="op">)</span> </span>
-<span class="r-in">  <span class="fu">rtri</span><span class="op">(</span><span class="fl">4</span>, <span class="fl">3</span>, <span class="fl">20</span>, <span class="fl">12</span><span class="op">)</span> </span>
+<span class="r-in"><span>  <span class="co">#[1] 2.224745</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="co">#----------</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="co"># A random sample of 4 numbers from a triangular distribution with </span></span></span>
+<span class="r-in"><span>  <span class="co"># parameters min=3 , max=20, and mode=12. </span></span></span>
+<span class="r-in"><span>  <span class="co"># (Note: the call to set.seed simply allows you to reproduce this example.)</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/r/base/Random.html" class="external-link">set.seed</a></span><span class="op">(</span><span class="fl">10</span><span class="op">)</span> </span></span>
+<span class="r-in"><span>  <span class="fu">rtri</span><span class="op">(</span><span class="fl">4</span>, <span class="fl">3</span>, <span class="fl">20</span>, <span class="fl">12</span><span class="op">)</span> </span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] 11.811593  9.850955 11.081885 13.539496</span>
-<span class="r-in">  <span class="co">#[1] 11.811593  9.850955 11.081885 13.539496</span></span>
+<span class="r-in"><span>  <span class="co">#[1] 11.811593  9.850955 11.081885 13.539496</span></span></span>
 </code></pre></div>
     </div>
   </div>
@@ -186,7 +195,7 @@
 </div>
 
 <div class="pkgdown">
-  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.2.</p>
+  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.6.</p>
 </div>
 
       </footer></div>

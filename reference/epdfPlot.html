@@ -50,11 +50,11 @@
     </div>
 
     <div id="ref-usage">
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="fu">epdfPlot</span><span class="op">(</span><span class="va">x</span>, discrete <span class="op">=</span> <span class="cn">FALSE</span>, density.arg.list <span class="op">=</span> <span class="cn">NULL</span>, plot.it <span class="op">=</span> <span class="cn">TRUE</span>, 
-    add <span class="op">=</span> <span class="cn">FALSE</span>, epdf.col <span class="op">=</span> <span class="st">"black"</span>, epdf.lwd <span class="op">=</span> <span class="fl">3</span> <span class="op">*</span> <span class="fu"><a href="https://rdrr.io/r/graphics/par.html" class="external-link">par</a></span><span class="op">(</span><span class="st">"cex"</span><span class="op">)</span>, epdf.lty <span class="op">=</span> <span class="fl">1</span>, 
-    curve.fill <span class="op">=</span> <span class="cn">FALSE</span>, curve.fill.col <span class="op">=</span> <span class="st">"cyan"</span>, <span class="va">...</span>, 
-    type <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/ifelse.html" class="external-link">ifelse</a></span><span class="op">(</span><span class="va">discrete</span>, <span class="st">"h"</span>, <span class="st">"l"</span><span class="op">)</span>, main <span class="op">=</span> <span class="cn">NULL</span>, xlab <span class="op">=</span> <span class="cn">NULL</span>, ylab <span class="op">=</span> <span class="cn">NULL</span>, 
-    xlim <span class="op">=</span> <span class="cn">NULL</span>, ylim <span class="op">=</span> <span class="cn">NULL</span><span class="op">)</span></code></pre></div>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">epdfPlot</span><span class="op">(</span><span class="va">x</span>, discrete <span class="op">=</span> <span class="cn">FALSE</span>, density.arg.list <span class="op">=</span> <span class="cn">NULL</span>, plot.it <span class="op">=</span> <span class="cn">TRUE</span>, </span>
+<span>    add <span class="op">=</span> <span class="cn">FALSE</span>, epdf.col <span class="op">=</span> <span class="st">"black"</span>, epdf.lwd <span class="op">=</span> <span class="fl">3</span> <span class="op">*</span> <span class="fu"><a href="https://rdrr.io/r/graphics/par.html" class="external-link">par</a></span><span class="op">(</span><span class="st">"cex"</span><span class="op">)</span>, epdf.lty <span class="op">=</span> <span class="fl">1</span>, </span>
+<span>    curve.fill <span class="op">=</span> <span class="cn">FALSE</span>, curve.fill.col <span class="op">=</span> <span class="st">"cyan"</span>, <span class="va">...</span>, </span>
+<span>    type <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/ifelse.html" class="external-link">ifelse</a></span><span class="op">(</span><span class="va">discrete</span>, <span class="st">"h"</span>, <span class="st">"l"</span><span class="op">)</span>, main <span class="op">=</span> <span class="cn">NULL</span>, xlab <span class="op">=</span> <span class="cn">NULL</span>, ylab <span class="op">=</span> <span class="cn">NULL</span>, </span>
+<span>    xlim <span class="op">=</span> <span class="cn">NULL</span>, ylim <span class="op">=</span> <span class="cn">NULL</span><span class="op">)</span></span></code></pre></div>
     </div>
 
     <div id="arguments">
@@ -62,41 +62,51 @@
     <dl><dt>x</dt>
 <dd><p>numeric vector of observations.  Missing (<code>NA</code>), undefined (<code>NaN</code>), and 
   infinite (<code>Inf</code>, <code>-Inf</code>) values are allowed but will be removed.</p></dd>
-<dt>discrete</dt>
+
+  <dt>discrete</dt>
 <dd><p>logical scalar indicating whether the assumed parent distribution of <code>x</code> is 
   discrete (<code>discrete=TRUE</code>) or continuous (<code>discrete=FALSE</code>; the default).</p></dd>
-<dt>density.arg.list</dt>
+
+  <dt>density.arg.list</dt>
 <dd><p>list with arguments to the <code><a href="https://rdrr.io/r/stats/density.html" class="external-link">density</a></code> function.  The default value is <br><code>density.arg.list=NULL</code>.  This argument is ignored if <code>discrete=TRUE</code>.</p></dd>
-<dt>plot.it</dt>
+
+  <dt>plot.it</dt>
 <dd><p>logical scalar indicating whether to produce a plot or add to the current plot (see <code>add</code>) 
   on the current graphics device.  The default value is <code>plot.it=TRUE</code>.</p></dd>
-<dt>add</dt>
+
+  <dt>add</dt>
 <dd><p>logical scalar indicating whether to add the empirical pdf to the current plot 
   (<code>add=TRUE</code>) or generate a new plot (<code>add=FALSE</code>; the default).  
   This argument is ignored if <code>plot.it=FALSE</code>.</p></dd>
-<dt>epdf.col</dt>
+
+  <dt>epdf.col</dt>
 <dd><p>a numeric scalar or character string determining the color of the empirical pdf 
   line or points.  The default value is <code>epdf.col="black"</code>.  
   See the entry for <code>col</code> in the help file for 
   <code><a href="https://rdrr.io/r/graphics/par.html" class="external-link">par</a></code> for more information.</p></dd>
-<dt>epdf.lwd</dt>
+
+  <dt>epdf.lwd</dt>
 <dd><p>a numeric scalar determining the width of the empirical pdf line.  
   The default value is <code>epdf.lwd=3*par("cex")</code>.  See the entry for 
   <code>lwd</code> in the help file for <code><a href="https://rdrr.io/r/graphics/par.html" class="external-link">par</a></code> 
   for more information.</p></dd>
-<dt>epdf.lty</dt>
+
+  <dt>epdf.lty</dt>
 <dd><p>a numeric scalar determining the line type of the empirical pdf line.  
   The default value is <code>ecdf.lty=1</code>.  See the entry for <code>lty</code> in the help file for <code><a href="https://rdrr.io/r/graphics/par.html" class="external-link">par</a></code> 
   for more information.</p></dd>
-<dt>curve.fill</dt>
+
+  <dt>curve.fill</dt>
 <dd><p>a logical scalar indicating whether to fill in the area below the empirical pdf 
   curve with the 
   color specified by <code>curve.fill.col</code>. The default value is <br><code>curve.fill=FALSE</code>.</p></dd>
-<dt>curve.fill.col</dt>
+
+  <dt>curve.fill.col</dt>
 <dd><p>a numeric scalar or character string indicating what color to use to fill in the 
   area below the empirical pdf curve.  The default value is 
   <code>curve.fill.col="cyan"</code>.  This argument is ignored if <code>curve.fill=FALSE</code>.</p></dd>
-<dt>type, main, xlab, ylab, xlim, ylim, ...</dt>
+
+  <dt>type, main, xlab, ylab, xlim, ylim, ...</dt>
 <dd><p>additional graphical parameters (see <code><a href="https://rdrr.io/r/graphics/lines.html" class="external-link">lines</a></code> and <code><a href="https://rdrr.io/r/graphics/par.html" class="external-link">par</a></code>).  
   In particular, the argument <code>type</code> specifies the kind of line type.  
   By default, the function <code>epdfPlot</code> plots histogram-like vertical lines 
@@ -105,6 +115,7 @@
   The user may override these defaults by supplying the graphics parameter <code>type</code> 
   (<code>type="h"</code> for histogram-like vertical lines, <code>type="l"</code> for linear 
   interpolation, <code>type="p"</code> for points only, etc.).</p></dd>
+
 </dl></div>
     <div id="details">
     <h2>Details</h2>
@@ -118,11 +129,14 @@
     </div>
     <div id="value">
     <h2>Value</h2>
-    <p><code>epdfPlot</code> invisibly returns a list with the following components:</p>
+    <p></p>
+<p><code>epdfPlot</code> invisibly returns a list with the following components:</p>
 <dl><dt>x</dt>
 <dd><p>numeric vector of ordered quantiles.</p></dd>
-<dt>f.x</dt>
+
+  <dt>f.x</dt>
 <dd><p>numeric vector of the associated estimated values of the pdf.</p></dd>
+
 </dl></div>
     <div id="references">
     <h2>References</h2>
@@ -149,36 +163,36 @@
 
     <div id="ref-examples">
     <h2>Examples</h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in">  <span class="co"># Using Reference Area TcCB data in EPA.94b.tccb.df, </span></span>
-<span class="r-in">  <span class="co"># create a histogram of the log-transformed observations, </span></span>
-<span class="r-in">  <span class="co"># then superimpose the empirical pdf plot.</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="fu"><a href="https://rdrr.io/r/grDevices/dev.html" class="external-link">dev.new</a></span><span class="op">(</span><span class="op">)</span></span>
-<span class="r-in">  <span class="va">log.TcCB</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/with.html" class="external-link">with</a></span><span class="op">(</span><span class="va">EPA.94b.tccb.df</span>, <span class="fu"><a href="https://rdrr.io/r/base/Log.html" class="external-link">log</a></span><span class="op">(</span><span class="va">TcCB</span><span class="op">[</span><span class="va">Area</span> <span class="op">==</span> <span class="st">"Reference"</span><span class="op">]</span><span class="op">)</span><span class="op">)</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="fu"><a href="https://rdrr.io/r/graphics/hist.html" class="external-link">hist</a></span><span class="op">(</span><span class="va">log.TcCB</span>, freq <span class="op">=</span> <span class="cn">FALSE</span>, xlim <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="op">-</span><span class="fl">2</span>, <span class="fl">1</span><span class="op">)</span>,</span>
-<span class="r-in">    col <span class="op">=</span> <span class="st">"cyan"</span>, xlab <span class="op">=</span> <span class="st">"log [ TcCB (ppb) ]"</span>,</span>
-<span class="r-in">    ylab <span class="op">=</span> <span class="st">"Relative Frequency"</span>, </span>
-<span class="r-in">    main <span class="op">=</span> <span class="st">"Reference Area TcCB with Empirical PDF"</span><span class="op">)</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="fu">epdfPlot</span><span class="op">(</span><span class="va">log.TcCB</span>, add <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="co">#==========</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="co"># Generate 20 observations from a Poisson distribution with </span></span>
-<span class="r-in">  <span class="co"># parameter lambda = 10, and plot the empirical PDF.</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="fu"><a href="https://rdrr.io/r/base/Random.html" class="external-link">set.seed</a></span><span class="op">(</span><span class="fl">875</span><span class="op">)</span></span>
-<span class="r-in">  <span class="va">x</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/Poisson.html" class="external-link">rpois</a></span><span class="op">(</span><span class="fl">20</span>, lambda <span class="op">=</span> <span class="fl">10</span><span class="op">)</span></span>
-<span class="r-in">  <span class="fu"><a href="https://rdrr.io/r/grDevices/dev.html" class="external-link">dev.new</a></span><span class="op">(</span><span class="op">)</span></span>
-<span class="r-in">  <span class="fu">epdfPlot</span><span class="op">(</span><span class="va">x</span>, discrete <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="co">#==========</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="co"># Clean up</span></span>
-<span class="r-in">  <span class="co">#---------</span></span>
-<span class="r-in">  <span class="fu"><a href="https://rdrr.io/r/base/rm.html" class="external-link">rm</a></span><span class="op">(</span><span class="va">log.TcCB</span>, <span class="va">x</span><span class="op">)</span></span>
-<span class="r-in">  <span class="fu"><a href="https://rdrr.io/r/grDevices/dev.html" class="external-link">graphics.off</a></span><span class="op">(</span><span class="op">)</span></span>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span>  <span class="co"># Using Reference Area TcCB data in EPA.94b.tccb.df, </span></span></span>
+<span class="r-in"><span>  <span class="co"># create a histogram of the log-transformed observations, </span></span></span>
+<span class="r-in"><span>  <span class="co"># then superimpose the empirical pdf plot.</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/r/grDevices/dev.html" class="external-link">dev.new</a></span><span class="op">(</span><span class="op">)</span></span></span>
+<span class="r-in"><span>  <span class="va">log.TcCB</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/with.html" class="external-link">with</a></span><span class="op">(</span><span class="va">EPA.94b.tccb.df</span>, <span class="fu"><a href="https://rdrr.io/r/base/Log.html" class="external-link">log</a></span><span class="op">(</span><span class="va">TcCB</span><span class="op">[</span><span class="va">Area</span> <span class="op">==</span> <span class="st">"Reference"</span><span class="op">]</span><span class="op">)</span><span class="op">)</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/r/graphics/hist.html" class="external-link">hist</a></span><span class="op">(</span><span class="va">log.TcCB</span>, freq <span class="op">=</span> <span class="cn">FALSE</span>, xlim <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="op">-</span><span class="fl">2</span>, <span class="fl">1</span><span class="op">)</span>,</span></span>
+<span class="r-in"><span>    col <span class="op">=</span> <span class="st">"cyan"</span>, xlab <span class="op">=</span> <span class="st">"log [ TcCB (ppb) ]"</span>,</span></span>
+<span class="r-in"><span>    ylab <span class="op">=</span> <span class="st">"Relative Frequency"</span>, </span></span>
+<span class="r-in"><span>    main <span class="op">=</span> <span class="st">"Reference Area TcCB with Empirical PDF"</span><span class="op">)</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="fu">epdfPlot</span><span class="op">(</span><span class="va">log.TcCB</span>, add <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="co">#==========</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="co"># Generate 20 observations from a Poisson distribution with </span></span></span>
+<span class="r-in"><span>  <span class="co"># parameter lambda = 10, and plot the empirical PDF.</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/r/base/Random.html" class="external-link">set.seed</a></span><span class="op">(</span><span class="fl">875</span><span class="op">)</span></span></span>
+<span class="r-in"><span>  <span class="va">x</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/Poisson.html" class="external-link">rpois</a></span><span class="op">(</span><span class="fl">20</span>, lambda <span class="op">=</span> <span class="fl">10</span><span class="op">)</span></span></span>
+<span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/r/grDevices/dev.html" class="external-link">dev.new</a></span><span class="op">(</span><span class="op">)</span></span></span>
+<span class="r-in"><span>  <span class="fu">epdfPlot</span><span class="op">(</span><span class="va">x</span>, discrete <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="co">#==========</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="co"># Clean up</span></span></span>
+<span class="r-in"><span>  <span class="co">#---------</span></span></span>
+<span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/r/base/rm.html" class="external-link">rm</a></span><span class="op">(</span><span class="va">log.TcCB</span>, <span class="va">x</span><span class="op">)</span></span></span>
+<span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/r/grDevices/dev.html" class="external-link">graphics.off</a></span><span class="op">(</span><span class="op">)</span></span></span>
 </code></pre></div>
     </div>
   </div>
@@ -193,7 +207,7 @@
 </div>
 
 <div class="pkgdown">
-  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.2.</p>
+  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.6.</p>
 </div>
 
       </footer></div>

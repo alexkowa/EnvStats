@@ -184,12 +184,12 @@ Note:  The names of all EnvStats functions start with a lowercase letter, and
 
     <div id="ref-examples">
     <h2>Examples</h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in">  <span class="co"># Look at plots and summary statistics for the TcCB data given in</span></span>
-<span class="r-in">  <span class="co"># USEPA (1994b), (the data are stored in EPA.94b.tccb.df).</span></span>
-<span class="r-in">  <span class="co"># Arbitrarily set the one censored observation to the censoring level.</span></span>
-<span class="r-in">  <span class="co"># Group by the variable Area.</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="va">EPA.94b.tccb.df</span></span>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span>  <span class="co"># Look at plots and summary statistics for the TcCB data given in</span></span></span>
+<span class="r-in"><span>  <span class="co"># USEPA (1994b), (the data are stored in EPA.94b.tccb.df).</span></span></span>
+<span class="r-in"><span>  <span class="co"># Arbitrarily set the one censored observation to the censoring level.</span></span></span>
+<span class="r-in"><span>  <span class="co"># Group by the variable Area.</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="va">EPA.94b.tccb.df</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>     TcCB.orig   TcCB Censored      Area</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 1        0.22   0.22    FALSE Reference</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 2        0.23   0.23    FALSE Reference</span>
@@ -315,50 +315,50 @@ Note:  The names of all EnvStats functions start with a lowercase letter, and
 <span class="r-out co"><span class="r-pr">#&gt;</span> 122     18.40  18.40    FALSE   Cleanup</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 123     51.97  51.97    FALSE   Cleanup</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 124    168.64 168.64    FALSE   Cleanup</span>
-<span class="r-in">  <span class="co">#    TcCB.orig   TcCB Censored      Area</span></span>
-<span class="r-in">  <span class="co">#1        0.22   0.22    FALSE Reference</span></span>
-<span class="r-in">  <span class="co">#2        0.23   0.23    FALSE Reference</span></span>
-<span class="r-in">  <span class="co">#...</span></span>
-<span class="r-in">  <span class="co">#46       1.20   1.20    FALSE Reference</span></span>
-<span class="r-in">  <span class="co">#47       1.33   1.33    FALSE Reference</span></span>
-<span class="r-in">  <span class="co">#48      &lt;0.09   0.09     TRUE   Cleanup</span></span>
-<span class="r-in">  <span class="co">#49       0.09   0.09    FALSE   Cleanup</span></span>
-<span class="r-in">  <span class="co">#...</span></span>
-<span class="r-in">  <span class="co">#123     51.97  51.97    FALSE   Cleanup</span></span>
-<span class="r-in">  <span class="co">#124    168.64 168.64    FALSE   Cleanup</span></span>
-<span class="r-in"></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="co"># First plot the data</span></span>
-<span class="r-in">  <span class="co">#--------------------</span></span>
-<span class="r-in">  <span class="fu"><a href="https://rdrr.io/r/grDevices/dev.html" class="external-link">dev.new</a></span><span class="op">(</span><span class="op">)</span></span>
-<span class="r-in">  <span class="fu"><a href="stripChart.html">stripChart</a></span><span class="op">(</span><span class="va">TcCB</span> <span class="op">~</span> <span class="va">Area</span>, data <span class="op">=</span> <span class="va">EPA.94b.tccb.df</span>,</span>
-<span class="r-in">    xlab <span class="op">=</span> <span class="st">"Area"</span>, ylab <span class="op">=</span> <span class="st">"TcCB (ppb)"</span><span class="op">)</span></span>
-<span class="r-in">  <span class="fu"><a href="https://rdrr.io/r/graphics/mtext.html" class="external-link">mtext</a></span><span class="op">(</span><span class="st">"TcCB Concentrations by Area"</span>, line <span class="op">=</span> <span class="fl">3</span>, cex <span class="op">=</span> <span class="fl">1.25</span>, font <span class="op">=</span> <span class="fl">2</span><span class="op">)</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="fu"><a href="https://rdrr.io/r/grDevices/dev.html" class="external-link">dev.new</a></span><span class="op">(</span><span class="op">)</span></span>
-<span class="r-in">  <span class="fu"><a href="stripChart.html">stripChart</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/Log.html" class="external-link">log10</a></span><span class="op">(</span><span class="va">TcCB</span><span class="op">)</span> <span class="op">~</span> <span class="va">Area</span>, data <span class="op">=</span> <span class="va">EPA.94b.tccb.df</span>,</span>
-<span class="r-in">    p.value <span class="op">=</span> <span class="cn">TRUE</span>,</span>
-<span class="r-in">    xlab <span class="op">=</span> <span class="st">"Area"</span>, ylab <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/expression.html" class="external-link">expression</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/paste.html" class="external-link">paste</a></span><span class="op">(</span><span class="va">log</span><span class="op">[</span><span class="fl">10</span><span class="op">]</span>, <span class="st">" [ TcCB (ppb) ]"</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></span>
-<span class="r-in">  <span class="fu"><a href="https://rdrr.io/r/graphics/mtext.html" class="external-link">mtext</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/expression.html" class="external-link">expression</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/paste.html" class="external-link">paste</a></span><span class="op">(</span><span class="va">log</span><span class="op">[</span><span class="fl">10</span><span class="op">]</span>, <span class="st">"(TcCB) Concentrations by Area"</span><span class="op">)</span><span class="op">)</span>,</span>
-<span class="r-in">    line <span class="op">=</span> <span class="fl">3</span>, cex <span class="op">=</span> <span class="fl">1.25</span>, font <span class="op">=</span> <span class="fl">2</span><span class="op">)</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="co">#--------------------------------------------------------------------</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="co"># Now compute summary statistics</span></span>
-<span class="r-in">  <span class="co">#-------------------------------</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="fu"><a href="https://rdrr.io/r/base/sum.html" class="external-link">sum</a></span><span class="op">(</span><span class="va">EPA.94b.tccb.df</span><span class="op">$</span><span class="va">Censored</span><span class="op">)</span></span>
+<span class="r-in"><span>  <span class="co">#    TcCB.orig   TcCB Censored      Area</span></span></span>
+<span class="r-in"><span>  <span class="co">#1        0.22   0.22    FALSE Reference</span></span></span>
+<span class="r-in"><span>  <span class="co">#2        0.23   0.23    FALSE Reference</span></span></span>
+<span class="r-in"><span>  <span class="co">#...</span></span></span>
+<span class="r-in"><span>  <span class="co">#46       1.20   1.20    FALSE Reference</span></span></span>
+<span class="r-in"><span>  <span class="co">#47       1.33   1.33    FALSE Reference</span></span></span>
+<span class="r-in"><span>  <span class="co">#48      &lt;0.09   0.09     TRUE   Cleanup</span></span></span>
+<span class="r-in"><span>  <span class="co">#49       0.09   0.09    FALSE   Cleanup</span></span></span>
+<span class="r-in"><span>  <span class="co">#...</span></span></span>
+<span class="r-in"><span>  <span class="co">#123     51.97  51.97    FALSE   Cleanup</span></span></span>
+<span class="r-in"><span>  <span class="co">#124    168.64 168.64    FALSE   Cleanup</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="co"># First plot the data</span></span></span>
+<span class="r-in"><span>  <span class="co">#--------------------</span></span></span>
+<span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/r/grDevices/dev.html" class="external-link">dev.new</a></span><span class="op">(</span><span class="op">)</span></span></span>
+<span class="r-in"><span>  <span class="fu"><a href="stripChart.html">stripChart</a></span><span class="op">(</span><span class="va">TcCB</span> <span class="op">~</span> <span class="va">Area</span>, data <span class="op">=</span> <span class="va">EPA.94b.tccb.df</span>,</span></span>
+<span class="r-in"><span>    xlab <span class="op">=</span> <span class="st">"Area"</span>, ylab <span class="op">=</span> <span class="st">"TcCB (ppb)"</span><span class="op">)</span></span></span>
+<span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/r/graphics/mtext.html" class="external-link">mtext</a></span><span class="op">(</span><span class="st">"TcCB Concentrations by Area"</span>, line <span class="op">=</span> <span class="fl">3</span>, cex <span class="op">=</span> <span class="fl">1.25</span>, font <span class="op">=</span> <span class="fl">2</span><span class="op">)</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/r/grDevices/dev.html" class="external-link">dev.new</a></span><span class="op">(</span><span class="op">)</span></span></span>
+<span class="r-in"><span>  <span class="fu"><a href="stripChart.html">stripChart</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/Log.html" class="external-link">log10</a></span><span class="op">(</span><span class="va">TcCB</span><span class="op">)</span> <span class="op">~</span> <span class="va">Area</span>, data <span class="op">=</span> <span class="va">EPA.94b.tccb.df</span>,</span></span>
+<span class="r-in"><span>    p.value <span class="op">=</span> <span class="cn">TRUE</span>,</span></span>
+<span class="r-in"><span>    xlab <span class="op">=</span> <span class="st">"Area"</span>, ylab <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/expression.html" class="external-link">expression</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/paste.html" class="external-link">paste</a></span><span class="op">(</span><span class="va">log</span><span class="op">[</span><span class="fl">10</span><span class="op">]</span>, <span class="st">" [ TcCB (ppb) ]"</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></span></span>
+<span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/r/graphics/mtext.html" class="external-link">mtext</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/expression.html" class="external-link">expression</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/paste.html" class="external-link">paste</a></span><span class="op">(</span><span class="va">log</span><span class="op">[</span><span class="fl">10</span><span class="op">]</span>, <span class="st">"(TcCB) Concentrations by Area"</span><span class="op">)</span><span class="op">)</span>,</span></span>
+<span class="r-in"><span>    line <span class="op">=</span> <span class="fl">3</span>, cex <span class="op">=</span> <span class="fl">1.25</span>, font <span class="op">=</span> <span class="fl">2</span><span class="op">)</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="co">#--------------------------------------------------------------------</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="co"># Now compute summary statistics</span></span></span>
+<span class="r-in"><span>  <span class="co">#-------------------------------</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/r/base/sum.html" class="external-link">sum</a></span><span class="op">(</span><span class="va">EPA.94b.tccb.df</span><span class="op">$</span><span class="va">Censored</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] 1</span>
-<span class="r-in">  <span class="co">#[1] 1</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="fu"><a href="https://rdrr.io/r/base/with.html" class="external-link">with</a></span><span class="op">(</span><span class="va">EPA.94b.tccb.df</span>, <span class="va">TcCB</span><span class="op">[</span><span class="va">Censored</span><span class="op">]</span><span class="op">)</span></span>
+<span class="r-in"><span>  <span class="co">#[1] 1</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/r/base/with.html" class="external-link">with</a></span><span class="op">(</span><span class="va">EPA.94b.tccb.df</span>, <span class="va">TcCB</span><span class="op">[</span><span class="va">Censored</span><span class="op">]</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] 0.09</span>
-<span class="r-in">  <span class="co">#0.09</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="co"># Summary statistics will treat the one censored value</span></span>
-<span class="r-in">  <span class="co"># as assuming the detection limit.</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="fu"><a href="summaryFull.html">summaryFull</a></span><span class="op">(</span><span class="va">TcCB</span> <span class="op">~</span> <span class="va">Area</span>, data <span class="op">=</span> <span class="va">EPA.94b.tccb.df</span><span class="op">)</span></span>
+<span class="r-in"><span>  <span class="co">#0.09</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="co"># Summary statistics will treat the one censored value</span></span></span>
+<span class="r-in"><span>  <span class="co"># as assuming the detection limit.</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="fu"><a href="summaryFull.html">summaryFull</a></span><span class="op">(</span><span class="va">TcCB</span> <span class="op">~</span> <span class="va">Area</span>, data <span class="op">=</span> <span class="va">EPA.94b.tccb.df</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>                               Cleanup Reference</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> N                             77.0000   47.0000</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Mean                           3.9150    0.5985</span>
@@ -383,26 +383,26 @@ Note:  The names of all EnvStats functions start with a lowercase letter, and
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] TRUE</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> attr(,"drop0trailing")</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] TRUE</span>
-<span class="r-in">  <span class="co">#                             Cleanup  Reference</span></span>
-<span class="r-in">  <span class="co">#N                             77       47</span></span>
-<span class="r-in">  <span class="co">#Mean                           3.915    0.5985</span></span>
-<span class="r-in">  <span class="co">#Median                         0.43     0.54</span></span>
-<span class="r-in">  <span class="co">#10% Trimmed Mean               0.6846   0.5728</span></span>
-<span class="r-in">  <span class="co">#Geometric Mean                 0.5784   0.5382</span></span>
-<span class="r-in">  <span class="co">#Skew                           7.717    0.9019</span></span>
-<span class="r-in">  <span class="co">#Kurtosis                      62.67     0.132</span></span>
-<span class="r-in">  <span class="co">#Min                            0.09     0.22</span></span>
-<span class="r-in">  <span class="co">#Max                          168.6      1.33</span></span>
-<span class="r-in">  <span class="co">#Range                        168.5      1.11</span></span>
-<span class="r-in">  <span class="co">#1st Quartile                   0.23     0.39</span></span>
-<span class="r-in">  <span class="co">#3rd Quartile                   1.1      0.75</span></span>
-<span class="r-in">  <span class="co">#Standard Deviation            20.02     0.2836</span></span>
-<span class="r-in">  <span class="co">#Geometric Standard Deviation   3.898    1.597</span></span>
-<span class="r-in">  <span class="co">#Interquartile Range            0.87     0.36</span></span>
-<span class="r-in">  <span class="co">#Median Absolute Deviation      0.3558   0.2669</span></span>
-<span class="r-in">  <span class="co">#Coefficient of Variation       5.112    0.4739</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="fu"><a href="summaryStats.html">summaryStats</a></span><span class="op">(</span><span class="va">TcCB</span> <span class="op">~</span> <span class="va">Area</span>, data <span class="op">=</span> <span class="va">EPA.94b.tccb.df</span>, digits <span class="op">=</span> <span class="fl">1</span><span class="op">)</span></span>
+<span class="r-in"><span>  <span class="co">#                             Cleanup  Reference</span></span></span>
+<span class="r-in"><span>  <span class="co">#N                             77       47</span></span></span>
+<span class="r-in"><span>  <span class="co">#Mean                           3.915    0.5985</span></span></span>
+<span class="r-in"><span>  <span class="co">#Median                         0.43     0.54</span></span></span>
+<span class="r-in"><span>  <span class="co">#10% Trimmed Mean               0.6846   0.5728</span></span></span>
+<span class="r-in"><span>  <span class="co">#Geometric Mean                 0.5784   0.5382</span></span></span>
+<span class="r-in"><span>  <span class="co">#Skew                           7.717    0.9019</span></span></span>
+<span class="r-in"><span>  <span class="co">#Kurtosis                      62.67     0.132</span></span></span>
+<span class="r-in"><span>  <span class="co">#Min                            0.09     0.22</span></span></span>
+<span class="r-in"><span>  <span class="co">#Max                          168.6      1.33</span></span></span>
+<span class="r-in"><span>  <span class="co">#Range                        168.5      1.11</span></span></span>
+<span class="r-in"><span>  <span class="co">#1st Quartile                   0.23     0.39</span></span></span>
+<span class="r-in"><span>  <span class="co">#3rd Quartile                   1.1      0.75</span></span></span>
+<span class="r-in"><span>  <span class="co">#Standard Deviation            20.02     0.2836</span></span></span>
+<span class="r-in"><span>  <span class="co">#Geometric Standard Deviation   3.898    1.597</span></span></span>
+<span class="r-in"><span>  <span class="co">#Interquartile Range            0.87     0.36</span></span></span>
+<span class="r-in"><span>  <span class="co">#Median Absolute Deviation      0.3558   0.2669</span></span></span>
+<span class="r-in"><span>  <span class="co">#Coefficient of Variation       5.112    0.4739</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="fu"><a href="summaryStats.html">summaryStats</a></span><span class="op">(</span><span class="va">TcCB</span> <span class="op">~</span> <span class="va">Area</span>, data <span class="op">=</span> <span class="va">EPA.94b.tccb.df</span>, digits <span class="op">=</span> <span class="fl">1</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>            N Mean   SD Median Min   Max</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Cleanup   77  3.9 20.0    0.4 0.1 168.6</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Reference 47  0.6  0.3    0.5 0.2   1.3</span>
@@ -412,19 +412,19 @@ Note:  The names of all EnvStats functions start with a lowercase letter, and
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] FALSE</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> attr(,"drop0trailing")</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] TRUE</span>
-<span class="r-in">  <span class="co">#           N Mean   SD Median Min   Max</span></span>
-<span class="r-in">  <span class="co">#Cleanup   77  3.9 20.0    0.4 0.1 168.6</span></span>
-<span class="r-in">  <span class="co">#Reference 47  0.6  0.3    0.5 0.2   1.3</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="co">#----------------------------------------------------------------</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="co"># Compute Shapiro-Wilk Goodness-of-Fit statistic for the</span></span>
-<span class="r-in">  <span class="co"># Reference Area TcCB data assuming a lognormal distribution</span></span>
-<span class="r-in">  <span class="co">#-----------------------------------------------------------</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="va">sw.list</span> <span class="op">&lt;-</span> <span class="fu"><a href="gofTest.html">gofTest</a></span><span class="op">(</span><span class="va">TcCB</span> <span class="op">~</span> <span class="fl">1</span>, data <span class="op">=</span> <span class="va">EPA.94b.tccb.df</span>,</span>
-<span class="r-in">    subset <span class="op">=</span> <span class="va">Area</span> <span class="op">==</span> <span class="st">"Reference"</span>, dist <span class="op">=</span> <span class="st">"lnorm"</span><span class="op">)</span></span>
-<span class="r-in">  <span class="va">sw.list</span></span>
+<span class="r-in"><span>  <span class="co">#           N Mean   SD Median Min   Max</span></span></span>
+<span class="r-in"><span>  <span class="co">#Cleanup   77  3.9 20.0    0.4 0.1 168.6</span></span></span>
+<span class="r-in"><span>  <span class="co">#Reference 47  0.6  0.3    0.5 0.2   1.3</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="co">#----------------------------------------------------------------</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="co"># Compute Shapiro-Wilk Goodness-of-Fit statistic for the</span></span></span>
+<span class="r-in"><span>  <span class="co"># Reference Area TcCB data assuming a lognormal distribution</span></span></span>
+<span class="r-in"><span>  <span class="co">#-----------------------------------------------------------</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="va">sw.list</span> <span class="op">&lt;-</span> <span class="fu"><a href="gofTest.html">gofTest</a></span><span class="op">(</span><span class="va">TcCB</span> <span class="op">~</span> <span class="fl">1</span>, data <span class="op">=</span> <span class="va">EPA.94b.tccb.df</span>,</span></span>
+<span class="r-in"><span>    subset <span class="op">=</span> <span class="va">Area</span> <span class="op">==</span> <span class="st">"Reference"</span>, dist <span class="op">=</span> <span class="st">"lnorm"</span><span class="op">)</span></span></span>
+<span class="r-in"><span>  <span class="va">sw.list</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> $distribution</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] "Lognormal"</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
@@ -484,51 +484,51 @@ Note:  The names of all EnvStats functions start with a lowercase letter, and
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> attr(,"class")</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] "gof"</span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="co"># Results of Goodness-of-Fit Test</span></span>
-<span class="r-in">  <span class="co"># -------------------------------</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co"># Test Method:                     Shapiro-Wilk GOF</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co"># Hypothesized Distribution:       Lognormal</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co"># Estimated Parameter(s):          meanlog = -0.6195712</span></span>
-<span class="r-in">  <span class="co">#                                  sdlog   =  0.4679530</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co"># Estimation Method:               mvue</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co"># Data:                            TcCB</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co"># Subset With:                     Area == "Reference"</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co"># Data Source:                     EPA.94b.tccb.df</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co"># Sample Size:                     47</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co"># Test Statistic:                  W = 0.978638</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co"># Test Statistic Parameter:        n = 47</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co"># P-value:                         0.5371935</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co"># Alternative Hypothesis:          True cdf does not equal the</span></span>
-<span class="r-in">  <span class="co">#                                  Lognormal Distribution.</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="co">#----------</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="co"># Plot results of GOF test</span></span>
-<span class="r-in">  <span class="fu"><a href="https://rdrr.io/r/grDevices/dev.html" class="external-link">dev.new</a></span><span class="op">(</span><span class="op">)</span></span>
-<span class="r-in">  <span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">sw.list</span><span class="op">)</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="co">#----------------------------------------------------------------</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="co"># Based on the Reference Area data, estimate 90th percentile</span></span>
-<span class="r-in">  <span class="co"># and compute a 95% confidence limit for the 90th percentile</span></span>
-<span class="r-in">  <span class="co"># assuming a lognormal distribution.</span></span>
-<span class="r-in">  <span class="co">#------------------------------------------------------------</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="fu"><a href="https://rdrr.io/r/base/with.html" class="external-link">with</a></span><span class="op">(</span><span class="va">EPA.94b.tccb.df</span>,</span>
-<span class="r-in">    <span class="fu"><a href="eqlnorm.html">eqlnorm</a></span><span class="op">(</span><span class="va">TcCB</span><span class="op">[</span><span class="va">Area</span> <span class="op">==</span> <span class="st">"Reference"</span><span class="op">]</span>, p <span class="op">=</span> <span class="fl">0.9</span>, ci <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span><span class="op">)</span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="co"># Results of Goodness-of-Fit Test</span></span></span>
+<span class="r-in"><span>  <span class="co"># -------------------------------</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co"># Test Method:                     Shapiro-Wilk GOF</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co"># Hypothesized Distribution:       Lognormal</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co"># Estimated Parameter(s):          meanlog = -0.6195712</span></span></span>
+<span class="r-in"><span>  <span class="co">#                                  sdlog   =  0.4679530</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co"># Estimation Method:               mvue</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co"># Data:                            TcCB</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co"># Subset With:                     Area == "Reference"</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co"># Data Source:                     EPA.94b.tccb.df</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co"># Sample Size:                     47</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co"># Test Statistic:                  W = 0.978638</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co"># Test Statistic Parameter:        n = 47</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co"># P-value:                         0.5371935</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co"># Alternative Hypothesis:          True cdf does not equal the</span></span></span>
+<span class="r-in"><span>  <span class="co">#                                  Lognormal Distribution.</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="co">#----------</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="co"># Plot results of GOF test</span></span></span>
+<span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/r/grDevices/dev.html" class="external-link">dev.new</a></span><span class="op">(</span><span class="op">)</span></span></span>
+<span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">sw.list</span><span class="op">)</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="co">#----------------------------------------------------------------</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="co"># Based on the Reference Area data, estimate 90th percentile</span></span></span>
+<span class="r-in"><span>  <span class="co"># and compute a 95% confidence limit for the 90th percentile</span></span></span>
+<span class="r-in"><span>  <span class="co"># assuming a lognormal distribution.</span></span></span>
+<span class="r-in"><span>  <span class="co">#------------------------------------------------------------</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/r/base/with.html" class="external-link">with</a></span><span class="op">(</span><span class="va">EPA.94b.tccb.df</span>,</span></span>
+<span class="r-in"><span>    <span class="fu"><a href="eqlnorm.html">eqlnorm</a></span><span class="op">(</span><span class="va">TcCB</span><span class="op">[</span><span class="va">Area</span> <span class="op">==</span> <span class="st">"Reference"</span><span class="op">]</span>, p <span class="op">=</span> <span class="fl">0.9</span>, ci <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> $distribution</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] "Lognormal"</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
@@ -589,39 +589,39 @@ Note:  The names of all EnvStats functions start with a lowercase letter, and
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> attr(,"class")</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] "estimate"</span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="co"># Results of Distribution Parameter Estimation</span></span>
-<span class="r-in">  <span class="co"># --------------------------------------------</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co"># Assumed Distribution:            Lognormal</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co"># Estimated Parameter(s):          meanlog = -0.6195712</span></span>
-<span class="r-in">  <span class="co">#                                  sdlog   =  0.4679530</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co"># Estimation Method:               mvue</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co"># Estimated Quantile(s):           90'th %ile = 0.9803307</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co"># Quantile Estimation Method:      qmle</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co"># Data:                            TcCB[Area == "Reference"]</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co"># Sample Size:                     47</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co"># Confidence Interval for:         90'th %ile</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co"># Confidence Interval Method:      Exact</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co"># Confidence Interval Type:        two-sided</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co"># Confidence Level:                95%</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co"># Confidence Interval:             LCL = 0.8358791</span></span>
-<span class="r-in">                                     <span class="va">UCL</span> <span class="op">=</span> <span class="fl">1.2154977</span></span>
-<span class="r-in">  <span class="co">#----------</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="co"># Cleanup</span></span>
-<span class="r-in">  <span class="fu"><a href="https://rdrr.io/r/base/rm.html" class="external-link">rm</a></span><span class="op">(</span><span class="va">TcCB.ref</span>, <span class="va">sw.list</span><span class="op">)</span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="co"># Results of Distribution Parameter Estimation</span></span></span>
+<span class="r-in"><span>  <span class="co"># --------------------------------------------</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co"># Assumed Distribution:            Lognormal</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co"># Estimated Parameter(s):          meanlog = -0.6195712</span></span></span>
+<span class="r-in"><span>  <span class="co">#                                  sdlog   =  0.4679530</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co"># Estimation Method:               mvue</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co"># Estimated Quantile(s):           90'th %ile = 0.9803307</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co"># Quantile Estimation Method:      qmle</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co"># Data:                            TcCB[Area == "Reference"]</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co"># Sample Size:                     47</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co"># Confidence Interval for:         90'th %ile</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co"># Confidence Interval Method:      Exact</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co"># Confidence Interval Type:        two-sided</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co"># Confidence Level:                95%</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co"># Confidence Interval:             LCL = 0.8358791</span></span></span>
+<span class="r-in"><span>                                     <span class="va">UCL</span> <span class="op">=</span> <span class="fl">1.2154977</span></span></span>
+<span class="r-in"><span>  <span class="co">#----------</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="co"># Cleanup</span></span></span>
+<span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/r/base/rm.html" class="external-link">rm</a></span><span class="op">(</span><span class="va">TcCB.ref</span>, <span class="va">sw.list</span><span class="op">)</span></span></span>
 <span class="r-wrn co"><span class="r-pr">#&gt;</span> <span class="warning">Warning: </span>object 'TcCB.ref' not found</span>
 </code></pre></div>
     </div>
@@ -637,7 +637,7 @@ Note:  The names of all EnvStats functions start with a lowercase letter, and
 </div>
 
 <div class="pkgdown">
-  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.2.</p>
+  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.6.</p>
 </div>
 
       </footer></div>

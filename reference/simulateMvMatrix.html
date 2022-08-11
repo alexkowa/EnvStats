@@ -56,13 +56,13 @@
     </div>
 
     <div id="ref-usage">
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="fu">simulateMvMatrix</span><span class="op">(</span><span class="va">n</span>, distributions <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span>Var.1 <span class="op">=</span> <span class="st">"norm"</span>, Var.2 <span class="op">=</span> <span class="st">"norm"</span><span class="op">)</span>,
-    param.list <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>Var.1 <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>mean <span class="op">=</span> <span class="fl">0</span>, sd <span class="op">=</span> <span class="fl">1</span><span class="op">)</span>, Var.2 <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>mean <span class="op">=</span> <span class="fl">0</span>, sd <span class="op">=</span> <span class="fl">1</span><span class="op">)</span><span class="op">)</span>,
-    cor.mat <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/diag.html" class="external-link">diag</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/length.html" class="external-link">length</a></span><span class="op">(</span><span class="va">distributions</span><span class="op">)</span><span class="op">)</span>, sample.method <span class="op">=</span> <span class="st">"SRS"</span>, seed <span class="op">=</span> <span class="cn">NULL</span>,
-    left.tail.cutoff <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/ifelse.html" class="external-link">ifelse</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/is.finite.html" class="external-link">is.finite</a></span><span class="op">(</span><span class="va">supp.min</span><span class="op">)</span>, <span class="fl">0</span>, <span class="va">.Machine</span><span class="op">$</span><span class="va">double.eps</span><span class="op">)</span>,
-    right.tail.cutoff <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/ifelse.html" class="external-link">ifelse</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/is.finite.html" class="external-link">is.finite</a></span><span class="op">(</span><span class="va">supp.max</span><span class="op">)</span>, <span class="fl">0</span>, <span class="va">.Machine</span><span class="op">$</span><span class="va">double.eps</span><span class="op">)</span>,
-    tol.1 <span class="op">=</span> <span class="va">.Machine</span><span class="op">$</span><span class="va">double.eps</span>, tol.symmetry <span class="op">=</span> <span class="va">.Machine</span><span class="op">$</span><span class="va">double.eps</span>,
-    tol.recip.cond.num <span class="op">=</span> <span class="va">.Machine</span><span class="op">$</span><span class="va">double.eps</span>, max.iter <span class="op">=</span> <span class="fl">10</span><span class="op">)</span></code></pre></div>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">simulateMvMatrix</span><span class="op">(</span><span class="va">n</span>, distributions <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span>Var.1 <span class="op">=</span> <span class="st">"norm"</span>, Var.2 <span class="op">=</span> <span class="st">"norm"</span><span class="op">)</span>,</span>
+<span>    param.list <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>Var.1 <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>mean <span class="op">=</span> <span class="fl">0</span>, sd <span class="op">=</span> <span class="fl">1</span><span class="op">)</span>, Var.2 <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>mean <span class="op">=</span> <span class="fl">0</span>, sd <span class="op">=</span> <span class="fl">1</span><span class="op">)</span><span class="op">)</span>,</span>
+<span>    cor.mat <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/diag.html" class="external-link">diag</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/length.html" class="external-link">length</a></span><span class="op">(</span><span class="va">distributions</span><span class="op">)</span><span class="op">)</span>, sample.method <span class="op">=</span> <span class="st">"SRS"</span>, seed <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>    left.tail.cutoff <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/ifelse.html" class="external-link">ifelse</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/is.finite.html" class="external-link">is.finite</a></span><span class="op">(</span><span class="va">supp.min</span><span class="op">)</span>, <span class="fl">0</span>, <span class="va">.Machine</span><span class="op">$</span><span class="va">double.eps</span><span class="op">)</span>,</span>
+<span>    right.tail.cutoff <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/ifelse.html" class="external-link">ifelse</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/is.finite.html" class="external-link">is.finite</a></span><span class="op">(</span><span class="va">supp.max</span><span class="op">)</span>, <span class="fl">0</span>, <span class="va">.Machine</span><span class="op">$</span><span class="va">double.eps</span><span class="op">)</span>,</span>
+<span>    tol.1 <span class="op">=</span> <span class="va">.Machine</span><span class="op">$</span><span class="va">double.eps</span>, tol.symmetry <span class="op">=</span> <span class="va">.Machine</span><span class="op">$</span><span class="va">double.eps</span>,</span>
+<span>    tol.recip.cond.num <span class="op">=</span> <span class="va">.Machine</span><span class="op">$</span><span class="va">double.eps</span>, max.iter <span class="op">=</span> <span class="fl">10</span><span class="op">)</span></span></code></pre></div>
     </div>
 
     <div id="arguments">
@@ -70,7 +70,8 @@
     <dl><dt>n</dt>
 <dd><p>a positive integer indicating the number of random vectors (i.e., the number of
   rows of the matrix) to generate.</p></dd>
-<dt>distributions</dt>
+
+  <dt>distributions</dt>
 <dd><p>a character vector of length \(k\) denoting the distribution abbreviations for
   each of the \(k\) distributions.  If there is a <code>names</code> attribute associated
   with this character vector, these names will be the column names of the resulting
@@ -83,7 +84,8 @@
 <p>Alternatively, the character string <code>"emp"</code> may be used to denote sampling
   from an empirical distribution based on a set of observations.  The vector
   containing the observations is specified in the argument <code>param.list</code>.</p></dd>
-<dt>param.list</dt>
+
+  <dt>param.list</dt>
 <dd><p>a list containing \(k\) lists that specify the values for the parameters of
   the \(k\) distributions.  If <code>param.list</code> has a <code>names</code> attribute
   (not necessary), the <code>names</code> attribute should be exactly the same as the
@@ -101,13 +103,15 @@
   For example, you may set this component to
   <code>list(obs=</code><em>name</em><code>, discrete=T)</code> to
   specify an empirical distribution based on a discrete random variable.</p></dd>
-<dt>cor.mat</dt>
+
+  <dt>cor.mat</dt>
 <dd><p>a \(k \times k\) matrix specifying the rank correlations between the
   \(k\) distributions.  This argument must be a positive definite symmetric
   matrix, with all 1's on the diagonal.  All elements on the off-diagonal must be
   between -1 and 1. The default value is the \(k \times k\) identity matrix,
   specifying no rank correlation between any of the variables.</p></dd>
-<dt>sample.method</dt>
+
+  <dt>sample.method</dt>
 <dd><p>a character vector of length 1 or \(k\) indicating, for each distribution,
   whether to use Latin Hypercube sampling or simple random sampling.  If
   <code>sample.method</code> is of length 1, it is replicated to length \(k\).
@@ -117,11 +121,13 @@
   indicating simple random sampling for each distribution.  Note that by specifying
   <code>sample.method</code> as a vector of length \(k\), you may use different sampling
   methods for different distributions.</p></dd>
-<dt>seed</dt>
+
+  <dt>seed</dt>
 <dd><p>integer to supply to the <span style="R">R</span> function <code><a href="https://rdrr.io/r/base/Random.html" class="external-link">set.seed</a></code>.
   The default value is <code>seed=NULL</code>, in which case the random seed is
   not set but instead based on the current value of <code>.Random.seed</code>.</p></dd>
-<dt>left.tail.cutoff</dt>
+
+  <dt>left.tail.cutoff</dt>
 <dd><p>a numeric vector of length \(k\) indicating, for each distribution,
   what proportion of the left-tail of the probability distribution to omit
   for Latin Hypercube sampling.  All elements of <code>left.tail.cutoff</code>
@@ -132,7 +138,8 @@
   <code>left.tail.cutoff=.Machine$double.eps</code>.
   The \(j\)'th element of this argument is ignored if
   the \(j\)'th element of <code>sample.method</code> is equal to <code>"SRS"</code>.</p></dd>
-<dt>right.tail.cutoff</dt>
+
+  <dt>right.tail.cutoff</dt>
 <dd><p>a numeric vector of length \(k\) indicating, for each distribution,
   what proportion of the right-tail of the probability distribution to omit
   for Latin Hypercube sampling.  All elements of <code>right.tail.cutoff</code>
@@ -143,15 +150,18 @@
   is <code>right.tail.cutoff=.Machine$double.eps</code>.
   The \(j\)'th element of this argument is ignored if
   the \(j\)'th element of <code>sample.method</code> is equal to <code>"SRS"</code>.</p></dd>
-<dt>tol.1</dt>
+
+  <dt>tol.1</dt>
 <dd><p>a positive numeric scalar indicating the allowable absolute deviation
   from 1 for the diagonal elements of <code>cor.mat</code>.  The default value
   is <code>.Machine$double.eps</code>.</p></dd>
-<dt>tol.symmetry</dt>
+
+  <dt>tol.symmetry</dt>
 <dd><p>a positive numeric scalar indicating the allowable absolute deviation from
   0 for the difference between symmetric elements of <code>cor.mat</code>
   (e.g., <br><code>abs(cor.mat[3,2]-cor.mat[2,3])</code>. The default value is <br><code>.Machine$double.eps</code>.</p></dd>
-<dt>tol.recip.cond.num</dt>
+
+  <dt>tol.recip.cond.num</dt>
 <dd><p>a positive numeric scalar indicating the allowable minimum value of the
   reciprocal of the condition number for <code>cor.mat</code>.  The condition number
   is defined to be the largest eigen value divided by the smallest eigen value.
@@ -159,7 +169,8 @@
   This value must be sufficiently large for <code>cor.mat</code> to be of full rank
   (i.e., to not be singular).  The default value of <code>tol.recip.cond.num</code>
   is <code>.Machine$double.eps</code>.</p></dd>
-<dt>max.iter</dt>
+
+  <dt>max.iter</dt>
 <dd><p>a positive integer indicating the maximum number of iterations to use to
   produce the \(R\) matrix in the algorithm to create the output matrix.
   The sample correlation matrix of \(R\) must be positive definite.
@@ -167,6 +178,7 @@
   large sample sizes (e.g., \(n &gt; 2k\)).  The default value is
   <code>max.iter=10</code>.  See the DETAILS section below for more information on
   the \(R\) matrix.</p></dd>
+
 </dl></div>
     <div id="details">
     <h2>Details</h2>
@@ -288,10 +300,18 @@
     </div>
     <div id="value">
     <h2>Value</h2>
-    <p>A numeric matrix of dimension \(n \times k\) of random numbers,
+    
+
+<p>A numeric matrix of dimension \(n \times k\) of random numbers,
   where the \(j\)'th column of numbers comes from the distribution
-  specified by the \(j\)'th elements of the arguments <code>distributions</code>  and <code>param.list</code>, and the rank correlation of this matrix is
-  approximately equal to the argument <code>cor.mat</code>.  The value of \(n\)  is determined by the argument <code>n</code>, and the value of \(k\) is
+  specified by the \(j\)'th elements of the arguments <code>distributions</code></p>
+
+
+<p>and <code>param.list</code>, and the rank correlation of this matrix is
+  approximately equal to the argument <code>cor.mat</code>.  The value of \(n\)</p>
+
+
+<p>is determined by the argument <code>n</code>, and the value of \(k\) is
   determined by the length of the argument <code>distributions</code>.</p>
     </div>
     <div id="references">
@@ -368,168 +388,168 @@
 
     <div id="ref-examples">
     <h2>Examples</h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in">  <span class="co"># Generate 5 observations from a standard bivariate normal distribution</span></span>
-<span class="r-in">  <span class="co"># with a rank correlation matrix (approximately) equal to the 2 x 2</span></span>
-<span class="r-in">  <span class="co"># identity matrix, using simple random sampling for each</span></span>
-<span class="r-in">  <span class="co"># marginal distribution.</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="fu">simulateMvMatrix</span><span class="op">(</span><span class="fl">5</span>, seed <span class="op">=</span> <span class="fl">47</span><span class="op">)</span></span>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span>  <span class="co"># Generate 5 observations from a standard bivariate normal distribution</span></span></span>
+<span class="r-in"><span>  <span class="co"># with a rank correlation matrix (approximately) equal to the 2 x 2</span></span></span>
+<span class="r-in"><span>  <span class="co"># identity matrix, using simple random sampling for each</span></span></span>
+<span class="r-in"><span>  <span class="co"># marginal distribution.</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="fu">simulateMvMatrix</span><span class="op">(</span><span class="fl">5</span>, seed <span class="op">=</span> <span class="fl">47</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>            Var.1       Var.2</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1,] -0.98548216 -1.82822917</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [2,] -1.46575030 -0.92245624</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [3,] -1.08573747  0.49382018</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [4,] -0.25204590  0.03960243</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [5,]  0.01513086  0.09147291</span>
-<span class="r-in">  <span class="co">#           Var.1       Var.2</span></span>
-<span class="r-in">  <span class="co">#[1,]  0.01513086  0.03960243</span></span>
-<span class="r-in">  <span class="co">#[2,] -1.08573747  0.09147291</span></span>
-<span class="r-in">  <span class="co">#[3,] -0.98548216  0.49382018</span></span>
-<span class="r-in">  <span class="co">#[4,] -0.25204590 -0.92245624</span></span>
-<span class="r-in">  <span class="co">#[5,] -1.46575030 -1.82822917</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="co">#==========</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="co"># Look at the observed rank correlation matrix for 100 observations</span></span>
-<span class="r-in">  <span class="co"># from a standard bivariate normal distribution with a rank correlation matrix</span></span>
-<span class="r-in">  <span class="co"># (approximately) equal to the 2 x 2 identity matrix. Compare this observed</span></span>
-<span class="r-in">  <span class="co"># rank correlation matrix with the observed rank correlation matrix based on</span></span>
-<span class="r-in">  <span class="co"># generating two independent sets of standard normal random numbers.</span></span>
-<span class="r-in">  <span class="co"># Note that the cross-correlation is closer to 0 for the matrix created with</span></span>
-<span class="r-in">  <span class="co"># simulateMvMatrix.</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="fu"><a href="https://rdrr.io/r/stats/cor.html" class="external-link">cor</a></span><span class="op">(</span><span class="fu">simulateMvMatrix</span><span class="op">(</span><span class="fl">100</span>, seed <span class="op">=</span> <span class="fl">47</span><span class="op">)</span>, method <span class="op">=</span> <span class="st">"spearman"</span><span class="op">)</span></span>
+<span class="r-in"><span>  <span class="co">#           Var.1       Var.2</span></span></span>
+<span class="r-in"><span>  <span class="co">#[1,]  0.01513086  0.03960243</span></span></span>
+<span class="r-in"><span>  <span class="co">#[2,] -1.08573747  0.09147291</span></span></span>
+<span class="r-in"><span>  <span class="co">#[3,] -0.98548216  0.49382018</span></span></span>
+<span class="r-in"><span>  <span class="co">#[4,] -0.25204590 -0.92245624</span></span></span>
+<span class="r-in"><span>  <span class="co">#[5,] -1.46575030 -1.82822917</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="co">#==========</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="co"># Look at the observed rank correlation matrix for 100 observations</span></span></span>
+<span class="r-in"><span>  <span class="co"># from a standard bivariate normal distribution with a rank correlation matrix</span></span></span>
+<span class="r-in"><span>  <span class="co"># (approximately) equal to the 2 x 2 identity matrix. Compare this observed</span></span></span>
+<span class="r-in"><span>  <span class="co"># rank correlation matrix with the observed rank correlation matrix based on</span></span></span>
+<span class="r-in"><span>  <span class="co"># generating two independent sets of standard normal random numbers.</span></span></span>
+<span class="r-in"><span>  <span class="co"># Note that the cross-correlation is closer to 0 for the matrix created with</span></span></span>
+<span class="r-in"><span>  <span class="co"># simulateMvMatrix.</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/r/stats/cor.html" class="external-link">cor</a></span><span class="op">(</span><span class="fu">simulateMvMatrix</span><span class="op">(</span><span class="fl">100</span>, seed <span class="op">=</span> <span class="fl">47</span><span class="op">)</span>, method <span class="op">=</span> <span class="st">"spearman"</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>             Var.1       Var.2</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Var.1 1.000000000 0.002472247</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Var.2 0.002472247 1.000000000</span>
-<span class="r-in">  <span class="co">#             Var.1        Var.2</span></span>
-<span class="r-in">  <span class="co">#Var.1  1.000000000 -0.005976598</span></span>
-<span class="r-in">  <span class="co">#Var.2 -0.005976598  1.000000000</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="fu"><a href="https://rdrr.io/r/stats/cor.html" class="external-link">cor</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/matrix.html" class="external-link">matrix</a></span><span class="op">(</span><span class="fu"><a href="simulateVector.html">simulateVector</a></span><span class="op">(</span><span class="fl">200</span>, seed <span class="op">=</span> <span class="fl">47</span><span class="op">)</span>, <span class="fl">100</span> , <span class="fl">2</span><span class="op">)</span>, method <span class="op">=</span> <span class="st">"spearman"</span><span class="op">)</span></span>
+<span class="r-in"><span>  <span class="co">#             Var.1        Var.2</span></span></span>
+<span class="r-in"><span>  <span class="co">#Var.1  1.000000000 -0.005976598</span></span></span>
+<span class="r-in"><span>  <span class="co">#Var.2 -0.005976598  1.000000000</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/r/stats/cor.html" class="external-link">cor</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/matrix.html" class="external-link">matrix</a></span><span class="op">(</span><span class="fu"><a href="simulateVector.html">simulateVector</a></span><span class="op">(</span><span class="fl">200</span>, seed <span class="op">=</span> <span class="fl">47</span><span class="op">)</span>, <span class="fl">100</span> , <span class="fl">2</span><span class="op">)</span>, method <span class="op">=</span> <span class="st">"spearman"</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>             [,1]        [,2]</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1,]  1.00000000 -0.05374137</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [2,] -0.05374137  1.00000000</span>
-<span class="r-in">  <span class="co">#            [,1]        [,2]</span></span>
-<span class="r-in">  <span class="co">#[1,]  1.00000000 -0.05374137</span></span>
-<span class="r-in">  <span class="co">#[2,] -0.05374137  1.00000000</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="co">#==========</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="co"># Generate 1000 observations from a bivariate distribution, where the first</span></span>
-<span class="r-in">  <span class="co"># distribution is a normal distribution with parameters mean=10 and sd=2,</span></span>
-<span class="r-in">  <span class="co"># the second distribution is a lognormal distribution with parameters</span></span>
-<span class="r-in">  <span class="co"># mean=10 and cv=1, and the desired rank correlation between the two</span></span>
-<span class="r-in">  <span class="co"># distributions is 0.8.  Look at the observed rank correlation matrix, and</span></span>
-<span class="r-in">  <span class="co"># plot the results.</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="va">mat</span> <span class="op">&lt;-</span> <span class="fu">simulateMvMatrix</span><span class="op">(</span><span class="fl">1000</span>,</span>
-<span class="r-in">    distributions <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span>N.10.2 <span class="op">=</span> <span class="st">"norm"</span>, LN.10.1 <span class="op">=</span> <span class="st">"lnormAlt"</span><span class="op">)</span>,</span>
-<span class="r-in">    param.list <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>N.10.2  <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>mean<span class="op">=</span><span class="fl">10</span>, sd<span class="op">=</span><span class="fl">2</span><span class="op">)</span>,</span>
-<span class="r-in">                      LN.10.1 <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>mean<span class="op">=</span><span class="fl">10</span>, cv<span class="op">=</span><span class="fl">1</span><span class="op">)</span><span class="op">)</span>,</span>
-<span class="r-in">    cor.mat <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/matrix.html" class="external-link">matrix</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">1</span>, <span class="fl">.8</span>, <span class="fl">.8</span>, <span class="fl">1</span><span class="op">)</span>, <span class="fl">2</span>, <span class="fl">2</span><span class="op">)</span>, seed <span class="op">=</span> <span class="fl">47</span><span class="op">)</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="fu"><a href="https://rdrr.io/r/base/Round.html" class="external-link">round</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/stats/cor.html" class="external-link">cor</a></span><span class="op">(</span><span class="va">mat</span>, method <span class="op">=</span> <span class="st">"spearman"</span><span class="op">)</span>, <span class="fl">2</span><span class="op">)</span></span>
+<span class="r-in"><span>  <span class="co">#            [,1]        [,2]</span></span></span>
+<span class="r-in"><span>  <span class="co">#[1,]  1.00000000 -0.05374137</span></span></span>
+<span class="r-in"><span>  <span class="co">#[2,] -0.05374137  1.00000000</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="co">#==========</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="co"># Generate 1000 observations from a bivariate distribution, where the first</span></span></span>
+<span class="r-in"><span>  <span class="co"># distribution is a normal distribution with parameters mean=10 and sd=2,</span></span></span>
+<span class="r-in"><span>  <span class="co"># the second distribution is a lognormal distribution with parameters</span></span></span>
+<span class="r-in"><span>  <span class="co"># mean=10 and cv=1, and the desired rank correlation between the two</span></span></span>
+<span class="r-in"><span>  <span class="co"># distributions is 0.8.  Look at the observed rank correlation matrix, and</span></span></span>
+<span class="r-in"><span>  <span class="co"># plot the results.</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="va">mat</span> <span class="op">&lt;-</span> <span class="fu">simulateMvMatrix</span><span class="op">(</span><span class="fl">1000</span>,</span></span>
+<span class="r-in"><span>    distributions <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span>N.10.2 <span class="op">=</span> <span class="st">"norm"</span>, LN.10.1 <span class="op">=</span> <span class="st">"lnormAlt"</span><span class="op">)</span>,</span></span>
+<span class="r-in"><span>    param.list <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>N.10.2  <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>mean<span class="op">=</span><span class="fl">10</span>, sd<span class="op">=</span><span class="fl">2</span><span class="op">)</span>,</span></span>
+<span class="r-in"><span>                      LN.10.1 <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>mean<span class="op">=</span><span class="fl">10</span>, cv<span class="op">=</span><span class="fl">1</span><span class="op">)</span><span class="op">)</span>,</span></span>
+<span class="r-in"><span>    cor.mat <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/matrix.html" class="external-link">matrix</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">1</span>, <span class="fl">.8</span>, <span class="fl">.8</span>, <span class="fl">1</span><span class="op">)</span>, <span class="fl">2</span>, <span class="fl">2</span><span class="op">)</span>, seed <span class="op">=</span> <span class="fl">47</span><span class="op">)</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/r/base/Round.html" class="external-link">round</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/stats/cor.html" class="external-link">cor</a></span><span class="op">(</span><span class="va">mat</span>, method <span class="op">=</span> <span class="st">"spearman"</span><span class="op">)</span>, <span class="fl">2</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>         N.10.2 LN.10.1</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> N.10.2    1.00    0.79</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> LN.10.1   0.79    1.00</span>
-<span class="r-in">  <span class="co">#        N.10.2 LN.10.1</span></span>
-<span class="r-in">  <span class="co">#N.10.2    1.00    0.78</span></span>
-<span class="r-in">  <span class="co">#LN.10.1   0.78    1.00</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="fu"><a href="https://rdrr.io/r/grDevices/dev.html" class="external-link">dev.new</a></span><span class="op">(</span><span class="op">)</span></span>
-<span class="r-in">  <span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">mat</span>, xlab <span class="op">=</span> <span class="st">"Observations from N(10, 2)"</span>,</span>
-<span class="r-in">    ylab <span class="op">=</span> <span class="st">"Observations from LN(mean=10, cv=1)"</span>,</span>
-<span class="r-in">    main <span class="op">=</span> <span class="st">"Lognormal vs. Normal Deviates with Rank Correlation 0.8"</span><span class="op">)</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="co">#----------</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="co"># Repeat the last example, but use Latin Hypercube sampling for both</span></span>
-<span class="r-in">  <span class="co"># distributions. Note the wider range on the y-axis.</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="va">mat.LHS</span> <span class="op">&lt;-</span> <span class="fu">simulateMvMatrix</span><span class="op">(</span><span class="fl">1000</span>,</span>
-<span class="r-in">    distributions <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span>N.10.2 <span class="op">=</span> <span class="st">"norm"</span>, LN.10.1 <span class="op">=</span> <span class="st">"lnormAlt"</span><span class="op">)</span>,</span>
-<span class="r-in">    param.list <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>N.10.2  <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>mean<span class="op">=</span><span class="fl">10</span>, sd<span class="op">=</span><span class="fl">2</span><span class="op">)</span>,</span>
-<span class="r-in">                      LN.10.1 <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>mean<span class="op">=</span><span class="fl">10</span>, cv<span class="op">=</span><span class="fl">1</span><span class="op">)</span><span class="op">)</span>,</span>
-<span class="r-in">    cor.mat <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/matrix.html" class="external-link">matrix</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">1</span>, <span class="fl">.8</span>, <span class="fl">.8</span>, <span class="fl">1</span><span class="op">)</span>, <span class="fl">2</span>, <span class="fl">2</span><span class="op">)</span>,</span>
-<span class="r-in">    sample.method <span class="op">=</span> <span class="st">"LHS"</span>, seed <span class="op">=</span> <span class="fl">298</span><span class="op">)</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="fu"><a href="https://rdrr.io/r/base/Round.html" class="external-link">round</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/stats/cor.html" class="external-link">cor</a></span><span class="op">(</span><span class="va">mat.LHS</span>, method <span class="op">=</span> <span class="st">"spearman"</span><span class="op">)</span>, <span class="fl">2</span><span class="op">)</span></span>
+<span class="r-in"><span>  <span class="co">#        N.10.2 LN.10.1</span></span></span>
+<span class="r-in"><span>  <span class="co">#N.10.2    1.00    0.78</span></span></span>
+<span class="r-in"><span>  <span class="co">#LN.10.1   0.78    1.00</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/r/grDevices/dev.html" class="external-link">dev.new</a></span><span class="op">(</span><span class="op">)</span></span></span>
+<span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">mat</span>, xlab <span class="op">=</span> <span class="st">"Observations from N(10, 2)"</span>,</span></span>
+<span class="r-in"><span>    ylab <span class="op">=</span> <span class="st">"Observations from LN(mean=10, cv=1)"</span>,</span></span>
+<span class="r-in"><span>    main <span class="op">=</span> <span class="st">"Lognormal vs. Normal Deviates with Rank Correlation 0.8"</span><span class="op">)</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="co">#----------</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="co"># Repeat the last example, but use Latin Hypercube sampling for both</span></span></span>
+<span class="r-in"><span>  <span class="co"># distributions. Note the wider range on the y-axis.</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="va">mat.LHS</span> <span class="op">&lt;-</span> <span class="fu">simulateMvMatrix</span><span class="op">(</span><span class="fl">1000</span>,</span></span>
+<span class="r-in"><span>    distributions <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span>N.10.2 <span class="op">=</span> <span class="st">"norm"</span>, LN.10.1 <span class="op">=</span> <span class="st">"lnormAlt"</span><span class="op">)</span>,</span></span>
+<span class="r-in"><span>    param.list <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>N.10.2  <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>mean<span class="op">=</span><span class="fl">10</span>, sd<span class="op">=</span><span class="fl">2</span><span class="op">)</span>,</span></span>
+<span class="r-in"><span>                      LN.10.1 <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>mean<span class="op">=</span><span class="fl">10</span>, cv<span class="op">=</span><span class="fl">1</span><span class="op">)</span><span class="op">)</span>,</span></span>
+<span class="r-in"><span>    cor.mat <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/matrix.html" class="external-link">matrix</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">1</span>, <span class="fl">.8</span>, <span class="fl">.8</span>, <span class="fl">1</span><span class="op">)</span>, <span class="fl">2</span>, <span class="fl">2</span><span class="op">)</span>,</span></span>
+<span class="r-in"><span>    sample.method <span class="op">=</span> <span class="st">"LHS"</span>, seed <span class="op">=</span> <span class="fl">298</span><span class="op">)</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/r/base/Round.html" class="external-link">round</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/stats/cor.html" class="external-link">cor</a></span><span class="op">(</span><span class="va">mat.LHS</span>, method <span class="op">=</span> <span class="st">"spearman"</span><span class="op">)</span>, <span class="fl">2</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>         N.10.2 LN.10.1</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> N.10.2    1.00    0.79</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> LN.10.1   0.79    1.00</span>
-<span class="r-in">  <span class="co">#        N.10.2 LN.10.1</span></span>
-<span class="r-in">  <span class="co">#N.10.2    1.00    0.79</span></span>
-<span class="r-in">  <span class="co">#LN.10.1   0.79    1.00</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="fu"><a href="https://rdrr.io/r/grDevices/dev.html" class="external-link">dev.new</a></span><span class="op">(</span><span class="op">)</span></span>
-<span class="r-in">  <span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">mat.LHS</span>, xlab <span class="op">=</span> <span class="st">"Observations from N(10, 2)"</span>,</span>
-<span class="r-in">    ylab <span class="op">=</span> <span class="st">"Observations from LN(mean=10, cv=1)"</span>,</span>
-<span class="r-in">    main <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/paste.html" class="external-link">paste</a></span><span class="op">(</span><span class="st">"Lognormal vs. Normal Deviates with Rank Correlation 0.8"</span>,</span>
-<span class="r-in">      <span class="st">"(Latin Hypercube Sampling)"</span>, sep <span class="op">=</span> <span class="st">"\n"</span><span class="op">)</span><span class="op">)</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="co">#==========</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="co"># Generate 1000 observations from a multivariate distribution, where the</span></span>
-<span class="r-in">  <span class="co"># first distribution is a normal distribution with parameters</span></span>
-<span class="r-in">  <span class="co"># mean=10 and sd=2, the second distribution is a lognormal distribution</span></span>
-<span class="r-in">  <span class="co"># with parameters mean=10 and cv=1, the third distribution is a beta</span></span>
-<span class="r-in">  <span class="co"># distribution with parameters shape1=2 and shape2=3, and the fourth</span></span>
-<span class="r-in">  <span class="co"># distribution is an empirical distribution of 100 observations that</span></span>
-<span class="r-in">  <span class="co"># we'll generate from a Pareto distribution with parameters</span></span>
-<span class="r-in">  <span class="co"># location=10 and shape=2. Set the desired rank correlation matrix to:</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="va">cor.mat</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/matrix.html" class="external-link">matrix</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">1</span>, <span class="fl">.8</span>, <span class="fl">0</span>, <span class="fl">.5</span>, <span class="fl">.8</span>, <span class="fl">1</span>, <span class="fl">0</span>, <span class="fl">.7</span>,</span>
-<span class="r-in">    <span class="fl">0</span>, <span class="fl">0</span>, <span class="fl">1</span>, <span class="fl">.2</span>, <span class="fl">.5</span>, <span class="fl">.7</span>, <span class="fl">.2</span>, <span class="fl">1</span><span class="op">)</span>, <span class="fl">4</span>, <span class="fl">4</span><span class="op">)</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="va">cor.mat</span></span>
+<span class="r-in"><span>  <span class="co">#        N.10.2 LN.10.1</span></span></span>
+<span class="r-in"><span>  <span class="co">#N.10.2    1.00    0.79</span></span></span>
+<span class="r-in"><span>  <span class="co">#LN.10.1   0.79    1.00</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/r/grDevices/dev.html" class="external-link">dev.new</a></span><span class="op">(</span><span class="op">)</span></span></span>
+<span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">mat.LHS</span>, xlab <span class="op">=</span> <span class="st">"Observations from N(10, 2)"</span>,</span></span>
+<span class="r-in"><span>    ylab <span class="op">=</span> <span class="st">"Observations from LN(mean=10, cv=1)"</span>,</span></span>
+<span class="r-in"><span>    main <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/paste.html" class="external-link">paste</a></span><span class="op">(</span><span class="st">"Lognormal vs. Normal Deviates with Rank Correlation 0.8"</span>,</span></span>
+<span class="r-in"><span>      <span class="st">"(Latin Hypercube Sampling)"</span>, sep <span class="op">=</span> <span class="st">"\n"</span><span class="op">)</span><span class="op">)</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="co">#==========</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="co"># Generate 1000 observations from a multivariate distribution, where the</span></span></span>
+<span class="r-in"><span>  <span class="co"># first distribution is a normal distribution with parameters</span></span></span>
+<span class="r-in"><span>  <span class="co"># mean=10 and sd=2, the second distribution is a lognormal distribution</span></span></span>
+<span class="r-in"><span>  <span class="co"># with parameters mean=10 and cv=1, the third distribution is a beta</span></span></span>
+<span class="r-in"><span>  <span class="co"># distribution with parameters shape1=2 and shape2=3, and the fourth</span></span></span>
+<span class="r-in"><span>  <span class="co"># distribution is an empirical distribution of 100 observations that</span></span></span>
+<span class="r-in"><span>  <span class="co"># we'll generate from a Pareto distribution with parameters</span></span></span>
+<span class="r-in"><span>  <span class="co"># location=10 and shape=2. Set the desired rank correlation matrix to:</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="va">cor.mat</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/matrix.html" class="external-link">matrix</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">1</span>, <span class="fl">.8</span>, <span class="fl">0</span>, <span class="fl">.5</span>, <span class="fl">.8</span>, <span class="fl">1</span>, <span class="fl">0</span>, <span class="fl">.7</span>,</span></span>
+<span class="r-in"><span>    <span class="fl">0</span>, <span class="fl">0</span>, <span class="fl">1</span>, <span class="fl">.2</span>, <span class="fl">.5</span>, <span class="fl">.7</span>, <span class="fl">.2</span>, <span class="fl">1</span><span class="op">)</span>, <span class="fl">4</span>, <span class="fl">4</span><span class="op">)</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="va">cor.mat</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>      [,1] [,2] [,3] [,4]</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1,]  1.0  0.8  0.0  0.5</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [2,]  0.8  1.0  0.0  0.7</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [3,]  0.0  0.0  1.0  0.2</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [4,]  0.5  0.7  0.2  1.0</span>
-<span class="r-in">  <span class="co">#     [,1] [,2] [,3] [,4]</span></span>
-<span class="r-in">  <span class="co">#[1,]  1.0  0.8  0.0  0.5</span></span>
-<span class="r-in">  <span class="co">#[2,]  0.8  1.0  0.0  0.7</span></span>
-<span class="r-in">  <span class="co">#[3,]  0.0  0.0  1.0  0.2</span></span>
-<span class="r-in">  <span class="co">#[4,]  0.5  0.7  0.2  1.0</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="co"># Use Latin Hypercube sampling for each variable, look at the observed</span></span>
-<span class="r-in">  <span class="co"># rank correlation matrix, and plot the results.</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="va">pareto.rns</span> <span class="op">&lt;-</span> <span class="fu"><a href="simulateVector.html">simulateVector</a></span><span class="op">(</span><span class="fl">100</span>, <span class="st">"pareto"</span>,</span>
-<span class="r-in">    <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>location <span class="op">=</span> <span class="fl">10</span>, shape <span class="op">=</span> <span class="fl">2</span><span class="op">)</span>, sample.method <span class="op">=</span> <span class="st">"LHS"</span>,</span>
-<span class="r-in">    seed <span class="op">=</span> <span class="fl">56</span><span class="op">)</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="va">mat</span> <span class="op">&lt;-</span> <span class="fu">simulateMvMatrix</span><span class="op">(</span><span class="fl">1000</span>,</span>
-<span class="r-in">    distributions <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span>Normal <span class="op">=</span> <span class="st">"norm"</span>, Lognormal <span class="op">=</span> <span class="st">"lnormAlt"</span>,</span>
-<span class="r-in">      Beta <span class="op">=</span> <span class="st">"beta"</span>, Empirical <span class="op">=</span> <span class="st">"emp"</span><span class="op">)</span>,</span>
-<span class="r-in">    param.list <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>Normal <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>mean<span class="op">=</span><span class="fl">10</span>, sd<span class="op">=</span><span class="fl">2</span><span class="op">)</span>,</span>
-<span class="r-in">                      Lognormal <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>mean<span class="op">=</span><span class="fl">10</span>, cv<span class="op">=</span><span class="fl">1</span><span class="op">)</span>,</span>
-<span class="r-in">                      Beta <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>shape1 <span class="op">=</span> <span class="fl">2</span>, shape2 <span class="op">=</span> <span class="fl">3</span><span class="op">)</span>,</span>
-<span class="r-in">                      Empirical <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>obs <span class="op">=</span> <span class="va">pareto.rns</span><span class="op">)</span><span class="op">)</span>,</span>
-<span class="r-in">    cor.mat <span class="op">=</span> <span class="va">cor.mat</span>, seed <span class="op">=</span> <span class="fl">47</span>, sample.method <span class="op">=</span> <span class="st">"LHS"</span><span class="op">)</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="fu"><a href="https://rdrr.io/r/base/Round.html" class="external-link">round</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/stats/cor.html" class="external-link">cor</a></span><span class="op">(</span><span class="va">mat</span>, method <span class="op">=</span> <span class="st">"spearman"</span><span class="op">)</span>, <span class="fl">2</span><span class="op">)</span></span>
+<span class="r-in"><span>  <span class="co">#     [,1] [,2] [,3] [,4]</span></span></span>
+<span class="r-in"><span>  <span class="co">#[1,]  1.0  0.8  0.0  0.5</span></span></span>
+<span class="r-in"><span>  <span class="co">#[2,]  0.8  1.0  0.0  0.7</span></span></span>
+<span class="r-in"><span>  <span class="co">#[3,]  0.0  0.0  1.0  0.2</span></span></span>
+<span class="r-in"><span>  <span class="co">#[4,]  0.5  0.7  0.2  1.0</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="co"># Use Latin Hypercube sampling for each variable, look at the observed</span></span></span>
+<span class="r-in"><span>  <span class="co"># rank correlation matrix, and plot the results.</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="va">pareto.rns</span> <span class="op">&lt;-</span> <span class="fu"><a href="simulateVector.html">simulateVector</a></span><span class="op">(</span><span class="fl">100</span>, <span class="st">"pareto"</span>,</span></span>
+<span class="r-in"><span>    <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>location <span class="op">=</span> <span class="fl">10</span>, shape <span class="op">=</span> <span class="fl">2</span><span class="op">)</span>, sample.method <span class="op">=</span> <span class="st">"LHS"</span>,</span></span>
+<span class="r-in"><span>    seed <span class="op">=</span> <span class="fl">56</span><span class="op">)</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="va">mat</span> <span class="op">&lt;-</span> <span class="fu">simulateMvMatrix</span><span class="op">(</span><span class="fl">1000</span>,</span></span>
+<span class="r-in"><span>    distributions <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span>Normal <span class="op">=</span> <span class="st">"norm"</span>, Lognormal <span class="op">=</span> <span class="st">"lnormAlt"</span>,</span></span>
+<span class="r-in"><span>      Beta <span class="op">=</span> <span class="st">"beta"</span>, Empirical <span class="op">=</span> <span class="st">"emp"</span><span class="op">)</span>,</span></span>
+<span class="r-in"><span>    param.list <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>Normal <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>mean<span class="op">=</span><span class="fl">10</span>, sd<span class="op">=</span><span class="fl">2</span><span class="op">)</span>,</span></span>
+<span class="r-in"><span>                      Lognormal <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>mean<span class="op">=</span><span class="fl">10</span>, cv<span class="op">=</span><span class="fl">1</span><span class="op">)</span>,</span></span>
+<span class="r-in"><span>                      Beta <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>shape1 <span class="op">=</span> <span class="fl">2</span>, shape2 <span class="op">=</span> <span class="fl">3</span><span class="op">)</span>,</span></span>
+<span class="r-in"><span>                      Empirical <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>obs <span class="op">=</span> <span class="va">pareto.rns</span><span class="op">)</span><span class="op">)</span>,</span></span>
+<span class="r-in"><span>    cor.mat <span class="op">=</span> <span class="va">cor.mat</span>, seed <span class="op">=</span> <span class="fl">47</span>, sample.method <span class="op">=</span> <span class="st">"LHS"</span><span class="op">)</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/r/base/Round.html" class="external-link">round</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/stats/cor.html" class="external-link">cor</a></span><span class="op">(</span><span class="va">mat</span>, method <span class="op">=</span> <span class="st">"spearman"</span><span class="op">)</span>, <span class="fl">2</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>           Normal Lognormal Beta Empirical</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Normal      1.00      0.79 0.00      0.48</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Lognormal   0.79      1.00 0.01      0.68</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Beta        0.00      0.01 1.00      0.21</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Empirical   0.48      0.68 0.21      1.00</span>
-<span class="r-in">  <span class="co">#          Normal Lognormal  Beta Empirical</span></span>
-<span class="r-in">  <span class="co">#Normal      1.00      0.78 -0.01      0.47</span></span>
-<span class="r-in">  <span class="co">#Lognormal   0.78      1.00 -0.01      0.67</span></span>
-<span class="r-in">  <span class="co">#Beta       -0.01     -0.01  1.00      0.19</span></span>
-<span class="r-in">  <span class="co">#Empirical   0.47      0.67  0.19      1.00</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="fu"><a href="https://rdrr.io/r/grDevices/dev.html" class="external-link">dev.new</a></span><span class="op">(</span><span class="op">)</span></span>
-<span class="r-in">  <span class="fu"><a href="https://rdrr.io/r/graphics/pairs.html" class="external-link">pairs</a></span><span class="op">(</span><span class="va">mat</span><span class="op">)</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="co">#==========</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="co"># Clean up</span></span>
-<span class="r-in">  <span class="co">#---------</span></span>
-<span class="r-in">  <span class="fu"><a href="https://rdrr.io/r/base/rm.html" class="external-link">rm</a></span><span class="op">(</span><span class="va">mat</span>, <span class="va">mat.LHS</span>, <span class="va">pareto.rns</span><span class="op">)</span></span>
-<span class="r-in">  <span class="fu"><a href="https://rdrr.io/r/grDevices/dev.html" class="external-link">graphics.off</a></span><span class="op">(</span><span class="op">)</span></span>
+<span class="r-in"><span>  <span class="co">#          Normal Lognormal  Beta Empirical</span></span></span>
+<span class="r-in"><span>  <span class="co">#Normal      1.00      0.78 -0.01      0.47</span></span></span>
+<span class="r-in"><span>  <span class="co">#Lognormal   0.78      1.00 -0.01      0.67</span></span></span>
+<span class="r-in"><span>  <span class="co">#Beta       -0.01     -0.01  1.00      0.19</span></span></span>
+<span class="r-in"><span>  <span class="co">#Empirical   0.47      0.67  0.19      1.00</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/r/grDevices/dev.html" class="external-link">dev.new</a></span><span class="op">(</span><span class="op">)</span></span></span>
+<span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/r/graphics/pairs.html" class="external-link">pairs</a></span><span class="op">(</span><span class="va">mat</span><span class="op">)</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="co">#==========</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="co"># Clean up</span></span></span>
+<span class="r-in"><span>  <span class="co">#---------</span></span></span>
+<span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/r/base/rm.html" class="external-link">rm</a></span><span class="op">(</span><span class="va">mat</span>, <span class="va">mat.LHS</span>, <span class="va">pareto.rns</span><span class="op">)</span></span></span>
+<span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/r/grDevices/dev.html" class="external-link">graphics.off</a></span><span class="op">(</span><span class="op">)</span></span></span>
 </code></pre></div>
     </div>
   </div>
@@ -544,7 +564,7 @@
 </div>
 
 <div class="pkgdown">
-  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.2.</p>
+  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.6.</p>
 </div>
 
       </footer></div>

@@ -52,9 +52,9 @@
     </div>
 
     <div id="ref-usage">
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="fu">twoSamplePermutationTestLocation</span><span class="op">(</span><span class="va">x</span>, <span class="va">y</span>, fcn <span class="op">=</span> <span class="st">"mean"</span>, alternative <span class="op">=</span> <span class="st">"two.sided"</span>, 
-    mu1.minus.mu2 <span class="op">=</span> <span class="fl">0</span>, paired <span class="op">=</span> <span class="cn">FALSE</span>, exact <span class="op">=</span> <span class="cn">FALSE</span>, n.permutations <span class="op">=</span> <span class="fl">5000</span>, 
-    seed <span class="op">=</span> <span class="cn">NULL</span>, tol <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/MathFun.html" class="external-link">sqrt</a></span><span class="op">(</span><span class="va">.Machine</span><span class="op">$</span><span class="va">double.eps</span><span class="op">)</span><span class="op">)</span></code></pre></div>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">twoSamplePermutationTestLocation</span><span class="op">(</span><span class="va">x</span>, <span class="va">y</span>, fcn <span class="op">=</span> <span class="st">"mean"</span>, alternative <span class="op">=</span> <span class="st">"two.sided"</span>, </span>
+<span>    mu1.minus.mu2 <span class="op">=</span> <span class="fl">0</span>, paired <span class="op">=</span> <span class="cn">FALSE</span>, exact <span class="op">=</span> <span class="cn">FALSE</span>, n.permutations <span class="op">=</span> <span class="fl">5000</span>, </span>
+<span>    seed <span class="op">=</span> <span class="cn">NULL</span>, tol <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/MathFun.html" class="external-link">sqrt</a></span><span class="op">(</span><span class="va">.Machine</span><span class="op">$</span><span class="va">double.eps</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
     </div>
 
     <div id="arguments">
@@ -63,45 +63,55 @@
 <dd><p>numeric vector of observations from population 1.    
   Missing (<code>NA</code>), undefined (<code>NaN</code>), and infinite (<code>Inf</code>, <code>-Inf</code>) 
   values are allowed but will be removed.</p></dd>
-<dt>y</dt>
+
+  <dt>y</dt>
 <dd><p>numeric vector of observations from population 2.    
   Missing (<code>NA</code>), undefined (<code>NaN</code>), and infinite (<code>Inf</code>, <code>-Inf</code>) 
   values are allowed but will be removed.</p>
 <p>In the case when <code>paired=TRUE</code>, the argument <code>y</code> must have the same number 
   of elements as the argument <code>x</code>.</p></dd>
-<dt>fcn</dt>
+
+  <dt>fcn</dt>
 <dd><p>character string indicating which location parameter to compare between the two 
   groups.  The possible values are <code>fcn="mean"</code> (the default) and 
   <code>fcn="median"</code>.  This argument is ignored when <code>paired=TRUE</code>.</p></dd>
-<dt>alternative</dt>
+
+  <dt>alternative</dt>
 <dd><p>character string indicating the kind of alternative hypothesis.  The possible values 
   are <code>"two.sided"</code> (the default), <code>"less"</code>, and <code>"greater"</code>.</p></dd>
-<dt>mu1.minus.mu2</dt>
+
+  <dt>mu1.minus.mu2</dt>
 <dd><p>numeric scalar indicating the hypothesized value of the difference between the 
   means or medians.  The default value is <code>mu1.minus.mu2=0</code>.</p></dd>
-<dt>paired</dt>
+
+  <dt>paired</dt>
 <dd><p>logical scalar indicating whether to perform a paired or two-sample permutation 
   test.  The possible values are <code>paired=FALSE</code> (the default; indicates a 
   two-sample permutation test) and <code>paired=TRUE</code> (indicates take differences of 
   pairs and perform a one-sample permutation test).</p></dd>
-<dt>exact</dt>
+
+  <dt>exact</dt>
 <dd><p>logical scalar indicating whether to perform the exact permutation test (i.e., 
   enumerate all possible permutations) or simply sample from the permutation 
   distribution.  The default value is <code>exact=FALSE</code>.</p></dd>
-<dt>n.permutations</dt>
+
+  <dt>n.permutations</dt>
 <dd><p>integer indicating how many times to sample from the permutation distribution when 
   <code>exact=FALSE</code>.  The default value is <code>n.permutations=5000</code>.  
   This argument is ignored when <code>exact=TRUE</code>.</p></dd>
-<dt>seed</dt>
+
+  <dt>seed</dt>
 <dd><p>positive integer to pass to the <span style="R">R</span> function <code><a href="https://rdrr.io/r/base/Random.html" class="external-link">set.seed</a></code>.  The 
   default is <code>seed=NULL</code>, in which case the current value of 
   <code><a href="https://rdrr.io/r/base/Random.html" class="external-link">.Random.seed</a></code> is used.  
   Using the <code>seed</code> argument lets you reproduce the exact same result if all 
   other arguments stay the same.</p></dd>
-<dt>tol</dt>
+
+  <dt>tol</dt>
 <dd><p>numeric scalar indicating the tolerance to use for computing the p-value for the 
   two-sample permutation test.  The default value is <br><code>tol=sqrt(.Machine$double.eps)</code>.  See the DETAILS section below for more 
   information.</p></dd>
+
 </dl></div>
     <div id="details">
     <h2>Details</h2>
@@ -235,7 +245,9 @@
     </div>
     <div id="value">
     <h2>Value</h2>
-    <p>A list of class <code>"permutationTest"</code> containing the results of the hypothesis 
+    
+
+<p>A list of class <code>"permutationTest"</code> containing the results of the hypothesis 
   test.  See the help file for <code><a href="permutationTest.object.html">permutationTest.object</a></code> for details.</p>
     </div>
     <div id="references">
@@ -283,26 +295,26 @@
 
     <div id="ref-examples">
     <h2>Examples</h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in">  <span class="co"># Generate 10 observations from a lognormal distribution with parameters </span></span>
-<span class="r-in">  <span class="co"># mean=5 and cv=2, and and 20 observations from a lognormal distribution with </span></span>
-<span class="r-in">  <span class="co"># parameters mean=10 and cv=2.  Test the null hypothesis that the means of the </span></span>
-<span class="r-in">  <span class="co"># two distributions are the same against the alternative that the mean for </span></span>
-<span class="r-in">  <span class="co"># group 1 is less than the mean for group 2. </span></span>
-<span class="r-in">  <span class="co"># (Note: the call to set.seed allows you to reproduce the same data </span></span>
-<span class="r-in">  <span class="co"># (dat1 and dat2), and setting the argument seed=732 in the call to </span></span>
-<span class="r-in">  <span class="co"># twoSamplePermutationTestLocation() lets you reproduce this example by </span></span>
-<span class="r-in">  <span class="co"># getting the same sample from the permutation distribution).</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="fu"><a href="https://rdrr.io/r/base/Random.html" class="external-link">set.seed</a></span><span class="op">(</span><span class="fl">256</span><span class="op">)</span> </span>
-<span class="r-in">  <span class="va">dat1</span> <span class="op">&lt;-</span> <span class="fu"><a href="LognormalAlt.html">rlnormAlt</a></span><span class="op">(</span><span class="fl">10</span>, mean <span class="op">=</span> <span class="fl">5</span>, cv <span class="op">=</span> <span class="fl">2</span><span class="op">)</span> </span>
-<span class="r-in">  <span class="va">dat2</span> <span class="op">&lt;-</span> <span class="fu"><a href="LognormalAlt.html">rlnormAlt</a></span><span class="op">(</span><span class="fl">20</span>, mean <span class="op">=</span> <span class="fl">10</span>, cv <span class="op">=</span> <span class="fl">2</span><span class="op">)</span> </span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="va">test.list</span> <span class="op">&lt;-</span> <span class="fu">twoSamplePermutationTestLocation</span><span class="op">(</span><span class="va">dat1</span>, <span class="va">dat2</span>, </span>
-<span class="r-in">    alternative <span class="op">=</span> <span class="st">"less"</span>, seed <span class="op">=</span> <span class="fl">732</span><span class="op">)</span> </span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="co"># Print the results of the test </span></span>
-<span class="r-in">  <span class="co">#------------------------------</span></span>
-<span class="r-in">  <span class="va">test.list</span> </span>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span>  <span class="co"># Generate 10 observations from a lognormal distribution with parameters </span></span></span>
+<span class="r-in"><span>  <span class="co"># mean=5 and cv=2, and and 20 observations from a lognormal distribution with </span></span></span>
+<span class="r-in"><span>  <span class="co"># parameters mean=10 and cv=2.  Test the null hypothesis that the means of the </span></span></span>
+<span class="r-in"><span>  <span class="co"># two distributions are the same against the alternative that the mean for </span></span></span>
+<span class="r-in"><span>  <span class="co"># group 1 is less than the mean for group 2. </span></span></span>
+<span class="r-in"><span>  <span class="co"># (Note: the call to set.seed allows you to reproduce the same data </span></span></span>
+<span class="r-in"><span>  <span class="co"># (dat1 and dat2), and setting the argument seed=732 in the call to </span></span></span>
+<span class="r-in"><span>  <span class="co"># twoSamplePermutationTestLocation() lets you reproduce this example by </span></span></span>
+<span class="r-in"><span>  <span class="co"># getting the same sample from the permutation distribution).</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/r/base/Random.html" class="external-link">set.seed</a></span><span class="op">(</span><span class="fl">256</span><span class="op">)</span> </span></span>
+<span class="r-in"><span>  <span class="va">dat1</span> <span class="op">&lt;-</span> <span class="fu"><a href="LognormalAlt.html">rlnormAlt</a></span><span class="op">(</span><span class="fl">10</span>, mean <span class="op">=</span> <span class="fl">5</span>, cv <span class="op">=</span> <span class="fl">2</span><span class="op">)</span> </span></span>
+<span class="r-in"><span>  <span class="va">dat2</span> <span class="op">&lt;-</span> <span class="fu"><a href="LognormalAlt.html">rlnormAlt</a></span><span class="op">(</span><span class="fl">20</span>, mean <span class="op">=</span> <span class="fl">10</span>, cv <span class="op">=</span> <span class="fl">2</span><span class="op">)</span> </span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="va">test.list</span> <span class="op">&lt;-</span> <span class="fu">twoSamplePermutationTestLocation</span><span class="op">(</span><span class="va">dat1</span>, <span class="va">dat2</span>, </span></span>
+<span class="r-in"><span>    alternative <span class="op">=</span> <span class="st">"less"</span>, seed <span class="op">=</span> <span class="fl">732</span><span class="op">)</span> </span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="co"># Print the results of the test </span></span></span>
+<span class="r-in"><span>  <span class="co">#------------------------------</span></span></span>
+<span class="r-in"><span>  <span class="va">test.list</span> </span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> $statistic</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> mean.x - mean.y </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>       -9.571991 </span>
@@ -1351,63 +1363,63 @@
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> attr(,"class")</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] "permutationTest"</span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="co">#Results of Hypothesis Test</span></span>
-<span class="r-in">  <span class="co">#--------------------------</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Null Hypothesis:                 mu.x-mu.y = 0</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Alternative Hypothesis:          True mu.x-mu.y is less than 0</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Test Name:                       Two-Sample Permutation Test</span></span>
-<span class="r-in">  <span class="co">#                                 Based on Differences in Means</span></span>
-<span class="r-in">  <span class="co">#                                 (Based on Sampling</span></span>
-<span class="r-in">  <span class="co">#                                 Permutation Distribution</span></span>
-<span class="r-in">  <span class="co">#                                 5000 Times)</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Estimated Parameter(s):          mean of x =  2.253439</span></span>
-<span class="r-in">  <span class="co">#                                 mean of y = 11.825430</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Data:                            x = dat1</span></span>
-<span class="r-in">  <span class="co">#                                 y = dat2</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Sample Sizes:                    nx = 10</span></span>
-<span class="r-in">  <span class="co">#                                 ny = 20</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Test Statistic:                  mean.x - mean.y = -9.571991</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#P-value:                         0.001</span></span>
-<span class="r-in"></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="co"># Plot the results of the test </span></span>
-<span class="r-in">  <span class="co">#-----------------------------</span></span>
-<span class="r-in">  <span class="fu"><a href="https://rdrr.io/r/grDevices/dev.html" class="external-link">dev.new</a></span><span class="op">(</span><span class="op">)</span></span>
-<span class="r-in">  <span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">test.list</span><span class="op">)</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="co">#==========</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="co"># The guidance document "Statistical Methods for Evaluating the Attainment of </span></span>
-<span class="r-in">  <span class="co"># Cleanup Standards, Volume 3: Reference-Based Standards for Soils and Solid </span></span>
-<span class="r-in">  <span class="co"># Media" (USEPA, 1994b, pp. 6.22-6.25) contains observations of </span></span>
-<span class="r-in">  <span class="co"># 1,2,3,4-Tetrachlorobenzene (TcCB) in ppb at a Reference Area and a Cleanup Area.  </span></span>
-<span class="r-in">  <span class="co"># These data are stored in the data frame EPA.94b.tccb.df.  Use the </span></span>
-<span class="r-in">  <span class="co"># two-sample permutation test to test for a difference in means between the </span></span>
-<span class="r-in">  <span class="co"># two areas vs. the alternative that the mean in the Cleanup Area is greater.  </span></span>
-<span class="r-in">  <span class="co"># Do the same thing for the medians.</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co"># The permutation test based on comparing means shows a significant differnce, </span></span>
-<span class="r-in">  <span class="co"># while the one based on comparing medians does not.</span></span>
-<span class="r-in"></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="co"># First test for a difference in the means.</span></span>
-<span class="r-in">  <span class="co">#------------------------------------------</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="va">mean.list</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/with.html" class="external-link">with</a></span><span class="op">(</span><span class="va">EPA.94b.tccb.df</span>, </span>
-<span class="r-in">    <span class="fu">twoSamplePermutationTestLocation</span><span class="op">(</span></span>
-<span class="r-in">      <span class="va">TcCB</span><span class="op">[</span><span class="va">Area</span><span class="op">==</span><span class="st">"Cleanup"</span><span class="op">]</span>, <span class="va">TcCB</span><span class="op">[</span><span class="va">Area</span><span class="op">==</span><span class="st">"Reference"</span><span class="op">]</span>, </span>
-<span class="r-in">      alternative <span class="op">=</span> <span class="st">"greater"</span>, seed <span class="op">=</span> <span class="fl">47</span><span class="op">)</span><span class="op">)</span> </span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="va">mean.list</span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="co">#Results of Hypothesis Test</span></span></span>
+<span class="r-in"><span>  <span class="co">#--------------------------</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Null Hypothesis:                 mu.x-mu.y = 0</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Alternative Hypothesis:          True mu.x-mu.y is less than 0</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Test Name:                       Two-Sample Permutation Test</span></span></span>
+<span class="r-in"><span>  <span class="co">#                                 Based on Differences in Means</span></span></span>
+<span class="r-in"><span>  <span class="co">#                                 (Based on Sampling</span></span></span>
+<span class="r-in"><span>  <span class="co">#                                 Permutation Distribution</span></span></span>
+<span class="r-in"><span>  <span class="co">#                                 5000 Times)</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Estimated Parameter(s):          mean of x =  2.253439</span></span></span>
+<span class="r-in"><span>  <span class="co">#                                 mean of y = 11.825430</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Data:                            x = dat1</span></span></span>
+<span class="r-in"><span>  <span class="co">#                                 y = dat2</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Sample Sizes:                    nx = 10</span></span></span>
+<span class="r-in"><span>  <span class="co">#                                 ny = 20</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Test Statistic:                  mean.x - mean.y = -9.571991</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#P-value:                         0.001</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="co"># Plot the results of the test </span></span></span>
+<span class="r-in"><span>  <span class="co">#-----------------------------</span></span></span>
+<span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/r/grDevices/dev.html" class="external-link">dev.new</a></span><span class="op">(</span><span class="op">)</span></span></span>
+<span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">test.list</span><span class="op">)</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="co">#==========</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="co"># The guidance document "Statistical Methods for Evaluating the Attainment of </span></span></span>
+<span class="r-in"><span>  <span class="co"># Cleanup Standards, Volume 3: Reference-Based Standards for Soils and Solid </span></span></span>
+<span class="r-in"><span>  <span class="co"># Media" (USEPA, 1994b, pp. 6.22-6.25) contains observations of </span></span></span>
+<span class="r-in"><span>  <span class="co"># 1,2,3,4-Tetrachlorobenzene (TcCB) in ppb at a Reference Area and a Cleanup Area.  </span></span></span>
+<span class="r-in"><span>  <span class="co"># These data are stored in the data frame EPA.94b.tccb.df.  Use the </span></span></span>
+<span class="r-in"><span>  <span class="co"># two-sample permutation test to test for a difference in means between the </span></span></span>
+<span class="r-in"><span>  <span class="co"># two areas vs. the alternative that the mean in the Cleanup Area is greater.  </span></span></span>
+<span class="r-in"><span>  <span class="co"># Do the same thing for the medians.</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co"># The permutation test based on comparing means shows a significant differnce, </span></span></span>
+<span class="r-in"><span>  <span class="co"># while the one based on comparing medians does not.</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="co"># First test for a difference in the means.</span></span></span>
+<span class="r-in"><span>  <span class="co">#------------------------------------------</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="va">mean.list</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/with.html" class="external-link">with</a></span><span class="op">(</span><span class="va">EPA.94b.tccb.df</span>, </span></span>
+<span class="r-in"><span>    <span class="fu">twoSamplePermutationTestLocation</span><span class="op">(</span></span></span>
+<span class="r-in"><span>      <span class="va">TcCB</span><span class="op">[</span><span class="va">Area</span><span class="op">==</span><span class="st">"Cleanup"</span><span class="op">]</span>, <span class="va">TcCB</span><span class="op">[</span><span class="va">Area</span><span class="op">==</span><span class="st">"Reference"</span><span class="op">]</span>, </span></span>
+<span class="r-in"><span>      alternative <span class="op">=</span> <span class="st">"greater"</span>, seed <span class="op">=</span> <span class="fl">47</span><span class="op">)</span><span class="op">)</span> </span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="va">mean.list</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> $statistic</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> mean.x - mean.y </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>        3.316684 </span>
@@ -2290,48 +2302,48 @@
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> attr(,"class")</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] "permutationTest"</span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="co">#Results of Hypothesis Test</span></span>
-<span class="r-in">  <span class="co">#--------------------------</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Null Hypothesis:                 mu.x-mu.y = 0</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Alternative Hypothesis:          True mu.x-mu.y is greater than 0</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Test Name:                       Two-Sample Permutation Test</span></span>
-<span class="r-in">  <span class="co">#                                 Based on Differences in Means</span></span>
-<span class="r-in">  <span class="co">#                                 (Based on Sampling</span></span>
-<span class="r-in">  <span class="co">#                                 Permutation Distribution</span></span>
-<span class="r-in">  <span class="co">#                                 5000 Times)</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Estimated Parameter(s):          mean of x = 3.9151948</span></span>
-<span class="r-in">  <span class="co">#                                 mean of y = 0.5985106</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Data:                            x = TcCB[Area == "Cleanup"]  </span></span>
-<span class="r-in">  <span class="co">#                                 y = TcCB[Area == "Reference"]</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Sample Sizes:                    nx = 77</span></span>
-<span class="r-in">  <span class="co">#                                 ny = 47</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Test Statistic:                  mean.x - mean.y = 3.316684</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#P-value:                         0.0206</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="fu"><a href="https://rdrr.io/r/grDevices/dev.html" class="external-link">dev.new</a></span><span class="op">(</span><span class="op">)</span></span>
-<span class="r-in">  <span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">mean.list</span><span class="op">)</span></span>
-<span class="r-in"></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="co">#----------</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="co"># Now test for a difference in the medians.</span></span>
-<span class="r-in">  <span class="co">#------------------------------------------</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="va">median.list</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/with.html" class="external-link">with</a></span><span class="op">(</span><span class="va">EPA.94b.tccb.df</span>, </span>
-<span class="r-in">    <span class="fu">twoSamplePermutationTestLocation</span><span class="op">(</span></span>
-<span class="r-in">      <span class="va">TcCB</span><span class="op">[</span><span class="va">Area</span><span class="op">==</span><span class="st">"Cleanup"</span><span class="op">]</span>, <span class="va">TcCB</span><span class="op">[</span><span class="va">Area</span><span class="op">==</span><span class="st">"Reference"</span><span class="op">]</span>, </span>
-<span class="r-in">      fcn <span class="op">=</span> <span class="st">"median"</span>, alternative <span class="op">=</span> <span class="st">"greater"</span>, seed <span class="op">=</span> <span class="fl">47</span><span class="op">)</span><span class="op">)</span> </span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="va">median.list</span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="co">#Results of Hypothesis Test</span></span></span>
+<span class="r-in"><span>  <span class="co">#--------------------------</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Null Hypothesis:                 mu.x-mu.y = 0</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Alternative Hypothesis:          True mu.x-mu.y is greater than 0</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Test Name:                       Two-Sample Permutation Test</span></span></span>
+<span class="r-in"><span>  <span class="co">#                                 Based on Differences in Means</span></span></span>
+<span class="r-in"><span>  <span class="co">#                                 (Based on Sampling</span></span></span>
+<span class="r-in"><span>  <span class="co">#                                 Permutation Distribution</span></span></span>
+<span class="r-in"><span>  <span class="co">#                                 5000 Times)</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Estimated Parameter(s):          mean of x = 3.9151948</span></span></span>
+<span class="r-in"><span>  <span class="co">#                                 mean of y = 0.5985106</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Data:                            x = TcCB[Area == "Cleanup"]  </span></span></span>
+<span class="r-in"><span>  <span class="co">#                                 y = TcCB[Area == "Reference"]</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Sample Sizes:                    nx = 77</span></span></span>
+<span class="r-in"><span>  <span class="co">#                                 ny = 47</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Test Statistic:                  mean.x - mean.y = 3.316684</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#P-value:                         0.0206</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/r/grDevices/dev.html" class="external-link">dev.new</a></span><span class="op">(</span><span class="op">)</span></span></span>
+<span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">mean.list</span><span class="op">)</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="co">#----------</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="co"># Now test for a difference in the medians.</span></span></span>
+<span class="r-in"><span>  <span class="co">#------------------------------------------</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="va">median.list</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/with.html" class="external-link">with</a></span><span class="op">(</span><span class="va">EPA.94b.tccb.df</span>, </span></span>
+<span class="r-in"><span>    <span class="fu">twoSamplePermutationTestLocation</span><span class="op">(</span></span></span>
+<span class="r-in"><span>      <span class="va">TcCB</span><span class="op">[</span><span class="va">Area</span><span class="op">==</span><span class="st">"Cleanup"</span><span class="op">]</span>, <span class="va">TcCB</span><span class="op">[</span><span class="va">Area</span><span class="op">==</span><span class="st">"Reference"</span><span class="op">]</span>, </span></span>
+<span class="r-in"><span>      fcn <span class="op">=</span> <span class="st">"median"</span>, alternative <span class="op">=</span> <span class="st">"greater"</span>, seed <span class="op">=</span> <span class="fl">47</span><span class="op">)</span><span class="op">)</span> </span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="va">median.list</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> $statistic</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> median.x - median.y </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>               -0.11 </span>
@@ -2797,42 +2809,42 @@
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> attr(,"class")</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] "permutationTest"</span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="co">#Results of Hypothesis Test</span></span>
-<span class="r-in">  <span class="co">#--------------------------</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Null Hypothesis:                 mu.x-mu.y = 0</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Alternative Hypothesis:          True mu.x-mu.y is greater than 0</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Test Name:                       Two-Sample Permutation Test</span></span>
-<span class="r-in">  <span class="co">#                                 Based on Differences in Medians</span></span>
-<span class="r-in">  <span class="co">#                                 (Based on Sampling</span></span>
-<span class="r-in">  <span class="co">#                                 Permutation Distribution</span></span>
-<span class="r-in">  <span class="co">#                                 5000 Times)</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Estimated Parameter(s):          median of x = 0.43</span></span>
-<span class="r-in">  <span class="co">#                                 median of y = 0.54</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Data:                            x = TcCB[Area == "Cleanup"]  </span></span>
-<span class="r-in">  <span class="co">#                                 y = TcCB[Area == "Reference"]</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Sample Sizes:                    nx = 77</span></span>
-<span class="r-in">  <span class="co">#                                 ny = 47</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Test Statistic:                  median.x - median.y = -0.11</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#P-value:                         0.936</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="fu"><a href="https://rdrr.io/r/grDevices/dev.html" class="external-link">dev.new</a></span><span class="op">(</span><span class="op">)</span></span>
-<span class="r-in">  <span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">median.list</span><span class="op">)</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="co">#==========</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="co"># Clean up</span></span>
-<span class="r-in">  <span class="co">#---------</span></span>
-<span class="r-in">  <span class="fu"><a href="https://rdrr.io/r/base/rm.html" class="external-link">rm</a></span><span class="op">(</span><span class="va">test.list</span>, <span class="va">mean.list</span>, <span class="va">median.list</span><span class="op">)</span></span>
-<span class="r-in">  <span class="fu"><a href="https://rdrr.io/r/grDevices/dev.html" class="external-link">graphics.off</a></span><span class="op">(</span><span class="op">)</span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="co">#Results of Hypothesis Test</span></span></span>
+<span class="r-in"><span>  <span class="co">#--------------------------</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Null Hypothesis:                 mu.x-mu.y = 0</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Alternative Hypothesis:          True mu.x-mu.y is greater than 0</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Test Name:                       Two-Sample Permutation Test</span></span></span>
+<span class="r-in"><span>  <span class="co">#                                 Based on Differences in Medians</span></span></span>
+<span class="r-in"><span>  <span class="co">#                                 (Based on Sampling</span></span></span>
+<span class="r-in"><span>  <span class="co">#                                 Permutation Distribution</span></span></span>
+<span class="r-in"><span>  <span class="co">#                                 5000 Times)</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Estimated Parameter(s):          median of x = 0.43</span></span></span>
+<span class="r-in"><span>  <span class="co">#                                 median of y = 0.54</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Data:                            x = TcCB[Area == "Cleanup"]  </span></span></span>
+<span class="r-in"><span>  <span class="co">#                                 y = TcCB[Area == "Reference"]</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Sample Sizes:                    nx = 77</span></span></span>
+<span class="r-in"><span>  <span class="co">#                                 ny = 47</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Test Statistic:                  median.x - median.y = -0.11</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#P-value:                         0.936</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/r/grDevices/dev.html" class="external-link">dev.new</a></span><span class="op">(</span><span class="op">)</span></span></span>
+<span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">median.list</span><span class="op">)</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="co">#==========</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="co"># Clean up</span></span></span>
+<span class="r-in"><span>  <span class="co">#---------</span></span></span>
+<span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/r/base/rm.html" class="external-link">rm</a></span><span class="op">(</span><span class="va">test.list</span>, <span class="va">mean.list</span>, <span class="va">median.list</span><span class="op">)</span></span></span>
+<span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/r/grDevices/dev.html" class="external-link">graphics.off</a></span><span class="op">(</span><span class="op">)</span></span></span>
 </code></pre></div>
     </div>
   </div>
@@ -2847,7 +2859,7 @@
 </div>
 
 <div class="pkgdown">
-  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.2.</p>
+  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.6.</p>
 </div>
 
       </footer></div>

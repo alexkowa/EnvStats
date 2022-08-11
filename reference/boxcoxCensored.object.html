@@ -70,7 +70,13 @@
     </div>
     <div id="value">
     <h2>Value</h2>
-    <p><strong>Required Components</strong><br>  The following components must be included in a legitimate list of 
+    <p></p>
+<p><strong>Required Components</strong></p>
+<p></p>
+<p><br></p>
+
+
+<p>The following components must be included in a legitimate list of 
   class <code>"boxcoxCensored"</code>.</p>
 <dl><dt>lambda</dt>
 <dd><p>Numeric vector containing the powers used in the Box-Cox transformations.  
@@ -79,55 +85,78 @@
     was evaluated.  If the value of the <code>optimize</code> component is <code>TRUE</code>, 
     then <code>lambda</code> is a scalar containing the value of the power that 
     maximizes the objective.</p></dd>
-<dt>objective</dt>
+
+  <dt>objective</dt>
 <dd><p>Numeric vector containing the value(s) of the objective for the given value(s) 
     of \(\lambda\) that are stored in the component <code>lambda</code>.</p></dd>
-<dt>objective.name</dt>
+
+  <dt>objective.name</dt>
 <dd><p>Character string indicating the objective that was used. The possible values are
     <code>"PPCC"</code> (probability plot correlation coefficient; the default), 
     <code>"Shapiro-Wilk"</code> (the Shapiro-Wilk goodness-of-fit statistic), and 
     <code>"Log-Likelihood"</code> (the log-likelihood function).</p></dd>
-<dt>optimize</dt>
+
+  <dt>optimize</dt>
 <dd><p>Logical scalar indicating whether the objective was simply evaluted at the 
     given values of <code>lambda</code> (<code>optimize=FALSE</code>), or instead  
     the optimal power transformation was computed within the bounds specified by 
     <code>lambda</code> (<code>optimize=TRUE</code>).</p></dd>
-<dt>optimize.bounds</dt>
+
+  <dt>optimize.bounds</dt>
 <dd><p>Numeric vector of length 2 with a names attribute indicating the bounds within 
     which the optimization took place.  When <code>optimize=FALSE</code>, this contains 
     missing values.</p></dd>
-<dt>eps</dt>
+
+  <dt>eps</dt>
 <dd><p>Finite, positive numeric scalar indicating what value of <code>eps</code> was used.  
     When the absolute value of <code>lambda</code> is less 
     than <code>eps</code>, lambda is assumed to be 0 for the Box-Cox transformation.</p></dd>
-<dt>sample.size</dt>
+
+  <dt>sample.size</dt>
 <dd><p>Numeric scalar indicating the number of finite, non-missing observations.</p></dd>
-<dt>censoring.side</dt>
+
+  <dt>censoring.side</dt>
 <dd><p>Character string indicating the censoring side.  Possible values are 
     <code>"left"</code> and <code>"right"</code>.</p></dd>
-<dt>censoring.levels</dt>
+
+  <dt>censoring.levels</dt>
 <dd><p>Numeric vector containing the censoring levels.</p></dd>
-<dt>percent.censored</dt>
+
+  <dt>percent.censored</dt>
 <dd><p>Numeric scalar indicating the percent of observations 
     that are censored.</p></dd>
-<dt>data.name</dt>
+
+  <dt>data.name</dt>
 <dd><p>The name of the data object used for the Box-Cox computations.</p></dd>
-<dt>censoring.name</dt>
+
+  <dt>censoring.name</dt>
 <dd><p>The name of the data object indicating which observations are censored.</p></dd>
-<dt>bad.obs</dt>
+
+  <dt>bad.obs</dt>
 <dd><p>The number of missing (<code>NA</code>), undefined (<code>NaN</code>) and/or infinite 
     (<code>Inf</code>, <code>-Inf</code>) values that were removed from the data object 
     prior to performing the Box-Cox computations.</p></dd>
-</dl><p><br><strong>Optional Component</strong><br>  The following components may optionally be included in a legitimate 
+ </dl><p><br></p>
+
+
+<p></p>
+<p><strong>Optional Component</strong></p>
+<p></p>
+<p><br></p>
+
+
+<p>The following components may optionally be included in a legitimate 
   list of class <code>"boxcoxCensored"</code>.  They must be included if you want to 
   call the function <code><a href="plot.boxcoxCensored.html">plot.boxcoxCensored</a></code> and specify Q-Q plots or 
   Tukey Mean-Difference Q-Q plots.</p>
 <dl><dt>data</dt>
 <dd><p>Numeric vector containing the data actually used for the Box-Cox 
     computations (i.e., the original data without any missing or infinite values).</p></dd>
-<dt>censored</dt>
+
+  <dt>censored</dt>
 <dd><p>Logical vector indicating which of the vales in the component <code>data</code> 
     are censored.</p></dd>
+
 </dl></div>
     <div id="note">
     <h2>Note</h2>
@@ -146,40 +175,40 @@
 
     <div id="ref-examples">
     <h2>Examples</h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in">  <span class="co"># Create an object of class "boxcoxCensored", then print it out.</span></span>
-<span class="r-in">  <span class="co"># (Note: the call to set.seed simply allows you to reproduce this example.)</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="fu"><a href="https://rdrr.io/r/base/Random.html" class="external-link">set.seed</a></span><span class="op">(</span><span class="fl">250</span><span class="op">)</span> </span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="va">x.1</span> <span class="op">&lt;-</span> <span class="fu"><a href="LognormalAlt.html">rlnormAlt</a></span><span class="op">(</span><span class="fl">15</span>, mean <span class="op">=</span> <span class="fl">10</span>, cv <span class="op">=</span> <span class="fl">2</span><span class="op">)</span> </span>
-<span class="r-in">  <span class="va">censored.1</span> <span class="op">&lt;-</span> <span class="va">x.1</span> <span class="op">&lt;</span> <span class="fl">2</span></span>
-<span class="r-in">  <span class="va">x.1</span><span class="op">[</span><span class="va">censored.1</span><span class="op">]</span> <span class="op">&lt;-</span> <span class="fl">2</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="va">x.2</span> <span class="op">&lt;-</span> <span class="fu"><a href="LognormalAlt.html">rlnormAlt</a></span><span class="op">(</span><span class="fl">15</span>, mean <span class="op">=</span> <span class="fl">10</span>, cv <span class="op">=</span> <span class="fl">2</span><span class="op">)</span> </span>
-<span class="r-in">  <span class="va">censored.2</span> <span class="op">&lt;-</span> <span class="va">x.2</span> <span class="op">&lt;</span> <span class="fl">4</span></span>
-<span class="r-in">  <span class="va">x.2</span><span class="op">[</span><span class="va">censored.2</span><span class="op">]</span> <span class="op">&lt;-</span> <span class="fl">4</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="va">x</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="va">x.1</span>, <span class="va">x.2</span><span class="op">)</span></span>
-<span class="r-in">  <span class="va">censored</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="va">censored.1</span>, <span class="va">censored.2</span><span class="op">)</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="va">boxcox.list</span> <span class="op">&lt;-</span> <span class="fu"><a href="boxcoxCensored.html">boxcoxCensored</a></span><span class="op">(</span><span class="va">x</span>, <span class="va">censored</span><span class="op">)</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="fu"><a href="https://rdrr.io/r/base/data.class.html" class="external-link">data.class</a></span><span class="op">(</span><span class="va">boxcox.list</span><span class="op">)</span></span>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span>  <span class="co"># Create an object of class "boxcoxCensored", then print it out.</span></span></span>
+<span class="r-in"><span>  <span class="co"># (Note: the call to set.seed simply allows you to reproduce this example.)</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/r/base/Random.html" class="external-link">set.seed</a></span><span class="op">(</span><span class="fl">250</span><span class="op">)</span> </span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="va">x.1</span> <span class="op">&lt;-</span> <span class="fu"><a href="LognormalAlt.html">rlnormAlt</a></span><span class="op">(</span><span class="fl">15</span>, mean <span class="op">=</span> <span class="fl">10</span>, cv <span class="op">=</span> <span class="fl">2</span><span class="op">)</span> </span></span>
+<span class="r-in"><span>  <span class="va">censored.1</span> <span class="op">&lt;-</span> <span class="va">x.1</span> <span class="op">&lt;</span> <span class="fl">2</span></span></span>
+<span class="r-in"><span>  <span class="va">x.1</span><span class="op">[</span><span class="va">censored.1</span><span class="op">]</span> <span class="op">&lt;-</span> <span class="fl">2</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="va">x.2</span> <span class="op">&lt;-</span> <span class="fu"><a href="LognormalAlt.html">rlnormAlt</a></span><span class="op">(</span><span class="fl">15</span>, mean <span class="op">=</span> <span class="fl">10</span>, cv <span class="op">=</span> <span class="fl">2</span><span class="op">)</span> </span></span>
+<span class="r-in"><span>  <span class="va">censored.2</span> <span class="op">&lt;-</span> <span class="va">x.2</span> <span class="op">&lt;</span> <span class="fl">4</span></span></span>
+<span class="r-in"><span>  <span class="va">x.2</span><span class="op">[</span><span class="va">censored.2</span><span class="op">]</span> <span class="op">&lt;-</span> <span class="fl">4</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="va">x</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="va">x.1</span>, <span class="va">x.2</span><span class="op">)</span></span></span>
+<span class="r-in"><span>  <span class="va">censored</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="va">censored.1</span>, <span class="va">censored.2</span><span class="op">)</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="va">boxcox.list</span> <span class="op">&lt;-</span> <span class="fu"><a href="boxcoxCensored.html">boxcoxCensored</a></span><span class="op">(</span><span class="va">x</span>, <span class="va">censored</span><span class="op">)</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/r/base/data.class.html" class="external-link">data.class</a></span><span class="op">(</span><span class="va">boxcox.list</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] "boxcoxCensored"</span>
-<span class="r-in">  <span class="co">#[1] "boxcoxCensored"</span></span>
-<span class="r-in">  </span>
-<span class="r-in">  <span class="fu"><a href="https://rdrr.io/r/base/names.html" class="external-link">names</a></span><span class="op">(</span><span class="va">boxcox.list</span><span class="op">)</span></span>
+<span class="r-in"><span>  <span class="co">#[1] "boxcoxCensored"</span></span></span>
+<span class="r-in"><span>  </span></span>
+<span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/r/base/names.html" class="external-link">names</a></span><span class="op">(</span><span class="va">boxcox.list</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  [1] "lambda"           "objective"        "objective.name"   "optimize"        </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  [5] "optimize.bounds"  "eps"              "data"             "censored"        </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  [9] "sample.size"      "censoring.side"   "censoring.levels" "percent.censored"</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [13] "data.name"        "censoring.name"   "bad.obs"         </span>
-<span class="r-in">  <span class="co"># [1] "lambda"           "objective"        "objective.name"  </span></span>
-<span class="r-in">  <span class="co"># [4] "optimize"         "optimize.bounds"  "eps"             </span></span>
-<span class="r-in">  <span class="co"># [7] "data"             "censored"         "sample.size"     </span></span>
-<span class="r-in">  <span class="co">#[10] "censoring.side"   "censoring.levels" "percent.censored"</span></span>
-<span class="r-in">  <span class="co">#[13] "data.name"        "censoring.name"   "bad.obs"</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="va">boxcox.list</span></span>
+<span class="r-in"><span>  <span class="co"># [1] "lambda"           "objective"        "objective.name"  </span></span></span>
+<span class="r-in"><span>  <span class="co"># [4] "optimize"         "optimize.bounds"  "eps"             </span></span></span>
+<span class="r-in"><span>  <span class="co"># [7] "data"             "censored"         "sample.size"     </span></span></span>
+<span class="r-in"><span>  <span class="co">#[10] "censoring.side"   "censoring.levels" "percent.censored"</span></span></span>
+<span class="r-in"><span>  <span class="co">#[13] "data.name"        "censoring.name"   "bad.obs"</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="va">boxcox.list</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> $lambda</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] -2.0 -1.5 -1.0 -0.5  0.0  0.5  1.0  1.5  2.0</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
@@ -235,47 +264,47 @@
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> attr(,"class")</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] "boxcoxCensored"</span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="co">#Results of Box-Cox Transformation</span></span>
-<span class="r-in">  <span class="co">#Based on Type I Censored Data</span></span>
-<span class="r-in">  <span class="co">#---------------------------------</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Objective Name:                  PPCC</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Data:                            x</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Censoring Variable:              censored</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Censoring Side:                  left</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Censoring Level(s):              2 4 </span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Sample Size:                     30</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Percent Censored:                26.7%</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co"># lambda      PPCC</span></span>
-<span class="r-in">  <span class="co">#   -2.0 0.8954683</span></span>
-<span class="r-in">  <span class="co">#   -1.5 0.9338467</span></span>
-<span class="r-in">  <span class="co">#   -1.0 0.9643680</span></span>
-<span class="r-in">  <span class="co">#   -0.5 0.9812969</span></span>
-<span class="r-in">  <span class="co">#    0.0 0.9776834</span></span>
-<span class="r-in">  <span class="co">#    0.5 0.9471025</span></span>
-<span class="r-in">  <span class="co">#    1.0 0.8901990</span></span>
-<span class="r-in">  <span class="co">#    1.5 0.8187488</span></span>
-<span class="r-in">  <span class="co">#    2.0 0.7480494</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="va">boxcox.list2</span> <span class="op">&lt;-</span> <span class="fu"><a href="boxcox.html">boxcox</a></span><span class="op">(</span><span class="va">x</span>, optimize <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span> </span>
-<span class="r-in">  <span class="fu"><a href="https://rdrr.io/r/base/names.html" class="external-link">names</a></span><span class="op">(</span><span class="va">boxcox.list2</span><span class="op">)</span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="co">#Results of Box-Cox Transformation</span></span></span>
+<span class="r-in"><span>  <span class="co">#Based on Type I Censored Data</span></span></span>
+<span class="r-in"><span>  <span class="co">#---------------------------------</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Objective Name:                  PPCC</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Data:                            x</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Censoring Variable:              censored</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Censoring Side:                  left</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Censoring Level(s):              2 4 </span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Sample Size:                     30</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Percent Censored:                26.7%</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co"># lambda      PPCC</span></span></span>
+<span class="r-in"><span>  <span class="co">#   -2.0 0.8954683</span></span></span>
+<span class="r-in"><span>  <span class="co">#   -1.5 0.9338467</span></span></span>
+<span class="r-in"><span>  <span class="co">#   -1.0 0.9643680</span></span></span>
+<span class="r-in"><span>  <span class="co">#   -0.5 0.9812969</span></span></span>
+<span class="r-in"><span>  <span class="co">#    0.0 0.9776834</span></span></span>
+<span class="r-in"><span>  <span class="co">#    0.5 0.9471025</span></span></span>
+<span class="r-in"><span>  <span class="co">#    1.0 0.8901990</span></span></span>
+<span class="r-in"><span>  <span class="co">#    1.5 0.8187488</span></span></span>
+<span class="r-in"><span>  <span class="co">#    2.0 0.7480494</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="va">boxcox.list2</span> <span class="op">&lt;-</span> <span class="fu"><a href="boxcox.html">boxcox</a></span><span class="op">(</span><span class="va">x</span>, optimize <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span> </span></span>
+<span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/r/base/names.html" class="external-link">names</a></span><span class="op">(</span><span class="va">boxcox.list2</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  [1] "lambda"          "objective"       "objective.name"  "optimize"       </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  [5] "optimize.bounds" "eps"             "data"            "sample.size"    </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  [9] "data.name"       "bad.obs"        </span>
-<span class="r-in">  <span class="co"># [1] "lambda"          "objective"       "objective.name" </span></span>
-<span class="r-in">  <span class="co"># [4] "optimize"        "optimize.bounds" "eps"            </span></span>
-<span class="r-in">  <span class="co"># [7] "data"            "sample.size"     "data.name"      </span></span>
-<span class="r-in">  <span class="co">#[10] "bad.obs"</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="va">boxcox.list2</span></span>
+<span class="r-in"><span>  <span class="co"># [1] "lambda"          "objective"       "objective.name" </span></span></span>
+<span class="r-in"><span>  <span class="co"># [4] "optimize"        "optimize.bounds" "eps"            </span></span></span>
+<span class="r-in"><span>  <span class="co"># [7] "data"            "sample.size"     "data.name"      </span></span></span>
+<span class="r-in"><span>  <span class="co">#[10] "bad.obs"</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="va">boxcox.list2</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> $lambda</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] -0.5826431</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
@@ -313,27 +342,27 @@
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> attr(,"class")</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] "boxcox"</span>
-<span class="r-in">  <span class="co">#Results of Box-Cox Transformation</span></span>
-<span class="r-in">  <span class="co">#---------------------------------</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Objective Name:                  PPCC</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Data:                            x</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Sample Size:                     30</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Bounds for Optimization:         lower = -2</span></span>
-<span class="r-in">  <span class="co">#                                 upper =  2</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Optimal Value:                   lambda = -0.5826431</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Value of Objective:              PPCC = 0.9755402</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="co">#==========</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="co"># Clean up</span></span>
-<span class="r-in">  <span class="co">#---------</span></span>
-<span class="r-in">  <span class="fu"><a href="https://rdrr.io/r/base/rm.html" class="external-link">rm</a></span><span class="op">(</span><span class="va">x.1</span>, <span class="va">censored.1</span>, <span class="va">x.2</span>, <span class="va">censored.2</span>, <span class="va">x</span>, <span class="va">censored</span>, <span class="va">boxcox.list</span>, <span class="va">boxcox.list2</span><span class="op">)</span></span>
+<span class="r-in"><span>  <span class="co">#Results of Box-Cox Transformation</span></span></span>
+<span class="r-in"><span>  <span class="co">#---------------------------------</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Objective Name:                  PPCC</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Data:                            x</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Sample Size:                     30</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Bounds for Optimization:         lower = -2</span></span></span>
+<span class="r-in"><span>  <span class="co">#                                 upper =  2</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Optimal Value:                   lambda = -0.5826431</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Value of Objective:              PPCC = 0.9755402</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="co">#==========</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="co"># Clean up</span></span></span>
+<span class="r-in"><span>  <span class="co">#---------</span></span></span>
+<span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/r/base/rm.html" class="external-link">rm</a></span><span class="op">(</span><span class="va">x.1</span>, <span class="va">censored.1</span>, <span class="va">x.2</span>, <span class="va">censored.2</span>, <span class="va">x</span>, <span class="va">censored</span>, <span class="va">boxcox.list</span>, <span class="va">boxcox.list2</span><span class="op">)</span></span></span>
 </code></pre></div>
     </div>
   </div>
@@ -348,7 +377,7 @@
 </div>
 
 <div class="pkgdown">
-  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.2.</p>
+  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.6.</p>
 </div>
 
       </footer></div>

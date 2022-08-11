@@ -52,25 +52,25 @@
     </div>
 
     <div id="ref-usage">
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="fu">varGroupTest</span><span class="op">(</span><span class="va">object</span>, <span class="va">...</span><span class="op">)</span>
-
-<span class="co"># S3 method for formula</span>
-<span class="fu">varGroupTest</span><span class="op">(</span><span class="va">object</span>, data <span class="op">=</span> <span class="cn">NULL</span>, <span class="va">subset</span>, 
-  na.action <span class="op">=</span> <span class="va">na.pass</span>, <span class="va">...</span><span class="op">)</span>
-
-<span class="co"># S3 method for default</span>
-<span class="fu">varGroupTest</span><span class="op">(</span><span class="va">object</span>, <span class="va">group</span>, test <span class="op">=</span> <span class="st">"Levene"</span>, 
-  correct <span class="op">=</span> <span class="cn">TRUE</span>, data.name <span class="op">=</span> <span class="cn">NULL</span>, group.name <span class="op">=</span> <span class="cn">NULL</span>, 
-  parent.of.data <span class="op">=</span> <span class="cn">NULL</span>, subset.expression <span class="op">=</span> <span class="cn">NULL</span>, <span class="va">...</span><span class="op">)</span>
-
-<span class="co"># S3 method for data.frame</span>
-<span class="fu">varGroupTest</span><span class="op">(</span><span class="va">object</span>, <span class="va">...</span><span class="op">)</span>
-
-<span class="co"># S3 method for matrix</span>
-<span class="fu">varGroupTest</span><span class="op">(</span><span class="va">object</span>, <span class="va">...</span><span class="op">)</span>
-
-<span class="co"># S3 method for list</span>
-<span class="fu">varGroupTest</span><span class="op">(</span><span class="va">object</span>, <span class="va">...</span><span class="op">)</span></code></pre></div>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">varGroupTest</span><span class="op">(</span><span class="va">object</span>, <span class="va">...</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># S3 method for formula</span></span>
+<span><span class="fu">varGroupTest</span><span class="op">(</span><span class="va">object</span>, data <span class="op">=</span> <span class="cn">NULL</span>, <span class="va">subset</span>, </span>
+<span>  na.action <span class="op">=</span> <span class="va">na.pass</span>, <span class="va">...</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># S3 method for default</span></span>
+<span><span class="fu">varGroupTest</span><span class="op">(</span><span class="va">object</span>, <span class="va">group</span>, test <span class="op">=</span> <span class="st">"Levene"</span>, </span>
+<span>  correct <span class="op">=</span> <span class="cn">TRUE</span>, data.name <span class="op">=</span> <span class="cn">NULL</span>, group.name <span class="op">=</span> <span class="cn">NULL</span>, </span>
+<span>  parent.of.data <span class="op">=</span> <span class="cn">NULL</span>, subset.expression <span class="op">=</span> <span class="cn">NULL</span>, <span class="va">...</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># S3 method for data.frame</span></span>
+<span><span class="fu">varGroupTest</span><span class="op">(</span><span class="va">object</span>, <span class="va">...</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># S3 method for matrix</span></span>
+<span><span class="fu">varGroupTest</span><span class="op">(</span><span class="va">object</span>, <span class="va">...</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># S3 method for list</span></span>
+<span><span class="fu">varGroupTest</span><span class="op">(</span><span class="va">object</span>, <span class="va">...</span><span class="op">)</span></span></code></pre></div>
     </div>
 
     <div id="arguments">
@@ -85,41 +85,53 @@
   can be given, indicating the observations in the vector <code>y</code> are to be grouped 
   according to the levels of the factor <code>g</code>.  Missing (<code>NA</code>), undefined (<code>NaN</code>), 
   and infinite (<code>Inf</code>, <code>-Inf</code>) values are allowed but will be removed.</p></dd>
-<dt>data</dt>
+
+  <dt>data</dt>
 <dd><p>when <code>object</code> is a formula, <code>data</code> specifies an optional data frame, list or 
   environment (or object coercible by <code>as.data.frame</code> to a data frame) containing the 
   variables in the model.  If not found in <code>data</code>, the variables are taken from 
   <code>environment(formula)</code>, typically the environment from which <br><code>summaryStats</code> is called.</p></dd>
-<dt>subset</dt>
+
+  <dt>subset</dt>
 <dd><p>when <code>object</code> is a formula, <code>subset</code> specifies an optional vector specifying 
   a subset of observations to be used.</p></dd>
-<dt>na.action</dt>
+
+  <dt>na.action</dt>
 <dd><p>when <code>object</code> is a formula, <code>na.action</code> specifies a function which indicates 
   what should happen when the data contain <code>NA</code>s. The default is <code><a href="https://rdrr.io/r/stats/na.fail.html" class="external-link">na.pass</a></code>.</p></dd>
-<dt>group</dt>
+
+  <dt>group</dt>
 <dd><p>when <code>object</code> is a numeric vector, <code>group</code> is a factor or character vector 
   indicating which group each observation belongs to.  When <code>object</code> is a matrix or data frame
   this argument is ignored and the columns define the groups.  When <code>object</code> is a list 
   this argument is ignored and the components define the groups.  When <code>object</code> is a formula, 
   this argument is ignored and the right-hand side of the formula specifies the grouping variable.</p></dd>
-<dt>test</dt>
+
+  <dt>test</dt>
 <dd><p>character string indicating which test to use.  The possible values are <code>"Levene"</code> 
   (Levene's test; the default) and <code>"Bartlett"</code> (Bartlett's test).</p></dd>
-<dt>correct</dt>
+
+  <dt>correct</dt>
 <dd><p>logical scalar indicating whether to use the correction factor for Bartlett's test.  
   The default value is <code>correct=TRUE</code>.  This argument is ignored if <code>test="Levene"</code>.</p></dd>
-<dt>data.name</dt>
+
+  <dt>data.name</dt>
 <dd><p>character string indicating the name of the data used for the group variance test.  
   The default value is <code>data.name=deparse(substitute(object))</code>.</p></dd>
-<dt>group.name</dt>
+
+  <dt>group.name</dt>
 <dd><p>character string indicating the name of the data used to create the groups.
   The default value is <code>group.name=deparse(substitute(group))</code>.</p></dd>
-<dt>parent.of.data</dt>
+
+  <dt>parent.of.data</dt>
 <dd><p>character string indicating the source of the data used for the group variance test.</p></dd>
-<dt>subset.expression</dt>
+
+  <dt>subset.expression</dt>
 <dd><p>character string indicating the expression used to subset the data.</p></dd>
-<dt>...</dt>
+
+  <dt>...</dt>
 <dd><p>additional arguments affecting the group variance test.</p></dd>
+
 </dl></div>
     <div id="details">
     <h2>Details</h2>
@@ -136,7 +148,9 @@
     </div>
     <div id="value">
     <h2>Value</h2>
-    <p>a list of class <code>"htest"</code> containing the results of the group variance test.  
+    
+
+<p>a list of class <code>"htest"</code> containing the results of the group variance test.  
   Objects of class <code>"htest"</code> have special printing and plotting methods.  
   See the help file for <code><a href="htest.object.html">htest.object</a></code> for details.</p>
     </div>
@@ -178,13 +192,13 @@
 
     <div id="ref-examples">
     <h2>Examples</h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in">  <span class="co"># Example 11-2 of USEPA (2009, page 11-7) gives an example of </span></span>
-<span class="r-in">  <span class="co"># testing the assumption of equal variances across wells for arsenic  </span></span>
-<span class="r-in">  <span class="co"># concentrations (ppb) in groundwater collected at 6 monitoring </span></span>
-<span class="r-in">  <span class="co"># wells over 4 months.  The data for this example are stored in </span></span>
-<span class="r-in">  <span class="co"># EPA.09.Ex.11.1.arsenic.df.</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">EPA.09.Ex.11.1.arsenic.df</span><span class="op">)</span></span>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span>  <span class="co"># Example 11-2 of USEPA (2009, page 11-7) gives an example of </span></span></span>
+<span class="r-in"><span>  <span class="co"># testing the assumption of equal variances across wells for arsenic  </span></span></span>
+<span class="r-in"><span>  <span class="co"># concentrations (ppb) in groundwater collected at 6 monitoring </span></span></span>
+<span class="r-in"><span>  <span class="co"># wells over 4 months.  The data for this example are stored in </span></span></span>
+<span class="r-in"><span>  <span class="co"># EPA.09.Ex.11.1.arsenic.df.</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">EPA.09.Ex.11.1.arsenic.df</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   Arsenic.ppb Month Well</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 1        22.9     1    1</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 2         3.1     2    1</span>
@@ -192,28 +206,28 @@
 <span class="r-out co"><span class="r-pr">#&gt;</span> 4         4.2     4    1</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 5         2.0     1    2</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 6         1.2     2    2</span>
-<span class="r-in">  <span class="co">#  Arsenic.ppb Month Well</span></span>
-<span class="r-in">  <span class="co">#1        22.9     1    1</span></span>
-<span class="r-in">  <span class="co">#2         3.1     2    1</span></span>
-<span class="r-in">  <span class="co">#3        35.7     3    1</span></span>
-<span class="r-in">  <span class="co">#4         4.2     4    1</span></span>
-<span class="r-in">  <span class="co">#5         2.0     1    2</span></span>
-<span class="r-in">  <span class="co">#6         1.2     2    2</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="fu"><a href="longToWide.html">longToWide</a></span><span class="op">(</span><span class="va">EPA.09.Ex.11.1.arsenic.df</span>, <span class="st">"Arsenic.ppb"</span>, <span class="st">"Month"</span>, <span class="st">"Well"</span>, </span>
-<span class="r-in">    paste.row.name <span class="op">=</span> <span class="cn">TRUE</span>, paste.col.name <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span>
+<span class="r-in"><span>  <span class="co">#  Arsenic.ppb Month Well</span></span></span>
+<span class="r-in"><span>  <span class="co">#1        22.9     1    1</span></span></span>
+<span class="r-in"><span>  <span class="co">#2         3.1     2    1</span></span></span>
+<span class="r-in"><span>  <span class="co">#3        35.7     3    1</span></span></span>
+<span class="r-in"><span>  <span class="co">#4         4.2     4    1</span></span></span>
+<span class="r-in"><span>  <span class="co">#5         2.0     1    2</span></span></span>
+<span class="r-in"><span>  <span class="co">#6         1.2     2    2</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="fu"><a href="longToWide.html">longToWide</a></span><span class="op">(</span><span class="va">EPA.09.Ex.11.1.arsenic.df</span>, <span class="st">"Arsenic.ppb"</span>, <span class="st">"Month"</span>, <span class="st">"Well"</span>, </span></span>
+<span class="r-in"><span>    paste.row.name <span class="op">=</span> <span class="cn">TRUE</span>, paste.col.name <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>         Well.1 Well.2 Well.3 Well.4 Well.5 Well.6</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Month.1   22.9    2.0    2.0    7.8   24.9    0.3</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Month.2    3.1    1.2  109.4    9.3    1.3    4.8</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Month.3   35.7    7.8    4.5   25.9    0.8    2.8</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Month.4    4.2   52.0    2.5    2.0   27.0    1.2</span>
-<span class="r-in">  <span class="co">#        Well.1 Well.2 Well.3 Well.4 Well.5 Well.6</span></span>
-<span class="r-in">  <span class="co">#Month.1   22.9    2.0    2.0    7.8   24.9    0.3</span></span>
-<span class="r-in">  <span class="co">#Month.2    3.1    1.2  109.4    9.3    1.3    4.8</span></span>
-<span class="r-in">  <span class="co">#Month.3   35.7    7.8    4.5   25.9    0.8    2.8</span></span>
-<span class="r-in">  <span class="co">#Month.4    4.2   52.0    2.5    2.0   27.0    1.2</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="fu">varGroupTest</span><span class="op">(</span><span class="va">Arsenic.ppb</span> <span class="op">~</span> <span class="va">Well</span>, data <span class="op">=</span> <span class="va">EPA.09.Ex.11.1.arsenic.df</span><span class="op">)</span></span>
+<span class="r-in"><span>  <span class="co">#        Well.1 Well.2 Well.3 Well.4 Well.5 Well.6</span></span></span>
+<span class="r-in"><span>  <span class="co">#Month.1   22.9    2.0    2.0    7.8   24.9    0.3</span></span></span>
+<span class="r-in"><span>  <span class="co">#Month.2    3.1    1.2  109.4    9.3    1.3    4.8</span></span></span>
+<span class="r-in"><span>  <span class="co">#Month.3   35.7    7.8    4.5   25.9    0.8    2.8</span></span></span>
+<span class="r-in"><span>  <span class="co">#Month.4    4.2   52.0    2.5    2.0   27.0    1.2</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="fu">varGroupTest</span><span class="op">(</span><span class="va">Arsenic.ppb</span> <span class="op">~</span> <span class="va">Well</span>, data <span class="op">=</span> <span class="va">EPA.09.Ex.11.1.arsenic.df</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> $statistic</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>        F </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 4.564176 </span>
@@ -258,43 +272,43 @@
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> attr(,"class")</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] "htestEnvStats"</span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="co">#Results of Hypothesis Test</span></span>
-<span class="r-in">  <span class="co">#--------------------------</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Null Hypothesis:                 Ratio of each pair of variances = 1</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Alternative Hypothesis:          At least one variance differs</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Test Name:                       Levene's Test for</span></span>
-<span class="r-in">  <span class="co">#                                 Homogenity of Variance</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Estimated Parameter(s):          Well.1 =  246.8158</span></span>
-<span class="r-in">  <span class="co">#                                 Well.2 =  592.6767</span></span>
-<span class="r-in">  <span class="co">#                                 Well.3 = 2831.4067</span></span>
-<span class="r-in">  <span class="co">#                                 Well.4 =  105.2967</span></span>
-<span class="r-in">  <span class="co">#                                 Well.5 =  207.4467</span></span>
-<span class="r-in">  <span class="co">#                                 Well.6 =    3.9025</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Data:                            Arsenic.ppb</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Grouping Variable:               Well</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Data Source:                     EPA.09.Ex.11.1.arsenic.df</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Sample Sizes:                    Well.1 = 4</span></span>
-<span class="r-in">  <span class="co">#                                 Well.2 = 4</span></span>
-<span class="r-in">  <span class="co">#                                 Well.3 = 4</span></span>
-<span class="r-in">  <span class="co">#                                 Well.4 = 4</span></span>
-<span class="r-in">  <span class="co">#                                 Well.5 = 4</span></span>
-<span class="r-in">  <span class="co">#                                 Well.6 = 4</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Test Statistic:                  F = 4.564176</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Test Statistic Parameters:       num df   =  5</span></span>
-<span class="r-in">  <span class="co">#                                 denom df = 18</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#P-value:                         0.007294084</span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="co">#Results of Hypothesis Test</span></span></span>
+<span class="r-in"><span>  <span class="co">#--------------------------</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Null Hypothesis:                 Ratio of each pair of variances = 1</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Alternative Hypothesis:          At least one variance differs</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Test Name:                       Levene's Test for</span></span></span>
+<span class="r-in"><span>  <span class="co">#                                 Homogenity of Variance</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Estimated Parameter(s):          Well.1 =  246.8158</span></span></span>
+<span class="r-in"><span>  <span class="co">#                                 Well.2 =  592.6767</span></span></span>
+<span class="r-in"><span>  <span class="co">#                                 Well.3 = 2831.4067</span></span></span>
+<span class="r-in"><span>  <span class="co">#                                 Well.4 =  105.2967</span></span></span>
+<span class="r-in"><span>  <span class="co">#                                 Well.5 =  207.4467</span></span></span>
+<span class="r-in"><span>  <span class="co">#                                 Well.6 =    3.9025</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Data:                            Arsenic.ppb</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Grouping Variable:               Well</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Data Source:                     EPA.09.Ex.11.1.arsenic.df</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Sample Sizes:                    Well.1 = 4</span></span></span>
+<span class="r-in"><span>  <span class="co">#                                 Well.2 = 4</span></span></span>
+<span class="r-in"><span>  <span class="co">#                                 Well.3 = 4</span></span></span>
+<span class="r-in"><span>  <span class="co">#                                 Well.4 = 4</span></span></span>
+<span class="r-in"><span>  <span class="co">#                                 Well.5 = 4</span></span></span>
+<span class="r-in"><span>  <span class="co">#                                 Well.6 = 4</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Test Statistic:                  F = 4.564176</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Test Statistic Parameters:       num df   =  5</span></span></span>
+<span class="r-in"><span>  <span class="co">#                                 denom df = 18</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#P-value:                         0.007294084</span></span></span>
 </code></pre></div>
     </div>
   </div>
@@ -309,7 +323,7 @@
 </div>
 
 <div class="pkgdown">
-  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.2.</p>
+  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.6.</p>
 </div>
 
       </footer></div>

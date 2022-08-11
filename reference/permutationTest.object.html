@@ -72,28 +72,46 @@
     </div>
     <div id="value">
     <h2>Value</h2>
-    <p>A legitimate list of class <code>"permutationTest"</code> includes the components 
+    
+
+<p>A legitimate list of class <code>"permutationTest"</code> includes the components 
   listed in the help file for <code><a href="htest.object.html">htest.object</a></code>.  In addition, the following 
-  components must be included in a legitimate list of class <code>"permutationTest"</code>:
-<strong>Required Components</strong><br>  The following components must be included in a legitimate list of 
+  components must be included in a legitimate list of class <code>"permutationTest"</code>:</p>
+<p></p>
+<p><strong>Required Components</strong></p>
+<p></p>
+<p><br></p>
+
+
+<p>The following components must be included in a legitimate list of 
   class <code>"permutationTest"</code>.</p>
 <dl><dt>stat.dist</dt>
 <dd><p>numeric vector containing values of the statistic for the permutation distribution.  
   When <code>exact=FALSE</code>, the vector is comprised of values sampled from the full 
   permutation distribution.</p></dd>
-<dt>exact</dt>
+
+  <dt>exact</dt>
 <dd><p>logical scalar indicating whether the exact permutation distribution was used for 
   the test (<code>exact=TRUE</code>), or if instead the permutation distribution was 
   sampled (<code>exact=FALSE</code>).</p></dd>
-</dl><p><strong>Optional Components</strong><br>  The following component may optionally be included in an object of 
+
+
+  </dl><p><strong>Optional Components</strong></p>
+<p></p>
+<p><br></p>
+
+
+<p>The following component may optionally be included in an object of 
   of class <code>"permutationTest"</code>:</p>
 <dl><dt>seed</dt>
 <dd><p>integer or vector of integers indicating the seed that was used for sampling the 
   permutation distribution.  This component is present only if <code>exact=FALSE</code>.</p></dd>
-<dt>prob.stat.dist</dt>
+ 
+  <dt>prob.stat.dist</dt>
 <dd><p>numeric vector containing the probabilities associated with each element of 
   the component <code>stat.dist</code>.  This component is only returned by the 
   function <code><a href="twoSamplePermutationTestProportion.html">twoSamplePermutationTestProportion</a></code>.</p></dd>
+
 </dl></div>
     <div id="note">
     <h2>Note</h2>
@@ -113,41 +131,41 @@
 
     <div id="ref-examples">
     <h2>Examples</h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in">  <span class="co"># Create an object of class "permutationTest", then print it and plot it. </span></span>
-<span class="r-in">  <span class="co">#------------------------------------------------------------------------</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="fu"><a href="https://rdrr.io/r/base/Random.html" class="external-link">set.seed</a></span><span class="op">(</span><span class="fl">23</span><span class="op">)</span> </span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="va">dat</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/Logistic.html" class="external-link">rlogis</a></span><span class="op">(</span><span class="fl">10</span>, location <span class="op">=</span> <span class="fl">7</span>, scale <span class="op">=</span> <span class="fl">2</span><span class="op">)</span> </span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="va">permutationTest.obj</span> <span class="op">&lt;-</span> <span class="fu"><a href="oneSamplePermutationTest.html">oneSamplePermutationTest</a></span><span class="op">(</span><span class="va">dat</span>, mu <span class="op">=</span> <span class="fl">5</span>, </span>
-<span class="r-in">    alternative <span class="op">=</span> <span class="st">"greater"</span>, exact <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span> </span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="fu"><a href="https://rdrr.io/r/base/mode.html" class="external-link">mode</a></span><span class="op">(</span><span class="va">permutationTest.obj</span><span class="op">)</span> </span>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span>  <span class="co"># Create an object of class "permutationTest", then print it and plot it. </span></span></span>
+<span class="r-in"><span>  <span class="co">#------------------------------------------------------------------------</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/r/base/Random.html" class="external-link">set.seed</a></span><span class="op">(</span><span class="fl">23</span><span class="op">)</span> </span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="va">dat</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/Logistic.html" class="external-link">rlogis</a></span><span class="op">(</span><span class="fl">10</span>, location <span class="op">=</span> <span class="fl">7</span>, scale <span class="op">=</span> <span class="fl">2</span><span class="op">)</span> </span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="va">permutationTest.obj</span> <span class="op">&lt;-</span> <span class="fu"><a href="oneSamplePermutationTest.html">oneSamplePermutationTest</a></span><span class="op">(</span><span class="va">dat</span>, mu <span class="op">=</span> <span class="fl">5</span>, </span></span>
+<span class="r-in"><span>    alternative <span class="op">=</span> <span class="st">"greater"</span>, exact <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span> </span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/r/base/mode.html" class="external-link">mode</a></span><span class="op">(</span><span class="va">permutationTest.obj</span><span class="op">)</span> </span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] "list"</span>
-<span class="r-in">  <span class="co">#[1] "list" </span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="fu"><a href="https://rdrr.io/r/base/class.html" class="external-link">class</a></span><span class="op">(</span><span class="va">permutationTest.obj</span><span class="op">)</span> </span>
+<span class="r-in"><span>  <span class="co">#[1] "list" </span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/r/base/class.html" class="external-link">class</a></span><span class="op">(</span><span class="va">permutationTest.obj</span><span class="op">)</span> </span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] "permutationTest"</span>
-<span class="r-in">  <span class="co">#[1] "permutationTest" </span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="fu"><a href="https://rdrr.io/r/base/names.html" class="external-link">names</a></span><span class="op">(</span><span class="va">permutationTest.obj</span><span class="op">)</span> </span>
+<span class="r-in"><span>  <span class="co">#[1] "permutationTest" </span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/r/base/names.html" class="external-link">names</a></span><span class="op">(</span><span class="va">permutationTest.obj</span><span class="op">)</span> </span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  [1] "statistic"         "parameters"        "p.value"          </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  [4] "estimate"          "null.value"        "alternative"      </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  [7] "method"            "estimation.method" "sample.size"      </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [10] "data.name"         "bad.obs"           "stat.dist"        </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [13] "exact"            </span>
-<span class="r-in">  <span class="co"># [1] "statistic"         "parameters"        "p.value"          </span></span>
-<span class="r-in">  <span class="co"># [4] "estimate"          "null.value"        "alternative"      </span></span>
-<span class="r-in">  <span class="co"># [7] "method"            "estimation.method" "sample.size"      </span></span>
-<span class="r-in">  <span class="co">#[10] "data.name"         "bad.obs"           "stat.dist"        </span></span>
-<span class="r-in">  <span class="co">#[13] "exact" </span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="co">#==========</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="co"># Print the results of the test </span></span>
-<span class="r-in">  <span class="co">#------------------------------</span></span>
-<span class="r-in">  <span class="va">permutationTest.obj</span> </span>
+<span class="r-in"><span>  <span class="co"># [1] "statistic"         "parameters"        "p.value"          </span></span></span>
+<span class="r-in"><span>  <span class="co"># [4] "estimate"          "null.value"        "alternative"      </span></span></span>
+<span class="r-in"><span>  <span class="co"># [7] "method"            "estimation.method" "sample.size"      </span></span></span>
+<span class="r-in"><span>  <span class="co">#[10] "data.name"         "bad.obs"           "stat.dist"        </span></span></span>
+<span class="r-in"><span>  <span class="co">#[13] "exact" </span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="co">#==========</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="co"># Print the results of the test </span></span></span>
+<span class="r-in"><span>  <span class="co">#------------------------------</span></span></span>
+<span class="r-in"><span>  <span class="va">permutationTest.obj</span> </span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> $statistic</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Sum(x - 5) </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   49.77294 </span>
@@ -397,51 +415,51 @@
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> attr(,"class")</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] "permutationTest"</span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="co">#Results of Hypothesis Test</span></span>
-<span class="r-in">  <span class="co">#--------------------------</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Null Hypothesis:                 Mean (Median) = 5</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Alternative Hypothesis:          True Mean (Median) is greater than 5</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Test Name:                       One-Sample Permutation Test</span></span>
-<span class="r-in">  <span class="co">#                                 (Exact)</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Estimated Parameter(s):          Mean = 9.977294</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Data:                            dat</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Sample Size:                     10</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Test Statistic:                  Sum(x - 5) = 49.77294</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#P-value:                         0.001953125</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="co">#==========</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="co"># Plot the results of the test </span></span>
-<span class="r-in">  <span class="co">#-----------------------------</span></span>
-<span class="r-in">  <span class="fu"><a href="https://rdrr.io/r/grDevices/dev.html" class="external-link">dev.new</a></span><span class="op">(</span><span class="op">)</span></span>
-<span class="r-in">  <span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">permutationTest.obj</span><span class="op">)</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="co">#==========</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="co"># Extract the test statistic</span></span>
-<span class="r-in">  <span class="co">#---------------------------</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="va">permutationTest.obj</span><span class="op">$</span><span class="va">statistic</span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="co">#Results of Hypothesis Test</span></span></span>
+<span class="r-in"><span>  <span class="co">#--------------------------</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Null Hypothesis:                 Mean (Median) = 5</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Alternative Hypothesis:          True Mean (Median) is greater than 5</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Test Name:                       One-Sample Permutation Test</span></span></span>
+<span class="r-in"><span>  <span class="co">#                                 (Exact)</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Estimated Parameter(s):          Mean = 9.977294</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Data:                            dat</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Sample Size:                     10</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Test Statistic:                  Sum(x - 5) = 49.77294</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#P-value:                         0.001953125</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="co">#==========</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="co"># Plot the results of the test </span></span></span>
+<span class="r-in"><span>  <span class="co">#-----------------------------</span></span></span>
+<span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/r/grDevices/dev.html" class="external-link">dev.new</a></span><span class="op">(</span><span class="op">)</span></span></span>
+<span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">permutationTest.obj</span><span class="op">)</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="co">#==========</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="co"># Extract the test statistic</span></span></span>
+<span class="r-in"><span>  <span class="co">#---------------------------</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="va">permutationTest.obj</span><span class="op">$</span><span class="va">statistic</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Sum(x - 5) </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   49.77294 </span>
-<span class="r-in">  <span class="co">#Sum(x - 5) </span></span>
-<span class="r-in">  <span class="co">#  49.77294</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="co">#==========</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="co"># Clean up</span></span>
-<span class="r-in">  <span class="co">#---------</span></span>
-<span class="r-in">  <span class="fu"><a href="https://rdrr.io/r/base/rm.html" class="external-link">rm</a></span><span class="op">(</span><span class="va">permutationTest.obj</span><span class="op">)</span></span>
-<span class="r-in">  <span class="fu"><a href="https://rdrr.io/r/grDevices/dev.html" class="external-link">graphics.off</a></span><span class="op">(</span><span class="op">)</span></span>
+<span class="r-in"><span>  <span class="co">#Sum(x - 5) </span></span></span>
+<span class="r-in"><span>  <span class="co">#  49.77294</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="co">#==========</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="co"># Clean up</span></span></span>
+<span class="r-in"><span>  <span class="co">#---------</span></span></span>
+<span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/r/base/rm.html" class="external-link">rm</a></span><span class="op">(</span><span class="va">permutationTest.obj</span><span class="op">)</span></span></span>
+<span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/r/grDevices/dev.html" class="external-link">graphics.off</a></span><span class="op">(</span><span class="op">)</span></span></span>
 </code></pre></div>
     </div>
   </div>
@@ -456,7 +474,7 @@
 </div>
 
 <div class="pkgdown">
-  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.2.</p>
+  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.6.</p>
 </div>
 
       </footer></div>

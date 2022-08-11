@@ -52,9 +52,9 @@
     </div>
 
     <div id="ref-usage">
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="fu">tolIntNormK</span><span class="op">(</span><span class="va">n</span>, df <span class="op">=</span> <span class="va">n</span> <span class="op">-</span> <span class="fl">1</span>, coverage <span class="op">=</span> <span class="fl">0.95</span>, cov.type <span class="op">=</span> <span class="st">"content"</span>, 
-    ti.type <span class="op">=</span> <span class="st">"two-sided"</span>, conf.level <span class="op">=</span> <span class="fl">0.95</span>, method <span class="op">=</span> <span class="st">"exact"</span>, 
-    rel.tol <span class="op">=</span> <span class="fl">1e-07</span>, abs.tol <span class="op">=</span> <span class="va">rel.tol</span><span class="op">)</span></code></pre></div>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">tolIntNormK</span><span class="op">(</span><span class="va">n</span>, df <span class="op">=</span> <span class="va">n</span> <span class="op">-</span> <span class="fl">1</span>, coverage <span class="op">=</span> <span class="fl">0.95</span>, cov.type <span class="op">=</span> <span class="st">"content"</span>, </span>
+<span>    ti.type <span class="op">=</span> <span class="st">"two-sided"</span>, conf.level <span class="op">=</span> <span class="fl">0.95</span>, method <span class="op">=</span> <span class="st">"exact"</span>, </span>
+<span>    rel.tol <span class="op">=</span> <span class="fl">1e-07</span>, abs.tol <span class="op">=</span> <span class="va">rel.tol</span><span class="op">)</span></span></code></pre></div>
     </div>
 
     <div id="arguments">
@@ -62,37 +62,46 @@
     <dl><dt>n</dt>
 <dd><p>a positive integer greater than 2 indicating the sample size upon which the 
   tolerance interval is based.</p></dd>
-<dt>df</dt>
+
+  <dt>df</dt>
 <dd><p>the degrees of freedom associated with the tolerance interval.  The default is 
   <code>df=n-1</code>.</p></dd>
-<dt>coverage</dt>
+
+  <dt>coverage</dt>
 <dd><p>a scalar between 0 and 1 indicating the desired coverage of the tolerance interval.  
   The default value is <code>coverage=0.95</code>.</p></dd>
-<dt>cov.type</dt>
+
+  <dt>cov.type</dt>
 <dd><p>character string specifying the coverage type for the tolerance interval.  
   The possible values are <code>"content"</code> (\(\beta\)-content; the default), and 
   <code>"expectation"</code> (\(\beta\)-expectation).  See the help file for <code><a href="tolIntNorm.html">tolIntNorm</a></code> 
   for more information on the difference between \(\beta\)-content and \(\beta\)-expectation 
   tolerance intervals.</p></dd>
-<dt>ti.type</dt>
+
+  <dt>ti.type</dt>
 <dd><p>character string indicating what kind of tolerance interval to compute.  
   The possible values are <code>"two-sided"</code> (the default), <code>"lower"</code>, and 
   <code>"upper"</code>.</p></dd>
-<dt>conf.level</dt>
+
+  <dt>conf.level</dt>
 <dd><p>a scalar between 0 and 1 indicating the confidence level associated with the tolerance 
   interval.  The default value is <code>conf.level=0.95</code>.</p></dd>
-<dt>method</dt>
+
+  <dt>method</dt>
 <dd><p>for the case of a two-sided tolerance interval, a character string specifying the method for 
   constructing the tolerance interval.  This argument is ignored if <code>ti.type="lower"</code> or 
   <code>ti.type="upper"</code>.  The possible values are <br><code>"exact"</code> (the default) and <code>"wald.wolfowitz"</code> (the Wald-Wolfowitz approximation).  
   See the DETAILS section for more information.</p></dd>
-<dt>rel.tol</dt>
+
+  <dt>rel.tol</dt>
 <dd><p>in the case when <code>ti.type="two-sided"</code> and <code>method="exact"</code>, the argument 
   <code>rel.tol</code> is passed to the function <code><a href="https://rdrr.io/r/stats/integrate.html" class="external-link">integrate</a></code>.  The default value is <br><code>rel.tol=1e-07</code>.</p></dd>
-<dt>abs.tol</dt>
+
+  <dt>abs.tol</dt>
 <dd><p>in the case when <code>ti.type="two-sided"</code> and <code>method="exact"</code>, the argument 
   <code>abs.tol</code> is passed to the function <code><a href="https://rdrr.io/r/stats/integrate.html" class="external-link">integrate</a></code>.  The default value is the 
   value of <code>rel.tol</code>.</p></dd>
+
 </dl></div>
     <div id="details">
     <h2>Details</h2>
@@ -177,7 +186,9 @@
     </div>
     <div id="value">
     <h2>Value</h2>
-    <p>The value of \(K\), a numeric scalar used to construct tolerance intervals for a normal 
+    
+
+<p>The value of \(K\), a numeric scalar used to construct tolerance intervals for a normal 
   (Gaussian) distribution.</p>
     </div>
     <div id="references">
@@ -260,48 +271,48 @@
 
     <div id="ref-examples">
     <h2>Examples</h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in">  <span class="co"># Compute the value of K for a two-sided 95% beta-content </span></span>
-<span class="r-in">  <span class="co"># tolerance interval with associated confidence level 95% </span></span>
-<span class="r-in">  <span class="co"># given a sample size of n=20.</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="co">#----------</span></span>
-<span class="r-in">  <span class="co"># Exact method</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="fu">tolIntNormK</span><span class="op">(</span>n <span class="op">=</span> <span class="fl">20</span><span class="op">)</span></span>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span>  <span class="co"># Compute the value of K for a two-sided 95% beta-content </span></span></span>
+<span class="r-in"><span>  <span class="co"># tolerance interval with associated confidence level 95% </span></span></span>
+<span class="r-in"><span>  <span class="co"># given a sample size of n=20.</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="co">#----------</span></span></span>
+<span class="r-in"><span>  <span class="co"># Exact method</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="fu">tolIntNormK</span><span class="op">(</span>n <span class="op">=</span> <span class="fl">20</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] 2.760346</span>
-<span class="r-in">  <span class="co">#[1] 2.760346</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="co">#----------</span></span>
-<span class="r-in">  <span class="co"># Approximate method due to Wald and Wolfowitz (1946)</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="fu">tolIntNormK</span><span class="op">(</span>n <span class="op">=</span> <span class="fl">20</span>, method <span class="op">=</span> <span class="st">"wald"</span><span class="op">)</span></span>
+<span class="r-in"><span>  <span class="co">#[1] 2.760346</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="co">#----------</span></span></span>
+<span class="r-in"><span>  <span class="co"># Approximate method due to Wald and Wolfowitz (1946)</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="fu">tolIntNormK</span><span class="op">(</span>n <span class="op">=</span> <span class="fl">20</span>, method <span class="op">=</span> <span class="st">"wald"</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] 2.751789</span>
-<span class="r-in">  <span class="co"># [1] 2.751789</span></span>
-<span class="r-in"></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="co">#--------------------------------------------------------------------</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="co"># Compute the value of K for a one-sided upper tolerance limit </span></span>
-<span class="r-in">  <span class="co"># with 99% coverage and associated confidence level 90% </span></span>
-<span class="r-in">  <span class="co"># given a samle size of n=20.</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="fu">tolIntNormK</span><span class="op">(</span>n <span class="op">=</span> <span class="fl">20</span>, ti.type <span class="op">=</span> <span class="st">"upper"</span>, coverage <span class="op">=</span> <span class="fl">0.99</span>, </span>
-<span class="r-in">    conf.level <span class="op">=</span> <span class="fl">0.9</span><span class="op">)</span></span>
+<span class="r-in"><span>  <span class="co"># [1] 2.751789</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="co">#--------------------------------------------------------------------</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="co"># Compute the value of K for a one-sided upper tolerance limit </span></span></span>
+<span class="r-in"><span>  <span class="co"># with 99% coverage and associated confidence level 90% </span></span></span>
+<span class="r-in"><span>  <span class="co"># given a samle size of n=20.</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="fu">tolIntNormK</span><span class="op">(</span>n <span class="op">=</span> <span class="fl">20</span>, ti.type <span class="op">=</span> <span class="st">"upper"</span>, coverage <span class="op">=</span> <span class="fl">0.99</span>, </span></span>
+<span class="r-in"><span>    conf.level <span class="op">=</span> <span class="fl">0.9</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] 3.051543</span>
-<span class="r-in">  <span class="co">#[1] 3.051543</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="co">#--------------------------------------------------------------------</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="co"># Example 17-3 of USEPA (2009, p. 17-17) shows how to construct a </span></span>
-<span class="r-in">  <span class="co"># beta-content upper tolerance limit with 95% coverage and 95% </span></span>
-<span class="r-in">  <span class="co"># confidence  using chrysene data and assuming a lognormal </span></span>
-<span class="r-in">  <span class="co"># distribution.  The sample size is n = 8 observations from </span></span>
-<span class="r-in">  <span class="co"># the two compliance wells.  Here we will compute the </span></span>
-<span class="r-in">  <span class="co"># multiplier for the log-transformed data.</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="fu">tolIntNormK</span><span class="op">(</span>n <span class="op">=</span> <span class="fl">8</span>, ti.type <span class="op">=</span> <span class="st">"upper"</span><span class="op">)</span></span>
+<span class="r-in"><span>  <span class="co">#[1] 3.051543</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="co">#--------------------------------------------------------------------</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="co"># Example 17-3 of USEPA (2009, p. 17-17) shows how to construct a </span></span></span>
+<span class="r-in"><span>  <span class="co"># beta-content upper tolerance limit with 95% coverage and 95% </span></span></span>
+<span class="r-in"><span>  <span class="co"># confidence  using chrysene data and assuming a lognormal </span></span></span>
+<span class="r-in"><span>  <span class="co"># distribution.  The sample size is n = 8 observations from </span></span></span>
+<span class="r-in"><span>  <span class="co"># the two compliance wells.  Here we will compute the </span></span></span>
+<span class="r-in"><span>  <span class="co"># multiplier for the log-transformed data.</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="fu">tolIntNormK</span><span class="op">(</span>n <span class="op">=</span> <span class="fl">8</span>, ti.type <span class="op">=</span> <span class="st">"upper"</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] 3.187294</span>
-<span class="r-in">  <span class="co">#[1] 3.187294</span></span>
+<span class="r-in"><span>  <span class="co">#[1] 3.187294</span></span></span>
 </code></pre></div>
     </div>
   </div>
@@ -316,7 +327,7 @@
 </div>
 
 <div class="pkgdown">
-  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.2.</p>
+  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.6.</p>
 </div>
 
       </footer></div>

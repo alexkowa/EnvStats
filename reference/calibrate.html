@@ -50,9 +50,9 @@
     </div>
 
     <div id="ref-usage">
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="fu">calibrate</span><span class="op">(</span><span class="va">formula</span>, <span class="va">data</span>, test.higher.orders <span class="op">=</span> <span class="cn">TRUE</span>, max.order <span class="op">=</span> <span class="fl">4</span>, p.crit <span class="op">=</span> <span class="fl">0.05</span>, 
-    F.test <span class="op">=</span> <span class="st">"partial"</span>, <span class="va">weights</span>, <span class="va">subset</span>, <span class="va">na.action</span>, method <span class="op">=</span> <span class="st">"qr"</span>, model <span class="op">=</span> <span class="cn">FALSE</span>, 
-    x <span class="op">=</span> <span class="cn">FALSE</span>, y <span class="op">=</span> <span class="cn">FALSE</span>, contrasts <span class="op">=</span> <span class="cn">NULL</span>, warn <span class="op">=</span> <span class="cn">TRUE</span>, <span class="va">...</span><span class="op">)</span></code></pre></div>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">calibrate</span><span class="op">(</span><span class="va">formula</span>, <span class="va">data</span>, test.higher.orders <span class="op">=</span> <span class="cn">TRUE</span>, max.order <span class="op">=</span> <span class="fl">4</span>, p.crit <span class="op">=</span> <span class="fl">0.05</span>, </span>
+<span>    F.test <span class="op">=</span> <span class="st">"partial"</span>, <span class="va">weights</span>, <span class="va">subset</span>, <span class="va">na.action</span>, method <span class="op">=</span> <span class="st">"qr"</span>, model <span class="op">=</span> <span class="cn">FALSE</span>, </span>
+<span>    x <span class="op">=</span> <span class="cn">FALSE</span>, y <span class="op">=</span> <span class="cn">FALSE</span>, contrasts <span class="op">=</span> <span class="cn">NULL</span>, warn <span class="op">=</span> <span class="cn">TRUE</span>, <span class="va">...</span><span class="op">)</span></span></code></pre></div>
     </div>
 
     <div id="arguments">
@@ -60,18 +60,21 @@
     <dl><dt>formula</dt>
 <dd><p>a <code><a href="https://rdrr.io/r/stats/formula.html" class="external-link">formula</a></code> object, with the response on the left of a <code>~</code> operator, and 
   the single predictor variable on the right.  For example, <code>Cadmium ~ Spike</code>.</p></dd>
-<dt>data</dt>
+
+  <dt>data</dt>
 <dd><p>an optional data frame, list or environment (or object coercible by <br><code><a href="https://rdrr.io/r/base/as.data.frame.html" class="external-link">as.data.frame</a></code> to a data frame) containing the variables in 
   the model.  If not found in <code>data</code>, the variables are taken from 
   <code>environment(formula)</code>, typically the environment from which 
   <code>calibrate</code> is called.</p></dd>
-<dt>test.higher.orders</dt>
+
+  <dt>test.higher.orders</dt>
 <dd><p>logical scalar indicating whether to start with a model that contains a single predictor 
   variable and test the fit of higher order polynomials to consider for the calibration 
   curve (<code>test.higher.orders=TRUE</code>; the default), or to simply use the model suppled 
   and add the model matrix to the fit if it was not already indicated by the argument 
   <code>x=TRUE</code> in the call to <code>calibrate</code>.</p></dd>
-<dt>max.order</dt>
+
+  <dt>max.order</dt>
 <dd><p>integer indicating the maximum order of the polynomial to consider for the 
   calibration curve.  The default value is <code>max.order=4</code>, however, the final value of 
   <code>max.order</code> is the minimum of <code>max.order</code> and value of the number of 
@@ -80,46 +83,57 @@
   what the user supplies and 3; thus, in this case, the highest order polynomial that will 
   be potentially tested is a cubic.  See also the explanation below for the argument 
   <code>warn</code>.</p></dd>
-<dt>p.crit</dt>
+
+  <dt>p.crit</dt>
 <dd><p>numeric scaler between 0 and 1 indicating the p-value to use for the stepwise regression 
   when determining which polynomial model to use.  The default value is <code>p.crit=0.05</code>.</p></dd>
-<dt>F.test</dt>
+
+  <dt>F.test</dt>
 <dd><p>character string indicating whether to perform the stepwise regression using the 
   standard partial F-test (<code>F.test="partial"</code>; the default) or using the 
   lack-of-fit F-test (<code>F.test="lof"</code>).</p></dd>
-<dt>weights</dt>
+
+  <dt>weights</dt>
 <dd><p>optional vector of observation weights; if supplied, the algorithm fits to minimize the sum of the 
   weights multiplied into the squared residuals.  The length of weights must be the same as 
   the number of observations.  The weights must be nonnegative and it is strongly recommended 
   that they be strictly positive, since zero weights are ambiguous, compared to use of the 
   <code>subset</code> argument.</p></dd>
-<dt>subset</dt>
+
+  <dt>subset</dt>
 <dd><p>optional expression saying which subset of the rows of the data should be used in the fit. 
   This can be a logical vector (which is replicated to have length equal to the number of 
   observations), or a numeric vector indicating which observation numbers are to be included, 
   or a character vector of the row names to be included.  All observations are included by 
   default.</p></dd>
-<dt>na.action</dt>
+
+  <dt>na.action</dt>
 <dd><p>optional function which indicates what should happen when the data contain <code>NAs</code>. 
   The default is set by the <code>na.action</code> setting of <code><a href="https://rdrr.io/r/base/options.html" class="external-link">options</a></code>, and is <br><code><a href="https://rdrr.io/r/stats/na.fail.html" class="external-link">na.fail</a></code> if that is unset.  The ‘factory-fresh’ default is 
   <code><a href="https://rdrr.io/r/stats/na.fail.html" class="external-link">na.omit</a></code>.  Another possible value is <code>NULL</code>, no action. 
   Value <code><a href="https://rdrr.io/r/stats/na.fail.html" class="external-link">na.exclude</a></code> can be useful.</p></dd>
-<dt>method</dt>
+
+  <dt>method</dt>
 <dd><p>optional method to be used; for fitting, currently only <code>method = "qr"</code> is supported; 
   <code>method = "model.frame"</code> returns the model frame (the same as with 
   <code>model = TRUE</code>, see below).</p></dd>
-<dt>model, x, y, qr</dt>
+
+  <dt>model, x, y, qr</dt>
 <dd><p>optional logicals. If <code>TRUE</code> the corresponding components of the fit (the model frame, 
   the model matrix, the response, the QR decomposition) are returned.</p></dd>
-<dt>contrasts</dt>
+
+  <dt>contrasts</dt>
 <dd><p>an optional list. See the argument <code>contrasts.arg</code> of <code><a href="https://rdrr.io/r/stats/model.matrix.html" class="external-link">model.matrix</a></code>.</p></dd>
-<dt>warn</dt>
+
+  <dt>warn</dt>
 <dd><p>logical scalar indicating whether to issue a warning (<code>warn=TRUE</code>; the default) when 
   the value of <code>max.order</code> has been decreased from what the user supplied.  
   See also the explanation above for the argument <code>max.order</code>.</p></dd>
-<dt>...</dt>
+
+  <dt>...</dt>
 <dd><p>additional arguments to be passed to the low level regression fitting functions 
   (see <code><a href="https://rdrr.io/r/stats/lm.html" class="external-link">lm</a></code>).</p></dd>
+
 </dl></div>
     <div id="details">
     <h2>Details</h2>
@@ -162,9 +176,17 @@
     </div>
     <div id="value">
     <h2>Value</h2>
-    <p>An object of <code><a href="https://rdrr.io/r/base/class.html" class="external-link">class</a></code><code>"calibrate"</code> that inherits from 
-<code><a href="https://rdrr.io/r/base/class.html" class="external-link">class</a></code><code>"<a href="https://rdrr.io/r/stats/lm.html" class="external-link">lm</a>"</code> and includes a component called 
-<code>x</code> that stores the model matrix (the values of the predictor variables for the final 
+    
+
+<p>An object of <code><a href="https://rdrr.io/r/base/class.html" class="external-link">class</a></code></p>
+<p></p>
+<p><code>"calibrate"</code> that inherits from</p>
+<p></p>
+<p><code><a href="https://rdrr.io/r/base/class.html" class="external-link">class</a></code></p>
+<p></p>
+<p><code>"<a href="https://rdrr.io/r/stats/lm.html" class="external-link">lm</a>"</code> and includes a component called</p>
+<p></p>
+<p><code>x</code> that stores the model matrix (the values of the predictor variables for the final 
   calibration model).</p>
     </div>
     <div id="references">
@@ -204,46 +226,46 @@
 
     <div id="ref-examples">
     <h2>Examples</h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in">  <span class="co"># The data frame EPA.97.cadmium.111.df contains calibration data for </span></span>
-<span class="r-in">  <span class="co"># cadmium at mass 111 (ng/L) that appeared in Gibbons et al. (1997b) </span></span>
-<span class="r-in">  <span class="co"># and were provided to them by the U.S. EPA.  </span></span>
-<span class="r-in">  <span class="co"># Display a plot of these data along with the fitted calibration line </span></span>
-<span class="r-in">  <span class="co"># and 99% non-simultaneous prediction limits.  See </span></span>
-<span class="r-in">  <span class="co"># Millard and Neerchal (2001, pp.566-569) for more details on this </span></span>
-<span class="r-in">  <span class="co"># example.</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="va">Cadmium</span> <span class="op">&lt;-</span> <span class="va">EPA.97.cadmium.111.df</span><span class="op">$</span><span class="va">Cadmium</span> </span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="va">Spike</span> <span class="op">&lt;-</span> <span class="va">EPA.97.cadmium.111.df</span><span class="op">$</span><span class="va">Spike</span> </span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="va">calibrate.list</span> <span class="op">&lt;-</span> <span class="fu">calibrate</span><span class="op">(</span><span class="va">Cadmium</span> <span class="op">~</span> <span class="va">Spike</span>, data <span class="op">=</span> <span class="va">EPA.97.cadmium.111.df</span><span class="op">)</span> </span>
-<span class="r-in"> </span>
-<span class="r-in">  <span class="va">newdata</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html" class="external-link">data.frame</a></span><span class="op">(</span>Spike <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/seq.html" class="external-link">seq</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/Extremes.html" class="external-link">min</a></span><span class="op">(</span><span class="va">Spike</span><span class="op">)</span>, <span class="fu"><a href="https://rdrr.io/r/base/Extremes.html" class="external-link">max</a></span><span class="op">(</span><span class="va">Spike</span><span class="op">)</span>, len <span class="op">=</span> <span class="fl">100</span><span class="op">)</span><span class="op">)</span></span>
-<span class="r-in"> </span>
-<span class="r-in">  <span class="va">pred.list</span> <span class="op">&lt;-</span> <span class="fu"><a href="predict.html">predict</a></span><span class="op">(</span><span class="va">calibrate.list</span>, newdata <span class="op">=</span> <span class="va">newdata</span>, se.fit <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span> </span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="va">pointwise.list</span> <span class="op">&lt;-</span> <span class="fu"><a href="pointwise.html">pointwise</a></span><span class="op">(</span><span class="va">pred.list</span>, coverage <span class="op">=</span> <span class="fl">0.99</span>, individual <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span> </span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="fu"><a href="https://rdrr.io/r/grDevices/dev.html" class="external-link">dev.new</a></span><span class="op">(</span><span class="op">)</span></span>
-<span class="r-in">  <span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">Spike</span>, <span class="va">Cadmium</span>, ylim <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/Extremes.html" class="external-link">min</a></span><span class="op">(</span><span class="va">pointwise.list</span><span class="op">$</span><span class="va">lower</span><span class="op">)</span>, </span>
-<span class="r-in">    <span class="fu"><a href="https://rdrr.io/r/base/Extremes.html" class="external-link">max</a></span><span class="op">(</span><span class="va">pointwise.list</span><span class="op">$</span><span class="va">upper</span><span class="op">)</span><span class="op">)</span>, xlab <span class="op">=</span> <span class="st">"True Concentration (ng/L)"</span>, </span>
-<span class="r-in">    ylab <span class="op">=</span> <span class="st">"Observed Concentration (ng/L)"</span><span class="op">)</span> </span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="fu"><a href="https://rdrr.io/r/graphics/abline.html" class="external-link">abline</a></span><span class="op">(</span><span class="va">calibrate.list</span>, lwd <span class="op">=</span> <span class="fl">2</span><span class="op">)</span> </span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="fu"><a href="https://rdrr.io/r/graphics/lines.html" class="external-link">lines</a></span><span class="op">(</span><span class="va">newdata</span><span class="op">$</span><span class="va">Spike</span>, <span class="va">pointwise.list</span><span class="op">$</span><span class="va">lower</span>, lty <span class="op">=</span> <span class="fl">8</span>, lwd <span class="op">=</span> <span class="fl">2</span><span class="op">)</span> </span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="fu"><a href="https://rdrr.io/r/graphics/lines.html" class="external-link">lines</a></span><span class="op">(</span><span class="va">newdata</span><span class="op">$</span><span class="va">Spike</span>, <span class="va">pointwise.list</span><span class="op">$</span><span class="va">upper</span>, lty <span class="op">=</span> <span class="fl">8</span>, lwd <span class="op">=</span> <span class="fl">2</span><span class="op">)</span> </span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="fu"><a href="https://rdrr.io/r/graphics/title.html" class="external-link">title</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/paste.html" class="external-link">paste</a></span><span class="op">(</span><span class="st">"Calibration Line and 99% Prediction Limits"</span>, </span>
-<span class="r-in">    <span class="st">"for US EPA Cadmium 111 Data"</span>, sep <span class="op">=</span> <span class="st">"\n"</span><span class="op">)</span><span class="op">)</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="co">#----------</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="co"># Clean up</span></span>
-<span class="r-in">  <span class="co">#---------</span></span>
-<span class="r-in">  <span class="fu"><a href="https://rdrr.io/r/base/rm.html" class="external-link">rm</a></span><span class="op">(</span><span class="va">Cadmium</span>, <span class="va">Spike</span>, <span class="va">newdata</span>, <span class="va">calibrate.list</span>, <span class="va">pred.list</span>, <span class="va">pointwise.list</span><span class="op">)</span></span>
-<span class="r-in">  <span class="fu"><a href="https://rdrr.io/r/grDevices/dev.html" class="external-link">graphics.off</a></span><span class="op">(</span><span class="op">)</span></span>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span>  <span class="co"># The data frame EPA.97.cadmium.111.df contains calibration data for </span></span></span>
+<span class="r-in"><span>  <span class="co"># cadmium at mass 111 (ng/L) that appeared in Gibbons et al. (1997b) </span></span></span>
+<span class="r-in"><span>  <span class="co"># and were provided to them by the U.S. EPA.  </span></span></span>
+<span class="r-in"><span>  <span class="co"># Display a plot of these data along with the fitted calibration line </span></span></span>
+<span class="r-in"><span>  <span class="co"># and 99% non-simultaneous prediction limits.  See </span></span></span>
+<span class="r-in"><span>  <span class="co"># Millard and Neerchal (2001, pp.566-569) for more details on this </span></span></span>
+<span class="r-in"><span>  <span class="co"># example.</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="va">Cadmium</span> <span class="op">&lt;-</span> <span class="va">EPA.97.cadmium.111.df</span><span class="op">$</span><span class="va">Cadmium</span> </span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="va">Spike</span> <span class="op">&lt;-</span> <span class="va">EPA.97.cadmium.111.df</span><span class="op">$</span><span class="va">Spike</span> </span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="va">calibrate.list</span> <span class="op">&lt;-</span> <span class="fu">calibrate</span><span class="op">(</span><span class="va">Cadmium</span> <span class="op">~</span> <span class="va">Spike</span>, data <span class="op">=</span> <span class="va">EPA.97.cadmium.111.df</span><span class="op">)</span> </span></span>
+<span class="r-in"><span> </span></span>
+<span class="r-in"><span>  <span class="va">newdata</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html" class="external-link">data.frame</a></span><span class="op">(</span>Spike <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/seq.html" class="external-link">seq</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/Extremes.html" class="external-link">min</a></span><span class="op">(</span><span class="va">Spike</span><span class="op">)</span>, <span class="fu"><a href="https://rdrr.io/r/base/Extremes.html" class="external-link">max</a></span><span class="op">(</span><span class="va">Spike</span><span class="op">)</span>, len <span class="op">=</span> <span class="fl">100</span><span class="op">)</span><span class="op">)</span></span></span>
+<span class="r-in"><span> </span></span>
+<span class="r-in"><span>  <span class="va">pred.list</span> <span class="op">&lt;-</span> <span class="fu"><a href="predict.html">predict</a></span><span class="op">(</span><span class="va">calibrate.list</span>, newdata <span class="op">=</span> <span class="va">newdata</span>, se.fit <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span> </span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="va">pointwise.list</span> <span class="op">&lt;-</span> <span class="fu"><a href="pointwise.html">pointwise</a></span><span class="op">(</span><span class="va">pred.list</span>, coverage <span class="op">=</span> <span class="fl">0.99</span>, individual <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span> </span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/r/grDevices/dev.html" class="external-link">dev.new</a></span><span class="op">(</span><span class="op">)</span></span></span>
+<span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">Spike</span>, <span class="va">Cadmium</span>, ylim <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/Extremes.html" class="external-link">min</a></span><span class="op">(</span><span class="va">pointwise.list</span><span class="op">$</span><span class="va">lower</span><span class="op">)</span>, </span></span>
+<span class="r-in"><span>    <span class="fu"><a href="https://rdrr.io/r/base/Extremes.html" class="external-link">max</a></span><span class="op">(</span><span class="va">pointwise.list</span><span class="op">$</span><span class="va">upper</span><span class="op">)</span><span class="op">)</span>, xlab <span class="op">=</span> <span class="st">"True Concentration (ng/L)"</span>, </span></span>
+<span class="r-in"><span>    ylab <span class="op">=</span> <span class="st">"Observed Concentration (ng/L)"</span><span class="op">)</span> </span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/r/graphics/abline.html" class="external-link">abline</a></span><span class="op">(</span><span class="va">calibrate.list</span>, lwd <span class="op">=</span> <span class="fl">2</span><span class="op">)</span> </span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/r/graphics/lines.html" class="external-link">lines</a></span><span class="op">(</span><span class="va">newdata</span><span class="op">$</span><span class="va">Spike</span>, <span class="va">pointwise.list</span><span class="op">$</span><span class="va">lower</span>, lty <span class="op">=</span> <span class="fl">8</span>, lwd <span class="op">=</span> <span class="fl">2</span><span class="op">)</span> </span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/r/graphics/lines.html" class="external-link">lines</a></span><span class="op">(</span><span class="va">newdata</span><span class="op">$</span><span class="va">Spike</span>, <span class="va">pointwise.list</span><span class="op">$</span><span class="va">upper</span>, lty <span class="op">=</span> <span class="fl">8</span>, lwd <span class="op">=</span> <span class="fl">2</span><span class="op">)</span> </span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/r/graphics/title.html" class="external-link">title</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/paste.html" class="external-link">paste</a></span><span class="op">(</span><span class="st">"Calibration Line and 99% Prediction Limits"</span>, </span></span>
+<span class="r-in"><span>    <span class="st">"for US EPA Cadmium 111 Data"</span>, sep <span class="op">=</span> <span class="st">"\n"</span><span class="op">)</span><span class="op">)</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="co">#----------</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="co"># Clean up</span></span></span>
+<span class="r-in"><span>  <span class="co">#---------</span></span></span>
+<span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/r/base/rm.html" class="external-link">rm</a></span><span class="op">(</span><span class="va">Cadmium</span>, <span class="va">Spike</span>, <span class="va">newdata</span>, <span class="va">calibrate.list</span>, <span class="va">pred.list</span>, <span class="va">pointwise.list</span><span class="op">)</span></span></span>
+<span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/r/grDevices/dev.html" class="external-link">graphics.off</a></span><span class="op">(</span><span class="op">)</span></span></span>
 </code></pre></div>
     </div>
   </div>
@@ -258,7 +280,7 @@
 </div>
 
 <div class="pkgdown">
-  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.2.</p>
+  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.6.</p>
 </div>
 
       </footer></div>

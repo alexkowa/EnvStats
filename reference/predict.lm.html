@@ -60,17 +60,19 @@
     </div>
 
     <div id="ref-usage">
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="co"># S3 method for lm</span>
-<span class="fu"><a href="predict.html">predict</a></span><span class="op">(</span><span class="va">object</span>, <span class="va">...</span><span class="op">)</span></code></pre></div>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="co"># S3 method for lm</span></span>
+<span><span class="fu"><a href="predict.html">predict</a></span><span class="op">(</span><span class="va">object</span>, <span class="va">...</span><span class="op">)</span></span></code></pre></div>
     </div>
 
     <div id="arguments">
     <h2>Arguments</h2>
     <dl><dt>object</dt>
 <dd><p>Object of class inheriting from <code>"lm"</code>.</p></dd>
-<dt>...</dt>
+
+  <dt>...</dt>
 <dd><p>Further arguments passed to the <span style="R">R</span> function <code><a href="https://rdrr.io/r/stats/predict.lm.html" class="external-link">predict.lm</a></code>.  
   See the <span style="R">R</span> help file for the <span style="R">R</span> function <code><a href="https://rdrr.io/r/stats/predict.lm.html" class="external-link">predict.lm</a></code>.</p></dd>
+
 </dl></div>
     <div id="details">
     <h2>Details</h2>
@@ -84,20 +86,30 @@
     </div>
     <div id="value">
     <h2>Value</h2>
-    <p>See the <span style="R">R</span> help file for <code><a href="https://rdrr.io/r/stats/predict.lm.html" class="external-link">predict.lm</a></code>.  
-  The only modification is that for the <span class="pkg">EnvStats</span> function <code>predict.lm</code>, 
-  if <code>se.fit=TRUE</code>, the list returned includes a component called 
-<code>n.coefs</code>, i.e., the function returns a list with the following components:</p>
+    
+
+<p>See the <span style="R">R</span> help file for <code><a href="https://rdrr.io/r/stats/predict.lm.html" class="external-link">predict.lm</a></code>.</p>
+
+
+<p>The only modification is that for the <span class="pkg">EnvStats</span> function <code>predict.lm</code>, 
+  if <code>se.fit=TRUE</code>, the list returned includes a component called</p>
+<p></p>
+<p><code>n.coefs</code>, i.e., the function returns a list with the following components:</p>
 <dl><dt>fit</dt>
 <dd><p>vector or matrix as above</p></dd>
-<dt>se.fit</dt>
+
+  <dt>se.fit</dt>
 <dd><p>standard error of predicted means</p></dd>
-<dt>residual.scale</dt>
+
+  <dt>residual.scale</dt>
 <dd><p>residual standard deviations</p></dd>
-<dt>df</dt>
+
+  <dt>df</dt>
 <dd><p>degrees of freedom for residual</p></dd>
-<dt>n.coefs</dt>
+
+  <dt>n.coefs</dt>
 <dd><p>numeric scalar denoting the number of predictor variables used in the model</p></dd>
+
 </dl></div>
     <div id="references">
     <h2>References</h2>
@@ -126,30 +138,30 @@
 
     <div id="ref-examples">
     <h2>Examples</h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in">  <span class="co"># Using the data from the built-in data frame Air.df, </span></span>
-<span class="r-in">  <span class="co"># fit the cube-root of ozone as a function of temperature, </span></span>
-<span class="r-in">  <span class="co"># then compute predicted values for ozone at 70 and 90 degrees F,</span></span>
-<span class="r-in">  <span class="co"># along with the standard errors of these predicted values.</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="co"># First look at the data</span></span>
-<span class="r-in">  <span class="co">#-----------------------</span></span>
-<span class="r-in">  <span class="fu"><a href="https://rdrr.io/r/base/with.html" class="external-link">with</a></span><span class="op">(</span><span class="va">Air.df</span>, </span>
-<span class="r-in">    <span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">temperature</span>, <span class="va">ozone</span>, xlab <span class="op">=</span> <span class="st">"Temperature (degrees F)"</span>, </span>
-<span class="r-in">      ylab <span class="op">=</span> <span class="st">"Cube-Root Ozone (ppb)"</span><span class="op">)</span><span class="op">)</span></span>
-<span class="r-in"></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="co"># Now create the lm object </span></span>
-<span class="r-in">  <span class="co">#-------------------------</span></span>
-<span class="r-in">  <span class="va">ozone.fit</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/lm.html" class="external-link">lm</a></span><span class="op">(</span><span class="va">ozone</span> <span class="op">~</span> <span class="va">temperature</span>, data <span class="op">=</span> <span class="va">Air.df</span><span class="op">)</span> </span>
-<span class="r-in"></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="co"># Now get predicted values and CIs at 70 and 90 degrees.</span></span>
-<span class="r-in">  <span class="co"># Note the presence of the last component called n.coefs.</span></span>
-<span class="r-in">  <span class="co">#--------------------------------------------------------</span></span>
-<span class="r-in">  <span class="va">predict.list</span> <span class="op">&lt;-</span> <span class="fu"><a href="predict.html">predict</a></span><span class="op">(</span><span class="va">ozone.fit</span>, </span>
-<span class="r-in">    newdata <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html" class="external-link">data.frame</a></span><span class="op">(</span>temperature <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">70</span>, <span class="fl">90</span><span class="op">)</span><span class="op">)</span>, se.fit <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span> </span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="va">predict.list</span></span>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span>  <span class="co"># Using the data from the built-in data frame Air.df, </span></span></span>
+<span class="r-in"><span>  <span class="co"># fit the cube-root of ozone as a function of temperature, </span></span></span>
+<span class="r-in"><span>  <span class="co"># then compute predicted values for ozone at 70 and 90 degrees F,</span></span></span>
+<span class="r-in"><span>  <span class="co"># along with the standard errors of these predicted values.</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="co"># First look at the data</span></span></span>
+<span class="r-in"><span>  <span class="co">#-----------------------</span></span></span>
+<span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/r/base/with.html" class="external-link">with</a></span><span class="op">(</span><span class="va">Air.df</span>, </span></span>
+<span class="r-in"><span>    <span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">temperature</span>, <span class="va">ozone</span>, xlab <span class="op">=</span> <span class="st">"Temperature (degrees F)"</span>, </span></span>
+<span class="r-in"><span>      ylab <span class="op">=</span> <span class="st">"Cube-Root Ozone (ppb)"</span><span class="op">)</span><span class="op">)</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="co"># Now create the lm object </span></span></span>
+<span class="r-in"><span>  <span class="co">#-------------------------</span></span></span>
+<span class="r-in"><span>  <span class="va">ozone.fit</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/lm.html" class="external-link">lm</a></span><span class="op">(</span><span class="va">ozone</span> <span class="op">~</span> <span class="va">temperature</span>, data <span class="op">=</span> <span class="va">Air.df</span><span class="op">)</span> </span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="co"># Now get predicted values and CIs at 70 and 90 degrees.</span></span></span>
+<span class="r-in"><span>  <span class="co"># Note the presence of the last component called n.coefs.</span></span></span>
+<span class="r-in"><span>  <span class="co">#--------------------------------------------------------</span></span></span>
+<span class="r-in"><span>  <span class="va">predict.list</span> <span class="op">&lt;-</span> <span class="fu"><a href="predict.html">predict</a></span><span class="op">(</span><span class="va">ozone.fit</span>, </span></span>
+<span class="r-in"><span>    newdata <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html" class="external-link">data.frame</a></span><span class="op">(</span>temperature <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">70</span>, <span class="fl">90</span><span class="op">)</span><span class="op">)</span>, se.fit <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span> </span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="va">predict.list</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> $fit</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>        1        2 </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 2.697810 4.101808 </span>
@@ -167,61 +179,61 @@
 <span class="r-out co"><span class="r-pr">#&gt;</span> $n.coefs</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] 2</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-in">  <span class="co">#$fit</span></span>
-<span class="r-in">  <span class="co">#       1        2 </span></span>
-<span class="r-in">  <span class="co">#2.697810 4.101808 </span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#$se.fit</span></span>
-<span class="r-in">  <span class="co">#         1          2 </span></span>
-<span class="r-in">  <span class="co">#0.07134554 0.08921071 </span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#$df</span></span>
-<span class="r-in">  <span class="co">#[1] 114</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#$residual.scale</span></span>
-<span class="r-in">  <span class="co">#[1] 0.5903046</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#$n.coefs</span></span>
-<span class="r-in">  <span class="co">#[1] 2</span></span>
-<span class="r-in"></span>
-<span class="r-in"> </span>
-<span class="r-in">  <span class="co">#----------</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="co">#Continuing with the above example, create a scatterplot of </span></span>
-<span class="r-in">  <span class="co"># cube-root ozone vs. temperature, and add the fitted line </span></span>
-<span class="r-in">  <span class="co"># along with simultaneous 95% confidence bands.</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="fu"><a href="https://rdrr.io/r/base/with.html" class="external-link">with</a></span><span class="op">(</span><span class="va">Air.df</span>, </span>
-<span class="r-in">    <span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">temperature</span>, <span class="va">ozone</span>, xlab <span class="op">=</span> <span class="st">"Temperature (degrees F)"</span>, </span>
-<span class="r-in">      ylab <span class="op">=</span> <span class="st">"Cube-Root Ozone (ppb)"</span><span class="op">)</span><span class="op">)</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="fu"><a href="https://rdrr.io/r/graphics/abline.html" class="external-link">abline</a></span><span class="op">(</span><span class="va">ozone.fit</span>, lwd <span class="op">=</span> <span class="fl">3</span>, col <span class="op">=</span> <span class="st">"blue"</span><span class="op">)</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="va">new.temp</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/with.html" class="external-link">with</a></span><span class="op">(</span><span class="va">Air.df</span>, </span>
-<span class="r-in">    <span class="fu"><a href="https://rdrr.io/r/base/seq.html" class="external-link">seq</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/Extremes.html" class="external-link">min</a></span><span class="op">(</span><span class="va">temperature</span><span class="op">)</span>, <span class="fu"><a href="https://rdrr.io/r/base/Extremes.html" class="external-link">max</a></span><span class="op">(</span><span class="va">temperature</span><span class="op">)</span>, length <span class="op">=</span> <span class="fl">100</span><span class="op">)</span><span class="op">)</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="va">predict.list</span> <span class="op">&lt;-</span> <span class="fu"><a href="predict.html">predict</a></span><span class="op">(</span><span class="va">ozone.fit</span>, </span>
-<span class="r-in">    newdata <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html" class="external-link">data.frame</a></span><span class="op">(</span>temperature <span class="op">=</span> <span class="va">new.temp</span><span class="op">)</span>, </span>
-<span class="r-in">    se.fit <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="va">ci.ozone</span> <span class="op">&lt;-</span> <span class="fu"><a href="pointwise.html">pointwise</a></span><span class="op">(</span><span class="va">predict.list</span>, coverage <span class="op">=</span> <span class="fl">0.95</span>, </span>
-<span class="r-in">    simultaneous <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="fu"><a href="https://rdrr.io/r/graphics/lines.html" class="external-link">lines</a></span><span class="op">(</span><span class="va">new.temp</span>, <span class="va">ci.ozone</span><span class="op">$</span><span class="va">lower</span>, lty <span class="op">=</span> <span class="fl">2</span>, lwd <span class="op">=</span> <span class="fl">3</span>, col <span class="op">=</span> <span class="st">"magenta"</span><span class="op">)</span> </span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="fu"><a href="https://rdrr.io/r/graphics/lines.html" class="external-link">lines</a></span><span class="op">(</span><span class="va">new.temp</span>, <span class="va">ci.ozone</span><span class="op">$</span><span class="va">upper</span>, lty <span class="op">=</span> <span class="fl">2</span>, lwd <span class="op">=</span> <span class="fl">3</span>, col <span class="op">=</span> <span class="st">"magenta"</span><span class="op">)</span> </span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="fu"><a href="https://rdrr.io/r/graphics/title.html" class="external-link">title</a></span><span class="op">(</span>main<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/paste.html" class="external-link">paste</a></span><span class="op">(</span><span class="st">"Scatterplot of Cube-Root Ozone vs. Temperature"</span>, </span>
-<span class="r-in">    <span class="st">"with Fitted Line and Simultaneous 95% Confidence Bands"</span>, </span>
-<span class="r-in">    sep<span class="op">=</span><span class="st">"\n"</span><span class="op">)</span><span class="op">)</span></span>
+<span class="r-in"><span>  <span class="co">#$fit</span></span></span>
+<span class="r-in"><span>  <span class="co">#       1        2 </span></span></span>
+<span class="r-in"><span>  <span class="co">#2.697810 4.101808 </span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#$se.fit</span></span></span>
+<span class="r-in"><span>  <span class="co">#         1          2 </span></span></span>
+<span class="r-in"><span>  <span class="co">#0.07134554 0.08921071 </span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#$df</span></span></span>
+<span class="r-in"><span>  <span class="co">#[1] 114</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#$residual.scale</span></span></span>
+<span class="r-in"><span>  <span class="co">#[1] 0.5903046</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#$n.coefs</span></span></span>
+<span class="r-in"><span>  <span class="co">#[1] 2</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span> </span></span>
+<span class="r-in"><span>  <span class="co">#----------</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="co">#Continuing with the above example, create a scatterplot of </span></span></span>
+<span class="r-in"><span>  <span class="co"># cube-root ozone vs. temperature, and add the fitted line </span></span></span>
+<span class="r-in"><span>  <span class="co"># along with simultaneous 95% confidence bands.</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/r/base/with.html" class="external-link">with</a></span><span class="op">(</span><span class="va">Air.df</span>, </span></span>
+<span class="r-in"><span>    <span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">temperature</span>, <span class="va">ozone</span>, xlab <span class="op">=</span> <span class="st">"Temperature (degrees F)"</span>, </span></span>
+<span class="r-in"><span>      ylab <span class="op">=</span> <span class="st">"Cube-Root Ozone (ppb)"</span><span class="op">)</span><span class="op">)</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/r/graphics/abline.html" class="external-link">abline</a></span><span class="op">(</span><span class="va">ozone.fit</span>, lwd <span class="op">=</span> <span class="fl">3</span>, col <span class="op">=</span> <span class="st">"blue"</span><span class="op">)</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="va">new.temp</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/with.html" class="external-link">with</a></span><span class="op">(</span><span class="va">Air.df</span>, </span></span>
+<span class="r-in"><span>    <span class="fu"><a href="https://rdrr.io/r/base/seq.html" class="external-link">seq</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/Extremes.html" class="external-link">min</a></span><span class="op">(</span><span class="va">temperature</span><span class="op">)</span>, <span class="fu"><a href="https://rdrr.io/r/base/Extremes.html" class="external-link">max</a></span><span class="op">(</span><span class="va">temperature</span><span class="op">)</span>, length <span class="op">=</span> <span class="fl">100</span><span class="op">)</span><span class="op">)</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="va">predict.list</span> <span class="op">&lt;-</span> <span class="fu"><a href="predict.html">predict</a></span><span class="op">(</span><span class="va">ozone.fit</span>, </span></span>
+<span class="r-in"><span>    newdata <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html" class="external-link">data.frame</a></span><span class="op">(</span>temperature <span class="op">=</span> <span class="va">new.temp</span><span class="op">)</span>, </span></span>
+<span class="r-in"><span>    se.fit <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="va">ci.ozone</span> <span class="op">&lt;-</span> <span class="fu"><a href="pointwise.html">pointwise</a></span><span class="op">(</span><span class="va">predict.list</span>, coverage <span class="op">=</span> <span class="fl">0.95</span>, </span></span>
+<span class="r-in"><span>    simultaneous <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/r/graphics/lines.html" class="external-link">lines</a></span><span class="op">(</span><span class="va">new.temp</span>, <span class="va">ci.ozone</span><span class="op">$</span><span class="va">lower</span>, lty <span class="op">=</span> <span class="fl">2</span>, lwd <span class="op">=</span> <span class="fl">3</span>, col <span class="op">=</span> <span class="st">"magenta"</span><span class="op">)</span> </span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/r/graphics/lines.html" class="external-link">lines</a></span><span class="op">(</span><span class="va">new.temp</span>, <span class="va">ci.ozone</span><span class="op">$</span><span class="va">upper</span>, lty <span class="op">=</span> <span class="fl">2</span>, lwd <span class="op">=</span> <span class="fl">3</span>, col <span class="op">=</span> <span class="st">"magenta"</span><span class="op">)</span> </span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/r/graphics/title.html" class="external-link">title</a></span><span class="op">(</span>main<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/paste.html" class="external-link">paste</a></span><span class="op">(</span><span class="st">"Scatterplot of Cube-Root Ozone vs. Temperature"</span>, </span></span>
+<span class="r-in"><span>    <span class="st">"with Fitted Line and Simultaneous 95% Confidence Bands"</span>, </span></span>
+<span class="r-in"><span>    sep<span class="op">=</span><span class="st">"\n"</span><span class="op">)</span><span class="op">)</span></span></span>
 <span class="r-plt img"><img src="predict.lm-1.png" alt="" width="700" height="433"></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="co">#----------</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="co"># Clean up</span></span>
-<span class="r-in">  <span class="co">#---------</span></span>
-<span class="r-in">  <span class="fu"><a href="https://rdrr.io/r/base/rm.html" class="external-link">rm</a></span><span class="op">(</span><span class="va">ozone.fit</span>, <span class="va">predict.list</span>, <span class="va">new.temp</span>, <span class="va">ci.ozone</span><span class="op">)</span></span>
-<span class="r-in">  <span class="fu"><a href="https://rdrr.io/r/grDevices/dev.html" class="external-link">graphics.off</a></span><span class="op">(</span><span class="op">)</span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="co">#----------</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="co"># Clean up</span></span></span>
+<span class="r-in"><span>  <span class="co">#---------</span></span></span>
+<span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/r/base/rm.html" class="external-link">rm</a></span><span class="op">(</span><span class="va">ozone.fit</span>, <span class="va">predict.list</span>, <span class="va">new.temp</span>, <span class="va">ci.ozone</span><span class="op">)</span></span></span>
+<span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/r/grDevices/dev.html" class="external-link">graphics.off</a></span><span class="op">(</span><span class="op">)</span></span></span>
 </code></pre></div>
     </div>
   </div>
@@ -236,7 +248,7 @@
 </div>
 
 <div class="pkgdown">
-  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.2.</p>
+  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.6.</p>
 </div>
 
       </footer></div>

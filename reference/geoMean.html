@@ -50,19 +50,21 @@
     </div>
 
     <div id="ref-usage">
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="fu">geoMean</span><span class="op">(</span><span class="va">x</span>, na.rm <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></code></pre></div>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">geoMean</span><span class="op">(</span><span class="va">x</span>, na.rm <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span></code></pre></div>
     </div>
 
     <div id="arguments">
     <h2>Arguments</h2>
     <dl><dt>x</dt>
 <dd><p>numeric vector of observations.</p></dd>
-<dt>na.rm</dt>
+
+  <dt>na.rm</dt>
 <dd><p>logical scalar indicating whether to remove missing values from <code>x</code>.  
   If <code>na.rm=FALSE</code> (the default) and <code>x</code> contains missing values, 
   then a missing value (<code>NA</code>) is returned.  If <code>na.rm=TRUE</code>, 
   missing values are removed from <code>x</code> prior to computing the coefficient 
   of variation.</p></dd>
+
 </dl></div>
     <div id="details">
     <h2>Details</h2>
@@ -87,7 +89,9 @@
     </div>
     <div id="value">
     <h2>Value</h2>
-    <p>A numeric scalar -- the sample geometric mean.</p>
+    
+
+<p>A numeric scalar -- the sample geometric mean.</p>
     </div>
     <div id="references">
     <h2>References</h2>
@@ -123,28 +127,28 @@
 
     <div id="ref-examples">
     <h2>Examples</h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in">  <span class="co"># Generate 20 observations from a lognormal distribution with parameters </span></span>
-<span class="r-in">  <span class="co"># mean=10 and cv=2, and compute the mean, median, and geometric mean. </span></span>
-<span class="r-in">  <span class="co"># (Note: the call to set.seed simply allows you to reproduce this example.)</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="fu"><a href="https://rdrr.io/r/base/Random.html" class="external-link">set.seed</a></span><span class="op">(</span><span class="fl">250</span><span class="op">)</span> </span>
-<span class="r-in">  <span class="va">dat</span> <span class="op">&lt;-</span> <span class="fu"><a href="LognormalAlt.html">rlnormAlt</a></span><span class="op">(</span><span class="fl">20</span>, mean <span class="op">=</span> <span class="fl">10</span>, cv <span class="op">=</span> <span class="fl">2</span><span class="op">)</span> </span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="fu"><a href="https://rdrr.io/r/base/mean.html" class="external-link">mean</a></span><span class="op">(</span><span class="va">dat</span><span class="op">)</span> </span>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span>  <span class="co"># Generate 20 observations from a lognormal distribution with parameters </span></span></span>
+<span class="r-in"><span>  <span class="co"># mean=10 and cv=2, and compute the mean, median, and geometric mean. </span></span></span>
+<span class="r-in"><span>  <span class="co"># (Note: the call to set.seed simply allows you to reproduce this example.)</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/r/base/Random.html" class="external-link">set.seed</a></span><span class="op">(</span><span class="fl">250</span><span class="op">)</span> </span></span>
+<span class="r-in"><span>  <span class="va">dat</span> <span class="op">&lt;-</span> <span class="fu"><a href="LognormalAlt.html">rlnormAlt</a></span><span class="op">(</span><span class="fl">20</span>, mean <span class="op">=</span> <span class="fl">10</span>, cv <span class="op">=</span> <span class="fl">2</span><span class="op">)</span> </span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/r/base/mean.html" class="external-link">mean</a></span><span class="op">(</span><span class="va">dat</span><span class="op">)</span> </span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] 5.339273</span>
-<span class="r-in">  <span class="co">#[1] 5.339273</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="fu"><a href="https://rdrr.io/r/stats/median.html" class="external-link">median</a></span><span class="op">(</span><span class="va">dat</span><span class="op">)</span> </span>
+<span class="r-in"><span>  <span class="co">#[1] 5.339273</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/r/stats/median.html" class="external-link">median</a></span><span class="op">(</span><span class="va">dat</span><span class="op">)</span> </span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] 3.692091</span>
-<span class="r-in">  <span class="co">#[1] 3.692091</span></span>
-<span class="r-in"> </span>
-<span class="r-in">  <span class="fu">geoMean</span><span class="op">(</span><span class="va">dat</span><span class="op">)</span> </span>
+<span class="r-in"><span>  <span class="co">#[1] 3.692091</span></span></span>
+<span class="r-in"><span> </span></span>
+<span class="r-in"><span>  <span class="fu">geoMean</span><span class="op">(</span><span class="va">dat</span><span class="op">)</span> </span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] 4.095127</span>
-<span class="r-in">  <span class="co">#[1] 4.095127</span></span>
-<span class="r-in"> </span>
-<span class="r-in">  <span class="co">#----------</span></span>
-<span class="r-in">  <span class="co"># Clean up</span></span>
-<span class="r-in">  <span class="fu"><a href="https://rdrr.io/r/base/rm.html" class="external-link">rm</a></span><span class="op">(</span><span class="va">dat</span><span class="op">)</span></span>
+<span class="r-in"><span>  <span class="co">#[1] 4.095127</span></span></span>
+<span class="r-in"><span> </span></span>
+<span class="r-in"><span>  <span class="co">#----------</span></span></span>
+<span class="r-in"><span>  <span class="co"># Clean up</span></span></span>
+<span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/r/base/rm.html" class="external-link">rm</a></span><span class="op">(</span><span class="va">dat</span><span class="op">)</span></span></span>
 </code></pre></div>
     </div>
   </div>
@@ -159,7 +163,7 @@
 </div>
 
 <div class="pkgdown">
-  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.2.</p>
+  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.6.</p>
 </div>
 
       </footer></div>

@@ -69,12 +69,21 @@
     </div>
     <div id="value">
     <h2>Value</h2>
-    <p>See the help file for <code><a href="https://rdrr.io/r/stats/lm.html" class="external-link">lm</a></code>.  
-<strong>Required Components</strong><br>  Besides the usual components in the list returned by the function <code><a href="https://rdrr.io/r/stats/lm.html" class="external-link">lm</a></code>, 
+    
+
+<p>See the help file for <code><a href="https://rdrr.io/r/stats/lm.html" class="external-link">lm</a></code>.</p>
+<p></p>
+<p><strong>Required Components</strong></p>
+<p></p>
+<p><br></p>
+
+
+<p>Besides the usual components in the list returned by the function <code><a href="https://rdrr.io/r/stats/lm.html" class="external-link">lm</a></code>, 
   the following components must be included in a legitimate list of 
   class <code>"calibrate"</code>.</p>
 <dl><dt>x</dt>
 <dd><p>the model matrix from the linear model fit.</p></dd>
+
 </dl></div>
     <div id="note">
     <h2>Note</h2>
@@ -93,21 +102,21 @@
 
     <div id="ref-examples">
     <h2>Examples</h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in">  <span class="co"># Create an object of class "calibrate", then print it out.</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="co"># The data frame EPA.97.cadmium.111.df contains calibration data for </span></span>
-<span class="r-in">  <span class="co"># cadmium at mass 111 (ng/L) that appeared in Gibbons et al. (1997b) </span></span>
-<span class="r-in">  <span class="co"># and were provided to them by the U.S. EPA. </span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="va">calibrate.list</span> <span class="op">&lt;-</span> <span class="fu"><a href="calibrate.html">calibrate</a></span><span class="op">(</span><span class="va">Cadmium</span> <span class="op">~</span> <span class="va">Spike</span>, data <span class="op">=</span> <span class="va">EPA.97.cadmium.111.df</span><span class="op">)</span> </span>
-<span class="r-in"> </span>
-<span class="r-in">  <span class="fu"><a href="https://rdrr.io/r/base/names.html" class="external-link">names</a></span><span class="op">(</span><span class="va">calibrate.list</span><span class="op">)</span></span>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span>  <span class="co"># Create an object of class "calibrate", then print it out.</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="co"># The data frame EPA.97.cadmium.111.df contains calibration data for </span></span></span>
+<span class="r-in"><span>  <span class="co"># cadmium at mass 111 (ng/L) that appeared in Gibbons et al. (1997b) </span></span></span>
+<span class="r-in"><span>  <span class="co"># and were provided to them by the U.S. EPA. </span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="va">calibrate.list</span> <span class="op">&lt;-</span> <span class="fu"><a href="calibrate.html">calibrate</a></span><span class="op">(</span><span class="va">Cadmium</span> <span class="op">~</span> <span class="va">Spike</span>, data <span class="op">=</span> <span class="va">EPA.97.cadmium.111.df</span><span class="op">)</span> </span></span>
+<span class="r-in"><span> </span></span>
+<span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/r/base/names.html" class="external-link">names</a></span><span class="op">(</span><span class="va">calibrate.list</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  [1] "coefficients"  "residuals"     "effects"       "rank"         </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  [5] "fitted.values" "assign"        "qr"            "df.residual"  </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  [9] "xlevels"       "call"          "terms"         "model"        </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [13] "x"            </span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="va">calibrate.list</span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="va">calibrate.list</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Call:</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> lm(formula = formula, data = data, x = TRUE)</span>
@@ -116,13 +125,13 @@
 <span class="r-out co"><span class="r-pr">#&gt;</span> (Intercept)        Spike  </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>      1.6385       0.9731  </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-in"></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="co">#----------</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="co"># Clean up</span></span>
-<span class="r-in">  <span class="co">#---------</span></span>
-<span class="r-in">  <span class="fu"><a href="https://rdrr.io/r/base/rm.html" class="external-link">rm</a></span><span class="op">(</span><span class="va">calibrate.list</span><span class="op">)</span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="co">#----------</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="co"># Clean up</span></span></span>
+<span class="r-in"><span>  <span class="co">#---------</span></span></span>
+<span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/r/base/rm.html" class="external-link">rm</a></span><span class="op">(</span><span class="va">calibrate.list</span><span class="op">)</span></span></span>
 </code></pre></div>
     </div>
   </div>
@@ -137,7 +146,7 @@
 </div>
 
 <div class="pkgdown">
-  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.2.</p>
+  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.6.</p>
 </div>
 
       </footer></div>

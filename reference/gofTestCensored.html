@@ -60,10 +60,10 @@
     </div>
 
     <div id="ref-usage">
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="fu">gofTestCensored</span><span class="op">(</span><span class="va">x</span>, <span class="va">censored</span>, censoring.side <span class="op">=</span> <span class="st">"left"</span>, test <span class="op">=</span> <span class="st">"sf"</span>, 
-    distribution <span class="op">=</span> <span class="st">"norm"</span>, est.arg.list <span class="op">=</span> <span class="cn">NULL</span>, 
-    prob.method <span class="op">=</span> <span class="st">"hirsch-stedinger"</span>, plot.pos.con <span class="op">=</span> <span class="fl">0.375</span>, 
-    keep.data <span class="op">=</span> <span class="cn">TRUE</span>, data.name <span class="op">=</span> <span class="cn">NULL</span>, censoring.name <span class="op">=</span> <span class="cn">NULL</span><span class="op">)</span></code></pre></div>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">gofTestCensored</span><span class="op">(</span><span class="va">x</span>, <span class="va">censored</span>, censoring.side <span class="op">=</span> <span class="st">"left"</span>, test <span class="op">=</span> <span class="st">"sf"</span>, </span>
+<span>    distribution <span class="op">=</span> <span class="st">"norm"</span>, est.arg.list <span class="op">=</span> <span class="cn">NULL</span>, </span>
+<span>    prob.method <span class="op">=</span> <span class="st">"hirsch-stedinger"</span>, plot.pos.con <span class="op">=</span> <span class="fl">0.375</span>, </span>
+<span>    keep.data <span class="op">=</span> <span class="cn">TRUE</span>, data.name <span class="op">=</span> <span class="cn">NULL</span>, censoring.name <span class="op">=</span> <span class="cn">NULL</span><span class="op">)</span></span></code></pre></div>
     </div>
 
     <div id="arguments">
@@ -73,7 +73,8 @@
   Missing (<code>NA</code>), undefined (<code>NaN</code>), 
   and infinite (<code>Inf</code>, <code>-Inf</code>) values are allowed but will be 
   removed.</p></dd>
-<dt>censored</dt>
+
+  <dt>censored</dt>
 <dd><p>numeric or logical vector indicating which values of <code>x</code> are censored.  
   This must be the same length as <code>x</code>.  If the mode of <code>censored</code> is 
   <code>"logical"</code>, <code>TRUE</code> values correspond to elements of <code>x</code> that 
@@ -82,17 +83,20 @@
   it must contain only <code>1</code>'s and <code>0</code>'s; <code>1</code> corresponds to 
   <code>TRUE</code> and <code>0</code> corresponds to <code>FALSE</code>.  Missing (<code>NA</code>) 
   values are allowed but will be removed.</p></dd>
-<dt>censoring.side</dt>
+
+  <dt>censoring.side</dt>
 <dd><p>character string indicating on which side the censoring occurs.  The possible 
   values are <code>"left"</code> (the default) and <code>"right"</code>.</p></dd>
-<dt>test</dt>
+
+  <dt>test</dt>
 <dd><p>character string defining which goodness-of-fit test to perform.  Possible values are:  
   <code>"sw"</code> Shapiro-Wilk. 
   <code>"sf"</code> Shapiro-Francia; the default. 
   <code>"ppcc"</code> Probability Plot Correlation Coefficient.</p>
 <p>The Shapiro-Wilk test is only available for singly censored data.</p>  
 <p>See the DETAILS section for more information.</p></dd>
-<dt>distribution</dt>
+
+  <dt>distribution</dt>
 <dd><p>a character string denoting the abbreviation of the assumed distribution.  
   Only continous distributions are allowed.  See the help file for 
   <code><a href="Distribution.df.html">Distribution.df</a></code> for a list of distributions and their abbreviations. 
@@ -112,7 +116,8 @@
   returned estimated parameters are the shape and scale, whereas when 
   <code>distribution="lnormAlt"</code> the returned estimated parameters are the 
   mean and coefficient of variation.</p></dd>
-<dt>est.arg.list</dt>
+
+  <dt>est.arg.list</dt>
 <dd><p>a list of arguments to be passed to the function estimating the distribution 
   parameters.  For example, if <code>distribution="lnormAlt"</code> setting <br><code>est.arg.list=list(method="bcmle")</code> indicates using the bias-corrected 
   maximum likelihood estimators (see the help file for <code><a href="elnormAltCensored.html">elnormAltCensored</a></code>).    
@@ -120,7 +125,8 @@
   estimating function are used.  The estimated parameters are provided in the 
   output merely for information, and the choice of the method of estimation has no 
   effect on the goodness-of-fit test statistic or p-value.</p></dd>
-<dt>prob.method</dt>
+
+  <dt>prob.method</dt>
 <dd><p>character string indicating what method to use to compute the plotting positions 
   (empirical probabilities) when <code>test="sf"</code> or <code>test="ppcc"</code>.  
   Possible values are: <br><code>"modified kaplan-meier"</code> (modification of product-limit method of Kaplan and Meier (1958)), <br><code>"nelson"</code> (hazard plotting method of Nelson (1972)), <br><code>"michael-schucany"</code> (generalization of the product-limit method due to Michael and Schucany (1986)), and <br><code>"hirsch-stedinger"</code> (generalization of the product-limit method due to Hirsch and Stedinger (1987)). <br>
@@ -129,16 +135,21 @@
   the <code>"modified kaplan-meier"</code> method is only available for 
   <code>censoring.side="left"</code>.  See the DETAILS section and the help file for 
   <code><a href="ppointsCensored.html">ppointsCensored</a></code> for more information.</p></dd>
-<dt>plot.pos.con</dt>
+
+  <dt>plot.pos.con</dt>
 <dd><p>numeric scalar between 0 and 1 containing the value of the plotting position 
   constant to use when <code>test="sf"</code> or <code>test="ppcc"</code>.  The default value is <br><code>plot.pos.con=0.375</code>.  See the DETAILS section and the help file for <br><code><a href="ppointsCensored.html">ppointsCensored</a></code> for more information.</p></dd>
-<dt>keep.data</dt>
+
+  <dt>keep.data</dt>
 <dd><p>logical scalar indicating whether to return the original data.  The 
   default value is <code>keep.data=TRUE</code>.</p></dd>
-<dt>data.name</dt>
+
+  <dt>data.name</dt>
 <dd><p>optional character string indicating the name for the data used for argument <code>x</code>.</p></dd>
-<dt>censoring.name</dt>
+
+  <dt>censoring.name</dt>
 <dd><p>optional character string indicating the name for the data used for argument <code>censored</code>.</p></dd>
+
 </dl></div>
     <div id="details">
     <h2>Details</h2>
@@ -352,7 +363,9 @@
     </div>
     <div id="value">
     <h2>Value</h2>
-    <p>a list of class <code>"gofCensored"</code> containing the results of the goodness-of-fit 
+    
+
+<p>a list of class <code>"gofCensored"</code> containing the results of the goodness-of-fit 
   test.  See the help files for <code><a href="gofCensored.object.html">gofCensored.object</a></code> for details.</p>
     </div>
     <div id="references">
@@ -446,38 +459,38 @@
 
     <div id="ref-examples">
     <h2>Examples</h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in">  <span class="co"># Generate 30 observations from a gamma distribution with </span></span>
-<span class="r-in">  <span class="co"># parameters mean=10 and cv=1 and then censor observations less than 5.</span></span>
-<span class="r-in">  <span class="co"># Then test the hypothesis that these data came from a gamma </span></span>
-<span class="r-in">  <span class="co"># distribution using the Shapiro-Wilk test.</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co"># The p-value for the complete data is p = 0.86, while  </span></span>
-<span class="r-in">  <span class="co"># the p-value for the censored data is p = 0.52.</span></span>
-<span class="r-in">  <span class="co"># (Note:  the call to set.seed lets you reproduce this example.)</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="fu"><a href="https://rdrr.io/r/base/Random.html" class="external-link">set.seed</a></span><span class="op">(</span><span class="fl">598</span><span class="op">)</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="va">dat</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/sort.html" class="external-link">sort</a></span><span class="op">(</span><span class="fu"><a href="GammaAlt.html">rgammaAlt</a></span><span class="op">(</span><span class="fl">30</span>, mean <span class="op">=</span> <span class="fl">10</span>, cv <span class="op">=</span> <span class="fl">1</span><span class="op">)</span><span class="op">)</span></span>
-<span class="r-in">  <span class="va">dat</span></span>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span>  <span class="co"># Generate 30 observations from a gamma distribution with </span></span></span>
+<span class="r-in"><span>  <span class="co"># parameters mean=10 and cv=1 and then censor observations less than 5.</span></span></span>
+<span class="r-in"><span>  <span class="co"># Then test the hypothesis that these data came from a gamma </span></span></span>
+<span class="r-in"><span>  <span class="co"># distribution using the Shapiro-Wilk test.</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co"># The p-value for the complete data is p = 0.86, while  </span></span></span>
+<span class="r-in"><span>  <span class="co"># the p-value for the censored data is p = 0.52.</span></span></span>
+<span class="r-in"><span>  <span class="co"># (Note:  the call to set.seed lets you reproduce this example.)</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/r/base/Random.html" class="external-link">set.seed</a></span><span class="op">(</span><span class="fl">598</span><span class="op">)</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="va">dat</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/sort.html" class="external-link">sort</a></span><span class="op">(</span><span class="fu"><a href="GammaAlt.html">rgammaAlt</a></span><span class="op">(</span><span class="fl">30</span>, mean <span class="op">=</span> <span class="fl">10</span>, cv <span class="op">=</span> <span class="fl">1</span><span class="op">)</span><span class="op">)</span></span></span>
+<span class="r-in"><span>  <span class="va">dat</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  [1]  0.5313509  1.4741833  1.9936208  2.7980636  3.4509840  3.7987348</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  [7]  4.5542952  5.5207531  5.5253596  5.7177872  5.7513827  9.1086375</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [13]  9.8444090 10.6247123 10.9304922 11.7925398 13.3432689 13.9562777</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [19] 14.6029065 15.0563342 15.8730642 16.0039936 16.6910715 17.0288922</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [25] 17.8507891 19.1105522 20.2657141 26.3815970 30.2912797 42.8726101</span>
-<span class="r-in">  <span class="co"># [1]  0.5313509  1.4741833  1.9936208  2.7980636  3.4509840</span></span>
-<span class="r-in">  <span class="co"># [6]  3.7987348  4.5542952  5.5207531  5.5253596  5.7177872</span></span>
-<span class="r-in">  <span class="co">#[11]  5.7513827  9.1086375  9.8444090 10.6247123 10.9304922</span></span>
-<span class="r-in">  <span class="co">#[16] 11.7925398 13.3432689 13.9562777 14.6029065 15.0563342</span></span>
-<span class="r-in">  <span class="co">#[21] 15.8730642 16.0039936 16.6910715 17.0288922 17.8507891</span></span>
-<span class="r-in">  <span class="co">#[26] 19.1105522 20.2657141 26.3815970 30.2912797 42.8726101</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="va">dat.censored</span> <span class="op">&lt;-</span> <span class="va">dat</span></span>
-<span class="r-in">  <span class="va">censored</span> <span class="op">&lt;-</span> <span class="va">dat.censored</span> <span class="op">&lt;</span> <span class="fl">5</span></span>
-<span class="r-in">  <span class="va">dat.censored</span><span class="op">[</span><span class="va">censored</span><span class="op">]</span> <span class="op">&lt;-</span> <span class="fl">5</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="co"># Results for complete data:</span></span>
-<span class="r-in">  <span class="co">#---------------------------</span></span>
-<span class="r-in">  <span class="fu"><a href="gofTest.html">gofTest</a></span><span class="op">(</span><span class="va">dat</span>, test <span class="op">=</span> <span class="st">"sw"</span>, dist <span class="op">=</span> <span class="st">"gammaAlt"</span><span class="op">)</span></span>
+<span class="r-in"><span>  <span class="co"># [1]  0.5313509  1.4741833  1.9936208  2.7980636  3.4509840</span></span></span>
+<span class="r-in"><span>  <span class="co"># [6]  3.7987348  4.5542952  5.5207531  5.5253596  5.7177872</span></span></span>
+<span class="r-in"><span>  <span class="co">#[11]  5.7513827  9.1086375  9.8444090 10.6247123 10.9304922</span></span></span>
+<span class="r-in"><span>  <span class="co">#[16] 11.7925398 13.3432689 13.9562777 14.6029065 15.0563342</span></span></span>
+<span class="r-in"><span>  <span class="co">#[21] 15.8730642 16.0039936 16.6910715 17.0288922 17.8507891</span></span></span>
+<span class="r-in"><span>  <span class="co">#[26] 19.1105522 20.2657141 26.3815970 30.2912797 42.8726101</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="va">dat.censored</span> <span class="op">&lt;-</span> <span class="va">dat</span></span></span>
+<span class="r-in"><span>  <span class="va">censored</span> <span class="op">&lt;-</span> <span class="va">dat.censored</span> <span class="op">&lt;</span> <span class="fl">5</span></span></span>
+<span class="r-in"><span>  <span class="va">dat.censored</span><span class="op">[</span><span class="va">censored</span><span class="op">]</span> <span class="op">&lt;-</span> <span class="fl">5</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="co"># Results for complete data:</span></span></span>
+<span class="r-in"><span>  <span class="co">#---------------------------</span></span></span>
+<span class="r-in"><span>  <span class="fu"><a href="gofTest.html">gofTest</a></span><span class="op">(</span><span class="va">dat</span>, test <span class="op">=</span> <span class="st">"sw"</span>, dist <span class="op">=</span> <span class="st">"gammaAlt"</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> $distribution</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] "Gamma"</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
@@ -532,39 +545,39 @@
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> attr(,"class")</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] "gof"</span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="co">#Results of Goodness-of-Fit Test</span></span>
-<span class="r-in">  <span class="co">#-------------------------------</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Test Method:                     Shapiro-Wilk GOF Based on </span></span>
-<span class="r-in">  <span class="co">#                                 Chen &amp; Balakrisnan (1995)</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Hypothesized Distribution:       Gamma</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Estimated Parameter(s):          mean = 12.4248552</span></span>
-<span class="r-in">  <span class="co">#                                 cv   =  0.7901752</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Estimation Method:               MLE</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Data:                            dat</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Sample Size:                     30</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Test Statistic:                  W = 0.981471</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Test Statistic Parameter:        n = 30</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#P-value:                         0.8631802</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Alternative Hypothesis:          True cdf does not equal the</span></span>
-<span class="r-in">  <span class="co">#                                 Gamma Distribution.</span></span>
-<span class="r-in"></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="co"># Results for censored data:</span></span>
-<span class="r-in">  <span class="co">#---------------------------</span></span>
-<span class="r-in">  <span class="va">gof.list</span> <span class="op">&lt;-</span> <span class="fu">gofTestCensored</span><span class="op">(</span><span class="va">dat.censored</span>, <span class="va">censored</span>, test <span class="op">=</span> <span class="st">"sw"</span>, </span>
-<span class="r-in">    distribution <span class="op">=</span> <span class="st">"gammaAlt"</span><span class="op">)</span></span>
-<span class="r-in">  <span class="va">gof.list</span>  </span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="co">#Results of Goodness-of-Fit Test</span></span></span>
+<span class="r-in"><span>  <span class="co">#-------------------------------</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Test Method:                     Shapiro-Wilk GOF Based on </span></span></span>
+<span class="r-in"><span>  <span class="co">#                                 Chen &amp; Balakrisnan (1995)</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Hypothesized Distribution:       Gamma</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Estimated Parameter(s):          mean = 12.4248552</span></span></span>
+<span class="r-in"><span>  <span class="co">#                                 cv   =  0.7901752</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Estimation Method:               MLE</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Data:                            dat</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Sample Size:                     30</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Test Statistic:                  W = 0.981471</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Test Statistic Parameter:        n = 30</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#P-value:                         0.8631802</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Alternative Hypothesis:          True cdf does not equal the</span></span></span>
+<span class="r-in"><span>  <span class="co">#                                 Gamma Distribution.</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="co"># Results for censored data:</span></span></span>
+<span class="r-in"><span>  <span class="co">#---------------------------</span></span></span>
+<span class="r-in"><span>  <span class="va">gof.list</span> <span class="op">&lt;-</span> <span class="fu">gofTestCensored</span><span class="op">(</span><span class="va">dat.censored</span>, <span class="va">censored</span>, test <span class="op">=</span> <span class="st">"sw"</span>, </span></span>
+<span class="r-in"><span>    distribution <span class="op">=</span> <span class="st">"gammaAlt"</span><span class="op">)</span></span></span>
+<span class="r-in"><span>  <span class="va">gof.list</span>  </span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> $distribution</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] "Gamma"</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
@@ -633,61 +646,61 @@
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> attr(,"class")</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] "gofCensored"</span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="co">#Results of Goodness-of-Fit Test</span></span>
-<span class="r-in">  <span class="co">#Based on Type I Censored Data</span></span>
-<span class="r-in">  <span class="co">#-------------------------------</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Test Method:                     Shapiro-Wilk GOF</span></span>
-<span class="r-in">  <span class="co">#                                 (Singly Censored Data)</span></span>
-<span class="r-in">  <span class="co">#                                 Based on Chen &amp; Balakrisnan (1995)</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Hypothesized Distribution:       Gamma</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Censoring Side:                  left</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Censoring Level(s):              5 </span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Estimated Parameter(s):          mean = 12.4911448</span></span>
-<span class="r-in">  <span class="co">#                                 cv   =  0.7617343</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Estimation Method:               MLE</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Data:                            dat.censored</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Censoring Variable:              censored</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Sample Size:                     30</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Percent Censored:                23.3%</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Test Statistic:                  W = 0.9613711</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Test Statistic Parameters:       N     = 30.0000000</span></span>
-<span class="r-in">  <span class="co">#                                 DELTA =  0.2333333</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#P-value:                         0.522329</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Alternative Hypothesis:          True cdf does not equal the</span></span>
-<span class="r-in">  <span class="co">#                                 Gamma Distribution.</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="co"># Plot the results for the censored data</span></span>
-<span class="r-in">  <span class="co">#---------------------------------------</span></span>
-<span class="r-in">  <span class="fu"><a href="https://rdrr.io/r/grDevices/dev.html" class="external-link">dev.new</a></span><span class="op">(</span><span class="op">)</span></span>
-<span class="r-in">  <span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">gof.list</span><span class="op">)</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="co">#==========</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="co"># Continue the above example, but now test the hypothesis that </span></span>
-<span class="r-in">  <span class="co"># these data came from a lognormal distribution </span></span>
-<span class="r-in">  <span class="co"># (alternative parameterization) using the Shapiro-Wilk test.</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co"># The p-value for the complete data is p = 0.056, while  </span></span>
-<span class="r-in">  <span class="co"># the p-value for the censored data is p = 0.11.</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="co"># Results for complete data:</span></span>
-<span class="r-in">  <span class="co">#---------------------------</span></span>
-<span class="r-in">  <span class="fu"><a href="gofTest.html">gofTest</a></span><span class="op">(</span><span class="va">dat</span>, test <span class="op">=</span> <span class="st">"sw"</span>, dist <span class="op">=</span> <span class="st">"lnormAlt"</span><span class="op">)</span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="co">#Results of Goodness-of-Fit Test</span></span></span>
+<span class="r-in"><span>  <span class="co">#Based on Type I Censored Data</span></span></span>
+<span class="r-in"><span>  <span class="co">#-------------------------------</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Test Method:                     Shapiro-Wilk GOF</span></span></span>
+<span class="r-in"><span>  <span class="co">#                                 (Singly Censored Data)</span></span></span>
+<span class="r-in"><span>  <span class="co">#                                 Based on Chen &amp; Balakrisnan (1995)</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Hypothesized Distribution:       Gamma</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Censoring Side:                  left</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Censoring Level(s):              5 </span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Estimated Parameter(s):          mean = 12.4911448</span></span></span>
+<span class="r-in"><span>  <span class="co">#                                 cv   =  0.7617343</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Estimation Method:               MLE</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Data:                            dat.censored</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Censoring Variable:              censored</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Sample Size:                     30</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Percent Censored:                23.3%</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Test Statistic:                  W = 0.9613711</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Test Statistic Parameters:       N     = 30.0000000</span></span></span>
+<span class="r-in"><span>  <span class="co">#                                 DELTA =  0.2333333</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#P-value:                         0.522329</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Alternative Hypothesis:          True cdf does not equal the</span></span></span>
+<span class="r-in"><span>  <span class="co">#                                 Gamma Distribution.</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="co"># Plot the results for the censored data</span></span></span>
+<span class="r-in"><span>  <span class="co">#---------------------------------------</span></span></span>
+<span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/r/grDevices/dev.html" class="external-link">dev.new</a></span><span class="op">(</span><span class="op">)</span></span></span>
+<span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">gof.list</span><span class="op">)</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="co">#==========</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="co"># Continue the above example, but now test the hypothesis that </span></span></span>
+<span class="r-in"><span>  <span class="co"># these data came from a lognormal distribution </span></span></span>
+<span class="r-in"><span>  <span class="co"># (alternative parameterization) using the Shapiro-Wilk test.</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co"># The p-value for the complete data is p = 0.056, while  </span></span></span>
+<span class="r-in"><span>  <span class="co"># the p-value for the censored data is p = 0.11.</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="co"># Results for complete data:</span></span></span>
+<span class="r-in"><span>  <span class="co">#---------------------------</span></span></span>
+<span class="r-in"><span>  <span class="fu"><a href="gofTest.html">gofTest</a></span><span class="op">(</span><span class="va">dat</span>, test <span class="op">=</span> <span class="st">"sw"</span>, dist <span class="op">=</span> <span class="st">"lnormAlt"</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> $distribution</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] "Lognormal"</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
@@ -742,38 +755,38 @@
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> attr(,"class")</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] "gof"</span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="co">#Results of Goodness-of-Fit Test</span></span>
-<span class="r-in">  <span class="co">#-------------------------------</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Test Method:                     Shapiro-Wilk GOF</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Hypothesized Distribution:       Lognormal</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Estimated Parameter(s):          mean = 13.757239</span></span>
-<span class="r-in">  <span class="co">#                                 cv   =  1.148872</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Estimation Method:               mvue</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Data:                            dat</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Sample Size:                     30</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Test Statistic:                  W = 0.9322226</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Test Statistic Parameter:        n = 30</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#P-value:                         0.05626823</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Alternative Hypothesis:          True cdf does not equal the</span></span>
-<span class="r-in">  <span class="co">#                                 Lognormal Distribution.</span></span>
-<span class="r-in"></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="co"># Results for censored data:</span></span>
-<span class="r-in">  <span class="co">#---------------------------</span></span>
-<span class="r-in">  <span class="va">gof.list</span> <span class="op">&lt;-</span> <span class="fu">gofTestCensored</span><span class="op">(</span><span class="va">dat.censored</span>, <span class="va">censored</span>, test <span class="op">=</span> <span class="st">"sw"</span>, </span>
-<span class="r-in">    distribution <span class="op">=</span> <span class="st">"lnormAlt"</span><span class="op">)</span></span>
-<span class="r-in">  <span class="va">gof.list</span>  </span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="co">#Results of Goodness-of-Fit Test</span></span></span>
+<span class="r-in"><span>  <span class="co">#-------------------------------</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Test Method:                     Shapiro-Wilk GOF</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Hypothesized Distribution:       Lognormal</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Estimated Parameter(s):          mean = 13.757239</span></span></span>
+<span class="r-in"><span>  <span class="co">#                                 cv   =  1.148872</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Estimation Method:               mvue</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Data:                            dat</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Sample Size:                     30</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Test Statistic:                  W = 0.9322226</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Test Statistic Parameter:        n = 30</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#P-value:                         0.05626823</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Alternative Hypothesis:          True cdf does not equal the</span></span></span>
+<span class="r-in"><span>  <span class="co">#                                 Lognormal Distribution.</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="co"># Results for censored data:</span></span></span>
+<span class="r-in"><span>  <span class="co">#---------------------------</span></span></span>
+<span class="r-in"><span>  <span class="va">gof.list</span> <span class="op">&lt;-</span> <span class="fu">gofTestCensored</span><span class="op">(</span><span class="va">dat.censored</span>, <span class="va">censored</span>, test <span class="op">=</span> <span class="st">"sw"</span>, </span></span>
+<span class="r-in"><span>    distribution <span class="op">=</span> <span class="st">"lnormAlt"</span><span class="op">)</span></span></span>
+<span class="r-in"><span>  <span class="va">gof.list</span>  </span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> $distribution</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] "Lognormal"</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
@@ -842,57 +855,57 @@
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> attr(,"class")</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] "gofCensored"</span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="co">#Results of Goodness-of-Fit Test</span></span>
-<span class="r-in">  <span class="co">#Based on Type I Censored Data</span></span>
-<span class="r-in">  <span class="co">#-------------------------------</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Test Method:                     Shapiro-Wilk GOF</span></span>
-<span class="r-in">  <span class="co">#                                 (Singly Censored Data)</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Hypothesized Distribution:       Lognormal</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Censoring Side:                  left</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Censoring Level(s):              5 </span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Estimated Parameter(s):          mean = 13.0382221</span></span>
-<span class="r-in">  <span class="co">#                                 cv   =  0.9129512</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Estimation Method:               MLE</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Data:                            dat.censored</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Censoring Variable:              censored</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Sample Size:                     30</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Percent Censored:                23.3%</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Test Statistic:                  W = 0.9292406</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Test Statistic Parameters:       N     = 30.0000000</span></span>
-<span class="r-in">  <span class="co">#                                 DELTA =  0.2333333</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#P-value:                         0.114511</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Alternative Hypothesis:          True cdf does not equal the</span></span>
-<span class="r-in">  <span class="co">#                                 Lognormal Distribution.</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="co"># Plot the results for the censored data</span></span>
-<span class="r-in">  <span class="co">#---------------------------------------</span></span>
-<span class="r-in">  <span class="fu"><a href="https://rdrr.io/r/grDevices/dev.html" class="external-link">dev.new</a></span><span class="op">(</span><span class="op">)</span></span>
-<span class="r-in">  <span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">gof.list</span><span class="op">)</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="co">#----------</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="co"># Redo the above example, but specify the quasi-minimum variance </span></span>
-<span class="r-in">  <span class="co"># unbiased estimator of the mean.  Note that the method of </span></span>
-<span class="r-in">  <span class="co"># estimating the parameters has no effect on the goodness-of-fit </span></span>
-<span class="r-in">  <span class="co"># test (see the DETAILS section above).</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="fu">gofTestCensored</span><span class="op">(</span><span class="va">dat.censored</span>, <span class="va">censored</span>, test <span class="op">=</span> <span class="st">"sw"</span>, </span>
-<span class="r-in">    distribution <span class="op">=</span> <span class="st">"lnormAlt"</span>, est.arg.list <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>method <span class="op">=</span> <span class="st">"qmvue"</span><span class="op">)</span><span class="op">)</span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="co">#Results of Goodness-of-Fit Test</span></span></span>
+<span class="r-in"><span>  <span class="co">#Based on Type I Censored Data</span></span></span>
+<span class="r-in"><span>  <span class="co">#-------------------------------</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Test Method:                     Shapiro-Wilk GOF</span></span></span>
+<span class="r-in"><span>  <span class="co">#                                 (Singly Censored Data)</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Hypothesized Distribution:       Lognormal</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Censoring Side:                  left</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Censoring Level(s):              5 </span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Estimated Parameter(s):          mean = 13.0382221</span></span></span>
+<span class="r-in"><span>  <span class="co">#                                 cv   =  0.9129512</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Estimation Method:               MLE</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Data:                            dat.censored</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Censoring Variable:              censored</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Sample Size:                     30</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Percent Censored:                23.3%</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Test Statistic:                  W = 0.9292406</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Test Statistic Parameters:       N     = 30.0000000</span></span></span>
+<span class="r-in"><span>  <span class="co">#                                 DELTA =  0.2333333</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#P-value:                         0.114511</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Alternative Hypothesis:          True cdf does not equal the</span></span></span>
+<span class="r-in"><span>  <span class="co">#                                 Lognormal Distribution.</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="co"># Plot the results for the censored data</span></span></span>
+<span class="r-in"><span>  <span class="co">#---------------------------------------</span></span></span>
+<span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/r/grDevices/dev.html" class="external-link">dev.new</a></span><span class="op">(</span><span class="op">)</span></span></span>
+<span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">gof.list</span><span class="op">)</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="co">#----------</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="co"># Redo the above example, but specify the quasi-minimum variance </span></span></span>
+<span class="r-in"><span>  <span class="co"># unbiased estimator of the mean.  Note that the method of </span></span></span>
+<span class="r-in"><span>  <span class="co"># estimating the parameters has no effect on the goodness-of-fit </span></span></span>
+<span class="r-in"><span>  <span class="co"># test (see the DETAILS section above).</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="fu">gofTestCensored</span><span class="op">(</span><span class="va">dat.censored</span>, <span class="va">censored</span>, test <span class="op">=</span> <span class="st">"sw"</span>, </span></span>
+<span class="r-in"><span>    distribution <span class="op">=</span> <span class="st">"lnormAlt"</span>, est.arg.list <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>method <span class="op">=</span> <span class="st">"qmvue"</span><span class="op">)</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> $distribution</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] "Lognormal"</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
@@ -961,64 +974,64 @@
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> attr(,"class")</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] "gofCensored"</span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="co">#Results of Goodness-of-Fit Test</span></span>
-<span class="r-in">  <span class="co">#Based on Type I Censored Data</span></span>
-<span class="r-in">  <span class="co">#-------------------------------</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Test Method:                     Shapiro-Wilk GOF</span></span>
-<span class="r-in">  <span class="co">#                                 (Singly Censored Data)</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Hypothesized Distribution:       Lognormal</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Censoring Side:                  left</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Censoring Level(s):              5 </span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Estimated Parameter(s):          mean = 12.8722749</span></span>
-<span class="r-in">  <span class="co">#                                 cv   =  0.8712549</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Estimation Method:               Quasi-MVUE</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Data:                            dat.censored</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Censoring Variable:              censored</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Sample Size:                     30</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Percent Censored:                23.3%</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Test Statistic:                  W = 0.9292406</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Test Statistic Parameters:       N     = 30.0000000</span></span>
-<span class="r-in">  <span class="co">#                                 DELTA =  0.2333333</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#P-value:                         0.114511</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Alternative Hypothesis:          True cdf does not equal the</span></span>
-<span class="r-in">  <span class="co">#                                 Lognormal Distribution.</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="co">#----------</span></span>
-<span class="r-in">  <span class="co"># Clean up</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="fu"><a href="https://rdrr.io/r/base/rm.html" class="external-link">rm</a></span><span class="op">(</span><span class="va">dat</span>, <span class="va">dat.censored</span>, <span class="va">censored</span>, <span class="va">gof.list</span><span class="op">)</span></span>
-<span class="r-in">  <span class="fu"><a href="https://rdrr.io/r/grDevices/dev.html" class="external-link">graphics.off</a></span><span class="op">(</span><span class="op">)</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="co">#==========</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="co"># Check the assumption that the silver data stored in Helsel.Cohn.88.silver.df </span></span>
-<span class="r-in">  <span class="co"># follows a lognormal distribution and plot the goodness-of-fit test results.  </span></span>
-<span class="r-in">  <span class="co"># Note that the small p-value and the shape of the Q-Q plot </span></span>
-<span class="r-in">  <span class="co"># (an inverted S-shape) suggests that the log transformation is not quite strong </span></span>
-<span class="r-in">  <span class="co"># enough to "bring in" the tails (i.e., the log-transformed silver data has tails </span></span>
-<span class="r-in">  <span class="co"># that are slightly too long relative to a normal distribution).  </span></span>
-<span class="r-in">  <span class="co"># Helsel and Cohn (1988, p.2002) note that the gross outlier of 560 mg/L tends to </span></span>
-<span class="r-in">  <span class="co"># make the shape of the data resemble a gamma distribution.</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="va">dum.list</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/with.html" class="external-link">with</a></span><span class="op">(</span><span class="va">Helsel.Cohn.88.silver.df</span>, </span>
-<span class="r-in">    <span class="fu">gofTestCensored</span><span class="op">(</span><span class="va">Ag</span>, <span class="va">Censored</span>, test <span class="op">=</span> <span class="st">"sf"</span>, dist <span class="op">=</span> <span class="st">"lnorm"</span><span class="op">)</span><span class="op">)</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="va">dum.list</span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="co">#Results of Goodness-of-Fit Test</span></span></span>
+<span class="r-in"><span>  <span class="co">#Based on Type I Censored Data</span></span></span>
+<span class="r-in"><span>  <span class="co">#-------------------------------</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Test Method:                     Shapiro-Wilk GOF</span></span></span>
+<span class="r-in"><span>  <span class="co">#                                 (Singly Censored Data)</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Hypothesized Distribution:       Lognormal</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Censoring Side:                  left</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Censoring Level(s):              5 </span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Estimated Parameter(s):          mean = 12.8722749</span></span></span>
+<span class="r-in"><span>  <span class="co">#                                 cv   =  0.8712549</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Estimation Method:               Quasi-MVUE</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Data:                            dat.censored</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Censoring Variable:              censored</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Sample Size:                     30</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Percent Censored:                23.3%</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Test Statistic:                  W = 0.9292406</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Test Statistic Parameters:       N     = 30.0000000</span></span></span>
+<span class="r-in"><span>  <span class="co">#                                 DELTA =  0.2333333</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#P-value:                         0.114511</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Alternative Hypothesis:          True cdf does not equal the</span></span></span>
+<span class="r-in"><span>  <span class="co">#                                 Lognormal Distribution.</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="co">#----------</span></span></span>
+<span class="r-in"><span>  <span class="co"># Clean up</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/r/base/rm.html" class="external-link">rm</a></span><span class="op">(</span><span class="va">dat</span>, <span class="va">dat.censored</span>, <span class="va">censored</span>, <span class="va">gof.list</span><span class="op">)</span></span></span>
+<span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/r/grDevices/dev.html" class="external-link">graphics.off</a></span><span class="op">(</span><span class="op">)</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="co">#==========</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="co"># Check the assumption that the silver data stored in Helsel.Cohn.88.silver.df </span></span></span>
+<span class="r-in"><span>  <span class="co"># follows a lognormal distribution and plot the goodness-of-fit test results.  </span></span></span>
+<span class="r-in"><span>  <span class="co"># Note that the small p-value and the shape of the Q-Q plot </span></span></span>
+<span class="r-in"><span>  <span class="co"># (an inverted S-shape) suggests that the log transformation is not quite strong </span></span></span>
+<span class="r-in"><span>  <span class="co"># enough to "bring in" the tails (i.e., the log-transformed silver data has tails </span></span></span>
+<span class="r-in"><span>  <span class="co"># that are slightly too long relative to a normal distribution).  </span></span></span>
+<span class="r-in"><span>  <span class="co"># Helsel and Cohn (1988, p.2002) note that the gross outlier of 560 mg/L tends to </span></span></span>
+<span class="r-in"><span>  <span class="co"># make the shape of the data resemble a gamma distribution.</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="va">dum.list</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/with.html" class="external-link">with</a></span><span class="op">(</span><span class="va">Helsel.Cohn.88.silver.df</span>, </span></span>
+<span class="r-in"><span>    <span class="fu">gofTestCensored</span><span class="op">(</span><span class="va">Ag</span>, <span class="va">Censored</span>, test <span class="op">=</span> <span class="st">"sf"</span>, dist <span class="op">=</span> <span class="st">"lnorm"</span><span class="op">)</span><span class="op">)</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="va">dum.list</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> $distribution</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] "Lognormal"</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
@@ -1089,73 +1102,73 @@
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> attr(,"class")</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] "gofCensored"</span>
-<span class="r-in">  <span class="co">#Results of Goodness-of-Fit Test</span></span>
-<span class="r-in">  <span class="co">#Based on Type I Censored Data</span></span>
-<span class="r-in">  <span class="co">#-------------------------------</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Test Method:                     Shapiro-Francia GOF</span></span>
-<span class="r-in">  <span class="co">#                                 (Multiply Censored Data)</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Hypothesized Distribution:       Lognormal</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Censoring Side:                  left</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Censoring Level(s):               0.1  0.2  0.3  0.5  1.0  2.0  2.5  5.0  </span></span>
-<span class="r-in">  <span class="co">#                                  6.0 10.0 20.0 25.0 </span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Estimated Parameter(s):          meanlog = -1.040572</span></span>
-<span class="r-in">  <span class="co">#                                 sdlog   =  2.354847</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Estimation Method:               MLE</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Data:                            Ag</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Censoring Variable:              Censored</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Sample Size:                     56</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Percent Censored:                60.7%</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Test Statistic:                  W = 0.8957198</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Test Statistic Parameters:       N     = 56.0000000</span></span>
-<span class="r-in">  <span class="co">#                                 DELTA =  0.6071429</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#P-value:                         0.03490314</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Alternative Hypothesis:          True cdf does not equal the</span></span>
-<span class="r-in">  <span class="co">#                                 Lognormal Distribution.</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="fu"><a href="https://rdrr.io/r/grDevices/dev.html" class="external-link">dev.new</a></span><span class="op">(</span><span class="op">)</span></span>
-<span class="r-in">  <span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">dum.list</span><span class="op">)</span></span>
+<span class="r-in"><span>  <span class="co">#Results of Goodness-of-Fit Test</span></span></span>
+<span class="r-in"><span>  <span class="co">#Based on Type I Censored Data</span></span></span>
+<span class="r-in"><span>  <span class="co">#-------------------------------</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Test Method:                     Shapiro-Francia GOF</span></span></span>
+<span class="r-in"><span>  <span class="co">#                                 (Multiply Censored Data)</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Hypothesized Distribution:       Lognormal</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Censoring Side:                  left</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Censoring Level(s):               0.1  0.2  0.3  0.5  1.0  2.0  2.5  5.0  </span></span></span>
+<span class="r-in"><span>  <span class="co">#                                  6.0 10.0 20.0 25.0 </span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Estimated Parameter(s):          meanlog = -1.040572</span></span></span>
+<span class="r-in"><span>  <span class="co">#                                 sdlog   =  2.354847</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Estimation Method:               MLE</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Data:                            Ag</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Censoring Variable:              Censored</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Sample Size:                     56</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Percent Censored:                60.7%</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Test Statistic:                  W = 0.8957198</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Test Statistic Parameters:       N     = 56.0000000</span></span></span>
+<span class="r-in"><span>  <span class="co">#                                 DELTA =  0.6071429</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#P-value:                         0.03490314</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Alternative Hypothesis:          True cdf does not equal the</span></span></span>
+<span class="r-in"><span>  <span class="co">#                                 Lognormal Distribution.</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/r/grDevices/dev.html" class="external-link">dev.new</a></span><span class="op">(</span><span class="op">)</span></span></span>
+<span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">dum.list</span><span class="op">)</span></span></span>
 <span class="r-wrn co"><span class="r-pr">#&gt;</span> <span class="warning">Warning: </span>Cannot construct histogram for multiply censored data when complete observations are between censoring levels</span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="co">#----------</span></span>
-<span class="r-in">  </span>
-<span class="r-in">  <span class="co"># Clean up</span></span>
-<span class="r-in">  <span class="co">#---------</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="fu"><a href="https://rdrr.io/r/base/rm.html" class="external-link">rm</a></span><span class="op">(</span><span class="va">dum.list</span><span class="op">)</span></span>
-<span class="r-in">  <span class="fu"><a href="https://rdrr.io/r/grDevices/dev.html" class="external-link">graphics.off</a></span><span class="op">(</span><span class="op">)</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="co">#==========</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="co"># Chapter 15 of USEPA (2009) gives several examples of looking </span></span>
-<span class="r-in">  <span class="co"># at normal Q-Q plots and estimating the mean and standard deviation </span></span>
-<span class="r-in">  <span class="co"># for manganese concentrations (ppb) in groundwater at five background wells. </span></span>
-<span class="r-in">  <span class="co"># In EnvStats these data are stored in the data frame </span></span>
-<span class="r-in">  <span class="co"># EPA.09.Ex.15.1.manganese.df.</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="co"># Here we will test whether the data appear to come from a normal </span></span>
-<span class="r-in">  <span class="co"># distribution, then we will test to see whether they appear to come </span></span>
-<span class="r-in">  <span class="co"># from a lognormal distribution.</span></span>
-<span class="r-in">  <span class="co">#--------------------------------------------------------------------</span></span>
-<span class="r-in"></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="co"># First look at the data:</span></span>
-<span class="r-in">  <span class="co">#-----------------------</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="va">EPA.09.Ex.15.1.manganese.df</span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="co">#----------</span></span></span>
+<span class="r-in"><span>  </span></span>
+<span class="r-in"><span>  <span class="co"># Clean up</span></span></span>
+<span class="r-in"><span>  <span class="co">#---------</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/r/base/rm.html" class="external-link">rm</a></span><span class="op">(</span><span class="va">dum.list</span><span class="op">)</span></span></span>
+<span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/r/grDevices/dev.html" class="external-link">graphics.off</a></span><span class="op">(</span><span class="op">)</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="co">#==========</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="co"># Chapter 15 of USEPA (2009) gives several examples of looking </span></span></span>
+<span class="r-in"><span>  <span class="co"># at normal Q-Q plots and estimating the mean and standard deviation </span></span></span>
+<span class="r-in"><span>  <span class="co"># for manganese concentrations (ppb) in groundwater at five background wells. </span></span></span>
+<span class="r-in"><span>  <span class="co"># In EnvStats these data are stored in the data frame </span></span></span>
+<span class="r-in"><span>  <span class="co"># EPA.09.Ex.15.1.manganese.df.</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="co"># Here we will test whether the data appear to come from a normal </span></span></span>
+<span class="r-in"><span>  <span class="co"># distribution, then we will test to see whether they appear to come </span></span></span>
+<span class="r-in"><span>  <span class="co"># from a lognormal distribution.</span></span></span>
+<span class="r-in"><span>  <span class="co">#--------------------------------------------------------------------</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="co"># First look at the data:</span></span></span>
+<span class="r-in"><span>  <span class="co">#-----------------------</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="va">EPA.09.Ex.15.1.manganese.df</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>    Sample   Well Manganese.Orig.ppb Manganese.ppb Censored</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 1       1 Well.1                 &lt;5           5.0     TRUE</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 2       2 Well.1               12.1          12.1    FALSE</span>
@@ -1182,44 +1195,44 @@
 <span class="r-out co"><span class="r-pr">#&gt;</span> 23      3 Well.5                3.3           3.3    FALSE</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 24      4 Well.5                8.4           8.4    FALSE</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 25      5 Well.5                 &lt;2           2.0     TRUE</span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="co">#   Sample   Well Manganese.Orig.ppb Manganese.ppb Censored</span></span>
-<span class="r-in">  <span class="co">#1       1 Well.1                 &lt;5           5.0     TRUE</span></span>
-<span class="r-in">  <span class="co">#2       2 Well.1               12.1          12.1    FALSE</span></span>
-<span class="r-in">  <span class="co">#3       3 Well.1               16.9          16.9    FALSE</span></span>
-<span class="r-in">  <span class="co">#...</span></span>
-<span class="r-in">  <span class="co">#23      3 Well.5                3.3           3.3    FALSE</span></span>
-<span class="r-in">  <span class="co">#24      4 Well.5                8.4           8.4    FALSE</span></span>
-<span class="r-in">  <span class="co">#25      5 Well.5                 &lt;2           2.0     TRUE</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="fu"><a href="longToWide.html">longToWide</a></span><span class="op">(</span><span class="va">EPA.09.Ex.15.1.manganese.df</span>, </span>
-<span class="r-in">    <span class="st">"Manganese.Orig.ppb"</span>, <span class="st">"Sample"</span>, <span class="st">"Well"</span>,</span>
-<span class="r-in">    paste.row.name <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span>  </span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="co">#   Sample   Well Manganese.Orig.ppb Manganese.ppb Censored</span></span></span>
+<span class="r-in"><span>  <span class="co">#1       1 Well.1                 &lt;5           5.0     TRUE</span></span></span>
+<span class="r-in"><span>  <span class="co">#2       2 Well.1               12.1          12.1    FALSE</span></span></span>
+<span class="r-in"><span>  <span class="co">#3       3 Well.1               16.9          16.9    FALSE</span></span></span>
+<span class="r-in"><span>  <span class="co">#...</span></span></span>
+<span class="r-in"><span>  <span class="co">#23      3 Well.5                3.3           3.3    FALSE</span></span></span>
+<span class="r-in"><span>  <span class="co">#24      4 Well.5                8.4           8.4    FALSE</span></span></span>
+<span class="r-in"><span>  <span class="co">#25      5 Well.5                 &lt;2           2.0     TRUE</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="fu"><a href="longToWide.html">longToWide</a></span><span class="op">(</span><span class="va">EPA.09.Ex.15.1.manganese.df</span>, </span></span>
+<span class="r-in"><span>    <span class="st">"Manganese.Orig.ppb"</span>, <span class="st">"Sample"</span>, <span class="st">"Well"</span>,</span></span>
+<span class="r-in"><span>    paste.row.name <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span>  </span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>          Well.1 Well.2 Well.3 Well.4 Well.5</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Sample.1     &lt;5     &lt;5     &lt;5    6.3   17.9</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Sample.2   12.1    7.7    5.3   11.9   22.7</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Sample.3   16.9   53.6   12.6     10    3.3</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Sample.4   21.6    9.5  106.3     &lt;2    8.4</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Sample.5     &lt;2   45.9   34.5   77.2     &lt;2</span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="co">#         Well.1 Well.2 Well.3 Well.4 Well.5</span></span>
-<span class="r-in">  <span class="co">#Sample.1     &lt;5     &lt;5     &lt;5    6.3   17.9</span></span>
-<span class="r-in">  <span class="co">#Sample.2   12.1    7.7    5.3   11.9   22.7</span></span>
-<span class="r-in">  <span class="co">#Sample.3   16.9   53.6   12.6     10    3.3</span></span>
-<span class="r-in">  <span class="co">#Sample.4   21.6    9.5  106.3     &lt;2    8.4</span></span>
-<span class="r-in">  <span class="co">#Sample.5     &lt;2   45.9   34.5   77.2     &lt;2</span></span>
-<span class="r-in"></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="co"># Now test whether the data appear to come from </span></span>
-<span class="r-in">  <span class="co"># a normal distribution.  Note that these data </span></span>
-<span class="r-in">  <span class="co"># are multiply censored, so we'll use the </span></span>
-<span class="r-in">  <span class="co"># Shapiro-Francia test.  </span></span>
-<span class="r-in">  <span class="co">#----------------------------------------------</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="va">gof.normal</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/with.html" class="external-link">with</a></span><span class="op">(</span><span class="va">EPA.09.Ex.15.1.manganese.df</span>,</span>
-<span class="r-in">    <span class="fu">gofTestCensored</span><span class="op">(</span><span class="va">Manganese.ppb</span>, <span class="va">Censored</span>, test <span class="op">=</span> <span class="st">"sf"</span><span class="op">)</span><span class="op">)</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="va">gof.normal</span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="co">#         Well.1 Well.2 Well.3 Well.4 Well.5</span></span></span>
+<span class="r-in"><span>  <span class="co">#Sample.1     &lt;5     &lt;5     &lt;5    6.3   17.9</span></span></span>
+<span class="r-in"><span>  <span class="co">#Sample.2   12.1    7.7    5.3   11.9   22.7</span></span></span>
+<span class="r-in"><span>  <span class="co">#Sample.3   16.9   53.6   12.6     10    3.3</span></span></span>
+<span class="r-in"><span>  <span class="co">#Sample.4   21.6    9.5  106.3     &lt;2    8.4</span></span></span>
+<span class="r-in"><span>  <span class="co">#Sample.5     &lt;2   45.9   34.5   77.2     &lt;2</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="co"># Now test whether the data appear to come from </span></span></span>
+<span class="r-in"><span>  <span class="co"># a normal distribution.  Note that these data </span></span></span>
+<span class="r-in"><span>  <span class="co"># are multiply censored, so we'll use the </span></span></span>
+<span class="r-in"><span>  <span class="co"># Shapiro-Francia test.  </span></span></span>
+<span class="r-in"><span>  <span class="co">#----------------------------------------------</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="va">gof.normal</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/with.html" class="external-link">with</a></span><span class="op">(</span><span class="va">EPA.09.Ex.15.1.manganese.df</span>,</span></span>
+<span class="r-in"><span>    <span class="fu">gofTestCensored</span><span class="op">(</span><span class="va">Manganese.ppb</span>, <span class="va">Censored</span>, test <span class="op">=</span> <span class="st">"sf"</span><span class="op">)</span><span class="op">)</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="va">gof.normal</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> $distribution</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] "Normal"</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
@@ -1286,61 +1299,61 @@
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> attr(,"class")</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] "gofCensored"</span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="co">#Results of Goodness-of-Fit Test</span></span>
-<span class="r-in">  <span class="co">#Based on Type I Censored Data</span></span>
-<span class="r-in">  <span class="co">#-------------------------------</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Test Method:                     Shapiro-Francia GOF</span></span>
-<span class="r-in">  <span class="co">#                                 (Multiply Censored Data)</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Hypothesized Distribution:       Normal</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Censoring Side:                  left</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Censoring Level(s):              2 5 </span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Estimated Parameter(s):          mean = 15.23508</span></span>
-<span class="r-in">  <span class="co">#                                 sd   = 30.62812</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Estimation Method:               MLE</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Data:                            Manganese.ppb</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Censoring Variable:              Censored</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Sample Size:                     25</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Percent Censored:                24%</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Test Statistic:                  W = 0.8368016</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Test Statistic Parameters:       N     = 25.00</span></span>
-<span class="r-in">  <span class="co">#                                 DELTA =  0.24</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#P-value:                         0.004662658</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Alternative Hypothesis:          True cdf does not equal the</span></span>
-<span class="r-in">  <span class="co">#                                 Normal Distribution.</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="co"># Plot the results:</span></span>
-<span class="r-in">  <span class="co">#------------------</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="fu"><a href="https://rdrr.io/r/grDevices/dev.html" class="external-link">dev.new</a></span><span class="op">(</span><span class="op">)</span></span>
-<span class="r-in">  <span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">gof.normal</span><span class="op">)</span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="co">#Results of Goodness-of-Fit Test</span></span></span>
+<span class="r-in"><span>  <span class="co">#Based on Type I Censored Data</span></span></span>
+<span class="r-in"><span>  <span class="co">#-------------------------------</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Test Method:                     Shapiro-Francia GOF</span></span></span>
+<span class="r-in"><span>  <span class="co">#                                 (Multiply Censored Data)</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Hypothesized Distribution:       Normal</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Censoring Side:                  left</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Censoring Level(s):              2 5 </span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Estimated Parameter(s):          mean = 15.23508</span></span></span>
+<span class="r-in"><span>  <span class="co">#                                 sd   = 30.62812</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Estimation Method:               MLE</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Data:                            Manganese.ppb</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Censoring Variable:              Censored</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Sample Size:                     25</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Percent Censored:                24%</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Test Statistic:                  W = 0.8368016</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Test Statistic Parameters:       N     = 25.00</span></span></span>
+<span class="r-in"><span>  <span class="co">#                                 DELTA =  0.24</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#P-value:                         0.004662658</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Alternative Hypothesis:          True cdf does not equal the</span></span></span>
+<span class="r-in"><span>  <span class="co">#                                 Normal Distribution.</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="co"># Plot the results:</span></span></span>
+<span class="r-in"><span>  <span class="co">#------------------</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/r/grDevices/dev.html" class="external-link">dev.new</a></span><span class="op">(</span><span class="op">)</span></span></span>
+<span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">gof.normal</span><span class="op">)</span></span></span>
 <span class="r-wrn co"><span class="r-pr">#&gt;</span> <span class="warning">Warning: </span>Cannot construct histogram for multiply censored data when complete observations are between censoring levels</span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="co">#----------</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="co"># Now test to see whether the data appear to come from </span></span>
-<span class="r-in">  <span class="co"># a lognormal distribuiton.</span></span>
-<span class="r-in">  <span class="co">#-----------------------------------------------------</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="va">gof.lognormal</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/with.html" class="external-link">with</a></span><span class="op">(</span><span class="va">EPA.09.Ex.15.1.manganese.df</span>,</span>
-<span class="r-in">    <span class="fu">gofTestCensored</span><span class="op">(</span><span class="va">Manganese.ppb</span>, <span class="va">Censored</span>, test <span class="op">=</span> <span class="st">"sf"</span>, </span>
-<span class="r-in">    distribution <span class="op">=</span> <span class="st">"lnorm"</span><span class="op">)</span><span class="op">)</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="va">gof.lognormal</span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="co">#----------</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="co"># Now test to see whether the data appear to come from </span></span></span>
+<span class="r-in"><span>  <span class="co"># a lognormal distribuiton.</span></span></span>
+<span class="r-in"><span>  <span class="co">#-----------------------------------------------------</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="va">gof.lognormal</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/with.html" class="external-link">with</a></span><span class="op">(</span><span class="va">EPA.09.Ex.15.1.manganese.df</span>,</span></span>
+<span class="r-in"><span>    <span class="fu">gofTestCensored</span><span class="op">(</span><span class="va">Manganese.ppb</span>, <span class="va">Censored</span>, test <span class="op">=</span> <span class="st">"sf"</span>, </span></span>
+<span class="r-in"><span>    distribution <span class="op">=</span> <span class="st">"lnorm"</span><span class="op">)</span><span class="op">)</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="va">gof.lognormal</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> $distribution</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] "Lognormal"</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
@@ -1407,57 +1420,57 @@
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> attr(,"class")</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] "gofCensored"</span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="co">#Results of Goodness-of-Fit Test</span></span>
-<span class="r-in">  <span class="co">#Based on Type I Censored Data</span></span>
-<span class="r-in">  <span class="co">#-------------------------------</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Test Method:                     Shapiro-Francia GOF</span></span>
-<span class="r-in">  <span class="co">#                                 (Multiply Censored Data)</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Hypothesized Distribution:       Lognormal</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Censoring Side:                  left</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Censoring Level(s):              2 5 </span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Estimated Parameter(s):          meanlog = 2.215905</span></span>
-<span class="r-in">  <span class="co">#                                 sdlog   = 1.356291</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Estimation Method:               MLE</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Data:                            Manganese.ppb</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Censoring Variable:              Censored</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Sample Size:                     25</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Percent Censored:                24%</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Test Statistic:                  W = 0.9864426</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Test Statistic Parameters:       N     = 25.00</span></span>
-<span class="r-in">  <span class="co">#                                 DELTA =  0.24</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#P-value:                         0.9767731</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Alternative Hypothesis:          True cdf does not equal the</span></span>
-<span class="r-in">  <span class="co">#                                 Lognormal Distribution.</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="co"># Plot the results:</span></span>
-<span class="r-in">  <span class="co">#------------------</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="fu"><a href="https://rdrr.io/r/grDevices/dev.html" class="external-link">dev.new</a></span><span class="op">(</span><span class="op">)</span></span>
-<span class="r-in">  <span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">gof.lognormal</span><span class="op">)</span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="co">#Results of Goodness-of-Fit Test</span></span></span>
+<span class="r-in"><span>  <span class="co">#Based on Type I Censored Data</span></span></span>
+<span class="r-in"><span>  <span class="co">#-------------------------------</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Test Method:                     Shapiro-Francia GOF</span></span></span>
+<span class="r-in"><span>  <span class="co">#                                 (Multiply Censored Data)</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Hypothesized Distribution:       Lognormal</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Censoring Side:                  left</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Censoring Level(s):              2 5 </span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Estimated Parameter(s):          meanlog = 2.215905</span></span></span>
+<span class="r-in"><span>  <span class="co">#                                 sdlog   = 1.356291</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Estimation Method:               MLE</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Data:                            Manganese.ppb</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Censoring Variable:              Censored</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Sample Size:                     25</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Percent Censored:                24%</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Test Statistic:                  W = 0.9864426</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Test Statistic Parameters:       N     = 25.00</span></span></span>
+<span class="r-in"><span>  <span class="co">#                                 DELTA =  0.24</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#P-value:                         0.9767731</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Alternative Hypothesis:          True cdf does not equal the</span></span></span>
+<span class="r-in"><span>  <span class="co">#                                 Lognormal Distribution.</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="co"># Plot the results:</span></span></span>
+<span class="r-in"><span>  <span class="co">#------------------</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/r/grDevices/dev.html" class="external-link">dev.new</a></span><span class="op">(</span><span class="op">)</span></span></span>
+<span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">gof.lognormal</span><span class="op">)</span></span></span>
 <span class="r-wrn co"><span class="r-pr">#&gt;</span> <span class="warning">Warning: </span>Cannot construct histogram for multiply censored data when complete observations are between censoring levels</span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="co">#----------</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="co"># Clean up</span></span>
-<span class="r-in">  <span class="co">#---------</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="fu"><a href="https://rdrr.io/r/base/rm.html" class="external-link">rm</a></span><span class="op">(</span><span class="va">gof.normal</span>, <span class="va">gof.lognormal</span><span class="op">)</span></span>
-<span class="r-in">  <span class="fu"><a href="https://rdrr.io/r/grDevices/dev.html" class="external-link">graphics.off</a></span><span class="op">(</span><span class="op">)</span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="co">#----------</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="co"># Clean up</span></span></span>
+<span class="r-in"><span>  <span class="co">#---------</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/r/base/rm.html" class="external-link">rm</a></span><span class="op">(</span><span class="va">gof.normal</span>, <span class="va">gof.lognormal</span><span class="op">)</span></span></span>
+<span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/r/grDevices/dev.html" class="external-link">graphics.off</a></span><span class="op">(</span><span class="op">)</span></span></span>
 </code></pre></div>
     </div>
   </div>
@@ -1472,7 +1485,7 @@
 </div>
 
 <div class="pkgdown">
-  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.2.</p>
+  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.6.</p>
 </div>
 
       </footer></div>

@@ -54,9 +54,9 @@
     </div>
 
     <div id="ref-usage">
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="fu">predIntNparConfLevel</span><span class="op">(</span><span class="va">n</span>, k <span class="op">=</span> <span class="va">m</span>, m <span class="op">=</span> <span class="fl">1</span>, lpl.rank <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/ifelse.html" class="external-link">ifelse</a></span><span class="op">(</span><span class="va">pi.type</span> <span class="op">==</span> <span class="st">"upper"</span>, <span class="fl">0</span>, <span class="fl">1</span><span class="op">)</span>, 
-    n.plus.one.minus.upl.rank <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/ifelse.html" class="external-link">ifelse</a></span><span class="op">(</span><span class="va">pi.type</span> <span class="op">==</span> <span class="st">"lower"</span>, <span class="fl">0</span>, <span class="fl">1</span><span class="op">)</span>, 
-    pi.type <span class="op">=</span> <span class="st">"two.sided"</span><span class="op">)</span></code></pre></div>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">predIntNparConfLevel</span><span class="op">(</span><span class="va">n</span>, k <span class="op">=</span> <span class="va">m</span>, m <span class="op">=</span> <span class="fl">1</span>, lpl.rank <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/ifelse.html" class="external-link">ifelse</a></span><span class="op">(</span><span class="va">pi.type</span> <span class="op">==</span> <span class="st">"upper"</span>, <span class="fl">0</span>, <span class="fl">1</span><span class="op">)</span>, </span>
+<span>    n.plus.one.minus.upl.rank <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/ifelse.html" class="external-link">ifelse</a></span><span class="op">(</span><span class="va">pi.type</span> <span class="op">==</span> <span class="st">"lower"</span>, <span class="fl">0</span>, <span class="fl">1</span><span class="op">)</span>, </span>
+<span>    pi.type <span class="op">=</span> <span class="st">"two.sided"</span><span class="op">)</span></span></code></pre></div>
     </div>
 
     <div id="arguments">
@@ -65,28 +65,34 @@
 <dd><p>vector of positive integers specifying the sample sizes.  
   Missing (<code>NA</code>), undefined (<code>NaN</code>), and infinite (<code>Inf</code>, <code>-Inf</code>) 
   values are not allowed.</p></dd>
-<dt>k</dt>
+
+  <dt>k</dt>
 <dd><p>vector of positive integers specifying the minimum number of future 
   observations out of <code>m</code> that should be contained in the prediction interval.  
   The default value is <code>k=m</code>.</p></dd>
-<dt>m</dt>
+
+  <dt>m</dt>
 <dd><p>vector of positive integers specifying the number of future observations.  
   The default value is <code>m=1</code>.</p></dd>
-<dt>lpl.rank</dt>
+
+  <dt>lpl.rank</dt>
 <dd><p>vector of positive integers indicating the rank of the order statistic to use for 
   the lower bound of the prediction interval.  If <code>pi.type="two-sided"</code> or <br><code>pi.type="lower"</code>, the default value is <code>lpl.rank=1</code> (implying the 
   minimum value is used as the lower bound of the prediction interval).  
   If <code>pi.type="upper"</code>, this argument is set equal to <code>0</code>.</p></dd>
-<dt>n.plus.one.minus.upl.rank</dt>
+
+  <dt>n.plus.one.minus.upl.rank</dt>
 <dd><p>vector of positive integers related to the rank of the order statistic to use for 
   the upper bound of the prediction interval.  A value of 
   <code>n.plus.one.minus.upl.rank=1</code> (the default) means use the 
   first largest value, and in general a value of <br><code>n.plus.one.minus.upl.rank=</code>\(i\) means use the \(i\)'th largest value.  
   If <br><code>pi.type="lower"</code>, this argument is set equal to <code>0</code>.</p></dd>
-<dt>pi.type</dt>
+
+  <dt>pi.type</dt>
 <dd><p>character string indicating what kind of prediction interval to compute.  
   The possible values are <code>"two.sided"</code> (the default), <code>"lower"</code>, and 
   <code>"upper"</code>.</p></dd>
+
 </dl></div>
     <div id="details">
     <h2>Details</h2>
@@ -101,7 +107,9 @@
     </div>
     <div id="value">
     <h2>Value</h2>
-    <p>vector of values between 0 and 1 indicating the confidence level associated with 
+    
+
+<p>vector of values between 0 and 1 indicating the confidence level associated with 
   the specified nonparametric prediction interval.</p>
     </div>
     <div id="references">
@@ -124,58 +132,58 @@
 
     <div id="ref-examples">
     <h2>Examples</h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in">  <span class="co"># Look at how the confidence level of a nonparametric prediction interval </span></span>
-<span class="r-in">  <span class="co"># increases with increasing sample size:</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="fu"><a href="https://rdrr.io/r/base/seq.html" class="external-link">seq</a></span><span class="op">(</span><span class="fl">5</span>, <span class="fl">25</span>, by <span class="op">=</span> <span class="fl">5</span><span class="op">)</span> </span>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span>  <span class="co"># Look at how the confidence level of a nonparametric prediction interval </span></span></span>
+<span class="r-in"><span>  <span class="co"># increases with increasing sample size:</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/r/base/seq.html" class="external-link">seq</a></span><span class="op">(</span><span class="fl">5</span>, <span class="fl">25</span>, by <span class="op">=</span> <span class="fl">5</span><span class="op">)</span> </span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1]  5 10 15 20 25</span>
-<span class="r-in">  <span class="co">#[1] 5 10 15 20 25 </span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="fu"><a href="https://rdrr.io/r/base/Round.html" class="external-link">round</a></span><span class="op">(</span><span class="fu">predIntNparConfLevel</span><span class="op">(</span>n <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/seq.html" class="external-link">seq</a></span><span class="op">(</span><span class="fl">5</span>, <span class="fl">25</span>, by <span class="op">=</span> <span class="fl">5</span><span class="op">)</span><span class="op">)</span>, <span class="fl">2</span><span class="op">)</span> </span>
+<span class="r-in"><span>  <span class="co">#[1] 5 10 15 20 25 </span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/r/base/Round.html" class="external-link">round</a></span><span class="op">(</span><span class="fu">predIntNparConfLevel</span><span class="op">(</span>n <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/seq.html" class="external-link">seq</a></span><span class="op">(</span><span class="fl">5</span>, <span class="fl">25</span>, by <span class="op">=</span> <span class="fl">5</span><span class="op">)</span><span class="op">)</span>, <span class="fl">2</span><span class="op">)</span> </span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] 0.67 0.82 0.87 0.90 0.92</span>
-<span class="r-in">  <span class="co">#[1] 0.67 0.82 0.87 0.90 0.92</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="co">#---------</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="co"># Look at how the confidence level of a nonparametric prediction interval </span></span>
-<span class="r-in">  <span class="co"># decreases as the number of future observations increases:</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="fu"><a href="https://rdrr.io/r/base/Round.html" class="external-link">round</a></span><span class="op">(</span><span class="fu">predIntNparConfLevel</span><span class="op">(</span>n <span class="op">=</span> <span class="fl">10</span>, m <span class="op">=</span> <span class="fl">1</span><span class="op">:</span><span class="fl">5</span><span class="op">)</span>, <span class="fl">2</span><span class="op">)</span> </span>
+<span class="r-in"><span>  <span class="co">#[1] 0.67 0.82 0.87 0.90 0.92</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="co">#---------</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="co"># Look at how the confidence level of a nonparametric prediction interval </span></span></span>
+<span class="r-in"><span>  <span class="co"># decreases as the number of future observations increases:</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/r/base/Round.html" class="external-link">round</a></span><span class="op">(</span><span class="fu">predIntNparConfLevel</span><span class="op">(</span>n <span class="op">=</span> <span class="fl">10</span>, m <span class="op">=</span> <span class="fl">1</span><span class="op">:</span><span class="fl">5</span><span class="op">)</span>, <span class="fl">2</span><span class="op">)</span> </span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] 0.82 0.68 0.58 0.49 0.43</span>
-<span class="r-in">  <span class="co">#[1] 0.82 0.68 0.58 0.49 0.43</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="co">#----------</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="co"># Look at how the confidence level of a nonparametric prediction interval </span></span>
-<span class="r-in">  <span class="co"># decreases with minimum number of observations that must be contained within </span></span>
-<span class="r-in">  <span class="co"># the interval (k):</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="fu"><a href="https://rdrr.io/r/base/Round.html" class="external-link">round</a></span><span class="op">(</span><span class="fu">predIntNparConfLevel</span><span class="op">(</span>n <span class="op">=</span> <span class="fl">10</span>, k <span class="op">=</span> <span class="fl">1</span><span class="op">:</span><span class="fl">5</span>, m <span class="op">=</span> <span class="fl">5</span><span class="op">)</span>, <span class="fl">2</span><span class="op">)</span> </span>
+<span class="r-in"><span>  <span class="co">#[1] 0.82 0.68 0.58 0.49 0.43</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="co">#----------</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="co"># Look at how the confidence level of a nonparametric prediction interval </span></span></span>
+<span class="r-in"><span>  <span class="co"># decreases with minimum number of observations that must be contained within </span></span></span>
+<span class="r-in"><span>  <span class="co"># the interval (k):</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/r/base/Round.html" class="external-link">round</a></span><span class="op">(</span><span class="fu">predIntNparConfLevel</span><span class="op">(</span>n <span class="op">=</span> <span class="fl">10</span>, k <span class="op">=</span> <span class="fl">1</span><span class="op">:</span><span class="fl">5</span>, m <span class="op">=</span> <span class="fl">5</span><span class="op">)</span>, <span class="fl">2</span><span class="op">)</span> </span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] 1.00 0.98 0.92 0.76 0.43</span>
-<span class="r-in">  <span class="co">#[1] 1.00 0.98 0.92 0.76 0.43</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="co">#----------</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="co"># Look at how the confidence level of a nonparametric prediction interval </span></span>
-<span class="r-in">  <span class="co"># decreases with the rank of the lower prediction limit:</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="fu"><a href="https://rdrr.io/r/base/Round.html" class="external-link">round</a></span><span class="op">(</span><span class="fu">predIntNparConfLevel</span><span class="op">(</span>n <span class="op">=</span> <span class="fl">10</span>, lpl.rank <span class="op">=</span> <span class="fl">1</span><span class="op">:</span><span class="fl">5</span><span class="op">)</span>, <span class="fl">2</span><span class="op">)</span> </span>
+<span class="r-in"><span>  <span class="co">#[1] 1.00 0.98 0.92 0.76 0.43</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="co">#----------</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="co"># Look at how the confidence level of a nonparametric prediction interval </span></span></span>
+<span class="r-in"><span>  <span class="co"># decreases with the rank of the lower prediction limit:</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/r/base/Round.html" class="external-link">round</a></span><span class="op">(</span><span class="fu">predIntNparConfLevel</span><span class="op">(</span>n <span class="op">=</span> <span class="fl">10</span>, lpl.rank <span class="op">=</span> <span class="fl">1</span><span class="op">:</span><span class="fl">5</span><span class="op">)</span>, <span class="fl">2</span><span class="op">)</span> </span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] 0.82 0.73 0.64 0.55 0.45</span>
-<span class="r-in">  <span class="co">#[1] 0.82 0.73 0.64 0.55 0.45</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="co">#==========</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="co"># Example 18-3 of USEPA (2009, p.18-19) shows how to construct </span></span>
-<span class="r-in">  <span class="co"># a one-sided upper nonparametric prediction interval for the next </span></span>
-<span class="r-in">  <span class="co"># 4 future observations of trichloroethylene (TCE) at a downgradient well.  </span></span>
-<span class="r-in">  <span class="co"># The data for this example are stored in EPA.09.Ex.18.3.TCE.df.  </span></span>
-<span class="r-in">  <span class="co"># There are 6 monthly observations of TCE (ppb) at 3 background wells, </span></span>
-<span class="r-in">  <span class="co"># and 4 monthly observations of TCE at a compliance well.</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="co"># Look at the data</span></span>
-<span class="r-in">  <span class="co">#-----------------</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="va">EPA.09.Ex.18.3.TCE.df</span></span>
+<span class="r-in"><span>  <span class="co">#[1] 0.82 0.73 0.64 0.55 0.45</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="co">#==========</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="co"># Example 18-3 of USEPA (2009, p.18-19) shows how to construct </span></span></span>
+<span class="r-in"><span>  <span class="co"># a one-sided upper nonparametric prediction interval for the next </span></span></span>
+<span class="r-in"><span>  <span class="co"># 4 future observations of trichloroethylene (TCE) at a downgradient well.  </span></span></span>
+<span class="r-in"><span>  <span class="co"># The data for this example are stored in EPA.09.Ex.18.3.TCE.df.  </span></span></span>
+<span class="r-in"><span>  <span class="co"># There are 6 monthly observations of TCE (ppb) at 3 background wells, </span></span></span>
+<span class="r-in"><span>  <span class="co"># and 4 monthly observations of TCE at a compliance well.</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="co"># Look at the data</span></span></span>
+<span class="r-in"><span>  <span class="co">#-----------------</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="va">EPA.09.Ex.18.3.TCE.df</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>    Month Well  Well.type TCE.ppb.orig TCE.ppb Censored</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 1      1 BW-1 Background           &lt;5     5.0     TRUE</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 2      2 BW-1 Background           &lt;5     5.0     TRUE</span>
@@ -201,19 +209,19 @@
 <span class="r-out co"><span class="r-pr">#&gt;</span> 22     4 CW-4 Compliance           &lt;5     5.0     TRUE</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 23     5 CW-4 Compliance            8     8.0    FALSE</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 24     6 CW-4 Compliance           14    14.0    FALSE</span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="co">#   Month Well  Well.type TCE.ppb.orig TCE.ppb Censored</span></span>
-<span class="r-in">  <span class="co">#1      1 BW-1 Background           &lt;5     5.0     TRUE</span></span>
-<span class="r-in">  <span class="co">#2      2 BW-1 Background           &lt;5     5.0     TRUE</span></span>
-<span class="r-in">  <span class="co">#3      3 BW-1 Background            8     8.0    FALSE</span></span>
-<span class="r-in">  <span class="co">#...</span></span>
-<span class="r-in">  <span class="co">#22     4 CW-4 Compliance           &lt;5     5.0     TRUE</span></span>
-<span class="r-in">  <span class="co">#23     5 CW-4 Compliance            8     8.0    FALSE</span></span>
-<span class="r-in">  <span class="co">#24     6 CW-4 Compliance           14    14.0    FALSE</span></span>
-<span class="r-in"></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="fu"><a href="longToWide.html">longToWide</a></span><span class="op">(</span><span class="va">EPA.09.Ex.18.3.TCE.df</span>, <span class="st">"TCE.ppb.orig"</span>, <span class="st">"Month"</span>, <span class="st">"Well"</span>, </span>
-<span class="r-in">    paste.row.name <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="co">#   Month Well  Well.type TCE.ppb.orig TCE.ppb Censored</span></span></span>
+<span class="r-in"><span>  <span class="co">#1      1 BW-1 Background           &lt;5     5.0     TRUE</span></span></span>
+<span class="r-in"><span>  <span class="co">#2      2 BW-1 Background           &lt;5     5.0     TRUE</span></span></span>
+<span class="r-in"><span>  <span class="co">#3      3 BW-1 Background            8     8.0    FALSE</span></span></span>
+<span class="r-in"><span>  <span class="co">#...</span></span></span>
+<span class="r-in"><span>  <span class="co">#22     4 CW-4 Compliance           &lt;5     5.0     TRUE</span></span></span>
+<span class="r-in"><span>  <span class="co">#23     5 CW-4 Compliance            8     8.0    FALSE</span></span></span>
+<span class="r-in"><span>  <span class="co">#24     6 CW-4 Compliance           14    14.0    FALSE</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="fu"><a href="longToWide.html">longToWide</a></span><span class="op">(</span><span class="va">EPA.09.Ex.18.3.TCE.df</span>, <span class="st">"TCE.ppb.orig"</span>, <span class="st">"Month"</span>, <span class="st">"Well"</span>, </span></span>
+<span class="r-in"><span>    paste.row.name <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>         BW-1 BW-2 BW-3 CW-4</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Month.1   &lt;5    7   &lt;5     </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Month.2   &lt;5  6.5   &lt;5     </span>
@@ -221,35 +229,35 @@
 <span class="r-out co"><span class="r-pr">#&gt;</span> Month.4   &lt;5    6   &lt;5   &lt;5</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Month.5    9   12   &lt;5    8</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Month.6   10   &lt;5    9   14</span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="co">#        BW-1 BW-2 BW-3 CW-4</span></span>
-<span class="r-in">  <span class="co">#Month.1   &lt;5    7   &lt;5     </span></span>
-<span class="r-in">  <span class="co">#Month.2   &lt;5  6.5   &lt;5     </span></span>
-<span class="r-in">  <span class="co">#Month.3    8   &lt;5 10.5  7.5</span></span>
-<span class="r-in">  <span class="co">#Month.4   &lt;5    6   &lt;5   &lt;5</span></span>
-<span class="r-in">  <span class="co">#Month.5    9   12   &lt;5    8</span></span>
-<span class="r-in">  <span class="co">#Month.6   10   &lt;5    9   14</span></span>
-<span class="r-in"></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="co"># If we construct the prediction limit based on the background well</span></span>
-<span class="r-in">  <span class="co"># data using the maximum value as the upper prediction limit, </span></span>
-<span class="r-in">  <span class="co"># the associated confidence level is only 82%.  </span></span>
-<span class="r-in">  <span class="co">#-----------------------------------------------------------------</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="fu">predIntNparConfLevel</span><span class="op">(</span>n <span class="op">=</span> <span class="fl">18</span>, m <span class="op">=</span> <span class="fl">4</span>, pi.type <span class="op">=</span> <span class="st">"upper"</span><span class="op">)</span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="co">#        BW-1 BW-2 BW-3 CW-4</span></span></span>
+<span class="r-in"><span>  <span class="co">#Month.1   &lt;5    7   &lt;5     </span></span></span>
+<span class="r-in"><span>  <span class="co">#Month.2   &lt;5  6.5   &lt;5     </span></span></span>
+<span class="r-in"><span>  <span class="co">#Month.3    8   &lt;5 10.5  7.5</span></span></span>
+<span class="r-in"><span>  <span class="co">#Month.4   &lt;5    6   &lt;5   &lt;5</span></span></span>
+<span class="r-in"><span>  <span class="co">#Month.5    9   12   &lt;5    8</span></span></span>
+<span class="r-in"><span>  <span class="co">#Month.6   10   &lt;5    9   14</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="co"># If we construct the prediction limit based on the background well</span></span></span>
+<span class="r-in"><span>  <span class="co"># data using the maximum value as the upper prediction limit, </span></span></span>
+<span class="r-in"><span>  <span class="co"># the associated confidence level is only 82%.  </span></span></span>
+<span class="r-in"><span>  <span class="co">#-----------------------------------------------------------------</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="fu">predIntNparConfLevel</span><span class="op">(</span>n <span class="op">=</span> <span class="fl">18</span>, m <span class="op">=</span> <span class="fl">4</span>, pi.type <span class="op">=</span> <span class="st">"upper"</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] 0.8181818</span>
-<span class="r-in">  <span class="co">#[1] 0.8181818</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="co"># We would have to collect an additional 18 observations to achieve a </span></span>
-<span class="r-in">  <span class="co"># confidence level of at least 90%:</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="fu"><a href="predIntNparN.html">predIntNparN</a></span><span class="op">(</span>m <span class="op">=</span> <span class="fl">4</span>, pi.type <span class="op">=</span> <span class="st">"upper"</span>, conf.level <span class="op">=</span> <span class="fl">0.9</span><span class="op">)</span></span>
+<span class="r-in"><span>  <span class="co">#[1] 0.8181818</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="co"># We would have to collect an additional 18 observations to achieve a </span></span></span>
+<span class="r-in"><span>  <span class="co"># confidence level of at least 90%:</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="fu"><a href="predIntNparN.html">predIntNparN</a></span><span class="op">(</span>m <span class="op">=</span> <span class="fl">4</span>, pi.type <span class="op">=</span> <span class="st">"upper"</span>, conf.level <span class="op">=</span> <span class="fl">0.9</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] 36</span>
-<span class="r-in">  <span class="co">#[1] 36</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="fu">predIntNparConfLevel</span><span class="op">(</span>n <span class="op">=</span> <span class="fl">36</span>, m <span class="op">=</span> <span class="fl">4</span>, pi.type <span class="op">=</span> <span class="st">"upper"</span><span class="op">)</span></span>
+<span class="r-in"><span>  <span class="co">#[1] 36</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="fu">predIntNparConfLevel</span><span class="op">(</span>n <span class="op">=</span> <span class="fl">36</span>, m <span class="op">=</span> <span class="fl">4</span>, pi.type <span class="op">=</span> <span class="st">"upper"</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] 0.9</span>
-<span class="r-in">  <span class="co">#[1] 0.9</span></span>
+<span class="r-in"><span>  <span class="co">#[1] 0.9</span></span></span>
 </code></pre></div>
     </div>
   </div>
@@ -264,7 +272,7 @@
 </div>
 
 <div class="pkgdown">
-  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.2.</p>
+  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.6.</p>
 </div>
 
       </footer></div>

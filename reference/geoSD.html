@@ -50,25 +50,28 @@
     </div>
 
     <div id="ref-usage">
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="fu">geoSD</span><span class="op">(</span><span class="va">x</span>, na.rm <span class="op">=</span> <span class="cn">FALSE</span>, sqrt.unbiased <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></code></pre></div>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">geoSD</span><span class="op">(</span><span class="va">x</span>, na.rm <span class="op">=</span> <span class="cn">FALSE</span>, sqrt.unbiased <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></code></pre></div>
     </div>
 
     <div id="arguments">
     <h2>Arguments</h2>
     <dl><dt>x</dt>
 <dd><p>numeric vector of observations.</p></dd>
-<dt>na.rm</dt>
+
+  <dt>na.rm</dt>
 <dd><p>logical scalar indicating whether to remove missing values from <code>x</code>. <br>
   If <code>na.rm=FALSE</code> (the default) and <code>x</code> contains missing values, 
   then a missing value (<code>NA</code>) is returned.  If <code>na.rm=TRUE</code>, 
   missing values are removed from <code>x</code> prior to computing the coefficient 
   of variation.</p></dd>
-<dt>sqrt.unbiased</dt>
+
+  <dt>sqrt.unbiased</dt>
 <dd><p>logical scalar specifying what method to use to compute the sample standard 
   deviation of the log-transformed observations.  If <code>sqrt.unbiased=TRUE</code> 
   (the default), the square root of the unbiased estimator of variance is used, 
   otherwise the method of moments estimator of standard deviation is used.  
   See the DETAILS section for more information.</p></dd>
+
 </dl></div>
     <div id="details">
     <h2>Details</h2>
@@ -93,7 +96,9 @@
     </div>
     <div id="value">
     <h2>Value</h2>
-    <p>A numeric scalar -- the sample geometric standard deviation.</p>
+    
+
+<p>A numeric scalar -- the sample geometric standard deviation.</p>
     </div>
     <div id="references">
     <h2>References</h2>
@@ -132,34 +137,34 @@
 
     <div id="ref-examples">
     <h2>Examples</h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in">  <span class="co"># Generate 2000 observations from a lognormal distribution with parameters </span></span>
-<span class="r-in">  <span class="co"># mean=10 and cv=1, which implies the standard deviation (on the original </span></span>
-<span class="r-in">  <span class="co"># scale) is 10.  Compute the mean, geometric mean, standard deviation, </span></span>
-<span class="r-in">  <span class="co"># and geometric standard deviation. </span></span>
-<span class="r-in">  <span class="co"># (Note: the call to set.seed simply allows you to reproduce this example.)</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="fu"><a href="https://rdrr.io/r/base/Random.html" class="external-link">set.seed</a></span><span class="op">(</span><span class="fl">250</span><span class="op">)</span> </span>
-<span class="r-in">  <span class="va">dat</span> <span class="op">&lt;-</span> <span class="fu"><a href="LognormalAlt.html">rlnormAlt</a></span><span class="op">(</span><span class="fl">2000</span>, mean <span class="op">=</span> <span class="fl">10</span>, cv <span class="op">=</span> <span class="fl">1</span><span class="op">)</span> </span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="fu"><a href="https://rdrr.io/r/base/mean.html" class="external-link">mean</a></span><span class="op">(</span><span class="va">dat</span><span class="op">)</span> </span>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span>  <span class="co"># Generate 2000 observations from a lognormal distribution with parameters </span></span></span>
+<span class="r-in"><span>  <span class="co"># mean=10 and cv=1, which implies the standard deviation (on the original </span></span></span>
+<span class="r-in"><span>  <span class="co"># scale) is 10.  Compute the mean, geometric mean, standard deviation, </span></span></span>
+<span class="r-in"><span>  <span class="co"># and geometric standard deviation. </span></span></span>
+<span class="r-in"><span>  <span class="co"># (Note: the call to set.seed simply allows you to reproduce this example.)</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/r/base/Random.html" class="external-link">set.seed</a></span><span class="op">(</span><span class="fl">250</span><span class="op">)</span> </span></span>
+<span class="r-in"><span>  <span class="va">dat</span> <span class="op">&lt;-</span> <span class="fu"><a href="LognormalAlt.html">rlnormAlt</a></span><span class="op">(</span><span class="fl">2000</span>, mean <span class="op">=</span> <span class="fl">10</span>, cv <span class="op">=</span> <span class="fl">1</span><span class="op">)</span> </span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/r/base/mean.html" class="external-link">mean</a></span><span class="op">(</span><span class="va">dat</span><span class="op">)</span> </span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] 10.23417</span>
-<span class="r-in">  <span class="co">#[1] 10.23417</span></span>
-<span class="r-in"> </span>
-<span class="r-in">  <span class="fu"><a href="geoMean.html">geoMean</a></span><span class="op">(</span><span class="va">dat</span><span class="op">)</span> </span>
+<span class="r-in"><span>  <span class="co">#[1] 10.23417</span></span></span>
+<span class="r-in"><span> </span></span>
+<span class="r-in"><span>  <span class="fu"><a href="geoMean.html">geoMean</a></span><span class="op">(</span><span class="va">dat</span><span class="op">)</span> </span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] 7.160154</span>
-<span class="r-in">  <span class="co">#[1] 7.160154</span></span>
-<span class="r-in"> </span>
-<span class="r-in">  <span class="fu"><a href="https://rdrr.io/r/stats/sd.html" class="external-link">sd</a></span><span class="op">(</span><span class="va">dat</span><span class="op">)</span> </span>
+<span class="r-in"><span>  <span class="co">#[1] 7.160154</span></span></span>
+<span class="r-in"><span> </span></span>
+<span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/r/stats/sd.html" class="external-link">sd</a></span><span class="op">(</span><span class="va">dat</span><span class="op">)</span> </span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] 9.786493</span>
-<span class="r-in">  <span class="co">#[1] 9.786493</span></span>
-<span class="r-in"> </span>
-<span class="r-in">  <span class="fu">geoSD</span><span class="op">(</span><span class="va">dat</span><span class="op">)</span> </span>
+<span class="r-in"><span>  <span class="co">#[1] 9.786493</span></span></span>
+<span class="r-in"><span> </span></span>
+<span class="r-in"><span>  <span class="fu">geoSD</span><span class="op">(</span><span class="va">dat</span><span class="op">)</span> </span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] 2.334358</span>
-<span class="r-in">  <span class="co">#[1] 2.334358</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="co">#----------</span></span>
-<span class="r-in">  <span class="co"># Clean up</span></span>
-<span class="r-in">  <span class="fu"><a href="https://rdrr.io/r/base/rm.html" class="external-link">rm</a></span><span class="op">(</span><span class="va">dat</span><span class="op">)</span></span>
+<span class="r-in"><span>  <span class="co">#[1] 2.334358</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="co">#----------</span></span></span>
+<span class="r-in"><span>  <span class="co"># Clean up</span></span></span>
+<span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/r/base/rm.html" class="external-link">rm</a></span><span class="op">(</span><span class="va">dat</span><span class="op">)</span></span></span>
 </code></pre></div>
     </div>
   </div>
@@ -174,7 +179,7 @@
 </div>
 
 <div class="pkgdown">
-  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.2.</p>
+  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.6.</p>
 </div>
 
       </footer></div>

@@ -54,16 +54,17 @@
     </div>
 
     <div id="ref-usage">
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="fu">elnorm3</span><span class="op">(</span><span class="va">x</span>, method <span class="op">=</span> <span class="st">"lmle"</span>, ci <span class="op">=</span> <span class="cn">FALSE</span>, ci.parameter <span class="op">=</span> <span class="st">"threshold"</span>, 
-    ci.method <span class="op">=</span> <span class="st">"avar"</span>, ci.type <span class="op">=</span> <span class="st">"two-sided"</span>, conf.level <span class="op">=</span> <span class="fl">0.95</span>, 
-    threshold.lb.sd <span class="op">=</span> <span class="fl">100</span>, evNormOrdStats.method <span class="op">=</span> <span class="st">"royston"</span><span class="op">)</span></code></pre></div>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">elnorm3</span><span class="op">(</span><span class="va">x</span>, method <span class="op">=</span> <span class="st">"lmle"</span>, ci <span class="op">=</span> <span class="cn">FALSE</span>, ci.parameter <span class="op">=</span> <span class="st">"threshold"</span>, </span>
+<span>    ci.method <span class="op">=</span> <span class="st">"avar"</span>, ci.type <span class="op">=</span> <span class="st">"two-sided"</span>, conf.level <span class="op">=</span> <span class="fl">0.95</span>, </span>
+<span>    threshold.lb.sd <span class="op">=</span> <span class="fl">100</span>, evNormOrdStats.method <span class="op">=</span> <span class="st">"royston"</span><span class="op">)</span></span></code></pre></div>
     </div>
 
     <div id="arguments">
     <h2>Arguments</h2>
     <dl><dt>x</dt>
 <dd><p>numeric vector of observations.</p></dd>
-<dt>method</dt>
+
+  <dt>method</dt>
 <dd><p>character string specifying the method of estimation.  Possible values are:</p><ul><li><p><code>"lmle"</code> (local maximum likelihood; the default)</p></li>
 <li><p><code>"mme"</code> (method of moments)</p></li>
 <li><p><code>"mmue"</code> (method of moments using an unbaised estimate of variance)</p></li>
@@ -71,26 +72,32 @@
 <li><p><code>"zero.skew"</code> (zero-skewness estimator due to Griffiths (1980))</p></li>
 <li><p><code>"royston.skew"</code> (estimator based on Royston's (1992b) index of skewness).</p></li>
 </ul><p>See the DETAILS section for more information.</p></dd>
-<dt>ci</dt>
+
+  <dt>ci</dt>
 <dd><p>logical scalar indicating whether to compute a confidence interval for either 
   the threshold or median of the distribution.  The default value is <code>FALSE</code>.</p></dd>
-<dt>ci.parameter</dt>
+
+  <dt>ci.parameter</dt>
 <dd><p>character string indicating the parameter for which the confidence interval is 
   desired.  The possible values are <code>"threshold"</code> (the default) and 
   <code>"median"</code>.  This argument is ignored if <code>ci=FALSE</code>.</p></dd>
-<dt>ci.method</dt>
+
+  <dt>ci.method</dt>
 <dd><p>character string indicating the method to use to construct the confidence interval.  
   The possible values are <code>"avar"</code> (asymptotic variance; the default), <br><code>"likelihood.profile"</code>, and <code>"skewness"</code> (method suggested by Royston 
   (1992b) for <code>method="zero.skew"</code>).  This argument is ignored if <code>ci=FALSE</code>.</p></dd>
-<dt>ci.type</dt>
+
+  <dt>ci.type</dt>
 <dd><p>character string indicating what kind of confidence interval to compute.  The 
   possible values are <code>"two-sided"</code> (the default), <code>"lower"</code>, and 
   <code>"upper"</code>.  This argument is ignored if <code>ci=FALSE</code>.</p></dd>
-<dt>conf.level</dt>
+
+  <dt>conf.level</dt>
 <dd><p>a scalar between 0 and 1 indicating the confidence level of the confidence interval.  
   The default value is <code>conf.level=0.95</code>. This argument is ignored if 
   <code>ci=FALSE</code>.</p></dd>
-<dt>threshold.lb.sd</dt>
+
+  <dt>threshold.lb.sd</dt>
 <dd><p>a positive numeric scalar specifying the range over which to look for the 
   local maximum likelihood (<code>method="lmle"</code>) or zero-skewness <br>
   (<code>method="zero.skewness"</code>) estimator of threshold.  The range is set to <br><code>[ mean(x) - threshold.lb.sd * sd(x), min(x) ]</code>.  If you receive a warning 
@@ -101,10 +108,12 @@
   The default value is <code>threshold.lb.sd=100</code>.  This argument is relevant only if 
   <code>method="lmle"</code>, <code>method="zero.skew"</code>, 
   <code>ci.method="likelihood.profile"</code>, and/or <code>ci.method="skewness"</code>.</p></dd>
-<dt>evNormOrdStats.method</dt>
+
+  <dt>evNormOrdStats.method</dt>
 <dd><p>character string indicating which method to use in the call to 
   <code>link{evNormOrdStatsScalar}</code> when <code>method="mmme"</code>.  See the DETAILS 
   section for more information.</p></dd>
+
 </dl></div>
     <div id="details">
     <h2>Details</h2>
@@ -371,8 +380,12 @@
     </div>
     <div id="value">
     <h2>Value</h2>
-    <p>a list of class <code>"estimate"</code> containing the estimated parameters and other information.  
-  See <br><code><a href="estimate.object.html">estimate.object</a></code> for details.</p>
+    
+
+<p>a list of class <code>"estimate"</code> containing the estimated parameters and other information.  
+  See <br></p>
+<p></p>
+<p><code><a href="estimate.object.html">estimate.object</a></code> for details.</p>
     </div>
     <div id="references">
     <h2>References</h2>
@@ -461,16 +474,16 @@
 
     <div id="ref-examples">
     <h2>Examples</h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in">  <span class="co"># Generate 20 observations from a 3-parameter lognormal distribution </span></span>
-<span class="r-in">  <span class="co"># with parameters meanlog=1.5, sdlog=1, and threshold=10, then use </span></span>
-<span class="r-in">  <span class="co"># Cohen and Whitten's (1980) modified moments estimators to estimate </span></span>
-<span class="r-in">  <span class="co"># the parameters, and construct a confidence interval for the </span></span>
-<span class="r-in">  <span class="co"># threshold based on the estimated asymptotic variance. </span></span>
-<span class="r-in">  <span class="co"># (Note: the call to set.seed simply allows you to reproduce this example.)</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="fu"><a href="https://rdrr.io/r/base/Random.html" class="external-link">set.seed</a></span><span class="op">(</span><span class="fl">250</span><span class="op">)</span> </span>
-<span class="r-in">  <span class="va">dat</span> <span class="op">&lt;-</span> <span class="fu"><a href="Lognormal3.html">rlnorm3</a></span><span class="op">(</span><span class="fl">20</span>, meanlog <span class="op">=</span> <span class="fl">1.5</span>, sdlog <span class="op">=</span> <span class="fl">1</span>, threshold <span class="op">=</span> <span class="fl">10</span><span class="op">)</span> </span>
-<span class="r-in">  <span class="fu">elnorm3</span><span class="op">(</span><span class="va">dat</span>, method <span class="op">=</span> <span class="st">"mmme"</span>, ci <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span>  <span class="co"># Generate 20 observations from a 3-parameter lognormal distribution </span></span></span>
+<span class="r-in"><span>  <span class="co"># with parameters meanlog=1.5, sdlog=1, and threshold=10, then use </span></span></span>
+<span class="r-in"><span>  <span class="co"># Cohen and Whitten's (1980) modified moments estimators to estimate </span></span></span>
+<span class="r-in"><span>  <span class="co"># the parameters, and construct a confidence interval for the </span></span></span>
+<span class="r-in"><span>  <span class="co"># threshold based on the estimated asymptotic variance. </span></span></span>
+<span class="r-in"><span>  <span class="co"># (Note: the call to set.seed simply allows you to reproduce this example.)</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/r/base/Random.html" class="external-link">set.seed</a></span><span class="op">(</span><span class="fl">250</span><span class="op">)</span> </span></span>
+<span class="r-in"><span>  <span class="va">dat</span> <span class="op">&lt;-</span> <span class="fu"><a href="Lognormal3.html">rlnorm3</a></span><span class="op">(</span><span class="fl">20</span>, meanlog <span class="op">=</span> <span class="fl">1.5</span>, sdlog <span class="op">=</span> <span class="fl">1</span>, threshold <span class="op">=</span> <span class="fl">10</span><span class="op">)</span> </span></span>
+<span class="r-in"><span>  <span class="fu">elnorm3</span><span class="op">(</span><span class="va">dat</span>, method <span class="op">=</span> <span class="st">"mmme"</span>, ci <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> $distribution</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] "3-Parameter Lognormal"</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
@@ -524,121 +537,121 @@
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> attr(,"class")</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] "estimate"</span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="co">#Results of Distribution Parameter Estimation</span></span>
-<span class="r-in">  <span class="co">#--------------------------------------------</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Assumed Distribution:            3-Parameter Lognormal</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Estimated Parameter(s):          meanlog   = 1.5206664</span></span>
-<span class="r-in">  <span class="co">#                                 sdlog     = 0.5330974</span></span>
-<span class="r-in">  <span class="co">#                                 threshold = 9.6620403</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Estimation Method:               mmme</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Data:                            dat</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Sample Size:                     20</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Confidence Interval for:         threshold</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Confidence Interval Method:      Normal Approximation</span></span>
-<span class="r-in">  <span class="co">#                                 Based on Asymptotic Variance</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Confidence Interval Type:        two-sided</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Confidence Level:                95%</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Confidence Interval:             LCL =  6.985258</span></span>
-<span class="r-in">  <span class="co">#                                 UCL = 12.338823</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="co">#----------</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="co"># Repeat the above example using the other methods of estimation </span></span>
-<span class="r-in">  <span class="co"># and compare. </span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="fu"><a href="https://rdrr.io/r/base/Round.html" class="external-link">round</a></span><span class="op">(</span><span class="fu">elnorm3</span><span class="op">(</span><span class="va">dat</span>, <span class="st">"lmle"</span><span class="op">)</span><span class="op">$</span><span class="va">parameters</span>, <span class="fl">1</span><span class="op">)</span> </span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="co">#Results of Distribution Parameter Estimation</span></span></span>
+<span class="r-in"><span>  <span class="co">#--------------------------------------------</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Assumed Distribution:            3-Parameter Lognormal</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Estimated Parameter(s):          meanlog   = 1.5206664</span></span></span>
+<span class="r-in"><span>  <span class="co">#                                 sdlog     = 0.5330974</span></span></span>
+<span class="r-in"><span>  <span class="co">#                                 threshold = 9.6620403</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Estimation Method:               mmme</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Data:                            dat</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Sample Size:                     20</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Confidence Interval for:         threshold</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Confidence Interval Method:      Normal Approximation</span></span></span>
+<span class="r-in"><span>  <span class="co">#                                 Based on Asymptotic Variance</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Confidence Interval Type:        two-sided</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Confidence Level:                95%</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Confidence Interval:             LCL =  6.985258</span></span></span>
+<span class="r-in"><span>  <span class="co">#                                 UCL = 12.338823</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="co">#----------</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="co"># Repeat the above example using the other methods of estimation </span></span></span>
+<span class="r-in"><span>  <span class="co"># and compare. </span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/r/base/Round.html" class="external-link">round</a></span><span class="op">(</span><span class="fu">elnorm3</span><span class="op">(</span><span class="va">dat</span>, <span class="st">"lmle"</span><span class="op">)</span><span class="op">$</span><span class="va">parameters</span>, <span class="fl">1</span><span class="op">)</span> </span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   meanlog     sdlog threshold </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>       1.3       0.7      10.5 </span>
-<span class="r-in">  <span class="co">#meanlog     sdlog threshold </span></span>
-<span class="r-in">  <span class="co">#    1.3       0.7      10.5 </span></span>
-<span class="r-in"> </span>
-<span class="r-in">  <span class="fu"><a href="https://rdrr.io/r/base/Round.html" class="external-link">round</a></span><span class="op">(</span><span class="fu">elnorm3</span><span class="op">(</span><span class="va">dat</span>, <span class="st">"mme"</span><span class="op">)</span><span class="op">$</span><span class="va">parameters</span>, <span class="fl">1</span><span class="op">)</span> </span>
+<span class="r-in"><span>  <span class="co">#meanlog     sdlog threshold </span></span></span>
+<span class="r-in"><span>  <span class="co">#    1.3       0.7      10.5 </span></span></span>
+<span class="r-in"><span> </span></span>
+<span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/r/base/Round.html" class="external-link">round</a></span><span class="op">(</span><span class="fu">elnorm3</span><span class="op">(</span><span class="va">dat</span>, <span class="st">"mme"</span><span class="op">)</span><span class="op">$</span><span class="va">parameters</span>, <span class="fl">1</span><span class="op">)</span> </span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   meanlog     sdlog threshold </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>       2.1       0.3       6.0 </span>
-<span class="r-in">  <span class="co">#meanlog     sdlog threshold </span></span>
-<span class="r-in">  <span class="co">#    2.1       0.3       6.0 </span></span>
-<span class="r-in"> </span>
-<span class="r-in">  <span class="fu"><a href="https://rdrr.io/r/base/Round.html" class="external-link">round</a></span><span class="op">(</span><span class="fu">elnorm3</span><span class="op">(</span><span class="va">dat</span>, <span class="st">"mmue"</span><span class="op">)</span><span class="op">$</span><span class="va">parameters</span>, <span class="fl">1</span><span class="op">)</span> </span>
+<span class="r-in"><span>  <span class="co">#meanlog     sdlog threshold </span></span></span>
+<span class="r-in"><span>  <span class="co">#    2.1       0.3       6.0 </span></span></span>
+<span class="r-in"><span> </span></span>
+<span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/r/base/Round.html" class="external-link">round</a></span><span class="op">(</span><span class="fu">elnorm3</span><span class="op">(</span><span class="va">dat</span>, <span class="st">"mmue"</span><span class="op">)</span><span class="op">$</span><span class="va">parameters</span>, <span class="fl">1</span><span class="op">)</span> </span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   meanlog     sdlog threshold </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>       2.2       0.3       5.8 </span>
-<span class="r-in">  <span class="co">#meanlog     sdlog threshold </span></span>
-<span class="r-in">  <span class="co">#    2.2       0.3       5.8 </span></span>
-<span class="r-in">  </span>
-<span class="r-in">  <span class="fu"><a href="https://rdrr.io/r/base/Round.html" class="external-link">round</a></span><span class="op">(</span><span class="fu">elnorm3</span><span class="op">(</span><span class="va">dat</span>, <span class="st">"mmme"</span><span class="op">)</span><span class="op">$</span><span class="va">parameters</span>, <span class="fl">1</span><span class="op">)</span> </span>
+<span class="r-in"><span>  <span class="co">#meanlog     sdlog threshold </span></span></span>
+<span class="r-in"><span>  <span class="co">#    2.2       0.3       5.8 </span></span></span>
+<span class="r-in"><span>  </span></span>
+<span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/r/base/Round.html" class="external-link">round</a></span><span class="op">(</span><span class="fu">elnorm3</span><span class="op">(</span><span class="va">dat</span>, <span class="st">"mmme"</span><span class="op">)</span><span class="op">$</span><span class="va">parameters</span>, <span class="fl">1</span><span class="op">)</span> </span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   meanlog     sdlog threshold </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>       1.5       0.5       9.7 </span>
-<span class="r-in">  <span class="co">#meanlog     sdlog threshold </span></span>
-<span class="r-in">  <span class="co">#    1.5       0.5       9.7 </span></span>
-<span class="r-in">  </span>
-<span class="r-in">  <span class="fu"><a href="https://rdrr.io/r/base/Round.html" class="external-link">round</a></span><span class="op">(</span><span class="fu">elnorm3</span><span class="op">(</span><span class="va">dat</span>, <span class="st">"zero.skew"</span><span class="op">)</span><span class="op">$</span><span class="va">parameters</span>, <span class="fl">1</span><span class="op">)</span> </span>
+<span class="r-in"><span>  <span class="co">#meanlog     sdlog threshold </span></span></span>
+<span class="r-in"><span>  <span class="co">#    1.5       0.5       9.7 </span></span></span>
+<span class="r-in"><span>  </span></span>
+<span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/r/base/Round.html" class="external-link">round</a></span><span class="op">(</span><span class="fu">elnorm3</span><span class="op">(</span><span class="va">dat</span>, <span class="st">"zero.skew"</span><span class="op">)</span><span class="op">$</span><span class="va">parameters</span>, <span class="fl">1</span><span class="op">)</span> </span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   meanlog     sdlog threshold </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>       1.3       0.6      10.3 </span>
-<span class="r-in">  <span class="co">#meanlog     sdlog threshold </span></span>
-<span class="r-in">  <span class="co">#    1.3       0.6      10.3 </span></span>
-<span class="r-in"> </span>
-<span class="r-in">  <span class="fu"><a href="https://rdrr.io/r/base/Round.html" class="external-link">round</a></span><span class="op">(</span><span class="fu">elnorm3</span><span class="op">(</span><span class="va">dat</span>, <span class="st">"royston"</span><span class="op">)</span><span class="op">$</span><span class="va">parameters</span>, <span class="fl">1</span><span class="op">)</span></span>
+<span class="r-in"><span>  <span class="co">#meanlog     sdlog threshold </span></span></span>
+<span class="r-in"><span>  <span class="co">#    1.3       0.6      10.3 </span></span></span>
+<span class="r-in"><span> </span></span>
+<span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/r/base/Round.html" class="external-link">round</a></span><span class="op">(</span><span class="fu">elnorm3</span><span class="op">(</span><span class="va">dat</span>, <span class="st">"royston"</span><span class="op">)</span><span class="op">$</span><span class="va">parameters</span>, <span class="fl">1</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   meanlog     sdlog threshold </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>       1.4       0.6      10.1 </span>
-<span class="r-in">  <span class="co">#meanlog     sdlog threshold </span></span>
-<span class="r-in">  <span class="co">#    1.4       0.6      10.1 </span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="co">#----------</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="co"># Compare methods for computing a two-sided 95% confidence interval </span></span>
-<span class="r-in">  <span class="co"># for the threshold: </span></span>
-<span class="r-in">  <span class="co"># modified method of moments estimator using asymptotic variance, </span></span>
-<span class="r-in">  <span class="co"># lmle using asymptotic variance, </span></span>
-<span class="r-in">  <span class="co"># lmle using likelihood profile, and </span></span>
-<span class="r-in">  <span class="co"># zero-skewness estimator using the skewness method.</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="fu">elnorm3</span><span class="op">(</span><span class="va">dat</span>, method <span class="op">=</span> <span class="st">"mmme"</span>, ci <span class="op">=</span> <span class="cn">TRUE</span>, </span>
-<span class="r-in">    ci.method <span class="op">=</span> <span class="st">"avar"</span><span class="op">)</span><span class="op">$</span><span class="va">interval</span><span class="op">$</span><span class="va">limits</span> </span>
+<span class="r-in"><span>  <span class="co">#meanlog     sdlog threshold </span></span></span>
+<span class="r-in"><span>  <span class="co">#    1.4       0.6      10.1 </span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="co">#----------</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="co"># Compare methods for computing a two-sided 95% confidence interval </span></span></span>
+<span class="r-in"><span>  <span class="co"># for the threshold: </span></span></span>
+<span class="r-in"><span>  <span class="co"># modified method of moments estimator using asymptotic variance, </span></span></span>
+<span class="r-in"><span>  <span class="co"># lmle using asymptotic variance, </span></span></span>
+<span class="r-in"><span>  <span class="co"># lmle using likelihood profile, and </span></span></span>
+<span class="r-in"><span>  <span class="co"># zero-skewness estimator using the skewness method.</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="fu">elnorm3</span><span class="op">(</span><span class="va">dat</span>, method <span class="op">=</span> <span class="st">"mmme"</span>, ci <span class="op">=</span> <span class="cn">TRUE</span>, </span></span>
+<span class="r-in"><span>    ci.method <span class="op">=</span> <span class="st">"avar"</span><span class="op">)</span><span class="op">$</span><span class="va">interval</span><span class="op">$</span><span class="va">limits</span> </span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>       LCL       UCL </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  6.985258 12.338823 </span>
-<span class="r-in">  <span class="co">#      LCL       UCL </span></span>
-<span class="r-in">  <span class="co"># 6.985258 12.338823 </span></span>
-<span class="r-in"> </span>
-<span class="r-in">  <span class="fu">elnorm3</span><span class="op">(</span><span class="va">dat</span>, method <span class="op">=</span> <span class="st">"lmle"</span>, ci <span class="op">=</span> <span class="cn">TRUE</span>, </span>
-<span class="r-in">    ci.method <span class="op">=</span> <span class="st">"avar"</span><span class="op">)</span><span class="op">$</span><span class="va">interval</span><span class="op">$</span><span class="va">limits</span> </span>
+<span class="r-in"><span>  <span class="co">#      LCL       UCL </span></span></span>
+<span class="r-in"><span>  <span class="co"># 6.985258 12.338823 </span></span></span>
+<span class="r-in"><span> </span></span>
+<span class="r-in"><span>  <span class="fu">elnorm3</span><span class="op">(</span><span class="va">dat</span>, method <span class="op">=</span> <span class="st">"lmle"</span>, ci <span class="op">=</span> <span class="cn">TRUE</span>, </span></span>
+<span class="r-in"><span>    ci.method <span class="op">=</span> <span class="st">"avar"</span><span class="op">)</span><span class="op">$</span><span class="va">interval</span><span class="op">$</span><span class="va">limits</span> </span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>       LCL       UCL </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  9.017223 11.980107 </span>
-<span class="r-in">  <span class="co">#       LCL       UCL </span></span>
-<span class="r-in">  <span class="co">#  9.017223 11.980107 </span></span>
-<span class="r-in"> </span>
-<span class="r-in">  <span class="fu">elnorm3</span><span class="op">(</span><span class="va">dat</span>, method <span class="op">=</span> <span class="st">"lmle"</span>, ci <span class="op">=</span> <span class="cn">TRUE</span>, </span>
-<span class="r-in">    ci.method<span class="op">=</span><span class="st">"likelihood.profile"</span><span class="op">)</span><span class="op">$</span><span class="va">interval</span><span class="op">$</span><span class="va">limits</span> </span>
+<span class="r-in"><span>  <span class="co">#       LCL       UCL </span></span></span>
+<span class="r-in"><span>  <span class="co">#  9.017223 11.980107 </span></span></span>
+<span class="r-in"><span> </span></span>
+<span class="r-in"><span>  <span class="fu">elnorm3</span><span class="op">(</span><span class="va">dat</span>, method <span class="op">=</span> <span class="st">"lmle"</span>, ci <span class="op">=</span> <span class="cn">TRUE</span>, </span></span>
+<span class="r-in"><span>    ci.method<span class="op">=</span><span class="st">"likelihood.profile"</span><span class="op">)</span><span class="op">$</span><span class="va">interval</span><span class="op">$</span><span class="va">limits</span> </span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>       LCL       UCL </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  3.699989 11.266030 </span>
-<span class="r-in">  <span class="co">#      LCL       UCL </span></span>
-<span class="r-in">  <span class="co"># 3.699989 11.266029 </span></span>
-<span class="r-in"> </span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="fu">elnorm3</span><span class="op">(</span><span class="va">dat</span>, method <span class="op">=</span> <span class="st">"zero.skew"</span>, ci <span class="op">=</span> <span class="cn">TRUE</span>, </span>
-<span class="r-in">    ci.method <span class="op">=</span> <span class="st">"skewness"</span><span class="op">)</span><span class="op">$</span><span class="va">interval</span><span class="op">$</span><span class="va">limits</span> </span>
+<span class="r-in"><span>  <span class="co">#      LCL       UCL </span></span></span>
+<span class="r-in"><span>  <span class="co"># 3.699989 11.266029 </span></span></span>
+<span class="r-in"><span> </span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="fu">elnorm3</span><span class="op">(</span><span class="va">dat</span>, method <span class="op">=</span> <span class="st">"zero.skew"</span>, ci <span class="op">=</span> <span class="cn">TRUE</span>, </span></span>
+<span class="r-in"><span>    ci.method <span class="op">=</span> <span class="st">"skewness"</span><span class="op">)</span><span class="op">$</span><span class="va">interval</span><span class="op">$</span><span class="va">limits</span> </span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>       LCL       UCL </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> -25.18851  11.18652 </span>
-<span class="r-in">  <span class="co">#      LCL       UCL </span></span>
-<span class="r-in">  <span class="co">#-25.18851  11.18652</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="co">#----------</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="co"># Now construct a confidence interval for the median of the distribution </span></span>
-<span class="r-in">  <span class="co"># based on using the modified method of moments estimator for threshold </span></span>
-<span class="r-in">  <span class="co"># and the asymptotic variances and covariances.  Note that the true median </span></span>
-<span class="r-in">  <span class="co"># is given by threshold + exp(meanlog) = 10 + exp(1.5) = 14.48169.</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="fu">elnorm3</span><span class="op">(</span><span class="va">dat</span>, method <span class="op">=</span> <span class="st">"mmme"</span>, ci <span class="op">=</span> <span class="cn">TRUE</span>, ci.parameter <span class="op">=</span> <span class="st">"median"</span><span class="op">)</span> </span>
+<span class="r-in"><span>  <span class="co">#      LCL       UCL </span></span></span>
+<span class="r-in"><span>  <span class="co">#-25.18851  11.18652</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="co">#----------</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="co"># Now construct a confidence interval for the median of the distribution </span></span></span>
+<span class="r-in"><span>  <span class="co"># based on using the modified method of moments estimator for threshold </span></span></span>
+<span class="r-in"><span>  <span class="co"># and the asymptotic variances and covariances.  Note that the true median </span></span></span>
+<span class="r-in"><span>  <span class="co"># is given by threshold + exp(meanlog) = 10 + exp(1.5) = 14.48169.</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="fu">elnorm3</span><span class="op">(</span><span class="va">dat</span>, method <span class="op">=</span> <span class="st">"mmme"</span>, ci <span class="op">=</span> <span class="cn">TRUE</span>, ci.parameter <span class="op">=</span> <span class="st">"median"</span><span class="op">)</span> </span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> $distribution</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] "3-Parameter Lognormal"</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
@@ -692,78 +705,78 @@
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> attr(,"class")</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] "estimate"</span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="co">#Results of Distribution Parameter Estimation</span></span>
-<span class="r-in">  <span class="co">#--------------------------------------------</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Assumed Distribution:            3-Parameter Lognormal</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Estimated Parameter(s):          meanlog   = 1.5206664</span></span>
-<span class="r-in">  <span class="co">#                                 sdlog     = 0.5330974</span></span>
-<span class="r-in">  <span class="co">#                                 threshold = 9.6620403</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Estimation Method:               mmme</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Data:                            dat</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Sample Size:                     20</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Confidence Interval for:         median</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Confidence Interval Method:      Normal Approximation</span></span>
-<span class="r-in">  <span class="co">#                                 Based on Asymptotic Variance</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Confidence Interval Type:        two-sided</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Confidence Level:                95%</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Confidence Interval:             LCL = 11.20541</span></span>
-<span class="r-in">  <span class="co">#                                 UCL = 17.26922</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="co">#----------</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="co"># Compare methods for computing a two-sided 95% confidence interval </span></span>
-<span class="r-in">  <span class="co"># for the median: </span></span>
-<span class="r-in">  <span class="co"># modified method of moments estimator using asymptotic variance, </span></span>
-<span class="r-in">  <span class="co"># lmle using asymptotic variance, </span></span>
-<span class="r-in">  <span class="co"># lmle using likelihood profile, and </span></span>
-<span class="r-in">  <span class="co"># zero-skewness estimator using the skewness method.</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="fu">elnorm3</span><span class="op">(</span><span class="va">dat</span>, method <span class="op">=</span> <span class="st">"mmme"</span>, ci <span class="op">=</span> <span class="cn">TRUE</span>, ci.parameter <span class="op">=</span> <span class="st">"median"</span>, </span>
-<span class="r-in">    ci.method <span class="op">=</span> <span class="st">"avar"</span><span class="op">)</span><span class="op">$</span><span class="va">interval</span><span class="op">$</span><span class="va">limits</span> </span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="co">#Results of Distribution Parameter Estimation</span></span></span>
+<span class="r-in"><span>  <span class="co">#--------------------------------------------</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Assumed Distribution:            3-Parameter Lognormal</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Estimated Parameter(s):          meanlog   = 1.5206664</span></span></span>
+<span class="r-in"><span>  <span class="co">#                                 sdlog     = 0.5330974</span></span></span>
+<span class="r-in"><span>  <span class="co">#                                 threshold = 9.6620403</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Estimation Method:               mmme</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Data:                            dat</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Sample Size:                     20</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Confidence Interval for:         median</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Confidence Interval Method:      Normal Approximation</span></span></span>
+<span class="r-in"><span>  <span class="co">#                                 Based on Asymptotic Variance</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Confidence Interval Type:        two-sided</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Confidence Level:                95%</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Confidence Interval:             LCL = 11.20541</span></span></span>
+<span class="r-in"><span>  <span class="co">#                                 UCL = 17.26922</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="co">#----------</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="co"># Compare methods for computing a two-sided 95% confidence interval </span></span></span>
+<span class="r-in"><span>  <span class="co"># for the median: </span></span></span>
+<span class="r-in"><span>  <span class="co"># modified method of moments estimator using asymptotic variance, </span></span></span>
+<span class="r-in"><span>  <span class="co"># lmle using asymptotic variance, </span></span></span>
+<span class="r-in"><span>  <span class="co"># lmle using likelihood profile, and </span></span></span>
+<span class="r-in"><span>  <span class="co"># zero-skewness estimator using the skewness method.</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="fu">elnorm3</span><span class="op">(</span><span class="va">dat</span>, method <span class="op">=</span> <span class="st">"mmme"</span>, ci <span class="op">=</span> <span class="cn">TRUE</span>, ci.parameter <span class="op">=</span> <span class="st">"median"</span>, </span></span>
+<span class="r-in"><span>    ci.method <span class="op">=</span> <span class="st">"avar"</span><span class="op">)</span><span class="op">$</span><span class="va">interval</span><span class="op">$</span><span class="va">limits</span> </span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>      LCL      UCL </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 11.20541 17.26922 </span>
-<span class="r-in">  <span class="co">#     LCL      UCL </span></span>
-<span class="r-in">  <span class="co">#11.20541 17.26922 </span></span>
-<span class="r-in"> </span>
-<span class="r-in">  <span class="fu">elnorm3</span><span class="op">(</span><span class="va">dat</span>, method <span class="op">=</span> <span class="st">"lmle"</span>, ci <span class="op">=</span> <span class="cn">TRUE</span>, ci.parameter <span class="op">=</span> <span class="st">"median"</span>, </span>
-<span class="r-in">    ci.method <span class="op">=</span> <span class="st">"avar"</span><span class="op">)</span><span class="op">$</span><span class="va">interval</span><span class="op">$</span><span class="va">limits</span> </span>
+<span class="r-in"><span>  <span class="co">#     LCL      UCL </span></span></span>
+<span class="r-in"><span>  <span class="co">#11.20541 17.26922 </span></span></span>
+<span class="r-in"><span> </span></span>
+<span class="r-in"><span>  <span class="fu">elnorm3</span><span class="op">(</span><span class="va">dat</span>, method <span class="op">=</span> <span class="st">"lmle"</span>, ci <span class="op">=</span> <span class="cn">TRUE</span>, ci.parameter <span class="op">=</span> <span class="st">"median"</span>, </span></span>
+<span class="r-in"><span>    ci.method <span class="op">=</span> <span class="st">"avar"</span><span class="op">)</span><span class="op">$</span><span class="va">interval</span><span class="op">$</span><span class="va">limits</span> </span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>      LCL      UCL </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 12.28326 15.87233 </span>
-<span class="r-in">  <span class="co">#     LCL      UCL </span></span>
-<span class="r-in">  <span class="co">#12.28326 15.87233 </span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="fu">elnorm3</span><span class="op">(</span><span class="va">dat</span>, method <span class="op">=</span> <span class="st">"lmle"</span>, ci <span class="op">=</span> <span class="cn">TRUE</span>, ci.parameter <span class="op">=</span> <span class="st">"median"</span>, </span>
-<span class="r-in">    ci.method <span class="op">=</span> <span class="st">"likelihood.profile"</span><span class="op">)</span><span class="op">$</span><span class="va">interval</span><span class="op">$</span><span class="va">limits</span> </span>
+<span class="r-in"><span>  <span class="co">#     LCL      UCL </span></span></span>
+<span class="r-in"><span>  <span class="co">#12.28326 15.87233 </span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="fu">elnorm3</span><span class="op">(</span><span class="va">dat</span>, method <span class="op">=</span> <span class="st">"lmle"</span>, ci <span class="op">=</span> <span class="cn">TRUE</span>, ci.parameter <span class="op">=</span> <span class="st">"median"</span>, </span></span>
+<span class="r-in"><span>    ci.method <span class="op">=</span> <span class="st">"likelihood.profile"</span><span class="op">)</span><span class="op">$</span><span class="va">interval</span><span class="op">$</span><span class="va">limits</span> </span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>       LCL       UCL </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  6.314583 16.165526 </span>
-<span class="r-in">  <span class="co">#      LCL       UCL </span></span>
-<span class="r-in">  <span class="co"># 6.314583 16.165525 </span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="fu">elnorm3</span><span class="op">(</span><span class="va">dat</span>, method <span class="op">=</span> <span class="st">"zero.skew"</span>, ci <span class="op">=</span> <span class="cn">TRUE</span>, ci.parameter <span class="op">=</span> <span class="st">"median"</span>, </span>
-<span class="r-in">    ci.method <span class="op">=</span> <span class="st">"skewness"</span><span class="op">)</span><span class="op">$</span><span class="va">interval</span><span class="op">$</span><span class="va">limits</span> </span>
+<span class="r-in"><span>  <span class="co">#      LCL       UCL </span></span></span>
+<span class="r-in"><span>  <span class="co"># 6.314583 16.165525 </span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="fu">elnorm3</span><span class="op">(</span><span class="va">dat</span>, method <span class="op">=</span> <span class="st">"zero.skew"</span>, ci <span class="op">=</span> <span class="cn">TRUE</span>, ci.parameter <span class="op">=</span> <span class="st">"median"</span>, </span></span>
+<span class="r-in"><span>    ci.method <span class="op">=</span> <span class="st">"skewness"</span><span class="op">)</span><span class="op">$</span><span class="va">interval</span><span class="op">$</span><span class="va">limits</span> </span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>       LCL       UCL </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> -22.38322  16.33569 </span>
-<span class="r-in">  <span class="co">#      LCL       UCL </span></span>
-<span class="r-in">  <span class="co">#-22.38322  16.33569</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="co">#----------</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="co"># Clean up</span></span>
-<span class="r-in">  <span class="co">#---------</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="fu"><a href="https://rdrr.io/r/base/rm.html" class="external-link">rm</a></span><span class="op">(</span><span class="va">dat</span><span class="op">)</span></span>
-<span class="r-in"></span>
+<span class="r-in"><span>  <span class="co">#      LCL       UCL </span></span></span>
+<span class="r-in"><span>  <span class="co">#-22.38322  16.33569</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="co">#----------</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="co"># Clean up</span></span></span>
+<span class="r-in"><span>  <span class="co">#---------</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/r/base/rm.html" class="external-link">rm</a></span><span class="op">(</span><span class="va">dat</span><span class="op">)</span></span></span>
+<span class="r-in"><span></span></span>
 </code></pre></div>
     </div>
   </div>
@@ -778,7 +791,7 @@
 </div>
 
 <div class="pkgdown">
-  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.2.</p>
+  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.6.</p>
 </div>
 
       </footer></div>

@@ -58,32 +58,39 @@ The zero-modified normal distribution is the mixture of a normal distribution
     </div>
 
     <div id="ref-usage">
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="fu">dzmnorm</span><span class="op">(</span><span class="va">x</span>, mean <span class="op">=</span> <span class="fl">0</span>, sd <span class="op">=</span> <span class="fl">1</span>, p.zero <span class="op">=</span> <span class="fl">0.5</span><span class="op">)</span>
-  <span class="fu">pzmnorm</span><span class="op">(</span><span class="va">q</span>, mean <span class="op">=</span> <span class="fl">0</span>, sd <span class="op">=</span> <span class="fl">1</span>, p.zero <span class="op">=</span> <span class="fl">0.5</span><span class="op">)</span>
-  <span class="fu">qzmnorm</span><span class="op">(</span><span class="va">p</span>, mean <span class="op">=</span> <span class="fl">0</span>, sd <span class="op">=</span> <span class="fl">1</span>, p.zero <span class="op">=</span> <span class="fl">0.5</span><span class="op">)</span>
-  <span class="fu">rzmnorm</span><span class="op">(</span><span class="va">n</span>, mean <span class="op">=</span> <span class="fl">0</span>, sd <span class="op">=</span> <span class="fl">1</span>, p.zero <span class="op">=</span> <span class="fl">0.5</span><span class="op">)</span></code></pre></div>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">dzmnorm</span><span class="op">(</span><span class="va">x</span>, mean <span class="op">=</span> <span class="fl">0</span>, sd <span class="op">=</span> <span class="fl">1</span>, p.zero <span class="op">=</span> <span class="fl">0.5</span><span class="op">)</span></span>
+<span>  <span class="fu">pzmnorm</span><span class="op">(</span><span class="va">q</span>, mean <span class="op">=</span> <span class="fl">0</span>, sd <span class="op">=</span> <span class="fl">1</span>, p.zero <span class="op">=</span> <span class="fl">0.5</span><span class="op">)</span></span>
+<span>  <span class="fu">qzmnorm</span><span class="op">(</span><span class="va">p</span>, mean <span class="op">=</span> <span class="fl">0</span>, sd <span class="op">=</span> <span class="fl">1</span>, p.zero <span class="op">=</span> <span class="fl">0.5</span><span class="op">)</span></span>
+<span>  <span class="fu">rzmnorm</span><span class="op">(</span><span class="va">n</span>, mean <span class="op">=</span> <span class="fl">0</span>, sd <span class="op">=</span> <span class="fl">1</span>, p.zero <span class="op">=</span> <span class="fl">0.5</span><span class="op">)</span></span></code></pre></div>
     </div>
 
     <div id="arguments">
     <h2>Arguments</h2>
     <dl><dt>x</dt>
 <dd><p>vector of quantiles.</p></dd>
-<dt>q</dt>
+
+  <dt>q</dt>
 <dd><p>vector of quantiles.</p></dd>
-<dt>p</dt>
+
+  <dt>p</dt>
 <dd><p>vector of probabilities between 0 and 1.</p></dd>
-<dt>n</dt>
+
+  <dt>n</dt>
 <dd><p>sample size.  If <code>length(n)</code> is larger than 1, then <code>length(n)</code> 
   random values are returned.</p></dd>
-<dt>mean</dt>
+
+  <dt>mean</dt>
 <dd><p>vector of means of the normal (Gaussian) part of the distribution.  
   The default is <code>mean=0</code>.</p></dd>
-<dt>sd</dt>
+
+  <dt>sd</dt>
 <dd><p>vector of (positive) standard deviations of the normal (Gaussian) 
   part of the distribution.  The default is <code>sd=1</code>.</p></dd>
-<dt>p.zero</dt>
+
+  <dt>p.zero</dt>
 <dd><p>vector of probabilities between 0 and 1 indicating the probability the random 
   variable equals 0.  For <code>rzmnorm</code> this must be a single, non-missing number.</p></dd>
+
 </dl></div>
     <div id="details">
     <h2>Details</h2>
@@ -107,8 +114,10 @@ The zero-modified normal distribution is the mixture of a normal distribution
     </div>
     <div id="value">
     <h2>Value</h2>
-    <p><code>dzmnorm</code> gives the density, <code>pzmnorm</code> gives the distribution function, 
-<code>qzmnorm</code> gives the quantile function, and <code>rzmnorm</code> generates random 
+    <p></p>
+<p><code>dzmnorm</code> gives the density, <code>pzmnorm</code> gives the distribution function,</p>
+<p></p>
+<p><code>qzmnorm</code> gives the quantile function, and <code>rzmnorm</code> generates random 
   deviates.</p>
     </div>
     <div id="references">
@@ -168,41 +177,41 @@ The zero-modified normal distribution is the mixture of a normal distribution
 
     <div id="ref-examples">
     <h2>Examples</h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in">  <span class="co"># Density of the zero-modified normal distribution with parameters </span></span>
-<span class="r-in">  <span class="co"># mean=2, sd=1, and p.zero=0.5, evaluated at 0, 0.5, 1, 1.5, and 2:</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="fu">dzmnorm</span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/seq.html" class="external-link">seq</a></span><span class="op">(</span><span class="fl">0</span>, <span class="fl">2</span>, by <span class="op">=</span> <span class="fl">0.5</span><span class="op">)</span>, mean <span class="op">=</span> <span class="fl">2</span><span class="op">)</span> </span>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span>  <span class="co"># Density of the zero-modified normal distribution with parameters </span></span></span>
+<span class="r-in"><span>  <span class="co"># mean=2, sd=1, and p.zero=0.5, evaluated at 0, 0.5, 1, 1.5, and 2:</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="fu">dzmnorm</span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/seq.html" class="external-link">seq</a></span><span class="op">(</span><span class="fl">0</span>, <span class="fl">2</span>, by <span class="op">=</span> <span class="fl">0.5</span><span class="op">)</span>, mean <span class="op">=</span> <span class="fl">2</span><span class="op">)</span> </span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] 0.5000000 0.0647588 0.1209854 0.1760327 0.1994711</span>
-<span class="r-in">  <span class="co">#[1] 0.5000000 0.0647588 0.1209854 0.1760327 0.1994711</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="co">#----------</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="co"># The cdf of the zero-modified normal distribution with parameters </span></span>
-<span class="r-in">  <span class="co"># mean=3, sd=2, and p.zero=0.1, evaluated at 4:</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="fu">pzmnorm</span><span class="op">(</span><span class="fl">4</span>, <span class="fl">3</span>, <span class="fl">2</span>, <span class="fl">.1</span><span class="op">)</span> </span>
+<span class="r-in"><span>  <span class="co">#[1] 0.5000000 0.0647588 0.1209854 0.1760327 0.1994711</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="co">#----------</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="co"># The cdf of the zero-modified normal distribution with parameters </span></span></span>
+<span class="r-in"><span>  <span class="co"># mean=3, sd=2, and p.zero=0.1, evaluated at 4:</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="fu">pzmnorm</span><span class="op">(</span><span class="fl">4</span>, <span class="fl">3</span>, <span class="fl">2</span>, <span class="fl">.1</span><span class="op">)</span> </span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] 0.7223162</span>
-<span class="r-in">  <span class="co">#[1] 0.7223162</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="co">#----------</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="co"># The median of the zero-modified normal distribution with parameters </span></span>
-<span class="r-in">  <span class="co"># mean=3, sd=1, and p.zero=0.1:</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="fu">qzmnorm</span><span class="op">(</span><span class="fl">0.5</span>, <span class="fl">3</span>, <span class="fl">1</span>, <span class="fl">0.1</span><span class="op">)</span> </span>
+<span class="r-in"><span>  <span class="co">#[1] 0.7223162</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="co">#----------</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="co"># The median of the zero-modified normal distribution with parameters </span></span></span>
+<span class="r-in"><span>  <span class="co"># mean=3, sd=1, and p.zero=0.1:</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="fu">qzmnorm</span><span class="op">(</span><span class="fl">0.5</span>, <span class="fl">3</span>, <span class="fl">1</span>, <span class="fl">0.1</span><span class="op">)</span> </span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] 2.86029</span>
-<span class="r-in">  <span class="co">#[1] 2.86029</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="co">#----------</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="co"># Random sample of 3 observations from the zero-modified normal distribution </span></span>
-<span class="r-in">  <span class="co"># with parameters mean=3, sd=1, and p.zero=0.4. </span></span>
-<span class="r-in">  <span class="co"># (Note: The call to set.seed simply allows you to reproduce this example.)</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="fu"><a href="https://rdrr.io/r/base/Random.html" class="external-link">set.seed</a></span><span class="op">(</span><span class="fl">20</span><span class="op">)</span> </span>
-<span class="r-in">  <span class="fu">rzmnorm</span><span class="op">(</span><span class="fl">3</span>, <span class="fl">3</span>, <span class="fl">1</span>, <span class="fl">0.4</span><span class="op">)</span> </span>
+<span class="r-in"><span>  <span class="co">#[1] 2.86029</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="co">#----------</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="co"># Random sample of 3 observations from the zero-modified normal distribution </span></span></span>
+<span class="r-in"><span>  <span class="co"># with parameters mean=3, sd=1, and p.zero=0.4. </span></span></span>
+<span class="r-in"><span>  <span class="co"># (Note: The call to set.seed simply allows you to reproduce this example.)</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/r/base/Random.html" class="external-link">set.seed</a></span><span class="op">(</span><span class="fl">20</span><span class="op">)</span> </span></span>
+<span class="r-in"><span>  <span class="fu">rzmnorm</span><span class="op">(</span><span class="fl">3</span>, <span class="fl">3</span>, <span class="fl">1</span>, <span class="fl">0.4</span><span class="op">)</span> </span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] 0.000000 0.000000 3.073168</span>
-<span class="r-in">  <span class="co">#[1] 0.000000 0.000000 3.073168</span></span>
+<span class="r-in"><span>  <span class="co">#[1] 0.000000 0.000000 3.073168</span></span></span>
 </code></pre></div>
     </div>
   </div>
@@ -217,7 +226,7 @@ The zero-modified normal distribution is the mixture of a normal distribution
 </div>
 
 <div class="pkgdown">
-  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.2.</p>
+  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.6.</p>
 </div>
 
       </footer></div>

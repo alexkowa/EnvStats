@@ -64,16 +64,24 @@
     </div>
     <div id="value">
     <h2>Value</h2>
-    <p><strong>Required Attributes</strong><br>  The following attributes must be included in a legitimate matrix of 
+    <p></p>
+<p><strong>Required Attributes</strong></p>
+<p></p>
+<p><br></p>
+
+
+<p>The following attributes must be included in a legitimate matrix of 
   class <code>"summaryStats"</code>.</p>
 <dl><dt>stats.in.rows</dt>
 <dd><p>logical scalar indicating whether the statistics 
     are stored by row <br>
     (<code>stats.in.rows=TRUE</code>) or by column 
     (<code>stats.in.rows=FALSE</code>).</p></dd>
-<dt>drop0trailing</dt>
+
+  <dt>drop0trailing</dt>
 <dd><p>logical scalar indicating whether to drop trailing 0's 
     when printing the summary statistics.</p></dd>
+
 </dl></div>
     <div id="author">
     <h2>Author</h2>
@@ -86,21 +94,21 @@
 
     <div id="ref-examples">
     <h2>Examples</h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in">  <span class="co"># Create an object of class "summaryStats", then print it out. </span></span>
-<span class="r-in">  <span class="co">#-------------------------------------------------------------</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="va">summaryStats.obj</span> <span class="op">&lt;-</span> <span class="fu"><a href="summaryStats.html">summaryStats</a></span><span class="op">(</span><span class="va">TCE.mg.per.L</span> <span class="op">~</span> <span class="va">Well</span>, </span>
-<span class="r-in">    data <span class="op">=</span> <span class="va">EPA.09.Table.9.1.TCE.df</span>, digits <span class="op">=</span> <span class="fl">3</span><span class="op">)</span> </span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="fu"><a href="https://rdrr.io/r/base/matrix.html" class="external-link">is.matrix</a></span><span class="op">(</span><span class="va">summaryStats.obj</span><span class="op">)</span> </span>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span>  <span class="co"># Create an object of class "summaryStats", then print it out. </span></span></span>
+<span class="r-in"><span>  <span class="co">#-------------------------------------------------------------</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="va">summaryStats.obj</span> <span class="op">&lt;-</span> <span class="fu"><a href="summaryStats.html">summaryStats</a></span><span class="op">(</span><span class="va">TCE.mg.per.L</span> <span class="op">~</span> <span class="va">Well</span>, </span></span>
+<span class="r-in"><span>    data <span class="op">=</span> <span class="va">EPA.09.Table.9.1.TCE.df</span>, digits <span class="op">=</span> <span class="fl">3</span><span class="op">)</span> </span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/r/base/matrix.html" class="external-link">is.matrix</a></span><span class="op">(</span><span class="va">summaryStats.obj</span><span class="op">)</span> </span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] TRUE</span>
-<span class="r-in">  <span class="co">#[1] TRUE</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="fu"><a href="https://rdrr.io/r/base/class.html" class="external-link">class</a></span><span class="op">(</span><span class="va">summaryStats.obj</span><span class="op">)</span> </span>
+<span class="r-in"><span>  <span class="co">#[1] TRUE</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/r/base/class.html" class="external-link">class</a></span><span class="op">(</span><span class="va">summaryStats.obj</span><span class="op">)</span> </span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] "summaryStats"</span>
-<span class="r-in">  <span class="co">#[1] "summaryStats" </span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="fu"><a href="https://rdrr.io/r/base/attributes.html" class="external-link">attributes</a></span><span class="op">(</span><span class="va">summaryStats.obj</span><span class="op">)</span> </span>
+<span class="r-in"><span>  <span class="co">#[1] "summaryStats" </span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/r/base/attributes.html" class="external-link">attributes</a></span><span class="op">(</span><span class="va">summaryStats.obj</span><span class="op">)</span> </span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> $dim</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] 2 8</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
@@ -122,28 +130,28 @@
 <span class="r-out co"><span class="r-pr">#&gt;</span> $drop0trailing</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] TRUE</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-in">  <span class="co">#$dim</span></span>
-<span class="r-in">  <span class="co">#[1] 2 8</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#$dimnames</span></span>
-<span class="r-in">  <span class="co">#$dimnames[[1]]</span></span>
-<span class="r-in">  <span class="co">#[1] "Well.1" "Well.2"</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#$dimnames[[2]]</span></span>
-<span class="r-in">  <span class="co">#[1] "N"       "Mean"    "SD"      "Median"  "Min"     "Max"    </span></span>
-<span class="r-in">  <span class="co">#[7] "NA's"    "N.Total"</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#$class</span></span>
-<span class="r-in">  <span class="co">#[1] "summaryStats"</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#$stats.in.rows</span></span>
-<span class="r-in">  <span class="co">#[1] FALSE</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#$drop0trailing</span></span>
-<span class="r-in">  <span class="co">#[1] TRUE</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="va">summaryStats.obj</span> </span>
+<span class="r-in"><span>  <span class="co">#$dim</span></span></span>
+<span class="r-in"><span>  <span class="co">#[1] 2 8</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#$dimnames</span></span></span>
+<span class="r-in"><span>  <span class="co">#$dimnames[[1]]</span></span></span>
+<span class="r-in"><span>  <span class="co">#[1] "Well.1" "Well.2"</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#$dimnames[[2]]</span></span></span>
+<span class="r-in"><span>  <span class="co">#[1] "N"       "Mean"    "SD"      "Median"  "Min"     "Max"    </span></span></span>
+<span class="r-in"><span>  <span class="co">#[7] "NA's"    "N.Total"</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#$class</span></span></span>
+<span class="r-in"><span>  <span class="co">#[1] "summaryStats"</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#$stats.in.rows</span></span></span>
+<span class="r-in"><span>  <span class="co">#[1] FALSE</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#$drop0trailing</span></span></span>
+<span class="r-in"><span>  <span class="co">#[1] TRUE</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="va">summaryStats.obj</span> </span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>         N  Mean    SD Median   Min  Max NA's N.Total</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Well.1 14 0.063 0.079  0.031 0.004 0.25    1      15</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Well.2 13 0.118 0.020  0.110 0.099 0.17    2      15</span>
@@ -153,15 +161,15 @@
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] FALSE</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> attr(,"drop0trailing")</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] TRUE</span>
-<span class="r-in">  <span class="co">#        N  Mean    SD Median   Min  Max NA's N.Total</span></span>
-<span class="r-in">  <span class="co">#Well.1 14 0.063 0.079  0.031 0.004 0.25    1      15</span></span>
-<span class="r-in">  <span class="co">#Well.2 13 0.118 0.020  0.110 0.099 0.17    2      15</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="co">#----------</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="co"># Clean up</span></span>
-<span class="r-in">  <span class="co">#---------</span></span>
-<span class="r-in">  <span class="fu"><a href="https://rdrr.io/r/base/rm.html" class="external-link">rm</a></span><span class="op">(</span><span class="va">summaryStats.obj</span><span class="op">)</span></span>
+<span class="r-in"><span>  <span class="co">#        N  Mean    SD Median   Min  Max NA's N.Total</span></span></span>
+<span class="r-in"><span>  <span class="co">#Well.1 14 0.063 0.079  0.031 0.004 0.25    1      15</span></span></span>
+<span class="r-in"><span>  <span class="co">#Well.2 13 0.118 0.020  0.110 0.099 0.17    2      15</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="co">#----------</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="co"># Clean up</span></span></span>
+<span class="r-in"><span>  <span class="co">#---------</span></span></span>
+<span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/r/base/rm.html" class="external-link">rm</a></span><span class="op">(</span><span class="va">summaryStats.obj</span><span class="op">)</span></span></span>
 </code></pre></div>
     </div>
   </div>
@@ -176,7 +184,7 @@
 </div>
 
 <div class="pkgdown">
-  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.2.</p>
+  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.6.</p>
 </div>
 
       </footer></div>

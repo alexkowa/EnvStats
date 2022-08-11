@@ -52,11 +52,11 @@
     </div>
 
     <div id="ref-usage">
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="fu">propTestMdd</span><span class="op">(</span><span class="va">n.or.n1</span>, n2 <span class="op">=</span> <span class="va">n.or.n1</span>, p0.or.p2 <span class="op">=</span> <span class="fl">0.5</span>, alpha <span class="op">=</span> <span class="fl">0.05</span>, power <span class="op">=</span> <span class="fl">0.95</span>, 
-    sample.type <span class="op">=</span> <span class="st">"one.sample"</span>, alternative <span class="op">=</span> <span class="st">"two.sided"</span>, 
-    two.sided.direction <span class="op">=</span> <span class="st">"greater"</span>, approx <span class="op">=</span> <span class="cn">TRUE</span>, 
-    correct <span class="op">=</span> <span class="va">sample.type</span> <span class="op">==</span> <span class="st">"two.sample"</span>, warn <span class="op">=</span> <span class="cn">TRUE</span>, 
-    return.exact.list <span class="op">=</span> <span class="cn">TRUE</span>, tol <span class="op">=</span> <span class="fl">1e-07</span>, maxiter <span class="op">=</span> <span class="fl">1000</span><span class="op">)</span></code></pre></div>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">propTestMdd</span><span class="op">(</span><span class="va">n.or.n1</span>, n2 <span class="op">=</span> <span class="va">n.or.n1</span>, p0.or.p2 <span class="op">=</span> <span class="fl">0.5</span>, alpha <span class="op">=</span> <span class="fl">0.05</span>, power <span class="op">=</span> <span class="fl">0.95</span>, </span>
+<span>    sample.type <span class="op">=</span> <span class="st">"one.sample"</span>, alternative <span class="op">=</span> <span class="st">"two.sided"</span>, </span>
+<span>    two.sided.direction <span class="op">=</span> <span class="st">"greater"</span>, approx <span class="op">=</span> <span class="cn">TRUE</span>, </span>
+<span>    correct <span class="op">=</span> <span class="va">sample.type</span> <span class="op">==</span> <span class="st">"two.sample"</span>, warn <span class="op">=</span> <span class="cn">TRUE</span>, </span>
+<span>    return.exact.list <span class="op">=</span> <span class="cn">TRUE</span>, tol <span class="op">=</span> <span class="fl">1e-07</span>, maxiter <span class="op">=</span> <span class="fl">1000</span><span class="op">)</span></span></code></pre></div>
     </div>
 
     <div id="arguments">
@@ -67,53 +67,64 @@
   When <code>sample.type="two.sample"</code>, this argument denotes \(n_1\), 
   the number of observations from group 1.  
   Missing (<code>NA</code>), undefined (<code>NaN</code>), and infinite (<code>Inf</code>, <code>-Inf</code>) values are not allowed.</p></dd>
-<dt>n2</dt>
+
+  <dt>n2</dt>
 <dd><p>numeric vector of sample sizes for group 2.  The default value is <code>n2=n.or.n1</code>.  
   This argument is ignored when <code>sample.type="one.sample"</code>.  
   Missing (<code>NA</code>), undefined (<code>NaN</code>), and infinite (<code>Inf</code>, <code>-Inf</code>) values are not allowed.</p></dd>
-<dt>p0.or.p2</dt>
+
+  <dt>p0.or.p2</dt>
 <dd><p>numeric vector of proportions.  When <code>sample.type="one.sample"</code>, 
   this argument denotes the hypothesized value of \(p\), the probability of “success”.  
   When <code>sample.type="two.sample"</code>, this argument denotes the value of \(p_2\), 
   the probability of “success” in group 2.  The default value is <br><code>p0.or.p2=0.5</code>.  Missing (<code>NA</code>), undefined (<code>NaN</code>), and infinite (<code>Inf</code>, <code>-Inf</code>) values are not allowed.</p></dd>
-<dt>alpha</dt>
+
+  <dt>alpha</dt>
 <dd><p>numeric vector of numbers between 0 and 1 indicating the Type I error level 
   associated with the hypothesis test.  The default value is <code>alpha=0.05</code>.</p></dd>
-<dt>power</dt>
+
+  <dt>power</dt>
 <dd><p>numeric vector of numbers between 0 and 1 indicating the power associated with 
   the hypothesis test. The default value is <code>power=0.95</code>.</p></dd>
-<dt>sample.type</dt>
+
+  <dt>sample.type</dt>
 <dd><p>character string indicating whether to compute power based on a one-sample or 
   two-sample hypothesis test.  When <code>sample.type="one.sample"</code>, 
   the computed power is based on a hypothesis test for a single proportion.  
   When <br><code>sample.type="two.sample"</code>, the computed power is based on a 
   hypothesis test for the difference between two proportions.  
   The default value is <br><code>sample.type="one.sample"</code>.</p></dd>
-<dt>alternative</dt>
+
+  <dt>alternative</dt>
 <dd><p>character string indicating the kind of alternative hypothesis.  
   The possible values are <code>"two.sided"</code> (the default), <code>"less"</code>, and 
   <code>"greater"</code>.</p></dd>
-<dt>two.sided.direction</dt>
+
+  <dt>two.sided.direction</dt>
 <dd><p>character string indicating the direction (positive or negative) for the 
   minimal detectable difference when <code>alternative="two.sided"</code>.  When <br><code>two.sided.direction="greater"</code> (the default), the minimal 
   detectable difference is positive.  When <code>two.sided.direction="less"</code>, 
   the minimal detectable difference is negative.  This argument 
   is ignored if <code>alternative="less"</code> or <code>alternative="greater"</code>.</p></dd>
-<dt>approx</dt>
+
+  <dt>approx</dt>
 <dd><p>logical scalar indicating whether to compute the power based on the normal 
   approximation to the binomial distribution.  The default value is <code>approx=TRUE</code>.  
   Currently, the exact method (<code>approx=FALSE</code>) is only available for the 
   one-sample case (i.e., <code>sample.type="one.sample"</code>).</p></dd>
-<dt>correct</dt>
+
+  <dt>correct</dt>
 <dd><p>logical scalar indicating whether to use the continuity correction when <br><code>approx=TRUE</code>.  The default value is <code>approx=TRUE</code> when <br><code>sample.type="two.sample"</code> and <code>approx=FALSE</code> when <br><code>sample.type="one.sample"</code>.  This argument is ignored when <br><code>approx=FALSE</code>.</p></dd>
-<dt>warn</dt>
+
+  <dt>warn</dt>
 <dd><p>logical scalar indicating whether to issue a warning.  The default value is <br><code>warn=TRUE</code>.  When <code>approx=TRUE</code> (power based on the normal approximation) and 
   <code>warn=TRUE</code>, a warning is issued for cases when the normal approximation to the 
   binomial distribution probably is not accurate.  When <br><code>approx=FALSE</code> (power based on the exact test) and <code>warn=TRUE</code>, 
   a warning is issued when the user-supplied sample size is too small to 
   yield a significance level less than or equal to the user-supplied value of 
   <code>alpha</code>.</p></dd>
-<dt>return.exact.list</dt>
+
+  <dt>return.exact.list</dt>
 <dd><p>logical scalar relevant to the case when <code>approx=FALSE</code> 
   (i.e., when the power is based on the exact test).  This argument indicates whether 
   to return a list containing extra information about the exact test in addition to 
@@ -123,13 +134,15 @@
   difference(s), power of the exact test, the true significance level associated with 
   the exact test, and the critical values associated with the exact test (see the 
   DETAILS section for more information).</p></dd>
-<dt>tol</dt>
+
+  <dt>tol</dt>
 <dd><p>numeric scalar passed to the <code><a href="https://rdrr.io/r/stats/uniroot.html" class="external-link">uniroot</a></code> function that indicates the 
   tolerance to use in the search algorithm.  The default value is <code>tol=1e-7</code>.</p></dd>
-<dt>maxiter</dt>
+  <dt>maxiter</dt>
 <dd><p>integer passed to the <code><a href="https://rdrr.io/r/stats/uniroot.html" class="external-link">uniroot</a></code> function that indicates the maximum 
   number of iterations to use in the search algorithm.  The default value is 
   <code>maxiter=1000</code>.</p></dd>
+
 </dl></div>
     <div id="details">
     <h2>Details</h2>
@@ -159,30 +172,39 @@
     </div>
     <div id="value">
     <h2>Value</h2>
-    <p><strong>Approximate Test (<code>approx=TRUE</code>)</strong>.
-  numeric vector of minimal detectable differences.
-<strong>Exact Test (<code>approx=FALSE</code>)</strong>.
+    <p></p>
+<p><strong>Approximate Test (<code>approx=TRUE</code>)</strong>.
+  numeric vector of minimal detectable differences.</p>
+<p></p>
+<p><strong>Exact Test (<code>approx=FALSE</code>)</strong>.
   If <code>return.exact.list=FALSE</code>, <code>propTestMdd</code> returns a numeric vector of 
-  minimal detectable differences.
-  If <code>return.exact.list=TRUE</code>, <code>propTestMdd</code> returns a list with the 
+  minimal detectable differences.</p>
+
+
+<p>If <code>return.exact.list=TRUE</code>, <code>propTestMdd</code> returns a list with the 
   following components:</p>
 <dl><dt>delta</dt>
 <dd><p>numeric vector of minimal detectable differences.</p></dd>
-<dt>power</dt>
+
+  <dt>power</dt>
 <dd><p>numeric vector of powers.</p></dd>
-<dt>alpha</dt>
+
+  <dt>alpha</dt>
 <dd><p>numeric vector containing the true significance levels. 
     Because of the discrete nature of the binomial distribution, the true significance 
     levels usually do not equal the significance level supplied by the user in the 
     argument <code>alpha</code>.</p></dd>
-<dt>q.critical.lower</dt>
+
+  <dt>q.critical.lower</dt>
 <dd><p>numeric vector of lower critical values for rejecting the null 
     hypothesis.  If the observed number of "successes" is <em>less than or equal to</em> these values, 
     the null hypothesis is rejected. (Not present if <code>alternative="greater"</code>.)</p></dd>
-<dt>q.critical.upper</dt>
+
+  <dt>q.critical.upper</dt>
 <dd><p>numeric vector of upper critical values for rejecting the null 
     hypothesis.  If the observed number of "successes" is <em>greater than</em> these values, 
     the null hypothesis is rejected. (Not present if <code>alternative="less"</code>.)</p></dd>
+
 </dl></div>
     <div id="references">
     <h2>References</h2>
@@ -204,30 +226,30 @@
 
     <div id="ref-examples">
     <h2>Examples</h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in">  <span class="co"># Look at how the minimal detectable difference of the one-sample </span></span>
-<span class="r-in">  <span class="co"># proportion test increases with increasing required power:</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="fu"><a href="https://rdrr.io/r/base/seq.html" class="external-link">seq</a></span><span class="op">(</span><span class="fl">0.5</span>, <span class="fl">0.9</span>, by <span class="op">=</span> <span class="fl">0.1</span><span class="op">)</span> </span>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span>  <span class="co"># Look at how the minimal detectable difference of the one-sample </span></span></span>
+<span class="r-in"><span>  <span class="co"># proportion test increases with increasing required power:</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/r/base/seq.html" class="external-link">seq</a></span><span class="op">(</span><span class="fl">0.5</span>, <span class="fl">0.9</span>, by <span class="op">=</span> <span class="fl">0.1</span><span class="op">)</span> </span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] 0.5 0.6 0.7 0.8 0.9</span>
-<span class="r-in">  <span class="co">#[1] 0.5 0.6 0.7 0.8 0.9 </span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="va">mdd</span> <span class="op">&lt;-</span> <span class="fu">propTestMdd</span><span class="op">(</span>n.or.n1 <span class="op">=</span> <span class="fl">50</span>, power <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/seq.html" class="external-link">seq</a></span><span class="op">(</span><span class="fl">0.5</span>, <span class="fl">0.9</span>, by<span class="op">=</span><span class="fl">0.1</span><span class="op">)</span><span class="op">)</span> </span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="fu"><a href="https://rdrr.io/r/base/Round.html" class="external-link">round</a></span><span class="op">(</span><span class="va">mdd</span>, <span class="fl">2</span><span class="op">)</span> </span>
+<span class="r-in"><span>  <span class="co">#[1] 0.5 0.6 0.7 0.8 0.9 </span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="va">mdd</span> <span class="op">&lt;-</span> <span class="fu">propTestMdd</span><span class="op">(</span>n.or.n1 <span class="op">=</span> <span class="fl">50</span>, power <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/seq.html" class="external-link">seq</a></span><span class="op">(</span><span class="fl">0.5</span>, <span class="fl">0.9</span>, by<span class="op">=</span><span class="fl">0.1</span><span class="op">)</span><span class="op">)</span> </span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/r/base/Round.html" class="external-link">round</a></span><span class="op">(</span><span class="va">mdd</span>, <span class="fl">2</span><span class="op">)</span> </span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] 0.14 0.16 0.17 0.19 0.22</span>
-<span class="r-in">  <span class="co">#[1] 0.14 0.16 0.17 0.19 0.22</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="co">#----------</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="co"># Repeat the last example, but compute the minimal detectable difference </span></span>
-<span class="r-in">  <span class="co"># based on the exact test instead of the approximation.  Note that with a </span></span>
-<span class="r-in">  <span class="co"># sample size of 50, the largest significance level less than or equal to </span></span>
-<span class="r-in">  <span class="co"># 0.05 for the two-sided alternative is 0.03.</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="va">mdd.list</span> <span class="op">&lt;-</span> <span class="fu">propTestMdd</span><span class="op">(</span>n.or.n1 <span class="op">=</span> <span class="fl">50</span>, power <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/seq.html" class="external-link">seq</a></span><span class="op">(</span><span class="fl">0.5</span>, <span class="fl">0.9</span>, by <span class="op">=</span> <span class="fl">0.1</span><span class="op">)</span>, </span>
-<span class="r-in">    approx <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span> </span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="fu"><a href="https://rdrr.io/r/base/lapply.html" class="external-link">lapply</a></span><span class="op">(</span><span class="va">mdd.list</span>, <span class="va">round</span>, <span class="fl">2</span><span class="op">)</span> </span>
+<span class="r-in"><span>  <span class="co">#[1] 0.14 0.16 0.17 0.19 0.22</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="co">#----------</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="co"># Repeat the last example, but compute the minimal detectable difference </span></span></span>
+<span class="r-in"><span>  <span class="co"># based on the exact test instead of the approximation.  Note that with a </span></span></span>
+<span class="r-in"><span>  <span class="co"># sample size of 50, the largest significance level less than or equal to </span></span></span>
+<span class="r-in"><span>  <span class="co"># 0.05 for the two-sided alternative is 0.03.</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="va">mdd.list</span> <span class="op">&lt;-</span> <span class="fu">propTestMdd</span><span class="op">(</span>n.or.n1 <span class="op">=</span> <span class="fl">50</span>, power <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/seq.html" class="external-link">seq</a></span><span class="op">(</span><span class="fl">0.5</span>, <span class="fl">0.9</span>, by <span class="op">=</span> <span class="fl">0.1</span><span class="op">)</span>, </span></span>
+<span class="r-in"><span>    approx <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span> </span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/r/base/lapply.html" class="external-link">lapply</a></span><span class="op">(</span><span class="va">mdd.list</span>, <span class="va">round</span>, <span class="fl">2</span><span class="op">)</span> </span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> $delta</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] 0.15 0.17 0.18 0.20 0.23</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
@@ -243,92 +265,92 @@
 <span class="r-out co"><span class="r-pr">#&gt;</span> $q.critical.upper</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] 32 32 32 32 32</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-in">  <span class="co">#$delta</span></span>
-<span class="r-in">  <span class="co">#[1] 0.15 0.17 0.18 0.20 0.23</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#$power</span></span>
-<span class="r-in">  <span class="co">#[1] 0.5 0.6 0.7 0.8 0.9</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#$alpha</span></span>
-<span class="r-in">  <span class="co">#[1] 0.03 0.03 0.03 0.03 0.03</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#$q.critical.lower</span></span>
-<span class="r-in">  <span class="co">#[1] 17 17 17 17 17</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#$q.critical.upper</span></span>
-<span class="r-in">  <span class="co">#[1] 32 32 32 32 32</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="co">#==========</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="co"># Look at how the minimal detectable difference for the two-sample </span></span>
-<span class="r-in">  <span class="co"># proportion test decreases with increasing sample sizes.  Note that for </span></span>
-<span class="r-in">  <span class="co"># the specified significance level, power, and true proportion in group 2, </span></span>
-<span class="r-in">  <span class="co"># no minimal detectable difference is attainable for a sample size of 10 in </span></span>
-<span class="r-in">  <span class="co"># each group.</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="fu"><a href="https://rdrr.io/r/base/seq.html" class="external-link">seq</a></span><span class="op">(</span><span class="fl">10</span>, <span class="fl">50</span>, by<span class="op">=</span><span class="fl">10</span><span class="op">)</span> </span>
+<span class="r-in"><span>  <span class="co">#$delta</span></span></span>
+<span class="r-in"><span>  <span class="co">#[1] 0.15 0.17 0.18 0.20 0.23</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#$power</span></span></span>
+<span class="r-in"><span>  <span class="co">#[1] 0.5 0.6 0.7 0.8 0.9</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#$alpha</span></span></span>
+<span class="r-in"><span>  <span class="co">#[1] 0.03 0.03 0.03 0.03 0.03</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#$q.critical.lower</span></span></span>
+<span class="r-in"><span>  <span class="co">#[1] 17 17 17 17 17</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#$q.critical.upper</span></span></span>
+<span class="r-in"><span>  <span class="co">#[1] 32 32 32 32 32</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="co">#==========</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="co"># Look at how the minimal detectable difference for the two-sample </span></span></span>
+<span class="r-in"><span>  <span class="co"># proportion test decreases with increasing sample sizes.  Note that for </span></span></span>
+<span class="r-in"><span>  <span class="co"># the specified significance level, power, and true proportion in group 2, </span></span></span>
+<span class="r-in"><span>  <span class="co"># no minimal detectable difference is attainable for a sample size of 10 in </span></span></span>
+<span class="r-in"><span>  <span class="co"># each group.</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/r/base/seq.html" class="external-link">seq</a></span><span class="op">(</span><span class="fl">10</span>, <span class="fl">50</span>, by<span class="op">=</span><span class="fl">10</span><span class="op">)</span> </span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] 10 20 30 40 50</span>
-<span class="r-in">  <span class="co">#[1] 10 20 30 40 50 </span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="fu">propTestMdd</span><span class="op">(</span>n.or.n1 <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/seq.html" class="external-link">seq</a></span><span class="op">(</span><span class="fl">10</span>, <span class="fl">50</span>, by <span class="op">=</span> <span class="fl">10</span><span class="op">)</span>, p0.or.p2 <span class="op">=</span> <span class="fl">0.5</span>, </span>
-<span class="r-in">    sample.type <span class="op">=</span> <span class="st">"two"</span>, alternative<span class="op">=</span><span class="st">"greater"</span><span class="op">)</span> </span>
+<span class="r-in"><span>  <span class="co">#[1] 10 20 30 40 50 </span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="fu">propTestMdd</span><span class="op">(</span>n.or.n1 <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/seq.html" class="external-link">seq</a></span><span class="op">(</span><span class="fl">10</span>, <span class="fl">50</span>, by <span class="op">=</span> <span class="fl">10</span><span class="op">)</span>, p0.or.p2 <span class="op">=</span> <span class="fl">0.5</span>, </span></span>
+<span class="r-in"><span>    sample.type <span class="op">=</span> <span class="st">"two"</span>, alternative<span class="op">=</span><span class="st">"greater"</span><span class="op">)</span> </span></span>
 <span class="r-wrn co"><span class="r-pr">#&gt;</span> <span class="warning">Warning: </span>Elements with a missing value (NA) indicate no attainable minimal detectable difference for the given values of 'n1', 'n2', 'p2', 'alpha', and 'power'</span>
 <span class="r-wrn co"><span class="r-pr">#&gt;</span> <span class="warning">Warning: </span>The sample sizes 'n1' and 'n2' are too small, relative to the computed value of 'p1' and the given value of 'p2', for the normal approximation to work well for the following element indices:</span>
 <span class="r-wrn co"><span class="r-pr">#&gt;</span> 	 2 3 </span>
 <span class="r-wrn co"><span class="r-pr">#&gt;</span> 	</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1]        NA 0.4726348 0.4023564 0.3557916 0.3221412</span>
-<span class="r-in">  <span class="co">#[1]        NA 0.4726348 0.4023564 0.3557916 0.3221412</span></span>
-<span class="r-in">  <span class="co">#Warning messages:</span></span>
-<span class="r-in">  <span class="co">#1: In propTestMdd(n.or.n1 = seq(10, 50, by = 10), p0.or.p2 = 0.5, </span></span>
-<span class="r-in">  <span class="co">#     sample.type = "two",  :</span></span>
-<span class="r-in">  <span class="co">#  Elements with a missing value (NA) indicate no attainable minimal detectable </span></span>
-<span class="r-in">  <span class="co">#    difference for the given values of 'n1', 'n2', 'p2', 'alpha', and 'power'</span></span>
-<span class="r-in">  <span class="co">#2: In propTestMdd(n.or.n1 = seq(10, 50, by = 10), p0.or.p2 = 0.5, </span></span>
-<span class="r-in">  <span class="co">#      sample.type = "two",  :</span></span>
-<span class="r-in">  <span class="co">#  The sample sizes 'n1' and 'n2' are too small, relative to the computed value </span></span>
-<span class="r-in">  <span class="co">#    of 'p1' and the given value of 'p2', for the normal approximation to work </span></span>
-<span class="r-in">  <span class="co">#    well for the following element indices:</span></span>
-<span class="r-in">  <span class="co">#         2 3 </span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="co">#----------</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="co"># Look at how the minimal detectable difference for the two-sample proportion </span></span>
-<span class="r-in">  <span class="co"># test decreases with increasing values of Type I error:</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="va">mdd</span> <span class="op">&lt;-</span> <span class="fu">propTestMdd</span><span class="op">(</span>n.or.n1 <span class="op">=</span> <span class="fl">100</span>, n2 <span class="op">=</span> <span class="fl">120</span>, p0.or.p2 <span class="op">=</span> <span class="fl">0.4</span>, sample.type <span class="op">=</span> <span class="st">"two"</span>, </span>
-<span class="r-in">     alpha <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">0.01</span>, <span class="fl">0.05</span>, <span class="fl">0.1</span>, <span class="fl">0.2</span><span class="op">)</span><span class="op">)</span> </span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="fu"><a href="https://rdrr.io/r/base/Round.html" class="external-link">round</a></span><span class="op">(</span><span class="va">mdd</span>, <span class="fl">2</span><span class="op">)</span> </span>
+<span class="r-in"><span>  <span class="co">#[1]        NA 0.4726348 0.4023564 0.3557916 0.3221412</span></span></span>
+<span class="r-in"><span>  <span class="co">#Warning messages:</span></span></span>
+<span class="r-in"><span>  <span class="co">#1: In propTestMdd(n.or.n1 = seq(10, 50, by = 10), p0.or.p2 = 0.5, </span></span></span>
+<span class="r-in"><span>  <span class="co">#     sample.type = "two",  :</span></span></span>
+<span class="r-in"><span>  <span class="co">#  Elements with a missing value (NA) indicate no attainable minimal detectable </span></span></span>
+<span class="r-in"><span>  <span class="co">#    difference for the given values of 'n1', 'n2', 'p2', 'alpha', and 'power'</span></span></span>
+<span class="r-in"><span>  <span class="co">#2: In propTestMdd(n.or.n1 = seq(10, 50, by = 10), p0.or.p2 = 0.5, </span></span></span>
+<span class="r-in"><span>  <span class="co">#      sample.type = "two",  :</span></span></span>
+<span class="r-in"><span>  <span class="co">#  The sample sizes 'n1' and 'n2' are too small, relative to the computed value </span></span></span>
+<span class="r-in"><span>  <span class="co">#    of 'p1' and the given value of 'p2', for the normal approximation to work </span></span></span>
+<span class="r-in"><span>  <span class="co">#    well for the following element indices:</span></span></span>
+<span class="r-in"><span>  <span class="co">#         2 3 </span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="co">#----------</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="co"># Look at how the minimal detectable difference for the two-sample proportion </span></span></span>
+<span class="r-in"><span>  <span class="co"># test decreases with increasing values of Type I error:</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="va">mdd</span> <span class="op">&lt;-</span> <span class="fu">propTestMdd</span><span class="op">(</span>n.or.n1 <span class="op">=</span> <span class="fl">100</span>, n2 <span class="op">=</span> <span class="fl">120</span>, p0.or.p2 <span class="op">=</span> <span class="fl">0.4</span>, sample.type <span class="op">=</span> <span class="st">"two"</span>, </span></span>
+<span class="r-in"><span>     alpha <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">0.01</span>, <span class="fl">0.05</span>, <span class="fl">0.1</span>, <span class="fl">0.2</span><span class="op">)</span><span class="op">)</span> </span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/r/base/Round.html" class="external-link">round</a></span><span class="op">(</span><span class="va">mdd</span>, <span class="fl">2</span><span class="op">)</span> </span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] 0.29 0.25 0.23 0.20</span>
-<span class="r-in">  <span class="co">#[1] 0.29 0.25 0.23 0.20</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="co">#----------</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="co"># Clean up</span></span>
-<span class="r-in">  <span class="co">#---------</span></span>
-<span class="r-in">  <span class="fu"><a href="https://rdrr.io/r/base/rm.html" class="external-link">rm</a></span><span class="op">(</span><span class="va">mdd</span>, <span class="va">mdd.list</span><span class="op">)</span> </span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="co">#==========</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="co"># Modifying the example on pages 8-5 to 8-7 of USEPA (1989b), determine the </span></span>
-<span class="r-in">  <span class="co"># minimal detectable difference to detect a difference in the proportion of </span></span>
-<span class="r-in">  <span class="co"># detects of cadmium between the background and compliance wells.  Set the </span></span>
-<span class="r-in">  <span class="co"># compliance well to "group 1" and the background well to "group 2".  Assume </span></span>
-<span class="r-in">  <span class="co"># the true probability of a "detect" at the background well is 1/3, use a </span></span>
-<span class="r-in">  <span class="co"># 5% significance level, use 80%, 90%, and 95% power, use the given sample </span></span>
-<span class="r-in">  <span class="co"># sizes of 64 observations at the compliance well and 24 observations at the </span></span>
-<span class="r-in">  <span class="co"># background well, and use the upper one-sided alternative (probability of a </span></span>
-<span class="r-in">  <span class="co"># "detect" at the compliance well is greater than the probability of a "detect" </span></span>
-<span class="r-in">  <span class="co"># at the background well). </span></span>
-<span class="r-in">  <span class="co"># (The data are stored in EPA.89b.cadmium.df.)  </span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co"># Note that the minimal detectable difference increases from 0.32 to 0.37 to 0.40 as </span></span>
-<span class="r-in">  <span class="co"># the required power increases from 80% to 90% to 95%.  Thus, in order to detect a </span></span>
-<span class="r-in">  <span class="co"># difference in probability of detection between the compliance and background </span></span>
-<span class="r-in">  <span class="co"># wells, the probability of detection at the compliance well must be 0.65, 0.70, </span></span>
-<span class="r-in">  <span class="co"># or 0.74 (depending on the required power).</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="va">EPA.89b.cadmium.df</span></span>
+<span class="r-in"><span>  <span class="co">#[1] 0.29 0.25 0.23 0.20</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="co">#----------</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="co"># Clean up</span></span></span>
+<span class="r-in"><span>  <span class="co">#---------</span></span></span>
+<span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/r/base/rm.html" class="external-link">rm</a></span><span class="op">(</span><span class="va">mdd</span>, <span class="va">mdd.list</span><span class="op">)</span> </span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="co">#==========</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="co"># Modifying the example on pages 8-5 to 8-7 of USEPA (1989b), determine the </span></span></span>
+<span class="r-in"><span>  <span class="co"># minimal detectable difference to detect a difference in the proportion of </span></span></span>
+<span class="r-in"><span>  <span class="co"># detects of cadmium between the background and compliance wells.  Set the </span></span></span>
+<span class="r-in"><span>  <span class="co"># compliance well to "group 1" and the background well to "group 2".  Assume </span></span></span>
+<span class="r-in"><span>  <span class="co"># the true probability of a "detect" at the background well is 1/3, use a </span></span></span>
+<span class="r-in"><span>  <span class="co"># 5% significance level, use 80%, 90%, and 95% power, use the given sample </span></span></span>
+<span class="r-in"><span>  <span class="co"># sizes of 64 observations at the compliance well and 24 observations at the </span></span></span>
+<span class="r-in"><span>  <span class="co"># background well, and use the upper one-sided alternative (probability of a </span></span></span>
+<span class="r-in"><span>  <span class="co"># "detect" at the compliance well is greater than the probability of a "detect" </span></span></span>
+<span class="r-in"><span>  <span class="co"># at the background well). </span></span></span>
+<span class="r-in"><span>  <span class="co"># (The data are stored in EPA.89b.cadmium.df.)  </span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co"># Note that the minimal detectable difference increases from 0.32 to 0.37 to 0.40 as </span></span></span>
+<span class="r-in"><span>  <span class="co"># the required power increases from 80% to 90% to 95%.  Thus, in order to detect a </span></span></span>
+<span class="r-in"><span>  <span class="co"># difference in probability of detection between the compliance and background </span></span></span>
+<span class="r-in"><span>  <span class="co"># wells, the probability of detection at the compliance well must be 0.65, 0.70, </span></span></span>
+<span class="r-in"><span>  <span class="co"># or 0.74 (depending on the required power).</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="va">EPA.89b.cadmium.df</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>    Cadmium.orig Cadmium Censored  Well.type</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 1           0.1   0.100    FALSE Background</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 2          0.12   0.120    FALSE Background</span>
@@ -418,60 +440,60 @@
 <span class="r-out co"><span class="r-pr">#&gt;</span> 86          BDL   0.000     TRUE Compliance</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 87          BDL   0.000     TRUE Compliance</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 88          BDL   0.000     TRUE Compliance</span>
-<span class="r-in">  <span class="co">#   Cadmium.orig Cadmium Censored  Well.type</span></span>
-<span class="r-in">  <span class="co">#1           0.1   0.100    FALSE Background</span></span>
-<span class="r-in">  <span class="co">#2          0.12   0.120    FALSE Background</span></span>
-<span class="r-in">  <span class="co">#3           BDL   0.000     TRUE Background</span></span>
-<span class="r-in">  <span class="co"># ..........................................</span></span>
-<span class="r-in">  <span class="co">#86          BDL   0.000     TRUE Compliance</span></span>
-<span class="r-in">  <span class="co">#87          BDL   0.000     TRUE Compliance</span></span>
-<span class="r-in">  <span class="co">#88          BDL   0.000     TRUE Compliance</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="va">p.hat.back</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/with.html" class="external-link">with</a></span><span class="op">(</span><span class="va">EPA.89b.cadmium.df</span>, </span>
-<span class="r-in">    <span class="fu"><a href="https://rdrr.io/r/base/mean.html" class="external-link">mean</a></span><span class="op">(</span><span class="op">!</span><span class="va">Censored</span><span class="op">[</span><span class="va">Well.type</span><span class="op">==</span><span class="st">"Background"</span><span class="op">]</span><span class="op">)</span><span class="op">)</span> </span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="va">p.hat.back</span> </span>
+<span class="r-in"><span>  <span class="co">#   Cadmium.orig Cadmium Censored  Well.type</span></span></span>
+<span class="r-in"><span>  <span class="co">#1           0.1   0.100    FALSE Background</span></span></span>
+<span class="r-in"><span>  <span class="co">#2          0.12   0.120    FALSE Background</span></span></span>
+<span class="r-in"><span>  <span class="co">#3           BDL   0.000     TRUE Background</span></span></span>
+<span class="r-in"><span>  <span class="co"># ..........................................</span></span></span>
+<span class="r-in"><span>  <span class="co">#86          BDL   0.000     TRUE Compliance</span></span></span>
+<span class="r-in"><span>  <span class="co">#87          BDL   0.000     TRUE Compliance</span></span></span>
+<span class="r-in"><span>  <span class="co">#88          BDL   0.000     TRUE Compliance</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="va">p.hat.back</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/with.html" class="external-link">with</a></span><span class="op">(</span><span class="va">EPA.89b.cadmium.df</span>, </span></span>
+<span class="r-in"><span>    <span class="fu"><a href="https://rdrr.io/r/base/mean.html" class="external-link">mean</a></span><span class="op">(</span><span class="op">!</span><span class="va">Censored</span><span class="op">[</span><span class="va">Well.type</span><span class="op">==</span><span class="st">"Background"</span><span class="op">]</span><span class="op">)</span><span class="op">)</span> </span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="va">p.hat.back</span> </span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] 0.3333333</span>
-<span class="r-in">  <span class="co">#[1] 0.3333333 </span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="va">p.hat.comp</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/with.html" class="external-link">with</a></span><span class="op">(</span><span class="va">EPA.89b.cadmium.df</span>, </span>
-<span class="r-in">    <span class="fu"><a href="https://rdrr.io/r/base/mean.html" class="external-link">mean</a></span><span class="op">(</span><span class="op">!</span><span class="va">Censored</span><span class="op">[</span><span class="va">Well.type</span><span class="op">==</span><span class="st">"Compliance"</span><span class="op">]</span><span class="op">)</span><span class="op">)</span> </span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="va">p.hat.comp</span> </span>
+<span class="r-in"><span>  <span class="co">#[1] 0.3333333 </span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="va">p.hat.comp</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/with.html" class="external-link">with</a></span><span class="op">(</span><span class="va">EPA.89b.cadmium.df</span>, </span></span>
+<span class="r-in"><span>    <span class="fu"><a href="https://rdrr.io/r/base/mean.html" class="external-link">mean</a></span><span class="op">(</span><span class="op">!</span><span class="va">Censored</span><span class="op">[</span><span class="va">Well.type</span><span class="op">==</span><span class="st">"Compliance"</span><span class="op">]</span><span class="op">)</span><span class="op">)</span> </span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="va">p.hat.comp</span> </span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] 0.375</span>
-<span class="r-in">  <span class="co">#[1] 0.375 </span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="va">n.back</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/with.html" class="external-link">with</a></span><span class="op">(</span><span class="va">EPA.89b.cadmium.df</span>, </span>
-<span class="r-in">    <span class="fu"><a href="https://rdrr.io/r/base/sum.html" class="external-link">sum</a></span><span class="op">(</span><span class="va">Well.type</span> <span class="op">==</span> <span class="st">"Background"</span><span class="op">)</span><span class="op">)</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="va">n.back</span> </span>
+<span class="r-in"><span>  <span class="co">#[1] 0.375 </span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="va">n.back</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/with.html" class="external-link">with</a></span><span class="op">(</span><span class="va">EPA.89b.cadmium.df</span>, </span></span>
+<span class="r-in"><span>    <span class="fu"><a href="https://rdrr.io/r/base/sum.html" class="external-link">sum</a></span><span class="op">(</span><span class="va">Well.type</span> <span class="op">==</span> <span class="st">"Background"</span><span class="op">)</span><span class="op">)</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="va">n.back</span> </span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] 24</span>
-<span class="r-in">  <span class="co">#[1] 24 </span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="va">n.comp</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/with.html" class="external-link">with</a></span><span class="op">(</span><span class="va">EPA.89b.cadmium.df</span>, </span>
-<span class="r-in">    <span class="fu"><a href="https://rdrr.io/r/base/sum.html" class="external-link">sum</a></span><span class="op">(</span><span class="va">Well.type</span> <span class="op">==</span> <span class="st">"Compliance"</span><span class="op">)</span><span class="op">)</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="va">n.comp</span> </span>
+<span class="r-in"><span>  <span class="co">#[1] 24 </span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="va">n.comp</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/with.html" class="external-link">with</a></span><span class="op">(</span><span class="va">EPA.89b.cadmium.df</span>, </span></span>
+<span class="r-in"><span>    <span class="fu"><a href="https://rdrr.io/r/base/sum.html" class="external-link">sum</a></span><span class="op">(</span><span class="va">Well.type</span> <span class="op">==</span> <span class="st">"Compliance"</span><span class="op">)</span><span class="op">)</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="va">n.comp</span> </span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] 64</span>
-<span class="r-in">  <span class="co">#[1] 64 </span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="va">mdd</span> <span class="op">&lt;-</span> <span class="fu">propTestMdd</span><span class="op">(</span>n.or.n1 <span class="op">=</span> <span class="va">n.comp</span>, n2 <span class="op">=</span> <span class="va">n.back</span>, </span>
-<span class="r-in">    p0.or.p2 <span class="op">=</span> <span class="va">p.hat.back</span>, power <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">.80</span>, <span class="fl">.90</span>, <span class="fl">.95</span><span class="op">)</span>, </span>
-<span class="r-in">    sample.type <span class="op">=</span> <span class="st">"two"</span>, alternative <span class="op">=</span> <span class="st">"greater"</span><span class="op">)</span> </span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="fu"><a href="https://rdrr.io/r/base/Round.html" class="external-link">round</a></span><span class="op">(</span><span class="va">mdd</span>, <span class="fl">2</span><span class="op">)</span> </span>
+<span class="r-in"><span>  <span class="co">#[1] 64 </span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="va">mdd</span> <span class="op">&lt;-</span> <span class="fu">propTestMdd</span><span class="op">(</span>n.or.n1 <span class="op">=</span> <span class="va">n.comp</span>, n2 <span class="op">=</span> <span class="va">n.back</span>, </span></span>
+<span class="r-in"><span>    p0.or.p2 <span class="op">=</span> <span class="va">p.hat.back</span>, power <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">.80</span>, <span class="fl">.90</span>, <span class="fl">.95</span><span class="op">)</span>, </span></span>
+<span class="r-in"><span>    sample.type <span class="op">=</span> <span class="st">"two"</span>, alternative <span class="op">=</span> <span class="st">"greater"</span><span class="op">)</span> </span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/r/base/Round.html" class="external-link">round</a></span><span class="op">(</span><span class="va">mdd</span>, <span class="fl">2</span><span class="op">)</span> </span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] 0.32 0.37 0.40</span>
-<span class="r-in">  <span class="co">#[1] 0.32 0.37 0.40 </span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="fu"><a href="https://rdrr.io/r/base/Round.html" class="external-link">round</a></span><span class="op">(</span><span class="va">mdd</span> <span class="op">+</span> <span class="va">p.hat.back</span>, <span class="fl">2</span><span class="op">)</span> </span>
+<span class="r-in"><span>  <span class="co">#[1] 0.32 0.37 0.40 </span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/r/base/Round.html" class="external-link">round</a></span><span class="op">(</span><span class="va">mdd</span> <span class="op">+</span> <span class="va">p.hat.back</span>, <span class="fl">2</span><span class="op">)</span> </span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] 0.65 0.70 0.73</span>
-<span class="r-in">  <span class="co">#[1] 0.65 0.70 0.73</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="co">#----------</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="co"># Clean up</span></span>
-<span class="r-in">  <span class="co">#---------</span></span>
-<span class="r-in">  <span class="fu"><a href="https://rdrr.io/r/base/rm.html" class="external-link">rm</a></span><span class="op">(</span><span class="va">p.hat.back</span>, <span class="va">p.hat.comp</span>, <span class="va">n.back</span>, <span class="va">n.comp</span>, <span class="va">mdd</span><span class="op">)</span></span>
+<span class="r-in"><span>  <span class="co">#[1] 0.65 0.70 0.73</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="co">#----------</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="co"># Clean up</span></span></span>
+<span class="r-in"><span>  <span class="co">#---------</span></span></span>
+<span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/r/base/rm.html" class="external-link">rm</a></span><span class="op">(</span><span class="va">p.hat.back</span>, <span class="va">p.hat.comp</span>, <span class="va">n.back</span>, <span class="va">n.comp</span>, <span class="va">mdd</span><span class="op">)</span></span></span>
 </code></pre></div>
     </div>
   </div>
@@ -486,7 +508,7 @@
 </div>
 
 <div class="pkgdown">
-  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.2.</p>
+  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.6.</p>
 </div>
 
       </footer></div>

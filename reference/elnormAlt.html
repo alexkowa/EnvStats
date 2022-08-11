@@ -54,46 +54,53 @@
     </div>
 
     <div id="ref-usage">
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="fu">elnormAlt</span><span class="op">(</span><span class="va">x</span>, method <span class="op">=</span> <span class="st">"mvue"</span>, ci <span class="op">=</span> <span class="cn">FALSE</span>, ci.type <span class="op">=</span> <span class="st">"two-sided"</span>, 
-    ci.method <span class="op">=</span> <span class="st">"land"</span>, conf.level <span class="op">=</span> <span class="fl">0.95</span>, parkin.list <span class="op">=</span> <span class="cn">NULL</span><span class="op">)</span></code></pre></div>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">elnormAlt</span><span class="op">(</span><span class="va">x</span>, method <span class="op">=</span> <span class="st">"mvue"</span>, ci <span class="op">=</span> <span class="cn">FALSE</span>, ci.type <span class="op">=</span> <span class="st">"two-sided"</span>, </span>
+<span>    ci.method <span class="op">=</span> <span class="st">"land"</span>, conf.level <span class="op">=</span> <span class="fl">0.95</span>, parkin.list <span class="op">=</span> <span class="cn">NULL</span><span class="op">)</span></span></code></pre></div>
     </div>
 
     <div id="arguments">
     <h2>Arguments</h2>
     <dl><dt>x</dt>
 <dd><p>numeric vector of positive observations.</p></dd>
-<dt>method</dt>
+
+  <dt>method</dt>
 <dd><p>character string specifying the method of estimation.  Possible values are 
   <code>"mvue"</code> (minimum variance unbiased; the default), <code>"qmle"</code> 
   (quasi maximum likelihood), <code>"mle"</code> (maximum likelihood), <code>"mme"</code> 
   (method of moments), and <code>"mmue"</code> (method of moments based on the unbiased 
   estimate of variance).  See the DETAILS section for more information on these 
   estimation methods.</p></dd>
-<dt>ci</dt>
+
+  <dt>ci</dt>
 <dd><p>logical scalar indicating whether to compute a confidence interval for the 
   mean.  The default value is <code>FALSE</code>.</p></dd>
-<dt>ci.type</dt>
+
+  <dt>ci.type</dt>
 <dd><p>character string indicating what kind of confidence interval to compute.  The 
   possible values are <code>"two-sided"</code> (the default), <code>"lower"</code>, and 
   <code>"upper"</code>.  This argument is ignored if <code>ci=FALSE</code>.</p></dd>
-<dt>ci.method</dt>
+
+  <dt>ci.method</dt>
 <dd><p>character string indicating what method to use to construct the confidence interval 
   for the mean.  The possible values are <code>"land"</code> (Land's method; the default), 
   <code>zou</code> (Zou et al.'s method), <code>"parkin"</code> (Parkin et al.'s method), 
   <code>"cox"</code> (Cox's approximation), and <code>"normal.approx"</code> (normal approximation).  
   See the DETAILS section for more information.  This argument is ignored if 
   <code>ci=FALSE</code>.</p></dd>
-<dt>conf.level</dt>
+
+  <dt>conf.level</dt>
 <dd><p>a scalar between 0 and 1 indicating the confidence level of the confidence interval.  
   The default value is <code>conf.level=0.95</code>. This argument is ignored if 
   <code>ci=FALSE</code>.</p></dd>
-<dt>parkin.list</dt>
+
+  <dt>parkin.list</dt>
 <dd><p>a list containing arguments for the function <code><a href="eqnpar.html">eqnpar</a></code>.  The components 
   of this list are <code>lcl.rank</code> (set to <code>NULL</code> by default), <code>ucl.rank</code> 
   (set to <code>NULL</code> by default), <code>ci.method</code> (set to <code>"exact"</code> if the 
   sample size is \(\le 20\), otherwise set to <br><code>"normal.approx"</code>), and 
   <code>approx.conf.level</code> (set to the value of <code>conf.level</code>).  This argument is 
   ignored unless <code>ci=TRUE</code> and <code>ci.method="parkin"</code>.</p></dd>
+
 </dl></div>
     <div id="details">
     <h2>Details</h2>
@@ -303,8 +310,12 @@
     </div>
     <div id="value">
     <h2>Value</h2>
-    <p>a list of class <code>"estimate"</code> containing the estimated parameters and other information.  
-  See <br><code><a href="estimate.object.html">estimate.object</a></code> for details.</p>
+    
+
+<p>a list of class <code>"estimate"</code> containing the estimated parameters and other information.  
+  See <br></p>
+<p></p>
+<p><code><a href="estimate.object.html">estimate.object</a></code> for details.</p>
     </div>
     <div id="references">
     <h2>References</h2>
@@ -456,11 +467,11 @@
 
     <div id="ref-examples">
     <h2>Examples</h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in">  <span class="co"># Using the Reference area TcCB data in the data frame EPA.94b.tccb.df, </span></span>
-<span class="r-in">  <span class="co"># estimate the mean and coefficient of variation, </span></span>
-<span class="r-in">  <span class="co"># and construct a 95% confidence interval for the mean.</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="fu"><a href="https://rdrr.io/r/base/with.html" class="external-link">with</a></span><span class="op">(</span><span class="va">EPA.94b.tccb.df</span>, <span class="fu">elnormAlt</span><span class="op">(</span><span class="va">TcCB</span><span class="op">[</span><span class="va">Area</span> <span class="op">==</span> <span class="st">"Reference"</span><span class="op">]</span>, ci <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span><span class="op">)</span>  </span>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span>  <span class="co"># Using the Reference area TcCB data in the data frame EPA.94b.tccb.df, </span></span></span>
+<span class="r-in"><span>  <span class="co"># estimate the mean and coefficient of variation, </span></span></span>
+<span class="r-in"><span>  <span class="co"># and construct a 95% confidence interval for the mean.</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/r/base/with.html" class="external-link">with</a></span><span class="op">(</span><span class="va">EPA.94b.tccb.df</span>, <span class="fu">elnormAlt</span><span class="op">(</span><span class="va">TcCB</span><span class="op">[</span><span class="va">Area</span> <span class="op">==</span> <span class="st">"Reference"</span><span class="op">]</span>, ci <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span><span class="op">)</span>  </span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> $distribution</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] "Lognormal"</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
@@ -514,131 +525,131 @@
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> attr(,"class")</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] "estimate"</span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="co">#Results of Distribution Parameter Estimation</span></span>
-<span class="r-in">  <span class="co">#--------------------------------------------</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Assumed Distribution:            Lognormal</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Estimated Parameter(s):          mean = 0.5989072</span></span>
-<span class="r-in">  <span class="co">#                                 cv   = 0.4899539</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Estimation Method:               mvue</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Data:                            TcCB[Area == "Reference"]</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Sample Size:                     47</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Confidence Interval for:         mean</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Confidence Interval Method:      Land</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Confidence Interval Type:        two-sided</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Confidence Level:                95%</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Confidence Interval:             LCL = 0.5243787</span></span>
-<span class="r-in">  <span class="co">#                                 UCL = 0.7016992</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="co">#----------</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="co"># Compare the different methods of estimating the distribution parameters using the </span></span>
-<span class="r-in">  <span class="co"># Reference area TcCB data.</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="fu"><a href="https://rdrr.io/r/base/with.html" class="external-link">with</a></span><span class="op">(</span><span class="va">EPA.94b.tccb.df</span>, <span class="fu">elnormAlt</span><span class="op">(</span><span class="va">TcCB</span><span class="op">[</span><span class="va">Area</span> <span class="op">==</span> <span class="st">"Reference"</span><span class="op">]</span>, method <span class="op">=</span> <span class="st">"mvue"</span><span class="op">)</span><span class="op">)</span><span class="op">$</span><span class="va">parameters</span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="co">#Results of Distribution Parameter Estimation</span></span></span>
+<span class="r-in"><span>  <span class="co">#--------------------------------------------</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Assumed Distribution:            Lognormal</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Estimated Parameter(s):          mean = 0.5989072</span></span></span>
+<span class="r-in"><span>  <span class="co">#                                 cv   = 0.4899539</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Estimation Method:               mvue</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Data:                            TcCB[Area == "Reference"]</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Sample Size:                     47</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Confidence Interval for:         mean</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Confidence Interval Method:      Land</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Confidence Interval Type:        two-sided</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Confidence Level:                95%</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Confidence Interval:             LCL = 0.5243787</span></span></span>
+<span class="r-in"><span>  <span class="co">#                                 UCL = 0.7016992</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="co">#----------</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="co"># Compare the different methods of estimating the distribution parameters using the </span></span></span>
+<span class="r-in"><span>  <span class="co"># Reference area TcCB data.</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/r/base/with.html" class="external-link">with</a></span><span class="op">(</span><span class="va">EPA.94b.tccb.df</span>, <span class="fu">elnormAlt</span><span class="op">(</span><span class="va">TcCB</span><span class="op">[</span><span class="va">Area</span> <span class="op">==</span> <span class="st">"Reference"</span><span class="op">]</span>, method <span class="op">=</span> <span class="st">"mvue"</span><span class="op">)</span><span class="op">)</span><span class="op">$</span><span class="va">parameters</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>      mean        cv </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 0.5989072 0.4899539 </span>
-<span class="r-in">  <span class="co">#     mean        cv </span></span>
-<span class="r-in">  <span class="co">#0.5989072 0.4899539</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="fu"><a href="https://rdrr.io/r/base/with.html" class="external-link">with</a></span><span class="op">(</span><span class="va">EPA.94b.tccb.df</span>, <span class="fu">elnormAlt</span><span class="op">(</span><span class="va">TcCB</span><span class="op">[</span><span class="va">Area</span> <span class="op">==</span> <span class="st">"Reference"</span><span class="op">]</span>, method <span class="op">=</span> <span class="st">"qmle"</span><span class="op">)</span><span class="op">)</span><span class="op">$</span><span class="va">parameters</span></span>
+<span class="r-in"><span>  <span class="co">#     mean        cv </span></span></span>
+<span class="r-in"><span>  <span class="co">#0.5989072 0.4899539</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/r/base/with.html" class="external-link">with</a></span><span class="op">(</span><span class="va">EPA.94b.tccb.df</span>, <span class="fu">elnormAlt</span><span class="op">(</span><span class="va">TcCB</span><span class="op">[</span><span class="va">Area</span> <span class="op">==</span> <span class="st">"Reference"</span><span class="op">]</span>, method <span class="op">=</span> <span class="st">"qmle"</span><span class="op">)</span><span class="op">)</span><span class="op">$</span><span class="va">parameters</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>      mean        cv </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 0.6004468 0.4947791 </span>
-<span class="r-in">  <span class="co">#     mean        cv </span></span>
-<span class="r-in">  <span class="co">#0.6004468 0.4947791 </span></span>
-<span class="r-in"> </span>
-<span class="r-in">  <span class="fu"><a href="https://rdrr.io/r/base/with.html" class="external-link">with</a></span><span class="op">(</span><span class="va">EPA.94b.tccb.df</span>, <span class="fu">elnormAlt</span><span class="op">(</span><span class="va">TcCB</span><span class="op">[</span><span class="va">Area</span> <span class="op">==</span> <span class="st">"Reference"</span><span class="op">]</span>, method <span class="op">=</span> <span class="st">"mle"</span><span class="op">)</span><span class="op">)</span><span class="op">$</span><span class="va">parameters</span></span>
+<span class="r-in"><span>  <span class="co">#     mean        cv </span></span></span>
+<span class="r-in"><span>  <span class="co">#0.6004468 0.4947791 </span></span></span>
+<span class="r-in"><span> </span></span>
+<span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/r/base/with.html" class="external-link">with</a></span><span class="op">(</span><span class="va">EPA.94b.tccb.df</span>, <span class="fu">elnormAlt</span><span class="op">(</span><span class="va">TcCB</span><span class="op">[</span><span class="va">Area</span> <span class="op">==</span> <span class="st">"Reference"</span><span class="op">]</span>, method <span class="op">=</span> <span class="st">"mle"</span><span class="op">)</span><span class="op">)</span><span class="op">$</span><span class="va">parameters</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>      mean        cv </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 0.5990497 0.4888968 </span>
-<span class="r-in">  <span class="co">#     mean        cv </span></span>
-<span class="r-in">  <span class="co">#0.5990497 0.4888968 </span></span>
-<span class="r-in"> </span>
-<span class="r-in">  <span class="fu"><a href="https://rdrr.io/r/base/with.html" class="external-link">with</a></span><span class="op">(</span><span class="va">EPA.94b.tccb.df</span>, <span class="fu">elnormAlt</span><span class="op">(</span><span class="va">TcCB</span><span class="op">[</span><span class="va">Area</span> <span class="op">==</span> <span class="st">"Reference"</span><span class="op">]</span>, method <span class="op">=</span> <span class="st">"mme"</span><span class="op">)</span><span class="op">)</span><span class="op">$</span><span class="va">parameters</span></span>
+<span class="r-in"><span>  <span class="co">#     mean        cv </span></span></span>
+<span class="r-in"><span>  <span class="co">#0.5990497 0.4888968 </span></span></span>
+<span class="r-in"><span> </span></span>
+<span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/r/base/with.html" class="external-link">with</a></span><span class="op">(</span><span class="va">EPA.94b.tccb.df</span>, <span class="fu">elnormAlt</span><span class="op">(</span><span class="va">TcCB</span><span class="op">[</span><span class="va">Area</span> <span class="op">==</span> <span class="st">"Reference"</span><span class="op">]</span>, method <span class="op">=</span> <span class="st">"mme"</span><span class="op">)</span><span class="op">)</span><span class="op">$</span><span class="va">parameters</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>      mean        cv </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 0.5985106 0.4688423 </span>
-<span class="r-in">  <span class="co">#     mean        cv </span></span>
-<span class="r-in">  <span class="co">#0.5985106 0.4688423 </span></span>
-<span class="r-in"> </span>
-<span class="r-in">  <span class="fu"><a href="https://rdrr.io/r/base/with.html" class="external-link">with</a></span><span class="op">(</span><span class="va">EPA.94b.tccb.df</span>, <span class="fu">elnormAlt</span><span class="op">(</span><span class="va">TcCB</span><span class="op">[</span><span class="va">Area</span> <span class="op">==</span> <span class="st">"Reference"</span><span class="op">]</span>, method <span class="op">=</span> <span class="st">"mmue"</span><span class="op">)</span><span class="op">)</span><span class="op">$</span><span class="va">parameters</span></span>
+<span class="r-in"><span>  <span class="co">#     mean        cv </span></span></span>
+<span class="r-in"><span>  <span class="co">#0.5985106 0.4688423 </span></span></span>
+<span class="r-in"><span> </span></span>
+<span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/r/base/with.html" class="external-link">with</a></span><span class="op">(</span><span class="va">EPA.94b.tccb.df</span>, <span class="fu">elnormAlt</span><span class="op">(</span><span class="va">TcCB</span><span class="op">[</span><span class="va">Area</span> <span class="op">==</span> <span class="st">"Reference"</span><span class="op">]</span>, method <span class="op">=</span> <span class="st">"mmue"</span><span class="op">)</span><span class="op">)</span><span class="op">$</span><span class="va">parameters</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>      mean        cv </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 0.5985106 0.4739110 </span>
-<span class="r-in">  <span class="co">#     mean        cv </span></span>
-<span class="r-in">  <span class="co">#0.5985106 0.4739110</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="co">#----------</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="co"># Compare the different methods of constructing the confidence interval for</span></span>
-<span class="r-in">  <span class="co"># the mean using the Reference area TcCB data.</span></span>
-<span class="r-in"> </span>
-<span class="r-in">  <span class="fu"><a href="https://rdrr.io/r/base/with.html" class="external-link">with</a></span><span class="op">(</span><span class="va">EPA.94b.tccb.df</span>, <span class="fu">elnormAlt</span><span class="op">(</span><span class="va">TcCB</span><span class="op">[</span><span class="va">Area</span> <span class="op">==</span> <span class="st">"Reference"</span><span class="op">]</span>, </span>
-<span class="r-in">    method <span class="op">=</span> <span class="st">"mvue"</span>, ci <span class="op">=</span> <span class="cn">TRUE</span>, ci.method <span class="op">=</span> <span class="st">"land"</span><span class="op">)</span><span class="op">)</span><span class="op">$</span><span class="va">interval</span><span class="op">$</span><span class="va">limits</span></span>
+<span class="r-in"><span>  <span class="co">#     mean        cv </span></span></span>
+<span class="r-in"><span>  <span class="co">#0.5985106 0.4739110</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="co">#----------</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="co"># Compare the different methods of constructing the confidence interval for</span></span></span>
+<span class="r-in"><span>  <span class="co"># the mean using the Reference area TcCB data.</span></span></span>
+<span class="r-in"><span> </span></span>
+<span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/r/base/with.html" class="external-link">with</a></span><span class="op">(</span><span class="va">EPA.94b.tccb.df</span>, <span class="fu">elnormAlt</span><span class="op">(</span><span class="va">TcCB</span><span class="op">[</span><span class="va">Area</span> <span class="op">==</span> <span class="st">"Reference"</span><span class="op">]</span>, </span></span>
+<span class="r-in"><span>    method <span class="op">=</span> <span class="st">"mvue"</span>, ci <span class="op">=</span> <span class="cn">TRUE</span>, ci.method <span class="op">=</span> <span class="st">"land"</span><span class="op">)</span><span class="op">)</span><span class="op">$</span><span class="va">interval</span><span class="op">$</span><span class="va">limits</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>       LCL       UCL </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 0.5243787 0.7016992 </span>
-<span class="r-in">  <span class="co">#      LCL       UCL </span></span>
-<span class="r-in">  <span class="co">#0.5243787 0.7016992</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="fu"><a href="https://rdrr.io/r/base/with.html" class="external-link">with</a></span><span class="op">(</span><span class="va">EPA.94b.tccb.df</span>, <span class="fu">elnormAlt</span><span class="op">(</span><span class="va">TcCB</span><span class="op">[</span><span class="va">Area</span> <span class="op">==</span> <span class="st">"Reference"</span><span class="op">]</span>, </span>
-<span class="r-in">    method <span class="op">=</span> <span class="st">"mvue"</span>, ci <span class="op">=</span> <span class="cn">TRUE</span>, ci.method <span class="op">=</span> <span class="st">"zou"</span><span class="op">)</span><span class="op">)</span><span class="op">$</span><span class="va">interval</span><span class="op">$</span><span class="va">limits</span></span>
+<span class="r-in"><span>  <span class="co">#      LCL       UCL </span></span></span>
+<span class="r-in"><span>  <span class="co">#0.5243787 0.7016992</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/r/base/with.html" class="external-link">with</a></span><span class="op">(</span><span class="va">EPA.94b.tccb.df</span>, <span class="fu">elnormAlt</span><span class="op">(</span><span class="va">TcCB</span><span class="op">[</span><span class="va">Area</span> <span class="op">==</span> <span class="st">"Reference"</span><span class="op">]</span>, </span></span>
+<span class="r-in"><span>    method <span class="op">=</span> <span class="st">"mvue"</span>, ci <span class="op">=</span> <span class="cn">TRUE</span>, ci.method <span class="op">=</span> <span class="st">"zou"</span><span class="op">)</span><span class="op">)</span><span class="op">$</span><span class="va">interval</span><span class="op">$</span><span class="va">limits</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>       LCL       UCL </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 0.5230444 0.6962071 </span>
-<span class="r-in">  <span class="co">#      LCL       UCL </span></span>
-<span class="r-in">  <span class="co">#0.5230444 0.6962071 </span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="fu"><a href="https://rdrr.io/r/base/with.html" class="external-link">with</a></span><span class="op">(</span><span class="va">EPA.94b.tccb.df</span>, <span class="fu">elnormAlt</span><span class="op">(</span><span class="va">TcCB</span><span class="op">[</span><span class="va">Area</span> <span class="op">==</span> <span class="st">"Reference"</span><span class="op">]</span>, </span>
-<span class="r-in">    method <span class="op">=</span> <span class="st">"mvue"</span>, ci <span class="op">=</span> <span class="cn">TRUE</span>, ci.method <span class="op">=</span> <span class="st">"parkin"</span><span class="op">)</span><span class="op">)</span><span class="op">$</span><span class="va">interval</span><span class="op">$</span><span class="va">limits</span></span>
+<span class="r-in"><span>  <span class="co">#      LCL       UCL </span></span></span>
+<span class="r-in"><span>  <span class="co">#0.5230444 0.6962071 </span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/r/base/with.html" class="external-link">with</a></span><span class="op">(</span><span class="va">EPA.94b.tccb.df</span>, <span class="fu">elnormAlt</span><span class="op">(</span><span class="va">TcCB</span><span class="op">[</span><span class="va">Area</span> <span class="op">==</span> <span class="st">"Reference"</span><span class="op">]</span>, </span></span>
+<span class="r-in"><span>    method <span class="op">=</span> <span class="st">"mvue"</span>, ci <span class="op">=</span> <span class="cn">TRUE</span>, ci.method <span class="op">=</span> <span class="st">"parkin"</span><span class="op">)</span><span class="op">)</span><span class="op">$</span><span class="va">interval</span><span class="op">$</span><span class="va">limits</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  LCL  UCL </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 0.50 0.74 </span>
-<span class="r-in">  <span class="co"># LCL  UCL </span></span>
-<span class="r-in">  <span class="co">#0.50 0.74 </span></span>
-<span class="r-in"> </span>
-<span class="r-in">  <span class="fu"><a href="https://rdrr.io/r/base/with.html" class="external-link">with</a></span><span class="op">(</span><span class="va">EPA.94b.tccb.df</span>, <span class="fu">elnormAlt</span><span class="op">(</span><span class="va">TcCB</span><span class="op">[</span><span class="va">Area</span> <span class="op">==</span> <span class="st">"Reference"</span><span class="op">]</span>, </span>
-<span class="r-in">     method <span class="op">=</span> <span class="st">"mvue"</span>, ci <span class="op">=</span> <span class="cn">TRUE</span>, ci.method <span class="op">=</span> <span class="st">"cox"</span><span class="op">)</span><span class="op">)</span><span class="op">$</span><span class="va">interval</span><span class="op">$</span><span class="va">limits</span></span>
+<span class="r-in"><span>  <span class="co"># LCL  UCL </span></span></span>
+<span class="r-in"><span>  <span class="co">#0.50 0.74 </span></span></span>
+<span class="r-in"><span> </span></span>
+<span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/r/base/with.html" class="external-link">with</a></span><span class="op">(</span><span class="va">EPA.94b.tccb.df</span>, <span class="fu">elnormAlt</span><span class="op">(</span><span class="va">TcCB</span><span class="op">[</span><span class="va">Area</span> <span class="op">==</span> <span class="st">"Reference"</span><span class="op">]</span>, </span></span>
+<span class="r-in"><span>     method <span class="op">=</span> <span class="st">"mvue"</span>, ci <span class="op">=</span> <span class="cn">TRUE</span>, ci.method <span class="op">=</span> <span class="st">"cox"</span><span class="op">)</span><span class="op">)</span><span class="op">$</span><span class="va">interval</span><span class="op">$</span><span class="va">limits</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>       LCL       UCL </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 0.5196213 0.6938444 </span>
-<span class="r-in">  <span class="co">#      LCL       UCL </span></span>
-<span class="r-in">  <span class="co">#0.5196213 0.6938444 </span></span>
-<span class="r-in"> </span>
-<span class="r-in">  <span class="fu"><a href="https://rdrr.io/r/base/with.html" class="external-link">with</a></span><span class="op">(</span><span class="va">EPA.94b.tccb.df</span>, <span class="fu">elnormAlt</span><span class="op">(</span><span class="va">TcCB</span><span class="op">[</span><span class="va">Area</span> <span class="op">==</span> <span class="st">"Reference"</span><span class="op">]</span>, </span>
-<span class="r-in">     method <span class="op">=</span> <span class="st">"mvue"</span>, ci <span class="op">=</span> <span class="cn">TRUE</span>, ci.method <span class="op">=</span> <span class="st">"normal.approx"</span><span class="op">)</span><span class="op">)</span><span class="op">$</span><span class="va">interval</span><span class="op">$</span><span class="va">limits</span></span>
+<span class="r-in"><span>  <span class="co">#      LCL       UCL </span></span></span>
+<span class="r-in"><span>  <span class="co">#0.5196213 0.6938444 </span></span></span>
+<span class="r-in"><span> </span></span>
+<span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/r/base/with.html" class="external-link">with</a></span><span class="op">(</span><span class="va">EPA.94b.tccb.df</span>, <span class="fu">elnormAlt</span><span class="op">(</span><span class="va">TcCB</span><span class="op">[</span><span class="va">Area</span> <span class="op">==</span> <span class="st">"Reference"</span><span class="op">]</span>, </span></span>
+<span class="r-in"><span>     method <span class="op">=</span> <span class="st">"mvue"</span>, ci <span class="op">=</span> <span class="cn">TRUE</span>, ci.method <span class="op">=</span> <span class="st">"normal.approx"</span><span class="op">)</span><span class="op">)</span><span class="op">$</span><span class="va">interval</span><span class="op">$</span><span class="va">limits</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>       LCL       UCL </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 0.5130160 0.6847984 </span>
-<span class="r-in">  <span class="co">#      LCL       UCL </span></span>
-<span class="r-in">  <span class="co">#0.5130160 0.6847984 </span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="co">#----------</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="co"># Reproduce the example in Highlights 7 and 8 of USEPA (1992d).  This example shows </span></span>
-<span class="r-in">  <span class="co"># how to compute the upper 95% confidence limit of the mean of a lognormal distribution </span></span>
-<span class="r-in">  <span class="co"># and compares it to the result of computing the upper 95% confidence limit assuming a </span></span>
-<span class="r-in">  <span class="co"># normal distribution. The data for this example are chromium concentrations (mg/kg) in </span></span>
-<span class="r-in">  <span class="co"># soil samples collected randomly over a Superfund site, and are stored in the data frame </span></span>
-<span class="r-in">  <span class="co"># EPA.92d.chromium.vec.</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="co"># First look at the data </span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="va">EPA.92d.chromium.vec</span></span>
+<span class="r-in"><span>  <span class="co">#      LCL       UCL </span></span></span>
+<span class="r-in"><span>  <span class="co">#0.5130160 0.6847984 </span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="co">#----------</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="co"># Reproduce the example in Highlights 7 and 8 of USEPA (1992d).  This example shows </span></span></span>
+<span class="r-in"><span>  <span class="co"># how to compute the upper 95% confidence limit of the mean of a lognormal distribution </span></span></span>
+<span class="r-in"><span>  <span class="co"># and compares it to the result of computing the upper 95% confidence limit assuming a </span></span></span>
+<span class="r-in"><span>  <span class="co"># normal distribution. The data for this example are chromium concentrations (mg/kg) in </span></span></span>
+<span class="r-in"><span>  <span class="co"># soil samples collected randomly over a Superfund site, and are stored in the data frame </span></span></span>
+<span class="r-in"><span>  <span class="co"># EPA.92d.chromium.vec.</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="co"># First look at the data </span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="va">EPA.92d.chromium.vec</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  [1]   10   13   20   36   41   59   67  110  110  136  140  160  200  230 1300</span>
-<span class="r-in">  <span class="co"># [1]   10   13   20   36   41   59   67  110  110  136  140  160  200  230 1300</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="fu"><a href="stripChart.html">stripChart</a></span><span class="op">(</span><span class="va">EPA.92d.chromium.vec</span>, ylab <span class="op">=</span> <span class="st">"Chromium (mg/kg)"</span><span class="op">)</span></span>
+<span class="r-in"><span>  <span class="co"># [1]   10   13   20   36   41   59   67  110  110  136  140  160  200  230 1300</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="fu"><a href="stripChart.html">stripChart</a></span><span class="op">(</span><span class="va">EPA.92d.chromium.vec</span>, ylab <span class="op">=</span> <span class="st">"Chromium (mg/kg)"</span><span class="op">)</span></span></span>
 <span class="r-plt img"><img src="elnormAlt-1.png" alt="" width="700" height="433"></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="co"># Note there is one very large "outlier" (1300).  </span></span>
-<span class="r-in">  <span class="co"># Perform a goodness-of-fit test to determine whether a lognormal distribution </span></span>
-<span class="r-in">  <span class="co"># is appropriate:</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="va">gof.list</span> <span class="op">&lt;-</span> <span class="fu"><a href="gofTest.html">gofTest</a></span><span class="op">(</span><span class="va">EPA.92d.chromium.vec</span>, dist <span class="op">=</span> <span class="st">'lnormAlt'</span><span class="op">)</span> </span>
-<span class="r-in">  <span class="va">gof.list</span> </span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="co"># Note there is one very large "outlier" (1300).  </span></span></span>
+<span class="r-in"><span>  <span class="co"># Perform a goodness-of-fit test to determine whether a lognormal distribution </span></span></span>
+<span class="r-in"><span>  <span class="co"># is appropriate:</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="va">gof.list</span> <span class="op">&lt;-</span> <span class="fu"><a href="gofTest.html">gofTest</a></span><span class="op">(</span><span class="va">EPA.92d.chromium.vec</span>, dist <span class="op">=</span> <span class="st">'lnormAlt'</span><span class="op">)</span> </span></span>
+<span class="r-in"><span>  <span class="va">gof.list</span> </span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> $distribution</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] "Lognormal"</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
@@ -689,45 +700,45 @@
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> attr(,"class")</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] "gof"</span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="co">#Results of Goodness-of-Fit Test </span></span>
-<span class="r-in">  <span class="co">#------------------------------- </span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Test Method:                     Shapiro-Wilk GOF</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Hypothesized Distribution:       Lognormal </span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Estimated Parameter(s):          mean = 159.855185</span></span>
-<span class="r-in">  <span class="co">#                                 cv   =   1.493994</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Estimation Method:               mvue</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Data:                            EPA.92d.chromium.vec</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Sample Size:                     15</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Test Statistic:                  W = 0.9607179</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Test Statistic Parameter:        n = 15</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#P-value:                         0.7048747</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Alternative Hypothesis:          True cdf does not equal the</span></span>
-<span class="r-in">  <span class="co">#                                 Lognormal Distribution. </span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">gof.list</span>, digits <span class="op">=</span> <span class="fl">2</span><span class="op">)</span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="co">#Results of Goodness-of-Fit Test </span></span></span>
+<span class="r-in"><span>  <span class="co">#------------------------------- </span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Test Method:                     Shapiro-Wilk GOF</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Hypothesized Distribution:       Lognormal </span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Estimated Parameter(s):          mean = 159.855185</span></span></span>
+<span class="r-in"><span>  <span class="co">#                                 cv   =   1.493994</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Estimation Method:               mvue</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Data:                            EPA.92d.chromium.vec</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Sample Size:                     15</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Test Statistic:                  W = 0.9607179</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Test Statistic Parameter:        n = 15</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#P-value:                         0.7048747</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Alternative Hypothesis:          True cdf does not equal the</span></span></span>
+<span class="r-in"><span>  <span class="co">#                                 Lognormal Distribution. </span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">gof.list</span>, digits <span class="op">=</span> <span class="fl">2</span><span class="op">)</span></span></span>
 <span class="r-plt img"><img src="elnormAlt-2.png" alt="" width="700" height="433"></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="co"># The lognormal distribution seems to provide an adequate fit, although the largest </span></span>
-<span class="r-in">  <span class="co"># observation (1300) is somewhat suspect, and given the small sample size there is </span></span>
-<span class="r-in">  <span class="co"># not much power to detect any kind of mild deviation from a lognormal distribution.</span></span>
-<span class="r-in">  </span>
-<span class="r-in">  <span class="co"># Now compute the one-sided 95% upper confidence limit for the mean.  </span></span>
-<span class="r-in">  <span class="co"># Note that the value of 502 mg/kg shown in Hightlight 7 of USEPA (1992d) is a bit </span></span>
-<span class="r-in">  <span class="co"># larger than the exact value of 496.6 mg/kg shown below.  </span></span>
-<span class="r-in">  <span class="co"># This is simply due to rounding error.</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="fu">elnormAlt</span><span class="op">(</span><span class="va">EPA.92d.chromium.vec</span>, ci <span class="op">=</span> <span class="cn">TRUE</span>, ci.type <span class="op">=</span> <span class="st">"upper"</span><span class="op">)</span> </span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="co"># The lognormal distribution seems to provide an adequate fit, although the largest </span></span></span>
+<span class="r-in"><span>  <span class="co"># observation (1300) is somewhat suspect, and given the small sample size there is </span></span></span>
+<span class="r-in"><span>  <span class="co"># not much power to detect any kind of mild deviation from a lognormal distribution.</span></span></span>
+<span class="r-in"><span>  </span></span>
+<span class="r-in"><span>  <span class="co"># Now compute the one-sided 95% upper confidence limit for the mean.  </span></span></span>
+<span class="r-in"><span>  <span class="co"># Note that the value of 502 mg/kg shown in Hightlight 7 of USEPA (1992d) is a bit </span></span></span>
+<span class="r-in"><span>  <span class="co"># larger than the exact value of 496.6 mg/kg shown below.  </span></span></span>
+<span class="r-in"><span>  <span class="co"># This is simply due to rounding error.</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="fu">elnormAlt</span><span class="op">(</span><span class="va">EPA.92d.chromium.vec</span>, ci <span class="op">=</span> <span class="cn">TRUE</span>, ci.type <span class="op">=</span> <span class="st">"upper"</span><span class="op">)</span> </span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> $distribution</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] "Lognormal"</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
@@ -781,38 +792,38 @@
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> attr(,"class")</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] "estimate"</span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="co">#Results of Distribution Parameter Estimation </span></span>
-<span class="r-in">  <span class="co">#-------------------------------------------- </span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Assumed Distribution:          Lognormal </span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Estimated Parameter(s):        mean = 159.855185</span></span>
-<span class="r-in">  <span class="co">#                                 cv   =   1.493994 </span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Estimation Method:             mvue </span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Data:                          EPA.92d.chromium.vec </span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Sample Size:                   15 </span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Confidence Interval for:       mean </span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Confidence Interval Method:    Land </span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Confidence Interval Type:      upper </span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Confidence Level:              95% </span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Confidence Interval:           LCL =   0 </span></span>
-<span class="r-in">  <span class="co">#                               UCL = 496.6282 </span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="co"># Now compare this result with the upper 95% confidence limit based on assuming </span></span>
-<span class="r-in">  <span class="co"># a normal distribution.  Again note that the value of 325 mg/kg shown in </span></span>
-<span class="r-in">  <span class="co"># Hightlight 8 is slightly larger than the exact value of 320.3 mg/kg shown below.  </span></span>
-<span class="r-in">  <span class="co"># This is simply due to rounding error.</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="fu"><a href="enorm.html">enorm</a></span><span class="op">(</span><span class="va">EPA.92d.chromium.vec</span>, ci <span class="op">=</span> <span class="cn">TRUE</span>, ci.type <span class="op">=</span> <span class="st">"upper"</span><span class="op">)</span> </span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="co">#Results of Distribution Parameter Estimation </span></span></span>
+<span class="r-in"><span>  <span class="co">#-------------------------------------------- </span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Assumed Distribution:          Lognormal </span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Estimated Parameter(s):        mean = 159.855185</span></span></span>
+<span class="r-in"><span>  <span class="co">#                                 cv   =   1.493994 </span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Estimation Method:             mvue </span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Data:                          EPA.92d.chromium.vec </span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Sample Size:                   15 </span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Confidence Interval for:       mean </span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Confidence Interval Method:    Land </span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Confidence Interval Type:      upper </span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Confidence Level:              95% </span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Confidence Interval:           LCL =   0 </span></span></span>
+<span class="r-in"><span>  <span class="co">#                               UCL = 496.6282 </span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="co"># Now compare this result with the upper 95% confidence limit based on assuming </span></span></span>
+<span class="r-in"><span>  <span class="co"># a normal distribution.  Again note that the value of 325 mg/kg shown in </span></span></span>
+<span class="r-in"><span>  <span class="co"># Hightlight 8 is slightly larger than the exact value of 320.3 mg/kg shown below.  </span></span></span>
+<span class="r-in"><span>  <span class="co"># This is simply due to rounding error.</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="fu"><a href="enorm.html">enorm</a></span><span class="op">(</span><span class="va">EPA.92d.chromium.vec</span>, ci <span class="op">=</span> <span class="cn">TRUE</span>, ci.type <span class="op">=</span> <span class="st">"upper"</span><span class="op">)</span> </span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> $distribution</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] "Normal"</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
@@ -866,38 +877,38 @@
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> attr(,"class")</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] "estimate"</span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="co">#Results of Distribution Parameter Estimation</span></span>
-<span class="r-in">  <span class="co">#--------------------------------------------</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Assumed Distribution:            Normal</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Estimated Parameter(s):          mean = 175.4667</span></span>
-<span class="r-in">  <span class="co">#                                 sd   = 318.5440</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Estimation Method:               mvue</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Data:                            EPA.92d.chromium.vec</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Sample Size:                     15</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Confidence Interval for:         mean</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Confidence Interval Method:      Exact</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Confidence Interval Type:        upper</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Confidence Level:                95%</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Confidence Interval:             LCL =     -Inf</span></span>
-<span class="r-in">  <span class="co">#                                 UCL = 320.3304</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="co">#----------</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="co"># Clean up</span></span>
-<span class="r-in">  <span class="co">#---------</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="fu"><a href="https://rdrr.io/r/base/rm.html" class="external-link">rm</a></span><span class="op">(</span><span class="va">gof.list</span><span class="op">)</span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="co">#Results of Distribution Parameter Estimation</span></span></span>
+<span class="r-in"><span>  <span class="co">#--------------------------------------------</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Assumed Distribution:            Normal</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Estimated Parameter(s):          mean = 175.4667</span></span></span>
+<span class="r-in"><span>  <span class="co">#                                 sd   = 318.5440</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Estimation Method:               mvue</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Data:                            EPA.92d.chromium.vec</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Sample Size:                     15</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Confidence Interval for:         mean</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Confidence Interval Method:      Exact</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Confidence Interval Type:        upper</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Confidence Level:                95%</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Confidence Interval:             LCL =     -Inf</span></span></span>
+<span class="r-in"><span>  <span class="co">#                                 UCL = 320.3304</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="co">#----------</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="co"># Clean up</span></span></span>
+<span class="r-in"><span>  <span class="co">#---------</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/r/base/rm.html" class="external-link">rm</a></span><span class="op">(</span><span class="va">gof.list</span><span class="op">)</span></span></span>
 </code></pre></div>
     </div>
   </div>
@@ -912,7 +923,7 @@
 </div>
 
 <div class="pkgdown">
-  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.2.</p>
+  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.6.</p>
 </div>
 
       </footer></div>

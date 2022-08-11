@@ -52,9 +52,9 @@
     </div>
 
     <div id="ref-usage">
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="fu">ciNparN</span><span class="op">(</span>p <span class="op">=</span> <span class="fl">0.5</span>, lcl.rank <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/ifelse.html" class="external-link">ifelse</a></span><span class="op">(</span><span class="va">ci.type</span> <span class="op">==</span> <span class="st">"upper"</span>, <span class="fl">0</span>, <span class="fl">1</span><span class="op">)</span>, 
-    n.plus.one.minus.ucl.rank <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/ifelse.html" class="external-link">ifelse</a></span><span class="op">(</span><span class="va">ci.type</span> <span class="op">==</span> <span class="st">"lower"</span>, <span class="fl">0</span>, <span class="fl">1</span><span class="op">)</span>, 
-    ci.type <span class="op">=</span> <span class="st">"two.sided"</span>, conf.level <span class="op">=</span> <span class="fl">0.95</span><span class="op">)</span></code></pre></div>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">ciNparN</span><span class="op">(</span>p <span class="op">=</span> <span class="fl">0.5</span>, lcl.rank <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/ifelse.html" class="external-link">ifelse</a></span><span class="op">(</span><span class="va">ci.type</span> <span class="op">==</span> <span class="st">"upper"</span>, <span class="fl">0</span>, <span class="fl">1</span><span class="op">)</span>, </span>
+<span>    n.plus.one.minus.ucl.rank <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/ifelse.html" class="external-link">ifelse</a></span><span class="op">(</span><span class="va">ci.type</span> <span class="op">==</span> <span class="st">"lower"</span>, <span class="fl">0</span>, <span class="fl">1</span><span class="op">)</span>, </span>
+<span>    ci.type <span class="op">=</span> <span class="st">"two.sided"</span>, conf.level <span class="op">=</span> <span class="fl">0.95</span><span class="op">)</span></span></code></pre></div>
     </div>
 
     <div id="arguments">
@@ -63,7 +63,8 @@
 <dd><p>numeric vector of probabilities specifying the quantiles.  
   All values of <code>p</code> must be between 0 and 
   1.  The default value is <code>p=0.5</code>.</p></dd>
-<dt>lcl.rank, n.plus.one.minus.ucl.rank</dt>
+
+  <dt>lcl.rank, n.plus.one.minus.ucl.rank</dt>
 <dd><p>numeric vectors of non-negative integers indicating the ranks of the 
   order statistics that are used for the lower and upper bounds of the 
   confidence interval for the specified quantile(s).  When <code>lcl.rank=1</code> 
@@ -79,14 +80,17 @@
   otherwise it is set to <code>1</code> by default.  
   When <code>ci.type="lower"</code> then <code>n.plus.one.minus.ucl.rank</code> is set 
   to <code>0</code> by default, otherwise it is set to <code>1</code> by default.</p></dd>
-<dt>ci.type</dt>
+
+  <dt>ci.type</dt>
 <dd><p>character string indicating what kind of confidence interval to compute.  The 
   possible values are <code>"two-sided"</code> (the default), <code>"lower"</code>, and 
   <code>"upper"</code>.</p></dd>
-<dt>conf.level</dt>
+
+  <dt>conf.level</dt>
 <dd><p>numeric vector of numbers between 0 and 1 indicating the confidence level 
   associated with the confidence interval(s).  The default value is 
   <code>conf=0.95</code>.</p></dd>
+
 </dl></div>
     <div id="details">
     <h2>Details</h2>
@@ -104,7 +108,9 @@
     </div>
     <div id="value">
     <h2>Value</h2>
-    <p>numeric vector of sample sizes.</p>
+    
+
+<p>numeric vector of sample sizes.</p>
     </div>
     <div id="references">
     <h2>References</h2>
@@ -126,25 +132,25 @@
 
     <div id="ref-examples">
     <h2>Examples</h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in">  <span class="co"># Look at how the required sample size for a confidence interval </span></span>
-<span class="r-in">  <span class="co"># increases with increasing confidence level for a fixed quantile:</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="fu"><a href="https://rdrr.io/r/base/seq.html" class="external-link">seq</a></span><span class="op">(</span><span class="fl">0.5</span>, <span class="fl">0.9</span>, by <span class="op">=</span> <span class="fl">0.1</span><span class="op">)</span> </span>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span>  <span class="co"># Look at how the required sample size for a confidence interval </span></span></span>
+<span class="r-in"><span>  <span class="co"># increases with increasing confidence level for a fixed quantile:</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/r/base/seq.html" class="external-link">seq</a></span><span class="op">(</span><span class="fl">0.5</span>, <span class="fl">0.9</span>, by <span class="op">=</span> <span class="fl">0.1</span><span class="op">)</span> </span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] 0.5 0.6 0.7 0.8 0.9</span>
-<span class="r-in">  <span class="co">#[1] 0.5 0.6 0.7 0.8 0.9 </span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="fu">ciNparN</span><span class="op">(</span>p <span class="op">=</span> <span class="fl">0.9</span>, conf.level<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/seq.html" class="external-link">seq</a></span><span class="op">(</span><span class="fl">0.5</span>, <span class="fl">0.9</span>, by <span class="op">=</span> <span class="fl">0.1</span><span class="op">)</span><span class="op">)</span> </span>
+<span class="r-in"><span>  <span class="co">#[1] 0.5 0.6 0.7 0.8 0.9 </span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="fu">ciNparN</span><span class="op">(</span>p <span class="op">=</span> <span class="fl">0.9</span>, conf.level<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/seq.html" class="external-link">seq</a></span><span class="op">(</span><span class="fl">0.5</span>, <span class="fl">0.9</span>, by <span class="op">=</span> <span class="fl">0.1</span><span class="op">)</span><span class="op">)</span> </span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1]  7  9 12 16 22</span>
-<span class="r-in">  <span class="co">#[1]  7  9 12 16 22</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="co">#----------</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="co"># Look at how the required sample size for a confidence interval increases </span></span>
-<span class="r-in">  <span class="co"># as the quantile moves away from 0.5:</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="fu">ciNparN</span><span class="op">(</span>p <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/seq.html" class="external-link">seq</a></span><span class="op">(</span><span class="fl">0.5</span>, <span class="fl">0.9</span>, by <span class="op">=</span> <span class="fl">0.1</span><span class="op">)</span><span class="op">)</span> </span>
+<span class="r-in"><span>  <span class="co">#[1]  7  9 12 16 22</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="co">#----------</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="co"># Look at how the required sample size for a confidence interval increases </span></span></span>
+<span class="r-in"><span>  <span class="co"># as the quantile moves away from 0.5:</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="fu">ciNparN</span><span class="op">(</span>p <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/seq.html" class="external-link">seq</a></span><span class="op">(</span><span class="fl">0.5</span>, <span class="fl">0.9</span>, by <span class="op">=</span> <span class="fl">0.1</span><span class="op">)</span><span class="op">)</span> </span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1]  6  7  9 14 29</span>
-<span class="r-in">  <span class="co">#[1]  6  7  9 14 29</span></span>
+<span class="r-in"><span>  <span class="co">#[1]  6  7  9 14 29</span></span></span>
 </code></pre></div>
     </div>
   </div>
@@ -159,7 +165,7 @@
 </div>
 
 <div class="pkgdown">
-  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.2.</p>
+  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.6.</p>
 </div>
 
       </footer></div>

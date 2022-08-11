@@ -54,34 +54,39 @@
     </div>
 
     <div id="ref-usage">
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="fu">gpqCiNormSinglyCensored</span><span class="op">(</span><span class="va">n</span>, <span class="va">n.cen</span>, <span class="va">probs</span>, <span class="va">nmc</span>, method <span class="op">=</span> <span class="st">"mle"</span>, 
-    censoring.side <span class="op">=</span> <span class="st">"left"</span>, seed <span class="op">=</span> <span class="cn">NULL</span>, names <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span>
-
-  <span class="fu">gpqCiNormMultiplyCensored</span><span class="op">(</span><span class="va">n</span>, <span class="va">cen.index</span>, <span class="va">probs</span>, <span class="va">nmc</span>, method <span class="op">=</span> <span class="st">"mle"</span>, 
-    censoring.side <span class="op">=</span> <span class="st">"left"</span>, seed <span class="op">=</span> <span class="cn">NULL</span>, names <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></code></pre></div>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">gpqCiNormSinglyCensored</span><span class="op">(</span><span class="va">n</span>, <span class="va">n.cen</span>, <span class="va">probs</span>, <span class="va">nmc</span>, method <span class="op">=</span> <span class="st">"mle"</span>, </span>
+<span>    censoring.side <span class="op">=</span> <span class="st">"left"</span>, seed <span class="op">=</span> <span class="cn">NULL</span>, names <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span>
+<span></span>
+<span>  <span class="fu">gpqCiNormMultiplyCensored</span><span class="op">(</span><span class="va">n</span>, <span class="va">cen.index</span>, <span class="va">probs</span>, <span class="va">nmc</span>, method <span class="op">=</span> <span class="st">"mle"</span>, </span>
+<span>    censoring.side <span class="op">=</span> <span class="st">"left"</span>, seed <span class="op">=</span> <span class="cn">NULL</span>, names <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></code></pre></div>
     </div>
 
     <div id="arguments">
     <h2>Arguments</h2>
     <dl><dt>n</dt>
 <dd><p>positive integer \(\ge 3\) indicating the sample size.</p></dd>
-<dt>n.cen</dt>
+
+  <dt>n.cen</dt>
 <dd><p>for the case of singly censored data, a positive integer indicating the number of 
   censored observations.  The value of <code>n.cen</code> must be between <code>1</code> and 
   <code>n-2</code>, inclusive.</p></dd>
-<dt>cen.index</dt>
+
+  <dt>cen.index</dt>
 <dd><p>for the case of multiply censored data, a sorted vector of unique integers 
   indicating the indices of the censored observations when the observations are 
   “ordered”.  The length of <code>cen.index</code> must be between <code>1</code> and 
   <code>n-2</code>, inclusive, and the values of <code>cen.index</code> must be between 
   <code>1</code> and <code>n</code>.</p></dd>
-<dt>probs</dt>
+
+  <dt>probs</dt>
 <dd><p>numeric vector of values between 0 and 1 indicating the confidence level(s) 
   associated with the GPQ(s).</p></dd>
-<dt>nmc</dt>
+
+  <dt>nmc</dt>
 <dd><p>positive integer \(\ge 10\) indicating the number of Monte Carlo trials to run 
   in order to compute the GPQ(s).</p></dd>
-<dt>method</dt>
+
+  <dt>method</dt>
 <dd><p>character string indicating the method to use for parameter estimation.  <br><br>
   For singly censored data, possible values are <code>"mle"</code> (the default), 
   <code>"bcmle"</code>, <code>"qq.reg"</code>, <code>"qq.reg.w.cen.level"</code>, 
@@ -92,16 +97,20 @@
   For multiply censored data, possible values are <code>"mle"</code> (the default), 
   <code>"qq.reg"</code>, <code>"impute.w.qq.reg"</code>, and <code>"half.cen.level"</code>.  
   See the help file for <code><a href="enormCensored.html">enormCensored</a></code> for details.</p></dd>
-<dt>censoring.side</dt>
+
+  <dt>censoring.side</dt>
 <dd><p>character string indicating on which side the censoring occurs.  The possible 
   values are <code>"left"</code> (the default) and <code>"right"</code>.</p></dd>
-<dt>seed</dt>
+
+  <dt>seed</dt>
 <dd><p>positive integer to pass to the function <code><a href="https://rdrr.io/r/base/Random.html" class="external-link">set.seed</a></code>.  This argument is 
   ignored if <code>seed=NULL</code> (the default).  Using the <code>seed</code> argument lets you 
   reproduce the exact same result if all other arguments stay the same.</p></dd>
-<dt>names</dt>
+
+  <dt>names</dt>
 <dd><p>a logical scalar passed to <code><a href="https://rdrr.io/r/stats/quantile.html" class="external-link">quantile</a></code> indicating whether to add a 
   names attribute to the resulting GPQ(s).  The default value is <code>names=TRUE</code>.</p></dd>
+
 </dl></div>
     <div id="details">
     <h2>Details</h2>
@@ -147,7 +156,9 @@
     </div>
     <div id="value">
     <h2>Value</h2>
-    <p>a numeric vector containing the GPQ(s).</p>
+    
+
+<p>a numeric vector containing the GPQ(s).</p>
     </div>
     <div id="references">
     <h2>References</h2>
@@ -172,92 +183,92 @@
 
     <div id="ref-examples">
     <h2>Examples</h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in">  <span class="co"># Reproduce the entries for n=10 observations with n.cen=6 in Table 4 </span></span>
-<span class="r-in">  <span class="co"># of Schmee et al. (1985, p.122).</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co"># Notes: </span></span>
-<span class="r-in">  <span class="co"># 1. This table applies to right-censored data, and the </span></span>
-<span class="r-in">  <span class="co">#    quantity "r" in this table refers to the number of </span></span>
-<span class="r-in">  <span class="co">#    uncensored observations.</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co"># 2. Passing a value for the argument "seed" simply allows </span></span>
-<span class="r-in">  <span class="co">#    you to reproduce this example.  </span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="co"># NOTE:  Here to save computing time for the sake of example, we will specify </span></span>
-<span class="r-in">  <span class="co">#        just 100 Monte Carlos, whereas Krishnamoorthy and Mathew (2009) </span></span>
-<span class="r-in">  <span class="co">#        suggest *10,000* Monte Carlos.</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="co"># Here are the values given in Schmee et al. (1985):</span></span>
-<span class="r-in">  <span class="va">Schmee.values</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="op">-</span><span class="fl">3.59</span>, <span class="op">-</span><span class="fl">2.60</span>, <span class="op">-</span><span class="fl">1.73</span>, <span class="op">-</span><span class="fl">0.24</span>, <span class="fl">0.43</span>, <span class="fl">0.58</span>, <span class="fl">0.73</span><span class="op">)</span></span>
-<span class="r-in">  <span class="va">probs</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">0.025</span>, <span class="fl">0.05</span>, <span class="fl">0.1</span>, <span class="fl">0.5</span>, <span class="fl">0.9</span>, <span class="fl">0.95</span>, <span class="fl">0.975</span><span class="op">)</span></span>
-<span class="r-in">  <span class="fu"><a href="https://rdrr.io/r/base/names.html" class="external-link">names</a></span><span class="op">(</span><span class="va">Schmee.values</span><span class="op">)</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/paste.html" class="external-link">paste</a></span><span class="op">(</span><span class="va">probs</span> <span class="op">*</span> <span class="fl">100</span>, <span class="st">"%"</span>, sep <span class="op">=</span> <span class="st">""</span><span class="op">)</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="va">Schmee.values</span></span>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span>  <span class="co"># Reproduce the entries for n=10 observations with n.cen=6 in Table 4 </span></span></span>
+<span class="r-in"><span>  <span class="co"># of Schmee et al. (1985, p.122).</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co"># Notes: </span></span></span>
+<span class="r-in"><span>  <span class="co"># 1. This table applies to right-censored data, and the </span></span></span>
+<span class="r-in"><span>  <span class="co">#    quantity "r" in this table refers to the number of </span></span></span>
+<span class="r-in"><span>  <span class="co">#    uncensored observations.</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co"># 2. Passing a value for the argument "seed" simply allows </span></span></span>
+<span class="r-in"><span>  <span class="co">#    you to reproduce this example.  </span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="co"># NOTE:  Here to save computing time for the sake of example, we will specify </span></span></span>
+<span class="r-in"><span>  <span class="co">#        just 100 Monte Carlos, whereas Krishnamoorthy and Mathew (2009) </span></span></span>
+<span class="r-in"><span>  <span class="co">#        suggest *10,000* Monte Carlos.</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="co"># Here are the values given in Schmee et al. (1985):</span></span></span>
+<span class="r-in"><span>  <span class="va">Schmee.values</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="op">-</span><span class="fl">3.59</span>, <span class="op">-</span><span class="fl">2.60</span>, <span class="op">-</span><span class="fl">1.73</span>, <span class="op">-</span><span class="fl">0.24</span>, <span class="fl">0.43</span>, <span class="fl">0.58</span>, <span class="fl">0.73</span><span class="op">)</span></span></span>
+<span class="r-in"><span>  <span class="va">probs</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">0.025</span>, <span class="fl">0.05</span>, <span class="fl">0.1</span>, <span class="fl">0.5</span>, <span class="fl">0.9</span>, <span class="fl">0.95</span>, <span class="fl">0.975</span><span class="op">)</span></span></span>
+<span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/r/base/names.html" class="external-link">names</a></span><span class="op">(</span><span class="va">Schmee.values</span><span class="op">)</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/paste.html" class="external-link">paste</a></span><span class="op">(</span><span class="va">probs</span> <span class="op">*</span> <span class="fl">100</span>, <span class="st">"%"</span>, sep <span class="op">=</span> <span class="st">""</span><span class="op">)</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="va">Schmee.values</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  2.5%    5%   10%   50%   90%   95% 97.5% </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> -3.59 -2.60 -1.73 -0.24  0.43  0.58  0.73 </span>
-<span class="r-in">  <span class="co"># 2.5%    5%   10%   50%   90%   95% 97.5% </span></span>
-<span class="r-in">  <span class="co">#-3.59 -2.60 -1.73 -0.24  0.43  0.58  0.73</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="va">gpqs</span> <span class="op">&lt;-</span> <span class="fu">gpqCiNormSinglyCensored</span><span class="op">(</span>n <span class="op">=</span> <span class="fl">10</span>, n.cen <span class="op">=</span> <span class="fl">6</span>, probs <span class="op">=</span> <span class="va">probs</span>, </span>
-<span class="r-in">    nmc <span class="op">=</span> <span class="fl">100</span>, censoring.side <span class="op">=</span> <span class="st">"right"</span>, seed <span class="op">=</span> <span class="fl">529</span><span class="op">)</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="fu"><a href="https://rdrr.io/r/base/Round.html" class="external-link">round</a></span><span class="op">(</span><span class="va">gpqs</span>, <span class="fl">2</span><span class="op">)</span></span>
+<span class="r-in"><span>  <span class="co"># 2.5%    5%   10%   50%   90%   95% 97.5% </span></span></span>
+<span class="r-in"><span>  <span class="co">#-3.59 -2.60 -1.73 -0.24  0.43  0.58  0.73</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="va">gpqs</span> <span class="op">&lt;-</span> <span class="fu">gpqCiNormSinglyCensored</span><span class="op">(</span>n <span class="op">=</span> <span class="fl">10</span>, n.cen <span class="op">=</span> <span class="fl">6</span>, probs <span class="op">=</span> <span class="va">probs</span>, </span></span>
+<span class="r-in"><span>    nmc <span class="op">=</span> <span class="fl">100</span>, censoring.side <span class="op">=</span> <span class="st">"right"</span>, seed <span class="op">=</span> <span class="fl">529</span><span class="op">)</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/r/base/Round.html" class="external-link">round</a></span><span class="op">(</span><span class="va">gpqs</span>, <span class="fl">2</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  2.5%    5%   10%   50%   90%   95% 97.5% </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> -2.46 -2.03 -1.38 -0.14  0.54  0.65  0.84 </span>
-<span class="r-in">  <span class="co"># 2.5%    5%   10%   50%   90%   95% 97.5% </span></span>
-<span class="r-in">  <span class="co">#-2.46 -2.03 -1.38 -0.14  0.54  0.65  0.84 </span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="co"># This is what you get if you specify nmc = 1000 with the </span></span>
-<span class="r-in">  <span class="co"># same value for seed:</span></span>
-<span class="r-in">  <span class="co">#-----------------------------------------------</span></span>
-<span class="r-in">  <span class="co"># 2.5%    5%   10%   50%   90%   95% 97.5% </span></span>
-<span class="r-in">  <span class="co">#-3.50 -2.49 -1.67 -0.25  0.41  0.57  0.71</span></span>
-<span class="r-in"></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="co"># Clean up</span></span>
-<span class="r-in">  <span class="co">#---------</span></span>
-<span class="r-in">  <span class="fu"><a href="https://rdrr.io/r/base/rm.html" class="external-link">rm</a></span><span class="op">(</span><span class="va">Schmee.values</span>, <span class="va">probs</span>, <span class="va">gpqs</span><span class="op">)</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="co">#==========</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="co"># Example of using gpqCiNormMultiplyCensored</span></span>
-<span class="r-in">  <span class="co">#-------------------------------------------</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="co"># Consider the following set of multiply left-censored data:</span></span>
-<span class="r-in">  <span class="va">dat</span> <span class="op">&lt;-</span> <span class="fl">12</span><span class="op">:</span><span class="fl">16</span></span>
-<span class="r-in">  <span class="va">censored</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="cn">TRUE</span>, <span class="cn">FALSE</span>, <span class="cn">TRUE</span>, <span class="cn">FALSE</span>, <span class="cn">FALSE</span><span class="op">)</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="co"># Since the data are "ordered" we can identify the indices of the </span></span>
-<span class="r-in">  <span class="co"># censored observations in the ordered data as follow:</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="va">cen.index</span> <span class="op">&lt;-</span> <span class="op">(</span><span class="fl">1</span><span class="op">:</span><span class="fu"><a href="https://rdrr.io/r/base/length.html" class="external-link">length</a></span><span class="op">(</span><span class="va">dat</span><span class="op">)</span><span class="op">)</span><span class="op">[</span><span class="va">censored</span><span class="op">]</span></span>
-<span class="r-in">  <span class="va">cen.index</span></span>
+<span class="r-in"><span>  <span class="co"># 2.5%    5%   10%   50%   90%   95% 97.5% </span></span></span>
+<span class="r-in"><span>  <span class="co">#-2.46 -2.03 -1.38 -0.14  0.54  0.65  0.84 </span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="co"># This is what you get if you specify nmc = 1000 with the </span></span></span>
+<span class="r-in"><span>  <span class="co"># same value for seed:</span></span></span>
+<span class="r-in"><span>  <span class="co">#-----------------------------------------------</span></span></span>
+<span class="r-in"><span>  <span class="co"># 2.5%    5%   10%   50%   90%   95% 97.5% </span></span></span>
+<span class="r-in"><span>  <span class="co">#-3.50 -2.49 -1.67 -0.25  0.41  0.57  0.71</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="co"># Clean up</span></span></span>
+<span class="r-in"><span>  <span class="co">#---------</span></span></span>
+<span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/r/base/rm.html" class="external-link">rm</a></span><span class="op">(</span><span class="va">Schmee.values</span>, <span class="va">probs</span>, <span class="va">gpqs</span><span class="op">)</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="co">#==========</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="co"># Example of using gpqCiNormMultiplyCensored</span></span></span>
+<span class="r-in"><span>  <span class="co">#-------------------------------------------</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="co"># Consider the following set of multiply left-censored data:</span></span></span>
+<span class="r-in"><span>  <span class="va">dat</span> <span class="op">&lt;-</span> <span class="fl">12</span><span class="op">:</span><span class="fl">16</span></span></span>
+<span class="r-in"><span>  <span class="va">censored</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="cn">TRUE</span>, <span class="cn">FALSE</span>, <span class="cn">TRUE</span>, <span class="cn">FALSE</span>, <span class="cn">FALSE</span><span class="op">)</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="co"># Since the data are "ordered" we can identify the indices of the </span></span></span>
+<span class="r-in"><span>  <span class="co"># censored observations in the ordered data as follow:</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="va">cen.index</span> <span class="op">&lt;-</span> <span class="op">(</span><span class="fl">1</span><span class="op">:</span><span class="fu"><a href="https://rdrr.io/r/base/length.html" class="external-link">length</a></span><span class="op">(</span><span class="va">dat</span><span class="op">)</span><span class="op">)</span><span class="op">[</span><span class="va">censored</span><span class="op">]</span></span></span>
+<span class="r-in"><span>  <span class="va">cen.index</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] 1 3</span>
-<span class="r-in">  <span class="co">#[1] 1 3</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="co"># Now we can generate a GPQ using gpqCiNormMultiplyCensored.</span></span>
-<span class="r-in">  <span class="co"># Here we'll generate a GPQs to use to create a  </span></span>
-<span class="r-in">  <span class="co"># 95% confidence interval for left-censored data.</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="co"># NOTE:  Here to save computing time for the sake of example, we will specify </span></span>
-<span class="r-in">  <span class="co">#        just 100 Monte Carlos, whereas Krishnamoorthy and Mathew (2009) </span></span>
-<span class="r-in">  <span class="co">#        suggest *10,000* Monte Carlos.</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="fu">gpqCiNormMultiplyCensored</span><span class="op">(</span>n <span class="op">=</span> <span class="fl">5</span>, cen.index <span class="op">=</span> <span class="va">cen.index</span>,  </span>
-<span class="r-in">    probs <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">0.025</span>, <span class="fl">0.975</span><span class="op">)</span>, nmc <span class="op">=</span> <span class="fl">100</span>, seed <span class="op">=</span> <span class="fl">237</span><span class="op">)</span></span>
+<span class="r-in"><span>  <span class="co">#[1] 1 3</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="co"># Now we can generate a GPQ using gpqCiNormMultiplyCensored.</span></span></span>
+<span class="r-in"><span>  <span class="co"># Here we'll generate a GPQs to use to create a  </span></span></span>
+<span class="r-in"><span>  <span class="co"># 95% confidence interval for left-censored data.</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="co"># NOTE:  Here to save computing time for the sake of example, we will specify </span></span></span>
+<span class="r-in"><span>  <span class="co">#        just 100 Monte Carlos, whereas Krishnamoorthy and Mathew (2009) </span></span></span>
+<span class="r-in"><span>  <span class="co">#        suggest *10,000* Monte Carlos.</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="fu">gpqCiNormMultiplyCensored</span><span class="op">(</span>n <span class="op">=</span> <span class="fl">5</span>, cen.index <span class="op">=</span> <span class="va">cen.index</span>,  </span></span>
+<span class="r-in"><span>    probs <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">0.025</span>, <span class="fl">0.975</span><span class="op">)</span>, nmc <span class="op">=</span> <span class="fl">100</span>, seed <span class="op">=</span> <span class="fl">237</span><span class="op">)</span></span></span>
 <span class="r-wrn co"><span class="r-pr">#&gt;</span> <span class="warning">Warning: </span>NA/NaN function evaluation</span>
 <span class="r-wrn co"><span class="r-pr">#&gt;</span> <span class="warning">Warning: </span>NA/NaN function evaluation</span>
 <span class="r-wrn co"><span class="r-pr">#&gt;</span> <span class="warning">Warning: </span>NA/NaN function evaluation</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>      2.5%     97.5% </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> -1.315592  1.848513 </span>
-<span class="r-in">  <span class="co">#     2.5%     97.5% </span></span>
-<span class="r-in">  <span class="co">#-1.315592  1.848513 </span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="co">#----------</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="co"># Clean up</span></span>
-<span class="r-in">  <span class="co">#---------</span></span>
-<span class="r-in">  <span class="fu"><a href="https://rdrr.io/r/base/rm.html" class="external-link">rm</a></span><span class="op">(</span><span class="va">dat</span>, <span class="va">censored</span>, <span class="va">cen.index</span><span class="op">)</span></span>
+<span class="r-in"><span>  <span class="co">#     2.5%     97.5% </span></span></span>
+<span class="r-in"><span>  <span class="co">#-1.315592  1.848513 </span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="co">#----------</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="co"># Clean up</span></span></span>
+<span class="r-in"><span>  <span class="co">#---------</span></span></span>
+<span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/r/base/rm.html" class="external-link">rm</a></span><span class="op">(</span><span class="va">dat</span>, <span class="va">censored</span>, <span class="va">cen.index</span><span class="op">)</span></span></span>
 </code></pre></div>
     </div>
   </div>
@@ -272,7 +283,7 @@
 </div>
 
 <div class="pkgdown">
-  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.2.</p>
+  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.6.</p>
 </div>
 
       </footer></div>

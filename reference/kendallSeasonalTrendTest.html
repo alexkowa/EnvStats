@@ -52,23 +52,23 @@
     </div>
 
     <div id="ref-usage">
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="fu">kendallSeasonalTrendTest</span><span class="op">(</span><span class="va">y</span>, <span class="va">...</span><span class="op">)</span>
-
-<span class="co"># S3 method for formula</span>
-<span class="fu">kendallSeasonalTrendTest</span><span class="op">(</span><span class="va">y</span>, data <span class="op">=</span> <span class="cn">NULL</span>, <span class="va">subset</span>,
-  na.action <span class="op">=</span> <span class="va">na.pass</span>, <span class="va">...</span><span class="op">)</span>
-
-<span class="co"># S3 method for default</span>
-<span class="fu">kendallSeasonalTrendTest</span><span class="op">(</span><span class="va">y</span>, <span class="va">season</span>, <span class="va">year</span>,
-  alternative <span class="op">=</span> <span class="st">"two.sided"</span>, correct <span class="op">=</span> <span class="cn">TRUE</span>, ci.slope <span class="op">=</span> <span class="cn">TRUE</span>, conf.level <span class="op">=</span> <span class="fl">0.95</span>,
-  independent.obs <span class="op">=</span> <span class="cn">TRUE</span>, data.name <span class="op">=</span> <span class="cn">NULL</span>, season.name <span class="op">=</span> <span class="cn">NULL</span>, year.name <span class="op">=</span> <span class="cn">NULL</span>,
-  parent.of.data <span class="op">=</span> <span class="cn">NULL</span>, subset.expression <span class="op">=</span> <span class="cn">NULL</span>, <span class="va">...</span><span class="op">)</span>
-
-<span class="co"># S3 method for data.frame</span>
-<span class="fu">kendallSeasonalTrendTest</span><span class="op">(</span><span class="va">y</span>, <span class="va">...</span><span class="op">)</span>
-
-<span class="co"># S3 method for matrix</span>
-<span class="fu">kendallSeasonalTrendTest</span><span class="op">(</span><span class="va">y</span>, <span class="va">...</span><span class="op">)</span></code></pre></div>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">kendallSeasonalTrendTest</span><span class="op">(</span><span class="va">y</span>, <span class="va">...</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># S3 method for formula</span></span>
+<span><span class="fu">kendallSeasonalTrendTest</span><span class="op">(</span><span class="va">y</span>, data <span class="op">=</span> <span class="cn">NULL</span>, <span class="va">subset</span>,</span>
+<span>  na.action <span class="op">=</span> <span class="va">na.pass</span>, <span class="va">...</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># S3 method for default</span></span>
+<span><span class="fu">kendallSeasonalTrendTest</span><span class="op">(</span><span class="va">y</span>, <span class="va">season</span>, <span class="va">year</span>,</span>
+<span>  alternative <span class="op">=</span> <span class="st">"two.sided"</span>, correct <span class="op">=</span> <span class="cn">TRUE</span>, ci.slope <span class="op">=</span> <span class="cn">TRUE</span>, conf.level <span class="op">=</span> <span class="fl">0.95</span>,</span>
+<span>  independent.obs <span class="op">=</span> <span class="cn">TRUE</span>, data.name <span class="op">=</span> <span class="cn">NULL</span>, season.name <span class="op">=</span> <span class="cn">NULL</span>, year.name <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>  parent.of.data <span class="op">=</span> <span class="cn">NULL</span>, subset.expression <span class="op">=</span> <span class="cn">NULL</span>, <span class="va">...</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># S3 method for data.frame</span></span>
+<span><span class="fu">kendallSeasonalTrendTest</span><span class="op">(</span><span class="va">y</span>, <span class="va">...</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># S3 method for matrix</span></span>
+<span><span class="fu">kendallSeasonalTrendTest</span><span class="op">(</span><span class="va">y</span>, <span class="va">...</span><span class="op">)</span></span></code></pre></div>
     </div>
 
     <div id="arguments">
@@ -84,55 +84,72 @@
   <code>kendallSeasonalTrendTest.default</code>.  Missing (<code>NA</code>), undefined (<code>NaN</code>),
   and infinite (<code>Inf</code>, <code>-Inf</code>) values are allowed but will be
   removed.</p></dd>
-<dt>data</dt>
+
+  <dt>data</dt>
 <dd><p>specifies an optional data frame, list or environment (or object coercible by
   <code>as.data.frame</code> to a data frame) containing the variables in the model.
   If not found in <code>data</code>, the variables are taken from <code>environment(formula)</code>,
   typically the environment from which <code>kendallTrendTest</code> is called.</p></dd>
-<dt>subset</dt>
+
+  <dt>subset</dt>
 <dd><p>specifies an optional vector specifying a subset of observations to be used.</p></dd>
-<dt>na.action</dt>
+
+  <dt>na.action</dt>
 <dd><p>specifies a function which indicates what should happen when the data contain <code>NA</code>s.
   The default is <code><a href="https://rdrr.io/r/stats/na.fail.html" class="external-link">na.pass</a></code>.</p></dd>
-<dt>season</dt>
+
+  <dt>season</dt>
 <dd><p>numeric or character vector or a factor indicating the seasons in which the observations in
   <code>y</code> were taken.  The length of <code>season</code> must equal the length of <code>y</code>.</p></dd>
-<dt>year</dt>
+
+  <dt>year</dt>
 <dd><p>numeric vector indicating the years in which the observations in <code>y</code> were taken.
   The length of <code>year</code> must equal the length of <code>y</code>.</p></dd>
-<dt>alternative</dt>
+
+  <dt>alternative</dt>
 <dd><p>character string indicating the kind of alternative hypothesis.  The
   possible values are <code>"two.sided"</code> (tau not equal to 0; the default),
   <code>"less"</code> (tau less than 0), and <code>"greater"</code> (tau greater than 0).</p></dd>
-<dt>correct</dt>
+
+  <dt>correct</dt>
 <dd><p>logical scalar indicating whether to use the correction for continuity in
   computing the \(z\)-statistic that is based on the test statistic \(S'\).
   The default value is <code>TRUE</code>.</p></dd>
-<dt>ci.slope</dt>
+
+  <dt>ci.slope</dt>
 <dd><p>logical scalar indicating whether to compute a confidence interval for the
   slope.  The default value is <code>TRUE</code>.</p></dd>
-<dt>conf.level</dt>
+
+  <dt>conf.level</dt>
 <dd><p>numeric scalar between 0 and 1 indicating the confidence level associated
   with the confidence interval for the slope.  The default value is
   <code>0.95</code>.</p></dd>
-<dt>independent.obs</dt>
+
+  <dt>independent.obs</dt>
 <dd><p>logical scalar indicating whether to assume the observations in <code>y</code> are seially independent.
   The default value is <code>TRUE</code>.</p></dd>
-<dt>data.name</dt>
+
+  <dt>data.name</dt>
 <dd><p>character string indicating the name of the data used for the trend test.
   The default value is <code>deparse(substitute(y))</code>.</p></dd>
-<dt>season.name</dt>
+
+  <dt>season.name</dt>
 <dd><p>character string indicating the name of the data used for the season.
   The default value is <code>deparse(substitute(season))</code>.</p></dd>
-<dt>year.name</dt>
+
+  <dt>year.name</dt>
 <dd><p>character string indicating the name of the data used for the year.
   The default value is <code>deparse(substitute(year))</code>.</p></dd>
-<dt>parent.of.data</dt>
+
+  <dt>parent.of.data</dt>
 <dd><p>character string indicating the source of the data used for the trend test.</p></dd>
-<dt>subset.expression</dt>
+
+  <dt>subset.expression</dt>
 <dd><p>character string indicating the expression used to subset the data.</p></dd>
-<dt>...</dt>
+
+  <dt>...</dt>
 <dd><p>additional arguments affecting the test for trend.</p></dd>
+
 </dl></div>
     <div id="details">
     <h2>Details</h2>
@@ -385,20 +402,28 @@
     </div>
     <div id="value">
     <h2>Value</h2>
-    <p>A list of class <code>"htest"</code> containing the results of the hypothesis
+    
+
+<p>A list of class <code>"htest"</code> containing the results of the hypothesis
   test.  See the help file for <code><a href="htest.object.html">htest.object</a></code> for details.
-  In addition, the following components are part of the list returned by <br><code>kendallSeasonalTrendTest</code>:</p>
+  In addition, the following components are part of the list returned by <br></p>
+<p></p>
+<p><code>kendallSeasonalTrendTest</code>:</p>
 <dl><dt>seasonal.S</dt>
 <dd><p>numeric vector.  The value of the Kendall S-statistic for each season.</p></dd>
-<dt>var.seasonal.S</dt>
+
+  <dt>var.seasonal.S</dt>
 <dd><p>numeric vector.  The variance of the Kendall S-statistic for each season.
     This component only appears when <code>independent.obs=TRUE</code>.</p></dd>
-<dt>var.cov.seasonal.S</dt>
+
+  <dt>var.cov.seasonal.S</dt>
 <dd><p>numeric matrix.  The estimated variance-covariance matrix of the Kendall
     S-statistics for each season. This component only appears when <br><code>independent.obs=FALSE</code>.</p></dd>
-<dt>seasonal.estimates</dt>
+
+  <dt>seasonal.estimates</dt>
 <dd><p>numeric matrix.  The estimated Kendall's tau, slope, and intercept for
     each season.</p></dd>
+
 </dl></div>
     <div id="references">
     <h2>References</h2>
@@ -506,11 +531,11 @@
 
     <div id="ref-examples">
     <h2>Examples</h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in">  <span class="co"># Reproduce Example 14-10 on page 14-38 of USEPA (2009).  This example</span></span>
-<span class="r-in">  <span class="co"># tests for trend in analyte concentrations (ppm) collected monthly</span></span>
-<span class="r-in">  <span class="co"># between 1983 and 1985.</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">EPA.09.Ex.14.8.df</span><span class="op">)</span></span>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span>  <span class="co"># Reproduce Example 14-10 on page 14-38 of USEPA (2009).  This example</span></span></span>
+<span class="r-in"><span>  <span class="co"># tests for trend in analyte concentrations (ppm) collected monthly</span></span></span>
+<span class="r-in"><span>  <span class="co"># between 1983 and 1985.</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">EPA.09.Ex.14.8.df</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>      Month Year Unadj.Conc Adj.Conc</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 1  January 1983       1.99     2.11</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 2 February 1983       2.10     2.14</span>
@@ -518,15 +543,15 @@
 <span class="r-out co"><span class="r-pr">#&gt;</span> 4    April 1983       2.12     2.13</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 5      May 1983       2.11     2.12</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 6     June 1983       2.15     2.12</span>
-<span class="r-in">  <span class="co">#     Month Year Unadj.Conc Adj.Conc</span></span>
-<span class="r-in">  <span class="co">#1  January 1983       1.99     2.11</span></span>
-<span class="r-in">  <span class="co">#2 February 1983       2.10     2.14</span></span>
-<span class="r-in">  <span class="co">#3    March 1983       2.12     2.10</span></span>
-<span class="r-in">  <span class="co">#4    April 1983       2.12     2.13</span></span>
-<span class="r-in">  <span class="co">#5      May 1983       2.11     2.12</span></span>
-<span class="r-in">  <span class="co">#6     June 1983       2.15     2.12</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">tail</a></span><span class="op">(</span><span class="va">EPA.09.Ex.14.8.df</span><span class="op">)</span></span>
+<span class="r-in"><span>  <span class="co">#     Month Year Unadj.Conc Adj.Conc</span></span></span>
+<span class="r-in"><span>  <span class="co">#1  January 1983       1.99     2.11</span></span></span>
+<span class="r-in"><span>  <span class="co">#2 February 1983       2.10     2.14</span></span></span>
+<span class="r-in"><span>  <span class="co">#3    March 1983       2.12     2.10</span></span></span>
+<span class="r-in"><span>  <span class="co">#4    April 1983       2.12     2.13</span></span></span>
+<span class="r-in"><span>  <span class="co">#5      May 1983       2.11     2.12</span></span></span>
+<span class="r-in"><span>  <span class="co">#6     June 1983       2.15     2.12</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">tail</a></span><span class="op">(</span><span class="va">EPA.09.Ex.14.8.df</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>        Month Year Unadj.Conc Adj.Conc</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 31      July 1985       2.31     2.23</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 32    August 1985       2.32     2.24</span>
@@ -534,48 +559,48 @@
 <span class="r-out co"><span class="r-pr">#&gt;</span> 34   October 1985       2.22     2.24</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 35  November 1985       2.19     2.25</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 36  December 1985       2.22     2.23</span>
-<span class="r-in">  <span class="co">#       Month Year Unadj.Conc Adj.Conc</span></span>
-<span class="r-in">  <span class="co">#31      July 1985       2.31     2.23</span></span>
-<span class="r-in">  <span class="co">#32    August 1985       2.32     2.24</span></span>
-<span class="r-in">  <span class="co">#33 September 1985       2.28     2.23</span></span>
-<span class="r-in">  <span class="co">#34   October 1985       2.22     2.24</span></span>
-<span class="r-in">  <span class="co">#35  November 1985       2.19     2.25</span></span>
-<span class="r-in">  <span class="co">#36  December 1985       2.22     2.23</span></span>
-<span class="r-in"></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="co"># Plot the data</span></span>
-<span class="r-in">  <span class="co">#--------------</span></span>
-<span class="r-in">  <span class="va">Unadj.Conc</span> <span class="op">&lt;-</span> <span class="va">EPA.09.Ex.14.8.df</span><span class="op">$</span><span class="va">Unadj.Conc</span></span>
-<span class="r-in">  <span class="va">Adj.Conc</span>   <span class="op">&lt;-</span> <span class="va">EPA.09.Ex.14.8.df</span><span class="op">$</span><span class="va">Adj.Conc</span></span>
-<span class="r-in">  <span class="va">Month</span>      <span class="op">&lt;-</span> <span class="va">EPA.09.Ex.14.8.df</span><span class="op">$</span><span class="va">Month</span></span>
-<span class="r-in">  <span class="va">Year</span>       <span class="op">&lt;-</span> <span class="va">EPA.09.Ex.14.8.df</span><span class="op">$</span><span class="va">Year</span></span>
-<span class="r-in">  <span class="va">Time</span>       <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/paste.html" class="external-link">paste</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/substr.html" class="external-link">substring</a></span><span class="op">(</span><span class="va">Month</span>, <span class="fl">1</span>, <span class="fl">3</span><span class="op">)</span>, <span class="va">Year</span> <span class="op">-</span> <span class="fl">1900</span>, sep <span class="op">=</span> <span class="st">"-"</span><span class="op">)</span></span>
-<span class="r-in">  <span class="va">n</span>          <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/length.html" class="external-link">length</a></span><span class="op">(</span><span class="va">Unadj.Conc</span><span class="op">)</span></span>
-<span class="r-in">  <span class="va">Three.Yr.Mean</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/mean.html" class="external-link">mean</a></span><span class="op">(</span><span class="va">Unadj.Conc</span><span class="op">)</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="fu"><a href="https://rdrr.io/r/grDevices/dev.html" class="external-link">dev.new</a></span><span class="op">(</span><span class="op">)</span></span>
-<span class="r-in">  <span class="fu"><a href="https://rdrr.io/r/graphics/par.html" class="external-link">par</a></span><span class="op">(</span>mar <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">7</span>, <span class="fl">4</span>, <span class="fl">3</span>, <span class="fl">1</span><span class="op">)</span> <span class="op">+</span> <span class="fl">0.1</span>, cex.lab <span class="op">=</span> <span class="fl">1.25</span><span class="op">)</span></span>
-<span class="r-in">  <span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot</a></span><span class="op">(</span><span class="fl">1</span><span class="op">:</span><span class="va">n</span>, <span class="va">Unadj.Conc</span>, type <span class="op">=</span> <span class="st">"n"</span>, xaxt <span class="op">=</span> <span class="st">"n"</span>,</span>
-<span class="r-in">  xlab <span class="op">=</span> <span class="st">"Time (Month)"</span>,</span>
-<span class="r-in">  ylab <span class="op">=</span> <span class="st">"ANALYTE CONCENTRATION (mg/L)"</span>,</span>
-<span class="r-in">  main <span class="op">=</span> <span class="st">"Figure 14-15. Seasonal Time Series Over a Three Year Period"</span>,</span>
-<span class="r-in">  cex.main <span class="op">=</span> <span class="fl">1.1</span><span class="op">)</span></span>
-<span class="r-in">  <span class="fu"><a href="https://rdrr.io/r/graphics/axis.html" class="external-link">axis</a></span><span class="op">(</span><span class="fl">1</span>, at <span class="op">=</span> <span class="fl">1</span><span class="op">:</span><span class="va">n</span>, labels <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/rep.html" class="external-link">rep</a></span><span class="op">(</span><span class="st">""</span>, <span class="va">n</span><span class="op">)</span><span class="op">)</span></span>
-<span class="r-in">  <span class="va">at</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/rep.html" class="external-link">rep</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">1</span>, <span class="fl">5</span>, <span class="fl">9</span><span class="op">)</span>, <span class="fl">3</span><span class="op">)</span> <span class="op">+</span> <span class="fu"><a href="https://rdrr.io/r/base/rep.html" class="external-link">rep</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">0</span>, <span class="fl">12</span>, <span class="fl">24</span><span class="op">)</span>, each <span class="op">=</span> <span class="fl">3</span><span class="op">)</span></span>
-<span class="r-in">  <span class="fu"><a href="https://rdrr.io/r/graphics/axis.html" class="external-link">axis</a></span><span class="op">(</span><span class="fl">1</span>, at <span class="op">=</span> <span class="va">at</span>, labels <span class="op">=</span> <span class="va">Time</span><span class="op">[</span><span class="va">at</span><span class="op">]</span><span class="op">)</span></span>
-<span class="r-in">  <span class="fu"><a href="https://rdrr.io/r/graphics/points.html" class="external-link">points</a></span><span class="op">(</span><span class="fl">1</span><span class="op">:</span><span class="va">n</span>, <span class="va">Unadj.Conc</span>, pch <span class="op">=</span> <span class="fl">0</span>, type <span class="op">=</span> <span class="st">"o"</span>, lwd <span class="op">=</span> <span class="fl">2</span><span class="op">)</span></span>
-<span class="r-in">  <span class="fu"><a href="https://rdrr.io/r/graphics/points.html" class="external-link">points</a></span><span class="op">(</span><span class="fl">1</span><span class="op">:</span><span class="va">n</span>, <span class="va">Adj.Conc</span>, pch <span class="op">=</span> <span class="fl">3</span>, type <span class="op">=</span> <span class="st">"o"</span>, col <span class="op">=</span> <span class="fl">8</span>, lwd <span class="op">=</span> <span class="fl">2</span><span class="op">)</span></span>
-<span class="r-in">  <span class="fu"><a href="https://rdrr.io/r/graphics/abline.html" class="external-link">abline</a></span><span class="op">(</span>h <span class="op">=</span> <span class="va">Three.Yr.Mean</span>, lwd <span class="op">=</span> <span class="fl">2</span><span class="op">)</span></span>
-<span class="r-in">  <span class="fu"><a href="https://rdrr.io/r/graphics/legend.html" class="external-link">legend</a></span><span class="op">(</span><span class="st">"topleft"</span>, <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"Unadjusted"</span>, <span class="st">"Adjusted"</span>, <span class="st">"3-Year Mean"</span><span class="op">)</span>, bty <span class="op">=</span> <span class="st">"n"</span>,</span>
-<span class="r-in">    pch <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">0</span>, <span class="fl">3</span>, <span class="op">-</span><span class="fl">1</span><span class="op">)</span>, lty <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">1</span>, <span class="fl">1</span>, <span class="fl">1</span><span class="op">)</span>, lwd <span class="op">=</span> <span class="fl">2</span>, col <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">1</span>, <span class="fl">8</span>, <span class="fl">1</span><span class="op">)</span>,</span>
-<span class="r-in">    inset <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">0.05</span>, <span class="fl">0.01</span><span class="op">)</span><span class="op">)</span></span>
-<span class="r-in"></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="co"># Perform the seasonal Kendall trend test</span></span>
-<span class="r-in">  <span class="co">#----------------------------------------</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="fu">kendallSeasonalTrendTest</span><span class="op">(</span><span class="va">Unadj.Conc</span> <span class="op">~</span> <span class="va">Month</span> <span class="op">+</span> <span class="va">Year</span>,</span>
-<span class="r-in">    data <span class="op">=</span> <span class="va">EPA.09.Ex.14.8.df</span><span class="op">)</span></span>
+<span class="r-in"><span>  <span class="co">#       Month Year Unadj.Conc Adj.Conc</span></span></span>
+<span class="r-in"><span>  <span class="co">#31      July 1985       2.31     2.23</span></span></span>
+<span class="r-in"><span>  <span class="co">#32    August 1985       2.32     2.24</span></span></span>
+<span class="r-in"><span>  <span class="co">#33 September 1985       2.28     2.23</span></span></span>
+<span class="r-in"><span>  <span class="co">#34   October 1985       2.22     2.24</span></span></span>
+<span class="r-in"><span>  <span class="co">#35  November 1985       2.19     2.25</span></span></span>
+<span class="r-in"><span>  <span class="co">#36  December 1985       2.22     2.23</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="co"># Plot the data</span></span></span>
+<span class="r-in"><span>  <span class="co">#--------------</span></span></span>
+<span class="r-in"><span>  <span class="va">Unadj.Conc</span> <span class="op">&lt;-</span> <span class="va">EPA.09.Ex.14.8.df</span><span class="op">$</span><span class="va">Unadj.Conc</span></span></span>
+<span class="r-in"><span>  <span class="va">Adj.Conc</span>   <span class="op">&lt;-</span> <span class="va">EPA.09.Ex.14.8.df</span><span class="op">$</span><span class="va">Adj.Conc</span></span></span>
+<span class="r-in"><span>  <span class="va">Month</span>      <span class="op">&lt;-</span> <span class="va">EPA.09.Ex.14.8.df</span><span class="op">$</span><span class="va">Month</span></span></span>
+<span class="r-in"><span>  <span class="va">Year</span>       <span class="op">&lt;-</span> <span class="va">EPA.09.Ex.14.8.df</span><span class="op">$</span><span class="va">Year</span></span></span>
+<span class="r-in"><span>  <span class="va">Time</span>       <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/paste.html" class="external-link">paste</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/substr.html" class="external-link">substring</a></span><span class="op">(</span><span class="va">Month</span>, <span class="fl">1</span>, <span class="fl">3</span><span class="op">)</span>, <span class="va">Year</span> <span class="op">-</span> <span class="fl">1900</span>, sep <span class="op">=</span> <span class="st">"-"</span><span class="op">)</span></span></span>
+<span class="r-in"><span>  <span class="va">n</span>          <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/length.html" class="external-link">length</a></span><span class="op">(</span><span class="va">Unadj.Conc</span><span class="op">)</span></span></span>
+<span class="r-in"><span>  <span class="va">Three.Yr.Mean</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/mean.html" class="external-link">mean</a></span><span class="op">(</span><span class="va">Unadj.Conc</span><span class="op">)</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/r/grDevices/dev.html" class="external-link">dev.new</a></span><span class="op">(</span><span class="op">)</span></span></span>
+<span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/r/graphics/par.html" class="external-link">par</a></span><span class="op">(</span>mar <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">7</span>, <span class="fl">4</span>, <span class="fl">3</span>, <span class="fl">1</span><span class="op">)</span> <span class="op">+</span> <span class="fl">0.1</span>, cex.lab <span class="op">=</span> <span class="fl">1.25</span><span class="op">)</span></span></span>
+<span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot</a></span><span class="op">(</span><span class="fl">1</span><span class="op">:</span><span class="va">n</span>, <span class="va">Unadj.Conc</span>, type <span class="op">=</span> <span class="st">"n"</span>, xaxt <span class="op">=</span> <span class="st">"n"</span>,</span></span>
+<span class="r-in"><span>  xlab <span class="op">=</span> <span class="st">"Time (Month)"</span>,</span></span>
+<span class="r-in"><span>  ylab <span class="op">=</span> <span class="st">"ANALYTE CONCENTRATION (mg/L)"</span>,</span></span>
+<span class="r-in"><span>  main <span class="op">=</span> <span class="st">"Figure 14-15. Seasonal Time Series Over a Three Year Period"</span>,</span></span>
+<span class="r-in"><span>  cex.main <span class="op">=</span> <span class="fl">1.1</span><span class="op">)</span></span></span>
+<span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/r/graphics/axis.html" class="external-link">axis</a></span><span class="op">(</span><span class="fl">1</span>, at <span class="op">=</span> <span class="fl">1</span><span class="op">:</span><span class="va">n</span>, labels <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/rep.html" class="external-link">rep</a></span><span class="op">(</span><span class="st">""</span>, <span class="va">n</span><span class="op">)</span><span class="op">)</span></span></span>
+<span class="r-in"><span>  <span class="va">at</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/rep.html" class="external-link">rep</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">1</span>, <span class="fl">5</span>, <span class="fl">9</span><span class="op">)</span>, <span class="fl">3</span><span class="op">)</span> <span class="op">+</span> <span class="fu"><a href="https://rdrr.io/r/base/rep.html" class="external-link">rep</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">0</span>, <span class="fl">12</span>, <span class="fl">24</span><span class="op">)</span>, each <span class="op">=</span> <span class="fl">3</span><span class="op">)</span></span></span>
+<span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/r/graphics/axis.html" class="external-link">axis</a></span><span class="op">(</span><span class="fl">1</span>, at <span class="op">=</span> <span class="va">at</span>, labels <span class="op">=</span> <span class="va">Time</span><span class="op">[</span><span class="va">at</span><span class="op">]</span><span class="op">)</span></span></span>
+<span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/r/graphics/points.html" class="external-link">points</a></span><span class="op">(</span><span class="fl">1</span><span class="op">:</span><span class="va">n</span>, <span class="va">Unadj.Conc</span>, pch <span class="op">=</span> <span class="fl">0</span>, type <span class="op">=</span> <span class="st">"o"</span>, lwd <span class="op">=</span> <span class="fl">2</span><span class="op">)</span></span></span>
+<span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/r/graphics/points.html" class="external-link">points</a></span><span class="op">(</span><span class="fl">1</span><span class="op">:</span><span class="va">n</span>, <span class="va">Adj.Conc</span>, pch <span class="op">=</span> <span class="fl">3</span>, type <span class="op">=</span> <span class="st">"o"</span>, col <span class="op">=</span> <span class="fl">8</span>, lwd <span class="op">=</span> <span class="fl">2</span><span class="op">)</span></span></span>
+<span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/r/graphics/abline.html" class="external-link">abline</a></span><span class="op">(</span>h <span class="op">=</span> <span class="va">Three.Yr.Mean</span>, lwd <span class="op">=</span> <span class="fl">2</span><span class="op">)</span></span></span>
+<span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/r/graphics/legend.html" class="external-link">legend</a></span><span class="op">(</span><span class="st">"topleft"</span>, <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"Unadjusted"</span>, <span class="st">"Adjusted"</span>, <span class="st">"3-Year Mean"</span><span class="op">)</span>, bty <span class="op">=</span> <span class="st">"n"</span>,</span></span>
+<span class="r-in"><span>    pch <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">0</span>, <span class="fl">3</span>, <span class="op">-</span><span class="fl">1</span><span class="op">)</span>, lty <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">1</span>, <span class="fl">1</span>, <span class="fl">1</span><span class="op">)</span>, lwd <span class="op">=</span> <span class="fl">2</span>, col <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">1</span>, <span class="fl">8</span>, <span class="fl">1</span><span class="op">)</span>,</span></span>
+<span class="r-in"><span>    inset <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">0.05</span>, <span class="fl">0.01</span><span class="op">)</span><span class="op">)</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="co"># Perform the seasonal Kendall trend test</span></span></span>
+<span class="r-in"><span>  <span class="co">#----------------------------------------</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="fu">kendallSeasonalTrendTest</span><span class="op">(</span><span class="va">Unadj.Conc</span> <span class="op">~</span> <span class="va">Month</span> <span class="op">+</span> <span class="va">Year</span>,</span></span>
+<span class="r-in"><span>    data <span class="op">=</span> <span class="va">EPA.09.Ex.14.8.df</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> $statistic</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Chi-Square (Het)        z (Trend) </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>        0.1071882        5.1849514 </span>
@@ -676,80 +701,80 @@
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> attr(,"class")</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] "htestEnvStats"</span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="co">#Results of Hypothesis Test</span></span>
-<span class="r-in">  <span class="co">#--------------------------</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Null Hypothesis:                 All 12 values of tau = 0</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Alternative Hypothesis:          The seasonal taus are not all equal</span></span>
-<span class="r-in">  <span class="co">#                                 (Chi-Square Heterogeneity Test)</span></span>
-<span class="r-in">  <span class="co">#                                 At least one seasonal tau != 0</span></span>
-<span class="r-in">  <span class="co">#                                 and all non-zero tau's have the</span></span>
-<span class="r-in">  <span class="co">#                                 same sign (z Trend Test)</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Test Name:                       Seasonal Kendall Test for Trend</span></span>
-<span class="r-in">  <span class="co">#                                 (with continuity correction)</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Estimated Parameter(s):          tau       =    0.9722222</span></span>
-<span class="r-in">  <span class="co">#                                 slope     =    0.0600000</span></span>
-<span class="r-in">  <span class="co">#                                 intercept = -131.7350000</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Estimation Method:               tau:        Weighted Average of</span></span>
-<span class="r-in">  <span class="co">#                                             Seasonal Estimates</span></span>
-<span class="r-in">  <span class="co">#                                 slope:      Hirsch et al.'s</span></span>
-<span class="r-in">  <span class="co">#                                             Modification of</span></span>
-<span class="r-in">  <span class="co">#                                             Thiel/Sen Estimator</span></span>
-<span class="r-in">  <span class="co">#                                 intercept:  Median of</span></span>
-<span class="r-in">  <span class="co">#                                             Seasonal Estimates</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Data:                            y      = Unadj.Conc</span></span>
-<span class="r-in">  <span class="co">#                                 season = Month</span></span>
-<span class="r-in">  <span class="co">#                                 year   = Year</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Data Source:                     EPA.09.Ex.14.8.df</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Sample Sizes:                    January   =  3</span></span>
-<span class="r-in">  <span class="co">#                                 February  =  3</span></span>
-<span class="r-in">  <span class="co">#                                 March     =  3</span></span>
-<span class="r-in">  <span class="co">#                                 April     =  3</span></span>
-<span class="r-in">  <span class="co">#                                 May       =  3</span></span>
-<span class="r-in">  <span class="co">#                                 June      =  3</span></span>
-<span class="r-in">  <span class="co">#                                 July      =  3</span></span>
-<span class="r-in">  <span class="co">#                                 August    =  3</span></span>
-<span class="r-in">  <span class="co">#                                 September =  3</span></span>
-<span class="r-in">  <span class="co">#                                 October   =  3</span></span>
-<span class="r-in">  <span class="co">#                                 November  =  3</span></span>
-<span class="r-in">  <span class="co">#                                 December  =  3</span></span>
-<span class="r-in">  <span class="co">#                                 Total     = 36</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Test Statistics:                 Chi-Square (Het) = 0.1071882</span></span>
-<span class="r-in">  <span class="co">#                                 z (Trend)        = 5.1849514</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Test Statistic Parameter:        df = 11</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#P-values:                        Chi-Square (Het) = 1.000000e+00</span></span>
-<span class="r-in">  <span class="co">#                                 z (Trend)        = 2.160712e-07</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Confidence Interval for:         slope</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Confidence Interval Method:      Gilbert's Modification of</span></span>
-<span class="r-in">  <span class="co">#                                 Theil/Sen Method</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Confidence Interval Type:        two-sided</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Confidence Level:                95%</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Confidence Interval:             LCL = 0.05786914</span></span>
-<span class="r-in">  <span class="co">#                                 UCL = 0.07213086</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="co">#==========</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="co"># Clean up</span></span>
-<span class="r-in">  <span class="co">#---------</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="fu"><a href="https://rdrr.io/r/base/rm.html" class="external-link">rm</a></span><span class="op">(</span><span class="va">Unadj.Conc</span>, <span class="va">Adj.Conc</span>, <span class="va">Month</span>, <span class="va">Year</span>, <span class="va">Time</span>, <span class="va">n</span>, <span class="va">Three.Yr.Mean</span>, <span class="va">at</span><span class="op">)</span></span>
-<span class="r-in">  <span class="fu"><a href="https://rdrr.io/r/grDevices/dev.html" class="external-link">graphics.off</a></span><span class="op">(</span><span class="op">)</span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="co">#Results of Hypothesis Test</span></span></span>
+<span class="r-in"><span>  <span class="co">#--------------------------</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Null Hypothesis:                 All 12 values of tau = 0</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Alternative Hypothesis:          The seasonal taus are not all equal</span></span></span>
+<span class="r-in"><span>  <span class="co">#                                 (Chi-Square Heterogeneity Test)</span></span></span>
+<span class="r-in"><span>  <span class="co">#                                 At least one seasonal tau != 0</span></span></span>
+<span class="r-in"><span>  <span class="co">#                                 and all non-zero tau's have the</span></span></span>
+<span class="r-in"><span>  <span class="co">#                                 same sign (z Trend Test)</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Test Name:                       Seasonal Kendall Test for Trend</span></span></span>
+<span class="r-in"><span>  <span class="co">#                                 (with continuity correction)</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Estimated Parameter(s):          tau       =    0.9722222</span></span></span>
+<span class="r-in"><span>  <span class="co">#                                 slope     =    0.0600000</span></span></span>
+<span class="r-in"><span>  <span class="co">#                                 intercept = -131.7350000</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Estimation Method:               tau:        Weighted Average of</span></span></span>
+<span class="r-in"><span>  <span class="co">#                                             Seasonal Estimates</span></span></span>
+<span class="r-in"><span>  <span class="co">#                                 slope:      Hirsch et al.'s</span></span></span>
+<span class="r-in"><span>  <span class="co">#                                             Modification of</span></span></span>
+<span class="r-in"><span>  <span class="co">#                                             Thiel/Sen Estimator</span></span></span>
+<span class="r-in"><span>  <span class="co">#                                 intercept:  Median of</span></span></span>
+<span class="r-in"><span>  <span class="co">#                                             Seasonal Estimates</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Data:                            y      = Unadj.Conc</span></span></span>
+<span class="r-in"><span>  <span class="co">#                                 season = Month</span></span></span>
+<span class="r-in"><span>  <span class="co">#                                 year   = Year</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Data Source:                     EPA.09.Ex.14.8.df</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Sample Sizes:                    January   =  3</span></span></span>
+<span class="r-in"><span>  <span class="co">#                                 February  =  3</span></span></span>
+<span class="r-in"><span>  <span class="co">#                                 March     =  3</span></span></span>
+<span class="r-in"><span>  <span class="co">#                                 April     =  3</span></span></span>
+<span class="r-in"><span>  <span class="co">#                                 May       =  3</span></span></span>
+<span class="r-in"><span>  <span class="co">#                                 June      =  3</span></span></span>
+<span class="r-in"><span>  <span class="co">#                                 July      =  3</span></span></span>
+<span class="r-in"><span>  <span class="co">#                                 August    =  3</span></span></span>
+<span class="r-in"><span>  <span class="co">#                                 September =  3</span></span></span>
+<span class="r-in"><span>  <span class="co">#                                 October   =  3</span></span></span>
+<span class="r-in"><span>  <span class="co">#                                 November  =  3</span></span></span>
+<span class="r-in"><span>  <span class="co">#                                 December  =  3</span></span></span>
+<span class="r-in"><span>  <span class="co">#                                 Total     = 36</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Test Statistics:                 Chi-Square (Het) = 0.1071882</span></span></span>
+<span class="r-in"><span>  <span class="co">#                                 z (Trend)        = 5.1849514</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Test Statistic Parameter:        df = 11</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#P-values:                        Chi-Square (Het) = 1.000000e+00</span></span></span>
+<span class="r-in"><span>  <span class="co">#                                 z (Trend)        = 2.160712e-07</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Confidence Interval for:         slope</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Confidence Interval Method:      Gilbert's Modification of</span></span></span>
+<span class="r-in"><span>  <span class="co">#                                 Theil/Sen Method</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Confidence Interval Type:        two-sided</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Confidence Level:                95%</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Confidence Interval:             LCL = 0.05786914</span></span></span>
+<span class="r-in"><span>  <span class="co">#                                 UCL = 0.07213086</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="co">#==========</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="co"># Clean up</span></span></span>
+<span class="r-in"><span>  <span class="co">#---------</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/r/base/rm.html" class="external-link">rm</a></span><span class="op">(</span><span class="va">Unadj.Conc</span>, <span class="va">Adj.Conc</span>, <span class="va">Month</span>, <span class="va">Year</span>, <span class="va">Time</span>, <span class="va">n</span>, <span class="va">Three.Yr.Mean</span>, <span class="va">at</span><span class="op">)</span></span></span>
+<span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/r/grDevices/dev.html" class="external-link">graphics.off</a></span><span class="op">(</span><span class="op">)</span></span></span>
 </code></pre></div>
     </div>
   </div>
@@ -764,7 +789,7 @@
 </div>
 
 <div class="pkgdown">
-  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.2.</p>
+  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.6.</p>
 </div>
 
       </footer></div>

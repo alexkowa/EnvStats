@@ -54,9 +54,9 @@
     </div>
 
     <div id="ref-usage">
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="fu">eqlnormCensored</span><span class="op">(</span><span class="va">x</span>, <span class="va">censored</span>, censoring.side <span class="op">=</span> <span class="st">"left"</span>, p <span class="op">=</span> <span class="fl">0.5</span>, method <span class="op">=</span> <span class="st">"mle"</span>, 
-    ci <span class="op">=</span> <span class="cn">FALSE</span>, ci.method <span class="op">=</span> <span class="st">"exact.for.complete"</span>, ci.type <span class="op">=</span> <span class="st">"two-sided"</span>, 
-    conf.level <span class="op">=</span> <span class="fl">0.95</span>, digits <span class="op">=</span> <span class="fl">0</span>, nmc <span class="op">=</span> <span class="fl">1000</span>, seed <span class="op">=</span> <span class="cn">NULL</span><span class="op">)</span></code></pre></div>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">eqlnormCensored</span><span class="op">(</span><span class="va">x</span>, <span class="va">censored</span>, censoring.side <span class="op">=</span> <span class="st">"left"</span>, p <span class="op">=</span> <span class="fl">0.5</span>, method <span class="op">=</span> <span class="st">"mle"</span>, </span>
+<span>    ci <span class="op">=</span> <span class="cn">FALSE</span>, ci.method <span class="op">=</span> <span class="st">"exact.for.complete"</span>, ci.type <span class="op">=</span> <span class="st">"two-sided"</span>, </span>
+<span>    conf.level <span class="op">=</span> <span class="fl">0.95</span>, digits <span class="op">=</span> <span class="fl">0</span>, nmc <span class="op">=</span> <span class="fl">1000</span>, seed <span class="op">=</span> <span class="cn">NULL</span><span class="op">)</span></span></code></pre></div>
     </div>
 
     <div id="arguments">
@@ -65,7 +65,8 @@
 <dd><p>a numeric vector of positive observations.  
   Missing (<code>NA</code>), undefined (<code>NaN</code>), and infinite (<code>Inf</code>, <code>-Inf</code>) 
   values are allowed but will be removed.</p></dd>
-<dt>censored</dt>
+
+  <dt>censored</dt>
 <dd><p>numeric or logical vector indicating which values of <code>x</code> are censored.  
   This must be the same length as <code>x</code>.  If the mode of <code>censored</code> is 
   <code>"logical"</code>, <code>TRUE</code> values correspond to elements of <code>x</code> that 
@@ -74,14 +75,17 @@
   it must contain only <code>1</code>'s and <code>0</code>'s; <code>1</code> corresponds to 
   <code>TRUE</code> and <code>0</code> corresponds to <code>FALSE</code>.  Missing (<code>NA</code>) 
   values are allowed but will be removed.</p></dd>
-<dt>censoring.side</dt>
+
+  <dt>censoring.side</dt>
 <dd><p>character string indicating on which side the censoring occurs.  The possible 
   values are <code>"left"</code> (the default) and <code>"right"</code>.</p></dd>
-<dt>p</dt>
+
+  <dt>p</dt>
 <dd><p>numeric vector of probabilities for which quantiles will be estimated.  
   All values of <code>p</code> must be between 0 and 1.  When <code>ci=TRUE</code>, <code>p</code> 
   must be a scalar. The default value is <code>p=0.5</code>.</p></dd>
-<dt>method</dt>
+
+  <dt>method</dt>
 <dd><p>character string specifying the method of estimating the mean and standard 
   deviation on the log-scale.</p>
 <p>For singly censored data, the possible values are: <br><code>"mle"</code> (maximum likelihood; the default), <br><code>"bcmle"</code> (bias-corrected maximum likelihood), <br><code>"qq.reg"</code> (quantile-quantile regression), <br><code>"qq.reg.w.cen.level"</code> (quantile-quantile regression including the 
@@ -96,31 +100,39 @@
 
 
 <p>See the DETAILS section for more information.</p></dd>
-<dt>ci</dt>
+
+  <dt>ci</dt>
 <dd><p>logical scalar indicating whether to compute a confidence interval for the quantile.  
   The default value is <code>ci=FALSE</code>.</p></dd>
-<dt>ci.method</dt>
+
+  <dt>ci.method</dt>
 <dd><p>character string indicating what method to use to construct the confidence interval 
   for the quantile.  The possible values are: <br><code>"exact.for.complete"</code> (exact method for complete (uncensored) data; the default), <br><code>"gpq"</code> (method based on generalized pivotal quantities), and <br><code>"normal.approx"</code> (normal approximation).</p>
 <p>See the DETAILS section for more 
   information.  This argument is ignored if <code>ci=FALSE</code>.</p></dd>
-<dt>ci.type</dt>
+
+  <dt>ci.type</dt>
 <dd><p>character string indicating what kind of confidence interval for the quantile to compute.  
   The possible values are <code>"two-sided"</code> (the default), <code>"lower"</code>, and 
   <code>"upper"</code>.  This argument is ignored if <code>ci=FALSE</code>.</p></dd>
-<dt>conf.level</dt>
+
+  <dt>conf.level</dt>
 <dd><p>a scalar between 0 and 1 indicating the confidence level of the confidence interval.  
   The default value is <code>conf.level=0.95</code>.  This argument is ignored if <code>ci=FALSE</code>.</p></dd>
-<dt>digits</dt>
+
+  <dt>digits</dt>
 <dd><p>an integer indicating the number of decimal places to round to when printing out 
   the value of <code>100*p</code>. The default value is <code>digits=0</code>.</p></dd>
-<dt>nmc</dt>
+
+  <dt>nmc</dt>
 <dd><p>numeric scalar indicating the number of Monte Carlo simulations to run when 
   <code>ci=TRUE</code> and <code>ci.method="gpq"</code>.  The default is <code>nmc=1000</code>.</p></dd>
-<dt>seed</dt>
+
+  <dt>seed</dt>
 <dd><p>integer supplied to the function <code><a href="https://rdrr.io/r/base/Random.html" class="external-link">set.seed</a></code> and used when 
   <code>ci=TRUE</code> and <br><code>ci.method="gpq"</code>.  The default value is 
   <code>seed=NULL</code>, in which case the current value of <code>.Random.seed</code> is used.</p></dd>
+
 </dl></div>
     <div id="details">
     <h2>Details</h2>
@@ -130,7 +142,11 @@
     </div>
     <div id="value">
     <h2>Value</h2>
-    <p><code>eqlnormCensored</code> returns a list of class <code>"estimateCensored"</code>  containing the estimated quantile(s) and other information.  
+    <p></p>
+<p><code>eqlnormCensored</code> returns a list of class <code>"estimateCensored"</code></p>
+ 
+
+<p>containing the estimated quantile(s) and other information.  
   See <code><a href="estimateCensored.object.html">estimateCensored.object</a></code> for details.</p>
     </div>
     <div id="references">
@@ -253,44 +269,44 @@
 
     <div id="ref-examples">
     <h2>Examples</h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in">  <span class="co"># Generate 15 observations from a lognormal distribution with </span></span>
-<span class="r-in">  <span class="co"># parameters meanlog=3 and sdlog=0.5, and censor observations less than 10. </span></span>
-<span class="r-in">  <span class="co"># Then generate 15 more observations from this distribution and  censor </span></span>
-<span class="r-in">  <span class="co"># observations less than 9.</span></span>
-<span class="r-in">  <span class="co"># Then estimate the 90th percentile and create a one-sided upper 95% </span></span>
-<span class="r-in">  <span class="co"># confidence interval for that percentile. </span></span>
-<span class="r-in">  <span class="co"># (Note: the call to set.seed simply allows you to reproduce this example.)</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="fu"><a href="https://rdrr.io/r/base/Random.html" class="external-link">set.seed</a></span><span class="op">(</span><span class="fl">47</span><span class="op">)</span> </span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="va">x.1</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/Lognormal.html" class="external-link">rlnorm</a></span><span class="op">(</span><span class="fl">15</span>, meanlog <span class="op">=</span> <span class="fl">3</span>, sdlog <span class="op">=</span> <span class="fl">0.5</span><span class="op">)</span> </span>
-<span class="r-in">  <span class="fu"><a href="https://rdrr.io/r/base/sort.html" class="external-link">sort</a></span><span class="op">(</span><span class="va">x.1</span><span class="op">)</span></span>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span>  <span class="co"># Generate 15 observations from a lognormal distribution with </span></span></span>
+<span class="r-in"><span>  <span class="co"># parameters meanlog=3 and sdlog=0.5, and censor observations less than 10. </span></span></span>
+<span class="r-in"><span>  <span class="co"># Then generate 15 more observations from this distribution and  censor </span></span></span>
+<span class="r-in"><span>  <span class="co"># observations less than 9.</span></span></span>
+<span class="r-in"><span>  <span class="co"># Then estimate the 90th percentile and create a one-sided upper 95% </span></span></span>
+<span class="r-in"><span>  <span class="co"># confidence interval for that percentile. </span></span></span>
+<span class="r-in"><span>  <span class="co"># (Note: the call to set.seed simply allows you to reproduce this example.)</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/r/base/Random.html" class="external-link">set.seed</a></span><span class="op">(</span><span class="fl">47</span><span class="op">)</span> </span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="va">x.1</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/Lognormal.html" class="external-link">rlnorm</a></span><span class="op">(</span><span class="fl">15</span>, meanlog <span class="op">=</span> <span class="fl">3</span>, sdlog <span class="op">=</span> <span class="fl">0.5</span><span class="op">)</span> </span></span>
+<span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/r/base/sort.html" class="external-link">sort</a></span><span class="op">(</span><span class="va">x.1</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  [1]  8.051717  9.651611 11.671282 12.271247 12.664108 17.446124 17.707301</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  [8] 20.238069 20.487219 21.025510 21.208197 22.036554 25.710773 28.661973</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [15] 54.453557</span>
-<span class="r-in">  <span class="co"># [1]  8.051717  9.651611 11.671282 12.271247 12.664108 17.446124</span></span>
-<span class="r-in">  <span class="co"># [7] 17.707301 20.238069 20.487219 21.025510 21.208197 22.036554</span></span>
-<span class="r-in">  <span class="co">#[13] 25.710773 28.661973 54.453557</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="va">censored.1</span> <span class="op">&lt;-</span> <span class="va">x.1</span> <span class="op">&lt;</span> <span class="fl">10</span></span>
-<span class="r-in">  <span class="va">x.1</span><span class="op">[</span><span class="va">censored.1</span><span class="op">]</span> <span class="op">&lt;-</span> <span class="fl">10</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="va">x.2</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/Lognormal.html" class="external-link">rlnorm</a></span><span class="op">(</span><span class="fl">15</span>, meanlog <span class="op">=</span> <span class="fl">3</span>, sdlog <span class="op">=</span> <span class="fl">0.5</span><span class="op">)</span> </span>
-<span class="r-in">  <span class="fu"><a href="https://rdrr.io/r/base/sort.html" class="external-link">sort</a></span><span class="op">(</span><span class="va">x.2</span><span class="op">)</span></span>
+<span class="r-in"><span>  <span class="co"># [1]  8.051717  9.651611 11.671282 12.271247 12.664108 17.446124</span></span></span>
+<span class="r-in"><span>  <span class="co"># [7] 17.707301 20.238069 20.487219 21.025510 21.208197 22.036554</span></span></span>
+<span class="r-in"><span>  <span class="co">#[13] 25.710773 28.661973 54.453557</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="va">censored.1</span> <span class="op">&lt;-</span> <span class="va">x.1</span> <span class="op">&lt;</span> <span class="fl">10</span></span></span>
+<span class="r-in"><span>  <span class="va">x.1</span><span class="op">[</span><span class="va">censored.1</span><span class="op">]</span> <span class="op">&lt;-</span> <span class="fl">10</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="va">x.2</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/Lognormal.html" class="external-link">rlnorm</a></span><span class="op">(</span><span class="fl">15</span>, meanlog <span class="op">=</span> <span class="fl">3</span>, sdlog <span class="op">=</span> <span class="fl">0.5</span><span class="op">)</span> </span></span>
+<span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/r/base/sort.html" class="external-link">sort</a></span><span class="op">(</span><span class="va">x.2</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  [1]  6.289074  7.511164  8.988267  9.179006 12.869408 14.130081 16.941937</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  [8] 17.060513 19.287572 19.682126 20.363893 22.750203 24.744306 28.089325</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [15] 37.792873</span>
-<span class="r-in">  <span class="co"># [1]  6.289074  7.511164  8.988267  9.179006 12.869408 14.130081</span></span>
-<span class="r-in">  <span class="co"># [7] 16.941937 17.060513 19.287572 19.682126 20.363893 22.750203</span></span>
-<span class="r-in">  <span class="co">#[13] 24.744306 28.089325 37.792873</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="va">censored.2</span> <span class="op">&lt;-</span> <span class="va">x.2</span> <span class="op">&lt;</span> <span class="fl">9</span></span>
-<span class="r-in">  <span class="va">x.2</span><span class="op">[</span><span class="va">censored.2</span><span class="op">]</span> <span class="op">&lt;-</span> <span class="fl">9</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="va">x</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="va">x.1</span>, <span class="va">x.2</span><span class="op">)</span></span>
-<span class="r-in">  <span class="va">censored</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="va">censored.1</span>, <span class="va">censored.2</span><span class="op">)</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="fu">eqlnormCensored</span><span class="op">(</span><span class="va">x</span>, <span class="va">censored</span>, p <span class="op">=</span> <span class="fl">0.9</span>, ci <span class="op">=</span> <span class="cn">TRUE</span>, ci.type <span class="op">=</span> <span class="st">"upper"</span><span class="op">)</span></span>
+<span class="r-in"><span>  <span class="co"># [1]  6.289074  7.511164  8.988267  9.179006 12.869408 14.130081</span></span></span>
+<span class="r-in"><span>  <span class="co"># [7] 16.941937 17.060513 19.287572 19.682126 20.363893 22.750203</span></span></span>
+<span class="r-in"><span>  <span class="co">#[13] 24.744306 28.089325 37.792873</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="va">censored.2</span> <span class="op">&lt;-</span> <span class="va">x.2</span> <span class="op">&lt;</span> <span class="fl">9</span></span></span>
+<span class="r-in"><span>  <span class="va">x.2</span><span class="op">[</span><span class="va">censored.2</span><span class="op">]</span> <span class="op">&lt;-</span> <span class="fl">9</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="va">x</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="va">x.1</span>, <span class="va">x.2</span><span class="op">)</span></span></span>
+<span class="r-in"><span>  <span class="va">censored</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="va">censored.1</span>, <span class="va">censored.2</span><span class="op">)</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="fu">eqlnormCensored</span><span class="op">(</span><span class="va">x</span>, <span class="va">censored</span>, p <span class="op">=</span> <span class="fl">0.9</span>, ci <span class="op">=</span> <span class="cn">TRUE</span>, ci.type <span class="op">=</span> <span class="st">"upper"</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> $distribution</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] "Lognormal"</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
@@ -363,77 +379,77 @@
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> attr(,"class")</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] "estimateCensored"</span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="co">#Results of Distribution Parameter Estimation</span></span>
-<span class="r-in">  <span class="co">#Based on Type I Censored Data</span></span>
-<span class="r-in">  <span class="co">#--------------------------------------------</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Assumed Distribution:            Lognormal</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Censoring Side:                  left</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Censoring Level(s):               9 10 </span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Estimated Parameter(s):          meanlog = 2.8099300</span></span>
-<span class="r-in">  <span class="co">#                                 sdlog   = 0.5137151</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Estimation Method:               MLE</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Estimated Quantile(s):           90'th %ile = 32.08159</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Quantile Estimation Method:      Quantile(s) Based on</span></span>
-<span class="r-in">  <span class="co">#                                 MLE Estimators</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Data:                            x</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Censoring Variable:              censored</span></span>
-<span class="r-in">  <span class="co">#  </span></span>
-<span class="r-in">  <span class="co">#Sample Size:                     30</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Percent Censored:                16.66667%</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Confidence Interval for:         90'th %ile</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Assumed Sample Size:             30</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Confidence Interval Method:      Exact for</span></span>
-<span class="r-in">  <span class="co">#                                 Complete Data</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Confidence Interval Type:        upper</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Confidence Level:                95%</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Confidence Interval:             LCL =  0.00000</span></span>
-<span class="r-in">  <span class="co">#                                 UCL = 41.38716</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="co">#----------</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="co"># Compare these results with the true 90'th percentile:</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="fu"><a href="https://rdrr.io/r/stats/Lognormal.html" class="external-link">qlnorm</a></span><span class="op">(</span>p <span class="op">=</span> <span class="fl">0.9</span>, meanlog <span class="op">=</span> <span class="fl">3</span>, sd <span class="op">=</span> <span class="fl">0.5</span><span class="op">)</span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="co">#Results of Distribution Parameter Estimation</span></span></span>
+<span class="r-in"><span>  <span class="co">#Based on Type I Censored Data</span></span></span>
+<span class="r-in"><span>  <span class="co">#--------------------------------------------</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Assumed Distribution:            Lognormal</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Censoring Side:                  left</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Censoring Level(s):               9 10 </span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Estimated Parameter(s):          meanlog = 2.8099300</span></span></span>
+<span class="r-in"><span>  <span class="co">#                                 sdlog   = 0.5137151</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Estimation Method:               MLE</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Estimated Quantile(s):           90'th %ile = 32.08159</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Quantile Estimation Method:      Quantile(s) Based on</span></span></span>
+<span class="r-in"><span>  <span class="co">#                                 MLE Estimators</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Data:                            x</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Censoring Variable:              censored</span></span></span>
+<span class="r-in"><span>  <span class="co">#  </span></span></span>
+<span class="r-in"><span>  <span class="co">#Sample Size:                     30</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Percent Censored:                16.66667%</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Confidence Interval for:         90'th %ile</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Assumed Sample Size:             30</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Confidence Interval Method:      Exact for</span></span></span>
+<span class="r-in"><span>  <span class="co">#                                 Complete Data</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Confidence Interval Type:        upper</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Confidence Level:                95%</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Confidence Interval:             LCL =  0.00000</span></span></span>
+<span class="r-in"><span>  <span class="co">#                                 UCL = 41.38716</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="co">#----------</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="co"># Compare these results with the true 90'th percentile:</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/r/stats/Lognormal.html" class="external-link">qlnorm</a></span><span class="op">(</span>p <span class="op">=</span> <span class="fl">0.9</span>, meanlog <span class="op">=</span> <span class="fl">3</span>, sd <span class="op">=</span> <span class="fl">0.5</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] 38.1214</span>
-<span class="r-in">  <span class="co">#[1] 38.1214</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="co">#----------</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="co"># Clean up</span></span>
-<span class="r-in">  <span class="fu"><a href="https://rdrr.io/r/base/rm.html" class="external-link">rm</a></span><span class="op">(</span><span class="va">x.1</span>, <span class="va">censored.1</span>, <span class="va">x.2</span>, <span class="va">censored.2</span>, <span class="va">x</span>, <span class="va">censored</span><span class="op">)</span></span>
-<span class="r-in">  </span>
-<span class="r-in">  <span class="co">#--------------------------------------------------------------------</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="co"># Chapter 15 of USEPA (2009) gives several examples of estimating the mean</span></span>
-<span class="r-in">  <span class="co"># and standard deviation of a lognormal distribution on the log-scale using </span></span>
-<span class="r-in">  <span class="co"># manganese concentrations (ppb) in groundwater at five background wells. </span></span>
-<span class="r-in">  <span class="co"># In EnvStats these data are stored in the data frame </span></span>
-<span class="r-in">  <span class="co"># EPA.09.Ex.15.1.manganese.df.</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="co"># Here we will estimate the mean and standard deviation using the MLE, </span></span>
-<span class="r-in">  <span class="co"># and then construct an upper 95% confidence limit for the 90th percentile. </span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="co"># First look at the data:</span></span>
-<span class="r-in">  <span class="co">#-----------------------</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="va">EPA.09.Ex.15.1.manganese.df</span></span>
+<span class="r-in"><span>  <span class="co">#[1] 38.1214</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="co">#----------</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="co"># Clean up</span></span></span>
+<span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/r/base/rm.html" class="external-link">rm</a></span><span class="op">(</span><span class="va">x.1</span>, <span class="va">censored.1</span>, <span class="va">x.2</span>, <span class="va">censored.2</span>, <span class="va">x</span>, <span class="va">censored</span><span class="op">)</span></span></span>
+<span class="r-in"><span>  </span></span>
+<span class="r-in"><span>  <span class="co">#--------------------------------------------------------------------</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="co"># Chapter 15 of USEPA (2009) gives several examples of estimating the mean</span></span></span>
+<span class="r-in"><span>  <span class="co"># and standard deviation of a lognormal distribution on the log-scale using </span></span></span>
+<span class="r-in"><span>  <span class="co"># manganese concentrations (ppb) in groundwater at five background wells. </span></span></span>
+<span class="r-in"><span>  <span class="co"># In EnvStats these data are stored in the data frame </span></span></span>
+<span class="r-in"><span>  <span class="co"># EPA.09.Ex.15.1.manganese.df.</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="co"># Here we will estimate the mean and standard deviation using the MLE, </span></span></span>
+<span class="r-in"><span>  <span class="co"># and then construct an upper 95% confidence limit for the 90th percentile. </span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="co"># First look at the data:</span></span></span>
+<span class="r-in"><span>  <span class="co">#-----------------------</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="va">EPA.09.Ex.15.1.manganese.df</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>    Sample   Well Manganese.Orig.ppb Manganese.ppb Censored</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 1       1 Well.1                 &lt;5           5.0     TRUE</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 2       2 Well.1               12.1          12.1    FALSE</span>
@@ -460,42 +476,42 @@
 <span class="r-out co"><span class="r-pr">#&gt;</span> 23      3 Well.5                3.3           3.3    FALSE</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 24      4 Well.5                8.4           8.4    FALSE</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 25      5 Well.5                 &lt;2           2.0     TRUE</span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="co">#   Sample   Well Manganese.Orig.ppb Manganese.ppb Censored</span></span>
-<span class="r-in">  <span class="co">#1       1 Well.1                 &lt;5           5.0     TRUE</span></span>
-<span class="r-in">  <span class="co">#2       2 Well.1               12.1          12.1    FALSE</span></span>
-<span class="r-in">  <span class="co">#3       3 Well.1               16.9          16.9    FALSE</span></span>
-<span class="r-in">  <span class="co">#...</span></span>
-<span class="r-in">  <span class="co">#23      3 Well.5                3.3           3.3    FALSE</span></span>
-<span class="r-in">  <span class="co">#24      4 Well.5                8.4           8.4    FALSE</span></span>
-<span class="r-in">  <span class="co">#25      5 Well.5                 &lt;2           2.0     TRUE</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="fu"><a href="longToWide.html">longToWide</a></span><span class="op">(</span><span class="va">EPA.09.Ex.15.1.manganese.df</span>, </span>
-<span class="r-in">    <span class="st">"Manganese.Orig.ppb"</span>, <span class="st">"Sample"</span>, <span class="st">"Well"</span>,</span>
-<span class="r-in">    paste.row.name <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span>  </span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="co">#   Sample   Well Manganese.Orig.ppb Manganese.ppb Censored</span></span></span>
+<span class="r-in"><span>  <span class="co">#1       1 Well.1                 &lt;5           5.0     TRUE</span></span></span>
+<span class="r-in"><span>  <span class="co">#2       2 Well.1               12.1          12.1    FALSE</span></span></span>
+<span class="r-in"><span>  <span class="co">#3       3 Well.1               16.9          16.9    FALSE</span></span></span>
+<span class="r-in"><span>  <span class="co">#...</span></span></span>
+<span class="r-in"><span>  <span class="co">#23      3 Well.5                3.3           3.3    FALSE</span></span></span>
+<span class="r-in"><span>  <span class="co">#24      4 Well.5                8.4           8.4    FALSE</span></span></span>
+<span class="r-in"><span>  <span class="co">#25      5 Well.5                 &lt;2           2.0     TRUE</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="fu"><a href="longToWide.html">longToWide</a></span><span class="op">(</span><span class="va">EPA.09.Ex.15.1.manganese.df</span>, </span></span>
+<span class="r-in"><span>    <span class="st">"Manganese.Orig.ppb"</span>, <span class="st">"Sample"</span>, <span class="st">"Well"</span>,</span></span>
+<span class="r-in"><span>    paste.row.name <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span>  </span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>          Well.1 Well.2 Well.3 Well.4 Well.5</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Sample.1     &lt;5     &lt;5     &lt;5    6.3   17.9</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Sample.2   12.1    7.7    5.3   11.9   22.7</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Sample.3   16.9   53.6   12.6     10    3.3</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Sample.4   21.6    9.5  106.3     &lt;2    8.4</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Sample.5     &lt;2   45.9   34.5   77.2     &lt;2</span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="co">#         Well.1 Well.2 Well.3 Well.4 Well.5</span></span>
-<span class="r-in">  <span class="co">#Sample.1     &lt;5     &lt;5     &lt;5    6.3   17.9</span></span>
-<span class="r-in">  <span class="co">#Sample.2   12.1    7.7    5.3   11.9   22.7</span></span>
-<span class="r-in">  <span class="co">#Sample.3   16.9   53.6   12.6     10    3.3</span></span>
-<span class="r-in">  <span class="co">#Sample.4   21.6    9.5  106.3     &lt;2    8.4</span></span>
-<span class="r-in">  <span class="co">#Sample.5     &lt;2   45.9   34.5   77.2     &lt;2</span></span>
-<span class="r-in"></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="co"># Now estimate the mean, standard deviation, and 90th percentile </span></span>
-<span class="r-in">  <span class="co"># on the log-scale using the MLE, and construct an upper 95% </span></span>
-<span class="r-in">  <span class="co"># confidence limit for the 90th percentile:</span></span>
-<span class="r-in">  <span class="co">#---------------------------------------------------------------</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="fu"><a href="https://rdrr.io/r/base/with.html" class="external-link">with</a></span><span class="op">(</span><span class="va">EPA.09.Ex.15.1.manganese.df</span>,</span>
-<span class="r-in">    <span class="fu">eqlnormCensored</span><span class="op">(</span><span class="va">Manganese.ppb</span>, <span class="va">Censored</span>, </span>
-<span class="r-in">      p <span class="op">=</span> <span class="fl">0.9</span>, ci <span class="op">=</span> <span class="cn">TRUE</span>, ci.type <span class="op">=</span> <span class="st">"upper"</span><span class="op">)</span><span class="op">)</span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="co">#         Well.1 Well.2 Well.3 Well.4 Well.5</span></span></span>
+<span class="r-in"><span>  <span class="co">#Sample.1     &lt;5     &lt;5     &lt;5    6.3   17.9</span></span></span>
+<span class="r-in"><span>  <span class="co">#Sample.2   12.1    7.7    5.3   11.9   22.7</span></span></span>
+<span class="r-in"><span>  <span class="co">#Sample.3   16.9   53.6   12.6     10    3.3</span></span></span>
+<span class="r-in"><span>  <span class="co">#Sample.4   21.6    9.5  106.3     &lt;2    8.4</span></span></span>
+<span class="r-in"><span>  <span class="co">#Sample.5     &lt;2   45.9   34.5   77.2     &lt;2</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="co"># Now estimate the mean, standard deviation, and 90th percentile </span></span></span>
+<span class="r-in"><span>  <span class="co"># on the log-scale using the MLE, and construct an upper 95% </span></span></span>
+<span class="r-in"><span>  <span class="co"># confidence limit for the 90th percentile:</span></span></span>
+<span class="r-in"><span>  <span class="co">#---------------------------------------------------------------</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/r/base/with.html" class="external-link">with</a></span><span class="op">(</span><span class="va">EPA.09.Ex.15.1.manganese.df</span>,</span></span>
+<span class="r-in"><span>    <span class="fu">eqlnormCensored</span><span class="op">(</span><span class="va">Manganese.ppb</span>, <span class="va">Censored</span>, </span></span>
+<span class="r-in"><span>      p <span class="op">=</span> <span class="fl">0.9</span>, ci <span class="op">=</span> <span class="cn">TRUE</span>, ci.type <span class="op">=</span> <span class="st">"upper"</span><span class="op">)</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> $distribution</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] "Lognormal"</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
@@ -568,48 +584,48 @@
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> attr(,"class")</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] "estimateCensored"</span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="co">#Results of Distribution Parameter Estimation</span></span>
-<span class="r-in">  <span class="co">#Based on Type I Censored Data</span></span>
-<span class="r-in">  <span class="co">#--------------------------------------------</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Assumed Distribution:            Lognormal</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Censoring Side:                  left</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Censoring Level(s):              2 5 </span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Estimated Parameter(s):          meanlog = 2.215905</span></span>
-<span class="r-in">  <span class="co">#                                 sdlog   = 1.356291</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Estimation Method:               MLE</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Estimated Quantile(s):           90'th %ile = 52.14674</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Quantile Estimation Method:      Quantile(s) Based on</span></span>
-<span class="r-in">  <span class="co">#                                 MLE Estimators</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Data:                            Manganese.ppb</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Censoring Variable:              censored</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Sample Size:                     25</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Percent Censored:                24%</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Confidence Interval for:         90'th %ile</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Assumed Sample Size:             25</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Confidence Interval Method:      Exact for</span></span>
-<span class="r-in">  <span class="co">#                                 Complete Data</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Confidence Interval Type:        upper</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Confidence Level:                95%</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Confidence Interval:             LCL =   0.0000</span></span>
-<span class="r-in">  <span class="co">#                                 UCL = 110.9305</span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="co">#Results of Distribution Parameter Estimation</span></span></span>
+<span class="r-in"><span>  <span class="co">#Based on Type I Censored Data</span></span></span>
+<span class="r-in"><span>  <span class="co">#--------------------------------------------</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Assumed Distribution:            Lognormal</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Censoring Side:                  left</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Censoring Level(s):              2 5 </span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Estimated Parameter(s):          meanlog = 2.215905</span></span></span>
+<span class="r-in"><span>  <span class="co">#                                 sdlog   = 1.356291</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Estimation Method:               MLE</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Estimated Quantile(s):           90'th %ile = 52.14674</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Quantile Estimation Method:      Quantile(s) Based on</span></span></span>
+<span class="r-in"><span>  <span class="co">#                                 MLE Estimators</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Data:                            Manganese.ppb</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Censoring Variable:              censored</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Sample Size:                     25</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Percent Censored:                24%</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Confidence Interval for:         90'th %ile</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Assumed Sample Size:             25</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Confidence Interval Method:      Exact for</span></span></span>
+<span class="r-in"><span>  <span class="co">#                                 Complete Data</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Confidence Interval Type:        upper</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Confidence Level:                95%</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Confidence Interval:             LCL =   0.0000</span></span></span>
+<span class="r-in"><span>  <span class="co">#                                 UCL = 110.9305</span></span></span>
 </code></pre></div>
     </div>
   </div>
@@ -624,7 +640,7 @@
 </div>
 
 <div class="pkgdown">
-  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.2.</p>
+  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.6.</p>
 </div>
 
       </footer></div>

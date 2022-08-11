@@ -56,57 +56,68 @@
     </div>
 
     <div id="ref-usage">
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="fu">ciTableProp</span><span class="op">(</span>n1 <span class="op">=</span> <span class="fl">10</span>, p1.hat <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">0.1</span>, <span class="fl">0.2</span>, <span class="fl">0.3</span><span class="op">)</span>, n2 <span class="op">=</span> <span class="va">n1</span>, 
-    p2.hat.minus.p1.hat <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">0.2</span>, <span class="fl">0.1</span>, <span class="fl">0</span><span class="op">)</span>, sample.type <span class="op">=</span> <span class="st">"two.sample"</span>, 
-    ci.type <span class="op">=</span> <span class="st">"two.sided"</span>, conf.level <span class="op">=</span> <span class="fl">0.95</span>, digits <span class="op">=</span> <span class="fl">2</span>, ci.method <span class="op">=</span> <span class="st">"score"</span>, 
-    correct <span class="op">=</span> <span class="cn">TRUE</span>, tol <span class="op">=</span> <span class="fl">10</span><span class="op">^</span><span class="op">-</span><span class="op">(</span><span class="va">digits</span> <span class="op">+</span> <span class="fl">1</span><span class="op">)</span><span class="op">)</span></code></pre></div>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">ciTableProp</span><span class="op">(</span>n1 <span class="op">=</span> <span class="fl">10</span>, p1.hat <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">0.1</span>, <span class="fl">0.2</span>, <span class="fl">0.3</span><span class="op">)</span>, n2 <span class="op">=</span> <span class="va">n1</span>, </span>
+<span>    p2.hat.minus.p1.hat <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">0.2</span>, <span class="fl">0.1</span>, <span class="fl">0</span><span class="op">)</span>, sample.type <span class="op">=</span> <span class="st">"two.sample"</span>, </span>
+<span>    ci.type <span class="op">=</span> <span class="st">"two.sided"</span>, conf.level <span class="op">=</span> <span class="fl">0.95</span>, digits <span class="op">=</span> <span class="fl">2</span>, ci.method <span class="op">=</span> <span class="st">"score"</span>, </span>
+<span>    correct <span class="op">=</span> <span class="cn">TRUE</span>, tol <span class="op">=</span> <span class="fl">10</span><span class="op">^</span><span class="op">-</span><span class="op">(</span><span class="va">digits</span> <span class="op">+</span> <span class="fl">1</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
     </div>
 
     <div id="arguments">
     <h2>Arguments</h2>
     <dl><dt>n1</dt>
 <dd><p>positive integer greater than 1 specifying the sample size when <br><code>sample.type="one.sample"</code> or the sample size for group 1 when <br><code>sample.type="two.sample"</code>.  The default value is <code>n1=10</code>.</p></dd>
-<dt>p1.hat</dt>
+
+  <dt>p1.hat</dt>
 <dd><p>numeric vector of values between 0 and 1 indicating the estimated proportion 
   (<code>sample.type="one.sample"</code>) or the estimated proportion for group 1 <br>
   (<code>sample.type="two.sample"</code>).  The default value is <code>c(0.1, 0.2, 0.3)</code>.
   Missing (<code>NA</code>), undefined (<code>NaN</code>), an infinite 
   (<code>-Inf</code>, <code>Inf</code>) values are not allowed.</p></dd>
-<dt>n2</dt>
+
+  <dt>n2</dt>
 <dd><p>positive integer greater than 1 specifying the sample size for group 2 when 
   <code>sample.type="two.sample"</code>.  The default value is <code>n2=n1</code>, i.e., 
   equal sample sizes.  This argument is ignored when <code>sample.type="one.sample"</code>.</p></dd>
-<dt>p2.hat.minus.p1.hat</dt>
+
+  <dt>p2.hat.minus.p1.hat</dt>
 <dd><p>numeric vector indicating the assumed difference between the two sample proportions 
   when <code>sample.type="two.sample"</code>.  The default value is <code>c(0.2, 0.1, 0)</code>.  
   Missing (<code>NA</code>), undefined (<code>NaN</code>), an infinite 
   (<code>-Inf</code>, <code>Inf</code>) values are not allowed.  This argument is ignored when 
   <code>sample.type="one.sample"</code>.</p></dd>
-<dt>sample.type</dt>
+
+  <dt>sample.type</dt>
 <dd><p>character string specifying whether to create confidence intervals for the difference 
   between two proportions (<code>sample.type="two.sample"</code>; the default) or confidence 
   intervals for a single proportion (<code>sample.type="one.sample"</code>).</p></dd>
-<dt>ci.type</dt>
+
+  <dt>ci.type</dt>
 <dd><p>character string indicating what kind of confidence interval to compute.  The 
   possible values are <code>"two-sided"</code> (the default), <code>"lower"</code>, and 
   <code>"upper"</code>.</p></dd>
-<dt>conf.level</dt>
+
+  <dt>conf.level</dt>
 <dd><p>a scalar between 0 and 1 indicating the confidence level of the confidence interval.  
   The default value is <code>conf.level=0.95</code>.</p></dd>
-<dt>digits</dt>
+
+  <dt>digits</dt>
 <dd><p>positive integer indicating how many decimal places to display in the table.  The 
   default value is <code>digits=2</code>.</p></dd>
-<dt>ci.method</dt>
+
+  <dt>ci.method</dt>
 <dd><p>character string indicating the method to use to construct the confidence interval.  
   The default value is <code>ci.method="score"</code> (i.e., the score method; see the 
   help file for <code><a href="https://rdrr.io/r/stats/prop.test.html" class="external-link">prop.test</a></code>), which is the only method available when <br><code>sample.type="two.sample"</code>.  When <code>sample.type="one.sample"</code>, you may 
   also set <code>ci.method="exact"</code> (i.e., the exact method).</p></dd>
-<dt>correct</dt>
+
+  <dt>correct</dt>
 <dd><p>logical scalar indicating whether to use the correction for continuity when <br><code>ci.method="score"</code> (see the help file for <code><a href="https://rdrr.io/r/stats/prop.test.html" class="external-link">prop.test</a></code>).  The 
   default value is <code>correct=TRUE</code>.</p></dd>
-<dt>tol</dt>
+
+  <dt>tol</dt>
 <dd><p>numeric scalar indicating how close the values of the adjusted elements of <br><code>p2.hat.minus.p1.hat</code> have to be in order to provide a simply display 
   of confidence intervals (see DETAILS section below).  The default value is <br><code>tol=10^-(digits + 1)</code>.</p></dd>
+
 </dl></div>
     <div id="details">
     <h2>Details</h2>
@@ -146,9 +157,13 @@
     </div>
     <div id="value">
     <h2>Value</h2>
-    <p>a data frame with elements that are character strings indicating the 
-  confidence intervals.
-  When <code>sample.type="two.sample"</code>, a data frame with the rows varying 
+    
+
+<p>a data frame with elements that are character strings indicating the 
+  confidence intervals.</p>
+
+
+<p>When <code>sample.type="two.sample"</code>, a data frame with the rows varying 
   the estimated proportion for group 1 (i.e., the values of <code>p1.hat</code>) and 
   the columns varying the estimated difference between the proportions from 
   group 2 and group 1 (i.e., the values of <code>p2.hat.minus.p1.hat</code>).  In cases 
@@ -156,8 +171,10 @@
   differences for given values of <code>p1.hat</code>, in which case the returned 
   data frame contains twice as many columns indicating the actual difference 
   in one column and the compute confidence interval next to it (see EXAMPLES 
-  section below).
-  When <code>sample.type="one.sample"</code>, a 1-row data frame with the columns 
+  section below).</p>
+
+
+<p>When <code>sample.type="one.sample"</code>, a 1-row data frame with the columns 
   varying the estimated proportion (i.e., the values of <code>p1.hat</code>).</p>
     </div>
     <div id="references">
@@ -196,70 +213,70 @@
 
     <div id="ref-examples">
     <h2>Examples</h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in">  <span class="co"># Reproduce Table 1 in Bacchetti (2010).  This involves planning a study with </span></span>
-<span class="r-in">  <span class="co"># n1 = n2 = 935 subjects per group, where Group 1 is the control group and </span></span>
-<span class="r-in">  <span class="co"># Group 2 is the treatment group.  The outcome in the study is proportion of </span></span>
-<span class="r-in">  <span class="co"># subjects with serious outcomes or death.  A negative value for the difference </span></span>
-<span class="r-in">  <span class="co"># in proportions between groups (Group 2 proportion - Group 1 proportion) </span></span>
-<span class="r-in">  <span class="co"># indicates the treatment group has a better outcome.  In this table, the </span></span>
-<span class="r-in">  <span class="co"># proportion of subjects in Group 1 with serious outcomes or death is set </span></span>
-<span class="r-in">  <span class="co"># to 3%, 6.5%, and 12%, and the difference in proportions between the two </span></span>
-<span class="r-in">  <span class="co"># groups is set to -2.8 percentage points, -1.4 percentage points, and 0.</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="fu">ciTableProp</span><span class="op">(</span>n1 <span class="op">=</span> <span class="fl">935</span>, p1.hat <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">0.03</span>, <span class="fl">0.065</span>, <span class="fl">0.12</span><span class="op">)</span>, n2 <span class="op">=</span> <span class="fl">935</span>, </span>
-<span class="r-in">    p2.hat.minus.p1.hat <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="op">-</span><span class="fl">0.028</span>, <span class="op">-</span><span class="fl">0.014</span>, <span class="fl">0</span><span class="op">)</span>, digits <span class="op">=</span> <span class="fl">3</span><span class="op">)</span></span>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span>  <span class="co"># Reproduce Table 1 in Bacchetti (2010).  This involves planning a study with </span></span></span>
+<span class="r-in"><span>  <span class="co"># n1 = n2 = 935 subjects per group, where Group 1 is the control group and </span></span></span>
+<span class="r-in"><span>  <span class="co"># Group 2 is the treatment group.  The outcome in the study is proportion of </span></span></span>
+<span class="r-in"><span>  <span class="co"># subjects with serious outcomes or death.  A negative value for the difference </span></span></span>
+<span class="r-in"><span>  <span class="co"># in proportions between groups (Group 2 proportion - Group 1 proportion) </span></span></span>
+<span class="r-in"><span>  <span class="co"># indicates the treatment group has a better outcome.  In this table, the </span></span></span>
+<span class="r-in"><span>  <span class="co"># proportion of subjects in Group 1 with serious outcomes or death is set </span></span></span>
+<span class="r-in"><span>  <span class="co"># to 3%, 6.5%, and 12%, and the difference in proportions between the two </span></span></span>
+<span class="r-in"><span>  <span class="co"># groups is set to -2.8 percentage points, -1.4 percentage points, and 0.</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="fu">ciTableProp</span><span class="op">(</span>n1 <span class="op">=</span> <span class="fl">935</span>, p1.hat <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">0.03</span>, <span class="fl">0.065</span>, <span class="fl">0.12</span><span class="op">)</span>, n2 <span class="op">=</span> <span class="fl">935</span>, </span></span>
+<span class="r-in"><span>    p2.hat.minus.p1.hat <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="op">-</span><span class="fl">0.028</span>, <span class="op">-</span><span class="fl">0.014</span>, <span class="fl">0</span><span class="op">)</span>, digits <span class="op">=</span> <span class="fl">3</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>                   Diff=-0.028      Diff=-0.014           Diff=0</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> P1.hat=0.030 [-0.040, -0.015] [-0.029,  0.001] [-0.015,  0.015]</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> P1.hat=0.065 [-0.049, -0.007] [-0.036,  0.008] [-0.022,  0.022]</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> P1.hat=0.120 [-0.057,  0.001] [-0.044,  0.016] [-0.029,  0.029]</span>
-<span class="r-in">  <span class="co">#                  Diff=-0.028      Diff=-0.014           Diff=0</span></span>
-<span class="r-in">  <span class="co">#P1.hat=0.030 [-0.040, -0.015] [-0.029,  0.001] [-0.015,  0.015]</span></span>
-<span class="r-in">  <span class="co">#P1.hat=0.065 [-0.049, -0.007] [-0.036,  0.008] [-0.022,  0.022]</span></span>
-<span class="r-in">  <span class="co">#P1.hat=0.120 [-0.057,  0.001] [-0.044,  0.016] [-0.029,  0.029]</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="co">#==========</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="co"># Show how the returned data frame has to be modified for cases of small </span></span>
-<span class="r-in">  <span class="co"># sample sizes where not all user-supplied differenes are possible.</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="fu">ciTableProp</span><span class="op">(</span>n1 <span class="op">=</span> <span class="fl">5</span>, n2 <span class="op">=</span> <span class="fl">5</span>, p1.hat <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">0.3</span>, <span class="fl">0.6</span>, <span class="fl">0.12</span><span class="op">)</span>, p2.hat <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">0.2</span>, <span class="fl">0.1</span>, <span class="fl">0</span><span class="op">)</span><span class="op">)</span></span>
+<span class="r-in"><span>  <span class="co">#                  Diff=-0.028      Diff=-0.014           Diff=0</span></span></span>
+<span class="r-in"><span>  <span class="co">#P1.hat=0.030 [-0.040, -0.015] [-0.029,  0.001] [-0.015,  0.015]</span></span></span>
+<span class="r-in"><span>  <span class="co">#P1.hat=0.065 [-0.049, -0.007] [-0.036,  0.008] [-0.022,  0.022]</span></span></span>
+<span class="r-in"><span>  <span class="co">#P1.hat=0.120 [-0.057,  0.001] [-0.044,  0.016] [-0.029,  0.029]</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="co">#==========</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="co"># Show how the returned data frame has to be modified for cases of small </span></span></span>
+<span class="r-in"><span>  <span class="co"># sample sizes where not all user-supplied differenes are possible.</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="fu">ciTableProp</span><span class="op">(</span>n1 <span class="op">=</span> <span class="fl">5</span>, n2 <span class="op">=</span> <span class="fl">5</span>, p1.hat <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">0.3</span>, <span class="fl">0.6</span>, <span class="fl">0.12</span><span class="op">)</span>, p2.hat <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">0.2</span>, <span class="fl">0.1</span>, <span class="fl">0</span><span class="op">)</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>            Diff            CI Diff            CI Diff            CI</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> P1.hat=0.4  0.2 [-0.61, 1.00]  0.0 [-0.61, 0.61]    0 [-0.61, 0.61]</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> P1.hat=0.6  0.2 [-0.55, 0.95]  0.2 [-0.55, 0.95]    0 [-0.61, 0.61]</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> P1.hat=0.2  0.2 [-0.55, 0.95]  0.2 [-0.55, 0.95]    0 [-0.50, 0.50]</span>
-<span class="r-in">  <span class="co">#           Diff            CI Diff            CI Diff            CI</span></span>
-<span class="r-in">  <span class="co">#P1.hat=0.4  0.2 [-0.61, 1.00]  0.0 [-0.61, 0.61]    0 [-0.61, 0.61]</span></span>
-<span class="r-in">  <span class="co">#P1.hat=0.6  0.2 [-0.55, 0.95]  0.2 [-0.55, 0.95]    0 [-0.61, 0.61]</span></span>
-<span class="r-in">  <span class="co">#P1.hat=0.2  0.2 [-0.55, 0.95]  0.2 [-0.55, 0.95]    0 [-0.50, 0.50]</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="co">#==========</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="co"># Suppose we are planning a study to compare the proportion of nondetects at </span></span>
-<span class="r-in">  <span class="co"># a background and downgradient well, and we can use ciTableProp to look how </span></span>
-<span class="r-in">  <span class="co"># the confidence interval for the difference between the two proportions using </span></span>
-<span class="r-in">  <span class="co"># say 36 quarterly samples at each well varies with the observed estimated </span></span>
-<span class="r-in">  <span class="co"># proportions.  Here we'll let the argument "p1.hat" denote the proportion of </span></span>
-<span class="r-in">  <span class="co"># nondetects observed at the downgradient well and set this equal to </span></span>
-<span class="r-in">  <span class="co"># 20%, 40% and 60%.  The argument "p2.hat.minus.p1.hat" represents the proportion </span></span>
-<span class="r-in">  <span class="co"># of nondetects at the background well minus the proportion of nondetects at the </span></span>
-<span class="r-in">  <span class="co"># downgradient well.</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="fu">ciTableProp</span><span class="op">(</span>n1 <span class="op">=</span> <span class="fl">36</span>, p1.hat <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">0.2</span>, <span class="fl">0.4</span>, <span class="fl">0.6</span><span class="op">)</span>, n2 <span class="op">=</span> <span class="fl">36</span>, </span>
-<span class="r-in">    p2.hat.minus.p1.hat <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">0.3</span>, <span class="fl">0.15</span>, <span class="fl">0</span><span class="op">)</span><span class="op">)</span></span>
+<span class="r-in"><span>  <span class="co">#           Diff            CI Diff            CI Diff            CI</span></span></span>
+<span class="r-in"><span>  <span class="co">#P1.hat=0.4  0.2 [-0.61, 1.00]  0.0 [-0.61, 0.61]    0 [-0.61, 0.61]</span></span></span>
+<span class="r-in"><span>  <span class="co">#P1.hat=0.6  0.2 [-0.55, 0.95]  0.2 [-0.55, 0.95]    0 [-0.61, 0.61]</span></span></span>
+<span class="r-in"><span>  <span class="co">#P1.hat=0.2  0.2 [-0.55, 0.95]  0.2 [-0.55, 0.95]    0 [-0.50, 0.50]</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="co">#==========</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="co"># Suppose we are planning a study to compare the proportion of nondetects at </span></span></span>
+<span class="r-in"><span>  <span class="co"># a background and downgradient well, and we can use ciTableProp to look how </span></span></span>
+<span class="r-in"><span>  <span class="co"># the confidence interval for the difference between the two proportions using </span></span></span>
+<span class="r-in"><span>  <span class="co"># say 36 quarterly samples at each well varies with the observed estimated </span></span></span>
+<span class="r-in"><span>  <span class="co"># proportions.  Here we'll let the argument "p1.hat" denote the proportion of </span></span></span>
+<span class="r-in"><span>  <span class="co"># nondetects observed at the downgradient well and set this equal to </span></span></span>
+<span class="r-in"><span>  <span class="co"># 20%, 40% and 60%.  The argument "p2.hat.minus.p1.hat" represents the proportion </span></span></span>
+<span class="r-in"><span>  <span class="co"># of nondetects at the background well minus the proportion of nondetects at the </span></span></span>
+<span class="r-in"><span>  <span class="co"># downgradient well.</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="fu">ciTableProp</span><span class="op">(</span>n1 <span class="op">=</span> <span class="fl">36</span>, p1.hat <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">0.2</span>, <span class="fl">0.4</span>, <span class="fl">0.6</span><span class="op">)</span>, n2 <span class="op">=</span> <span class="fl">36</span>, </span></span>
+<span class="r-in"><span>    p2.hat.minus.p1.hat <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">0.3</span>, <span class="fl">0.15</span>, <span class="fl">0</span><span class="op">)</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>                 Diff=0.31     Diff=0.14        Diff=0</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> P1.hat=0.19 [ 0.07, 0.54] [-0.09, 0.37] [-0.18, 0.18]</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> P1.hat=0.39 [ 0.06, 0.55] [-0.12, 0.39] [-0.23, 0.23]</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> P1.hat=0.61 [ 0.09, 0.52] [-0.10, 0.38] [-0.23, 0.23]</span>
-<span class="r-in">  <span class="co">#                Diff=0.31     Diff=0.14        Diff=0</span></span>
-<span class="r-in">  <span class="co">#P1.hat=0.19 [ 0.07, 0.54] [-0.09, 0.37] [-0.18, 0.18]</span></span>
-<span class="r-in">  <span class="co">#P1.hat=0.39 [ 0.06, 0.55] [-0.12, 0.39] [-0.23, 0.23]</span></span>
-<span class="r-in">  <span class="co">#P1.hat=0.61 [ 0.09, 0.52] [-0.10, 0.38] [-0.23, 0.23]</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="co"># We see that even if the observed difference in the proportion of nondetects </span></span>
-<span class="r-in">  <span class="co"># is about 15 percentage points, all of the confidence intervals for the </span></span>
-<span class="r-in">  <span class="co"># difference between the proportions of nondetects at the two wells contain 0, </span></span>
-<span class="r-in">  <span class="co"># so if a difference of 15 percentage points is important to substantiate, we </span></span>
-<span class="r-in">  <span class="co"># may need to increase our sample sizes.</span></span>
+<span class="r-in"><span>  <span class="co">#                Diff=0.31     Diff=0.14        Diff=0</span></span></span>
+<span class="r-in"><span>  <span class="co">#P1.hat=0.19 [ 0.07, 0.54] [-0.09, 0.37] [-0.18, 0.18]</span></span></span>
+<span class="r-in"><span>  <span class="co">#P1.hat=0.39 [ 0.06, 0.55] [-0.12, 0.39] [-0.23, 0.23]</span></span></span>
+<span class="r-in"><span>  <span class="co">#P1.hat=0.61 [ 0.09, 0.52] [-0.10, 0.38] [-0.23, 0.23]</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="co"># We see that even if the observed difference in the proportion of nondetects </span></span></span>
+<span class="r-in"><span>  <span class="co"># is about 15 percentage points, all of the confidence intervals for the </span></span></span>
+<span class="r-in"><span>  <span class="co"># difference between the proportions of nondetects at the two wells contain 0, </span></span></span>
+<span class="r-in"><span>  <span class="co"># so if a difference of 15 percentage points is important to substantiate, we </span></span></span>
+<span class="r-in"><span>  <span class="co"># may need to increase our sample sizes.</span></span></span>
 </code></pre></div>
     </div>
   </div>
@@ -274,7 +291,7 @@
 </div>
 
 <div class="pkgdown">
-  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.2.</p>
+  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.6.</p>
 </div>
 
       </footer></div>

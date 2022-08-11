@@ -52,8 +52,8 @@
     </div>
 
     <div id="ref-usage">
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="fu">tolIntPois</span><span class="op">(</span><span class="va">x</span>, coverage <span class="op">=</span> <span class="fl">0.95</span>, cov.type <span class="op">=</span> <span class="st">"content"</span>, ti.type <span class="op">=</span> <span class="st">"two-sided"</span>, 
-    conf.level <span class="op">=</span> <span class="fl">0.95</span><span class="op">)</span></code></pre></div>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">tolIntPois</span><span class="op">(</span><span class="va">x</span>, coverage <span class="op">=</span> <span class="fl">0.95</span>, cov.type <span class="op">=</span> <span class="st">"content"</span>, ti.type <span class="op">=</span> <span class="st">"two-sided"</span>, </span>
+<span>    conf.level <span class="op">=</span> <span class="fl">0.95</span><span class="op">)</span></span></code></pre></div>
     </div>
 
     <div id="arguments">
@@ -66,22 +66,27 @@
   If <code>x</code> is a numeric vector, 
   missing (<code>NA</code>), undefined (<code>NaN</code>), and 
   infinite (<code>Inf</code>, <code>-Inf</code>) values are allowed but will be removed.</p></dd>
-<dt>coverage</dt>
+
+  <dt>coverage</dt>
 <dd><p>a scalar between 0 and 1 indicating the desired coverage of the tolerance interval.  
   The default value is <code>coverage=0.95</code>.  If <code>cov.type="expectation"</code>, 
   this argument is ignored.</p></dd>
-<dt>cov.type</dt>
+
+  <dt>cov.type</dt>
 <dd><p>character string specifying the coverage type for the tolerance interval.  
   The possible values are <code>"content"</code> (\(\beta\)-content; the default), and 
   <code>"expectation"</code> (\(\beta\)-expectation).  See the DETAILS section for more 
   information.</p></dd>
-<dt>ti.type</dt>
+
+  <dt>ti.type</dt>
 <dd><p>character string indicating what kind of tolerance interval to compute.  
   The possible values are <code>"two-sided"</code> (the default), <code>"lower"</code>, and 
   <code>"upper"</code>.</p></dd>
-<dt>conf.level</dt>
+
+  <dt>conf.level</dt>
 <dd><p>a scalar between 0 and 1 indicating the confidence level associated with the tolerance 
   interval.  The default value is <code>conf.level=0.95</code>.</p></dd>
+
 </dl></div>
     <div id="details">
     <h2>Details</h2>
@@ -168,13 +173,23 @@
     </div>
     <div id="value">
     <h2>Value</h2>
-    <p>If <code>x</code> is a numeric vector, <code>tolIntPois</code> returns a list of class 
-<code>"estimate"</code> containing the estimated parameters, a component called 
-<code>interval</code> containing the tolerance interval information, and other 
-  information.  See <code><a href="estimate.object.html">estimate.object</a></code> for details.
-  If <code>x</code> is the result of calling an estimation function, <code>tolIntPois</code>  returns a list whose class is the same as <code>x</code>.  The list contains the same 
-  components as <code>x</code>.  If <code>x</code> already has a component called 
-<code>interval</code>, this component is replaced with the tolerance interval 
+    
+
+<p>If <code>x</code> is a numeric vector, <code>tolIntPois</code> returns a list of class</p>
+<p></p>
+<p><code>"estimate"</code> containing the estimated parameters, a component called</p>
+<p></p>
+<p><code>interval</code> containing the tolerance interval information, and other 
+  information.  See <code><a href="estimate.object.html">estimate.object</a></code> for details.</p>
+
+
+<p>If <code>x</code> is the result of calling an estimation function, <code>tolIntPois</code></p>
+ 
+
+<p>returns a list whose class is the same as <code>x</code>.  The list contains the same 
+  components as <code>x</code>.  If <code>x</code> already has a component called</p>
+<p></p>
+<p><code>interval</code>, this component is replaced with the tolerance interval 
   information.</p>
     </div>
     <div id="references">
@@ -232,18 +247,18 @@
 
     <div id="ref-examples">
     <h2>Examples</h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in">  <span class="co"># Generate 20 observations from a Poisson distribution with parameter </span></span>
-<span class="r-in">  <span class="co"># lambda=2. The interval [0, 4] contains 94.7% of this distribution and </span></span>
-<span class="r-in">  <span class="co"># the interval [0,5] contains 98.3% of this distribution.  Thus, because </span></span>
-<span class="r-in">  <span class="co"># of the discrete nature of the Poisson distribution, no interval contains </span></span>
-<span class="r-in">  <span class="co"># exactly 95% of this distribution.  Use tolIntPois to estimate the mean </span></span>
-<span class="r-in">  <span class="co"># parameter of the true distribution, and construct a one-sided upper 95% </span></span>
-<span class="r-in">  <span class="co"># beta-content tolerance interval with associated confidence level 90%. </span></span>
-<span class="r-in">  <span class="co"># (Note: the call to set.seed simply allows you to reproduce this example.)</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="fu"><a href="https://rdrr.io/r/base/Random.html" class="external-link">set.seed</a></span><span class="op">(</span><span class="fl">250</span><span class="op">)</span> </span>
-<span class="r-in">  <span class="va">dat</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/Poisson.html" class="external-link">rpois</a></span><span class="op">(</span><span class="fl">20</span>, <span class="fl">2</span><span class="op">)</span> </span>
-<span class="r-in">  <span class="fu">tolIntPois</span><span class="op">(</span><span class="va">dat</span>, conf.level <span class="op">=</span> <span class="fl">0.9</span><span class="op">)</span></span>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span>  <span class="co"># Generate 20 observations from a Poisson distribution with parameter </span></span></span>
+<span class="r-in"><span>  <span class="co"># lambda=2. The interval [0, 4] contains 94.7% of this distribution and </span></span></span>
+<span class="r-in"><span>  <span class="co"># the interval [0,5] contains 98.3% of this distribution.  Thus, because </span></span></span>
+<span class="r-in"><span>  <span class="co"># of the discrete nature of the Poisson distribution, no interval contains </span></span></span>
+<span class="r-in"><span>  <span class="co"># exactly 95% of this distribution.  Use tolIntPois to estimate the mean </span></span></span>
+<span class="r-in"><span>  <span class="co"># parameter of the true distribution, and construct a one-sided upper 95% </span></span></span>
+<span class="r-in"><span>  <span class="co"># beta-content tolerance interval with associated confidence level 90%. </span></span></span>
+<span class="r-in"><span>  <span class="co"># (Note: the call to set.seed simply allows you to reproduce this example.)</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/r/base/Random.html" class="external-link">set.seed</a></span><span class="op">(</span><span class="fl">250</span><span class="op">)</span> </span></span>
+<span class="r-in"><span>  <span class="va">dat</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/Poisson.html" class="external-link">rpois</a></span><span class="op">(</span><span class="fl">20</span>, <span class="fl">2</span><span class="op">)</span> </span></span>
+<span class="r-in"><span>  <span class="fu">tolIntPois</span><span class="op">(</span><span class="va">dat</span>, conf.level <span class="op">=</span> <span class="fl">0.9</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> $distribution</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] "Poisson"</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
@@ -297,37 +312,37 @@
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> attr(,"class")</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] "estimate"</span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="co">#Results of Distribution Parameter Estimation</span></span>
-<span class="r-in">  <span class="co">#--------------------------------------------</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Assumed Distribution:            Poisson</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Estimated Parameter(s):          lambda = 1.8</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Estimation Method:               mle/mme/mvue</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Data:                            dat</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Sample Size:                     20</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Tolerance Interval Coverage:     95%</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Coverage Type:                   content</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Tolerance Interval Method:       Zacks</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Tolerance Interval Type:         two-sided</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Confidence Level:                90%</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Tolerance Interval:              LTL = 0</span></span>
-<span class="r-in">  <span class="co">#                                 UTL = 6</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="co">#------</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="co"># Clean up</span></span>
-<span class="r-in">  <span class="fu"><a href="https://rdrr.io/r/base/rm.html" class="external-link">rm</a></span><span class="op">(</span><span class="va">dat</span><span class="op">)</span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="co">#Results of Distribution Parameter Estimation</span></span></span>
+<span class="r-in"><span>  <span class="co">#--------------------------------------------</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Assumed Distribution:            Poisson</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Estimated Parameter(s):          lambda = 1.8</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Estimation Method:               mle/mme/mvue</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Data:                            dat</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Sample Size:                     20</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Tolerance Interval Coverage:     95%</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Coverage Type:                   content</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Tolerance Interval Method:       Zacks</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Tolerance Interval Type:         two-sided</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Confidence Level:                90%</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Tolerance Interval:              LTL = 0</span></span></span>
+<span class="r-in"><span>  <span class="co">#                                 UTL = 6</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="co">#------</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="co"># Clean up</span></span></span>
+<span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/r/base/rm.html" class="external-link">rm</a></span><span class="op">(</span><span class="va">dat</span><span class="op">)</span></span></span>
 </code></pre></div>
     </div>
   </div>
@@ -342,7 +357,7 @@
 </div>
 
 <div class="pkgdown">
-  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.2.</p>
+  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.6.</p>
 </div>
 
       </footer></div>

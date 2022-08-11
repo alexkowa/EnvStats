@@ -60,19 +60,19 @@ Currently, there is a default method and a method for objects of class "lm".'><!
     </div>
 
     <div id="ref-usage">
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="fu">boxcox</span><span class="op">(</span><span class="va">x</span>, <span class="va">...</span><span class="op">)</span>
-
-<span class="co"># S3 method for default</span>
-<span class="fu">boxcox</span><span class="op">(</span><span class="va">x</span>, 
-    lambda <span class="op">=</span> <span class="op">{</span><span class="kw">if</span> <span class="op">(</span><span class="va">optimize</span><span class="op">)</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="op">-</span><span class="fl">2</span>, <span class="fl">2</span><span class="op">)</span> <span class="kw">else</span> <span class="fu"><a href="https://rdrr.io/r/base/seq.html" class="external-link">seq</a></span><span class="op">(</span><span class="op">-</span><span class="fl">2</span>, <span class="fl">2</span>, by <span class="op">=</span> <span class="fl">0.5</span><span class="op">)</span><span class="op">}</span>, 
-    optimize <span class="op">=</span> <span class="cn">FALSE</span>, objective.name <span class="op">=</span> <span class="st">"PPCC"</span>, 
-    eps <span class="op">=</span> <span class="va">.Machine</span><span class="op">$</span><span class="va">double.eps</span>, include.x <span class="op">=</span> <span class="cn">TRUE</span>, <span class="va">...</span><span class="op">)</span>
-
-<span class="co"># S3 method for lm</span>
-<span class="fu">boxcox</span><span class="op">(</span><span class="va">x</span>, 
-    lambda <span class="op">=</span> <span class="op">{</span><span class="kw">if</span> <span class="op">(</span><span class="va">optimize</span><span class="op">)</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="op">-</span><span class="fl">2</span>, <span class="fl">2</span><span class="op">)</span> <span class="kw">else</span> <span class="fu"><a href="https://rdrr.io/r/base/seq.html" class="external-link">seq</a></span><span class="op">(</span><span class="op">-</span><span class="fl">2</span>, <span class="fl">2</span>, by <span class="op">=</span> <span class="fl">0.5</span><span class="op">)</span><span class="op">}</span>, 
-    optimize <span class="op">=</span> <span class="cn">FALSE</span>, objective.name <span class="op">=</span> <span class="st">"PPCC"</span>, 
-    eps <span class="op">=</span> <span class="va">.Machine</span><span class="op">$</span><span class="va">double.eps</span>, include.x <span class="op">=</span> <span class="cn">TRUE</span>, <span class="va">...</span><span class="op">)</span></code></pre></div>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">boxcox</span><span class="op">(</span><span class="va">x</span>, <span class="va">...</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># S3 method for default</span></span>
+<span><span class="fu">boxcox</span><span class="op">(</span><span class="va">x</span>, </span>
+<span>    lambda <span class="op">=</span> <span class="op">{</span><span class="kw">if</span> <span class="op">(</span><span class="va">optimize</span><span class="op">)</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="op">-</span><span class="fl">2</span>, <span class="fl">2</span><span class="op">)</span> <span class="kw">else</span> <span class="fu"><a href="https://rdrr.io/r/base/seq.html" class="external-link">seq</a></span><span class="op">(</span><span class="op">-</span><span class="fl">2</span>, <span class="fl">2</span>, by <span class="op">=</span> <span class="fl">0.5</span><span class="op">)</span><span class="op">}</span>, </span>
+<span>    optimize <span class="op">=</span> <span class="cn">FALSE</span>, objective.name <span class="op">=</span> <span class="st">"PPCC"</span>, </span>
+<span>    eps <span class="op">=</span> <span class="va">.Machine</span><span class="op">$</span><span class="va">double.eps</span>, include.x <span class="op">=</span> <span class="cn">TRUE</span>, <span class="va">...</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># S3 method for lm</span></span>
+<span><span class="fu">boxcox</span><span class="op">(</span><span class="va">x</span>, </span>
+<span>    lambda <span class="op">=</span> <span class="op">{</span><span class="kw">if</span> <span class="op">(</span><span class="va">optimize</span><span class="op">)</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="op">-</span><span class="fl">2</span>, <span class="fl">2</span><span class="op">)</span> <span class="kw">else</span> <span class="fu"><a href="https://rdrr.io/r/base/seq.html" class="external-link">seq</a></span><span class="op">(</span><span class="op">-</span><span class="fl">2</span>, <span class="fl">2</span>, by <span class="op">=</span> <span class="fl">0.5</span><span class="op">)</span><span class="op">}</span>, </span>
+<span>    optimize <span class="op">=</span> <span class="cn">FALSE</span>, objective.name <span class="op">=</span> <span class="st">"PPCC"</span>, </span>
+<span>    eps <span class="op">=</span> <span class="va">.Machine</span><span class="op">$</span><span class="va">double.eps</span>, include.x <span class="op">=</span> <span class="cn">TRUE</span>, <span class="va">...</span><span class="op">)</span></span></code></pre></div>
     </div>
 
     <div id="arguments">
@@ -85,32 +85,39 @@ Currently, there is a default method and a method for objects of class "lm".'><!
   When <code>x</code> is a numeric vector of positive observations, missing (<code>NA</code>), 
   undefined (<code>NaN</code>), and infinite (<code>-Inf, Inf</code>) values are allowed but 
   will be removed.</p></dd>
-<dt>lambda</dt>
+
+  <dt>lambda</dt>
 <dd><p>numeric vector of finite values indicating what powers to use for the 
   Box-Cox transformation.  When <code>optimize=FALSE</code>, the default value is <br><code>lambda=seq(-2, 2, by=0.5)</code>.  When <code>optimize=TRUE</code>, <code>lambda</code> 
   must be a vector with two values indicating the range over which the 
   optimization will occur and the range of these two values must include 1.  
   In this case, the default value is <code>lambda=c(-2, 2)</code>.</p></dd>
-<dt>optimize</dt>
+
+  <dt>optimize</dt>
 <dd><p>logical scalar indicating whether to simply evalute the objective function at the 
   given values of <code>lambda</code> (<code>optimize=FALSE</code>; the default), or to compute 
   the optimal power transformation within the bounds specified by 
   <code>lambda</code> (<code>optimize=TRUE</code>).</p></dd>
-<dt>objective.name</dt>
+
+  <dt>objective.name</dt>
 <dd><p>character string indicating what objective to use. The possible values are
   <code>"PPCC"</code> (probability plot correlation coefficient; the default), 
   <code>"Shapiro-Wilk"</code> (the Shapiro-Wilk goodness-of-fit statistic), and 
   <code>"Log-Likelihood"</code> (the log-likelihood function).</p></dd>
-<dt>eps</dt>
+
+  <dt>eps</dt>
 <dd><p>finite, positive numeric scalar.  When the absolute value of <code>lambda</code> is less 
   than <code>eps</code>, lambda is assumed to be 0 for the Box-Cox transformation.  
   The default value is <code>eps=.Machine$double.eps</code>.</p></dd>
-<dt>include.x</dt>
+
+  <dt>include.x</dt>
 <dd><p>logical scalar indicating whether to include the finite, non-missing values of 
   the argument <code>x</code> with the returned object. The default value is 
   <code>include.x=TRUE</code>.</p></dd>
-<dt>...</dt>
+
+  <dt>...</dt>
 <dd><p>optional arguments for possible future methods.  Currently not used.</p></dd>
+
 </dl></div>
     <div id="details">
     <h2>Details</h2>
@@ -202,11 +209,16 @@ Currently, there is a default method and a method for objects of class "lm".'><!
     </div>
     <div id="value">
     <h2>Value</h2>
-    <p>When <code>x</code> is an object of class <code>"lm"</code>, <code>boxcox</code> returns 
+    
+
+<p>When <code>x</code> is an object of class <code>"lm"</code>, <code>boxcox</code> returns 
   a list of class <code>"boxcoxLm"</code> containing the results.  See 
-  the help file for <code><a href="boxcoxLm.object.html">boxcoxLm.object</a></code> for details.
-  When <code>x</code> is simply a numeric vector of positive numbers, 
-<code>boxcox</code> returns a list of class <code>"boxcox"</code> containing the 
+  the help file for <code><a href="boxcoxLm.object.html">boxcoxLm.object</a></code> for details.</p>
+
+
+<p>When <code>x</code> is simply a numeric vector of positive numbers,</p>
+<p></p>
+<p><code>boxcox</code> returns a list of class <code>"boxcox"</code> containing the 
   results.  See the help file for <code><a href="boxcox.object.html">boxcox.object</a></code> for details.</p>
     </div>
     <div id="references">
@@ -308,23 +320,23 @@ Currently, there is a default method and a method for objects of class "lm".'><!
 
     <div id="ref-examples">
     <h2>Examples</h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in">  <span class="co"># Generate 30 observations from a lognormal distribution with </span></span>
-<span class="r-in">  <span class="co"># mean=10 and cv=2.  Look at some values of various objectives </span></span>
-<span class="r-in">  <span class="co"># for various transformations.  Note that for both the PPCC and </span></span>
-<span class="r-in">  <span class="co"># the Log-Likelihood objective, the optimal value of lambda is </span></span>
-<span class="r-in">  <span class="co"># about 0, indicating that a log transformation is appropriate.  </span></span>
-<span class="r-in">  <span class="co"># (Note: the call to set.seed simply allows you to reproduce this example.)</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="fu"><a href="https://rdrr.io/r/base/Random.html" class="external-link">set.seed</a></span><span class="op">(</span><span class="fl">250</span><span class="op">)</span> </span>
-<span class="r-in">  <span class="va">x</span> <span class="op">&lt;-</span> <span class="fu"><a href="LognormalAlt.html">rlnormAlt</a></span><span class="op">(</span><span class="fl">30</span>, mean <span class="op">=</span> <span class="fl">10</span>, cv <span class="op">=</span> <span class="fl">2</span><span class="op">)</span> </span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="fu"><a href="https://rdrr.io/r/grDevices/dev.html" class="external-link">dev.new</a></span><span class="op">(</span><span class="op">)</span></span>
-<span class="r-in">  <span class="fu"><a href="https://rdrr.io/r/graphics/hist.html" class="external-link">hist</a></span><span class="op">(</span><span class="va">x</span>, col <span class="op">=</span> <span class="st">"cyan"</span><span class="op">)</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="co"># Using the PPCC objective:</span></span>
-<span class="r-in">  <span class="co">#--------------------------</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="fu">boxcox</span><span class="op">(</span><span class="va">x</span><span class="op">)</span> </span>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span>  <span class="co"># Generate 30 observations from a lognormal distribution with </span></span></span>
+<span class="r-in"><span>  <span class="co"># mean=10 and cv=2.  Look at some values of various objectives </span></span></span>
+<span class="r-in"><span>  <span class="co"># for various transformations.  Note that for both the PPCC and </span></span></span>
+<span class="r-in"><span>  <span class="co"># the Log-Likelihood objective, the optimal value of lambda is </span></span></span>
+<span class="r-in"><span>  <span class="co"># about 0, indicating that a log transformation is appropriate.  </span></span></span>
+<span class="r-in"><span>  <span class="co"># (Note: the call to set.seed simply allows you to reproduce this example.)</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/r/base/Random.html" class="external-link">set.seed</a></span><span class="op">(</span><span class="fl">250</span><span class="op">)</span> </span></span>
+<span class="r-in"><span>  <span class="va">x</span> <span class="op">&lt;-</span> <span class="fu"><a href="LognormalAlt.html">rlnormAlt</a></span><span class="op">(</span><span class="fl">30</span>, mean <span class="op">=</span> <span class="fl">10</span>, cv <span class="op">=</span> <span class="fl">2</span><span class="op">)</span> </span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/r/grDevices/dev.html" class="external-link">dev.new</a></span><span class="op">(</span><span class="op">)</span></span></span>
+<span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/r/graphics/hist.html" class="external-link">hist</a></span><span class="op">(</span><span class="va">x</span>, col <span class="op">=</span> <span class="st">"cyan"</span><span class="op">)</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="co"># Using the PPCC objective:</span></span></span>
+<span class="r-in"><span>  <span class="co">#--------------------------</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="fu">boxcox</span><span class="op">(</span><span class="va">x</span><span class="op">)</span> </span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> $lambda</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] -2.0 -1.5 -1.0 -0.5  0.0  0.5  1.0  1.5  2.0</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
@@ -363,27 +375,27 @@ Currently, there is a default method and a method for objects of class "lm".'><!
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> attr(,"class")</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] "boxcox"</span>
-<span class="r-in">  <span class="co">#Results of Box-Cox Transformation</span></span>
-<span class="r-in">  <span class="co">#---------------------------------</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Objective Name:                  PPCC</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Data:                            x</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Sample Size:                     30</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co"># lambda      PPCC</span></span>
-<span class="r-in">  <span class="co">#   -2.0 0.5423739</span></span>
-<span class="r-in">  <span class="co">#   -1.5 0.6402782</span></span>
-<span class="r-in">  <span class="co">#   -1.0 0.7818160</span></span>
-<span class="r-in">  <span class="co">#   -0.5 0.9272219</span></span>
-<span class="r-in">  <span class="co">#    0.0 0.9921702</span></span>
-<span class="r-in">  <span class="co">#    0.5 0.9581178</span></span>
-<span class="r-in">  <span class="co">#    1.0 0.8749611</span></span>
-<span class="r-in">  <span class="co">#    1.5 0.7827009</span></span>
-<span class="r-in">  <span class="co">#    2.0 0.7004547</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="fu">boxcox</span><span class="op">(</span><span class="va">x</span>, optimize <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span>
+<span class="r-in"><span>  <span class="co">#Results of Box-Cox Transformation</span></span></span>
+<span class="r-in"><span>  <span class="co">#---------------------------------</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Objective Name:                  PPCC</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Data:                            x</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Sample Size:                     30</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co"># lambda      PPCC</span></span></span>
+<span class="r-in"><span>  <span class="co">#   -2.0 0.5423739</span></span></span>
+<span class="r-in"><span>  <span class="co">#   -1.5 0.6402782</span></span></span>
+<span class="r-in"><span>  <span class="co">#   -1.0 0.7818160</span></span></span>
+<span class="r-in"><span>  <span class="co">#   -0.5 0.9272219</span></span></span>
+<span class="r-in"><span>  <span class="co">#    0.0 0.9921702</span></span></span>
+<span class="r-in"><span>  <span class="co">#    0.5 0.9581178</span></span></span>
+<span class="r-in"><span>  <span class="co">#    1.0 0.8749611</span></span></span>
+<span class="r-in"><span>  <span class="co">#    1.5 0.7827009</span></span></span>
+<span class="r-in"><span>  <span class="co">#    2.0 0.7004547</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="fu">boxcox</span><span class="op">(</span><span class="va">x</span>, optimize <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> $lambda</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] 0.04530789</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
@@ -421,27 +433,27 @@ Currently, there is a default method and a method for objects of class "lm".'><!
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> attr(,"class")</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] "boxcox"</span>
-<span class="r-in">  <span class="co">#Results of Box-Cox Transformation</span></span>
-<span class="r-in">  <span class="co">#---------------------------------</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Objective Name:                  PPCC</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Data:                            x</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Sample Size:                     30</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Bounds for Optimization:         lower = -2</span></span>
-<span class="r-in">  <span class="co">#                                 upper =  2</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Optimal Value:                   lambda = 0.04530789</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Value of Objective:              PPCC = 0.9925919</span></span>
-<span class="r-in"></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="co"># Using the Log-Likelihodd objective</span></span>
-<span class="r-in">  <span class="co">#-----------------------------------</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="fu">boxcox</span><span class="op">(</span><span class="va">x</span>, objective.name <span class="op">=</span> <span class="st">"Log-Likelihood"</span><span class="op">)</span> </span>
+<span class="r-in"><span>  <span class="co">#Results of Box-Cox Transformation</span></span></span>
+<span class="r-in"><span>  <span class="co">#---------------------------------</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Objective Name:                  PPCC</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Data:                            x</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Sample Size:                     30</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Bounds for Optimization:         lower = -2</span></span></span>
+<span class="r-in"><span>  <span class="co">#                                 upper =  2</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Optimal Value:                   lambda = 0.04530789</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Value of Objective:              PPCC = 0.9925919</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="co"># Using the Log-Likelihodd objective</span></span></span>
+<span class="r-in"><span>  <span class="co">#-----------------------------------</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="fu">boxcox</span><span class="op">(</span><span class="va">x</span>, objective.name <span class="op">=</span> <span class="st">"Log-Likelihood"</span><span class="op">)</span> </span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> $lambda</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] -2.0 -1.5 -1.0 -0.5  0.0  0.5  1.0  1.5  2.0</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
@@ -480,27 +492,27 @@ Currently, there is a default method and a method for objects of class "lm".'><!
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> attr(,"class")</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] "boxcox"</span>
-<span class="r-in">  <span class="co">#Results of Box-Cox Transformation</span></span>
-<span class="r-in">  <span class="co">#---------------------------------</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Objective Name:                  Log-Likelihood</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Data:                            x</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Sample Size:                     30</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co"># lambda Log-Likelihood</span></span>
-<span class="r-in">  <span class="co">#   -2.0     -154.94255</span></span>
-<span class="r-in">  <span class="co">#   -1.5     -128.59988</span></span>
-<span class="r-in">  <span class="co">#   -1.0     -106.23882</span></span>
-<span class="r-in">  <span class="co">#   -0.5      -90.84800</span></span>
-<span class="r-in">  <span class="co">#    0.0      -85.10204</span></span>
-<span class="r-in">  <span class="co">#    0.5      -88.69825</span></span>
-<span class="r-in">  <span class="co">#    1.0      -99.42630</span></span>
-<span class="r-in">  <span class="co">#    1.5     -115.23701</span></span>
-<span class="r-in">  <span class="co">#    2.0     -134.54125</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="fu">boxcox</span><span class="op">(</span><span class="va">x</span>, objective.name <span class="op">=</span> <span class="st">"Log-Likelihood"</span>, optimize <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span> </span>
+<span class="r-in"><span>  <span class="co">#Results of Box-Cox Transformation</span></span></span>
+<span class="r-in"><span>  <span class="co">#---------------------------------</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Objective Name:                  Log-Likelihood</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Data:                            x</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Sample Size:                     30</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co"># lambda Log-Likelihood</span></span></span>
+<span class="r-in"><span>  <span class="co">#   -2.0     -154.94255</span></span></span>
+<span class="r-in"><span>  <span class="co">#   -1.5     -128.59988</span></span></span>
+<span class="r-in"><span>  <span class="co">#   -1.0     -106.23882</span></span></span>
+<span class="r-in"><span>  <span class="co">#   -0.5      -90.84800</span></span></span>
+<span class="r-in"><span>  <span class="co">#    0.0      -85.10204</span></span></span>
+<span class="r-in"><span>  <span class="co">#    0.5      -88.69825</span></span></span>
+<span class="r-in"><span>  <span class="co">#    1.0      -99.42630</span></span></span>
+<span class="r-in"><span>  <span class="co">#    1.5     -115.23701</span></span></span>
+<span class="r-in"><span>  <span class="co">#    2.0     -134.54125</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="fu">boxcox</span><span class="op">(</span><span class="va">x</span>, objective.name <span class="op">=</span> <span class="st">"Log-Likelihood"</span>, optimize <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span> </span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> $lambda</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] 0.0405156</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
@@ -538,47 +550,47 @@ Currently, there is a default method and a method for objects of class "lm".'><!
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> attr(,"class")</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] "boxcox"</span>
-<span class="r-in">  <span class="co">#Results of Box-Cox Transformation</span></span>
-<span class="r-in">  <span class="co">#---------------------------------</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Objective Name:                  Log-Likelihood</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Data:                            x</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Sample Size:                     30</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Bounds for Optimization:         lower = -2</span></span>
-<span class="r-in">  <span class="co">#                                 upper =  2</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Optimal Value:                   lambda = 0.0405156</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Value of Objective:              Log-Likelihood = -85.07123</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="co">#----------</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="co"># Plot the results based on the PPCC objective</span></span>
-<span class="r-in">  <span class="co">#---------------------------------------------</span></span>
-<span class="r-in">  <span class="va">boxcox.list</span> <span class="op">&lt;-</span> <span class="fu">boxcox</span><span class="op">(</span><span class="va">x</span><span class="op">)</span></span>
-<span class="r-in">  <span class="fu"><a href="https://rdrr.io/r/grDevices/dev.html" class="external-link">dev.new</a></span><span class="op">(</span><span class="op">)</span></span>
-<span class="r-in">  <span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">boxcox.list</span><span class="op">)</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="co">#Look at QQ-Plots for the candidate values of lambda</span></span>
-<span class="r-in">  <span class="co">#---------------------------------------------------</span></span>
-<span class="r-in">  <span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">boxcox.list</span>, plot.type <span class="op">=</span> <span class="st">"Q-Q Plots"</span>, same.window <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span> </span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="co">#==========</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="co"># The data frame Environmental.df contains daily measurements of </span></span>
-<span class="r-in">  <span class="co"># ozone concentration, wind speed, temperature, and solar radiation</span></span>
-<span class="r-in">  <span class="co"># in New York City for 153 consecutive days between May 1 and </span></span>
-<span class="r-in">  <span class="co"># September 30, 1973.  In this example, we'll plot ozone vs. </span></span>
-<span class="r-in">  <span class="co"># temperature and look at the Q-Q plot of the residuals.  Then </span></span>
-<span class="r-in">  <span class="co"># we'll look at possible Box-Cox transformations.  The "optimal" one </span></span>
-<span class="r-in">  <span class="co"># based on the PPCC looks close to a log-transformation </span></span>
-<span class="r-in">  <span class="co"># (i.e., lambda=0).  The power that produces the largest PPCC is </span></span>
-<span class="r-in">  <span class="co"># about 0.2, so a cube root (lambda=1/3) transformation might work too.</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">Environmental.df</span><span class="op">)</span></span>
+<span class="r-in"><span>  <span class="co">#Results of Box-Cox Transformation</span></span></span>
+<span class="r-in"><span>  <span class="co">#---------------------------------</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Objective Name:                  Log-Likelihood</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Data:                            x</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Sample Size:                     30</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Bounds for Optimization:         lower = -2</span></span></span>
+<span class="r-in"><span>  <span class="co">#                                 upper =  2</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Optimal Value:                   lambda = 0.0405156</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Value of Objective:              Log-Likelihood = -85.07123</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="co">#----------</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="co"># Plot the results based on the PPCC objective</span></span></span>
+<span class="r-in"><span>  <span class="co">#---------------------------------------------</span></span></span>
+<span class="r-in"><span>  <span class="va">boxcox.list</span> <span class="op">&lt;-</span> <span class="fu">boxcox</span><span class="op">(</span><span class="va">x</span><span class="op">)</span></span></span>
+<span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/r/grDevices/dev.html" class="external-link">dev.new</a></span><span class="op">(</span><span class="op">)</span></span></span>
+<span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">boxcox.list</span><span class="op">)</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="co">#Look at QQ-Plots for the candidate values of lambda</span></span></span>
+<span class="r-in"><span>  <span class="co">#---------------------------------------------------</span></span></span>
+<span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">boxcox.list</span>, plot.type <span class="op">=</span> <span class="st">"Q-Q Plots"</span>, same.window <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span> </span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="co">#==========</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="co"># The data frame Environmental.df contains daily measurements of </span></span></span>
+<span class="r-in"><span>  <span class="co"># ozone concentration, wind speed, temperature, and solar radiation</span></span></span>
+<span class="r-in"><span>  <span class="co"># in New York City for 153 consecutive days between May 1 and </span></span></span>
+<span class="r-in"><span>  <span class="co"># September 30, 1973.  In this example, we'll plot ozone vs. </span></span></span>
+<span class="r-in"><span>  <span class="co"># temperature and look at the Q-Q plot of the residuals.  Then </span></span></span>
+<span class="r-in"><span>  <span class="co"># we'll look at possible Box-Cox transformations.  The "optimal" one </span></span></span>
+<span class="r-in"><span>  <span class="co"># based on the PPCC looks close to a log-transformation </span></span></span>
+<span class="r-in"><span>  <span class="co"># (i.e., lambda=0).  The power that produces the largest PPCC is </span></span></span>
+<span class="r-in"><span>  <span class="co"># about 0.2, so a cube root (lambda=1/3) transformation might work too.</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">Environmental.df</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>            ozone radiation temperature wind</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 05/01/1973    41       190          67  7.4</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 05/02/1973    36       118          72  8.0</span>
@@ -586,15 +598,15 @@ Currently, there is a default method and a method for objects of class "lm".'><!
 <span class="r-out co"><span class="r-pr">#&gt;</span> 05/04/1973    18       313          62 11.5</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 05/05/1973    NA        NA          56 14.3</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 05/06/1973    28        NA          66 14.9</span>
-<span class="r-in">  <span class="co">#           ozone radiation temperature wind</span></span>
-<span class="r-in">  <span class="co">#05/01/1973    41       190          67  7.4</span></span>
-<span class="r-in">  <span class="co">#05/02/1973    36       118          72  8.0</span></span>
-<span class="r-in">  <span class="co">#05/03/1973    12       149          74 12.6</span></span>
-<span class="r-in">  <span class="co">#05/04/1973    18       313          62 11.5</span></span>
-<span class="r-in">  <span class="co">#05/05/1973    NA        NA          56 14.3</span></span>
-<span class="r-in">  <span class="co">#05/06/1973    28        NA          66 14.9</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">tail</a></span><span class="op">(</span><span class="va">Environmental.df</span><span class="op">)</span></span>
+<span class="r-in"><span>  <span class="co">#           ozone radiation temperature wind</span></span></span>
+<span class="r-in"><span>  <span class="co">#05/01/1973    41       190          67  7.4</span></span></span>
+<span class="r-in"><span>  <span class="co">#05/02/1973    36       118          72  8.0</span></span></span>
+<span class="r-in"><span>  <span class="co">#05/03/1973    12       149          74 12.6</span></span></span>
+<span class="r-in"><span>  <span class="co">#05/04/1973    18       313          62 11.5</span></span></span>
+<span class="r-in"><span>  <span class="co">#05/05/1973    NA        NA          56 14.3</span></span></span>
+<span class="r-in"><span>  <span class="co">#05/06/1973    28        NA          66 14.9</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">tail</a></span><span class="op">(</span><span class="va">Environmental.df</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>            ozone radiation temperature wind</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 09/25/1973    14        20          63 16.6</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 09/26/1973    30       193          70  6.9</span>
@@ -602,36 +614,36 @@ Currently, there is a default method and a method for objects of class "lm".'><!
 <span class="r-out co"><span class="r-pr">#&gt;</span> 09/28/1973    14       191          75 14.3</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 09/29/1973    18       131          76  8.0</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 09/30/1973    20       223          68 11.5</span>
-<span class="r-in">  <span class="co">#           ozone radiation temperature wind</span></span>
-<span class="r-in">  <span class="co">#09/25/1973    14        20          63 16.6</span></span>
-<span class="r-in">  <span class="co">#09/26/1973    30       193          70  6.9</span></span>
-<span class="r-in">  <span class="co">#09/27/1973    NA       145          77 13.2</span></span>
-<span class="r-in">  <span class="co">#09/28/1973    14       191          75 14.3</span></span>
-<span class="r-in">  <span class="co">#09/29/1973    18       131          76  8.0</span></span>
-<span class="r-in">  <span class="co">#09/30/1973    20       223          68 11.5</span></span>
-<span class="r-in"></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="co"># Fit the model with the raw Ozone data</span></span>
-<span class="r-in">  <span class="co">#--------------------------------------</span></span>
-<span class="r-in">  <span class="va">ozone.fit</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/lm.html" class="external-link">lm</a></span><span class="op">(</span><span class="va">ozone</span> <span class="op">~</span> <span class="va">temperature</span>, data <span class="op">=</span> <span class="va">Environmental.df</span><span class="op">)</span> </span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="co"># Plot Ozone vs. Temperature, with fitted line </span></span>
-<span class="r-in">  <span class="co">#---------------------------------------------</span></span>
-<span class="r-in">  <span class="fu"><a href="https://rdrr.io/r/grDevices/dev.html" class="external-link">dev.new</a></span><span class="op">(</span><span class="op">)</span></span>
-<span class="r-in">  <span class="fu"><a href="https://rdrr.io/r/base/with.html" class="external-link">with</a></span><span class="op">(</span><span class="va">Environmental.df</span>, </span>
-<span class="r-in">    <span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">temperature</span>, <span class="va">ozone</span>, xlab <span class="op">=</span> <span class="st">"Temperature (degrees F)"</span>,</span>
-<span class="r-in">      ylab <span class="op">=</span> <span class="st">"Ozone (ppb)"</span>, main <span class="op">=</span> <span class="st">"Ozone vs. Temperature"</span><span class="op">)</span><span class="op">)</span></span>
-<span class="r-in">  <span class="fu"><a href="https://rdrr.io/r/graphics/abline.html" class="external-link">abline</a></span><span class="op">(</span><span class="va">ozone.fit</span><span class="op">)</span> </span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="co"># Look at the Q-Q Plot for the residuals </span></span>
-<span class="r-in">  <span class="co">#---------------------------------------</span></span>
-<span class="r-in">  <span class="fu"><a href="https://rdrr.io/r/grDevices/dev.html" class="external-link">dev.new</a></span><span class="op">(</span><span class="op">)</span></span>
-<span class="r-in">  <span class="fu"><a href="qqPlot.html">qqPlot</a></span><span class="op">(</span><span class="va">ozone.fit</span><span class="op">$</span><span class="va">residuals</span>, add.line <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span> </span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="co"># Look at Box-Cox transformations of Ozone </span></span>
-<span class="r-in">  <span class="co">#-----------------------------------------</span></span>
-<span class="r-in">  <span class="va">boxcox.list</span> <span class="op">&lt;-</span> <span class="fu">boxcox</span><span class="op">(</span><span class="va">ozone.fit</span><span class="op">)</span> </span>
-<span class="r-in">  <span class="va">boxcox.list</span> </span>
+<span class="r-in"><span>  <span class="co">#           ozone radiation temperature wind</span></span></span>
+<span class="r-in"><span>  <span class="co">#09/25/1973    14        20          63 16.6</span></span></span>
+<span class="r-in"><span>  <span class="co">#09/26/1973    30       193          70  6.9</span></span></span>
+<span class="r-in"><span>  <span class="co">#09/27/1973    NA       145          77 13.2</span></span></span>
+<span class="r-in"><span>  <span class="co">#09/28/1973    14       191          75 14.3</span></span></span>
+<span class="r-in"><span>  <span class="co">#09/29/1973    18       131          76  8.0</span></span></span>
+<span class="r-in"><span>  <span class="co">#09/30/1973    20       223          68 11.5</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="co"># Fit the model with the raw Ozone data</span></span></span>
+<span class="r-in"><span>  <span class="co">#--------------------------------------</span></span></span>
+<span class="r-in"><span>  <span class="va">ozone.fit</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/lm.html" class="external-link">lm</a></span><span class="op">(</span><span class="va">ozone</span> <span class="op">~</span> <span class="va">temperature</span>, data <span class="op">=</span> <span class="va">Environmental.df</span><span class="op">)</span> </span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="co"># Plot Ozone vs. Temperature, with fitted line </span></span></span>
+<span class="r-in"><span>  <span class="co">#---------------------------------------------</span></span></span>
+<span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/r/grDevices/dev.html" class="external-link">dev.new</a></span><span class="op">(</span><span class="op">)</span></span></span>
+<span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/r/base/with.html" class="external-link">with</a></span><span class="op">(</span><span class="va">Environmental.df</span>, </span></span>
+<span class="r-in"><span>    <span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">temperature</span>, <span class="va">ozone</span>, xlab <span class="op">=</span> <span class="st">"Temperature (degrees F)"</span>,</span></span>
+<span class="r-in"><span>      ylab <span class="op">=</span> <span class="st">"Ozone (ppb)"</span>, main <span class="op">=</span> <span class="st">"Ozone vs. Temperature"</span><span class="op">)</span><span class="op">)</span></span></span>
+<span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/r/graphics/abline.html" class="external-link">abline</a></span><span class="op">(</span><span class="va">ozone.fit</span><span class="op">)</span> </span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="co"># Look at the Q-Q Plot for the residuals </span></span></span>
+<span class="r-in"><span>  <span class="co">#---------------------------------------</span></span></span>
+<span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/r/grDevices/dev.html" class="external-link">dev.new</a></span><span class="op">(</span><span class="op">)</span></span></span>
+<span class="r-in"><span>  <span class="fu"><a href="qqPlot.html">qqPlot</a></span><span class="op">(</span><span class="va">ozone.fit</span><span class="op">$</span><span class="va">residuals</span>, add.line <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span> </span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="co"># Look at Box-Cox transformations of Ozone </span></span></span>
+<span class="r-in"><span>  <span class="co">#-----------------------------------------</span></span></span>
+<span class="r-in"><span>  <span class="va">boxcox.list</span> <span class="op">&lt;-</span> <span class="fu">boxcox</span><span class="op">(</span><span class="va">ozone.fit</span><span class="op">)</span> </span></span>
+<span class="r-in"><span>  <span class="va">boxcox.list</span> </span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> $lambda</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] -2.0 -1.5 -1.0 -0.5  0.0  0.5  1.0  1.5  2.0</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
@@ -671,38 +683,38 @@ Currently, there is a default method and a method for objects of class "lm".'><!
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> attr(,"class")</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] "boxcoxLm"</span>
-<span class="r-in">  <span class="co">#Results of Box-Cox Transformation</span></span>
-<span class="r-in">  <span class="co">#---------------------------------</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Objective Name:                  PPCC</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Linear Model:                    ozone.fit</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Sample Size:                     116</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co"># lambda      PPCC</span></span>
-<span class="r-in">  <span class="co">#   -2.0 0.4286781</span></span>
-<span class="r-in">  <span class="co">#   -1.5 0.4673544</span></span>
-<span class="r-in">  <span class="co">#   -1.0 0.5896132</span></span>
-<span class="r-in">  <span class="co">#   -0.5 0.8301458</span></span>
-<span class="r-in">  <span class="co">#    0.0 0.9871519</span></span>
-<span class="r-in">  <span class="co">#    0.5 0.9819825</span></span>
-<span class="r-in">  <span class="co">#    1.0 0.9408694</span></span>
-<span class="r-in">  <span class="co">#    1.5 0.8840770</span></span>
-<span class="r-in">  <span class="co">#    2.0 0.8213675</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="co"># Plot PPCC vs. lambda based on Q-Q plots of residuals </span></span>
-<span class="r-in">  <span class="co">#-----------------------------------------------------</span></span>
-<span class="r-in">  <span class="fu"><a href="https://rdrr.io/r/grDevices/dev.html" class="external-link">dev.new</a></span><span class="op">(</span><span class="op">)</span></span>
-<span class="r-in">  <span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">boxcox.list</span><span class="op">)</span> </span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="co"># Look at Q-Q plots of residuals for the various transformation </span></span>
-<span class="r-in">  <span class="co">#--------------------------------------------------------------</span></span>
-<span class="r-in">  <span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">boxcox.list</span>, plot.type <span class="op">=</span> <span class="st">"Q-Q Plots"</span>, same.window <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="co"># Compute the "optimal" transformation</span></span>
-<span class="r-in">  <span class="co">#-------------------------------------</span></span>
-<span class="r-in">  <span class="fu">boxcox</span><span class="op">(</span><span class="va">ozone.fit</span>, optimize <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span>
+<span class="r-in"><span>  <span class="co">#Results of Box-Cox Transformation</span></span></span>
+<span class="r-in"><span>  <span class="co">#---------------------------------</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Objective Name:                  PPCC</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Linear Model:                    ozone.fit</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Sample Size:                     116</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co"># lambda      PPCC</span></span></span>
+<span class="r-in"><span>  <span class="co">#   -2.0 0.4286781</span></span></span>
+<span class="r-in"><span>  <span class="co">#   -1.5 0.4673544</span></span></span>
+<span class="r-in"><span>  <span class="co">#   -1.0 0.5896132</span></span></span>
+<span class="r-in"><span>  <span class="co">#   -0.5 0.8301458</span></span></span>
+<span class="r-in"><span>  <span class="co">#    0.0 0.9871519</span></span></span>
+<span class="r-in"><span>  <span class="co">#    0.5 0.9819825</span></span></span>
+<span class="r-in"><span>  <span class="co">#    1.0 0.9408694</span></span></span>
+<span class="r-in"><span>  <span class="co">#    1.5 0.8840770</span></span></span>
+<span class="r-in"><span>  <span class="co">#    2.0 0.8213675</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="co"># Plot PPCC vs. lambda based on Q-Q plots of residuals </span></span></span>
+<span class="r-in"><span>  <span class="co">#-----------------------------------------------------</span></span></span>
+<span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/r/grDevices/dev.html" class="external-link">dev.new</a></span><span class="op">(</span><span class="op">)</span></span></span>
+<span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">boxcox.list</span><span class="op">)</span> </span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="co"># Look at Q-Q plots of residuals for the various transformation </span></span></span>
+<span class="r-in"><span>  <span class="co">#--------------------------------------------------------------</span></span></span>
+<span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">boxcox.list</span>, plot.type <span class="op">=</span> <span class="st">"Q-Q Plots"</span>, same.window <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="co"># Compute the "optimal" transformation</span></span></span>
+<span class="r-in"><span>  <span class="co">#-------------------------------------</span></span></span>
+<span class="r-in"><span>  <span class="fu">boxcox</span><span class="op">(</span><span class="va">ozone.fit</span>, optimize <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> $lambda</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] 0.2004305</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
@@ -741,28 +753,28 @@ Currently, there is a default method and a method for objects of class "lm".'><!
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> attr(,"class")</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] "boxcoxLm"</span>
-<span class="r-in">  <span class="co">#Results of Box-Cox Transformation</span></span>
-<span class="r-in">  <span class="co">#---------------------------------</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Objective Name:                  PPCC</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Linear Model:                    ozone.fit</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Sample Size:                     116</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Bounds for Optimization:         lower = -2</span></span>
-<span class="r-in">  <span class="co">#                                 upper =  2</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Optimal Value:                   lambda = 0.2004305</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Value of Objective:              PPCC = 0.9940222</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="co">#==========</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="co"># Clean up</span></span>
-<span class="r-in">  <span class="co">#---------</span></span>
-<span class="r-in">  <span class="fu"><a href="https://rdrr.io/r/base/rm.html" class="external-link">rm</a></span><span class="op">(</span><span class="va">x</span>, <span class="va">boxcox.list</span>, <span class="va">ozone.fit</span><span class="op">)</span></span>
-<span class="r-in">  <span class="fu"><a href="https://rdrr.io/r/grDevices/dev.html" class="external-link">graphics.off</a></span><span class="op">(</span><span class="op">)</span></span>
+<span class="r-in"><span>  <span class="co">#Results of Box-Cox Transformation</span></span></span>
+<span class="r-in"><span>  <span class="co">#---------------------------------</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Objective Name:                  PPCC</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Linear Model:                    ozone.fit</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Sample Size:                     116</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Bounds for Optimization:         lower = -2</span></span></span>
+<span class="r-in"><span>  <span class="co">#                                 upper =  2</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Optimal Value:                   lambda = 0.2004305</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Value of Objective:              PPCC = 0.9940222</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="co">#==========</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="co"># Clean up</span></span></span>
+<span class="r-in"><span>  <span class="co">#---------</span></span></span>
+<span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/r/base/rm.html" class="external-link">rm</a></span><span class="op">(</span><span class="va">x</span>, <span class="va">boxcox.list</span>, <span class="va">ozone.fit</span><span class="op">)</span></span></span>
+<span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/r/grDevices/dev.html" class="external-link">graphics.off</a></span><span class="op">(</span><span class="op">)</span></span></span>
 </code></pre></div>
     </div>
   </div>
@@ -777,7 +789,7 @@ Currently, there is a default method and a method for objects of class "lm".'><!
 </div>
 
 <div class="pkgdown">
-  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.2.</p>
+  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.6.</p>
 </div>
 
       </footer></div>

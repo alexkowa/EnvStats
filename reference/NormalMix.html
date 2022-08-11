@@ -54,38 +54,47 @@
     </div>
 
     <div id="ref-usage">
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="fu">dnormMix</span><span class="op">(</span><span class="va">x</span>, mean1 <span class="op">=</span> <span class="fl">0</span>, sd1 <span class="op">=</span> <span class="fl">1</span>, mean2 <span class="op">=</span> <span class="fl">0</span>, sd2 <span class="op">=</span> <span class="fl">1</span>, p.mix <span class="op">=</span> <span class="fl">0.5</span><span class="op">)</span>
-  <span class="fu">pnormMix</span><span class="op">(</span><span class="va">q</span>, mean1 <span class="op">=</span> <span class="fl">0</span>, sd1 <span class="op">=</span> <span class="fl">1</span>, mean2 <span class="op">=</span> <span class="fl">0</span>, sd2 <span class="op">=</span> <span class="fl">1</span>, p.mix <span class="op">=</span> <span class="fl">0.5</span><span class="op">)</span>
-  <span class="fu">qnormMix</span><span class="op">(</span><span class="va">p</span>, mean1 <span class="op">=</span> <span class="fl">0</span>, sd1 <span class="op">=</span> <span class="fl">1</span>, mean2 <span class="op">=</span> <span class="fl">0</span>, sd2 <span class="op">=</span> <span class="fl">1</span>, p.mix <span class="op">=</span> <span class="fl">0.5</span><span class="op">)</span>
-  <span class="fu">rnormMix</span><span class="op">(</span><span class="va">n</span>, mean1 <span class="op">=</span> <span class="fl">0</span>, sd1 <span class="op">=</span> <span class="fl">1</span>, mean2 <span class="op">=</span> <span class="fl">0</span>, sd2 <span class="op">=</span> <span class="fl">1</span>, p.mix <span class="op">=</span> <span class="fl">0.5</span><span class="op">)</span></code></pre></div>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">dnormMix</span><span class="op">(</span><span class="va">x</span>, mean1 <span class="op">=</span> <span class="fl">0</span>, sd1 <span class="op">=</span> <span class="fl">1</span>, mean2 <span class="op">=</span> <span class="fl">0</span>, sd2 <span class="op">=</span> <span class="fl">1</span>, p.mix <span class="op">=</span> <span class="fl">0.5</span><span class="op">)</span></span>
+<span>  <span class="fu">pnormMix</span><span class="op">(</span><span class="va">q</span>, mean1 <span class="op">=</span> <span class="fl">0</span>, sd1 <span class="op">=</span> <span class="fl">1</span>, mean2 <span class="op">=</span> <span class="fl">0</span>, sd2 <span class="op">=</span> <span class="fl">1</span>, p.mix <span class="op">=</span> <span class="fl">0.5</span><span class="op">)</span></span>
+<span>  <span class="fu">qnormMix</span><span class="op">(</span><span class="va">p</span>, mean1 <span class="op">=</span> <span class="fl">0</span>, sd1 <span class="op">=</span> <span class="fl">1</span>, mean2 <span class="op">=</span> <span class="fl">0</span>, sd2 <span class="op">=</span> <span class="fl">1</span>, p.mix <span class="op">=</span> <span class="fl">0.5</span><span class="op">)</span></span>
+<span>  <span class="fu">rnormMix</span><span class="op">(</span><span class="va">n</span>, mean1 <span class="op">=</span> <span class="fl">0</span>, sd1 <span class="op">=</span> <span class="fl">1</span>, mean2 <span class="op">=</span> <span class="fl">0</span>, sd2 <span class="op">=</span> <span class="fl">1</span>, p.mix <span class="op">=</span> <span class="fl">0.5</span><span class="op">)</span></span></code></pre></div>
     </div>
 
     <div id="arguments">
     <h2>Arguments</h2>
     <dl><dt>x</dt>
 <dd><p>vector of quantiles.</p></dd>
-<dt>q</dt>
+
+  <dt>q</dt>
 <dd><p>vector of quantiles.</p></dd>
-<dt>p</dt>
+
+  <dt>p</dt>
 <dd><p>vector of probabilities between 0 and 1.</p></dd>
-<dt>n</dt>
+
+  <dt>n</dt>
 <dd><p>sample size.  If <code>length(n)</code> is larger than 1, then <code>length(n)</code> 
   random values are returned.</p></dd>
-<dt>mean1</dt>
+
+  <dt>mean1</dt>
 <dd><p>vector of means of the first normal random variable.  
   The default is <code>mean1=0</code>.</p></dd>
-<dt>sd1</dt>
+
+  <dt>sd1</dt>
 <dd><p>vector of standard deviations of the first normal random variable.  
   The default is <code>sd1=1</code>.</p></dd>
-<dt>mean2</dt>
+
+  <dt>mean2</dt>
 <dd><p>vector of means of the second normal random variable.  
   The default is <code>mean2=0</code>.</p></dd>
-<dt>sd2</dt>
+
+  <dt>sd2</dt>
 <dd><p>vector of standard deviations of the second normal random variable.  
   The default is <code>sd2=1</code>.</p></dd>
-<dt>p.mix</dt>
+
+  <dt>p.mix</dt>
 <dd><p>vector of probabilities between 0 and 1 indicating the mixing proportion.  
   For <code>rnormMix</code> this must be a single, non-missing number.</p></dd>
+
 </dl></div>
     <div id="details">
     <h2>Details</h2>
@@ -100,8 +109,10 @@
     </div>
     <div id="value">
     <h2>Value</h2>
-    <p><code>dnormMix</code> gives the density, <code>pnormMix</code> gives the distribution function, 
-<code>qnormMix</code> gives the quantile function, and <code>rnormMix</code> generates random 
+    <p></p>
+<p><code>dnormMix</code> gives the density, <code>pnormMix</code> gives the distribution function,</p>
+<p></p>
+<p><code>qnormMix</code> gives the quantile function, and <code>rnormMix</code> generates random 
   deviates.</p>
     </div>
     <div id="references">
@@ -138,41 +149,41 @@
 
     <div id="ref-examples">
     <h2>Examples</h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in">  <span class="co"># Density of a normal mixture with parameters mean1=0, sd1=1, </span></span>
-<span class="r-in">  <span class="co">#  mean2=4, sd2=2, p.mix=0.5, evaluated at 1.5: </span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="fu">dnormMix</span><span class="op">(</span><span class="fl">1.5</span>, mean2<span class="op">=</span><span class="fl">4</span>, sd2<span class="op">=</span><span class="fl">2</span><span class="op">)</span> </span>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span>  <span class="co"># Density of a normal mixture with parameters mean1=0, sd1=1, </span></span></span>
+<span class="r-in"><span>  <span class="co">#  mean2=4, sd2=2, p.mix=0.5, evaluated at 1.5: </span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="fu">dnormMix</span><span class="op">(</span><span class="fl">1.5</span>, mean2<span class="op">=</span><span class="fl">4</span>, sd2<span class="op">=</span><span class="fl">2</span><span class="op">)</span> </span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] 0.1104211</span>
-<span class="r-in">  <span class="co">#[1] 0.1104211</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="co">#----------</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="co"># The cdf of a normal mixture with parameters mean1=10, sd1=2, </span></span>
-<span class="r-in">  <span class="co"># mean2=20, sd2=2, p.mix=0.1, evaluated at 15: </span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="fu">pnormMix</span><span class="op">(</span><span class="fl">15</span>, <span class="fl">10</span>, <span class="fl">2</span>, <span class="fl">20</span>, <span class="fl">2</span>, <span class="fl">0.1</span><span class="op">)</span> </span>
+<span class="r-in"><span>  <span class="co">#[1] 0.1104211</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="co">#----------</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="co"># The cdf of a normal mixture with parameters mean1=10, sd1=2, </span></span></span>
+<span class="r-in"><span>  <span class="co"># mean2=20, sd2=2, p.mix=0.1, evaluated at 15: </span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="fu">pnormMix</span><span class="op">(</span><span class="fl">15</span>, <span class="fl">10</span>, <span class="fl">2</span>, <span class="fl">20</span>, <span class="fl">2</span>, <span class="fl">0.1</span><span class="op">)</span> </span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] 0.8950323</span>
-<span class="r-in">  <span class="co">#[1] 0.8950323</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="co">#----------</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="co"># The median of a normal mixture with parameters mean1=10, sd1=2, </span></span>
-<span class="r-in">  <span class="co"># mean2=20, sd2=2, p.mix=0.1: </span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="fu">qnormMix</span><span class="op">(</span><span class="fl">0.5</span>, <span class="fl">10</span>, <span class="fl">2</span>, <span class="fl">20</span>, <span class="fl">2</span>, <span class="fl">0.1</span><span class="op">)</span> </span>
+<span class="r-in"><span>  <span class="co">#[1] 0.8950323</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="co">#----------</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="co"># The median of a normal mixture with parameters mean1=10, sd1=2, </span></span></span>
+<span class="r-in"><span>  <span class="co"># mean2=20, sd2=2, p.mix=0.1: </span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="fu">qnormMix</span><span class="op">(</span><span class="fl">0.5</span>, <span class="fl">10</span>, <span class="fl">2</span>, <span class="fl">20</span>, <span class="fl">2</span>, <span class="fl">0.1</span><span class="op">)</span> </span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] 10.27942</span>
-<span class="r-in">  <span class="co">#[1] 10.27942</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="co">#----------</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="co"># Random sample of 3 observations from a normal mixture with </span></span>
-<span class="r-in">  <span class="co"># parameters mean1=0, sd1=1, mean2=4, sd2=2, p.mix=0.5. </span></span>
-<span class="r-in">  <span class="co"># (Note: the call to set.seed simply allows you to reproduce this example.)</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="fu"><a href="https://rdrr.io/r/base/Random.html" class="external-link">set.seed</a></span><span class="op">(</span><span class="fl">20</span><span class="op">)</span> </span>
-<span class="r-in">  <span class="fu">rnormMix</span><span class="op">(</span><span class="fl">3</span>, mean2<span class="op">=</span><span class="fl">4</span>, sd2<span class="op">=</span><span class="fl">2</span><span class="op">)</span></span>
+<span class="r-in"><span>  <span class="co">#[1] 10.27942</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="co">#----------</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="co"># Random sample of 3 observations from a normal mixture with </span></span></span>
+<span class="r-in"><span>  <span class="co"># parameters mean1=0, sd1=1, mean2=4, sd2=2, p.mix=0.5. </span></span></span>
+<span class="r-in"><span>  <span class="co"># (Note: the call to set.seed simply allows you to reproduce this example.)</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/r/base/Random.html" class="external-link">set.seed</a></span><span class="op">(</span><span class="fl">20</span><span class="op">)</span> </span></span>
+<span class="r-in"><span>  <span class="fu">rnormMix</span><span class="op">(</span><span class="fl">3</span>, mean2<span class="op">=</span><span class="fl">4</span>, sd2<span class="op">=</span><span class="fl">2</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] 0.07316778 2.06112801 1.05953620</span>
-<span class="r-in">  <span class="co">#[1] 0.07316778 2.06112801 1.05953620</span></span>
+<span class="r-in"><span>  <span class="co">#[1] 0.07316778 2.06112801 1.05953620</span></span></span>
 </code></pre></div>
     </div>
   </div>
@@ -187,7 +198,7 @@
 </div>
 
 <div class="pkgdown">
-  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.2.</p>
+  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.6.</p>
 </div>
 
       </footer></div>

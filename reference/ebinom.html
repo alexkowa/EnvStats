@@ -52,9 +52,9 @@
     </div>
 
     <div id="ref-usage">
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="fu">ebinom</span><span class="op">(</span><span class="va">x</span>, size <span class="op">=</span> <span class="cn">NULL</span>, method <span class="op">=</span> <span class="st">"mle/mme/mvue"</span>, ci <span class="op">=</span> <span class="cn">FALSE</span>, 
-  ci.type <span class="op">=</span> <span class="st">"two-sided"</span>, ci.method <span class="op">=</span> <span class="st">"score"</span>, correct <span class="op">=</span> <span class="cn">TRUE</span>, 
-  var.denom <span class="op">=</span> <span class="st">"n"</span>, conf.level <span class="op">=</span> <span class="fl">0.95</span>, warn <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></code></pre></div>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">ebinom</span><span class="op">(</span><span class="va">x</span>, size <span class="op">=</span> <span class="cn">NULL</span>, method <span class="op">=</span> <span class="st">"mle/mme/mvue"</span>, ci <span class="op">=</span> <span class="cn">FALSE</span>, </span>
+<span>  ci.type <span class="op">=</span> <span class="st">"two-sided"</span>, ci.method <span class="op">=</span> <span class="st">"score"</span>, correct <span class="op">=</span> <span class="cn">TRUE</span>, </span>
+<span>  var.denom <span class="op">=</span> <span class="st">"n"</span>, conf.level <span class="op">=</span> <span class="fl">0.95</span>, warn <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></code></pre></div>
     </div>
 
     <div id="arguments">
@@ -67,39 +67,49 @@
   “successes” out of the number of trials indicated by <code>size</code>.  
   Missing (<code>NA</code>), undefined (<code>NaN</code>), and infinite (<code>Inf</code>, <code>-Inf</code>) values are 
   allowed but will be removed.</p></dd>
-<dt>size</dt>
+
+  <dt>size</dt>
 <dd><p>positive integer indicating the of number of trials; <code>size</code> must be at least as 
   large as the value of <code>x</code>.</p></dd>
-<dt>method</dt>
+
+  <dt>method</dt>
 <dd><p>character string specifying the method of estimation.  The only possible value is 
   <code>"mle/mme/mvue"</code> (maximum likelihood, method of moments, and minimum variance unbiased).  
   See the DETAILS section for more information.</p></dd>
-<dt>ci</dt>
+
+  <dt>ci</dt>
 <dd><p>logical scalar indicating whether to compute a confidence interval for the mean.  The default value 
   is <code>ci=FALSE</code>.</p></dd>
-<dt>ci.type</dt>
+
+  <dt>ci.type</dt>
 <dd><p>character string indicating what kind of confidence interval to compute.  The possible values are 
   <code>"two-sided"</code> (the default), <code>"lower"</code>, and <code>"upper"</code>.  This 
   argument is ignored if <code>ci=FALSE</code>.</p></dd>
-<dt>ci.method</dt>
+
+  <dt>ci.method</dt>
 <dd><p>character string indicating which method to use to construct the confidence interval.  Possible values 
   are <code>"score"</code> (the default), <code>"exact"</code>, <code>"adjusted Wald"</code>, and <code>"Wald"</code>.  
   This argument is ignored if <code>ci=FALSE</code>.</p></dd>
-<dt>correct</dt>
+
+  <dt>correct</dt>
 <dd><p>logical scalar indicating whether to use the continuity correction when <br><code>ci.method="score"</code> or <code>ci.method="Wald"</code>.  <br>
   The default value is <code>correct=TRUE</code>.</p></dd>
-<dt>var.denom</dt>
+
+  <dt>var.denom</dt>
 <dd><p>character string indicating what value to use in the denominator of the variance estimator when 
   <code>ci.method="Wald"</code>.  Possible values are <code>"n"</code> (the default) and <code>"n-1"</code>.  
   This argument is ignored if <code>ci=FALSE</code>.</p></dd>
-<dt>conf.level</dt>
+
+  <dt>conf.level</dt>
 <dd><p>a scalar between 0 and 1 indicating the confidence level of the confidence interval.  The default 
   value is <code>conf.level=0.95</code>.  This argument is ignored if <code>ci=FALSE</code>.</p></dd>
-<dt>warn</dt>
+
+  <dt>warn</dt>
 <dd><p>a logical scalar indicating whether to issue a waning in the case when <code>ci=TRUE</code>, 
   <code>ci.method="Wald"</code>, and any of the following conditions is true:  the estimated 
   proportion is less than 0.2, the estimated proportion is greater than 0.8, the number of 
   successes or failures is less than 5.  The default value is <code>warn=TRUE</code>.</p></dd>
+
 </dl></div>
     <div id="details">
     <h2>Details</h2>
@@ -150,8 +160,12 @@
 </dl></div>
     <div id="value">
     <h2>Value</h2>
-    <p>a list of class <code>"estimate"</code> containing the estimated parameters and other information.  
-  See <br><code><a href="estimate.object.html">estimate.object</a></code> for details.</p>
+    
+
+<p>a list of class <code>"estimate"</code> containing the estimated parameters and other information.  
+  See <br></p>
+<p></p>
+<p><code><a href="estimate.object.html">estimate.object</a></code> for details.</p>
     </div>
     <div id="references">
     <h2>References</h2>
@@ -223,17 +237,17 @@
 
     <div id="ref-examples">
     <h2>Examples</h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in">  <span class="co"># Generate 20 observations from a binomial distribution with </span></span>
-<span class="r-in">  <span class="co"># parameters size=1 and prob=0.2, then estimate the 'prob' parameter. </span></span>
-<span class="r-in">  <span class="co"># (Note: the call to set.seed simply allows you to reproduce this </span></span>
-<span class="r-in">  <span class="co"># example. Also, the only parameter estimated is 'prob'; 'size' is</span></span>
-<span class="r-in">  <span class="co"># specified in the call to ebinom.  The parameter 'size' is printed</span></span>
-<span class="r-in">  <span class="co"># inorder to show all of the parameters associated with the </span></span>
-<span class="r-in">  <span class="co"># distribution.)</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="fu"><a href="https://rdrr.io/r/base/Random.html" class="external-link">set.seed</a></span><span class="op">(</span><span class="fl">251</span><span class="op">)</span> </span>
-<span class="r-in">  <span class="va">dat</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/Binomial.html" class="external-link">rbinom</a></span><span class="op">(</span><span class="fl">20</span>, size <span class="op">=</span> <span class="fl">1</span>, prob <span class="op">=</span> <span class="fl">0.2</span><span class="op">)</span> </span>
-<span class="r-in">  <span class="fu">ebinom</span><span class="op">(</span><span class="va">dat</span><span class="op">)</span> </span>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span>  <span class="co"># Generate 20 observations from a binomial distribution with </span></span></span>
+<span class="r-in"><span>  <span class="co"># parameters size=1 and prob=0.2, then estimate the 'prob' parameter. </span></span></span>
+<span class="r-in"><span>  <span class="co"># (Note: the call to set.seed simply allows you to reproduce this </span></span></span>
+<span class="r-in"><span>  <span class="co"># example. Also, the only parameter estimated is 'prob'; 'size' is</span></span></span>
+<span class="r-in"><span>  <span class="co"># specified in the call to ebinom.  The parameter 'size' is printed</span></span></span>
+<span class="r-in"><span>  <span class="co"># inorder to show all of the parameters associated with the </span></span></span>
+<span class="r-in"><span>  <span class="co"># distribution.)</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/r/base/Random.html" class="external-link">set.seed</a></span><span class="op">(</span><span class="fl">251</span><span class="op">)</span> </span></span>
+<span class="r-in"><span>  <span class="va">dat</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/Binomial.html" class="external-link">rbinom</a></span><span class="op">(</span><span class="fl">20</span>, size <span class="op">=</span> <span class="fl">1</span>, prob <span class="op">=</span> <span class="fl">0.2</span><span class="op">)</span> </span></span>
+<span class="r-in"><span>  <span class="fu">ebinom</span><span class="op">(</span><span class="va">dat</span><span class="op">)</span> </span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> $distribution</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] "Binomial"</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
@@ -258,30 +272,30 @@
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> attr(,"class")</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] "estimate"</span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="co">#Results of Distribution Parameter Estimation</span></span>
-<span class="r-in">  <span class="co">#--------------------------------------------</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Assumed Distribution:            Binomial</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Estimated Parameter(s):          size = 20.0</span></span>
-<span class="r-in">  <span class="co">#                                 prob =  0.1</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Estimation Method:               mle/mme/mvue for 'prob'</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Data:                            dat</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Sample Size:                     20</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="co">#----------------------------------------------------------------</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="co"># Generate one observation from a binomial distribution with </span></span>
-<span class="r-in">  <span class="co"># parameters size=20 and prob=0.2, then estimate the "prob" </span></span>
-<span class="r-in">  <span class="co"># parameter and compute a confidence interval:</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="fu"><a href="https://rdrr.io/r/base/Random.html" class="external-link">set.seed</a></span><span class="op">(</span><span class="fl">763</span><span class="op">)</span> </span>
-<span class="r-in">  <span class="va">dat</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/Binomial.html" class="external-link">rbinom</a></span><span class="op">(</span><span class="fl">1</span>, size<span class="op">=</span><span class="fl">20</span>, prob<span class="op">=</span><span class="fl">0.2</span><span class="op">)</span> </span>
-<span class="r-in">  <span class="fu">ebinom</span><span class="op">(</span><span class="va">dat</span>, size <span class="op">=</span> <span class="fl">20</span>, ci <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span> </span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="co">#Results of Distribution Parameter Estimation</span></span></span>
+<span class="r-in"><span>  <span class="co">#--------------------------------------------</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Assumed Distribution:            Binomial</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Estimated Parameter(s):          size = 20.0</span></span></span>
+<span class="r-in"><span>  <span class="co">#                                 prob =  0.1</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Estimation Method:               mle/mme/mvue for 'prob'</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Data:                            dat</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Sample Size:                     20</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="co">#----------------------------------------------------------------</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="co"># Generate one observation from a binomial distribution with </span></span></span>
+<span class="r-in"><span>  <span class="co"># parameters size=20 and prob=0.2, then estimate the "prob" </span></span></span>
+<span class="r-in"><span>  <span class="co"># parameter and compute a confidence interval:</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/r/base/Random.html" class="external-link">set.seed</a></span><span class="op">(</span><span class="fl">763</span><span class="op">)</span> </span></span>
+<span class="r-in"><span>  <span class="va">dat</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/Binomial.html" class="external-link">rbinom</a></span><span class="op">(</span><span class="fl">1</span>, size<span class="op">=</span><span class="fl">20</span>, prob<span class="op">=</span><span class="fl">0.2</span><span class="op">)</span> </span></span>
+<span class="r-in"><span>  <span class="fu">ebinom</span><span class="op">(</span><span class="va">dat</span>, size <span class="op">=</span> <span class="fl">20</span>, ci <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span> </span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> $distribution</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] "Binomial"</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
@@ -332,93 +346,93 @@
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> attr(,"class")</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] "estimate"</span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="co">#Results of Distribution Parameter Estimation</span></span>
-<span class="r-in">  <span class="co">#--------------------------------------------</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Assumed Distribution:            Binomial</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Estimated Parameter(s):          size = 20.00</span></span>
-<span class="r-in">  <span class="co">#                                 prob =  0.35</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Estimation Method:               mle/mme/mvue for 'prob'</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Data:                            dat</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Sample Size:                     20</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Confidence Interval for:         prob</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Confidence Interval Method:      Score normal approximation</span></span>
-<span class="r-in">  <span class="co">#                                 (With continuity correction)</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Confidence Interval Type:        two-sided</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Confidence Level:                95%</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Confidence Interval:             LCL = 0.1630867</span></span>
-<span class="r-in">  <span class="co">#                                 UCL = 0.5905104</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="co">#----------------------------------------------------------------</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="co"># Using the data from the last example, compare confidence </span></span>
-<span class="r-in">  <span class="co"># intervals based on the various methods</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="fu">ebinom</span><span class="op">(</span><span class="va">dat</span>, size <span class="op">=</span> <span class="fl">20</span>, ci <span class="op">=</span> <span class="cn">TRUE</span>, </span>
-<span class="r-in">    ci.method <span class="op">=</span> <span class="st">"score"</span>, correct <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span><span class="op">$</span><span class="va">interval</span><span class="op">$</span><span class="va">limits</span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="co">#Results of Distribution Parameter Estimation</span></span></span>
+<span class="r-in"><span>  <span class="co">#--------------------------------------------</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Assumed Distribution:            Binomial</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Estimated Parameter(s):          size = 20.00</span></span></span>
+<span class="r-in"><span>  <span class="co">#                                 prob =  0.35</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Estimation Method:               mle/mme/mvue for 'prob'</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Data:                            dat</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Sample Size:                     20</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Confidence Interval for:         prob</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Confidence Interval Method:      Score normal approximation</span></span></span>
+<span class="r-in"><span>  <span class="co">#                                 (With continuity correction)</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Confidence Interval Type:        two-sided</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Confidence Level:                95%</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Confidence Interval:             LCL = 0.1630867</span></span></span>
+<span class="r-in"><span>  <span class="co">#                                 UCL = 0.5905104</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="co">#----------------------------------------------------------------</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="co"># Using the data from the last example, compare confidence </span></span></span>
+<span class="r-in"><span>  <span class="co"># intervals based on the various methods</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="fu">ebinom</span><span class="op">(</span><span class="va">dat</span>, size <span class="op">=</span> <span class="fl">20</span>, ci <span class="op">=</span> <span class="cn">TRUE</span>, </span></span>
+<span class="r-in"><span>    ci.method <span class="op">=</span> <span class="st">"score"</span>, correct <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span><span class="op">$</span><span class="va">interval</span><span class="op">$</span><span class="va">limits</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>       LCL       UCL </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 0.1630867 0.5905104 </span>
-<span class="r-in">  <span class="co">#      LCL       UCL </span></span>
-<span class="r-in">  <span class="co">#0.1630867 0.5905104</span></span>
-<span class="r-in"></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="fu">ebinom</span><span class="op">(</span><span class="va">dat</span>, size <span class="op">=</span> <span class="fl">20</span>, ci <span class="op">=</span> <span class="cn">TRUE</span>, </span>
-<span class="r-in">    ci.method <span class="op">=</span> <span class="st">"score"</span>, correct <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span><span class="op">$</span><span class="va">interval</span><span class="op">$</span><span class="va">limits</span></span>
+<span class="r-in"><span>  <span class="co">#      LCL       UCL </span></span></span>
+<span class="r-in"><span>  <span class="co">#0.1630867 0.5905104</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="fu">ebinom</span><span class="op">(</span><span class="va">dat</span>, size <span class="op">=</span> <span class="fl">20</span>, ci <span class="op">=</span> <span class="cn">TRUE</span>, </span></span>
+<span class="r-in"><span>    ci.method <span class="op">=</span> <span class="st">"score"</span>, correct <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span><span class="op">$</span><span class="va">interval</span><span class="op">$</span><span class="va">limits</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>       LCL       UCL </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 0.1811918 0.5671457 </span>
-<span class="r-in">  <span class="co">#      LCL       UCL </span></span>
-<span class="r-in">  <span class="co">#0.1811918 0.5671457 </span></span>
-<span class="r-in"></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="fu">ebinom</span><span class="op">(</span><span class="va">dat</span>, size <span class="op">=</span> <span class="fl">20</span>, ci <span class="op">=</span> <span class="cn">TRUE</span>, </span>
-<span class="r-in">    ci.method <span class="op">=</span> <span class="st">"exact"</span><span class="op">)</span><span class="op">$</span><span class="va">interval</span><span class="op">$</span><span class="va">limits</span></span>
+<span class="r-in"><span>  <span class="co">#      LCL       UCL </span></span></span>
+<span class="r-in"><span>  <span class="co">#0.1811918 0.5671457 </span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="fu">ebinom</span><span class="op">(</span><span class="va">dat</span>, size <span class="op">=</span> <span class="fl">20</span>, ci <span class="op">=</span> <span class="cn">TRUE</span>, </span></span>
+<span class="r-in"><span>    ci.method <span class="op">=</span> <span class="st">"exact"</span><span class="op">)</span><span class="op">$</span><span class="va">interval</span><span class="op">$</span><span class="va">limits</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>       LCL       UCL </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 0.1539092 0.5921885 </span>
-<span class="r-in">  <span class="co">#      LCL       UCL </span></span>
-<span class="r-in">  <span class="co">#0.1539092 0.5921885 </span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="fu">ebinom</span><span class="op">(</span><span class="va">dat</span>, size <span class="op">=</span> <span class="fl">20</span>, ci <span class="op">=</span> <span class="cn">TRUE</span>, </span>
-<span class="r-in">    ci.method <span class="op">=</span> <span class="st">"adjusted Wald"</span><span class="op">)</span><span class="op">$</span><span class="va">interval</span><span class="op">$</span><span class="va">limits</span></span>
+<span class="r-in"><span>  <span class="co">#      LCL       UCL </span></span></span>
+<span class="r-in"><span>  <span class="co">#0.1539092 0.5921885 </span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="fu">ebinom</span><span class="op">(</span><span class="va">dat</span>, size <span class="op">=</span> <span class="fl">20</span>, ci <span class="op">=</span> <span class="cn">TRUE</span>, </span></span>
+<span class="r-in"><span>    ci.method <span class="op">=</span> <span class="st">"adjusted Wald"</span><span class="op">)</span><span class="op">$</span><span class="va">interval</span><span class="op">$</span><span class="va">limits</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>       LCL       UCL </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 0.1799264 0.5684112 </span>
-<span class="r-in">  <span class="co">#      LCL       UCL </span></span>
-<span class="r-in">  <span class="co">#0.1799264 0.5684112 </span></span>
-<span class="r-in"></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="fu">ebinom</span><span class="op">(</span><span class="va">dat</span>, size <span class="op">=</span> <span class="fl">20</span>, ci <span class="op">=</span> <span class="cn">TRUE</span>, </span>
-<span class="r-in">    ci.method <span class="op">=</span> <span class="st">"Wald"</span>, correct <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span><span class="op">$</span><span class="va">interval</span><span class="op">$</span><span class="va">limits</span></span>
+<span class="r-in"><span>  <span class="co">#      LCL       UCL </span></span></span>
+<span class="r-in"><span>  <span class="co">#0.1799264 0.5684112 </span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="fu">ebinom</span><span class="op">(</span><span class="va">dat</span>, size <span class="op">=</span> <span class="fl">20</span>, ci <span class="op">=</span> <span class="cn">TRUE</span>, </span></span>
+<span class="r-in"><span>    ci.method <span class="op">=</span> <span class="st">"Wald"</span>, correct <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span><span class="op">$</span><span class="va">interval</span><span class="op">$</span><span class="va">limits</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>       LCL       UCL </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 0.1159627 0.5840373 </span>
-<span class="r-in">  <span class="co">#      LCL       UCL </span></span>
-<span class="r-in">  <span class="co">#0.1159627 0.5840373 </span></span>
-<span class="r-in"></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="fu">ebinom</span><span class="op">(</span><span class="va">dat</span>, size <span class="op">=</span> <span class="fl">20</span>, ci <span class="op">=</span> <span class="cn">TRUE</span>, </span>
-<span class="r-in">    ci.method <span class="op">=</span> <span class="st">"Wald"</span>, correct <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span><span class="op">$</span><span class="va">interval</span><span class="op">$</span><span class="va">limits</span></span>
+<span class="r-in"><span>  <span class="co">#      LCL       UCL </span></span></span>
+<span class="r-in"><span>  <span class="co">#0.1159627 0.5840373 </span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="fu">ebinom</span><span class="op">(</span><span class="va">dat</span>, size <span class="op">=</span> <span class="fl">20</span>, ci <span class="op">=</span> <span class="cn">TRUE</span>, </span></span>
+<span class="r-in"><span>    ci.method <span class="op">=</span> <span class="st">"Wald"</span>, correct <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span><span class="op">$</span><span class="va">interval</span><span class="op">$</span><span class="va">limits</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>       LCL       UCL </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 0.1409627 0.5590373 </span>
-<span class="r-in">  <span class="co">#      LCL       UCL </span></span>
-<span class="r-in">  <span class="co">#0.1409627 0.5590373 </span></span>
-<span class="r-in"></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="co">#----------------------------------------------------------------</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="co"># Use the cadmium data on page 8-6 of USEPA (1989b) to compute </span></span>
-<span class="r-in">  <span class="co"># two-sided 95% confidence intervals for the probability of </span></span>
-<span class="r-in">  <span class="co"># detection at background and compliance wells.  The data are </span></span>
-<span class="r-in">  <span class="co"># stored in EPA.89b.cadmium.df.</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="va">EPA.89b.cadmium.df</span></span>
+<span class="r-in"><span>  <span class="co">#      LCL       UCL </span></span></span>
+<span class="r-in"><span>  <span class="co">#0.1409627 0.5590373 </span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="co">#----------------------------------------------------------------</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="co"># Use the cadmium data on page 8-6 of USEPA (1989b) to compute </span></span></span>
+<span class="r-in"><span>  <span class="co"># two-sided 95% confidence intervals for the probability of </span></span></span>
+<span class="r-in"><span>  <span class="co"># detection at background and compliance wells.  The data are </span></span></span>
+<span class="r-in"><span>  <span class="co"># stored in EPA.89b.cadmium.df.</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="va">EPA.89b.cadmium.df</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>    Cadmium.orig Cadmium Censored  Well.type</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 1           0.1   0.100    FALSE Background</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 2          0.12   0.120    FALSE Background</span>
@@ -508,21 +522,21 @@
 <span class="r-out co"><span class="r-pr">#&gt;</span> 86          BDL   0.000     TRUE Compliance</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 87          BDL   0.000     TRUE Compliance</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 88          BDL   0.000     TRUE Compliance</span>
-<span class="r-in">  <span class="co">#   Cadmium.orig Cadmium Censored  Well.type</span></span>
-<span class="r-in">  <span class="co">#1           0.1   0.100    FALSE Background</span></span>
-<span class="r-in">  <span class="co">#2          0.12   0.120    FALSE Background</span></span>
-<span class="r-in">  <span class="co">#3           BDL   0.000     TRUE Background</span></span>
-<span class="r-in">  <span class="co">#...</span></span>
-<span class="r-in">  <span class="co">#86          BDL   0.000     TRUE Compliance</span></span>
-<span class="r-in">  <span class="co">#87          BDL   0.000     TRUE Compliance</span></span>
-<span class="r-in">  <span class="co">#88          BDL   0.000     TRUE Compliance</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="kw"><a href="https://rdrr.io/r/base/attach.html" class="external-link">attach</a></span><span class="op">(</span><span class="va">EPA.89b.cadmium.df</span><span class="op">)</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="co"># Probability of detection at Background well:</span></span>
-<span class="r-in">  <span class="co">#--------------------------------------------</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="fu">ebinom</span><span class="op">(</span><span class="op">!</span><span class="va">Censored</span><span class="op">[</span><span class="va">Well.type</span><span class="op">==</span><span class="st">"Background"</span><span class="op">]</span>, ci<span class="op">=</span><span class="cn">TRUE</span><span class="op">)</span></span>
+<span class="r-in"><span>  <span class="co">#   Cadmium.orig Cadmium Censored  Well.type</span></span></span>
+<span class="r-in"><span>  <span class="co">#1           0.1   0.100    FALSE Background</span></span></span>
+<span class="r-in"><span>  <span class="co">#2          0.12   0.120    FALSE Background</span></span></span>
+<span class="r-in"><span>  <span class="co">#3           BDL   0.000     TRUE Background</span></span></span>
+<span class="r-in"><span>  <span class="co">#...</span></span></span>
+<span class="r-in"><span>  <span class="co">#86          BDL   0.000     TRUE Compliance</span></span></span>
+<span class="r-in"><span>  <span class="co">#87          BDL   0.000     TRUE Compliance</span></span></span>
+<span class="r-in"><span>  <span class="co">#88          BDL   0.000     TRUE Compliance</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="kw"><a href="https://rdrr.io/r/base/attach.html" class="external-link">attach</a></span><span class="op">(</span><span class="va">EPA.89b.cadmium.df</span><span class="op">)</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="co"># Probability of detection at Background well:</span></span></span>
+<span class="r-in"><span>  <span class="co">#--------------------------------------------</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="fu">ebinom</span><span class="op">(</span><span class="op">!</span><span class="va">Censored</span><span class="op">[</span><span class="va">Well.type</span><span class="op">==</span><span class="st">"Background"</span><span class="op">]</span>, ci<span class="op">=</span><span class="cn">TRUE</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> $distribution</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] "Binomial"</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
@@ -573,38 +587,38 @@
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> attr(,"class")</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] "estimate"</span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="co">#Results of Distribution Parameter Estimation</span></span>
-<span class="r-in">  <span class="co">#--------------------------------------------</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Assumed Distribution:            Binomial</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Estimated Parameter(s):          size = 24.0000000</span></span>
-<span class="r-in">  <span class="co">#                                 prob =  0.3333333</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Estimation Method:               mle/mme/mvue for 'prob'</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Data:                            !Censored[Well.type == "Background"]</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Sample Size:                     24</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Confidence Interval for:         prob</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Confidence Interval Method:      Score normal approximation</span></span>
-<span class="r-in">  <span class="co">#                                 (With continuity correction)</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Confidence Interval Type:        two-sided</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Confidence Level:                95%</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Confidence Interval:             LCL = 0.1642654</span></span>
-<span class="r-in">  <span class="co">#                                 UCL = 0.5530745</span></span>
-<span class="r-in"></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="co"># Probability of detection at Compliance well:</span></span>
-<span class="r-in">  <span class="co">#--------------------------------------------</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="fu">ebinom</span><span class="op">(</span><span class="op">!</span><span class="va">Censored</span><span class="op">[</span><span class="va">Well.type</span><span class="op">==</span><span class="st">"Compliance"</span><span class="op">]</span>, ci<span class="op">=</span><span class="cn">TRUE</span><span class="op">)</span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="co">#Results of Distribution Parameter Estimation</span></span></span>
+<span class="r-in"><span>  <span class="co">#--------------------------------------------</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Assumed Distribution:            Binomial</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Estimated Parameter(s):          size = 24.0000000</span></span></span>
+<span class="r-in"><span>  <span class="co">#                                 prob =  0.3333333</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Estimation Method:               mle/mme/mvue for 'prob'</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Data:                            !Censored[Well.type == "Background"]</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Sample Size:                     24</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Confidence Interval for:         prob</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Confidence Interval Method:      Score normal approximation</span></span></span>
+<span class="r-in"><span>  <span class="co">#                                 (With continuity correction)</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Confidence Interval Type:        two-sided</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Confidence Level:                95%</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Confidence Interval:             LCL = 0.1642654</span></span></span>
+<span class="r-in"><span>  <span class="co">#                                 UCL = 0.5530745</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="co"># Probability of detection at Compliance well:</span></span></span>
+<span class="r-in"><span>  <span class="co">#--------------------------------------------</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="fu">ebinom</span><span class="op">(</span><span class="op">!</span><span class="va">Censored</span><span class="op">[</span><span class="va">Well.type</span><span class="op">==</span><span class="st">"Compliance"</span><span class="op">]</span>, ci<span class="op">=</span><span class="cn">TRUE</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> $distribution</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] "Binomial"</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
@@ -655,38 +669,38 @@
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> attr(,"class")</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] "estimate"</span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="co">#Results of Distribution Parameter Estimation</span></span>
-<span class="r-in">  <span class="co">#--------------------------------------------</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Assumed Distribution:            Binomial</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Estimated Parameter(s):          size = 64.000</span></span>
-<span class="r-in">  <span class="co">#                                 prob =  0.375</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Estimation Method:               mle/mme/mvue for 'prob'</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Data:                            !Censored[Well.type == "Compliance"]</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Sample Size:                     64</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Confidence Interval for:         prob</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Confidence Interval Method:      Score normal approximation</span></span>
-<span class="r-in">  <span class="co">#                                 (With continuity correction)</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Confidence Interval Type:        two-sided</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Confidence Level:                95%</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Confidence Interval:             LCL = 0.2597567</span></span>
-<span class="r-in">  <span class="co">#                                 UCL = 0.5053034</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="co">#----------------------------------------------------------------</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="co"># Clean up</span></span>
-<span class="r-in">  <span class="fu"><a href="https://rdrr.io/r/base/rm.html" class="external-link">rm</a></span><span class="op">(</span><span class="va">dat</span><span class="op">)</span></span>
-<span class="r-in">  <span class="kw"><a href="https://rdrr.io/r/base/detach.html" class="external-link">detach</a></span><span class="op">(</span><span class="st">"EPA.89b.cadmium.df"</span><span class="op">)</span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="co">#Results of Distribution Parameter Estimation</span></span></span>
+<span class="r-in"><span>  <span class="co">#--------------------------------------------</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Assumed Distribution:            Binomial</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Estimated Parameter(s):          size = 64.000</span></span></span>
+<span class="r-in"><span>  <span class="co">#                                 prob =  0.375</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Estimation Method:               mle/mme/mvue for 'prob'</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Data:                            !Censored[Well.type == "Compliance"]</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Sample Size:                     64</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Confidence Interval for:         prob</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Confidence Interval Method:      Score normal approximation</span></span></span>
+<span class="r-in"><span>  <span class="co">#                                 (With continuity correction)</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Confidence Interval Type:        two-sided</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Confidence Level:                95%</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Confidence Interval:             LCL = 0.2597567</span></span></span>
+<span class="r-in"><span>  <span class="co">#                                 UCL = 0.5053034</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="co">#----------------------------------------------------------------</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="co"># Clean up</span></span></span>
+<span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/r/base/rm.html" class="external-link">rm</a></span><span class="op">(</span><span class="va">dat</span><span class="op">)</span></span></span>
+<span class="r-in"><span>  <span class="kw"><a href="https://rdrr.io/r/base/detach.html" class="external-link">detach</a></span><span class="op">(</span><span class="st">"EPA.89b.cadmium.df"</span><span class="op">)</span></span></span>
 </code></pre></div>
     </div>
   </div>
@@ -701,7 +715,7 @@
 </div>
 
 <div class="pkgdown">
-  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.2.</p>
+  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.6.</p>
 </div>
 
       </footer></div>

@@ -52,29 +52,36 @@
     </div>
 
     <div id="ref-usage">
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="fu">dgevd</span><span class="op">(</span><span class="va">x</span>, location <span class="op">=</span> <span class="fl">0</span>, scale <span class="op">=</span> <span class="fl">1</span>, shape <span class="op">=</span> <span class="fl">0</span><span class="op">)</span>
-  <span class="fu">pgevd</span><span class="op">(</span><span class="va">q</span>, location <span class="op">=</span> <span class="fl">0</span>, scale <span class="op">=</span> <span class="fl">1</span>, shape <span class="op">=</span> <span class="fl">0</span><span class="op">)</span>
-  <span class="fu">qgevd</span><span class="op">(</span><span class="va">p</span>, location <span class="op">=</span> <span class="fl">0</span>, scale <span class="op">=</span> <span class="fl">1</span>, shape <span class="op">=</span> <span class="fl">0</span><span class="op">)</span>
-  <span class="fu">rgevd</span><span class="op">(</span><span class="va">n</span>, location <span class="op">=</span> <span class="fl">0</span>, scale <span class="op">=</span> <span class="fl">1</span>, shape <span class="op">=</span> <span class="fl">0</span><span class="op">)</span></code></pre></div>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">dgevd</span><span class="op">(</span><span class="va">x</span>, location <span class="op">=</span> <span class="fl">0</span>, scale <span class="op">=</span> <span class="fl">1</span>, shape <span class="op">=</span> <span class="fl">0</span><span class="op">)</span></span>
+<span>  <span class="fu">pgevd</span><span class="op">(</span><span class="va">q</span>, location <span class="op">=</span> <span class="fl">0</span>, scale <span class="op">=</span> <span class="fl">1</span>, shape <span class="op">=</span> <span class="fl">0</span><span class="op">)</span></span>
+<span>  <span class="fu">qgevd</span><span class="op">(</span><span class="va">p</span>, location <span class="op">=</span> <span class="fl">0</span>, scale <span class="op">=</span> <span class="fl">1</span>, shape <span class="op">=</span> <span class="fl">0</span><span class="op">)</span></span>
+<span>  <span class="fu">rgevd</span><span class="op">(</span><span class="va">n</span>, location <span class="op">=</span> <span class="fl">0</span>, scale <span class="op">=</span> <span class="fl">1</span>, shape <span class="op">=</span> <span class="fl">0</span><span class="op">)</span></span></code></pre></div>
     </div>
 
     <div id="arguments">
     <h2>Arguments</h2>
     <dl><dt>x</dt>
 <dd><p>vector of quantiles.</p></dd>
-<dt>q</dt>
+
+  <dt>q</dt>
 <dd><p>vector of quantiles.</p></dd>
-<dt>p</dt>
+
+  <dt>p</dt>
 <dd><p>vector of probabilities between 0 and 1.</p></dd>
-<dt>n</dt>
+
+  <dt>n</dt>
 <dd><p>sample size.  If <code>length(n)</code> is larger than 1, then <code>length(n)</code> 
   random values are returned.</p></dd>
-<dt>location</dt>
+
+  <dt>location</dt>
 <dd><p>vector of location parameters.</p></dd>
-<dt>scale</dt>
+
+  <dt>scale</dt>
 <dd><p>vector of positive scale parameters.</p></dd>
-<dt>shape</dt>
+
+  <dt>shape</dt>
 <dd><p>vector of shape parameters.</p></dd>
+
 </dl></div>
     <div id="details">
     <h2>Details</h2>
@@ -94,7 +101,9 @@
     </div>
     <div id="value">
     <h2>Value</h2>
-    <p>density (<code>devd</code>), probability (<code>pevd</code>), quantile (<code>qevd</code>), or 
+    
+
+<p>density (<code>devd</code>), probability (<code>pevd</code>), quantile (<code>qevd</code>), or 
   random sample (<code>revd</code>) for the generalized extreme value distribution with 
   location parameter(s) determined by <code>location</code>, scale parameter(s) 
   determined by <code>scale</code>, and shape parameter(s) determined by <code>shape</code>.</p>
@@ -139,41 +148,41 @@
 
     <div id="ref-examples">
     <h2>Examples</h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in">  <span class="co"># Density of a generalized extreme value distribution with </span></span>
-<span class="r-in">  <span class="co"># location=0, scale=1, and shape=0, evaluated at 0.5: </span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="fu">dgevd</span><span class="op">(</span><span class="fl">.5</span><span class="op">)</span> </span>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span>  <span class="co"># Density of a generalized extreme value distribution with </span></span></span>
+<span class="r-in"><span>  <span class="co"># location=0, scale=1, and shape=0, evaluated at 0.5: </span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="fu">dgevd</span><span class="op">(</span><span class="fl">.5</span><span class="op">)</span> </span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] 0.3307043</span>
-<span class="r-in">  <span class="co">#[1] 0.3307043</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="co">#----------</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="co"># The cdf of a generalized extreme value distribution with </span></span>
-<span class="r-in">  <span class="co"># location=1, scale=2, and shape=0.25, evaluated at 0.5: </span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="fu">pgevd</span><span class="op">(</span><span class="fl">.5</span>, <span class="fl">1</span>, <span class="fl">2</span>, <span class="fl">0.25</span><span class="op">)</span> </span>
+<span class="r-in"><span>  <span class="co">#[1] 0.3307043</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="co">#----------</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="co"># The cdf of a generalized extreme value distribution with </span></span></span>
+<span class="r-in"><span>  <span class="co"># location=1, scale=2, and shape=0.25, evaluated at 0.5: </span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="fu">pgevd</span><span class="op">(</span><span class="fl">.5</span>, <span class="fl">1</span>, <span class="fl">2</span>, <span class="fl">0.25</span><span class="op">)</span> </span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] 0.2795905</span>
-<span class="r-in">  <span class="co">#[1] 0.2795905</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="co">#----------</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="co"># The 90'th percentile of a generalized extreme value distribution with </span></span>
-<span class="r-in">  <span class="co"># location=-2, scale=0.5, and shape=-0.25: </span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="fu">qgevd</span><span class="op">(</span><span class="fl">.9</span>, <span class="op">-</span><span class="fl">2</span>, <span class="fl">0.5</span>, <span class="op">-</span><span class="fl">0.25</span><span class="op">)</span> </span>
+<span class="r-in"><span>  <span class="co">#[1] 0.2795905</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="co">#----------</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="co"># The 90'th percentile of a generalized extreme value distribution with </span></span></span>
+<span class="r-in"><span>  <span class="co"># location=-2, scale=0.5, and shape=-0.25: </span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="fu">qgevd</span><span class="op">(</span><span class="fl">.9</span>, <span class="op">-</span><span class="fl">2</span>, <span class="fl">0.5</span>, <span class="op">-</span><span class="fl">0.25</span><span class="op">)</span> </span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] -0.4895683</span>
-<span class="r-in">  <span class="co">#[1] -0.4895683</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="co">#----------</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="co"># Random sample of 4 observations from a generalized extreme value </span></span>
-<span class="r-in">  <span class="co"># distribution with location=5, scale=2, and shape=1. </span></span>
-<span class="r-in">  <span class="co"># (Note: the call to set.seed simply allows you to reproduce this example.)</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="fu"><a href="https://rdrr.io/r/base/Random.html" class="external-link">set.seed</a></span><span class="op">(</span><span class="fl">20</span><span class="op">)</span> </span>
-<span class="r-in">  <span class="fu">rgevd</span><span class="op">(</span><span class="fl">4</span>, <span class="fl">5</span>, <span class="fl">2</span>, <span class="fl">1</span><span class="op">)</span> </span>
+<span class="r-in"><span>  <span class="co">#[1] -0.4895683</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="co">#----------</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="co"># Random sample of 4 observations from a generalized extreme value </span></span></span>
+<span class="r-in"><span>  <span class="co"># distribution with location=5, scale=2, and shape=1. </span></span></span>
+<span class="r-in"><span>  <span class="co"># (Note: the call to set.seed simply allows you to reproduce this example.)</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/r/base/Random.html" class="external-link">set.seed</a></span><span class="op">(</span><span class="fl">20</span><span class="op">)</span> </span></span>
+<span class="r-in"><span>  <span class="fu">rgevd</span><span class="op">(</span><span class="fl">4</span>, <span class="fl">5</span>, <span class="fl">2</span>, <span class="fl">1</span><span class="op">)</span> </span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] 6.738692 6.473457 4.446649 5.727085</span>
-<span class="r-in">  <span class="co">#[1] 6.738692 6.473457 4.446649 5.727085</span></span>
+<span class="r-in"><span>  <span class="co">#[1] 6.738692 6.473457 4.446649 5.727085</span></span></span>
 </code></pre></div>
     </div>
   </div>
@@ -188,7 +197,7 @@
 </div>
 
 <div class="pkgdown">
-  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.2.</p>
+  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.6.</p>
 </div>
 
       </footer></div>

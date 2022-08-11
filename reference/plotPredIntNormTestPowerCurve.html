@@ -52,11 +52,11 @@
     </div>
 
     <div id="ref-usage">
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="fu">plotPredIntNormTestPowerCurve</span><span class="op">(</span>n <span class="op">=</span> <span class="fl">8</span>, df <span class="op">=</span> <span class="va">n</span> <span class="op">-</span> <span class="fl">1</span>, n.mean <span class="op">=</span> <span class="fl">1</span>, k <span class="op">=</span> <span class="fl">1</span>, 
-    range.delta.over.sigma <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">0</span>, <span class="fl">5</span><span class="op">)</span>, pi.type <span class="op">=</span> <span class="st">"upper"</span>, conf.level <span class="op">=</span> <span class="fl">0.95</span>, 
-    plot.it <span class="op">=</span> <span class="cn">TRUE</span>, add <span class="op">=</span> <span class="cn">FALSE</span>, n.points <span class="op">=</span> <span class="fl">20</span>, plot.col <span class="op">=</span> <span class="st">"black"</span>, 
-    plot.lwd <span class="op">=</span> <span class="fl">3</span> <span class="op">*</span> <span class="fu"><a href="https://rdrr.io/r/graphics/par.html" class="external-link">par</a></span><span class="op">(</span><span class="st">"cex"</span><span class="op">)</span>, plot.lty <span class="op">=</span> <span class="fl">1</span>, digits <span class="op">=</span> <span class="va">.Options</span><span class="op">$</span><span class="va">digits</span>, <span class="va">...</span>, 
-    main <span class="op">=</span> <span class="cn">NULL</span>, xlab <span class="op">=</span> <span class="cn">NULL</span>, ylab <span class="op">=</span> <span class="cn">NULL</span>, type <span class="op">=</span> <span class="st">"l"</span><span class="op">)</span></code></pre></div>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">plotPredIntNormTestPowerCurve</span><span class="op">(</span>n <span class="op">=</span> <span class="fl">8</span>, df <span class="op">=</span> <span class="va">n</span> <span class="op">-</span> <span class="fl">1</span>, n.mean <span class="op">=</span> <span class="fl">1</span>, k <span class="op">=</span> <span class="fl">1</span>, </span>
+<span>    range.delta.over.sigma <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">0</span>, <span class="fl">5</span><span class="op">)</span>, pi.type <span class="op">=</span> <span class="st">"upper"</span>, conf.level <span class="op">=</span> <span class="fl">0.95</span>, </span>
+<span>    plot.it <span class="op">=</span> <span class="cn">TRUE</span>, add <span class="op">=</span> <span class="cn">FALSE</span>, n.points <span class="op">=</span> <span class="fl">20</span>, plot.col <span class="op">=</span> <span class="st">"black"</span>, </span>
+<span>    plot.lwd <span class="op">=</span> <span class="fl">3</span> <span class="op">*</span> <span class="fu"><a href="https://rdrr.io/r/graphics/par.html" class="external-link">par</a></span><span class="op">(</span><span class="st">"cex"</span><span class="op">)</span>, plot.lty <span class="op">=</span> <span class="fl">1</span>, digits <span class="op">=</span> <span class="va">.Options</span><span class="op">$</span><span class="va">digits</span>, <span class="va">...</span>, </span>
+<span>    main <span class="op">=</span> <span class="cn">NULL</span>, xlab <span class="op">=</span> <span class="cn">NULL</span>, ylab <span class="op">=</span> <span class="cn">NULL</span>, type <span class="op">=</span> <span class="st">"l"</span><span class="op">)</span></span></code></pre></div>
     </div>
 
     <div id="arguments">
@@ -64,56 +64,71 @@
     <dl><dt>n</dt>
 <dd><p>positive integer greater than 2 indicating the sample size upon which 
   the prediction interval is based.  The default is value is <code>n=8</code>.</p></dd>
-<dt>df</dt>
+
+  <dt>df</dt>
 <dd><p>positive integer indicating the degrees of freedom associated with 
   the sample size.  The default value is <code>df=n-1</code>.</p></dd>
-<dt>n.mean</dt>
+
+  <dt>n.mean</dt>
 <dd><p>positive integer specifying the sample size associated with the future average(s).  
   The default value is <code>n.mean=1</code> (i.e., individual observations).  Note that all 
   future averages must be based on the same sample size.</p></dd>
-<dt>k</dt>
+
+  <dt>k</dt>
 <dd><p>positive integer specifying the number of future observations that the 
   prediction interval should contain with confidence level <code>conf.level</code>.  The 
   default value is <code>k=1</code>.</p></dd>
-<dt>range.delta.over.sigma</dt>
+
+  <dt>range.delta.over.sigma</dt>
 <dd><p>numeric vector of length 2 indicating the range of the x-variable to use for the 
   plot.  The default value is <code>range.delta.over.sigma=c(0,5)</code>.</p></dd>
-<dt>pi.type</dt>
+
+  <dt>pi.type</dt>
 <dd><p>character string indicating what kind of prediction interval to compute.  
   The possible values are <code>pi.type="upper"</code> (the default), and 
   <code>pi.type="lower"</code>.</p></dd>
-<dt>conf.level</dt>
+
+  <dt>conf.level</dt>
 <dd><p>numeric scalar between 0 and 1 indicating the confidence level of the 
   prediction interval.  The default value is <code>conf.level=0.95</code>.</p></dd>
-<dt>plot.it</dt>
+
+  <dt>plot.it</dt>
 <dd><p>a logical scalar indicating whether to create a plot or add to the existing plot 
   (see explanation of the argument <code>add</code> below) on the current graphics device.  
   If <code>plot.it=FALSE</code>, no plot is produced, but a list of (x,y) values is returned 
   (see the section VALUE).  The default value is <code>plot.it=TRUE</code>.</p></dd>
-<dt>add</dt>
+
+  <dt>add</dt>
 <dd><p>a logical scalar indicating whether to add the design plot to the existing plot (<code>add=TRUE</code>), 
   or to create a plot from scratch (<code>add=FALSE</code>).  The default value is <code>add=FALSE</code>.  
   This argument is ignored if <code>plot.it=FALSE</code>.</p></dd>
-<dt>n.points</dt>
+
+  <dt>n.points</dt>
 <dd><p>a numeric scalar specifying how many (x,y) pairs to use to produce the plot.  
   There are <code>n.points</code> x-values evenly spaced between <code>range.x.var[1]</code> and <br><code>range.x.var[2]</code>.  The default value is <code>n.points=100</code>.</p></dd>
-<dt>plot.col</dt>
+
+  <dt>plot.col</dt>
 <dd><p>a numeric scalar or character string determining the color of the plotted line or points.  The default value 
   is <code>plot.col="black"</code>.  See the entry for <code>col</code> in the help file for <code><a href="https://rdrr.io/r/graphics/par.html" class="external-link">par</a></code> 
   for more information.</p></dd>
-<dt>plot.lwd</dt>
+
+  <dt>plot.lwd</dt>
 <dd><p>a numeric scalar determining the width of the plotted line.  The default value is 
   <code>3*par("cex")</code>.  See the entry for <code>lwd</code> in the help file for <code><a href="https://rdrr.io/r/graphics/par.html" class="external-link">par</a></code> 
   for more information.</p></dd>
-<dt>plot.lty</dt>
+
+  <dt>plot.lty</dt>
 <dd><p>a numeric scalar determining the line type of the plotted line.  The default value is 
   <code>plot.lty=1</code>.  See the entry for <code>lty</code> in the help file for <code><a href="https://rdrr.io/r/graphics/par.html" class="external-link">par</a></code> 
   for more information.</p></dd>
-<dt>digits</dt>
+
+  <dt>digits</dt>
 <dd><p>a scalar indicating how many significant digits to print out on the plot.  The default 
   value is the current setting of <code><a href="https://rdrr.io/r/base/options.html" class="external-link">options</a>("digits")</code>.</p></dd>
-<dt>main, xlab, ylab, type, ...</dt>
+
+  <dt>main, xlab, ylab, type, ...</dt>
 <dd><p>additional graphical parameters (see <code><a href="https://rdrr.io/r/graphics/par.html" class="external-link">par</a></code>).</p></dd>
+
 </dl></div>
     <div id="details">
     <h2>Details</h2>
@@ -123,11 +138,14 @@
     </div>
     <div id="value">
     <h2>Value</h2>
-    <p><code>plotPredIntNormTestPowerCurve</code> invisibly returns a list with components:</p>
+    <p></p>
+<p><code>plotPredIntNormTestPowerCurve</code> invisibly returns a list with components:</p>
 <dl><dt>x.var</dt>
 <dd><p>x-coordinates of points that have been or would have been plotted.</p></dd>
-<dt>y.var</dt>
+
+  <dt>y.var</dt>
 <dd><p>y-coordinates of points that have been or would have been plotted.</p></dd>
+
 </dl></div>
     <div id="references">
     <h2>References</h2>
@@ -163,60 +181,60 @@
 
     <div id="ref-examples">
     <h2>Examples</h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in">  <span class="co"># Pages 6-16 to 6-17 of USEPA (2009) present EPA Reference Power Curves (ERPC)</span></span>
-<span class="r-in">  <span class="co"># for groundwater monitoring:</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co"># "Since effect sizes discussed in the next section often cannot or have not been </span></span>
-<span class="r-in">  <span class="co"># quantified, the Unified Guidance recommends using the ERPC as a suitable basis </span></span>
-<span class="r-in">  <span class="co"># of comparison for proposed testing procedures.  Each reference power curve </span></span>
-<span class="r-in">  <span class="co"># corresponds to one of three typical yearly statistical evaluation schedules - </span></span>
-<span class="r-in">  <span class="co"># quarterly, semi-annual, or annual - and represents the cumulative power </span></span>
-<span class="r-in">  <span class="co"># achievable during a single year at one well-constituent pair by a 99% upper </span></span>
-<span class="r-in">  <span class="co"># (normal) prediction limit based on n = 10 background measurements and one new </span></span>
-<span class="r-in">  <span class="co"># measurement from the compliance well.</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co"># Here we will reproduce Figure 6-3 on page 6-17.</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="fu"><a href="https://rdrr.io/r/grDevices/dev.html" class="external-link">dev.new</a></span><span class="op">(</span><span class="op">)</span></span>
-<span class="r-in">  <span class="fu">plotPredIntNormTestPowerCurve</span><span class="op">(</span>n <span class="op">=</span> <span class="fl">10</span>, k <span class="op">=</span> <span class="fl">1</span>, conf.level <span class="op">=</span> <span class="fl">0.99</span>, </span>
-<span class="r-in">    ylim <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">0</span>, <span class="fl">1</span><span class="op">)</span>, main<span class="op">=</span><span class="st">""</span><span class="op">)</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="fu">plotPredIntNormTestPowerCurve</span><span class="op">(</span>n <span class="op">=</span> <span class="fl">10</span>, k <span class="op">=</span> <span class="fl">2</span>, conf.level <span class="op">=</span> <span class="fl">0.99</span>, </span>
-<span class="r-in">    add <span class="op">=</span> <span class="cn">TRUE</span>, plot.col <span class="op">=</span> <span class="st">"red"</span>, plot.lty <span class="op">=</span> <span class="fl">2</span><span class="op">)</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="fu">plotPredIntNormTestPowerCurve</span><span class="op">(</span>n <span class="op">=</span> <span class="fl">10</span>, k <span class="op">=</span> <span class="fl">4</span>, conf.level <span class="op">=</span> <span class="fl">0.99</span>, </span>
-<span class="r-in">    add <span class="op">=</span> <span class="cn">TRUE</span>, plot.col <span class="op">=</span> <span class="st">"blue"</span>, plot.lty <span class="op">=</span> <span class="fl">3</span><span class="op">)</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="fu"><a href="https://rdrr.io/r/graphics/legend.html" class="external-link">legend</a></span><span class="op">(</span><span class="st">"topleft"</span>, <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"Quarterly"</span>, <span class="st">"Semi-Annual"</span>, <span class="st">"Annual"</span><span class="op">)</span>, lty <span class="op">=</span> <span class="fl">3</span><span class="op">:</span><span class="fl">1</span>, </span>
-<span class="r-in">    lwd <span class="op">=</span> <span class="fl">3</span> <span class="op">*</span> <span class="fu"><a href="https://rdrr.io/r/graphics/par.html" class="external-link">par</a></span><span class="op">(</span><span class="st">"cex"</span><span class="op">)</span>, col <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"blue"</span>, <span class="st">"red"</span>, <span class="st">"black"</span><span class="op">)</span>, bty <span class="op">=</span> <span class="st">"n"</span><span class="op">)</span> </span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="fu"><a href="https://rdrr.io/r/graphics/title.html" class="external-link">title</a></span><span class="op">(</span>main <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/paste.html" class="external-link">paste</a></span><span class="op">(</span><span class="st">"Power vs. Delta/Sigma for Upper Prediction Interval with"</span>,</span>
-<span class="r-in">    <span class="st">"n=10, Confidence=99%, and Various Sampling Frequencies"</span>, sep<span class="op">=</span><span class="st">"\n"</span><span class="op">)</span><span class="op">)</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="co">#==========</span></span>
-<span class="r-in"><span class="kw">if</span> <span class="op">(</span><span class="cn">FALSE</span><span class="op">)</span> <span class="op">{</span></span>
-<span class="r-in">  <span class="co"># Plot power vs. scaled minimal detectable difference for various sample sizes </span></span>
-<span class="r-in">  <span class="co"># using a 5</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="fu"><a href="https://rdrr.io/r/grDevices/dev.html" class="external-link">dev.new</a></span><span class="op">(</span><span class="op">)</span></span>
-<span class="r-in">  <span class="fu">plotPredIntNormTestPowerCurve</span><span class="op">(</span>n <span class="op">=</span> <span class="fl">8</span>, k <span class="op">=</span> <span class="fl">1</span>, ylim <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">0</span>, <span class="fl">1</span><span class="op">)</span>, main<span class="op">=</span><span class="st">""</span><span class="op">)</span> </span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="fu">plotPredIntNormTestPowerCurve</span><span class="op">(</span>n <span class="op">=</span> <span class="fl">16</span>, k <span class="op">=</span> <span class="fl">1</span>, add <span class="op">=</span> <span class="cn">TRUE</span>, plot.col <span class="op">=</span> <span class="st">"red"</span><span class="op">)</span> </span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="fu">plotPredIntNormTestPowerCurve</span><span class="op">(</span>n <span class="op">=</span> <span class="fl">32</span>, k <span class="op">=</span> <span class="fl">1</span>, add <span class="op">=</span> <span class="cn">TRUE</span>, plot.col <span class="op">=</span> <span class="st">"blue"</span><span class="op">)</span> </span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="fu"><a href="https://rdrr.io/r/graphics/legend.html" class="external-link">legend</a></span><span class="op">(</span><span class="st">"bottomright"</span>, <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"n=32"</span>, <span class="st">"n=16"</span>, <span class="st">"n=8"</span><span class="op">)</span>, lty <span class="op">=</span> <span class="fl">1</span>, lwd <span class="op">=</span> <span class="fl">3</span> <span class="op">*</span> <span class="fu"><a href="https://rdrr.io/r/graphics/par.html" class="external-link">par</a></span><span class="op">(</span><span class="st">"cex"</span><span class="op">)</span>, </span>
-<span class="r-in">    col <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"blue"</span>, <span class="st">"red"</span>, <span class="st">"black"</span><span class="op">)</span>, bty <span class="op">=</span> <span class="st">"n"</span><span class="op">)</span> </span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="fu"><a href="https://rdrr.io/r/graphics/title.html" class="external-link">title</a></span><span class="op">(</span>main <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/paste.html" class="external-link">paste</a></span><span class="op">(</span><span class="st">"Power vs. Delta/Sigma for Upper Prediction Interval with"</span>,</span>
-<span class="r-in">    <span class="st">"k=1, Confidence=95%, and Various Sample Sizes"</span>, sep<span class="op">=</span><span class="st">"\n"</span><span class="op">)</span><span class="op">)</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="co">#==========</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="co"># Clean up</span></span>
-<span class="r-in">  <span class="co">#---------</span></span>
-<span class="r-in">  <span class="fu"><a href="https://rdrr.io/r/grDevices/dev.html" class="external-link">graphics.off</a></span><span class="op">(</span><span class="op">)</span></span>
-<span class="r-in"><span class="op">}</span></span>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span>  <span class="co"># Pages 6-16 to 6-17 of USEPA (2009) present EPA Reference Power Curves (ERPC)</span></span></span>
+<span class="r-in"><span>  <span class="co"># for groundwater monitoring:</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co"># "Since effect sizes discussed in the next section often cannot or have not been </span></span></span>
+<span class="r-in"><span>  <span class="co"># quantified, the Unified Guidance recommends using the ERPC as a suitable basis </span></span></span>
+<span class="r-in"><span>  <span class="co"># of comparison for proposed testing procedures.  Each reference power curve </span></span></span>
+<span class="r-in"><span>  <span class="co"># corresponds to one of three typical yearly statistical evaluation schedules - </span></span></span>
+<span class="r-in"><span>  <span class="co"># quarterly, semi-annual, or annual - and represents the cumulative power </span></span></span>
+<span class="r-in"><span>  <span class="co"># achievable during a single year at one well-constituent pair by a 99% upper </span></span></span>
+<span class="r-in"><span>  <span class="co"># (normal) prediction limit based on n = 10 background measurements and one new </span></span></span>
+<span class="r-in"><span>  <span class="co"># measurement from the compliance well.</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co"># Here we will reproduce Figure 6-3 on page 6-17.</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/r/grDevices/dev.html" class="external-link">dev.new</a></span><span class="op">(</span><span class="op">)</span></span></span>
+<span class="r-in"><span>  <span class="fu">plotPredIntNormTestPowerCurve</span><span class="op">(</span>n <span class="op">=</span> <span class="fl">10</span>, k <span class="op">=</span> <span class="fl">1</span>, conf.level <span class="op">=</span> <span class="fl">0.99</span>, </span></span>
+<span class="r-in"><span>    ylim <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">0</span>, <span class="fl">1</span><span class="op">)</span>, main<span class="op">=</span><span class="st">""</span><span class="op">)</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="fu">plotPredIntNormTestPowerCurve</span><span class="op">(</span>n <span class="op">=</span> <span class="fl">10</span>, k <span class="op">=</span> <span class="fl">2</span>, conf.level <span class="op">=</span> <span class="fl">0.99</span>, </span></span>
+<span class="r-in"><span>    add <span class="op">=</span> <span class="cn">TRUE</span>, plot.col <span class="op">=</span> <span class="st">"red"</span>, plot.lty <span class="op">=</span> <span class="fl">2</span><span class="op">)</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="fu">plotPredIntNormTestPowerCurve</span><span class="op">(</span>n <span class="op">=</span> <span class="fl">10</span>, k <span class="op">=</span> <span class="fl">4</span>, conf.level <span class="op">=</span> <span class="fl">0.99</span>, </span></span>
+<span class="r-in"><span>    add <span class="op">=</span> <span class="cn">TRUE</span>, plot.col <span class="op">=</span> <span class="st">"blue"</span>, plot.lty <span class="op">=</span> <span class="fl">3</span><span class="op">)</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/r/graphics/legend.html" class="external-link">legend</a></span><span class="op">(</span><span class="st">"topleft"</span>, <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"Quarterly"</span>, <span class="st">"Semi-Annual"</span>, <span class="st">"Annual"</span><span class="op">)</span>, lty <span class="op">=</span> <span class="fl">3</span><span class="op">:</span><span class="fl">1</span>, </span></span>
+<span class="r-in"><span>    lwd <span class="op">=</span> <span class="fl">3</span> <span class="op">*</span> <span class="fu"><a href="https://rdrr.io/r/graphics/par.html" class="external-link">par</a></span><span class="op">(</span><span class="st">"cex"</span><span class="op">)</span>, col <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"blue"</span>, <span class="st">"red"</span>, <span class="st">"black"</span><span class="op">)</span>, bty <span class="op">=</span> <span class="st">"n"</span><span class="op">)</span> </span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/r/graphics/title.html" class="external-link">title</a></span><span class="op">(</span>main <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/paste.html" class="external-link">paste</a></span><span class="op">(</span><span class="st">"Power vs. Delta/Sigma for Upper Prediction Interval with"</span>,</span></span>
+<span class="r-in"><span>    <span class="st">"n=10, Confidence=99%, and Various Sampling Frequencies"</span>, sep<span class="op">=</span><span class="st">"\n"</span><span class="op">)</span><span class="op">)</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="co">#==========</span></span></span>
+<span class="r-in"><span><span class="kw">if</span> <span class="op">(</span><span class="cn">FALSE</span><span class="op">)</span> <span class="op">{</span></span></span>
+<span class="r-in"><span>  <span class="co"># Plot power vs. scaled minimal detectable difference for various sample sizes </span></span></span>
+<span class="r-in"><span>  <span class="co"># using a 5</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/r/grDevices/dev.html" class="external-link">dev.new</a></span><span class="op">(</span><span class="op">)</span></span></span>
+<span class="r-in"><span>  <span class="fu">plotPredIntNormTestPowerCurve</span><span class="op">(</span>n <span class="op">=</span> <span class="fl">8</span>, k <span class="op">=</span> <span class="fl">1</span>, ylim <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">0</span>, <span class="fl">1</span><span class="op">)</span>, main<span class="op">=</span><span class="st">""</span><span class="op">)</span> </span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="fu">plotPredIntNormTestPowerCurve</span><span class="op">(</span>n <span class="op">=</span> <span class="fl">16</span>, k <span class="op">=</span> <span class="fl">1</span>, add <span class="op">=</span> <span class="cn">TRUE</span>, plot.col <span class="op">=</span> <span class="st">"red"</span><span class="op">)</span> </span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="fu">plotPredIntNormTestPowerCurve</span><span class="op">(</span>n <span class="op">=</span> <span class="fl">32</span>, k <span class="op">=</span> <span class="fl">1</span>, add <span class="op">=</span> <span class="cn">TRUE</span>, plot.col <span class="op">=</span> <span class="st">"blue"</span><span class="op">)</span> </span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/r/graphics/legend.html" class="external-link">legend</a></span><span class="op">(</span><span class="st">"bottomright"</span>, <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"n=32"</span>, <span class="st">"n=16"</span>, <span class="st">"n=8"</span><span class="op">)</span>, lty <span class="op">=</span> <span class="fl">1</span>, lwd <span class="op">=</span> <span class="fl">3</span> <span class="op">*</span> <span class="fu"><a href="https://rdrr.io/r/graphics/par.html" class="external-link">par</a></span><span class="op">(</span><span class="st">"cex"</span><span class="op">)</span>, </span></span>
+<span class="r-in"><span>    col <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"blue"</span>, <span class="st">"red"</span>, <span class="st">"black"</span><span class="op">)</span>, bty <span class="op">=</span> <span class="st">"n"</span><span class="op">)</span> </span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/r/graphics/title.html" class="external-link">title</a></span><span class="op">(</span>main <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/paste.html" class="external-link">paste</a></span><span class="op">(</span><span class="st">"Power vs. Delta/Sigma for Upper Prediction Interval with"</span>,</span></span>
+<span class="r-in"><span>    <span class="st">"k=1, Confidence=95%, and Various Sample Sizes"</span>, sep<span class="op">=</span><span class="st">"\n"</span><span class="op">)</span><span class="op">)</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="co">#==========</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="co"># Clean up</span></span></span>
+<span class="r-in"><span>  <span class="co">#---------</span></span></span>
+<span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/r/grDevices/dev.html" class="external-link">graphics.off</a></span><span class="op">(</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="op">}</span></span></span>
 </code></pre></div>
     </div>
   </div>
@@ -231,7 +249,7 @@
 </div>
 
 <div class="pkgdown">
-  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.2.</p>
+  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.6.</p>
 </div>
 
       </footer></div>

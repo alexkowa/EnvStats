@@ -54,9 +54,9 @@
     </div>
 
     <div id="ref-usage">
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="fu">eqzmlnorm</span><span class="op">(</span><span class="va">x</span>, p <span class="op">=</span> <span class="fl">0.5</span>, method <span class="op">=</span> <span class="st">"mvue"</span>, digits <span class="op">=</span> <span class="fl">0</span><span class="op">)</span>
-
-  <span class="fu">eqzmlnormAlt</span><span class="op">(</span><span class="va">x</span>, p <span class="op">=</span> <span class="fl">0.5</span>, method <span class="op">=</span> <span class="st">"mvue"</span>, digits <span class="op">=</span> <span class="fl">0</span><span class="op">)</span></code></pre></div>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">eqzmlnorm</span><span class="op">(</span><span class="va">x</span>, p <span class="op">=</span> <span class="fl">0.5</span>, method <span class="op">=</span> <span class="st">"mvue"</span>, digits <span class="op">=</span> <span class="fl">0</span><span class="op">)</span></span>
+<span></span>
+<span>  <span class="fu">eqzmlnormAlt</span><span class="op">(</span><span class="va">x</span>, p <span class="op">=</span> <span class="fl">0.5</span>, method <span class="op">=</span> <span class="st">"mvue"</span>, digits <span class="op">=</span> <span class="fl">0</span><span class="op">)</span></span></code></pre></div>
     </div>
 
     <div id="arguments">
@@ -71,17 +71,21 @@
 <p>If <code>x</code> is a numeric vector, 
   missing (<code>NA</code>), undefined (<code>NaN</code>), and infinite (<code>Inf</code>, <code>-Inf</code>) 
   values are allowed but will be removed.</p></dd>
-<dt>p</dt>
+
+  <dt>p</dt>
 <dd><p>numeric vector of probabilities for which quantiles will be estimated.  
   All values of <code>p</code> must be between 0 and 1.  When <code>ci=TRUE</code>, <code>p</code> 
   must be a scalar. The default value is <code>p=0.5</code>.</p></dd>
-<dt>method</dt>
+
+  <dt>method</dt>
 <dd><p>character string specifying the method of estimation.  The only possible value is 
   <code>"mvue"</code> (minimum variance unbiased; the default).  See the DETAILS section of 
   the help file for <code><a href="ezmlnorm.html">ezmlnorm</a></code> for more information.</p></dd>
-<dt>digits</dt>
+
+  <dt>digits</dt>
 <dd><p>an integer indicating the number of decimal places to round to when printing out 
   the value of <code>100*p</code>. The default value is <code>digits=0</code>.</p></dd>
+
 </dl></div>
     <div id="details">
     <h2>Details</h2>
@@ -95,13 +99,19 @@
 </ol></div>
     <div id="value">
     <h2>Value</h2>
-    <p>If <code>x</code> is a numeric vector, <code>eqzmlnorm</code> and <code>eqzmlnormAlt</code> return a 
+    
+
+<p>If <code>x</code> is a numeric vector, <code>eqzmlnorm</code> and <code>eqzmlnormAlt</code> return a 
   list of class <code>"estimate"</code> containing the estimated quantile(s) and other 
-  information. See <code><a href="estimate.object.html">estimate.object</a></code> for details.
-  If <code>x</code> is the result of calling an estimation function, <code>eqzmlnorm</code> and 
-<code>eqzmlnormAlt</code> return a list whose class is the same as <code>x</code>.  The list 
-  contains the same components as <code>x</code>, as well as components called 
-<code>quantiles</code> and <code>quantile.method</code>.</p>
+  information. See <code><a href="estimate.object.html">estimate.object</a></code> for details.</p>
+
+
+<p>If <code>x</code> is the result of calling an estimation function, <code>eqzmlnorm</code> and</p>
+<p></p>
+<p><code>eqzmlnormAlt</code> return a list whose class is the same as <code>x</code>.  The list 
+  contains the same components as <code>x</code>, as well as components called</p>
+<p></p>
+<p><code>quantiles</code> and <code>quantile.method</code>.</p>
     </div>
     <div id="references">
     <h2>References</h2>
@@ -164,14 +174,14 @@
 
     <div id="ref-examples">
     <h2>Examples</h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in">  <span class="co"># Generate 100 observations from a zero-modified lognormal (delta) </span></span>
-<span class="r-in">  <span class="co"># distribution with mean=2, cv=1, and p.zero=0.5, then estimate the </span></span>
-<span class="r-in">  <span class="co"># parameters and also the 80'th and 90'th percentiles.  </span></span>
-<span class="r-in">  <span class="co"># (Note: the call to set.seed simply allows you to reproduce this example.)</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="fu"><a href="https://rdrr.io/r/base/Random.html" class="external-link">set.seed</a></span><span class="op">(</span><span class="fl">250</span><span class="op">)</span> </span>
-<span class="r-in">  <span class="va">dat</span> <span class="op">&lt;-</span> <span class="fu"><a href="ZeroModifiedLognormalAlt.html">rzmlnormAlt</a></span><span class="op">(</span><span class="fl">100</span>, mean <span class="op">=</span> <span class="fl">2</span>, cv <span class="op">=</span> <span class="fl">1</span>, p.zero <span class="op">=</span> <span class="fl">0.5</span><span class="op">)</span> </span>
-<span class="r-in">  <span class="fu">eqzmlnormAlt</span><span class="op">(</span><span class="va">dat</span>, p <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">0.8</span>, <span class="fl">0.9</span><span class="op">)</span><span class="op">)</span> </span>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span>  <span class="co"># Generate 100 observations from a zero-modified lognormal (delta) </span></span></span>
+<span class="r-in"><span>  <span class="co"># distribution with mean=2, cv=1, and p.zero=0.5, then estimate the </span></span></span>
+<span class="r-in"><span>  <span class="co"># parameters and also the 80'th and 90'th percentiles.  </span></span></span>
+<span class="r-in"><span>  <span class="co"># (Note: the call to set.seed simply allows you to reproduce this example.)</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/r/base/Random.html" class="external-link">set.seed</a></span><span class="op">(</span><span class="fl">250</span><span class="op">)</span> </span></span>
+<span class="r-in"><span>  <span class="va">dat</span> <span class="op">&lt;-</span> <span class="fu"><a href="ZeroModifiedLognormalAlt.html">rzmlnormAlt</a></span><span class="op">(</span><span class="fl">100</span>, mean <span class="op">=</span> <span class="fl">2</span>, cv <span class="op">=</span> <span class="fl">1</span>, p.zero <span class="op">=</span> <span class="fl">0.5</span><span class="op">)</span> </span></span>
+<span class="r-in"><span>  <span class="fu">eqzmlnormAlt</span><span class="op">(</span><span class="va">dat</span>, p <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">0.8</span>, <span class="fl">0.9</span><span class="op">)</span><span class="op">)</span> </span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> $distribution</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] "Zero-Modified Lognormal (Delta)"</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
@@ -203,42 +213,42 @@
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> attr(,"class")</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] "estimate"</span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="co">#Results of Distribution Parameter Estimation</span></span>
-<span class="r-in">  <span class="co">#--------------------------------------------</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Assumed Distribution:            Zero-Modified Lognormal (Delta)</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Estimated Parameter(s):          mean         = 1.9604561</span></span>
-<span class="r-in">  <span class="co">#                                 cv           = 0.9169411</span></span>
-<span class="r-in">  <span class="co">#                                 p.zero       = 0.4500000</span></span>
-<span class="r-in">  <span class="co">#                                 mean.zmlnorm = 1.0782508</span></span>
-<span class="r-in">  <span class="co">#                                 cv.zmlnorm   = 1.5307175</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Estimation Method:               mvue</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Estimated Quantile(s):           80'th %ile = 1.897451</span></span>
-<span class="r-in">  <span class="co">#                                 90'th %ile = 2.937976</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Quantile Estimation Method:      Quantile(s) Based on</span></span>
-<span class="r-in">  <span class="co">#                                 mvue Estimators</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Data:                            dat</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Sample Size:                     100</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="co">#----------</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="co"># Compare the estimated quatiles with the true quantiles</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="fu"><a href="ZeroModifiedLognormalAlt.html">qzmlnormAlt</a></span><span class="op">(</span>mean <span class="op">=</span> <span class="fl">2</span>, cv <span class="op">=</span> <span class="fl">1</span>, p.zero <span class="op">=</span> <span class="fl">0.5</span>, p <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">0.8</span>, <span class="fl">0.9</span><span class="op">)</span><span class="op">)</span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="co">#Results of Distribution Parameter Estimation</span></span></span>
+<span class="r-in"><span>  <span class="co">#--------------------------------------------</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Assumed Distribution:            Zero-Modified Lognormal (Delta)</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Estimated Parameter(s):          mean         = 1.9604561</span></span></span>
+<span class="r-in"><span>  <span class="co">#                                 cv           = 0.9169411</span></span></span>
+<span class="r-in"><span>  <span class="co">#                                 p.zero       = 0.4500000</span></span></span>
+<span class="r-in"><span>  <span class="co">#                                 mean.zmlnorm = 1.0782508</span></span></span>
+<span class="r-in"><span>  <span class="co">#                                 cv.zmlnorm   = 1.5307175</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Estimation Method:               mvue</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Estimated Quantile(s):           80'th %ile = 1.897451</span></span></span>
+<span class="r-in"><span>  <span class="co">#                                 90'th %ile = 2.937976</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Quantile Estimation Method:      Quantile(s) Based on</span></span></span>
+<span class="r-in"><span>  <span class="co">#                                 mvue Estimators</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Data:                            dat</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Sample Size:                     100</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="co">#----------</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="co"># Compare the estimated quatiles with the true quantiles</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="fu"><a href="ZeroModifiedLognormalAlt.html">qzmlnormAlt</a></span><span class="op">(</span>mean <span class="op">=</span> <span class="fl">2</span>, cv <span class="op">=</span> <span class="fl">1</span>, p.zero <span class="op">=</span> <span class="fl">0.5</span>, p <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">0.8</span>, <span class="fl">0.9</span><span class="op">)</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] 1.746299 2.849858</span>
-<span class="r-in">  <span class="co">#[1] 1.746299 2.849858</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="co">#----------</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="co"># Clean up</span></span>
-<span class="r-in">  <span class="fu"><a href="https://rdrr.io/r/base/rm.html" class="external-link">rm</a></span><span class="op">(</span><span class="va">dat</span><span class="op">)</span></span>
+<span class="r-in"><span>  <span class="co">#[1] 1.746299 2.849858</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="co">#----------</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="co"># Clean up</span></span></span>
+<span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/r/base/rm.html" class="external-link">rm</a></span><span class="op">(</span><span class="va">dat</span><span class="op">)</span></span></span>
 </code></pre></div>
     </div>
   </div>
@@ -253,7 +263,7 @@
 </div>
 
 <div class="pkgdown">
-  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.2.</p>
+  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.6.</p>
 </div>
 
       </footer></div>

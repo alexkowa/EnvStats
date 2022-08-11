@@ -58,32 +58,39 @@ The zero-modified lognormal (delta) distribution is the mixture of a
     </div>
 
     <div id="ref-usage">
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="fu">dzmlnorm</span><span class="op">(</span><span class="va">x</span>, meanlog <span class="op">=</span> <span class="fl">0</span>, sdlog <span class="op">=</span> <span class="fl">1</span>, p.zero <span class="op">=</span> <span class="fl">0.5</span><span class="op">)</span>
-  <span class="fu">pzmlnorm</span><span class="op">(</span><span class="va">q</span>, meanlog <span class="op">=</span> <span class="fl">0</span>, sdlog <span class="op">=</span> <span class="fl">1</span>, p.zero <span class="op">=</span> <span class="fl">0.5</span><span class="op">)</span>
-  <span class="fu">qzmlnorm</span><span class="op">(</span><span class="va">p</span>, meanlog <span class="op">=</span> <span class="fl">0</span>, sdlog <span class="op">=</span> <span class="fl">1</span>, p.zero <span class="op">=</span> <span class="fl">0.5</span><span class="op">)</span>
-  <span class="fu">rzmlnorm</span><span class="op">(</span><span class="va">n</span>, meanlog <span class="op">=</span> <span class="fl">0</span>, sdlog <span class="op">=</span> <span class="fl">1</span>, p.zero <span class="op">=</span> <span class="fl">0.5</span><span class="op">)</span></code></pre></div>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">dzmlnorm</span><span class="op">(</span><span class="va">x</span>, meanlog <span class="op">=</span> <span class="fl">0</span>, sdlog <span class="op">=</span> <span class="fl">1</span>, p.zero <span class="op">=</span> <span class="fl">0.5</span><span class="op">)</span></span>
+<span>  <span class="fu">pzmlnorm</span><span class="op">(</span><span class="va">q</span>, meanlog <span class="op">=</span> <span class="fl">0</span>, sdlog <span class="op">=</span> <span class="fl">1</span>, p.zero <span class="op">=</span> <span class="fl">0.5</span><span class="op">)</span></span>
+<span>  <span class="fu">qzmlnorm</span><span class="op">(</span><span class="va">p</span>, meanlog <span class="op">=</span> <span class="fl">0</span>, sdlog <span class="op">=</span> <span class="fl">1</span>, p.zero <span class="op">=</span> <span class="fl">0.5</span><span class="op">)</span></span>
+<span>  <span class="fu">rzmlnorm</span><span class="op">(</span><span class="va">n</span>, meanlog <span class="op">=</span> <span class="fl">0</span>, sdlog <span class="op">=</span> <span class="fl">1</span>, p.zero <span class="op">=</span> <span class="fl">0.5</span><span class="op">)</span></span></code></pre></div>
     </div>
 
     <div id="arguments">
     <h2>Arguments</h2>
     <dl><dt>x</dt>
 <dd><p>vector of quantiles.</p></dd>
-<dt>q</dt>
+
+  <dt>q</dt>
 <dd><p>vector of quantiles.</p></dd>
-<dt>p</dt>
+
+  <dt>p</dt>
 <dd><p>vector of probabilities between 0 and 1.</p></dd>
-<dt>n</dt>
+
+  <dt>n</dt>
 <dd><p>sample size.  If <code>length(n)</code> is larger than 1, then <code>length(n)</code> 
   random values are returned.</p></dd>
-<dt>meanlog</dt>
+
+  <dt>meanlog</dt>
 <dd><p>vector of means of the normal (Gaussian) part of the distribution on the 
   log scale.  The default is <code>meanlog=0</code>.</p></dd>
-<dt>sdlog</dt>
+
+  <dt>sdlog</dt>
 <dd><p>vector of (positive) standard deviations of the normal (Gaussian) 
   part of the distribution on the log scale.  The default is <code>sdlog=1</code>.</p></dd>
-<dt>p.zero</dt>
+
+  <dt>p.zero</dt>
 <dd><p>vector of probabilities between 0 and 1 indicating the probability the random 
   variable equals 0.  For <code>rzmlnorm</code> this must be a single, non-missing number.</p></dd>
+
 </dl></div>
     <div id="details">
     <h2>Details</h2>
@@ -114,8 +121,10 @@ The zero-modified lognormal (delta) distribution is the mixture of a
     </div>
     <div id="value">
     <h2>Value</h2>
-    <p><code>dzmlnorm</code> gives the density, <code>pzmlnorm</code> gives the distribution function, 
-<code>qzmlnorm</code> gives the quantile function, and <code>rzmlnorm</code> generates random 
+    <p></p>
+<p><code>dzmlnorm</code> gives the density, <code>pzmlnorm</code> gives the distribution function,</p>
+<p></p>
+<p><code>qzmlnorm</code> gives the quantile function, and <code>rzmlnorm</code> generates random 
   deviates.</p>
     </div>
     <div id="references">
@@ -179,43 +188,43 @@ The zero-modified lognormal (delta) distribution is the mixture of a
 
     <div id="ref-examples">
     <h2>Examples</h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in">  <span class="co"># Density of the zero-modified lognormal (delta) distribution with </span></span>
-<span class="r-in">  <span class="co"># parameters meanlog=0, sdlog=1, and p.zero=0.5, evaluated at </span></span>
-<span class="r-in">  <span class="co"># 0, 0.5, 1, 1.5, and 2:</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="fu">dzmlnorm</span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/seq.html" class="external-link">seq</a></span><span class="op">(</span><span class="fl">0</span>, <span class="fl">2</span>, by <span class="op">=</span> <span class="fl">0.5</span><span class="op">)</span><span class="op">)</span> </span>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span>  <span class="co"># Density of the zero-modified lognormal (delta) distribution with </span></span></span>
+<span class="r-in"><span>  <span class="co"># parameters meanlog=0, sdlog=1, and p.zero=0.5, evaluated at </span></span></span>
+<span class="r-in"><span>  <span class="co"># 0, 0.5, 1, 1.5, and 2:</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="fu">dzmlnorm</span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/seq.html" class="external-link">seq</a></span><span class="op">(</span><span class="fl">0</span>, <span class="fl">2</span>, by <span class="op">=</span> <span class="fl">0.5</span><span class="op">)</span><span class="op">)</span> </span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] 0.50000000 0.31374804 0.19947114 0.12248683 0.07843701</span>
-<span class="r-in">  <span class="co">#[1] 0.50000000 0.31374804 0.19947114 0.12248683 </span></span>
-<span class="r-in">  <span class="co">#[5] 0.07843701</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="co">#----------</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="co"># The cdf of the zero-modified lognormal (delta) distribution with </span></span>
-<span class="r-in">  <span class="co"># parameters meanlog=1, sdlog=2, and p.zero=0.1, evaluated at 4:</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="fu">pzmlnorm</span><span class="op">(</span><span class="fl">4</span>, <span class="fl">1</span>, <span class="fl">2</span>, <span class="fl">.1</span><span class="op">)</span> </span>
+<span class="r-in"><span>  <span class="co">#[1] 0.50000000 0.31374804 0.19947114 0.12248683 </span></span></span>
+<span class="r-in"><span>  <span class="co">#[5] 0.07843701</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="co">#----------</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="co"># The cdf of the zero-modified lognormal (delta) distribution with </span></span></span>
+<span class="r-in"><span>  <span class="co"># parameters meanlog=1, sdlog=2, and p.zero=0.1, evaluated at 4:</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="fu">pzmlnorm</span><span class="op">(</span><span class="fl">4</span>, <span class="fl">1</span>, <span class="fl">2</span>, <span class="fl">.1</span><span class="op">)</span> </span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] 0.6189203</span>
-<span class="r-in">  <span class="co">#[1] 0.6189203</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="co">#----------</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="co"># The median of the zero-modified lognormal (delta) distribution with </span></span>
-<span class="r-in">  <span class="co"># parameters meanlog=2, sdlog=3, and p.zero=0.1:</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="fu">qzmlnorm</span><span class="op">(</span><span class="fl">0.5</span>, <span class="fl">2</span>, <span class="fl">3</span>, <span class="fl">0.1</span><span class="op">)</span> </span>
+<span class="r-in"><span>  <span class="co">#[1] 0.6189203</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="co">#----------</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="co"># The median of the zero-modified lognormal (delta) distribution with </span></span></span>
+<span class="r-in"><span>  <span class="co"># parameters meanlog=2, sdlog=3, and p.zero=0.1:</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="fu">qzmlnorm</span><span class="op">(</span><span class="fl">0.5</span>, <span class="fl">2</span>, <span class="fl">3</span>, <span class="fl">0.1</span><span class="op">)</span> </span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] 4.859177</span>
-<span class="r-in">  <span class="co">#[1] 4.859177</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="co">#----------</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="co"># Random sample of 3 observations from the zero-modified lognormal </span></span>
-<span class="r-in">  <span class="co"># (delta) distribution with parameters meanlog=1, sdlog=2, and p.zero=0.4. </span></span>
-<span class="r-in">  <span class="co"># (Note: The call to set.seed simply allows you to reproduce this example.)</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="fu"><a href="https://rdrr.io/r/base/Random.html" class="external-link">set.seed</a></span><span class="op">(</span><span class="fl">20</span><span class="op">)</span> </span>
-<span class="r-in">  <span class="fu">rzmlnorm</span><span class="op">(</span><span class="fl">3</span>, <span class="fl">1</span>, <span class="fl">2</span>, <span class="fl">0.4</span><span class="op">)</span></span>
+<span class="r-in"><span>  <span class="co">#[1] 4.859177</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="co">#----------</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="co"># Random sample of 3 observations from the zero-modified lognormal </span></span></span>
+<span class="r-in"><span>  <span class="co"># (delta) distribution with parameters meanlog=1, sdlog=2, and p.zero=0.4. </span></span></span>
+<span class="r-in"><span>  <span class="co"># (Note: The call to set.seed simply allows you to reproduce this example.)</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/r/base/Random.html" class="external-link">set.seed</a></span><span class="op">(</span><span class="fl">20</span><span class="op">)</span> </span></span>
+<span class="r-in"><span>  <span class="fu">rzmlnorm</span><span class="op">(</span><span class="fl">3</span>, <span class="fl">1</span>, <span class="fl">2</span>, <span class="fl">0.4</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] 0.000000 0.000000 3.146641</span>
-<span class="r-in">  <span class="co">#[1] 0.000000 0.000000 3.146641</span></span>
+<span class="r-in"><span>  <span class="co">#[1] 0.000000 0.000000 3.146641</span></span></span>
 </code></pre></div>
     </div>
   </div>
@@ -230,7 +239,7 @@ The zero-modified lognormal (delta) distribution is the mixture of a
 </div>
 
 <div class="pkgdown">
-  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.2.</p>
+  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.6.</p>
 </div>
 
       </footer></div>

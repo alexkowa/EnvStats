@@ -56,8 +56,8 @@
     </div>
 
     <div id="ref-usage">
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="fu">aovN</span><span class="op">(</span><span class="va">mu.vec</span>, sigma <span class="op">=</span> <span class="fl">1</span>, alpha <span class="op">=</span> <span class="fl">0.05</span>, power <span class="op">=</span> <span class="fl">0.95</span>, 
-    round.up <span class="op">=</span> <span class="cn">TRUE</span>, n.max <span class="op">=</span> <span class="fl">5000</span>, tol <span class="op">=</span> <span class="fl">1e-07</span>, maxiter <span class="op">=</span> <span class="fl">1000</span><span class="op">)</span></code></pre></div>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">aovN</span><span class="op">(</span><span class="va">mu.vec</span>, sigma <span class="op">=</span> <span class="fl">1</span>, alpha <span class="op">=</span> <span class="fl">0.05</span>, power <span class="op">=</span> <span class="fl">0.95</span>, </span>
+<span>    round.up <span class="op">=</span> <span class="cn">TRUE</span>, n.max <span class="op">=</span> <span class="fl">5000</span>, tol <span class="op">=</span> <span class="fl">1e-07</span>, maxiter <span class="op">=</span> <span class="fl">1000</span><span class="op">)</span></span></code></pre></div>
     </div>
 
     <div id="arguments">
@@ -67,33 +67,41 @@
   <code>mu.vec</code> must be at least 2.  Missing (<code>NA</code>), 
   undefined (<code>NaN</code>), and infinite (<code>Inf</code>, <code>-Inf</code>) 
   values are not allowed.</p></dd>
-<dt>sigma</dt>
+
+  <dt>sigma</dt>
 <dd><p>optional numeric scalar specifying the population standard 
   deviation (\(\sigma\)) for each group.  The default value 
   is <code>sigma=1</code>.</p></dd>
-<dt>alpha</dt>
+
+  <dt>alpha</dt>
 <dd><p>optional numeric scalar between 0 and 1 indicating the Type I 
   error level associated with the hypothesis test.  The default 
   value is <code>alpha=0.05</code>.</p></dd>
-<dt>power</dt>
+
+  <dt>power</dt>
 <dd><p>optional numeric scalar between 0 and 1 indicating the power 
   associated with the hypothesis test.  The default value 
   is <code>power=0.95</code>.</p></dd>
-<dt>round.up</dt>
+
+  <dt>round.up</dt>
 <dd><p>optional logical scalar indicating whether to round up the value of the 
   computed sample size to the next smallest integer.  The default 
   value is <code>round.up=TRUE</code>.</p></dd>
-<dt>n.max</dt>
+
+  <dt>n.max</dt>
 <dd><p>positive integer greater then 1 indicating the maximum sample size per group.  
   The default value is <code>n.max=5000</code>.</p></dd>
-<dt>tol</dt>
+
+  <dt>tol</dt>
 <dd><p>optional numeric scalar indicating the tolerance to use in the 
   <code><a href="https://rdrr.io/r/stats/uniroot.html" class="external-link">uniroot</a></code> search algorithm.  The default value is 
   <code>tol=1e-7</code>.</p></dd>
-<dt>maxiter</dt>
+
+  <dt>maxiter</dt>
 <dd><p>optional positive integer indicating the maximum number of iterations to use in the 
   <code><a href="https://rdrr.io/r/stats/uniroot.html" class="external-link">uniroot</a></code> search algorithm.  The default value is 
   <code>maxiter=1000</code>.</p></dd>
+
 </dl></div>
     <div id="details">
     <h2>Details</h2>
@@ -116,7 +124,9 @@
     </div>
     <div id="value">
     <h2>Value</h2>
-    <p>numeric scalar indicating the required sample size for each 
+    
+
+<p>numeric scalar indicating the required sample size for each 
   group.  (The number of groups is equal to the length of the 
   argument <code>mu.vec</code>.)</p>
     </div>
@@ -173,64 +183,64 @@
 
     <div id="ref-examples">
     <h2>Examples</h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in">  <span class="co"># Look at how the required sample size for a one-way ANOVA </span></span>
-<span class="r-in">  <span class="co"># increases with increasing power:</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="fu">aovN</span><span class="op">(</span>mu.vec <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">10</span>, <span class="fl">12</span>, <span class="fl">15</span><span class="op">)</span>, sigma <span class="op">=</span> <span class="fl">5</span>, power <span class="op">=</span> <span class="fl">0.8</span><span class="op">)</span> </span>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span>  <span class="co"># Look at how the required sample size for a one-way ANOVA </span></span></span>
+<span class="r-in"><span>  <span class="co"># increases with increasing power:</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="fu">aovN</span><span class="op">(</span>mu.vec <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">10</span>, <span class="fl">12</span>, <span class="fl">15</span><span class="op">)</span>, sigma <span class="op">=</span> <span class="fl">5</span>, power <span class="op">=</span> <span class="fl">0.8</span><span class="op">)</span> </span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] 21</span>
-<span class="r-in">  <span class="co">#[1] 21 </span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="fu">aovN</span><span class="op">(</span>mu.vec <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">10</span>, <span class="fl">12</span>, <span class="fl">15</span><span class="op">)</span>, sigma <span class="op">=</span> <span class="fl">5</span>, power <span class="op">=</span> <span class="fl">0.9</span><span class="op">)</span> </span>
+<span class="r-in"><span>  <span class="co">#[1] 21 </span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="fu">aovN</span><span class="op">(</span>mu.vec <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">10</span>, <span class="fl">12</span>, <span class="fl">15</span><span class="op">)</span>, sigma <span class="op">=</span> <span class="fl">5</span>, power <span class="op">=</span> <span class="fl">0.9</span><span class="op">)</span> </span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] 27</span>
-<span class="r-in">  <span class="co">#[1] 27 </span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="fu">aovN</span><span class="op">(</span>mu.vec <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">10</span>, <span class="fl">12</span>, <span class="fl">15</span><span class="op">)</span>, sigma <span class="op">=</span> <span class="fl">5</span>, power <span class="op">=</span> <span class="fl">0.95</span><span class="op">)</span> </span>
+<span class="r-in"><span>  <span class="co">#[1] 27 </span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="fu">aovN</span><span class="op">(</span>mu.vec <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">10</span>, <span class="fl">12</span>, <span class="fl">15</span><span class="op">)</span>, sigma <span class="op">=</span> <span class="fl">5</span>, power <span class="op">=</span> <span class="fl">0.95</span><span class="op">)</span> </span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] 33</span>
-<span class="r-in">  <span class="co">#[1] 33</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="co">#----------------------------------------------------------------</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="co"># Look at how the required sample size for a one-way ANOVA, </span></span>
-<span class="r-in">  <span class="co"># given a fixed power, decreases with increasing variability </span></span>
-<span class="r-in">  <span class="co"># in the population means:</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="fu">aovN</span><span class="op">(</span>mu.vec <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">10</span>, <span class="fl">10</span>, <span class="fl">11</span><span class="op">)</span>, sigma<span class="op">=</span><span class="fl">5</span><span class="op">)</span> </span>
+<span class="r-in"><span>  <span class="co">#[1] 33</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="co">#----------------------------------------------------------------</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="co"># Look at how the required sample size for a one-way ANOVA, </span></span></span>
+<span class="r-in"><span>  <span class="co"># given a fixed power, decreases with increasing variability </span></span></span>
+<span class="r-in"><span>  <span class="co"># in the population means:</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="fu">aovN</span><span class="op">(</span>mu.vec <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">10</span>, <span class="fl">10</span>, <span class="fl">11</span><span class="op">)</span>, sigma<span class="op">=</span><span class="fl">5</span><span class="op">)</span> </span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] 581</span>
-<span class="r-in">  <span class="co">#[1] 581 </span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="fu">aovN</span><span class="op">(</span>mu.vec <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">10</span>, <span class="fl">10</span>, <span class="fl">15</span><span class="op">)</span>, sigma <span class="op">=</span> <span class="fl">5</span><span class="op">)</span> </span>
+<span class="r-in"><span>  <span class="co">#[1] 581 </span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="fu">aovN</span><span class="op">(</span>mu.vec <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">10</span>, <span class="fl">10</span>, <span class="fl">15</span><span class="op">)</span>, sigma <span class="op">=</span> <span class="fl">5</span><span class="op">)</span> </span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] 25</span>
-<span class="r-in">  <span class="co">#[1] 25 </span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="fu">aovN</span><span class="op">(</span>mu.vec <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">10</span>, <span class="fl">13</span>, <span class="fl">15</span><span class="op">)</span>, sigma <span class="op">=</span> <span class="fl">5</span><span class="op">)</span> </span>
+<span class="r-in"><span>  <span class="co">#[1] 25 </span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="fu">aovN</span><span class="op">(</span>mu.vec <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">10</span>, <span class="fl">13</span>, <span class="fl">15</span><span class="op">)</span>, sigma <span class="op">=</span> <span class="fl">5</span><span class="op">)</span> </span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] 33</span>
-<span class="r-in">  <span class="co">#[1] 33 </span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="fu">aovN</span><span class="op">(</span>mu.vec <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">10</span>, <span class="fl">15</span>, <span class="fl">20</span><span class="op">)</span>, sigma <span class="op">=</span> <span class="fl">5</span><span class="op">)</span> </span>
+<span class="r-in"><span>  <span class="co">#[1] 33 </span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="fu">aovN</span><span class="op">(</span>mu.vec <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">10</span>, <span class="fl">15</span>, <span class="fl">20</span><span class="op">)</span>, sigma <span class="op">=</span> <span class="fl">5</span><span class="op">)</span> </span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] 10</span>
-<span class="r-in">  <span class="co">#[1] 10</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="co">#----------------------------------------------------------------</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="co"># Look at how the required sample size for a one-way ANOVA, </span></span>
-<span class="r-in">  <span class="co"># given a fixed power, decreases with increasing values of </span></span>
-<span class="r-in">  <span class="co"># Type I error:</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="fu">aovN</span><span class="op">(</span>mu.vec <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">10</span>, <span class="fl">12</span>, <span class="fl">14</span><span class="op">)</span>, sigma <span class="op">=</span> <span class="fl">5</span>, alpha <span class="op">=</span> <span class="fl">0.001</span><span class="op">)</span> </span>
+<span class="r-in"><span>  <span class="co">#[1] 10</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="co">#----------------------------------------------------------------</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="co"># Look at how the required sample size for a one-way ANOVA, </span></span></span>
+<span class="r-in"><span>  <span class="co"># given a fixed power, decreases with increasing values of </span></span></span>
+<span class="r-in"><span>  <span class="co"># Type I error:</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="fu">aovN</span><span class="op">(</span>mu.vec <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">10</span>, <span class="fl">12</span>, <span class="fl">14</span><span class="op">)</span>, sigma <span class="op">=</span> <span class="fl">5</span>, alpha <span class="op">=</span> <span class="fl">0.001</span><span class="op">)</span> </span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] 89</span>
-<span class="r-in">  <span class="co">#[1] 89 </span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="fu">aovN</span><span class="op">(</span>mu.vec <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">10</span>, <span class="fl">12</span>, <span class="fl">14</span><span class="op">)</span>, sigma <span class="op">=</span> <span class="fl">5</span>, alpha <span class="op">=</span> <span class="fl">0.01</span><span class="op">)</span> </span>
+<span class="r-in"><span>  <span class="co">#[1] 89 </span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="fu">aovN</span><span class="op">(</span>mu.vec <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">10</span>, <span class="fl">12</span>, <span class="fl">14</span><span class="op">)</span>, sigma <span class="op">=</span> <span class="fl">5</span>, alpha <span class="op">=</span> <span class="fl">0.01</span><span class="op">)</span> </span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] 67</span>
-<span class="r-in">  <span class="co">#[1] 67 </span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="fu">aovN</span><span class="op">(</span>mu.vec <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">10</span>, <span class="fl">12</span>, <span class="fl">14</span><span class="op">)</span>, sigma <span class="op">=</span> <span class="fl">5</span>, alpha <span class="op">=</span> <span class="fl">0.05</span><span class="op">)</span> </span>
+<span class="r-in"><span>  <span class="co">#[1] 67 </span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="fu">aovN</span><span class="op">(</span>mu.vec <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">10</span>, <span class="fl">12</span>, <span class="fl">14</span><span class="op">)</span>, sigma <span class="op">=</span> <span class="fl">5</span>, alpha <span class="op">=</span> <span class="fl">0.05</span><span class="op">)</span> </span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] 50</span>
-<span class="r-in">  <span class="co">#[1] 50 </span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="fu">aovN</span><span class="op">(</span>mu.vec <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">10</span>, <span class="fl">12</span>, <span class="fl">14</span><span class="op">)</span>, sigma <span class="op">=</span> <span class="fl">5</span>, alpha <span class="op">=</span> <span class="fl">0.1</span><span class="op">)</span> </span>
+<span class="r-in"><span>  <span class="co">#[1] 50 </span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="fu">aovN</span><span class="op">(</span>mu.vec <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">10</span>, <span class="fl">12</span>, <span class="fl">14</span><span class="op">)</span>, sigma <span class="op">=</span> <span class="fl">5</span>, alpha <span class="op">=</span> <span class="fl">0.1</span><span class="op">)</span> </span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] 42</span>
-<span class="r-in">  <span class="co">#[1] 42</span></span>
+<span class="r-in"><span>  <span class="co">#[1] 42</span></span></span>
 </code></pre></div>
     </div>
   </div>
@@ -245,7 +255,7 @@
 </div>
 
 <div class="pkgdown">
-  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.2.</p>
+  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.6.</p>
 </div>
 
       </footer></div>

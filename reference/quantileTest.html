@@ -56,8 +56,8 @@
     </div>
 
     <div id="ref-usage">
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="fu">quantileTest</span><span class="op">(</span><span class="va">x</span>, <span class="va">y</span>, alternative <span class="op">=</span> <span class="st">"greater"</span>, target.quantile <span class="op">=</span> <span class="fl">0.5</span>, 
-    target.r <span class="op">=</span> <span class="cn">NULL</span>, exact.p <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></code></pre></div>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">quantileTest</span><span class="op">(</span><span class="va">x</span>, <span class="va">y</span>, alternative <span class="op">=</span> <span class="st">"greater"</span>, target.quantile <span class="op">=</span> <span class="fl">0.5</span>, </span>
+<span>    target.r <span class="op">=</span> <span class="cn">NULL</span>, exact.p <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></code></pre></div>
     </div>
 
     <div id="arguments">
@@ -66,23 +66,27 @@
 <dd><p>numeric vector of observations from the “treatment” group.  
   Missing (<code>NA</code>), undefined (<code>NaN</code>), and infinite (<code>Inf</code>, <code>-Inf</code>) 
   values are allowed but will be removed.</p></dd>
-<dt>y</dt>
+ 
+  <dt>y</dt>
 <dd><p>numeric vector of observations from the “reference” group.  
   Missing (<code>NA</code>), undefined (<code>NaN</code>), and infinite (<code>Inf</code>, <code>-Inf</code>) 
   values are allowed but will be removed.</p></dd>
-<dt>alternative</dt>
+
+  <dt>alternative</dt>
 <dd><p>character string indicating the kind of alternative hypothesis.  The possible values 
   are <code>"greater"</code> (right tail of treatment group shifted to the right of the 
   right tail of the reference group) and <code>"less"</code> (left tail of treatment group 
   shifted to the left of the left tail of the reference group).  The default value is <br><code>alternative="greater"</code>.</p></dd>
-<dt>target.quantile</dt>
+
+  <dt>target.quantile</dt>
 <dd><p>numeric scalar between 0 and 1 indicating the desired quantile to use as the 
   lower cut off point for the test.  Because of the discrete nature of empirical 
   quantiles, the upper bound for the possible empirical quantiles will often differ 
   from the value of <code>target.quantile</code>.  The default value is 
   <code>target.quantile=0.5</code> (i.e., the median).  This argument is ignored if the 
   argument <code>target.r</code> is supplied.</p></dd>
-<dt>target.r</dt>
+
+  <dt>target.r</dt>
 <dd><p>integer indicating the rank of the observation to use as the lower cut off point 
   for the test.  The value of <code>target.r</code> must be greater than or equal to 
   2 and less than or equal to \(N\) (the total number of valid observations 
@@ -91,10 +95,12 @@
   <code>x</code> and/or <code>y</code>.  The default value of this argument is <code>NULL</code>, in 
   which case the argument <code>target.quantile</code> is used to determine the lower cut 
   off for the test.</p></dd>
-<dt>exact.p</dt>
+
+  <dt>exact.p</dt>
 <dd><p>logical scalar indicating whether to compute the p-value based on the exact 
   distribution of the test statistic (<code>exact.p=TRUE</code>; the default) or based 
   on the normal approximation (<code>exact.p=FALSE</code>).</p></dd>
+
 </dl></div>
     <div id="details">
     <h2>Details</h2>
@@ -172,8 +178,12 @@
     </div>
     <div id="value">
     <h2>Value</h2>
-    <p>A list of class <code>"htest"</code> containing the results of the hypothesis test.  
-  See the help file for <br><code><a href="htest.object.html">htest.object</a></code> for details.</p>
+    
+
+<p>A list of class <code>"htest"</code> containing the results of the hypothesis test.  
+  See the help file for <br></p>
+<p></p>
+<p><code><a href="htest.object.html">htest.object</a></code> for details.</p>
     </div>
     <div id="references">
     <h2>References</h2>
@@ -233,13 +243,13 @@
 
     <div id="ref-examples">
     <h2>Examples</h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in">  <span class="co"># Following Example 7.5 on pages 7.23-7.24 of USEPA (1994b), perform the </span></span>
-<span class="r-in">  <span class="co"># quantile test for the TcCB data (the data are stored in EPA.94b.tccb.df).  </span></span>
-<span class="r-in">  <span class="co"># There are n=47 observations from the reference area and m=77 observations </span></span>
-<span class="r-in">  <span class="co"># from the cleanup unit.  The target rank is set to 9, resulting in a value </span></span>
-<span class="r-in">  <span class="co"># of quantile.ub=0.928.  Note that the p-value is 0.0114, not 0.0117.</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="va">EPA.94b.tccb.df</span></span>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span>  <span class="co"># Following Example 7.5 on pages 7.23-7.24 of USEPA (1994b), perform the </span></span></span>
+<span class="r-in"><span>  <span class="co"># quantile test for the TcCB data (the data are stored in EPA.94b.tccb.df).  </span></span></span>
+<span class="r-in"><span>  <span class="co"># There are n=47 observations from the reference area and m=77 observations </span></span></span>
+<span class="r-in"><span>  <span class="co"># from the cleanup unit.  The target rank is set to 9, resulting in a value </span></span></span>
+<span class="r-in"><span>  <span class="co"># of quantile.ub=0.928.  Note that the p-value is 0.0114, not 0.0117.</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="va">EPA.94b.tccb.df</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>     TcCB.orig   TcCB Censored      Area</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 1        0.22   0.22    FALSE Reference</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 2        0.23   0.23    FALSE Reference</span>
@@ -365,36 +375,36 @@
 <span class="r-out co"><span class="r-pr">#&gt;</span> 122     18.40  18.40    FALSE   Cleanup</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 123     51.97  51.97    FALSE   Cleanup</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 124    168.64 168.64    FALSE   Cleanup</span>
-<span class="r-in">  <span class="co">#    TcCB.orig   TcCB Censored      Area</span></span>
-<span class="r-in">  <span class="co">#1        0.22   0.22    FALSE Reference</span></span>
-<span class="r-in">  <span class="co">#2        0.23   0.23    FALSE Reference</span></span>
-<span class="r-in">  <span class="co">#...</span></span>
-<span class="r-in">  <span class="co">#46       1.20   1.20    FALSE Reference</span></span>
-<span class="r-in">  <span class="co">#47       1.33   1.33    FALSE Reference</span></span>
-<span class="r-in">  <span class="co">#48      &lt;0.09   0.09     TRUE   Cleanup</span></span>
-<span class="r-in">  <span class="co">#49       0.09   0.09    FALSE   Cleanup</span></span>
-<span class="r-in">  <span class="co">#...</span></span>
-<span class="r-in">  <span class="co">#123     51.97  51.97    FALSE   Cleanup</span></span>
-<span class="r-in">  <span class="co">#124    168.64 168.64    FALSE   Cleanup</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="co"># Determine the values to use for r and k for </span></span>
-<span class="r-in">  <span class="co"># a desired significance level of 0.01 </span></span>
-<span class="r-in">  <span class="co">#--------------------------------------------</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="va">p.vals</span> <span class="op">&lt;-</span> <span class="fu"><a href="quantileTestPValue.html">quantileTestPValue</a></span><span class="op">(</span>m <span class="op">=</span> <span class="fl">77</span>, n <span class="op">=</span> <span class="fl">47</span>, </span>
-<span class="r-in">    r <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/rep.html" class="external-link">rep</a></span><span class="op">(</span><span class="fl">8</span>, <span class="fl">3</span><span class="op">)</span>, <span class="fu"><a href="https://rdrr.io/r/base/rep.html" class="external-link">rep</a></span><span class="op">(</span><span class="fl">9</span>, <span class="fl">3</span><span class="op">)</span>, <span class="fu"><a href="https://rdrr.io/r/base/rep.html" class="external-link">rep</a></span><span class="op">(</span><span class="fl">10</span>, <span class="fl">3</span><span class="op">)</span><span class="op">)</span>, </span>
-<span class="r-in">    k <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">6</span>, <span class="fl">7</span>, <span class="fl">8</span>, <span class="fl">7</span>, <span class="fl">8</span>, <span class="fl">9</span>, <span class="fl">8</span>, <span class="fl">9</span>, <span class="fl">10</span><span class="op">)</span><span class="op">)</span> </span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="fu"><a href="https://rdrr.io/r/base/Round.html" class="external-link">round</a></span><span class="op">(</span><span class="va">p.vals</span>, <span class="fl">3</span><span class="op">)</span> </span>
+<span class="r-in"><span>  <span class="co">#    TcCB.orig   TcCB Censored      Area</span></span></span>
+<span class="r-in"><span>  <span class="co">#1        0.22   0.22    FALSE Reference</span></span></span>
+<span class="r-in"><span>  <span class="co">#2        0.23   0.23    FALSE Reference</span></span></span>
+<span class="r-in"><span>  <span class="co">#...</span></span></span>
+<span class="r-in"><span>  <span class="co">#46       1.20   1.20    FALSE Reference</span></span></span>
+<span class="r-in"><span>  <span class="co">#47       1.33   1.33    FALSE Reference</span></span></span>
+<span class="r-in"><span>  <span class="co">#48      &lt;0.09   0.09     TRUE   Cleanup</span></span></span>
+<span class="r-in"><span>  <span class="co">#49       0.09   0.09    FALSE   Cleanup</span></span></span>
+<span class="r-in"><span>  <span class="co">#...</span></span></span>
+<span class="r-in"><span>  <span class="co">#123     51.97  51.97    FALSE   Cleanup</span></span></span>
+<span class="r-in"><span>  <span class="co">#124    168.64 168.64    FALSE   Cleanup</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="co"># Determine the values to use for r and k for </span></span></span>
+<span class="r-in"><span>  <span class="co"># a desired significance level of 0.01 </span></span></span>
+<span class="r-in"><span>  <span class="co">#--------------------------------------------</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="va">p.vals</span> <span class="op">&lt;-</span> <span class="fu"><a href="quantileTestPValue.html">quantileTestPValue</a></span><span class="op">(</span>m <span class="op">=</span> <span class="fl">77</span>, n <span class="op">=</span> <span class="fl">47</span>, </span></span>
+<span class="r-in"><span>    r <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/rep.html" class="external-link">rep</a></span><span class="op">(</span><span class="fl">8</span>, <span class="fl">3</span><span class="op">)</span>, <span class="fu"><a href="https://rdrr.io/r/base/rep.html" class="external-link">rep</a></span><span class="op">(</span><span class="fl">9</span>, <span class="fl">3</span><span class="op">)</span>, <span class="fu"><a href="https://rdrr.io/r/base/rep.html" class="external-link">rep</a></span><span class="op">(</span><span class="fl">10</span>, <span class="fl">3</span><span class="op">)</span><span class="op">)</span>, </span></span>
+<span class="r-in"><span>    k <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">6</span>, <span class="fl">7</span>, <span class="fl">8</span>, <span class="fl">7</span>, <span class="fl">8</span>, <span class="fl">9</span>, <span class="fl">8</span>, <span class="fl">9</span>, <span class="fl">10</span><span class="op">)</span><span class="op">)</span> </span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/r/base/Round.html" class="external-link">round</a></span><span class="op">(</span><span class="va">p.vals</span>, <span class="fl">3</span><span class="op">)</span> </span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] 0.355 0.122 0.019 0.264 0.081 0.011 0.193 0.053 0.007</span>
-<span class="r-in">  <span class="co">#[1] 0.355 0.122 0.019 0.264 0.081 0.011 0.193 0.053 0.007 </span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="co"># Choose r=9, k=9 to get a significance level of 0.011</span></span>
-<span class="r-in">  <span class="co">#-----------------------------------------------------</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="fu"><a href="https://rdrr.io/r/base/with.html" class="external-link">with</a></span><span class="op">(</span><span class="va">EPA.94b.tccb.df</span>, </span>
-<span class="r-in">    <span class="fu">quantileTest</span><span class="op">(</span><span class="va">TcCB</span><span class="op">[</span><span class="va">Area</span><span class="op">==</span><span class="st">"Cleanup"</span><span class="op">]</span>, <span class="va">TcCB</span><span class="op">[</span><span class="va">Area</span><span class="op">==</span><span class="st">"Reference"</span><span class="op">]</span>, </span>
-<span class="r-in">    target.r <span class="op">=</span> <span class="fl">9</span><span class="op">)</span><span class="op">)</span> </span>
+<span class="r-in"><span>  <span class="co">#[1] 0.355 0.122 0.019 0.264 0.081 0.011 0.193 0.053 0.007 </span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="co"># Choose r=9, k=9 to get a significance level of 0.011</span></span></span>
+<span class="r-in"><span>  <span class="co">#-----------------------------------------------------</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/r/base/with.html" class="external-link">with</a></span><span class="op">(</span><span class="va">EPA.94b.tccb.df</span>, </span></span>
+<span class="r-in"><span>    <span class="fu">quantileTest</span><span class="op">(</span><span class="va">TcCB</span><span class="op">[</span><span class="va">Area</span><span class="op">==</span><span class="st">"Cleanup"</span><span class="op">]</span>, <span class="va">TcCB</span><span class="op">[</span><span class="va">Area</span><span class="op">==</span><span class="st">"Reference"</span><span class="op">]</span>, </span></span>
+<span class="r-in"><span>    target.r <span class="op">=</span> <span class="fl">9</span><span class="op">)</span><span class="op">)</span> </span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> $statistic</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> k (# x obs of r largest)                        r </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>                        9                        9 </span>
@@ -435,42 +445,42 @@
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> attr(,"class")</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] "htestEnvStats"</span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="co">#Results of Hypothesis Test</span></span>
-<span class="r-in">  <span class="co">#--------------------------</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Null Hypothesis:                 e = 0</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Alternative Hypothesis:          Tail of Fx Shifted to Right of</span></span>
-<span class="r-in">  <span class="co">#                                 Tail of Fy.</span></span>
-<span class="r-in">  <span class="co">#                                 0 &lt; e &lt;= 1, where</span></span>
-<span class="r-in">  <span class="co">#                                 Fx(t) = (1-e)*Fy(t) + e*Fz(t),</span></span>
-<span class="r-in">  <span class="co">#                                 Fz(t) &lt;= Fy(t) for all t,</span></span>
-<span class="r-in">  <span class="co">#                                 and Fy != Fz</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Test Name:                       Quantile Test</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Data:                            x = TcCB[Area == "Cleanup"]  </span></span>
-<span class="r-in">  <span class="co">#                                 y = TcCB[Area == "Reference"]</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Sample Sizes:                    nx = 77</span></span>
-<span class="r-in">  <span class="co">#                                 ny = 47</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Test Statistics:                 k (# x obs of r largest) = 9</span></span>
-<span class="r-in">  <span class="co">#                                 r                        = 9</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Test Statistic Parameters:       m           = 77.000</span></span>
-<span class="r-in">  <span class="co">#                                 n           = 47.000</span></span>
-<span class="r-in">  <span class="co">#                                 quantile.ub =  0.928</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#P-value:                         0.01136926</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="co">#==========</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="co"># Clean up</span></span>
-<span class="r-in">  <span class="co">#---------</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="fu"><a href="https://rdrr.io/r/base/rm.html" class="external-link">rm</a></span><span class="op">(</span><span class="va">p.vals</span><span class="op">)</span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="co">#Results of Hypothesis Test</span></span></span>
+<span class="r-in"><span>  <span class="co">#--------------------------</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Null Hypothesis:                 e = 0</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Alternative Hypothesis:          Tail of Fx Shifted to Right of</span></span></span>
+<span class="r-in"><span>  <span class="co">#                                 Tail of Fy.</span></span></span>
+<span class="r-in"><span>  <span class="co">#                                 0 &lt; e &lt;= 1, where</span></span></span>
+<span class="r-in"><span>  <span class="co">#                                 Fx(t) = (1-e)*Fy(t) + e*Fz(t),</span></span></span>
+<span class="r-in"><span>  <span class="co">#                                 Fz(t) &lt;= Fy(t) for all t,</span></span></span>
+<span class="r-in"><span>  <span class="co">#                                 and Fy != Fz</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Test Name:                       Quantile Test</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Data:                            x = TcCB[Area == "Cleanup"]  </span></span></span>
+<span class="r-in"><span>  <span class="co">#                                 y = TcCB[Area == "Reference"]</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Sample Sizes:                    nx = 77</span></span></span>
+<span class="r-in"><span>  <span class="co">#                                 ny = 47</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Test Statistics:                 k (# x obs of r largest) = 9</span></span></span>
+<span class="r-in"><span>  <span class="co">#                                 r                        = 9</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Test Statistic Parameters:       m           = 77.000</span></span></span>
+<span class="r-in"><span>  <span class="co">#                                 n           = 47.000</span></span></span>
+<span class="r-in"><span>  <span class="co">#                                 quantile.ub =  0.928</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#P-value:                         0.01136926</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="co">#==========</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="co"># Clean up</span></span></span>
+<span class="r-in"><span>  <span class="co">#---------</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/r/base/rm.html" class="external-link">rm</a></span><span class="op">(</span><span class="va">p.vals</span><span class="op">)</span></span></span>
 </code></pre></div>
     </div>
   </div>
@@ -485,7 +495,7 @@
 </div>
 
 <div class="pkgdown">
-  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.2.</p>
+  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.6.</p>
 </div>
 
       </footer></div>

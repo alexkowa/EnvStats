@@ -56,44 +56,52 @@
     </div>
 
     <div id="ref-usage">
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="fu">ciTableMean</span><span class="op">(</span>n1 <span class="op">=</span> <span class="fl">10</span>, n2 <span class="op">=</span> <span class="va">n1</span>, diff.or.mean <span class="op">=</span> <span class="fl">2</span><span class="op">:</span><span class="fl">0</span>, SD <span class="op">=</span> <span class="fl">1</span><span class="op">:</span><span class="fl">3</span>, 
-    sample.type <span class="op">=</span> <span class="st">"two.sample"</span>, ci.type <span class="op">=</span> <span class="st">"two.sided"</span>, conf.level <span class="op">=</span> <span class="fl">0.95</span>, 
-    digits <span class="op">=</span> <span class="fl">1</span><span class="op">)</span></code></pre></div>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">ciTableMean</span><span class="op">(</span>n1 <span class="op">=</span> <span class="fl">10</span>, n2 <span class="op">=</span> <span class="va">n1</span>, diff.or.mean <span class="op">=</span> <span class="fl">2</span><span class="op">:</span><span class="fl">0</span>, SD <span class="op">=</span> <span class="fl">1</span><span class="op">:</span><span class="fl">3</span>, </span>
+<span>    sample.type <span class="op">=</span> <span class="st">"two.sample"</span>, ci.type <span class="op">=</span> <span class="st">"two.sided"</span>, conf.level <span class="op">=</span> <span class="fl">0.95</span>, </span>
+<span>    digits <span class="op">=</span> <span class="fl">1</span><span class="op">)</span></span></code></pre></div>
     </div>
 
     <div id="arguments">
     <h2>Arguments</h2>
     <dl><dt>n1</dt>
 <dd><p>positive integer greater than 1 specifying the sample size when <br><code>sample.type="one.sample"</code> or the sample size for group 1 when <br><code>sample.type="two.sample"</code>.  The default value is <code>n1=10</code>.</p></dd>
-<dt>n2</dt>
+
+  <dt>n2</dt>
 <dd><p>positive integer greater than 1 specifying the sample size for group 2 when 
   <code>sample.type="two.sample"</code>.  The default value is <code>n2=n1</code>, i.e., 
   equal sample sizes.  This argument is ignored when <code>sample.type="one.sample"</code>.</p></dd>
-<dt>diff.or.mean</dt>
+
+  <dt>diff.or.mean</dt>
 <dd><p>numeric vector indicating either the assumed difference between the two sample means 
   when <code>sample.type="two.sample"</code> or the value of the sample mean when 
   <code>sample.type="one.sample"</code>.  The default value is <code>diff.or.mean=2:0</code>.  
   Missing (<code>NA</code>), undefined (<code>NaN</code>), an infinite 
   (<code>-Inf</code>, <code>Inf</code>) values are not allowed.</p></dd>
-<dt>SD</dt>
+
+  <dt>SD</dt>
 <dd><p>numeric vector of positive values specifying the assumed estimated standard 
   deviation.  The default value is <code>SD=1:3</code>.  
   Missing (<code>NA</code>), undefined (<code>NaN</code>), an infinite 
   (<code>-Inf</code>, <code>Inf</code>) values are not allowed.</p></dd>
-<dt>sample.type</dt>
+
+  <dt>sample.type</dt>
 <dd><p>character string specifying whether to create confidence intervals for the difference 
   between two means (<code>sample.type="two.sample"</code>; the default) or confidence 
   intervals for a single mean (<code>sample.type="one.sample"</code>).</p></dd>
-<dt>ci.type</dt>
+
+  <dt>ci.type</dt>
 <dd><p>character string indicating what kind of confidence interval to compute.  The 
   possible values are <code>"two-sided"</code> (the default), <code>"lower"</code>, and 
   <code>"upper"</code>.</p></dd>
-<dt>conf.level</dt>
+
+  <dt>conf.level</dt>
 <dd><p>a scalar between 0 and 1 indicating the confidence level of the confidence interval.  
   The default value is <code>conf.level=0.95</code>.</p></dd>
-<dt>digits</dt>
+
+  <dt>digits</dt>
 <dd><p>positive integer indicating how many decimal places to display in the table.  The 
   default value is <code>digits=1</code>.</p></dd>
+
 </dl></div>
     <div id="details">
     <h2>Details</h2>
@@ -160,7 +168,9 @@
     </div>
     <div id="value">
     <h2>Value</h2>
-    <p>a data frame with the rows varying the standard deviation and the columns 
+    
+
+<p>a data frame with the rows varying the standard deviation and the columns 
   varying the estimated mean or difference between the means.  Elements of the 
   data frame are character strings indicating the confidence intervals.</p>
     </div>
@@ -212,61 +222,61 @@
 
     <div id="ref-examples">
     <h2>Examples</h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in">  <span class="co"># Show how potential confidence intervals for the difference between two means </span></span>
-<span class="r-in">  <span class="co"># will look assuming standard deviations of 1, 2, or 3, differences between </span></span>
-<span class="r-in">  <span class="co"># the two means of 2, 1, or 0, and a sample size of 10 in each group.</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="fu">ciTableMean</span><span class="op">(</span><span class="op">)</span></span>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span>  <span class="co"># Show how potential confidence intervals for the difference between two means </span></span></span>
+<span class="r-in"><span>  <span class="co"># will look assuming standard deviations of 1, 2, or 3, differences between </span></span></span>
+<span class="r-in"><span>  <span class="co"># the two means of 2, 1, or 0, and a sample size of 10 in each group.</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="fu">ciTableMean</span><span class="op">(</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>           Diff=2      Diff=1      Diff=0</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> SD=1 [ 1.1, 2.9] [ 0.1, 1.9] [-0.9, 0.9]</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> SD=2 [ 0.1, 3.9] [-0.9, 2.9] [-1.9, 1.9]</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> SD=3 [-0.8, 4.8] [-1.8, 3.8] [-2.8, 2.8]</span>
-<span class="r-in">  <span class="co">#          Diff=2      Diff=1      Diff=0</span></span>
-<span class="r-in">  <span class="co">#SD=1 [ 1.1, 2.9] [ 0.1, 1.9] [-0.9, 0.9]</span></span>
-<span class="r-in">  <span class="co">#SD=2 [ 0.1, 3.9] [-0.9, 2.9] [-1.9, 1.9]</span></span>
-<span class="r-in">  <span class="co">#SD=3 [-0.8, 4.8] [-1.8, 3.8] [-2.8, 2.8]</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="co">#==========</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="co"># Show how a potential confidence interval for a mean will look assuming </span></span>
-<span class="r-in">  <span class="co"># standard deviations of 1, 2, or 5, a sample mean of 5, 3, or 1, and </span></span>
-<span class="r-in">  <span class="co"># a sample size of 15.</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="fu">ciTableMean</span><span class="op">(</span>n1 <span class="op">=</span> <span class="fl">15</span>, diff.or.mean <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">5</span>, <span class="fl">3</span>, <span class="fl">1</span><span class="op">)</span>, SD <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">1</span>, <span class="fl">2</span>, <span class="fl">5</span><span class="op">)</span>, sample.type <span class="op">=</span> <span class="st">"one"</span><span class="op">)</span></span>
+<span class="r-in"><span>  <span class="co">#          Diff=2      Diff=1      Diff=0</span></span></span>
+<span class="r-in"><span>  <span class="co">#SD=1 [ 1.1, 2.9] [ 0.1, 1.9] [-0.9, 0.9]</span></span></span>
+<span class="r-in"><span>  <span class="co">#SD=2 [ 0.1, 3.9] [-0.9, 2.9] [-1.9, 1.9]</span></span></span>
+<span class="r-in"><span>  <span class="co">#SD=3 [-0.8, 4.8] [-1.8, 3.8] [-2.8, 2.8]</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="co">#==========</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="co"># Show how a potential confidence interval for a mean will look assuming </span></span></span>
+<span class="r-in"><span>  <span class="co"># standard deviations of 1, 2, or 5, a sample mean of 5, 3, or 1, and </span></span></span>
+<span class="r-in"><span>  <span class="co"># a sample size of 15.</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="fu">ciTableMean</span><span class="op">(</span>n1 <span class="op">=</span> <span class="fl">15</span>, diff.or.mean <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">5</span>, <span class="fl">3</span>, <span class="fl">1</span><span class="op">)</span>, SD <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">1</span>, <span class="fl">2</span>, <span class="fl">5</span><span class="op">)</span>, sample.type <span class="op">=</span> <span class="st">"one"</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>           Mean=5      Mean=3      Mean=1</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> SD=1 [ 4.4, 5.6] [ 2.4, 3.6] [ 0.4, 1.6]</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> SD=2 [ 3.9, 6.1] [ 1.9, 4.1] [-0.1, 2.1]</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> SD=5 [ 2.2, 7.8] [ 0.2, 5.8] [-1.8, 3.8]</span>
-<span class="r-in">  <span class="co">#          Mean=5      Mean=3      Mean=1</span></span>
-<span class="r-in">  <span class="co">#SD=1 [ 4.4, 5.6] [ 2.4, 3.6] [ 0.4, 1.6]</span></span>
-<span class="r-in">  <span class="co">#SD=2 [ 3.9, 6.1] [ 1.9, 4.1] [-0.1, 2.1]</span></span>
-<span class="r-in">  <span class="co">#SD=5 [ 2.2, 7.8] [ 0.2, 5.8] [-1.8, 3.8]</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="co">#==========</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="co"># The data frame EPA.09.Ex.16.1.sulfate.df contains sulfate concentrations</span></span>
-<span class="r-in">  <span class="co"># (ppm) at one background and one downgradient well. The estimated</span></span>
-<span class="r-in">  <span class="co"># mean and standard deviation for the background well are 536 and 27 ppm,</span></span>
-<span class="r-in">  <span class="co"># respectively, based on a sample size of n = 8 quarterly samples taken over </span></span>
-<span class="r-in">  <span class="co"># 2 years.  A two-sided 95% confidence interval for this mean is [514, 559], </span></span>
-<span class="r-in">  <span class="co"># which has a  half-width of 23 ppm.</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co"># The estimated mean and standard deviation for the downgradient well are </span></span>
-<span class="r-in">  <span class="co"># 608 and 18 ppm, respectively, based on a sample size of n = 6 quarterly </span></span>
-<span class="r-in">  <span class="co"># samples.  A two-sided 95% confidence interval for the difference between </span></span>
-<span class="r-in">  <span class="co"># this mean and the background mean is [44, 100] ppm.</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co"># Suppose we want to design a future sampling program and are interested in </span></span>
-<span class="r-in">  <span class="co"># the size of the confidence interval for the difference between the two means.  </span></span>
-<span class="r-in">  <span class="co"># We will use ciTableMean to generate a table of possible confidence intervals </span></span>
-<span class="r-in">  <span class="co"># by varying the assumed standard deviation and assumed differences between </span></span>
-<span class="r-in">  <span class="co"># the means.</span></span>
-<span class="r-in"></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="co"># Look at the data</span></span>
-<span class="r-in">  <span class="co">#-----------------</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="va">EPA.09.Ex.16.1.sulfate.df</span></span>
+<span class="r-in"><span>  <span class="co">#          Mean=5      Mean=3      Mean=1</span></span></span>
+<span class="r-in"><span>  <span class="co">#SD=1 [ 4.4, 5.6] [ 2.4, 3.6] [ 0.4, 1.6]</span></span></span>
+<span class="r-in"><span>  <span class="co">#SD=2 [ 3.9, 6.1] [ 1.9, 4.1] [-0.1, 2.1]</span></span></span>
+<span class="r-in"><span>  <span class="co">#SD=5 [ 2.2, 7.8] [ 0.2, 5.8] [-1.8, 3.8]</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="co">#==========</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="co"># The data frame EPA.09.Ex.16.1.sulfate.df contains sulfate concentrations</span></span></span>
+<span class="r-in"><span>  <span class="co"># (ppm) at one background and one downgradient well. The estimated</span></span></span>
+<span class="r-in"><span>  <span class="co"># mean and standard deviation for the background well are 536 and 27 ppm,</span></span></span>
+<span class="r-in"><span>  <span class="co"># respectively, based on a sample size of n = 8 quarterly samples taken over </span></span></span>
+<span class="r-in"><span>  <span class="co"># 2 years.  A two-sided 95% confidence interval for this mean is [514, 559], </span></span></span>
+<span class="r-in"><span>  <span class="co"># which has a  half-width of 23 ppm.</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co"># The estimated mean and standard deviation for the downgradient well are </span></span></span>
+<span class="r-in"><span>  <span class="co"># 608 and 18 ppm, respectively, based on a sample size of n = 6 quarterly </span></span></span>
+<span class="r-in"><span>  <span class="co"># samples.  A two-sided 95% confidence interval for the difference between </span></span></span>
+<span class="r-in"><span>  <span class="co"># this mean and the background mean is [44, 100] ppm.</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co"># Suppose we want to design a future sampling program and are interested in </span></span></span>
+<span class="r-in"><span>  <span class="co"># the size of the confidence interval for the difference between the two means.  </span></span></span>
+<span class="r-in"><span>  <span class="co"># We will use ciTableMean to generate a table of possible confidence intervals </span></span></span>
+<span class="r-in"><span>  <span class="co"># by varying the assumed standard deviation and assumed differences between </span></span></span>
+<span class="r-in"><span>  <span class="co"># the means.</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="co"># Look at the data</span></span></span>
+<span class="r-in"><span>  <span class="co">#-----------------</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="va">EPA.09.Ex.16.1.sulfate.df</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>    Month Year    Well.type Sulfate.ppm</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 1    Jan 1995   Background         560</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 2    Apr 1995   Background         530</span>
@@ -284,33 +294,33 @@
 <span class="r-out co"><span class="r-pr">#&gt;</span> 14   Apr 1996 Downgradient         630</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 15   Jul 1996 Downgradient         610</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 16   Oct 1996 Downgradient         630</span>
-<span class="r-in">  <span class="co">#   Month Year    Well.type Sulfate.ppm</span></span>
-<span class="r-in">  <span class="co">#1    Jan 1995   Background         560</span></span>
-<span class="r-in">  <span class="co">#2    Apr 1995   Background         530</span></span>
-<span class="r-in">  <span class="co">#3    Jul 1995   Background         570</span></span>
-<span class="r-in">  <span class="co">#4    Oct 1995   Background         490</span></span>
-<span class="r-in">  <span class="co">#5    Jan 1996   Background         510</span></span>
-<span class="r-in">  <span class="co">#6    Apr 1996   Background         550</span></span>
-<span class="r-in">  <span class="co">#7    Jul 1996   Background         550</span></span>
-<span class="r-in">  <span class="co">#8    Oct 1996   Background         530</span></span>
-<span class="r-in">  <span class="co">#9    Jan 1995 Downgradient          NA</span></span>
-<span class="r-in">  <span class="co">#10   Apr 1995 Downgradient          NA</span></span>
-<span class="r-in">  <span class="co">#11   Jul 1995 Downgradient         600</span></span>
-<span class="r-in">  <span class="co">#12   Oct 1995 Downgradient         590</span></span>
-<span class="r-in">  <span class="co">#13   Jan 1996 Downgradient         590</span></span>
-<span class="r-in">  <span class="co">#14   Apr 1996 Downgradient         630</span></span>
-<span class="r-in">  <span class="co">#15   Jul 1996 Downgradient         610</span></span>
-<span class="r-in">  <span class="co">#16   Oct 1996 Downgradient         630</span></span>
-<span class="r-in"></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="co"># Compute the estimated mean and standard deviation for the </span></span>
-<span class="r-in">  <span class="co"># background well.</span></span>
-<span class="r-in">  <span class="co">#-----------------------------------------------------------</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="va">Sulfate.back</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/with.html" class="external-link">with</a></span><span class="op">(</span><span class="va">EPA.09.Ex.16.1.sulfate.df</span>,</span>
-<span class="r-in">    <span class="va">Sulfate.ppm</span><span class="op">[</span><span class="va">Well.type</span> <span class="op">==</span> <span class="st">"Background"</span><span class="op">]</span><span class="op">)</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="fu"><a href="enorm.html">enorm</a></span><span class="op">(</span><span class="va">Sulfate.back</span>, ci <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span>
+<span class="r-in"><span>  <span class="co">#   Month Year    Well.type Sulfate.ppm</span></span></span>
+<span class="r-in"><span>  <span class="co">#1    Jan 1995   Background         560</span></span></span>
+<span class="r-in"><span>  <span class="co">#2    Apr 1995   Background         530</span></span></span>
+<span class="r-in"><span>  <span class="co">#3    Jul 1995   Background         570</span></span></span>
+<span class="r-in"><span>  <span class="co">#4    Oct 1995   Background         490</span></span></span>
+<span class="r-in"><span>  <span class="co">#5    Jan 1996   Background         510</span></span></span>
+<span class="r-in"><span>  <span class="co">#6    Apr 1996   Background         550</span></span></span>
+<span class="r-in"><span>  <span class="co">#7    Jul 1996   Background         550</span></span></span>
+<span class="r-in"><span>  <span class="co">#8    Oct 1996   Background         530</span></span></span>
+<span class="r-in"><span>  <span class="co">#9    Jan 1995 Downgradient          NA</span></span></span>
+<span class="r-in"><span>  <span class="co">#10   Apr 1995 Downgradient          NA</span></span></span>
+<span class="r-in"><span>  <span class="co">#11   Jul 1995 Downgradient         600</span></span></span>
+<span class="r-in"><span>  <span class="co">#12   Oct 1995 Downgradient         590</span></span></span>
+<span class="r-in"><span>  <span class="co">#13   Jan 1996 Downgradient         590</span></span></span>
+<span class="r-in"><span>  <span class="co">#14   Apr 1996 Downgradient         630</span></span></span>
+<span class="r-in"><span>  <span class="co">#15   Jul 1996 Downgradient         610</span></span></span>
+<span class="r-in"><span>  <span class="co">#16   Oct 1996 Downgradient         630</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="co"># Compute the estimated mean and standard deviation for the </span></span></span>
+<span class="r-in"><span>  <span class="co"># background well.</span></span></span>
+<span class="r-in"><span>  <span class="co">#-----------------------------------------------------------</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="va">Sulfate.back</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/with.html" class="external-link">with</a></span><span class="op">(</span><span class="va">EPA.09.Ex.16.1.sulfate.df</span>,</span></span>
+<span class="r-in"><span>    <span class="va">Sulfate.ppm</span><span class="op">[</span><span class="va">Well.type</span> <span class="op">==</span> <span class="st">"Background"</span><span class="op">]</span><span class="op">)</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="fu"><a href="enorm.html">enorm</a></span><span class="op">(</span><span class="va">Sulfate.back</span>, ci <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> $distribution</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] "Normal"</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
@@ -364,41 +374,41 @@
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> attr(,"class")</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] "estimate"</span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="co">#Results of Distribution Parameter Estimation</span></span>
-<span class="r-in">  <span class="co">#--------------------------------------------</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Assumed Distribution:            Normal</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Estimated Parameter(s):          mean = 536.2500</span></span>
-<span class="r-in">  <span class="co">#                                 sd   =  26.6927</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Estimation Method:               mvue</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Data:                            Sulfate.back</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Sample Size:                     8</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Confidence Interval for:         mean</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Confidence Interval Method:      Exact</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Confidence Interval Type:        two-sided</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Confidence Level:                95%</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Confidence Interval:             LCL = 513.9343</span></span>
-<span class="r-in">  <span class="co">#                                 UCL = 558.5657</span></span>
-<span class="r-in"></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="co"># Compute the estimated mean and standard deviation for the </span></span>
-<span class="r-in">  <span class="co"># downgradient well.</span></span>
-<span class="r-in">  <span class="co">#----------------------------------------------------------</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="va">Sulfate.down</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/with.html" class="external-link">with</a></span><span class="op">(</span><span class="va">EPA.09.Ex.16.1.sulfate.df</span>,</span>
-<span class="r-in">    <span class="va">Sulfate.ppm</span><span class="op">[</span><span class="va">Well.type</span> <span class="op">==</span> <span class="st">"Downgradient"</span><span class="op">]</span><span class="op">)</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="fu"><a href="enorm.html">enorm</a></span><span class="op">(</span><span class="va">Sulfate.down</span>, ci <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="co">#Results of Distribution Parameter Estimation</span></span></span>
+<span class="r-in"><span>  <span class="co">#--------------------------------------------</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Assumed Distribution:            Normal</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Estimated Parameter(s):          mean = 536.2500</span></span></span>
+<span class="r-in"><span>  <span class="co">#                                 sd   =  26.6927</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Estimation Method:               mvue</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Data:                            Sulfate.back</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Sample Size:                     8</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Confidence Interval for:         mean</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Confidence Interval Method:      Exact</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Confidence Interval Type:        two-sided</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Confidence Level:                95%</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Confidence Interval:             LCL = 513.9343</span></span></span>
+<span class="r-in"><span>  <span class="co">#                                 UCL = 558.5657</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="co"># Compute the estimated mean and standard deviation for the </span></span></span>
+<span class="r-in"><span>  <span class="co"># downgradient well.</span></span></span>
+<span class="r-in"><span>  <span class="co">#----------------------------------------------------------</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="va">Sulfate.down</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/with.html" class="external-link">with</a></span><span class="op">(</span><span class="va">EPA.09.Ex.16.1.sulfate.df</span>,</span></span>
+<span class="r-in"><span>    <span class="va">Sulfate.ppm</span><span class="op">[</span><span class="va">Well.type</span> <span class="op">==</span> <span class="st">"Downgradient"</span><span class="op">]</span><span class="op">)</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="fu"><a href="enorm.html">enorm</a></span><span class="op">(</span><span class="va">Sulfate.down</span>, ci <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></span>
 <span class="r-wrn co"><span class="r-pr">#&gt;</span> <span class="warning">Warning: </span>There were 2 nonfinite values in x : 2 NA's</span>
 <span class="r-wrn co"><span class="r-pr">#&gt;</span> <span class="warning">Warning: </span>2 observations with NA/NaN/Inf in 'x' removed.</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> $distribution</span>
@@ -454,40 +464,40 @@
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> attr(,"class")</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] "estimate"</span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="co">#Results of Distribution Parameter Estimation</span></span>
-<span class="r-in">  <span class="co">#--------------------------------------------</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Assumed Distribution:            Normal</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Estimated Parameter(s):          mean = 608.33333</span></span>
-<span class="r-in">  <span class="co">#                                 sd   =  18.34848</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Estimation Method:               mvue</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Data:                            Sulfate.down</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Sample Size:                     6</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Number NA/NaN/Inf's:             2</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Confidence Interval for:         mean</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Confidence Interval Method:      Exact</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Confidence Interval Type:        two-sided</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Confidence Level:                95%</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Confidence Interval:             LCL = 589.0778</span></span>
-<span class="r-in">  <span class="co">#                                 UCL = 627.5889</span></span>
-<span class="r-in"></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="co"># Compute the estimated difference between the means and the confidence </span></span>
-<span class="r-in">  <span class="co"># interval for the difference:</span></span>
-<span class="r-in">  <span class="co">#----------------------------------------------------------------------</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="fu"><a href="https://rdrr.io/r/stats/t.test.html" class="external-link">t.test</a></span><span class="op">(</span><span class="va">Sulfate.down</span>, <span class="va">Sulfate.back</span>, var.equal <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="co">#Results of Distribution Parameter Estimation</span></span></span>
+<span class="r-in"><span>  <span class="co">#--------------------------------------------</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Assumed Distribution:            Normal</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Estimated Parameter(s):          mean = 608.33333</span></span></span>
+<span class="r-in"><span>  <span class="co">#                                 sd   =  18.34848</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Estimation Method:               mvue</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Data:                            Sulfate.down</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Sample Size:                     6</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Number NA/NaN/Inf's:             2</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Confidence Interval for:         mean</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Confidence Interval Method:      Exact</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Confidence Interval Type:        two-sided</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Confidence Level:                95%</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Confidence Interval:             LCL = 589.0778</span></span></span>
+<span class="r-in"><span>  <span class="co">#                                 UCL = 627.5889</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="co"># Compute the estimated difference between the means and the confidence </span></span></span>
+<span class="r-in"><span>  <span class="co"># interval for the difference:</span></span></span>
+<span class="r-in"><span>  <span class="co">#----------------------------------------------------------------------</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/r/stats/t.test.html" class="external-link">t.test</a></span><span class="op">(</span><span class="va">Sulfate.down</span>, <span class="va">Sulfate.back</span>, var.equal <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 	Two Sample t-test</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
@@ -500,65 +510,65 @@
 <span class="r-out co"><span class="r-pr">#&gt;</span> mean of x mean of y </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  608.3333  536.2500 </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="co">#Results of Hypothesis Test</span></span>
-<span class="r-in">  <span class="co">#--------------------------</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Null Hypothesis:                 difference in means = 0</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Alternative Hypothesis:          True difference in means is not equal to 0</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Test Name:                        Two Sample t-test</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Estimated Parameter(s):          mean of x = 608.3333</span></span>
-<span class="r-in">  <span class="co">#                                 mean of y = 536.2500</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Data:                            Sulfate.down and Sulfate.back</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Test Statistic:                  t = 5.660985</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Test Statistic Parameter:        df = 12</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#P-value:                         0.0001054306</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#95% Confidence Interval:         LCL = 44.33974</span></span>
-<span class="r-in">  <span class="co">#                                 UCL = 99.82693</span></span>
-<span class="r-in"></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="co"># Use ciTableMean to look how the confidence interval for the difference</span></span>
-<span class="r-in">  <span class="co"># between the background and downgradient means in a future study using eight</span></span>
-<span class="r-in">  <span class="co"># quarterly samples at each well varies with assumed value of the pooled standard</span></span>
-<span class="r-in">  <span class="co"># deviation and the observed difference between the sample means. </span></span>
-<span class="r-in">  <span class="co">#--------------------------------------------------------------------------------</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="co"># Our current estimate of the pooled standard deviation is 24 ppm:</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="fu"><a href="https://rdrr.io/r/base/summary.html" class="external-link">summary</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/stats/lm.html" class="external-link">lm</a></span><span class="op">(</span><span class="va">Sulfate.ppm</span> <span class="op">~</span> <span class="va">Well.type</span>, data <span class="op">=</span> <span class="va">EPA.09.Ex.16.1.sulfate.df</span><span class="op">)</span><span class="op">)</span><span class="op">$</span><span class="va">sigma</span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="co">#Results of Hypothesis Test</span></span></span>
+<span class="r-in"><span>  <span class="co">#--------------------------</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Null Hypothesis:                 difference in means = 0</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Alternative Hypothesis:          True difference in means is not equal to 0</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Test Name:                        Two Sample t-test</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Estimated Parameter(s):          mean of x = 608.3333</span></span></span>
+<span class="r-in"><span>  <span class="co">#                                 mean of y = 536.2500</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Data:                            Sulfate.down and Sulfate.back</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Test Statistic:                  t = 5.660985</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Test Statistic Parameter:        df = 12</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#P-value:                         0.0001054306</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#95% Confidence Interval:         LCL = 44.33974</span></span></span>
+<span class="r-in"><span>  <span class="co">#                                 UCL = 99.82693</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="co"># Use ciTableMean to look how the confidence interval for the difference</span></span></span>
+<span class="r-in"><span>  <span class="co"># between the background and downgradient means in a future study using eight</span></span></span>
+<span class="r-in"><span>  <span class="co"># quarterly samples at each well varies with assumed value of the pooled standard</span></span></span>
+<span class="r-in"><span>  <span class="co"># deviation and the observed difference between the sample means. </span></span></span>
+<span class="r-in"><span>  <span class="co">#--------------------------------------------------------------------------------</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="co"># Our current estimate of the pooled standard deviation is 24 ppm:</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/r/base/summary.html" class="external-link">summary</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/stats/lm.html" class="external-link">lm</a></span><span class="op">(</span><span class="va">Sulfate.ppm</span> <span class="op">~</span> <span class="va">Well.type</span>, data <span class="op">=</span> <span class="va">EPA.09.Ex.16.1.sulfate.df</span><span class="op">)</span><span class="op">)</span><span class="op">$</span><span class="va">sigma</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] 23.57759</span>
-<span class="r-in">  <span class="co">#[1] 23.57759</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="co"># We can see that if this is overly optimistic and in our next study the </span></span>
-<span class="r-in">  <span class="co"># pooled standard deviation is around 50 ppm, then if the observed difference </span></span>
-<span class="r-in">  <span class="co"># between the means is 50 ppm, the lower end of the confidence interval for </span></span>
-<span class="r-in">  <span class="co"># the difference between the two means will include 0, so we may want to </span></span>
-<span class="r-in">  <span class="co"># increase our sample size.</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="fu">ciTableMean</span><span class="op">(</span>n1 <span class="op">=</span> <span class="fl">8</span>, n2 <span class="op">=</span> <span class="fl">8</span>, diff <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">100</span>, <span class="fl">50</span>, <span class="fl">0</span><span class="op">)</span>, SD <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">15</span>, <span class="fl">25</span>, <span class="fl">50</span><span class="op">)</span>, digits <span class="op">=</span> <span class="fl">0</span><span class="op">)</span></span>
+<span class="r-in"><span>  <span class="co">#[1] 23.57759</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="co"># We can see that if this is overly optimistic and in our next study the </span></span></span>
+<span class="r-in"><span>  <span class="co"># pooled standard deviation is around 50 ppm, then if the observed difference </span></span></span>
+<span class="r-in"><span>  <span class="co"># between the means is 50 ppm, the lower end of the confidence interval for </span></span></span>
+<span class="r-in"><span>  <span class="co"># the difference between the two means will include 0, so we may want to </span></span></span>
+<span class="r-in"><span>  <span class="co"># increase our sample size.</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="fu">ciTableMean</span><span class="op">(</span>n1 <span class="op">=</span> <span class="fl">8</span>, n2 <span class="op">=</span> <span class="fl">8</span>, diff <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">100</span>, <span class="fl">50</span>, <span class="fl">0</span><span class="op">)</span>, SD <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">15</span>, <span class="fl">25</span>, <span class="fl">50</span><span class="op">)</span>, digits <span class="op">=</span> <span class="fl">0</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>         Diff=100    Diff=50     Diff=0</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> SD=15 [ 84, 116] [ 34,  66] [-16,  16]</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> SD=25 [ 73, 127] [ 23,  77] [-27,  27]</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> SD=50 [ 46, 154] [ -4, 104] [-54,  54]</span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="co">#        Diff=100    Diff=50     Diff=0</span></span>
-<span class="r-in">  <span class="co">#SD=15 [ 84, 116] [ 34,  66] [-16,  16]</span></span>
-<span class="r-in">  <span class="co">#SD=25 [ 73, 127] [ 23,  77] [-27,  27]</span></span>
-<span class="r-in">  <span class="co">#SD=50 [ 46, 154] [ -4, 104] [-54,  54]</span></span>
-<span class="r-in">  </span>
-<span class="r-in">  <span class="co">#==========</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="co"># Clean up</span></span>
-<span class="r-in">  <span class="co">#---------</span></span>
-<span class="r-in">  <span class="fu"><a href="https://rdrr.io/r/base/rm.html" class="external-link">rm</a></span><span class="op">(</span><span class="va">Sulfate.back</span>, <span class="va">Sulfate.down</span><span class="op">)</span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="co">#        Diff=100    Diff=50     Diff=0</span></span></span>
+<span class="r-in"><span>  <span class="co">#SD=15 [ 84, 116] [ 34,  66] [-16,  16]</span></span></span>
+<span class="r-in"><span>  <span class="co">#SD=25 [ 73, 127] [ 23,  77] [-27,  27]</span></span></span>
+<span class="r-in"><span>  <span class="co">#SD=50 [ 46, 154] [ -4, 104] [-54,  54]</span></span></span>
+<span class="r-in"><span>  </span></span>
+<span class="r-in"><span>  <span class="co">#==========</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="co"># Clean up</span></span></span>
+<span class="r-in"><span>  <span class="co">#---------</span></span></span>
+<span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/r/base/rm.html" class="external-link">rm</a></span><span class="op">(</span><span class="va">Sulfate.back</span>, <span class="va">Sulfate.down</span><span class="op">)</span></span></span>
 </code></pre></div>
     </div>
   </div>
@@ -573,7 +583,7 @@
 </div>
 
 <div class="pkgdown">
-  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.2.</p>
+  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.6.</p>
 </div>
 
       </footer></div>

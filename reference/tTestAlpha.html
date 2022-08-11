@@ -52,9 +52,9 @@
     </div>
 
     <div id="ref-usage">
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="fu">tTestAlpha</span><span class="op">(</span><span class="va">n.or.n1</span>, n2 <span class="op">=</span> <span class="va">n.or.n1</span>, delta.over.sigma <span class="op">=</span> <span class="fl">0</span>, power <span class="op">=</span> <span class="fl">0.95</span>, 
-    sample.type <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/ifelse.html" class="external-link">ifelse</a></span><span class="op">(</span><span class="op">!</span><span class="fu"><a href="https://rdrr.io/r/base/missing.html" class="external-link">missing</a></span><span class="op">(</span><span class="va">n2</span><span class="op">)</span> <span class="op">&amp;&amp;</span> <span class="op">!</span><span class="fu"><a href="https://rdrr.io/r/base/NULL.html" class="external-link">is.null</a></span><span class="op">(</span><span class="va">n2</span><span class="op">)</span>, <span class="st">"two.sample"</span>, <span class="st">"one.sample"</span><span class="op">)</span>, 
-    alternative <span class="op">=</span> <span class="st">"two.sided"</span>, approx <span class="op">=</span> <span class="cn">FALSE</span>, tol <span class="op">=</span> <span class="fl">1e-07</span>, maxiter <span class="op">=</span> <span class="fl">1000</span><span class="op">)</span></code></pre></div>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">tTestAlpha</span><span class="op">(</span><span class="va">n.or.n1</span>, n2 <span class="op">=</span> <span class="va">n.or.n1</span>, delta.over.sigma <span class="op">=</span> <span class="fl">0</span>, power <span class="op">=</span> <span class="fl">0.95</span>, </span>
+<span>    sample.type <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/ifelse.html" class="external-link">ifelse</a></span><span class="op">(</span><span class="op">!</span><span class="fu"><a href="https://rdrr.io/r/base/missing.html" class="external-link">missing</a></span><span class="op">(</span><span class="va">n2</span><span class="op">)</span> <span class="op">&amp;&amp;</span> <span class="op">!</span><span class="fu"><a href="https://rdrr.io/r/base/NULL.html" class="external-link">is.null</a></span><span class="op">(</span><span class="va">n2</span><span class="op">)</span>, <span class="st">"two.sample"</span>, <span class="st">"one.sample"</span><span class="op">)</span>, </span>
+<span>    alternative <span class="op">=</span> <span class="st">"two.sided"</span>, approx <span class="op">=</span> <span class="cn">FALSE</span>, tol <span class="op">=</span> <span class="fl">1e-07</span>, maxiter <span class="op">=</span> <span class="fl">1000</span><span class="op">)</span></span></code></pre></div>
     </div>
 
     <div id="arguments">
@@ -65,37 +65,46 @@
   of observations from group 1.  
   Missing (<code>NA</code>), undefined (<code>NaN</code>), and infinite (<code>Inf</code>, <code>-Inf</code>) 
   values are <b><em>not</em></b> allowed.</p></dd>
-<dt>n2</dt>
+
+  <dt>n2</dt>
 <dd><p>numeric vector of sample sizes for group 2.  The default value is the value of 
   <code>n.or.n1</code>. This argument is ignored when <code>sample.type="one.sample"</code>. 
   Missing (<code>NA</code>), undefined (<code>NaN</code>), and infinite (<code>Inf</code>, <code>-Inf</code>) 
   values are <b><em>not</em></b> allowed.</p></dd>
-<dt>delta.over.sigma</dt>
+
+  <dt>delta.over.sigma</dt>
 <dd><p>numeric vector specifying the ratio of the true difference (\(\delta\)) to the 
   population standard deviation (\(\sigma\)).  This is also called the 
   “scaled difference”.</p></dd>
-<dt>power</dt>
+
+  <dt>power</dt>
 <dd><p>numeric vector of numbers between 0 and 1 indicating the power  
   associated with the hypothesis test.  The default value is <code>power=0.95</code>.</p></dd>
-<dt>sample.type</dt>
+
+  <dt>sample.type</dt>
 <dd><p>character string indicating whether to compute power based on a one-sample or 
   two-sample hypothesis test.  When <code>sample.type="one.sample"</code>, the computed 
   power is based on a hypothesis test for a single mean.  When <br><code>sample.type="two.sample"</code>, the computed power is based on a hypothesis test 
   for the difference between two means.  The default value is <br><code>sample.type="one.sample"</code> unless the argument <code>n2</code> is supplied.</p></dd>
-<dt>alternative</dt>
+
+  <dt>alternative</dt>
 <dd><p>character string indicating the kind of alternative hypothesis.  The possible values 
   are <code>"two.sided"</code> (the default), <code>"greater"</code>, and <code>"less"</code>.</p></dd>
-<dt>approx</dt>
+
+  <dt>approx</dt>
 <dd><p>logical scalar indicating whether to compute the power based on an approximation to 
   the non-central t-distribution.  The default value is <code>FALSE</code>.</p></dd>
-<dt>tol</dt>
+
+  <dt>tol</dt>
 <dd><p>numeric scalar indicating the tolerance argument to pass to the  
   <code><a href="https://rdrr.io/r/stats/uniroot.html" class="external-link">uniroot</a></code> function.  
   The default value is <code>tol=1e-7</code>.</p></dd>
-<dt>maxiter</dt>
+
+  <dt>maxiter</dt>
 <dd><p>positive integer indicating the maximum number of iterations 
   argument to pass to the <code><a href="https://rdrr.io/r/stats/uniroot.html" class="external-link">uniroot</a></code> function.  The default value is 
   <code>maxiter=1000</code>.</p></dd>
+
 </dl></div>
     <div id="details">
     <h2>Details</h2>
@@ -108,7 +117,9 @@
     </div>
     <div id="value">
     <h2>Value</h2>
-    <p>numeric vector of Type I error levels.</p>
+    
+
+<p>numeric vector of Type I error levels.</p>
     </div>
     <div id="references">
     <h2>References</h2>
@@ -132,79 +143,79 @@
 
     <div id="ref-examples">
     <h2>Examples</h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in">  <span class="co"># Look at how the required Type I error level for the one-sample t-test </span></span>
-<span class="r-in">  <span class="co"># decreases with increasing sample size.  Set the power to 80% and </span></span>
-<span class="r-in">  <span class="co"># the scaled difference to 0.5.</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="fu"><a href="https://rdrr.io/r/base/seq.html" class="external-link">seq</a></span><span class="op">(</span><span class="fl">5</span>, <span class="fl">30</span>, by <span class="op">=</span> <span class="fl">5</span><span class="op">)</span> </span>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span>  <span class="co"># Look at how the required Type I error level for the one-sample t-test </span></span></span>
+<span class="r-in"><span>  <span class="co"># decreases with increasing sample size.  Set the power to 80% and </span></span></span>
+<span class="r-in"><span>  <span class="co"># the scaled difference to 0.5.</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/r/base/seq.html" class="external-link">seq</a></span><span class="op">(</span><span class="fl">5</span>, <span class="fl">30</span>, by <span class="op">=</span> <span class="fl">5</span><span class="op">)</span> </span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1]  5 10 15 20 25 30</span>
-<span class="r-in">  <span class="co">#[1] 5 10 15 20 25 30 </span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="va">alpha</span> <span class="op">&lt;-</span> <span class="fu">tTestAlpha</span><span class="op">(</span>n.or.n1 <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/seq.html" class="external-link">seq</a></span><span class="op">(</span><span class="fl">5</span>, <span class="fl">30</span>, by <span class="op">=</span> <span class="fl">5</span><span class="op">)</span>, </span>
-<span class="r-in">    power <span class="op">=</span> <span class="fl">0.8</span>, delta.over.sigma <span class="op">=</span> <span class="fl">0.5</span><span class="op">)</span> </span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="fu"><a href="https://rdrr.io/r/base/Round.html" class="external-link">round</a></span><span class="op">(</span><span class="va">alpha</span>, <span class="fl">2</span><span class="op">)</span> </span>
+<span class="r-in"><span>  <span class="co">#[1] 5 10 15 20 25 30 </span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="va">alpha</span> <span class="op">&lt;-</span> <span class="fu">tTestAlpha</span><span class="op">(</span>n.or.n1 <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/seq.html" class="external-link">seq</a></span><span class="op">(</span><span class="fl">5</span>, <span class="fl">30</span>, by <span class="op">=</span> <span class="fl">5</span><span class="op">)</span>, </span></span>
+<span class="r-in"><span>    power <span class="op">=</span> <span class="fl">0.8</span>, delta.over.sigma <span class="op">=</span> <span class="fl">0.5</span><span class="op">)</span> </span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/r/base/Round.html" class="external-link">round</a></span><span class="op">(</span><span class="va">alpha</span>, <span class="fl">2</span><span class="op">)</span> </span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] 0.65 0.45 0.29 0.18 0.11 0.07</span>
-<span class="r-in">  <span class="co">#[1] 0.65 0.45 0.29 0.18 0.11 0.07</span></span>
-<span class="r-in"></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="co">#----------</span></span>
-<span class="r-in"></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="co"># Repeat the last example, but use the approximation.</span></span>
-<span class="r-in">  <span class="co"># Note how the approximation underestimates the power </span></span>
-<span class="r-in">  <span class="co"># for the smaller sample sizes.</span></span>
-<span class="r-in">  <span class="co">#----------------------------------------------------</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="va">alpha</span> <span class="op">&lt;-</span> <span class="fu">tTestAlpha</span><span class="op">(</span>n.or.n1 <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/seq.html" class="external-link">seq</a></span><span class="op">(</span><span class="fl">5</span>, <span class="fl">30</span>, by <span class="op">=</span> <span class="fl">5</span><span class="op">)</span>, </span>
-<span class="r-in">    power <span class="op">=</span> <span class="fl">0.8</span>, delta.over.sigma <span class="op">=</span> <span class="fl">0.5</span>, approx <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span> </span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="fu"><a href="https://rdrr.io/r/base/Round.html" class="external-link">round</a></span><span class="op">(</span><span class="va">alpha</span>, <span class="fl">2</span><span class="op">)</span></span>
+<span class="r-in"><span>  <span class="co">#[1] 0.65 0.45 0.29 0.18 0.11 0.07</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="co">#----------</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="co"># Repeat the last example, but use the approximation.</span></span></span>
+<span class="r-in"><span>  <span class="co"># Note how the approximation underestimates the power </span></span></span>
+<span class="r-in"><span>  <span class="co"># for the smaller sample sizes.</span></span></span>
+<span class="r-in"><span>  <span class="co">#----------------------------------------------------</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="va">alpha</span> <span class="op">&lt;-</span> <span class="fu">tTestAlpha</span><span class="op">(</span>n.or.n1 <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/seq.html" class="external-link">seq</a></span><span class="op">(</span><span class="fl">5</span>, <span class="fl">30</span>, by <span class="op">=</span> <span class="fl">5</span><span class="op">)</span>, </span></span>
+<span class="r-in"><span>    power <span class="op">=</span> <span class="fl">0.8</span>, delta.over.sigma <span class="op">=</span> <span class="fl">0.5</span>, approx <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span> </span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/r/base/Round.html" class="external-link">round</a></span><span class="op">(</span><span class="va">alpha</span>, <span class="fl">2</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] 0.63 0.46 0.30 0.18 0.11 0.07</span>
-<span class="r-in">  <span class="co">#[1] 0.63 0.46 0.30 0.18 0.11 0.07</span></span>
-<span class="r-in"></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="co">#----------</span></span>
-<span class="r-in"></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="co"># Look at how the required Type I error level for the two-sample </span></span>
-<span class="r-in">  <span class="co"># t-test decreases with increasing scaled difference.  Use </span></span>
-<span class="r-in">  <span class="co"># a power of 90% and a sample size of 10 in each group.</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="fu"><a href="https://rdrr.io/r/base/seq.html" class="external-link">seq</a></span><span class="op">(</span><span class="fl">0.5</span>, <span class="fl">2</span>, by <span class="op">=</span> <span class="fl">0.5</span><span class="op">)</span> </span>
+<span class="r-in"><span>  <span class="co">#[1] 0.63 0.46 0.30 0.18 0.11 0.07</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="co">#----------</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="co"># Look at how the required Type I error level for the two-sample </span></span></span>
+<span class="r-in"><span>  <span class="co"># t-test decreases with increasing scaled difference.  Use </span></span></span>
+<span class="r-in"><span>  <span class="co"># a power of 90% and a sample size of 10 in each group.</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/r/base/seq.html" class="external-link">seq</a></span><span class="op">(</span><span class="fl">0.5</span>, <span class="fl">2</span>, by <span class="op">=</span> <span class="fl">0.5</span><span class="op">)</span> </span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] 0.5 1.0 1.5 2.0</span>
-<span class="r-in">  <span class="co">#[1] 0.5 1.0 1.5 2.0 </span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="va">alpha</span> <span class="op">&lt;-</span> <span class="fu">tTestAlpha</span><span class="op">(</span><span class="fl">10</span>, sample.type <span class="op">=</span> <span class="st">"two.sample"</span>, </span>
-<span class="r-in">    power <span class="op">=</span> <span class="fl">0.9</span>, delta.over.sigma <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/seq.html" class="external-link">seq</a></span><span class="op">(</span><span class="fl">0.5</span>, <span class="fl">2</span>, by <span class="op">=</span> <span class="fl">0.5</span><span class="op">)</span><span class="op">)</span> </span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="fu"><a href="https://rdrr.io/r/base/Round.html" class="external-link">round</a></span><span class="op">(</span><span class="va">alpha</span>, <span class="fl">2</span><span class="op">)</span> </span>
+<span class="r-in"><span>  <span class="co">#[1] 0.5 1.0 1.5 2.0 </span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="va">alpha</span> <span class="op">&lt;-</span> <span class="fu">tTestAlpha</span><span class="op">(</span><span class="fl">10</span>, sample.type <span class="op">=</span> <span class="st">"two.sample"</span>, </span></span>
+<span class="r-in"><span>    power <span class="op">=</span> <span class="fl">0.9</span>, delta.over.sigma <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/seq.html" class="external-link">seq</a></span><span class="op">(</span><span class="fl">0.5</span>, <span class="fl">2</span>, by <span class="op">=</span> <span class="fl">0.5</span><span class="op">)</span><span class="op">)</span> </span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/r/base/Round.html" class="external-link">round</a></span><span class="op">(</span><span class="va">alpha</span>, <span class="fl">2</span><span class="op">)</span> </span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] 0.82 0.35 0.06 0.01</span>
-<span class="r-in">  <span class="co">#[1] 0.82 0.35 0.06 0.01</span></span>
-<span class="r-in"></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="co">#----------</span></span>
-<span class="r-in"></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="co"># Look at how the required Type I error level for the two-sample </span></span>
-<span class="r-in">  <span class="co"># t-test increases with increasing values of required power.  Use </span></span>
-<span class="r-in">  <span class="co"># a sample size of 20 for each group and a scaled difference of </span></span>
-<span class="r-in">  <span class="co"># 1.</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="va">alpha</span> <span class="op">&lt;-</span> <span class="fu">tTestAlpha</span><span class="op">(</span><span class="fl">20</span>, sample.type <span class="op">=</span> <span class="st">"two.sample"</span>, delta.over.sigma <span class="op">=</span> <span class="fl">1</span>, </span>
-<span class="r-in">    power <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">0.8</span>, <span class="fl">0.9</span>, <span class="fl">0.95</span><span class="op">)</span><span class="op">)</span> </span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="fu"><a href="https://rdrr.io/r/base/Round.html" class="external-link">round</a></span><span class="op">(</span><span class="va">alpha</span>, <span class="fl">2</span><span class="op">)</span></span>
+<span class="r-in"><span>  <span class="co">#[1] 0.82 0.35 0.06 0.01</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="co">#----------</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="co"># Look at how the required Type I error level for the two-sample </span></span></span>
+<span class="r-in"><span>  <span class="co"># t-test increases with increasing values of required power.  Use </span></span></span>
+<span class="r-in"><span>  <span class="co"># a sample size of 20 for each group and a scaled difference of </span></span></span>
+<span class="r-in"><span>  <span class="co"># 1.</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="va">alpha</span> <span class="op">&lt;-</span> <span class="fu">tTestAlpha</span><span class="op">(</span><span class="fl">20</span>, sample.type <span class="op">=</span> <span class="st">"two.sample"</span>, delta.over.sigma <span class="op">=</span> <span class="fl">1</span>, </span></span>
+<span class="r-in"><span>    power <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">0.8</span>, <span class="fl">0.9</span>, <span class="fl">0.95</span><span class="op">)</span><span class="op">)</span> </span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/r/base/Round.html" class="external-link">round</a></span><span class="op">(</span><span class="va">alpha</span>, <span class="fl">2</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] 0.03 0.07 0.14</span>
-<span class="r-in">  <span class="co">#[1] 0.03 0.07 0.14</span></span>
-<span class="r-in"> </span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="co">#----------</span></span>
-<span class="r-in"></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="co"># Clean up</span></span>
-<span class="r-in">  <span class="co">#---------</span></span>
-<span class="r-in">  <span class="fu"><a href="https://rdrr.io/r/base/rm.html" class="external-link">rm</a></span><span class="op">(</span><span class="va">alpha</span><span class="op">)</span></span>
+<span class="r-in"><span>  <span class="co">#[1] 0.03 0.07 0.14</span></span></span>
+<span class="r-in"><span> </span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="co">#----------</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="co"># Clean up</span></span></span>
+<span class="r-in"><span>  <span class="co">#---------</span></span></span>
+<span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/r/base/rm.html" class="external-link">rm</a></span><span class="op">(</span><span class="va">alpha</span><span class="op">)</span></span></span>
 </code></pre></div>
     </div>
   </div>
@@ -219,7 +230,7 @@
 </div>
 
 <div class="pkgdown">
-  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.2.</p>
+  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.6.</p>
 </div>
 
       </footer></div>

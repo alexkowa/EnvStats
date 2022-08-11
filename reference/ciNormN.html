@@ -54,9 +54,9 @@
     </div>
 
     <div id="ref-usage">
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="fu">ciNormN</span><span class="op">(</span><span class="va">half.width</span>, sigma.hat <span class="op">=</span> <span class="fl">1</span>, conf.level <span class="op">=</span> <span class="fl">0.95</span>, 
-    sample.type <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/ifelse.html" class="external-link">ifelse</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/NULL.html" class="external-link">is.null</a></span><span class="op">(</span><span class="va">n2</span><span class="op">)</span>, <span class="st">"one.sample"</span>, <span class="st">"two.sample"</span><span class="op">)</span>, 
-    n2 <span class="op">=</span> <span class="cn">NULL</span>, round.up <span class="op">=</span> <span class="cn">TRUE</span>, n.max <span class="op">=</span> <span class="fl">5000</span>, tol <span class="op">=</span> <span class="fl">1e-07</span>, maxiter <span class="op">=</span> <span class="fl">1000</span><span class="op">)</span></code></pre></div>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">ciNormN</span><span class="op">(</span><span class="va">half.width</span>, sigma.hat <span class="op">=</span> <span class="fl">1</span>, conf.level <span class="op">=</span> <span class="fl">0.95</span>, </span>
+<span>    sample.type <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/ifelse.html" class="external-link">ifelse</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/NULL.html" class="external-link">is.null</a></span><span class="op">(</span><span class="va">n2</span><span class="op">)</span>, <span class="st">"one.sample"</span>, <span class="st">"two.sample"</span><span class="op">)</span>, </span>
+<span>    n2 <span class="op">=</span> <span class="cn">NULL</span>, round.up <span class="op">=</span> <span class="cn">TRUE</span>, n.max <span class="op">=</span> <span class="fl">5000</span>, tol <span class="op">=</span> <span class="fl">1e-07</span>, maxiter <span class="op">=</span> <span class="fl">1000</span><span class="op">)</span></span></code></pre></div>
     </div>
 
     <div id="arguments">
@@ -64,12 +64,15 @@
     <dl><dt>half.width</dt>
 <dd><p>numeric vector of (positive) half-widths.  
   Missing (<code>NA</code>), undefined (<code>NaN</code>), and infinite (<code>Inf</code>, <code>-Inf</code>) values are not allowed.</p></dd>
-<dt>sigma.hat</dt>
+
+  <dt>sigma.hat</dt>
 <dd><p>numeric vector specifying the value(s) of the estimated standard deviation(s).</p></dd>
-<dt>conf.level</dt>
+
+  <dt>conf.level</dt>
 <dd><p>numeric vector of numbers between 0 and 1 indicating the confidence level 
   associated with the confidence interval(s).  The default value is <code>conf.level=0.95</code>.</p></dd>
-<dt>sample.type</dt>
+
+  <dt>sample.type</dt>
 <dd><p>character string indicating whether this is a one-sample <br>
   (<code>sample.type="one.sample"</code>) or two-sample <br> 
   (<code>sample.type="two.sample"</code>) confidence interval.  <br>
@@ -79,24 +82,30 @@
   a confidence interval for the difference between two means.  <br>
   The default value is <code>sample.type="one.sample"</code> unless the argument 
   <code>n2</code> is supplied.</p></dd>
-<dt>n2</dt>
+
+  <dt>n2</dt>
 <dd><p>numeric vector of sample sizes for group 2.  The default value is <code>NULL</code>, 
   in which case it is assumed that the sample sizes for groups 1 and 2 are equal.  
   This argument is ignored when <code>sample.type="one.sample"</code>.  
   Missing (<code>NA</code>), undefined (<code>NaN</code>), and infinite (<code>Inf</code>, <code>-Inf</code>) values are not allowed.</p></dd>
-<dt>round.up</dt>
+
+  <dt>round.up</dt>
 <dd><p>logical scalar indicating whether to round up the values of the computed sample size(s) 
   to the next smallest integer.  The default value is <code>round.up=TRUE</code>.</p></dd>
-<dt>n.max</dt>
+
+  <dt>n.max</dt>
 <dd><p>positive integer greater than 1 specifying the maximum sample size for the single 
   group when <code>sample.type="one.sample"</code> or for group 1 when <br><code>sample.type="two.sample"</code>.  The default value is <code>n.max=5000</code>.</p></dd>
-<dt>tol</dt>
+
+  <dt>tol</dt>
 <dd><p>numeric scalar indicating the tolerance to use in the <code><a href="https://rdrr.io/r/stats/uniroot.html" class="external-link">uniroot</a></code> 
   search algorithm.  The default value is <code>tol=1e-7</code>.</p></dd>
-<dt>maxiter</dt>
+
+  <dt>maxiter</dt>
 <dd><p>positive integer indicating the maximum number of iterations to use in the 
   <code><a href="https://rdrr.io/r/stats/uniroot.html" class="external-link">uniroot</a></code> search algorithm.  The default value is 
   <code>maxiter=1000</code>.</p></dd>
+
 </dl></div>
     <div id="details">
     <h2>Details</h2>
@@ -111,7 +120,12 @@
     </div>
     <div id="value">
     <h2>Value</h2>
-    <p>When <code>sample.type="one.sample"</code>, or <code>sample.type="two.sample"</code> and <code>n2</code>  is not supplied (so equal sample sizes for each group is assumed), 
+    
+
+<p>When <code>sample.type="one.sample"</code>, or <code>sample.type="two.sample"</code> and <code>n2</code></p>
+ 
+
+<p>is not supplied (so equal sample sizes for each group is assumed), 
   the function <code>ciNormN</code> returns a numeric vector of sample sizes.  
   When <code>sample.type="two.sample"</code> and <code>n2</code> is supplied, 
   the function <code>ciNormN</code> returns a list with two components called <code>n1</code> and <code>n2</code>, 
@@ -164,63 +178,63 @@
 
     <div id="ref-examples">
     <h2>Examples</h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in">  <span class="co"># Look at how the required sample size for a one-sample </span></span>
-<span class="r-in">  <span class="co"># confidence interval decreases with increasing half-width:</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="fu"><a href="https://rdrr.io/r/base/seq.html" class="external-link">seq</a></span><span class="op">(</span><span class="fl">0.25</span>, <span class="fl">1</span>, by <span class="op">=</span> <span class="fl">0.25</span><span class="op">)</span> </span>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span>  <span class="co"># Look at how the required sample size for a one-sample </span></span></span>
+<span class="r-in"><span>  <span class="co"># confidence interval decreases with increasing half-width:</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/r/base/seq.html" class="external-link">seq</a></span><span class="op">(</span><span class="fl">0.25</span>, <span class="fl">1</span>, by <span class="op">=</span> <span class="fl">0.25</span><span class="op">)</span> </span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] 0.25 0.50 0.75 1.00</span>
-<span class="r-in">  <span class="co">#[1] 0.25 0.50 0.75 1.00 </span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="fu">ciNormN</span><span class="op">(</span>half.width <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/seq.html" class="external-link">seq</a></span><span class="op">(</span><span class="fl">0.25</span>, <span class="fl">1</span>, by <span class="op">=</span> <span class="fl">0.25</span><span class="op">)</span><span class="op">)</span> </span>
+<span class="r-in"><span>  <span class="co">#[1] 0.25 0.50 0.75 1.00 </span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="fu">ciNormN</span><span class="op">(</span>half.width <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/seq.html" class="external-link">seq</a></span><span class="op">(</span><span class="fl">0.25</span>, <span class="fl">1</span>, by <span class="op">=</span> <span class="fl">0.25</span><span class="op">)</span><span class="op">)</span> </span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] 64 18 10  7</span>
-<span class="r-in">  <span class="co">#[1] 64 18 10 7 </span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="fu">ciNormN</span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/seq.html" class="external-link">seq</a></span><span class="op">(</span><span class="fl">0.25</span>, <span class="fl">1</span>, by<span class="op">=</span><span class="fl">0.25</span><span class="op">)</span>, round <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span> </span>
+<span class="r-in"><span>  <span class="co">#[1] 64 18 10 7 </span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="fu">ciNormN</span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/seq.html" class="external-link">seq</a></span><span class="op">(</span><span class="fl">0.25</span>, <span class="fl">1</span>, by<span class="op">=</span><span class="fl">0.25</span><span class="op">)</span>, round <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span> </span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] 63.897899 17.832337  9.325967  6.352717</span>
-<span class="r-in">  <span class="co">#[1] 63.897899 17.832337  9.325967  6.352717</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="co">#----------------------------------------------------------------</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="co"># Look at how the required sample size for a one-sample </span></span>
-<span class="r-in">  <span class="co"># confidence interval increases with increasing estimated </span></span>
-<span class="r-in">  <span class="co"># standard deviation for a fixed half-width:</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="fu"><a href="https://rdrr.io/r/base/seq.html" class="external-link">seq</a></span><span class="op">(</span><span class="fl">0.5</span>, <span class="fl">2</span>, by <span class="op">=</span> <span class="fl">0.5</span><span class="op">)</span> </span>
+<span class="r-in"><span>  <span class="co">#[1] 63.897899 17.832337  9.325967  6.352717</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="co">#----------------------------------------------------------------</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="co"># Look at how the required sample size for a one-sample </span></span></span>
+<span class="r-in"><span>  <span class="co"># confidence interval increases with increasing estimated </span></span></span>
+<span class="r-in"><span>  <span class="co"># standard deviation for a fixed half-width:</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/r/base/seq.html" class="external-link">seq</a></span><span class="op">(</span><span class="fl">0.5</span>, <span class="fl">2</span>, by <span class="op">=</span> <span class="fl">0.5</span><span class="op">)</span> </span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] 0.5 1.0 1.5 2.0</span>
-<span class="r-in">  <span class="co">#[1] 0.5 1.0 1.5 2.0 </span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="fu">ciNormN</span><span class="op">(</span>half.width <span class="op">=</span> <span class="fl">0.5</span>, sigma.hat <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/seq.html" class="external-link">seq</a></span><span class="op">(</span><span class="fl">0.5</span>, <span class="fl">2</span>, by <span class="op">=</span> <span class="fl">0.5</span><span class="op">)</span><span class="op">)</span> </span>
+<span class="r-in"><span>  <span class="co">#[1] 0.5 1.0 1.5 2.0 </span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="fu">ciNormN</span><span class="op">(</span>half.width <span class="op">=</span> <span class="fl">0.5</span>, sigma.hat <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/seq.html" class="external-link">seq</a></span><span class="op">(</span><span class="fl">0.5</span>, <span class="fl">2</span>, by <span class="op">=</span> <span class="fl">0.5</span><span class="op">)</span><span class="op">)</span> </span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1]  7 18 38 64</span>
-<span class="r-in">  <span class="co">#[1] 7 18 38 64</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="co">#----------------------------------------------------------------</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="co"># Look at how the required sample size for a one-sample </span></span>
-<span class="r-in">  <span class="co"># confidence interval increases with increasing confidence </span></span>
-<span class="r-in">  <span class="co"># level for a fixed half-width:</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="fu"><a href="https://rdrr.io/r/base/seq.html" class="external-link">seq</a></span><span class="op">(</span><span class="fl">0.5</span>, <span class="fl">0.9</span>, by <span class="op">=</span> <span class="fl">0.1</span><span class="op">)</span> </span>
+<span class="r-in"><span>  <span class="co">#[1] 7 18 38 64</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="co">#----------------------------------------------------------------</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="co"># Look at how the required sample size for a one-sample </span></span></span>
+<span class="r-in"><span>  <span class="co"># confidence interval increases with increasing confidence </span></span></span>
+<span class="r-in"><span>  <span class="co"># level for a fixed half-width:</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/r/base/seq.html" class="external-link">seq</a></span><span class="op">(</span><span class="fl">0.5</span>, <span class="fl">0.9</span>, by <span class="op">=</span> <span class="fl">0.1</span><span class="op">)</span> </span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] 0.5 0.6 0.7 0.8 0.9</span>
-<span class="r-in">  <span class="co">#[1] 0.5 0.6 0.7 0.8 0.9 </span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="fu">ciNormN</span><span class="op">(</span>half.width <span class="op">=</span> <span class="fl">0.25</span>, conf.level <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/seq.html" class="external-link">seq</a></span><span class="op">(</span><span class="fl">0.5</span>, <span class="fl">0.9</span>, by <span class="op">=</span> <span class="fl">0.1</span><span class="op">)</span><span class="op">)</span> </span>
+<span class="r-in"><span>  <span class="co">#[1] 0.5 0.6 0.7 0.8 0.9 </span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="fu">ciNormN</span><span class="op">(</span>half.width <span class="op">=</span> <span class="fl">0.25</span>, conf.level <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/seq.html" class="external-link">seq</a></span><span class="op">(</span><span class="fl">0.5</span>, <span class="fl">0.9</span>, by <span class="op">=</span> <span class="fl">0.1</span><span class="op">)</span><span class="op">)</span> </span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1]  9 13 19 28 46</span>
-<span class="r-in">  <span class="co">#[1] 9 13 19 28 46</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="co">#----------------------------------------------------------------</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="co"># Modifying the example on pages 21-4 to 21-5 of USEPA (2009), </span></span>
-<span class="r-in">  <span class="co"># determine the required sample size in order to achieve a </span></span>
-<span class="r-in">  <span class="co"># half-width that is 10% of the observed mean (based on the first </span></span>
-<span class="r-in">  <span class="co"># four months of observations) for the Aldicarb level at the first </span></span>
-<span class="r-in">  <span class="co"># compliance well.  Assume a 95% confidence level and use the </span></span>
-<span class="r-in">  <span class="co"># estimated standard deviation from the first four months of data. </span></span>
-<span class="r-in">  <span class="co"># (The data are stored in EPA.09.Ex.21.1.aldicarb.df.) </span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co"># The required sample size is 20, so almost two years of data are </span></span>
-<span class="r-in">  <span class="co"># required assuming observations are taken once per month.</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="va">EPA.09.Ex.21.1.aldicarb.df</span></span>
+<span class="r-in"><span>  <span class="co">#[1] 9 13 19 28 46</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="co">#----------------------------------------------------------------</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="co"># Modifying the example on pages 21-4 to 21-5 of USEPA (2009), </span></span></span>
+<span class="r-in"><span>  <span class="co"># determine the required sample size in order to achieve a </span></span></span>
+<span class="r-in"><span>  <span class="co"># half-width that is 10% of the observed mean (based on the first </span></span></span>
+<span class="r-in"><span>  <span class="co"># four months of observations) for the Aldicarb level at the first </span></span></span>
+<span class="r-in"><span>  <span class="co"># compliance well.  Assume a 95% confidence level and use the </span></span></span>
+<span class="r-in"><span>  <span class="co"># estimated standard deviation from the first four months of data. </span></span></span>
+<span class="r-in"><span>  <span class="co"># (The data are stored in EPA.09.Ex.21.1.aldicarb.df.) </span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co"># The required sample size is 20, so almost two years of data are </span></span></span>
+<span class="r-in"><span>  <span class="co"># required assuming observations are taken once per month.</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="va">EPA.09.Ex.21.1.aldicarb.df</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>    Month   Well Aldicarb.ppb</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 1      1 Well.1         19.9</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 2      2 Well.1         29.6</span>
@@ -234,34 +248,34 @@
 <span class="r-out co"><span class="r-pr">#&gt;</span> 10     2 Well.3          3.3</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 11     3 Well.3          2.3</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 12     4 Well.3          6.9</span>
-<span class="r-in">  <span class="co">#   Month   Well Aldicarb.ppb</span></span>
-<span class="r-in">  <span class="co">#1      1 Well.1         19.9</span></span>
-<span class="r-in">  <span class="co">#2      2 Well.1         29.6</span></span>
-<span class="r-in">  <span class="co">#3      3 Well.1         18.7</span></span>
-<span class="r-in">  <span class="co">#4      4 Well.1         24.2</span></span>
-<span class="r-in">  <span class="co">#...</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="va">mu.hat</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/with.html" class="external-link">with</a></span><span class="op">(</span><span class="va">EPA.09.Ex.21.1.aldicarb.df</span>, </span>
-<span class="r-in">    <span class="fu"><a href="https://rdrr.io/r/base/mean.html" class="external-link">mean</a></span><span class="op">(</span><span class="va">Aldicarb.ppb</span><span class="op">[</span><span class="va">Well</span><span class="op">==</span><span class="st">"Well.1"</span><span class="op">]</span><span class="op">)</span><span class="op">)</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="va">mu.hat</span> </span>
+<span class="r-in"><span>  <span class="co">#   Month   Well Aldicarb.ppb</span></span></span>
+<span class="r-in"><span>  <span class="co">#1      1 Well.1         19.9</span></span></span>
+<span class="r-in"><span>  <span class="co">#2      2 Well.1         29.6</span></span></span>
+<span class="r-in"><span>  <span class="co">#3      3 Well.1         18.7</span></span></span>
+<span class="r-in"><span>  <span class="co">#4      4 Well.1         24.2</span></span></span>
+<span class="r-in"><span>  <span class="co">#...</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="va">mu.hat</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/with.html" class="external-link">with</a></span><span class="op">(</span><span class="va">EPA.09.Ex.21.1.aldicarb.df</span>, </span></span>
+<span class="r-in"><span>    <span class="fu"><a href="https://rdrr.io/r/base/mean.html" class="external-link">mean</a></span><span class="op">(</span><span class="va">Aldicarb.ppb</span><span class="op">[</span><span class="va">Well</span><span class="op">==</span><span class="st">"Well.1"</span><span class="op">]</span><span class="op">)</span><span class="op">)</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="va">mu.hat</span> </span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] 23.1</span>
-<span class="r-in">  <span class="co">#[1] 23.1 </span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="va">sigma.hat</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/with.html" class="external-link">with</a></span><span class="op">(</span><span class="va">EPA.09.Ex.21.1.aldicarb.df</span>, </span>
-<span class="r-in">    <span class="fu"><a href="https://rdrr.io/r/stats/sd.html" class="external-link">sd</a></span><span class="op">(</span><span class="va">Aldicarb.ppb</span><span class="op">[</span><span class="va">Well</span><span class="op">==</span><span class="st">"Well.1"</span><span class="op">]</span><span class="op">)</span><span class="op">)</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="va">sigma.hat</span> </span>
+<span class="r-in"><span>  <span class="co">#[1] 23.1 </span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="va">sigma.hat</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/with.html" class="external-link">with</a></span><span class="op">(</span><span class="va">EPA.09.Ex.21.1.aldicarb.df</span>, </span></span>
+<span class="r-in"><span>    <span class="fu"><a href="https://rdrr.io/r/stats/sd.html" class="external-link">sd</a></span><span class="op">(</span><span class="va">Aldicarb.ppb</span><span class="op">[</span><span class="va">Well</span><span class="op">==</span><span class="st">"Well.1"</span><span class="op">]</span><span class="op">)</span><span class="op">)</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="va">sigma.hat</span> </span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] 4.93491</span>
-<span class="r-in">  <span class="co">#[1] 4.93491 </span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="fu">ciNormN</span><span class="op">(</span>half.width <span class="op">=</span> <span class="fl">0.1</span> <span class="op">*</span> <span class="va">mu.hat</span>, sigma.hat <span class="op">=</span> <span class="va">sigma.hat</span><span class="op">)</span> </span>
+<span class="r-in"><span>  <span class="co">#[1] 4.93491 </span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="fu">ciNormN</span><span class="op">(</span>half.width <span class="op">=</span> <span class="fl">0.1</span> <span class="op">*</span> <span class="va">mu.hat</span>, sigma.hat <span class="op">=</span> <span class="va">sigma.hat</span><span class="op">)</span> </span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] 20</span>
-<span class="r-in">  <span class="co">#[1] 20</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="co">#----------</span></span>
-<span class="r-in">  <span class="co"># Clean up</span></span>
-<span class="r-in">  <span class="fu"><a href="https://rdrr.io/r/base/rm.html" class="external-link">rm</a></span><span class="op">(</span><span class="va">mu.hat</span>, <span class="va">sigma.hat</span><span class="op">)</span></span>
+<span class="r-in"><span>  <span class="co">#[1] 20</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="co">#----------</span></span></span>
+<span class="r-in"><span>  <span class="co"># Clean up</span></span></span>
+<span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/r/base/rm.html" class="external-link">rm</a></span><span class="op">(</span><span class="va">mu.hat</span>, <span class="va">sigma.hat</span><span class="op">)</span></span></span>
 </code></pre></div>
     </div>
   </div>
@@ -276,7 +290,7 @@
 </div>
 
 <div class="pkgdown">
-  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.2.</p>
+  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.6.</p>
 </div>
 
       </footer></div>

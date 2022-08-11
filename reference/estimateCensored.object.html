@@ -103,111 +103,161 @@
     </div>
     <div id="value">
     <h2>Value</h2>
-    <p><strong>Required Components</strong><br>  The following components must be included in a legitimate list of 
+    <p></p>
+<p><strong>Required Components</strong></p>
+<p></p>
+<p><br></p>
+
+
+<p>The following components must be included in a legitimate list of 
   class <code>"estimateCensored"</code>.</p>
 <dl><dt>distribution</dt>
 <dd><p>character string indicating the name of the 
     assumed distribution (this equals <code>"Nonparametric"</code>) for 
     nonparametric procedures).</p></dd>
-<dt>sample.size</dt>
+
+  <dt>sample.size</dt>
 <dd><p>numeric scalar indicating the sample size used 
       to estimate the parameters or quantiles.</p></dd>
-<dt>censoring.side</dt>
+
+  <dt>censoring.side</dt>
 <dd><p>character string indicating whether the data are 
     left- or right-censored.</p></dd>
-<dt>censoring.levels</dt>
+
+  <dt>censoring.levels</dt>
 <dd><p>numeric scalar or vector indicating the censoring level(s).</p></dd>
-<dt>percent.censored</dt>
+
+  <dt>percent.censored</dt>
 <dd><p>numeric scalar indicating the percent of non-missing 
     observations that are censored.</p></dd>
-<dt>data.name</dt>
+
+  <dt>data.name</dt>
 <dd><p>character string indicating the name of the data 
     object used to compute the estimateCensored parameters or quantiles.</p></dd>
-<dt>censoring.name</dt>
+
+  <dt>censoring.name</dt>
 <dd><p>character string indicating the name of the data object 
     used to identify which values are censored.</p></dd>
-<dt>bad.obs</dt>
+
+  <dt>bad.obs</dt>
 <dd><p>numeric scalar indicating the number of missing (<code>NA</code>), 
     undefined (<code>NaN</code>) and/or infinite (<code>Inf</code>, <code>-Inf</code>) 
     values that were removed from the data object prior to performing 
     the estimation.</p></dd>
-</dl><p><br><strong>Optional Components</strong><br>  The following components may optionally be included in a legitimate 
+ </dl><p><br></p>
+
+
+<p></p>
+<p><strong>Optional Components</strong></p>
+<p></p>
+<p><br></p>
+
+
+<p>The following components may optionally be included in a legitimate 
   list of class <code>"estimateCensored"</code>.</p>
 <dl><dt>parameters</dt>
 <dd><p>(parametric estimation only) a numeric vector 
     with a names attribute containing the names and values of the 
     estimateCensored distribution parameters.</p></dd>
-<dt>n.param.est</dt>
+
+  <dt>n.param.est</dt>
 <dd><p>(parametric estimation only) a scalar indicating 
     the number of distribution parameters estimateCensored.</p></dd>
-<dt>method</dt>
+
+  <dt>method</dt>
 <dd><p>(parametric estimation only) a character string 
     indicating the method used to compute the estimateCensored parameters.</p></dd>
-<dt>quantiles</dt>
+
+  <dt>quantiles</dt>
 <dd><p>a numeric vector of estimateCensored quantiles.</p></dd>
-<dt>quantile.method</dt>
+
+  <dt>quantile.method</dt>
 <dd><p>a character string indicating the method of 
     quantile estimation.</p></dd>
-<dt>interval</dt>
+
+  <dt>interval</dt>
 <dd><p>a list of class <code>"intervalEstimate"</code> containing 
     information on a confidence, tolerance, or prediction interval.</p></dd>
-</dl><p><br>  All lists of class <code>"intervalEstimateCensored"</code> contain the following 
+ </dl><p><br></p>
+
+ 
+
+<p>All lists of class <code>"intervalEstimateCensored"</code> contain the following 
   component:</p>
 <dl><dt>name</dt>
 <dd><p>a character string inidicating the kind of interval.  
     Possible values are: <br><code>"Confidence"</code>, <code>"Tolerance"</code>, or <code>"Prediction"</code>.</p></dd>
-</dl><p><br>  The number and names of the other components in a list of class 
-<code>"intervalEstimate"</code> depends on the kind of interval it is.  
+ </dl><p><br></p>
+
+ 
+
+<p>The number and names of the other components in a list of class</p>
+<p></p>
+<p><code>"intervalEstimate"</code> depends on the kind of interval it is.  
   These components may include:</p>
 <dl><dt>parameter</dt>
 <dd><p>a character string indicating the parameter for 
     which the interval is constructed (e.g., <code>"mean"</code>, 
     <code>"95'th %ile"</code>, etc.).</p></dd>
-<dt>limits</dt>
+
+  <dt>limits</dt>
 <dd><p>a numeric vector containing the lower and upper 
     bounds of the interval.</p></dd>
-<dt>type</dt>
+
+  <dt>type</dt>
 <dd><p>the type of interval (i.e., <code>"two-sided"</code>, 
     <code>"lower"</code>, or <code>"upper"</code>).</p></dd>
-<dt>method</dt>
+
+  <dt>method</dt>
 <dd><p>the method used to construct the interval 
     (e.g., <code>"normal.approx"</code>).</p></dd>
-<dt>conf.level</dt>
+
+  <dt>conf.level</dt>
 <dd><p>the confidence level associated with the interval.</p></dd>
-<dt>sample.size</dt>
+
+  <dt>sample.size</dt>
 <dd><p>the sample size associated with the interval.</p></dd>
-<dt>dof</dt>
+
+  <dt>dof</dt>
 <dd><p>(parametric intervals only) the degrees of freedom 
     associated with the interval.</p></dd>
-<dt>limit.ranks</dt>
+
+  <dt>limit.ranks</dt>
 <dd><p>(nonparametric intervals only) the rank(s) of 
     the order statistic(s) used to construct the interval.</p></dd>
-<dt>m</dt>
+
+  <dt>m</dt>
 <dd><p>(prediction intervals only) the total number of future 
     observations (<code>n.mean=1</code>, <code>n.median=1</code>, or 
     <code>n.sum=1</code>) or averages (<code>n.mean&gt;1</code>), medians <br>
     (<code>n.median&gt;1</code>), or sums (<code>n.sum&gt;1</code>).</p></dd>
-<dt>k</dt>
+
+  <dt>k</dt>
 <dd><p>(prediction intervals only) the minimum number of future 
     observations <br>
     (<code>n.mean=1</code>, <code>n.median=1</code>, or <code>n.sum=1</code>),  
     or averages (<code>n.mean&gt;1</code>), medians <br>
     (<code>n.median&gt;1</code>) or sums (<code>n.sum&gt;1</code>) out of the total <code>m</code> 
     that the interval should contain.</p></dd>
-<dt>n.mean</dt>
+
+  <dt>n.mean</dt>
 <dd><p>(prediction intervals only) the sample size associated 
     with the future averages that should be contained in the interval.</p></dd>
-<dt>n.median</dt>
+
+  <dt>n.median</dt>
 <dd><p>(prediction intervals only) the sample size associated 
     with the future medians that should be contained in the interval.</p></dd>
-<dt>n.sum</dt>
+
+  <dt>n.sum</dt>
 <dd><p>(Poisson prediction intervals only) the sample size 
     associated with the future sums that should be contained in the 
     interval.</p></dd>
-<dt>rule</dt>
+
+  <dt>rule</dt>
 <dd><p>(simultaneous prediction intervals only) the rule used to 
     construct the simultaneous prediction interval.</p></dd>
-<dt>delta.over.sigma</dt>
+
+  <dt>delta.over.sigma</dt>
 <dd><p>(simultaneous prediction intervals only) numeric 
     scalar indicating the ratio \(\Delta / \sigma\). The quantity 
     \(\Delta\) (delta) denotes the difference between the mean of 
@@ -215,6 +265,7 @@
     and the mean of the population that will be sampled to produce the 
     future observations.  The quantity \(\sigma\) (sigma) denotes the 
     population standard deviation for both populations.</p></dd>
+
 </dl></div>
     <div id="note">
     <h2>Note</h2>
@@ -233,43 +284,43 @@
 
     <div id="ref-examples">
     <h2>Examples</h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in">  <span class="co"># Create an object of class "estimateCensored", then print it out. </span></span>
-<span class="r-in">  <span class="co"># (Note: the call to set.seed simply allows you to reproduce </span></span>
-<span class="r-in">  <span class="co"># this example.)</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="fu"><a href="https://rdrr.io/r/base/Random.html" class="external-link">set.seed</a></span><span class="op">(</span><span class="fl">250</span><span class="op">)</span> </span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="va">dat</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/Normal.html" class="external-link">rnorm</a></span><span class="op">(</span><span class="fl">20</span>, mean <span class="op">=</span> <span class="fl">100</span>, sd <span class="op">=</span> <span class="fl">20</span><span class="op">)</span></span>
-<span class="r-in">  <span class="va">censored</span> <span class="op">&lt;-</span> <span class="va">dat</span> <span class="op">&lt;</span> <span class="fl">90</span></span>
-<span class="r-in">  <span class="va">dat</span><span class="op">[</span><span class="va">censored</span><span class="op">]</span> <span class="op">&lt;-</span> <span class="fl">90</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="va">estimateCensored.obj</span> <span class="op">&lt;-</span> <span class="fu"><a href="enormCensored.html">enormCensored</a></span><span class="op">(</span><span class="va">dat</span>, <span class="va">censored</span>, ci <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span> </span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="fu"><a href="https://rdrr.io/r/base/mode.html" class="external-link">mode</a></span><span class="op">(</span><span class="va">estimateCensored.obj</span><span class="op">)</span> </span>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span>  <span class="co"># Create an object of class "estimateCensored", then print it out. </span></span></span>
+<span class="r-in"><span>  <span class="co"># (Note: the call to set.seed simply allows you to reproduce </span></span></span>
+<span class="r-in"><span>  <span class="co"># this example.)</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/r/base/Random.html" class="external-link">set.seed</a></span><span class="op">(</span><span class="fl">250</span><span class="op">)</span> </span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="va">dat</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/Normal.html" class="external-link">rnorm</a></span><span class="op">(</span><span class="fl">20</span>, mean <span class="op">=</span> <span class="fl">100</span>, sd <span class="op">=</span> <span class="fl">20</span><span class="op">)</span></span></span>
+<span class="r-in"><span>  <span class="va">censored</span> <span class="op">&lt;-</span> <span class="va">dat</span> <span class="op">&lt;</span> <span class="fl">90</span></span></span>
+<span class="r-in"><span>  <span class="va">dat</span><span class="op">[</span><span class="va">censored</span><span class="op">]</span> <span class="op">&lt;-</span> <span class="fl">90</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="va">estimateCensored.obj</span> <span class="op">&lt;-</span> <span class="fu"><a href="enormCensored.html">enormCensored</a></span><span class="op">(</span><span class="va">dat</span>, <span class="va">censored</span>, ci <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span> </span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/r/base/mode.html" class="external-link">mode</a></span><span class="op">(</span><span class="va">estimateCensored.obj</span><span class="op">)</span> </span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] "list"</span>
-<span class="r-in">  <span class="co">#[1] "list" </span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="fu"><a href="https://rdrr.io/r/base/class.html" class="external-link">class</a></span><span class="op">(</span><span class="va">estimateCensored.obj</span><span class="op">)</span> </span>
+<span class="r-in"><span>  <span class="co">#[1] "list" </span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/r/base/class.html" class="external-link">class</a></span><span class="op">(</span><span class="va">estimateCensored.obj</span><span class="op">)</span> </span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] "estimateCensored"</span>
-<span class="r-in">  <span class="co">#[1] "estimateCensored" </span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="fu"><a href="https://rdrr.io/r/base/names.html" class="external-link">names</a></span><span class="op">(</span><span class="va">estimateCensored.obj</span><span class="op">)</span> </span>
+<span class="r-in"><span>  <span class="co">#[1] "estimateCensored" </span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/r/base/names.html" class="external-link">names</a></span><span class="op">(</span><span class="va">estimateCensored.obj</span><span class="op">)</span> </span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  [1] "distribution"     "sample.size"      "censoring.side"   "censoring.levels"</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  [5] "percent.censored" "parameters"       "n.param.est"      "method"          </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  [9] "data.name"        "censoring.name"   "bad.obs"          "interval"        </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [13] "var.cov.params"  </span>
-<span class="r-in">  <span class="co"># [1] "distribution"     "sample.size"      "censoring.side"   "censoring.levels"</span></span>
-<span class="r-in">  <span class="co"># [5] "percent.censored" "parameters"       "n.param.est"      "method"          </span></span>
-<span class="r-in">  <span class="co"># [9] "data.name"        "censoring.name"   "bad.obs"          "interval"        </span></span>
-<span class="r-in">  <span class="co">#[13] "var.cov.params" </span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="fu"><a href="https://rdrr.io/r/base/names.html" class="external-link">names</a></span><span class="op">(</span><span class="va">estimateCensored.obj</span><span class="op">$</span><span class="va">interval</span><span class="op">)</span> </span>
+<span class="r-in"><span>  <span class="co"># [1] "distribution"     "sample.size"      "censoring.side"   "censoring.levels"</span></span></span>
+<span class="r-in"><span>  <span class="co"># [5] "percent.censored" "parameters"       "n.param.est"      "method"          </span></span></span>
+<span class="r-in"><span>  <span class="co"># [9] "data.name"        "censoring.name"   "bad.obs"          "interval"        </span></span></span>
+<span class="r-in"><span>  <span class="co">#[13] "var.cov.params" </span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/r/base/names.html" class="external-link">names</a></span><span class="op">(</span><span class="va">estimateCensored.obj</span><span class="op">$</span><span class="va">interval</span><span class="op">)</span> </span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] "name"       "parameter"  "limits"     "type"       "method"    </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [6] "conf.level"</span>
-<span class="r-in">  <span class="co">#[1] "name"       "parameter"  "limits"     "type"       "method"     "conf.level"</span></span>
-<span class="r-in"> </span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="va">estimateCensored.obj</span> </span>
+<span class="r-in"><span>  <span class="co">#[1] "name"       "parameter"  "limits"     "type"       "method"     "conf.level"</span></span></span>
+<span class="r-in"><span> </span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="va">estimateCensored.obj</span> </span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> $distribution</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] "Normal"</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
@@ -334,57 +385,57 @@
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> attr(,"class")</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] "estimateCensored"</span>
-<span class="r-in">  </span>
-<span class="r-in">  <span class="co">#Results of Distribution Parameter Estimation</span></span>
-<span class="r-in">  <span class="co">#Based on Type I Censored Data</span></span>
-<span class="r-in">  <span class="co">#--------------------------------------------</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Assumed Distribution:            Normal</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Censoring Side:                  left</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Censoring Level(s):              90 </span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Estimated Parameter(s):          mean = 96.52796</span></span>
-<span class="r-in">  <span class="co">#                                 sd   = 14.62275</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Estimation Method:               MLE</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Data:                            dat</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Censoring Variable:              censored</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Sample Size:                     20</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Percent Censored:                25%</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Confidence Interval for:         mean</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Confidence Interval Method:      Profile Likelihood</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Confidence Interval Type:        two-sided</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Confidence Level:                95%</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Confidence Interval:             LCL =  88.82415</span></span>
-<span class="r-in">  <span class="co">#                                 UCL = 103.27604</span></span>
-<span class="r-in"></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="co">#----------</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="co"># Extract the confidence limits for the mean</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="va">estimateCensored.obj</span><span class="op">$</span><span class="va">interval</span><span class="op">$</span><span class="va">limits</span></span>
+<span class="r-in"><span>  </span></span>
+<span class="r-in"><span>  <span class="co">#Results of Distribution Parameter Estimation</span></span></span>
+<span class="r-in"><span>  <span class="co">#Based on Type I Censored Data</span></span></span>
+<span class="r-in"><span>  <span class="co">#--------------------------------------------</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Assumed Distribution:            Normal</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Censoring Side:                  left</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Censoring Level(s):              90 </span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Estimated Parameter(s):          mean = 96.52796</span></span></span>
+<span class="r-in"><span>  <span class="co">#                                 sd   = 14.62275</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Estimation Method:               MLE</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Data:                            dat</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Censoring Variable:              censored</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Sample Size:                     20</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Percent Censored:                25%</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Confidence Interval for:         mean</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Confidence Interval Method:      Profile Likelihood</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Confidence Interval Type:        two-sided</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Confidence Level:                95%</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Confidence Interval:             LCL =  88.82415</span></span></span>
+<span class="r-in"><span>  <span class="co">#                                 UCL = 103.27604</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="co">#----------</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="co"># Extract the confidence limits for the mean</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="va">estimateCensored.obj</span><span class="op">$</span><span class="va">interval</span><span class="op">$</span><span class="va">limits</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>      LCL      UCL </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  91.7801 103.7839 </span>
-<span class="r-in">  <span class="co">#     LCL      UCL </span></span>
-<span class="r-in">  <span class="co"># 91.7801 103.7839 </span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="co">#----------</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="co"># Clean up</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="fu"><a href="https://rdrr.io/r/base/rm.html" class="external-link">rm</a></span><span class="op">(</span><span class="va">dat</span>, <span class="va">censored</span>, <span class="va">estimateCensored.obj</span><span class="op">)</span></span>
+<span class="r-in"><span>  <span class="co">#     LCL      UCL </span></span></span>
+<span class="r-in"><span>  <span class="co"># 91.7801 103.7839 </span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="co">#----------</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="co"># Clean up</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/r/base/rm.html" class="external-link">rm</a></span><span class="op">(</span><span class="va">dat</span>, <span class="va">censored</span>, <span class="va">estimateCensored.obj</span><span class="op">)</span></span></span>
 </code></pre></div>
     </div>
   </div>
@@ -399,7 +450,7 @@
 </div>
 
 <div class="pkgdown">
-  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.2.</p>
+  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.6.</p>
 </div>
 
       </footer></div>

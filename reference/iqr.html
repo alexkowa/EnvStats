@@ -50,18 +50,20 @@
     </div>
 
     <div id="ref-usage">
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="fu">iqr</span><span class="op">(</span><span class="va">x</span>, na.rm <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></code></pre></div>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">iqr</span><span class="op">(</span><span class="va">x</span>, na.rm <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span></code></pre></div>
     </div>
 
     <div id="arguments">
     <h2>Arguments</h2>
     <dl><dt>x</dt>
 <dd><p>numeric vector of observations.</p></dd>
-<dt>na.rm</dt>
+
+  <dt>na.rm</dt>
 <dd><p>logical scalar indicating whether to remove missing values from <code>x</code>. If <br><code>na.rm=FALSE</code> (the default) and <code>x</code> contains missing values, 
   then a missing value (<code>NA</code>) is returned.  If <code>na.rm=TRUE</code>, 
   missing values are removed from <code>x</code> prior to computing the coefficient 
   of variation.</p></dd>
+
 </dl></div>
     <div id="details">
     <h2>Details</h2>
@@ -77,7 +79,9 @@
     </div>
     <div id="value">
     <h2>Value</h2>
-    <p>A numeric scalar -- the interquartile range.</p>
+    
+
+<p>A numeric scalar -- the interquartile range.</p>
     </div>
     <div id="references">
     <h2>References</h2>
@@ -114,29 +118,29 @@
 
     <div id="ref-examples">
     <h2>Examples</h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in">  <span class="co"># Generate 20 observations from a normal distribution with parameters </span></span>
-<span class="r-in">  <span class="co"># mean=10 and sd=2, and compute the standard deviation and </span></span>
-<span class="r-in">  <span class="co"># interquartile range. </span></span>
-<span class="r-in">  <span class="co"># (Note: the call to set.seed simply allows you to reproduce this example.)</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="fu"><a href="https://rdrr.io/r/base/Random.html" class="external-link">set.seed</a></span><span class="op">(</span><span class="fl">250</span><span class="op">)</span> </span>
-<span class="r-in">  <span class="va">dat</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/Normal.html" class="external-link">rnorm</a></span><span class="op">(</span><span class="fl">20</span>, mean<span class="op">=</span><span class="fl">10</span>, sd<span class="op">=</span><span class="fl">2</span><span class="op">)</span> </span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="fu"><a href="https://rdrr.io/r/stats/sd.html" class="external-link">sd</a></span><span class="op">(</span><span class="va">dat</span><span class="op">)</span> </span>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span>  <span class="co"># Generate 20 observations from a normal distribution with parameters </span></span></span>
+<span class="r-in"><span>  <span class="co"># mean=10 and sd=2, and compute the standard deviation and </span></span></span>
+<span class="r-in"><span>  <span class="co"># interquartile range. </span></span></span>
+<span class="r-in"><span>  <span class="co"># (Note: the call to set.seed simply allows you to reproduce this example.)</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/r/base/Random.html" class="external-link">set.seed</a></span><span class="op">(</span><span class="fl">250</span><span class="op">)</span> </span></span>
+<span class="r-in"><span>  <span class="va">dat</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/Normal.html" class="external-link">rnorm</a></span><span class="op">(</span><span class="fl">20</span>, mean<span class="op">=</span><span class="fl">10</span>, sd<span class="op">=</span><span class="fl">2</span><span class="op">)</span> </span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/r/stats/sd.html" class="external-link">sd</a></span><span class="op">(</span><span class="va">dat</span><span class="op">)</span> </span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] 1.180226</span>
-<span class="r-in">  <span class="co">#[1] 1.180226</span></span>
-<span class="r-in"> </span>
-<span class="r-in">  <span class="fu">iqr</span><span class="op">(</span><span class="va">dat</span><span class="op">)</span> </span>
+<span class="r-in"><span>  <span class="co">#[1] 1.180226</span></span></span>
+<span class="r-in"><span> </span></span>
+<span class="r-in"><span>  <span class="fu">iqr</span><span class="op">(</span><span class="va">dat</span><span class="op">)</span> </span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] 1.489932</span>
-<span class="r-in">  <span class="co">#[1] 1.489932</span></span>
-<span class="r-in"> </span>
-<span class="r-in">  <span class="co">#----------</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="co"># Repeat the last example, but add a couple of large "outliers" to the </span></span>
-<span class="r-in">  <span class="co"># data.  Note that the estimated standard deviation is greatly affected </span></span>
-<span class="r-in">  <span class="co"># by the outliers, while the interquartile range is not.</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="fu"><a href="summaryStats.html">summaryStats</a></span><span class="op">(</span><span class="va">dat</span>, quartiles <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span> </span>
+<span class="r-in"><span>  <span class="co">#[1] 1.489932</span></span></span>
+<span class="r-in"><span> </span></span>
+<span class="r-in"><span>  <span class="co">#----------</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="co"># Repeat the last example, but add a couple of large "outliers" to the </span></span></span>
+<span class="r-in"><span>  <span class="co"># data.  Note that the estimated standard deviation is greatly affected </span></span></span>
+<span class="r-in"><span>  <span class="co"># by the outliers, while the interquartile range is not.</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="fu"><a href="summaryStats.html">summaryStats</a></span><span class="op">(</span><span class="va">dat</span>, quartiles <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span> </span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>      N   Mean     SD Median    Min     Max 1st Qu. 3rd Qu.</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> dat 20 9.8612 1.1802 9.6978 7.6042 11.8756  9.1618 10.6517</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> attr(,"class")</span>
@@ -145,30 +149,30 @@
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] FALSE</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> attr(,"drop0trailing")</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] TRUE</span>
-<span class="r-in">  <span class="co">#     N   Mean     SD Median    Min     Max 1st Qu. 3rd Qu.</span></span>
-<span class="r-in">  <span class="co">#dat 20 9.8612 1.1802 9.6978 7.6042 11.8756  9.1618 10.6517</span></span>
-<span class="r-in"> </span>
-<span class="r-in">  <span class="va">new.dat</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="va">dat</span>, <span class="fl">20</span>, <span class="fl">50</span><span class="op">)</span> </span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="fu"><a href="https://rdrr.io/r/stats/sd.html" class="external-link">sd</a></span><span class="op">(</span><span class="va">dat</span><span class="op">)</span> </span>
+<span class="r-in"><span>  <span class="co">#     N   Mean     SD Median    Min     Max 1st Qu. 3rd Qu.</span></span></span>
+<span class="r-in"><span>  <span class="co">#dat 20 9.8612 1.1802 9.6978 7.6042 11.8756  9.1618 10.6517</span></span></span>
+<span class="r-in"><span> </span></span>
+<span class="r-in"><span>  <span class="va">new.dat</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="va">dat</span>, <span class="fl">20</span>, <span class="fl">50</span><span class="op">)</span> </span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/r/stats/sd.html" class="external-link">sd</a></span><span class="op">(</span><span class="va">dat</span><span class="op">)</span> </span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] 1.180226</span>
-<span class="r-in">  <span class="co">#[1] 1.180226</span></span>
-<span class="r-in"> </span>
-<span class="r-in">  <span class="fu"><a href="https://rdrr.io/r/stats/sd.html" class="external-link">sd</a></span><span class="op">(</span><span class="va">new.dat</span><span class="op">)</span> </span>
+<span class="r-in"><span>  <span class="co">#[1] 1.180226</span></span></span>
+<span class="r-in"><span> </span></span>
+<span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/r/stats/sd.html" class="external-link">sd</a></span><span class="op">(</span><span class="va">new.dat</span><span class="op">)</span> </span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] 8.79796</span>
-<span class="r-in">  <span class="co">#[1] 8.79796</span></span>
-<span class="r-in"> </span>
-<span class="r-in">  <span class="fu">iqr</span><span class="op">(</span><span class="va">dat</span><span class="op">)</span> </span>
+<span class="r-in"><span>  <span class="co">#[1] 8.79796</span></span></span>
+<span class="r-in"><span> </span></span>
+<span class="r-in"><span>  <span class="fu">iqr</span><span class="op">(</span><span class="va">dat</span><span class="op">)</span> </span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] 1.489932</span>
-<span class="r-in">  <span class="co">#[1] 1.489932</span></span>
-<span class="r-in"> </span>
-<span class="r-in">  <span class="fu">iqr</span><span class="op">(</span><span class="va">new.dat</span><span class="op">)</span> </span>
+<span class="r-in"><span>  <span class="co">#[1] 1.489932</span></span></span>
+<span class="r-in"><span> </span></span>
+<span class="r-in"><span>  <span class="fu">iqr</span><span class="op">(</span><span class="va">new.dat</span><span class="op">)</span> </span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] 1.851472</span>
-<span class="r-in">  <span class="co">#[1] 1.851472</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="co">#----------</span></span>
-<span class="r-in">  <span class="co"># Clean up</span></span>
-<span class="r-in">  <span class="fu"><a href="https://rdrr.io/r/base/rm.html" class="external-link">rm</a></span><span class="op">(</span><span class="va">dat</span>, <span class="va">new.dat</span><span class="op">)</span></span>
+<span class="r-in"><span>  <span class="co">#[1] 1.851472</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="co">#----------</span></span></span>
+<span class="r-in"><span>  <span class="co"># Clean up</span></span></span>
+<span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/r/base/rm.html" class="external-link">rm</a></span><span class="op">(</span><span class="va">dat</span>, <span class="va">new.dat</span><span class="op">)</span></span></span>
 </code></pre></div>
     </div>
   </div>
@@ -183,7 +187,7 @@
 </div>
 
 <div class="pkgdown">
-  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.2.</p>
+  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.6.</p>
 </div>
 
       </footer></div>

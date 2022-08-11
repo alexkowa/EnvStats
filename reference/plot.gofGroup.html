@@ -67,29 +67,30 @@ The function plot.gofGroup is automatically called by plot
     </div>
 
     <div id="ref-usage">
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="co"># S3 method for gofGroup</span>
-<span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">x</span>, plot.type <span class="op">=</span> <span class="st">"Summary"</span>, 
-    captions <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>QQ <span class="op">=</span> <span class="cn">NULL</span>, MDQQ <span class="op">=</span> <span class="cn">NULL</span>, ScoresQQ <span class="op">=</span> <span class="cn">NULL</span>, ScoresMDQQ <span class="op">=</span> <span class="cn">NULL</span>, 
-      Results <span class="op">=</span> <span class="cn">NULL</span><span class="op">)</span>, 
-    x.labels <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>QQ <span class="op">=</span> <span class="cn">NULL</span>, MDQQ <span class="op">=</span> <span class="cn">NULL</span>, ScoresQQ <span class="op">=</span> <span class="cn">NULL</span>, ScoresMDQQ <span class="op">=</span> <span class="cn">NULL</span><span class="op">)</span>, 
-    y.labels <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>QQ <span class="op">=</span> <span class="cn">NULL</span>, MDQQ <span class="op">=</span> <span class="cn">NULL</span>, ScoresQQ <span class="op">=</span> <span class="cn">NULL</span>, ScoresMDQQ <span class="op">=</span> <span class="cn">NULL</span><span class="op">)</span>, 
-    same.window <span class="op">=</span> <span class="cn">FALSE</span>, ask <span class="op">=</span> <span class="va">same.window</span> <span class="op">&amp;</span> <span class="va">plot.type</span> <span class="op">==</span> <span class="st">"All"</span>, add.line <span class="op">=</span> <span class="cn">TRUE</span>, 
-    digits <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/ifelse.html" class="external-link">ifelse</a></span><span class="op">(</span><span class="va">plot.type</span> <span class="op">==</span> <span class="st">"Summary"</span>, <span class="fl">2</span>, <span class="va">.Options</span><span class="op">$</span><span class="va">digits</span><span class="op">)</span>, test.result.font <span class="op">=</span> <span class="fl">1</span>, 
-    test.result.cex <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/ifelse.html" class="external-link">ifelse</a></span><span class="op">(</span><span class="va">plot.type</span> <span class="op">==</span> <span class="st">"Summary"</span>, <span class="fl">0.9</span>, <span class="fl">1</span><span class="op">)</span> <span class="op">*</span> <span class="fu"><a href="https://rdrr.io/r/graphics/par.html" class="external-link">par</a></span><span class="op">(</span><span class="st">"cex"</span><span class="op">)</span>, 
-    test.result.mar <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">0</span>, <span class="fl">0</span>, <span class="fl">3</span>, <span class="fl">0</span><span class="op">)</span> <span class="op">+</span> <span class="fl">0.1</span>, individual.p.values <span class="op">=</span> <span class="cn">FALSE</span>, 
-    cex.main <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/ifelse.html" class="external-link">ifelse</a></span><span class="op">(</span><span class="va">plot.type</span> <span class="op">==</span> <span class="st">"Summary"</span>, <span class="fl">1.2</span>, <span class="fl">1.5</span><span class="op">)</span> <span class="op">*</span> <span class="fu"><a href="https://rdrr.io/r/graphics/par.html" class="external-link">par</a></span><span class="op">(</span><span class="st">"cex"</span><span class="op">)</span>, 
-    cex.axis <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/ifelse.html" class="external-link">ifelse</a></span><span class="op">(</span><span class="va">plot.type</span> <span class="op">==</span> <span class="st">"Summary"</span>, <span class="fl">0.9</span>, <span class="fl">1</span><span class="op">)</span> <span class="op">*</span> <span class="fu"><a href="https://rdrr.io/r/graphics/par.html" class="external-link">par</a></span><span class="op">(</span><span class="st">"cex"</span><span class="op">)</span>, 
-    cex.lab <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/ifelse.html" class="external-link">ifelse</a></span><span class="op">(</span><span class="va">plot.type</span> <span class="op">==</span> <span class="st">"Summary"</span>, <span class="fl">0.9</span>, <span class="fl">1</span><span class="op">)</span> <span class="op">*</span> <span class="fu"><a href="https://rdrr.io/r/graphics/par.html" class="external-link">par</a></span><span class="op">(</span><span class="st">"cex"</span><span class="op">)</span>, 
-    main <span class="op">=</span> <span class="cn">NULL</span>, xlab <span class="op">=</span> <span class="cn">NULL</span>, ylab <span class="op">=</span> <span class="cn">NULL</span>, xlim <span class="op">=</span> <span class="cn">NULL</span>, ylim <span class="op">=</span> <span class="cn">NULL</span>, add.om.title <span class="op">=</span> <span class="cn">TRUE</span>, 
-    oma <span class="op">=</span> <span class="kw">if</span> <span class="op">(</span><span class="va">plot.type</span> <span class="op">==</span> <span class="st">"Summary"</span> <span class="op">&amp;</span> <span class="va">add.om.title</span><span class="op">)</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">0</span>, <span class="fl">0</span>, <span class="fl">5</span>, <span class="fl">0</span><span class="op">)</span> <span class="kw">else</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">0</span>, <span class="fl">0</span>, <span class="fl">0</span>, <span class="fl">0</span><span class="op">)</span>, 
-    om.title <span class="op">=</span> <span class="cn">NULL</span>, om.font <span class="op">=</span> <span class="fl">2</span>, om.cex.main <span class="op">=</span> <span class="fl">1.5</span> <span class="op">*</span> <span class="fu"><a href="https://rdrr.io/r/graphics/par.html" class="external-link">par</a></span><span class="op">(</span><span class="st">"cex"</span><span class="op">)</span>, om.line <span class="op">=</span> <span class="fl">1</span>, <span class="va">...</span><span class="op">)</span></code></pre></div>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="co"># S3 method for gofGroup</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">x</span>, plot.type <span class="op">=</span> <span class="st">"Summary"</span>, </span>
+<span>    captions <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>QQ <span class="op">=</span> <span class="cn">NULL</span>, MDQQ <span class="op">=</span> <span class="cn">NULL</span>, ScoresQQ <span class="op">=</span> <span class="cn">NULL</span>, ScoresMDQQ <span class="op">=</span> <span class="cn">NULL</span>, </span>
+<span>      Results <span class="op">=</span> <span class="cn">NULL</span><span class="op">)</span>, </span>
+<span>    x.labels <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>QQ <span class="op">=</span> <span class="cn">NULL</span>, MDQQ <span class="op">=</span> <span class="cn">NULL</span>, ScoresQQ <span class="op">=</span> <span class="cn">NULL</span>, ScoresMDQQ <span class="op">=</span> <span class="cn">NULL</span><span class="op">)</span>, </span>
+<span>    y.labels <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>QQ <span class="op">=</span> <span class="cn">NULL</span>, MDQQ <span class="op">=</span> <span class="cn">NULL</span>, ScoresQQ <span class="op">=</span> <span class="cn">NULL</span>, ScoresMDQQ <span class="op">=</span> <span class="cn">NULL</span><span class="op">)</span>, </span>
+<span>    same.window <span class="op">=</span> <span class="cn">FALSE</span>, ask <span class="op">=</span> <span class="va">same.window</span> <span class="op">&amp;</span> <span class="va">plot.type</span> <span class="op">==</span> <span class="st">"All"</span>, add.line <span class="op">=</span> <span class="cn">TRUE</span>, </span>
+<span>    digits <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/ifelse.html" class="external-link">ifelse</a></span><span class="op">(</span><span class="va">plot.type</span> <span class="op">==</span> <span class="st">"Summary"</span>, <span class="fl">2</span>, <span class="va">.Options</span><span class="op">$</span><span class="va">digits</span><span class="op">)</span>, test.result.font <span class="op">=</span> <span class="fl">1</span>, </span>
+<span>    test.result.cex <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/ifelse.html" class="external-link">ifelse</a></span><span class="op">(</span><span class="va">plot.type</span> <span class="op">==</span> <span class="st">"Summary"</span>, <span class="fl">0.9</span>, <span class="fl">1</span><span class="op">)</span> <span class="op">*</span> <span class="fu"><a href="https://rdrr.io/r/graphics/par.html" class="external-link">par</a></span><span class="op">(</span><span class="st">"cex"</span><span class="op">)</span>, </span>
+<span>    test.result.mar <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">0</span>, <span class="fl">0</span>, <span class="fl">3</span>, <span class="fl">0</span><span class="op">)</span> <span class="op">+</span> <span class="fl">0.1</span>, individual.p.values <span class="op">=</span> <span class="cn">FALSE</span>, </span>
+<span>    cex.main <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/ifelse.html" class="external-link">ifelse</a></span><span class="op">(</span><span class="va">plot.type</span> <span class="op">==</span> <span class="st">"Summary"</span>, <span class="fl">1.2</span>, <span class="fl">1.5</span><span class="op">)</span> <span class="op">*</span> <span class="fu"><a href="https://rdrr.io/r/graphics/par.html" class="external-link">par</a></span><span class="op">(</span><span class="st">"cex"</span><span class="op">)</span>, </span>
+<span>    cex.axis <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/ifelse.html" class="external-link">ifelse</a></span><span class="op">(</span><span class="va">plot.type</span> <span class="op">==</span> <span class="st">"Summary"</span>, <span class="fl">0.9</span>, <span class="fl">1</span><span class="op">)</span> <span class="op">*</span> <span class="fu"><a href="https://rdrr.io/r/graphics/par.html" class="external-link">par</a></span><span class="op">(</span><span class="st">"cex"</span><span class="op">)</span>, </span>
+<span>    cex.lab <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/ifelse.html" class="external-link">ifelse</a></span><span class="op">(</span><span class="va">plot.type</span> <span class="op">==</span> <span class="st">"Summary"</span>, <span class="fl">0.9</span>, <span class="fl">1</span><span class="op">)</span> <span class="op">*</span> <span class="fu"><a href="https://rdrr.io/r/graphics/par.html" class="external-link">par</a></span><span class="op">(</span><span class="st">"cex"</span><span class="op">)</span>, </span>
+<span>    main <span class="op">=</span> <span class="cn">NULL</span>, xlab <span class="op">=</span> <span class="cn">NULL</span>, ylab <span class="op">=</span> <span class="cn">NULL</span>, xlim <span class="op">=</span> <span class="cn">NULL</span>, ylim <span class="op">=</span> <span class="cn">NULL</span>, add.om.title <span class="op">=</span> <span class="cn">TRUE</span>, </span>
+<span>    oma <span class="op">=</span> <span class="kw">if</span> <span class="op">(</span><span class="va">plot.type</span> <span class="op">==</span> <span class="st">"Summary"</span> <span class="op">&amp;</span> <span class="va">add.om.title</span><span class="op">)</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">0</span>, <span class="fl">0</span>, <span class="fl">5</span>, <span class="fl">0</span><span class="op">)</span> <span class="kw">else</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">0</span>, <span class="fl">0</span>, <span class="fl">0</span>, <span class="fl">0</span><span class="op">)</span>, </span>
+<span>    om.title <span class="op">=</span> <span class="cn">NULL</span>, om.font <span class="op">=</span> <span class="fl">2</span>, om.cex.main <span class="op">=</span> <span class="fl">1.5</span> <span class="op">*</span> <span class="fu"><a href="https://rdrr.io/r/graphics/par.html" class="external-link">par</a></span><span class="op">(</span><span class="st">"cex"</span><span class="op">)</span>, om.line <span class="op">=</span> <span class="fl">1</span>, <span class="va">...</span><span class="op">)</span></span></code></pre></div>
     </div>
 
     <div id="arguments">
     <h2>Arguments</h2>
     <dl><dt>x</dt>
 <dd><p>an object of class <code>"gofGroup"</code>.  See <code><a href="gofGroup.object.html">gofGroup.object</a></code> for details.</p></dd>
-<dt>plot.type</dt>
+
+  <dt>plot.type</dt>
 <dd><p>character string indicating what kind of plot to create.  Only one particular 
   plot type will be created, unless <code>plot.type="All"</code>, in which case all plots 
   will be created sequentially.  The possible values of <code>plot.type</code> are: 
@@ -97,7 +98,8 @@ The function plot.gofGroup is automatically called by plot
   <code>"Scores Q-Q Plot"</code>, <code>"Scores Tukey M-D Q-Q Plot"</code>, 
   <code>"Test Results"</code>, and <code>"All"</code>.  
   See the DETAILS section for more information.</p></dd>
-<dt>captions</dt>
+
+  <dt>captions</dt>
 <dd><p>a list with 1 to 5 components with the names <code>"QQ"</code>, <code>"MDQQ"</code>, 
   <code>"ScoresQQ"</code>, <br><code>"ScoresMDQQ"</code>, and/or <code>"Results"</code>.  Each component either has 
   the value <code>NULL</code> or else it is a character string containing the title for that 
@@ -108,7 +110,8 @@ The function plot.gofGroup is automatically called by plot
   different from the default ones.  If you are creating only one kind of plot, 
   then you can just use the <code>main</code> argument to specify a title different 
   from the default one.</p></dd>
-<dt>x.labels</dt>
+
+  <dt>x.labels</dt>
 <dd><p>a list of 1 to 4 components with the names <code>"QQ"</code>, <code>"MDQQ"</code>, 
   <code>"ScoresQQ"</code>, and/or <code>"ScoresMDQQ"</code>.  
   Each component either has the value 
@@ -122,7 +125,8 @@ The function plot.gofGroup is automatically called by plot
   labels different from the default ones.  If you are creating only one plot, 
   then you can just use the <code>xlab</code> argument to 
   specify an \(x\)-axis label different from the default one.</p></dd>
-<dt>y.labels</dt>
+
+  <dt>y.labels</dt>
 <dd><p>a list of 1 to 4 components with the names <code>"QQ"</code>, <code>"MDQQ"</code>, 
   <code>"ScoresQQ"</code>, and/or <code>"ScoresMDQQ"</code>. Each component either has the value 
   <code>NULL</code> or else it is a character string containing the label for the 
@@ -135,17 +139,20 @@ The function plot.gofGroup is automatically called by plot
   labels different from the default ones.  If you are creating only one plot, 
   then you can just use the <code>ylab</code> argument to 
   specify a \(y\)-axis label different from the default one.</p></dd>
-<dt>same.window</dt>
+
+  <dt>same.window</dt>
 <dd><p>logical scalar indicating whether to produce all plots in the same graphics 
   window (<code>same.window=TRUE</code>), or to create a new graphics 
   window for each separate plot (<code>same.window=FALSE</code>; the default).  
   The argument is relevant only when <code>plot.type="All"</code>.</p></dd>
-<dt>ask</dt>
+
+  <dt>ask</dt>
 <dd><p>logical scalar supplied to the function <code><a href="https://rdrr.io/r/grDevices/devAskNewPage.html" class="external-link">devAskNewPage</a></code>, indicating 
   whether to prompt the user before creating a new plot within a single graphics 
   window.  The default value is <code>FALSE</code> unless <code>same.window=TRUE</code> and 
   <code>plot.type == "All"</code>.</p></dd>
-<dt>add.line</dt>
+
+  <dt>add.line</dt>
 <dd><p>logical scalar indicating whether to add a line to the plot.  If <code>add.line=TRUE</code> 
   and <code>plot.type="Q-Q Plot"</code> or <code>plot.type="Scores Q-Q Plot"</code>, 
   a 0-1 line is added to the plot.  
@@ -153,48 +160,75 @@ The function plot.gofGroup is automatically called by plot
   <code>plot.type="Scores Tukey M-D Q-Q Plot"</code>, a horizontal 
   line at \(y=0\) is added to the plot.  The default value is <code>add.line=TRUE</code>.  
   This argument is ignored if <code>plot.type="Test Results"</code>.</p></dd>
-</dl><p><b>Arguments associated with <code>plot.type="Test Results"</code></b><br></p>
+
+
+
+
+</dl><p><b>Arguments associated with <code>plot.type="Test Results"</code></b></p>
+<p></p>
+<p><br></p>
 <dl><dt>digits</dt>
 <dd><p>scalar indicating how many significant digits to print for the test results 
   when <code>plot.type="Summary"</code> or <code>plot.type="Test Results"</code>.  If <br><code>plot.type == "Summary"</code>, the default value is 
   <code>digits=2</code>, otherwise it is <br><code>.Options$digits</code> (i.e., the current setting of <code>options("digits")</code>).</p></dd>
-<dt>individual.p.values</dt>
+
+  <dt>individual.p.values</dt>
 <dd><p>logical scalar indicating whether to display the p-values associated with 
   each individual group.  The default value is <code>individual.p.values=FALSE</code>.</p></dd>
-<dt>test.result.font</dt>
+
+  <dt>test.result.font</dt>
 <dd><p>numeric scalar indicating which font to use to print out the test results.  
   The default value is <code>test.result.font=1</code>.  See the description of the 
   <code>font</code> argument in the help file for <code><a href="https://rdrr.io/r/graphics/par.html" class="external-link">par</a></code> for more information.  
   You may get better results if you use a font number that corresponds to a fixed 
   font (e.g., courier).</p></dd>
-<dt>test.result.cex</dt>
+
+  <dt>test.result.cex</dt>
 <dd><p>numeric scalar indicating the value of <code>cex</code> to use to print out the 
   test results.  The default value is <code>0.9*par("cex")</code> when 
   <code>plot.type="Summary"</code>, otherwise it is <code>par("cex")</code>. 
   See the description of the <code>cex</code> argument in the help file for 
   <code><a href="https://rdrr.io/r/graphics/par.html" class="external-link">par</a></code> for more information.</p></dd>
-<dt>test.result.mar</dt>
+
+  <dt>test.result.mar</dt>
 <dd><p>numeric vector indicating the value of <code>mar</code> to use to print out the 
   test results.  The default value is <code>test.result.mar=c(0, 0, 3, 0)+0.1</code>.  
   See the description of the <code>mar</code> argument in the help file for 
   <code><a href="https://rdrr.io/r/graphics/par.html" class="external-link">par</a></code> for more information.</p></dd>
-</dl><p><b>Arguments associated with <code>plot.type="Summary"</code></b><br></p>
+
+
+
+
+</dl><p><b>Arguments associated with <code>plot.type="Summary"</code></b></p>
+<p></p>
+<p><br></p>
 <dl><dt>add.om.title</dt>
 <dd><p>logical scalar indicating whether to add a title in the outer margin when <br><code>plot.type="Summary"</code>.  The default value is <code>add.om.title=TRUE</code>.</p></dd>
-<dt>om.title</dt>
+
+  <dt>om.title</dt>
 <dd><p>character string containing the outer margin title.  The default value is <br><code>om.title=NULL</code>, which will result in a default title.</p></dd>
-<dt>om.font</dt>
+
+  <dt>om.font</dt>
 <dd><p>numeric scalar indicating the font to use for the outer margin.  The default 
   value is <code>om.font=2</code>.</p></dd>
-<dt>om.cex.main</dt>
+
+  <dt>om.cex.main</dt>
 <dd><p>numeric scalar indicating the value of <code>cex</code> for the outer margin title.  
   The default value is <code>1.5 * par("cex")</code>.</p></dd>
-<dt>om.line</dt>
+
+  <dt>om.line</dt>
 <dd><p>numeric scalar indicating the line to place the outer margin title on.  The 
   default value is <code>om.line=1</code>.</p></dd>
-</dl><p><b>Graphics parameters:</b><br></p>
+
+
+
+
+</dl><p><b>Graphics parameters:</b></p>
+<p></p>
+<p><br></p>
 <dl><dt>cex.main, cex.axis, cex.lab, main, xlab, ylab, xlim, ylim, oma, ...</dt>
 <dd><p>additional graphics parameters.  See the help file for <code><a href="https://rdrr.io/r/graphics/par.html" class="external-link">par</a></code>.</p></dd>
+
 </dl></div>
     <div id="details">
     <h2>Details</h2>
@@ -230,7 +264,8 @@ The function plot.gofGroup is automatically called by plot
     </div>
     <div id="value">
     <h2>Value</h2>
-    <p><code>plot.gofGroup</code> invisibly returns the first argument, <code>x</code>.</p>
+    <p></p>
+<p><code>plot.gofGroup</code> invisibly returns the first argument, <code>x</code>.</p>
     </div>
     <div id="references">
     <h2>References</h2>
@@ -250,15 +285,15 @@ The function plot.gofGroup is automatically called by plot
 
     <div id="ref-examples">
     <h2>Examples</h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in">  <span class="co"># Create an object of class "gofGroup" then plot it.</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="co"># Example 10-4 of USEPA (2009, page 10-20) gives an example of </span></span>
-<span class="r-in">  <span class="co"># simultaneously testing the assumption of normality for nickel </span></span>
-<span class="r-in">  <span class="co"># concentrations (ppb) in groundwater collected at 4 monitoring </span></span>
-<span class="r-in">  <span class="co"># wells over 5 months.  The data for this example are stored in </span></span>
-<span class="r-in">  <span class="co"># EPA.09.Ex.10.1.nickel.df.</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="va">EPA.09.Ex.10.1.nickel.df</span></span>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span>  <span class="co"># Create an object of class "gofGroup" then plot it.</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="co"># Example 10-4 of USEPA (2009, page 10-20) gives an example of </span></span></span>
+<span class="r-in"><span>  <span class="co"># simultaneously testing the assumption of normality for nickel </span></span></span>
+<span class="r-in"><span>  <span class="co"># concentrations (ppb) in groundwater collected at 4 monitoring </span></span></span>
+<span class="r-in"><span>  <span class="co"># wells over 5 months.  The data for this example are stored in </span></span></span>
+<span class="r-in"><span>  <span class="co"># EPA.09.Ex.10.1.nickel.df.</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="va">EPA.09.Ex.10.1.nickel.df</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>    Month   Well Nickel.ppb</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 1      1 Well.1       58.8</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 2      3 Well.1        1.0</span>
@@ -280,49 +315,49 @@ The function plot.gofGroup is automatically called by plot
 <span class="r-out co"><span class="r-pr">#&gt;</span> 18     6 Well.4       85.6</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 19     8 Well.4       10.0</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 20    10 Well.4      637.0</span>
-<span class="r-in">  <span class="co">#   Month   Well Nickel.ppb</span></span>
-<span class="r-in">  <span class="co">#1      1 Well.1       58.8</span></span>
-<span class="r-in">  <span class="co">#2      3 Well.1        1.0</span></span>
-<span class="r-in">  <span class="co">#3      6 Well.1      262.0</span></span>
-<span class="r-in">  <span class="co">#...</span></span>
-<span class="r-in">  <span class="co">#18     6 Well.4       85.6</span></span>
-<span class="r-in">  <span class="co">#19     8 Well.4       10.0</span></span>
-<span class="r-in">  <span class="co">#20    10 Well.4      637.0</span></span>
-<span class="r-in"></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="co"># Test for a normal distribution at each well:</span></span>
-<span class="r-in">  <span class="co">#--------------------------------------------</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="va">gofGroup.obj</span> <span class="op">&lt;-</span> <span class="fu"><a href="gofGroupTest.html">gofGroupTest</a></span><span class="op">(</span><span class="va">Nickel.ppb</span> <span class="op">~</span> <span class="va">Well</span>, </span>
-<span class="r-in">    data <span class="op">=</span> <span class="va">EPA.09.Ex.10.1.nickel.df</span><span class="op">)</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="fu"><a href="https://rdrr.io/r/grDevices/dev.html" class="external-link">dev.new</a></span><span class="op">(</span><span class="op">)</span></span>
-<span class="r-in">  <span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">gofGroup.obj</span><span class="op">)</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="co"># Make your own titles for the summary plot</span></span>
-<span class="r-in">  <span class="co">#------------------------------------------</span></span>
-<span class="r-in">  <span class="fu"><a href="https://rdrr.io/r/grDevices/dev.html" class="external-link">dev.new</a></span><span class="op">(</span><span class="op">)</span></span>
-<span class="r-in">  <span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">gofGroup.obj</span>, captions <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>QQ <span class="op">=</span> <span class="st">"Q-Q Plot"</span>, </span>
-<span class="r-in">    ScoresQQ <span class="op">=</span> <span class="st">"Scores Q-Q Plot"</span>, Results <span class="op">=</span> <span class="st">"Results"</span><span class="op">)</span>,</span>
-<span class="r-in">    om.title <span class="op">=</span> <span class="st">"Summary Plot"</span><span class="op">)</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="co"># Just the Q-Q Plot</span></span>
-<span class="r-in">  <span class="co">#------------------</span></span>
-<span class="r-in">  <span class="fu"><a href="https://rdrr.io/r/grDevices/dev.html" class="external-link">dev.new</a></span><span class="op">(</span><span class="op">)</span></span>
-<span class="r-in">  <span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">gofGroup.obj</span>, plot.type<span class="op">=</span><span class="st">"Q-Q"</span><span class="op">)</span></span>
-<span class="r-in"></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="co"># Make your own title for the Q-Q Plot</span></span>
-<span class="r-in">  <span class="co">#-------------------------------------</span></span>
-<span class="r-in">  <span class="fu"><a href="https://rdrr.io/r/grDevices/dev.html" class="external-link">dev.new</a></span><span class="op">(</span><span class="op">)</span></span>
-<span class="r-in">  <span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">gofGroup.obj</span>, plot.type<span class="op">=</span><span class="st">"Q-Q"</span>, main <span class="op">=</span> <span class="st">"Q-Q Plot"</span><span class="op">)</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="co">#==========</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="co"># Clean up</span></span>
-<span class="r-in">  <span class="co">#---------</span></span>
-<span class="r-in">  <span class="fu"><a href="https://rdrr.io/r/base/rm.html" class="external-link">rm</a></span><span class="op">(</span><span class="va">gofGroup.obj</span><span class="op">)</span></span>
-<span class="r-in">  <span class="fu"><a href="https://rdrr.io/r/grDevices/dev.html" class="external-link">graphics.off</a></span><span class="op">(</span><span class="op">)</span></span>
+<span class="r-in"><span>  <span class="co">#   Month   Well Nickel.ppb</span></span></span>
+<span class="r-in"><span>  <span class="co">#1      1 Well.1       58.8</span></span></span>
+<span class="r-in"><span>  <span class="co">#2      3 Well.1        1.0</span></span></span>
+<span class="r-in"><span>  <span class="co">#3      6 Well.1      262.0</span></span></span>
+<span class="r-in"><span>  <span class="co">#...</span></span></span>
+<span class="r-in"><span>  <span class="co">#18     6 Well.4       85.6</span></span></span>
+<span class="r-in"><span>  <span class="co">#19     8 Well.4       10.0</span></span></span>
+<span class="r-in"><span>  <span class="co">#20    10 Well.4      637.0</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="co"># Test for a normal distribution at each well:</span></span></span>
+<span class="r-in"><span>  <span class="co">#--------------------------------------------</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="va">gofGroup.obj</span> <span class="op">&lt;-</span> <span class="fu"><a href="gofGroupTest.html">gofGroupTest</a></span><span class="op">(</span><span class="va">Nickel.ppb</span> <span class="op">~</span> <span class="va">Well</span>, </span></span>
+<span class="r-in"><span>    data <span class="op">=</span> <span class="va">EPA.09.Ex.10.1.nickel.df</span><span class="op">)</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/r/grDevices/dev.html" class="external-link">dev.new</a></span><span class="op">(</span><span class="op">)</span></span></span>
+<span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">gofGroup.obj</span><span class="op">)</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="co"># Make your own titles for the summary plot</span></span></span>
+<span class="r-in"><span>  <span class="co">#------------------------------------------</span></span></span>
+<span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/r/grDevices/dev.html" class="external-link">dev.new</a></span><span class="op">(</span><span class="op">)</span></span></span>
+<span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">gofGroup.obj</span>, captions <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>QQ <span class="op">=</span> <span class="st">"Q-Q Plot"</span>, </span></span>
+<span class="r-in"><span>    ScoresQQ <span class="op">=</span> <span class="st">"Scores Q-Q Plot"</span>, Results <span class="op">=</span> <span class="st">"Results"</span><span class="op">)</span>,</span></span>
+<span class="r-in"><span>    om.title <span class="op">=</span> <span class="st">"Summary Plot"</span><span class="op">)</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="co"># Just the Q-Q Plot</span></span></span>
+<span class="r-in"><span>  <span class="co">#------------------</span></span></span>
+<span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/r/grDevices/dev.html" class="external-link">dev.new</a></span><span class="op">(</span><span class="op">)</span></span></span>
+<span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">gofGroup.obj</span>, plot.type<span class="op">=</span><span class="st">"Q-Q"</span><span class="op">)</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="co"># Make your own title for the Q-Q Plot</span></span></span>
+<span class="r-in"><span>  <span class="co">#-------------------------------------</span></span></span>
+<span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/r/grDevices/dev.html" class="external-link">dev.new</a></span><span class="op">(</span><span class="op">)</span></span></span>
+<span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">gofGroup.obj</span>, plot.type<span class="op">=</span><span class="st">"Q-Q"</span>, main <span class="op">=</span> <span class="st">"Q-Q Plot"</span><span class="op">)</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="co">#==========</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="co"># Clean up</span></span></span>
+<span class="r-in"><span>  <span class="co">#---------</span></span></span>
+<span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/r/base/rm.html" class="external-link">rm</a></span><span class="op">(</span><span class="va">gofGroup.obj</span><span class="op">)</span></span></span>
+<span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/r/grDevices/dev.html" class="external-link">graphics.off</a></span><span class="op">(</span><span class="op">)</span></span></span>
 </code></pre></div>
     </div>
   </div>
@@ -337,7 +372,7 @@ The function plot.gofGroup is automatically called by plot
 </div>
 
 <div class="pkgdown">
-  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.2.</p>
+  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.6.</p>
 </div>
 
       </footer></div>

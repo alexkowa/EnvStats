@@ -54,9 +54,9 @@
     </div>
 
     <div id="ref-usage">
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="fu">predIntNpar</span><span class="op">(</span><span class="va">x</span>, k <span class="op">=</span> <span class="va">m</span>, m <span class="op">=</span> <span class="fl">1</span>,  lpl.rank <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/ifelse.html" class="external-link">ifelse</a></span><span class="op">(</span><span class="va">pi.type</span> <span class="op">==</span> <span class="st">"upper"</span>, <span class="fl">0</span>, <span class="fl">1</span><span class="op">)</span>, 
-    n.plus.one.minus.upl.rank <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/ifelse.html" class="external-link">ifelse</a></span><span class="op">(</span><span class="va">pi.type</span> <span class="op">==</span> <span class="st">"lower"</span>, <span class="fl">0</span>, <span class="fl">1</span><span class="op">)</span>, 
-    lb <span class="op">=</span> <span class="op">-</span><span class="cn">Inf</span>, ub <span class="op">=</span> <span class="cn">Inf</span>, pi.type <span class="op">=</span> <span class="st">"two-sided"</span><span class="op">)</span></code></pre></div>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">predIntNpar</span><span class="op">(</span><span class="va">x</span>, k <span class="op">=</span> <span class="va">m</span>, m <span class="op">=</span> <span class="fl">1</span>,  lpl.rank <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/ifelse.html" class="external-link">ifelse</a></span><span class="op">(</span><span class="va">pi.type</span> <span class="op">==</span> <span class="st">"upper"</span>, <span class="fl">0</span>, <span class="fl">1</span><span class="op">)</span>, </span>
+<span>    n.plus.one.minus.upl.rank <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/ifelse.html" class="external-link">ifelse</a></span><span class="op">(</span><span class="va">pi.type</span> <span class="op">==</span> <span class="st">"lower"</span>, <span class="fl">0</span>, <span class="fl">1</span><span class="op">)</span>, </span>
+<span>    lb <span class="op">=</span> <span class="op">-</span><span class="cn">Inf</span>, ub <span class="op">=</span> <span class="cn">Inf</span>, pi.type <span class="op">=</span> <span class="st">"two-sided"</span><span class="op">)</span></span></code></pre></div>
     </div>
 
     <div id="arguments">
@@ -64,20 +64,24 @@
     <dl><dt>x</dt>
 <dd><p>a numeric vector of observations.  Missing (<code>NA</code>), undefined (<code>NaN</code>), and 
   infinite (<code>Inf</code>, <code>-Inf</code>) values are allowed but will be removed.</p></dd>
-<dt>k</dt>
+
+  <dt>k</dt>
 <dd><p>positive integer specifying the minimum number of future observations out of <code>m</code> 
   that should be contained in the prediction interval. The default value is <code>k=m</code>.</p></dd>
-<dt>m</dt>
+
+  <dt>m</dt>
 <dd><p>positive integer specifying the number of future observations.  The default value is 
   <code>m=1</code>.</p></dd>
-<dt>lpl.rank</dt>
+
+  <dt>lpl.rank</dt>
 <dd><p>positive integer indicating the rank of the order statistic to use for the lower 
   bound of the prediction interval.  If <code>pi.type="two-sided"</code> or 
   <code>pi.type="lower"</code>, the default value is <code>lpl.rank=1</code> (implying the 
   minimum value of <code>x</code> is used as the lower bound of the prediction interval).  
   If <code>pi.type="upper"</code>, this argument is set equal to <code>0</code> and the value of 
   <code>lb</code> is used as the lower bound of the tolerance interval.</p></dd>
-<dt>n.plus.one.minus.upl.rank</dt>
+
+  <dt>n.plus.one.minus.upl.rank</dt>
 <dd><p>positive integer related to the rank of the order statistic to use for the upper 
   bound of the prediction interval.  A value of <code>n.plus.one.minus.upl.rank=1</code> 
   (the default when <code>pi.type="two.sided"</code> or <code>pi.type="upper"</code>) means use 
@@ -85,7 +89,8 @@
   <code>n.plus.one.minus.upl.rank=</code>\(i\) means use the \(i\)'th largest value.  
   If <code>pi.type="lower"</code>, this argument is set equal to <code>0</code> and the value of 
   <code>ub</code> is used as the upper bound of the prediction interval.</p></dd>
-<dt>lb, ub</dt>
+
+  <dt>lb, ub</dt>
 <dd><p>scalars indicating lower and upper bounds on the distribution.  By default, <br><code>lb=-Inf</code> and <code>ub=Inf</code>.  If you are constructing a prediction interval for 
   a distribution that you know has a lower bound other than <code>-Inf</code> 
   (e.g., <code>0</code>), set <code>lb</code> to this value.  Similarly, if you know the 
@@ -93,10 +98,12 @@
   The argument <code>lb</code> is ignored if <code>pi.type="two-sided"</code> or 
   <code>pi.type="lower"</code>.  The argument <code>ub</code> is ignored if 
   <code>pi.type="two-sided"</code> or <code>pi.type="upper"</code>.</p></dd>
-<dt>pi.type</dt>
+
+  <dt>pi.type</dt>
 <dd><p>character string indicating what kind of prediction interval to compute.  
   The possible values are <code>"two-sided"</code> (the default), <code>"lower"</code>, and 
   <code>"upper"</code>.</p></dd>
+
 </dl></div>
     <div id="details">
     <h2>Details</h2>
@@ -171,7 +178,9 @@
     </div>
     <div id="value">
     <h2>Value</h2>
-    <p>a list of class <code>"estimate"</code> containing the prediction interval and other 
+    
+
+<p>a list of class <code>"estimate"</code> containing the prediction interval and other 
   information.  See the help file for <code><a href="estimate.object.html">estimate.object</a></code> for details.</p>
     </div>
     <div id="references">
@@ -240,19 +249,19 @@
 
     <div id="ref-examples">
     <h2>Examples</h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in">  <span class="co"># Generate 20 observations from a lognormal mixture distribution with </span></span>
-<span class="r-in">  <span class="co"># parameters mean1=1, cv1=0.5, mean2=5, cv2=1, and p.mix=0.1.  Use </span></span>
-<span class="r-in">  <span class="co"># predIntNpar to construct a two-sided prediction interval using the </span></span>
-<span class="r-in">  <span class="co"># minimum and maximum observed values.  Note that the associated confidence </span></span>
-<span class="r-in">  <span class="co"># level is 90%.  A larger sample size is required to obtain a larger </span></span>
-<span class="r-in">  <span class="co"># confidence level (see the help file for predIntNparN). </span></span>
-<span class="r-in">  <span class="co"># (Note: the call to set.seed simply allows you to reproduce this example.)</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="fu"><a href="https://rdrr.io/r/base/Random.html" class="external-link">set.seed</a></span><span class="op">(</span><span class="fl">250</span><span class="op">)</span> </span>
-<span class="r-in">  <span class="va">dat</span> <span class="op">&lt;-</span> <span class="fu"><a href="LognormalMixAlt.html">rlnormMixAlt</a></span><span class="op">(</span>n <span class="op">=</span> <span class="fl">20</span>, mean1 <span class="op">=</span> <span class="fl">1</span>, cv1 <span class="op">=</span> <span class="fl">0.5</span>, </span>
-<span class="r-in">    mean2 <span class="op">=</span> <span class="fl">5</span>, cv2 <span class="op">=</span> <span class="fl">1</span>, p.mix <span class="op">=</span> <span class="fl">0.1</span><span class="op">)</span> </span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="fu">predIntNpar</span><span class="op">(</span><span class="va">dat</span><span class="op">)</span> </span>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span>  <span class="co"># Generate 20 observations from a lognormal mixture distribution with </span></span></span>
+<span class="r-in"><span>  <span class="co"># parameters mean1=1, cv1=0.5, mean2=5, cv2=1, and p.mix=0.1.  Use </span></span></span>
+<span class="r-in"><span>  <span class="co"># predIntNpar to construct a two-sided prediction interval using the </span></span></span>
+<span class="r-in"><span>  <span class="co"># minimum and maximum observed values.  Note that the associated confidence </span></span></span>
+<span class="r-in"><span>  <span class="co"># level is 90%.  A larger sample size is required to obtain a larger </span></span></span>
+<span class="r-in"><span>  <span class="co"># confidence level (see the help file for predIntNparN). </span></span></span>
+<span class="r-in"><span>  <span class="co"># (Note: the call to set.seed simply allows you to reproduce this example.)</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/r/base/Random.html" class="external-link">set.seed</a></span><span class="op">(</span><span class="fl">250</span><span class="op">)</span> </span></span>
+<span class="r-in"><span>  <span class="va">dat</span> <span class="op">&lt;-</span> <span class="fu"><a href="LognormalMixAlt.html">rlnormMixAlt</a></span><span class="op">(</span>n <span class="op">=</span> <span class="fl">20</span>, mean1 <span class="op">=</span> <span class="fl">1</span>, cv1 <span class="op">=</span> <span class="fl">0.5</span>, </span></span>
+<span class="r-in"><span>    mean2 <span class="op">=</span> <span class="fl">5</span>, cv2 <span class="op">=</span> <span class="fl">1</span>, p.mix <span class="op">=</span> <span class="fl">0.1</span><span class="op">)</span> </span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="fu">predIntNpar</span><span class="op">(</span><span class="va">dat</span><span class="op">)</span> </span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> $distribution</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] "None"</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
@@ -302,36 +311,36 @@
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> attr(,"class")</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] "estimate"</span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="co">#Results of Distribution Parameter Estimation</span></span>
-<span class="r-in">  <span class="co">#--------------------------------------------</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Assumed Distribution:            None</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Data:                            dat</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Sample Size:                     20</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Prediction Interval Method:      Exact</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Prediction Interval Type:        two-sided</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Confidence Level:                90.47619%</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Prediction Limit Rank(s):        1 20 </span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Number of Future Observations:   1</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Prediction Interval:             LPL = 0.3647875</span></span>
-<span class="r-in">  <span class="co">#                                 UPL = 1.8173115</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="co">#----------</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="co"># Repeat the above example, but specify m=5 future observations should be </span></span>
-<span class="r-in">  <span class="co"># contained in the prediction interval.  Note that the confidence level is </span></span>
-<span class="r-in">  <span class="co"># now only 63%.</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="fu">predIntNpar</span><span class="op">(</span><span class="va">dat</span>, m <span class="op">=</span> <span class="fl">5</span><span class="op">)</span> </span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="co">#Results of Distribution Parameter Estimation</span></span></span>
+<span class="r-in"><span>  <span class="co">#--------------------------------------------</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Assumed Distribution:            None</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Data:                            dat</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Sample Size:                     20</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Prediction Interval Method:      Exact</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Prediction Interval Type:        two-sided</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Confidence Level:                90.47619%</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Prediction Limit Rank(s):        1 20 </span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Number of Future Observations:   1</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Prediction Interval:             LPL = 0.3647875</span></span></span>
+<span class="r-in"><span>  <span class="co">#                                 UPL = 1.8173115</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="co">#----------</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="co"># Repeat the above example, but specify m=5 future observations should be </span></span></span>
+<span class="r-in"><span>  <span class="co"># contained in the prediction interval.  Note that the confidence level is </span></span></span>
+<span class="r-in"><span>  <span class="co"># now only 63%.</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="fu">predIntNpar</span><span class="op">(</span><span class="va">dat</span>, m <span class="op">=</span> <span class="fl">5</span><span class="op">)</span> </span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> $distribution</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] "None"</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
@@ -381,36 +390,36 @@
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> attr(,"class")</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] "estimate"</span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="co">#Results of Distribution Parameter Estimation</span></span>
-<span class="r-in">  <span class="co">#--------------------------------------------</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Assumed Distribution:            None</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Data:                            dat</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Sample Size:                     20</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Prediction Interval Method:      Exact</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Prediction Interval Type:        two-sided</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Confidence Level:                63.33333%</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Prediction Limit Rank(s):        1 20 </span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Number of Future Observations:   5</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Prediction Interval:             LPL = 0.3647875</span></span>
-<span class="r-in">  <span class="co">#                                 UPL = 1.8173115</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="co">#----------</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="co"># Repeat the above example, but specify that a minimum of k=3 observations </span></span>
-<span class="r-in">  <span class="co"># out of a total of m=5 future observations should be contained in the </span></span>
-<span class="r-in">  <span class="co"># prediction interval.  Note that the confidence level is now 98%.</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="fu">predIntNpar</span><span class="op">(</span><span class="va">dat</span>, k <span class="op">=</span> <span class="fl">3</span>, m <span class="op">=</span> <span class="fl">5</span><span class="op">)</span> </span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="co">#Results of Distribution Parameter Estimation</span></span></span>
+<span class="r-in"><span>  <span class="co">#--------------------------------------------</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Assumed Distribution:            None</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Data:                            dat</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Sample Size:                     20</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Prediction Interval Method:      Exact</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Prediction Interval Type:        two-sided</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Confidence Level:                63.33333%</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Prediction Limit Rank(s):        1 20 </span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Number of Future Observations:   5</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Prediction Interval:             LPL = 0.3647875</span></span></span>
+<span class="r-in"><span>  <span class="co">#                                 UPL = 1.8173115</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="co">#----------</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="co"># Repeat the above example, but specify that a minimum of k=3 observations </span></span></span>
+<span class="r-in"><span>  <span class="co"># out of a total of m=5 future observations should be contained in the </span></span></span>
+<span class="r-in"><span>  <span class="co"># prediction interval.  Note that the confidence level is now 98%.</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="fu">predIntNpar</span><span class="op">(</span><span class="va">dat</span>, k <span class="op">=</span> <span class="fl">3</span>, m <span class="op">=</span> <span class="fl">5</span><span class="op">)</span> </span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> $distribution</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] "None"</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
@@ -460,47 +469,47 @@
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> attr(,"class")</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] "estimate"</span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="co">#Results of Distribution Parameter Estimation</span></span>
-<span class="r-in">  <span class="co">#--------------------------------------------</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Assumed Distribution:            None</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Data:                            dat</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Sample Size:                     20</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Prediction Interval Method:      Exact</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Prediction Interval Type:        two-sided</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Confidence Level:                98.37945%</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Prediction Limit Rank(s):        1 20 </span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Minimum Number of</span></span>
-<span class="r-in">  <span class="co">#Future Observations</span></span>
-<span class="r-in">  <span class="co">#Interval Should Contain:         3</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Total Number of</span></span>
-<span class="r-in">  <span class="co">#Future Observations:             5</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Prediction Interval:             LPL = 0.3647875</span></span>
-<span class="r-in">  <span class="co">#                                 UPL = 1.8173115</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="co">#==========</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="co"># Example 18-3 of USEPA (2009, p.18-19) shows how to construct </span></span>
-<span class="r-in">  <span class="co"># a one-sided upper nonparametric prediction interval for the next </span></span>
-<span class="r-in">  <span class="co"># 4 future observations of trichloroethylene (TCE) at a downgradient well.  </span></span>
-<span class="r-in">  <span class="co"># The data for this example are stored in EPA.09.Ex.18.3.TCE.df.  </span></span>
-<span class="r-in">  <span class="co"># There are 6 monthly observations of TCE (ppb) at 3 background wells, </span></span>
-<span class="r-in">  <span class="co"># and 4 monthly observations of TCE at a compliance well.</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="co"># Look at the data</span></span>
-<span class="r-in">  <span class="co">#-----------------</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="va">EPA.09.Ex.18.3.TCE.df</span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="co">#Results of Distribution Parameter Estimation</span></span></span>
+<span class="r-in"><span>  <span class="co">#--------------------------------------------</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Assumed Distribution:            None</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Data:                            dat</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Sample Size:                     20</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Prediction Interval Method:      Exact</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Prediction Interval Type:        two-sided</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Confidence Level:                98.37945%</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Prediction Limit Rank(s):        1 20 </span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Minimum Number of</span></span></span>
+<span class="r-in"><span>  <span class="co">#Future Observations</span></span></span>
+<span class="r-in"><span>  <span class="co">#Interval Should Contain:         3</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Total Number of</span></span></span>
+<span class="r-in"><span>  <span class="co">#Future Observations:             5</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Prediction Interval:             LPL = 0.3647875</span></span></span>
+<span class="r-in"><span>  <span class="co">#                                 UPL = 1.8173115</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="co">#==========</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="co"># Example 18-3 of USEPA (2009, p.18-19) shows how to construct </span></span></span>
+<span class="r-in"><span>  <span class="co"># a one-sided upper nonparametric prediction interval for the next </span></span></span>
+<span class="r-in"><span>  <span class="co"># 4 future observations of trichloroethylene (TCE) at a downgradient well.  </span></span></span>
+<span class="r-in"><span>  <span class="co"># The data for this example are stored in EPA.09.Ex.18.3.TCE.df.  </span></span></span>
+<span class="r-in"><span>  <span class="co"># There are 6 monthly observations of TCE (ppb) at 3 background wells, </span></span></span>
+<span class="r-in"><span>  <span class="co"># and 4 monthly observations of TCE at a compliance well.</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="co"># Look at the data</span></span></span>
+<span class="r-in"><span>  <span class="co">#-----------------</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="va">EPA.09.Ex.18.3.TCE.df</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>    Month Well  Well.type TCE.ppb.orig TCE.ppb Censored</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 1      1 BW-1 Background           &lt;5     5.0     TRUE</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 2      2 BW-1 Background           &lt;5     5.0     TRUE</span>
@@ -526,19 +535,19 @@
 <span class="r-out co"><span class="r-pr">#&gt;</span> 22     4 CW-4 Compliance           &lt;5     5.0     TRUE</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 23     5 CW-4 Compliance            8     8.0    FALSE</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 24     6 CW-4 Compliance           14    14.0    FALSE</span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="co">#   Month Well  Well.type TCE.ppb.orig TCE.ppb Censored</span></span>
-<span class="r-in">  <span class="co">#1      1 BW-1 Background           &lt;5     5.0     TRUE</span></span>
-<span class="r-in">  <span class="co">#2      2 BW-1 Background           &lt;5     5.0     TRUE</span></span>
-<span class="r-in">  <span class="co">#3      3 BW-1 Background            8     8.0    FALSE</span></span>
-<span class="r-in">  <span class="co">#...</span></span>
-<span class="r-in">  <span class="co">#22     4 CW-4 Compliance           &lt;5     5.0     TRUE</span></span>
-<span class="r-in">  <span class="co">#23     5 CW-4 Compliance            8     8.0    FALSE</span></span>
-<span class="r-in">  <span class="co">#24     6 CW-4 Compliance           14    14.0    FALSE</span></span>
-<span class="r-in"></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="fu"><a href="longToWide.html">longToWide</a></span><span class="op">(</span><span class="va">EPA.09.Ex.18.3.TCE.df</span>, <span class="st">"TCE.ppb.orig"</span>, <span class="st">"Month"</span>, <span class="st">"Well"</span>, </span>
-<span class="r-in">    paste.row.name <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="co">#   Month Well  Well.type TCE.ppb.orig TCE.ppb Censored</span></span></span>
+<span class="r-in"><span>  <span class="co">#1      1 BW-1 Background           &lt;5     5.0     TRUE</span></span></span>
+<span class="r-in"><span>  <span class="co">#2      2 BW-1 Background           &lt;5     5.0     TRUE</span></span></span>
+<span class="r-in"><span>  <span class="co">#3      3 BW-1 Background            8     8.0    FALSE</span></span></span>
+<span class="r-in"><span>  <span class="co">#...</span></span></span>
+<span class="r-in"><span>  <span class="co">#22     4 CW-4 Compliance           &lt;5     5.0     TRUE</span></span></span>
+<span class="r-in"><span>  <span class="co">#23     5 CW-4 Compliance            8     8.0    FALSE</span></span></span>
+<span class="r-in"><span>  <span class="co">#24     6 CW-4 Compliance           14    14.0    FALSE</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="fu"><a href="longToWide.html">longToWide</a></span><span class="op">(</span><span class="va">EPA.09.Ex.18.3.TCE.df</span>, <span class="st">"TCE.ppb.orig"</span>, <span class="st">"Month"</span>, <span class="st">"Well"</span>, </span></span>
+<span class="r-in"><span>    paste.row.name <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>         BW-1 BW-2 BW-3 CW-4</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Month.1   &lt;5    7   &lt;5     </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Month.2   &lt;5  6.5   &lt;5     </span>
@@ -546,27 +555,27 @@
 <span class="r-out co"><span class="r-pr">#&gt;</span> Month.4   &lt;5    6   &lt;5   &lt;5</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Month.5    9   12   &lt;5    8</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Month.6   10   &lt;5    9   14</span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="co">#        BW-1 BW-2 BW-3 CW-4</span></span>
-<span class="r-in">  <span class="co">#Month.1   &lt;5    7   &lt;5     </span></span>
-<span class="r-in">  <span class="co">#Month.2   &lt;5  6.5   &lt;5     </span></span>
-<span class="r-in">  <span class="co">#Month.3    8   &lt;5 10.5  7.5</span></span>
-<span class="r-in">  <span class="co">#Month.4   &lt;5    6   &lt;5   &lt;5</span></span>
-<span class="r-in">  <span class="co">#Month.5    9   12   &lt;5    8</span></span>
-<span class="r-in">  <span class="co">#Month.6   10   &lt;5    9   14</span></span>
-<span class="r-in"></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="co"># Construct the prediction limit based on the background well data </span></span>
-<span class="r-in">  <span class="co"># using the maximum value as the upper prediction limit.  </span></span>
-<span class="r-in">  <span class="co"># Note that since all censored observations are censored at one </span></span>
-<span class="r-in">  <span class="co"># censoring level and the censoring level is less than all of the </span></span>
-<span class="r-in">  <span class="co"># uncensored observations, we can just supply the censoring level </span></span>
-<span class="r-in">  <span class="co"># to predIntNpar.</span></span>
-<span class="r-in">  <span class="co">#-----------------------------------------------------------------</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="fu"><a href="https://rdrr.io/r/base/with.html" class="external-link">with</a></span><span class="op">(</span><span class="va">EPA.09.Ex.18.3.TCE.df</span>, </span>
-<span class="r-in">    <span class="fu">predIntNpar</span><span class="op">(</span><span class="va">TCE.ppb</span><span class="op">[</span><span class="va">Well.type</span> <span class="op">==</span> <span class="st">"Background"</span><span class="op">]</span>, </span>
-<span class="r-in">      m <span class="op">=</span> <span class="fl">4</span>, pi.type <span class="op">=</span> <span class="st">"upper"</span>, lb <span class="op">=</span> <span class="fl">0</span><span class="op">)</span><span class="op">)</span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="co">#        BW-1 BW-2 BW-3 CW-4</span></span></span>
+<span class="r-in"><span>  <span class="co">#Month.1   &lt;5    7   &lt;5     </span></span></span>
+<span class="r-in"><span>  <span class="co">#Month.2   &lt;5  6.5   &lt;5     </span></span></span>
+<span class="r-in"><span>  <span class="co">#Month.3    8   &lt;5 10.5  7.5</span></span></span>
+<span class="r-in"><span>  <span class="co">#Month.4   &lt;5    6   &lt;5   &lt;5</span></span></span>
+<span class="r-in"><span>  <span class="co">#Month.5    9   12   &lt;5    8</span></span></span>
+<span class="r-in"><span>  <span class="co">#Month.6   10   &lt;5    9   14</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="co"># Construct the prediction limit based on the background well data </span></span></span>
+<span class="r-in"><span>  <span class="co"># using the maximum value as the upper prediction limit.  </span></span></span>
+<span class="r-in"><span>  <span class="co"># Note that since all censored observations are censored at one </span></span></span>
+<span class="r-in"><span>  <span class="co"># censoring level and the censoring level is less than all of the </span></span></span>
+<span class="r-in"><span>  <span class="co"># uncensored observations, we can just supply the censoring level </span></span></span>
+<span class="r-in"><span>  <span class="co"># to predIntNpar.</span></span></span>
+<span class="r-in"><span>  <span class="co">#-----------------------------------------------------------------</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/r/base/with.html" class="external-link">with</a></span><span class="op">(</span><span class="va">EPA.09.Ex.18.3.TCE.df</span>, </span></span>
+<span class="r-in"><span>    <span class="fu">predIntNpar</span><span class="op">(</span><span class="va">TCE.ppb</span><span class="op">[</span><span class="va">Well.type</span> <span class="op">==</span> <span class="st">"Background"</span><span class="op">]</span>, </span></span>
+<span class="r-in"><span>      m <span class="op">=</span> <span class="fl">4</span>, pi.type <span class="op">=</span> <span class="st">"upper"</span>, lb <span class="op">=</span> <span class="fl">0</span><span class="op">)</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> $distribution</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] "None"</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
@@ -616,51 +625,51 @@
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> attr(,"class")</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] "estimate"</span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="co">#Results of Distribution Parameter Estimation</span></span>
-<span class="r-in">  <span class="co">#--------------------------------------------</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Assumed Distribution:            None</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Data:                            TCE.ppb[Well.type == "Background"]</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Sample Size:                     18</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Prediction Interval Method:      Exact</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Prediction Interval Type:        upper</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Confidence Level:                81.81818%</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Prediction Limit Rank(s):        18 </span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Number of Future Observations:   4</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Prediction Interval:             LPL =  0</span></span>
-<span class="r-in">  <span class="co">#                                 UPL = 12</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="co"># Since the value of 14 ppb for Month 6 at the compliance well exceeds </span></span>
-<span class="r-in">  <span class="co"># the upper prediction limit of 12, we might conclude that there is </span></span>
-<span class="r-in">  <span class="co"># statistically significant evidence of an increase over background </span></span>
-<span class="r-in">  <span class="co"># at CW-4.  However, the confidence level associated with this </span></span>
-<span class="r-in">  <span class="co"># prediction limit is about 82%, which implies a Type I error level of </span></span>
-<span class="r-in">  <span class="co"># 18%.  This means there is nearly a one in five chance of a false positive. </span></span>
-<span class="r-in">  <span class="co"># Only additional background data and/or use of a retesting strategy </span></span>
-<span class="r-in">  <span class="co"># (see predIntNparSimultaneous) would lower the false positive rate.</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="co">#==========</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="co"># Example 18-4 of USEPA (2009, p.18-19) shows how to construct </span></span>
-<span class="r-in">  <span class="co"># a one-sided upper nonparametric prediction interval for the next </span></span>
-<span class="r-in">  <span class="co"># median of order 3 of xylene at a downgradient well.  </span></span>
-<span class="r-in">  <span class="co"># The data for this example are stored in EPA.09.Ex.18.4.xylene.df.  </span></span>
-<span class="r-in">  <span class="co"># There are 8 monthly observations of xylene (ppb) at 3 background wells, </span></span>
-<span class="r-in">  <span class="co"># and 3 montly observations of TCE at a compliance well.</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="co"># Look at the data</span></span>
-<span class="r-in">  <span class="co">#-----------------</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="va">EPA.09.Ex.18.4.xylene.df</span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="co">#Results of Distribution Parameter Estimation</span></span></span>
+<span class="r-in"><span>  <span class="co">#--------------------------------------------</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Assumed Distribution:            None</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Data:                            TCE.ppb[Well.type == "Background"]</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Sample Size:                     18</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Prediction Interval Method:      Exact</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Prediction Interval Type:        upper</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Confidence Level:                81.81818%</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Prediction Limit Rank(s):        18 </span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Number of Future Observations:   4</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Prediction Interval:             LPL =  0</span></span></span>
+<span class="r-in"><span>  <span class="co">#                                 UPL = 12</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="co"># Since the value of 14 ppb for Month 6 at the compliance well exceeds </span></span></span>
+<span class="r-in"><span>  <span class="co"># the upper prediction limit of 12, we might conclude that there is </span></span></span>
+<span class="r-in"><span>  <span class="co"># statistically significant evidence of an increase over background </span></span></span>
+<span class="r-in"><span>  <span class="co"># at CW-4.  However, the confidence level associated with this </span></span></span>
+<span class="r-in"><span>  <span class="co"># prediction limit is about 82%, which implies a Type I error level of </span></span></span>
+<span class="r-in"><span>  <span class="co"># 18%.  This means there is nearly a one in five chance of a false positive. </span></span></span>
+<span class="r-in"><span>  <span class="co"># Only additional background data and/or use of a retesting strategy </span></span></span>
+<span class="r-in"><span>  <span class="co"># (see predIntNparSimultaneous) would lower the false positive rate.</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="co">#==========</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="co"># Example 18-4 of USEPA (2009, p.18-19) shows how to construct </span></span></span>
+<span class="r-in"><span>  <span class="co"># a one-sided upper nonparametric prediction interval for the next </span></span></span>
+<span class="r-in"><span>  <span class="co"># median of order 3 of xylene at a downgradient well.  </span></span></span>
+<span class="r-in"><span>  <span class="co"># The data for this example are stored in EPA.09.Ex.18.4.xylene.df.  </span></span></span>
+<span class="r-in"><span>  <span class="co"># There are 8 monthly observations of xylene (ppb) at 3 background wells, </span></span></span>
+<span class="r-in"><span>  <span class="co"># and 3 montly observations of TCE at a compliance well.</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="co"># Look at the data</span></span></span>
+<span class="r-in"><span>  <span class="co">#-----------------</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="va">EPA.09.Ex.18.4.xylene.df</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>    Month   Well  Well.type Xylene.ppb.orig Xylene.ppb Censored</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 1      1 Well.1 Background              &lt;5        5.0     TRUE</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 2      2 Well.1 Background              &lt;5        5.0     TRUE</span>
@@ -694,18 +703,18 @@
 <span class="r-out co"><span class="r-pr">#&gt;</span> 30     6 Well.4 Compliance              &lt;5        5.0     TRUE</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 31     7 Well.4 Compliance             7.8        7.8    FALSE</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 32     8 Well.4 Compliance            10.4       10.4    FALSE</span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="co">#   Month   Well  Well.type Xylene.ppb.orig Xylene.ppb Censored</span></span>
-<span class="r-in">  <span class="co">#1      1 Well.1 Background              &lt;5        5.0     TRUE</span></span>
-<span class="r-in">  <span class="co">#2      2 Well.1 Background              &lt;5        5.0     TRUE</span></span>
-<span class="r-in">  <span class="co">#3      3 Well.1 Background             7.5        7.5    FALSE</span></span>
-<span class="r-in">  <span class="co">#...</span></span>
-<span class="r-in">  <span class="co">#30     6 Well.4 Compliance              &lt;5        5.0     TRUE</span></span>
-<span class="r-in">  <span class="co">#31     7 Well.4 Compliance             7.8        7.8    FALSE</span></span>
-<span class="r-in">  <span class="co">#32     8 Well.4 Compliance            10.4       10.4    FALSE</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="fu"><a href="longToWide.html">longToWide</a></span><span class="op">(</span><span class="va">EPA.09.Ex.18.4.xylene.df</span>, <span class="st">"Xylene.ppb.orig"</span>, <span class="st">"Month"</span>, <span class="st">"Well"</span>, </span>
-<span class="r-in">    paste.row.name <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="co">#   Month   Well  Well.type Xylene.ppb.orig Xylene.ppb Censored</span></span></span>
+<span class="r-in"><span>  <span class="co">#1      1 Well.1 Background              &lt;5        5.0     TRUE</span></span></span>
+<span class="r-in"><span>  <span class="co">#2      2 Well.1 Background              &lt;5        5.0     TRUE</span></span></span>
+<span class="r-in"><span>  <span class="co">#3      3 Well.1 Background             7.5        7.5    FALSE</span></span></span>
+<span class="r-in"><span>  <span class="co">#...</span></span></span>
+<span class="r-in"><span>  <span class="co">#30     6 Well.4 Compliance              &lt;5        5.0     TRUE</span></span></span>
+<span class="r-in"><span>  <span class="co">#31     7 Well.4 Compliance             7.8        7.8    FALSE</span></span></span>
+<span class="r-in"><span>  <span class="co">#32     8 Well.4 Compliance            10.4       10.4    FALSE</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="fu"><a href="longToWide.html">longToWide</a></span><span class="op">(</span><span class="va">EPA.09.Ex.18.4.xylene.df</span>, <span class="st">"Xylene.ppb.orig"</span>, <span class="st">"Month"</span>, <span class="st">"Well"</span>, </span></span>
+<span class="r-in"><span>    paste.row.name <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>         Well.1 Well.2 Well.3 Well.4</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Month.1     &lt;5    9.2     &lt;5       </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Month.2     &lt;5     &lt;5    5.4       </span>
@@ -715,33 +724,33 @@
 <span class="r-out co"><span class="r-pr">#&gt;</span> Month.6     &lt;5    5.9     &lt;5     &lt;5</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Month.7    6.4     &lt;5     &lt;5    7.8</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Month.8      6     &lt;5     &lt;5   10.4</span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="co">#        Well.1 Well.2 Well.3 Well.4</span></span>
-<span class="r-in">  <span class="co">#Month.1     &lt;5    9.2     &lt;5       </span></span>
-<span class="r-in">  <span class="co">#Month.2     &lt;5     &lt;5    5.4       </span></span>
-<span class="r-in">  <span class="co">#Month.3    7.5     &lt;5    6.7       </span></span>
-<span class="r-in">  <span class="co">#Month.4     &lt;5    6.1     &lt;5       </span></span>
-<span class="r-in">  <span class="co">#Month.5     &lt;5      8     &lt;5       </span></span>
-<span class="r-in">  <span class="co">#Month.6     &lt;5    5.9     &lt;5     &lt;5</span></span>
-<span class="r-in">  <span class="co">#Month.7    6.4     &lt;5     &lt;5    7.8</span></span>
-<span class="r-in">  <span class="co">#Month.8      6     &lt;5     &lt;5   10.4</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="co"># Construct the prediction limit based on the background well data </span></span>
-<span class="r-in">  <span class="co"># using the maximum value as the upper prediction limit. </span></span>
-<span class="r-in">  <span class="co"># Note that since all censored observations are censored at one </span></span>
-<span class="r-in">  <span class="co"># censoring level and the censoring level is less than all of the </span></span>
-<span class="r-in">  <span class="co"># uncensored observations, we can just supply the censoring level </span></span>
-<span class="r-in">  <span class="co"># to predIntNpar.</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co"># To compute a prediction interval for a median of order 3 (i.e., </span></span>
-<span class="r-in">  <span class="co"># a median based on 3 observations), this is equivalent to </span></span>
-<span class="r-in">  <span class="co"># constructing a nonparametric prediction interval that must hold </span></span>
-<span class="r-in">  <span class="co"># at least 2 of the next 3 future observations.</span></span>
-<span class="r-in">  <span class="co">#-----------------------------------------------------------------</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="fu"><a href="https://rdrr.io/r/base/with.html" class="external-link">with</a></span><span class="op">(</span><span class="va">EPA.09.Ex.18.4.xylene.df</span>, </span>
-<span class="r-in">    <span class="fu">predIntNpar</span><span class="op">(</span><span class="va">Xylene.ppb</span><span class="op">[</span><span class="va">Well.type</span> <span class="op">==</span> <span class="st">"Background"</span><span class="op">]</span>, </span>
-<span class="r-in">      k <span class="op">=</span> <span class="fl">2</span>, m <span class="op">=</span> <span class="fl">3</span>, pi.type <span class="op">=</span> <span class="st">"upper"</span>, lb <span class="op">=</span> <span class="fl">0</span><span class="op">)</span><span class="op">)</span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="co">#        Well.1 Well.2 Well.3 Well.4</span></span></span>
+<span class="r-in"><span>  <span class="co">#Month.1     &lt;5    9.2     &lt;5       </span></span></span>
+<span class="r-in"><span>  <span class="co">#Month.2     &lt;5     &lt;5    5.4       </span></span></span>
+<span class="r-in"><span>  <span class="co">#Month.3    7.5     &lt;5    6.7       </span></span></span>
+<span class="r-in"><span>  <span class="co">#Month.4     &lt;5    6.1     &lt;5       </span></span></span>
+<span class="r-in"><span>  <span class="co">#Month.5     &lt;5      8     &lt;5       </span></span></span>
+<span class="r-in"><span>  <span class="co">#Month.6     &lt;5    5.9     &lt;5     &lt;5</span></span></span>
+<span class="r-in"><span>  <span class="co">#Month.7    6.4     &lt;5     &lt;5    7.8</span></span></span>
+<span class="r-in"><span>  <span class="co">#Month.8      6     &lt;5     &lt;5   10.4</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="co"># Construct the prediction limit based on the background well data </span></span></span>
+<span class="r-in"><span>  <span class="co"># using the maximum value as the upper prediction limit. </span></span></span>
+<span class="r-in"><span>  <span class="co"># Note that since all censored observations are censored at one </span></span></span>
+<span class="r-in"><span>  <span class="co"># censoring level and the censoring level is less than all of the </span></span></span>
+<span class="r-in"><span>  <span class="co"># uncensored observations, we can just supply the censoring level </span></span></span>
+<span class="r-in"><span>  <span class="co"># to predIntNpar.</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co"># To compute a prediction interval for a median of order 3 (i.e., </span></span></span>
+<span class="r-in"><span>  <span class="co"># a median based on 3 observations), this is equivalent to </span></span></span>
+<span class="r-in"><span>  <span class="co"># constructing a nonparametric prediction interval that must hold </span></span></span>
+<span class="r-in"><span>  <span class="co"># at least 2 of the next 3 future observations.</span></span></span>
+<span class="r-in"><span>  <span class="co">#-----------------------------------------------------------------</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/r/base/with.html" class="external-link">with</a></span><span class="op">(</span><span class="va">EPA.09.Ex.18.4.xylene.df</span>, </span></span>
+<span class="r-in"><span>    <span class="fu">predIntNpar</span><span class="op">(</span><span class="va">Xylene.ppb</span><span class="op">[</span><span class="va">Well.type</span> <span class="op">==</span> <span class="st">"Background"</span><span class="op">]</span>, </span></span>
+<span class="r-in"><span>      k <span class="op">=</span> <span class="fl">2</span>, m <span class="op">=</span> <span class="fl">3</span>, pi.type <span class="op">=</span> <span class="st">"upper"</span>, lb <span class="op">=</span> <span class="fl">0</span><span class="op">)</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> $distribution</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] "None"</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
@@ -791,45 +800,45 @@
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> attr(,"class")</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] "estimate"</span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="co">#Results of Distribution Parameter Estimation</span></span>
-<span class="r-in">  <span class="co">#--------------------------------------------</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Assumed Distribution:            None</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Data:                            Xylene.ppb[Well.type == "Background"]</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Sample Size:                     24</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Prediction Interval Method:      Exact</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Prediction Interval Type:        upper</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Confidence Level:                99.1453%</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Prediction Limit Rank(s):        24 </span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Minimum Number of</span></span>
-<span class="r-in">  <span class="co">#Future Observations</span></span>
-<span class="r-in">  <span class="co">#Interval Should Contain:         2</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Total Number of</span></span>
-<span class="r-in">  <span class="co">#Future Observations:             3</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Prediction Interval:             LPL = 0.0</span></span>
-<span class="r-in">  <span class="co">#                                 UPL = 9.2</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="co"># The Month 8 observation at the Complance well is 10.4 ppb of Xylene, </span></span>
-<span class="r-in">  <span class="co"># which is greater than the upper prediction limit of 9.2 ppb, so</span></span>
-<span class="r-in">  <span class="co"># conclude there is evidence of contamination at the </span></span>
-<span class="r-in">  <span class="co"># 100% - 99% = 1% Type I Error Level</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="co">#==========</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="co"># Cleanup</span></span>
-<span class="r-in">  <span class="co">#--------</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="fu"><a href="https://rdrr.io/r/base/rm.html" class="external-link">rm</a></span><span class="op">(</span><span class="va">dat</span><span class="op">)</span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="co">#Results of Distribution Parameter Estimation</span></span></span>
+<span class="r-in"><span>  <span class="co">#--------------------------------------------</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Assumed Distribution:            None</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Data:                            Xylene.ppb[Well.type == "Background"]</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Sample Size:                     24</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Prediction Interval Method:      Exact</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Prediction Interval Type:        upper</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Confidence Level:                99.1453%</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Prediction Limit Rank(s):        24 </span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Minimum Number of</span></span></span>
+<span class="r-in"><span>  <span class="co">#Future Observations</span></span></span>
+<span class="r-in"><span>  <span class="co">#Interval Should Contain:         2</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Total Number of</span></span></span>
+<span class="r-in"><span>  <span class="co">#Future Observations:             3</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Prediction Interval:             LPL = 0.0</span></span></span>
+<span class="r-in"><span>  <span class="co">#                                 UPL = 9.2</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="co"># The Month 8 observation at the Complance well is 10.4 ppb of Xylene, </span></span></span>
+<span class="r-in"><span>  <span class="co"># which is greater than the upper prediction limit of 9.2 ppb, so</span></span></span>
+<span class="r-in"><span>  <span class="co"># conclude there is evidence of contamination at the </span></span></span>
+<span class="r-in"><span>  <span class="co"># 100% - 99% = 1% Type I Error Level</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="co">#==========</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="co"># Cleanup</span></span></span>
+<span class="r-in"><span>  <span class="co">#--------</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/r/base/rm.html" class="external-link">rm</a></span><span class="op">(</span><span class="va">dat</span><span class="op">)</span></span></span>
 </code></pre></div>
     </div>
   </div>
@@ -844,7 +853,7 @@
 </div>
 
 <div class="pkgdown">
-  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.2.</p>
+  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.6.</p>
 </div>
 
       </footer></div>

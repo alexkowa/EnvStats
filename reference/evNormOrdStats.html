@@ -52,55 +52,65 @@
     </div>
 
     <div id="ref-usage">
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="fu">evNormOrdStats</span><span class="op">(</span>n <span class="op">=</span> <span class="fl">1</span>, 
-    method <span class="op">=</span> <span class="st">"royston"</span>, lower <span class="op">=</span> <span class="op">-</span><span class="fl">9</span>, inc <span class="op">=</span> <span class="fl">0.025</span>, warn <span class="op">=</span> <span class="cn">TRUE</span>, 
-    alpha <span class="op">=</span> <span class="fl">3</span><span class="op">/</span><span class="fl">8</span>, nmc <span class="op">=</span> <span class="fl">2000</span>, seed <span class="op">=</span> <span class="fl">47</span>, approximate <span class="op">=</span> <span class="cn">NULL</span><span class="op">)</span>
-
-  <span class="fu">evNormOrdStatsScalar</span><span class="op">(</span>r <span class="op">=</span> <span class="fl">1</span>, n <span class="op">=</span> <span class="fl">1</span>, 
-    method <span class="op">=</span> <span class="st">"royston"</span>, lower <span class="op">=</span> <span class="op">-</span><span class="fl">9</span>, inc <span class="op">=</span> <span class="fl">0.025</span>, warn <span class="op">=</span> <span class="cn">TRUE</span>, 
-    alpha <span class="op">=</span> <span class="fl">3</span><span class="op">/</span><span class="fl">8</span>, nmc <span class="op">=</span> <span class="fl">2000</span>, conf.level <span class="op">=</span> <span class="fl">0.95</span>, seed <span class="op">=</span> <span class="fl">47</span>, approximate <span class="op">=</span> <span class="cn">NULL</span><span class="op">)</span></code></pre></div>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">evNormOrdStats</span><span class="op">(</span>n <span class="op">=</span> <span class="fl">1</span>, </span>
+<span>    method <span class="op">=</span> <span class="st">"royston"</span>, lower <span class="op">=</span> <span class="op">-</span><span class="fl">9</span>, inc <span class="op">=</span> <span class="fl">0.025</span>, warn <span class="op">=</span> <span class="cn">TRUE</span>, </span>
+<span>    alpha <span class="op">=</span> <span class="fl">3</span><span class="op">/</span><span class="fl">8</span>, nmc <span class="op">=</span> <span class="fl">2000</span>, seed <span class="op">=</span> <span class="fl">47</span>, approximate <span class="op">=</span> <span class="cn">NULL</span><span class="op">)</span></span>
+<span></span>
+<span>  <span class="fu">evNormOrdStatsScalar</span><span class="op">(</span>r <span class="op">=</span> <span class="fl">1</span>, n <span class="op">=</span> <span class="fl">1</span>, </span>
+<span>    method <span class="op">=</span> <span class="st">"royston"</span>, lower <span class="op">=</span> <span class="op">-</span><span class="fl">9</span>, inc <span class="op">=</span> <span class="fl">0.025</span>, warn <span class="op">=</span> <span class="cn">TRUE</span>, </span>
+<span>    alpha <span class="op">=</span> <span class="fl">3</span><span class="op">/</span><span class="fl">8</span>, nmc <span class="op">=</span> <span class="fl">2000</span>, conf.level <span class="op">=</span> <span class="fl">0.95</span>, seed <span class="op">=</span> <span class="fl">47</span>, approximate <span class="op">=</span> <span class="cn">NULL</span><span class="op">)</span></span></code></pre></div>
     </div>
 
     <div id="arguments">
     <h2>Arguments</h2>
     <dl><dt>n</dt>
 <dd><p>positive integer indicating the sample size.</p></dd>
-<dt>r</dt>
+
+  <dt>r</dt>
 <dd><p>positive integer between <code>1</code> and <code>n</code> specifying the order statistic 
   for which to compute the expected value.</p></dd>
-<dt>method</dt>
+
+  <dt>method</dt>
 <dd><p>character string indicating what method to use.  The possible values are:</p><ul><li><p><code>"royston"</code>.  Method based on approximating the exact integral as 
           given in Royston (1982).</p></li>
 <li><p><code>"blom"</code>.  Method based on the approximation formula proposed by 
           Blom (1958).</p></li>
 <li><p><code>"mc"</code>.  Method based on Monte Carlo simulation.</p></li>
 </ul><p>See the DETAILS section below.</p></dd>
-<dt>lower</dt>
+
+  <dt>lower</dt>
 <dd><p>numeric scalar \(\le -9\) defining the lower bound used for approximating the 
   integral when <code>method="royston"</code>.  The upper bound is automatically set 
   to <code>-lower</code>.  The default value is <code>lower=-9</code>.</p></dd>
-<dt>inc</dt>
+
+  <dt>inc</dt>
 <dd><p>numeric scalar between <code>.Machine$double.eps</code> and <code>0.025</code> that determines 
   the width of each subdivision used to approximate the integral when <br><code>method="royston"</code>.  The default value is <code>inc=0.025</code>.</p></dd>
-<dt>warn</dt>
+
+  <dt>warn</dt>
 <dd><p>logical scalar indicating whether to issue a warning when 
   <code>method="royston"</code> and the sample size is greater than 2000.  
   The default value is <code>warn=TRUE</code>.</p></dd>
-<dt>alpha</dt>
+
+  <dt>alpha</dt>
 <dd><p>numeric scalar between 0 and 0.5 that determines the constant used when <br><code>method="blom"</code>.  The default value is <code>alpha=3/8</code>.</p></dd>
-<dt>nmc</dt>
+
+  <dt>nmc</dt>
 <dd><p>integer \(\ge 100\) denoting the number of Monte Carlo simulations to use 
   when <code>method="mc"</code>.  The default value is <code>nmc=2000</code>.</p></dd>
-<dt>conf.level</dt>
+
+  <dt>conf.level</dt>
 <dd><p>numeric scalar between 0 and 1 denoting the confidence level of 
   the confidence interval for the expected value of the normal 
   order statistic when <code>method="mc"</code>.  
   The default value is <code>conf.level=0.95</code>.</p></dd>
-<dt>seed</dt>
+
+  <dt>seed</dt>
 <dd><p>integer between \(-(2^31 - 1)\) and \(2^31 - 1\) specifying 
   the argument to <code><a href="https://rdrr.io/r/base/Random.html" class="external-link">set.seed</a></code> (the random number seed) 
   when <code>method="mc"</code>.  The default value is <code>seed=47</code>.</p></dd>
-<dt>approximate</dt>
+
+  <dt>approximate</dt>
 <dd><p>logical scalar included for backwards compatibility with versions of 
   <span class="pkg">EnvStats</span> prior to version 2.3.0.  
   When <code>method</code> is not supplied and <br><code>approximate=FALSE</code>, <code>method</code> is set to <code>method="royston"</code>.  
@@ -108,6 +118,7 @@
   <code>method</code> is set to <code>method="blom"</code>.  
   This argument is ignored if <code>method</code> is supplied and/or 
   <code>approxmiate=NULL</code> (the default).</p></dd>
+
 </dl></div>
     <div id="details">
     <h2>Details</h2>
@@ -177,12 +188,23 @@
     </div>
     <div id="value">
     <h2>Value</h2>
-    <p>For <code>evNormOrdStats</code>: a numeric vector of length <code>n</code> containing the 
-  expected values of all the order statistics for a random sample of <code>n</code>  standard normal deviates.
-  For <code>evNormOrdStatsScalar</code>: a numeric scalar containing the expected value 
+    
+
+<p>For <code>evNormOrdStats</code>: a numeric vector of length <code>n</code> containing the 
+  expected values of all the order statistics for a random sample of <code>n</code></p>
+ 
+
+<p>standard normal deviates.</p>
+
+
+<p>For <code>evNormOrdStatsScalar</code>: a numeric scalar containing the expected value 
   of the <code>r</code>'th order statistic from a random sample of <code>n</code> standard 
-  normal deviates.  When <code>method="mc"</code>, the returned object also has a 
-<code>cont.int</code> attribute that contains the 95<!-- % confidence interval for the expected value,  -->  and a <code>nmc</code> attribute indicating the number of Monte Carlo trials run.</p>
+  normal deviates.  When <code>method="mc"</code>, the returned object also has a</p>
+<p></p>
+<p><code>cont.int</code> attribute that contains the 95<!-- % confidence interval for the expected value,  --></p>
+
+
+<p>and a <code>nmc</code> attribute indicating the number of Monte Carlo trials run.</p>
     </div>
     <div id="references">
     <h2>References</h2>
@@ -219,61 +241,61 @@
 
     <div id="ref-examples">
     <h2>Examples</h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in">  <span class="co"># Compute the expected value of the minimum for a random sample of size 10 </span></span>
-<span class="r-in">  <span class="co"># from a standard normal distribution:</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="co"># Based on method="royston"</span></span>
-<span class="r-in">  <span class="co">#--------------------------</span></span>
-<span class="r-in">  <span class="fu">evNormOrdStatsScalar</span><span class="op">(</span>r <span class="op">=</span> <span class="fl">1</span>, n <span class="op">=</span> <span class="fl">10</span><span class="op">)</span> </span>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span>  <span class="co"># Compute the expected value of the minimum for a random sample of size 10 </span></span></span>
+<span class="r-in"><span>  <span class="co"># from a standard normal distribution:</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="co"># Based on method="royston"</span></span></span>
+<span class="r-in"><span>  <span class="co">#--------------------------</span></span></span>
+<span class="r-in"><span>  <span class="fu">evNormOrdStatsScalar</span><span class="op">(</span>r <span class="op">=</span> <span class="fl">1</span>, n <span class="op">=</span> <span class="fl">10</span><span class="op">)</span> </span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] -1.538753</span>
-<span class="r-in">  <span class="co">#[1] -1.538753</span></span>
-<span class="r-in"></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="co"># Based on method="blom"</span></span>
-<span class="r-in">  <span class="co">#-----------------------</span></span>
-<span class="r-in">  <span class="fu">evNormOrdStatsScalar</span><span class="op">(</span>r <span class="op">=</span> <span class="fl">1</span>, n <span class="op">=</span> <span class="fl">10</span>, method <span class="op">=</span> <span class="st">"blom"</span><span class="op">)</span> </span>
+<span class="r-in"><span>  <span class="co">#[1] -1.538753</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="co"># Based on method="blom"</span></span></span>
+<span class="r-in"><span>  <span class="co">#-----------------------</span></span></span>
+<span class="r-in"><span>  <span class="fu">evNormOrdStatsScalar</span><span class="op">(</span>r <span class="op">=</span> <span class="fl">1</span>, n <span class="op">=</span> <span class="fl">10</span>, method <span class="op">=</span> <span class="st">"blom"</span><span class="op">)</span> </span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] -1.546635</span>
-<span class="r-in">  <span class="co">#[1] -1.546635</span></span>
-<span class="r-in"></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="co"># Based on method="mc" with 10,000 Monte Carlo trials</span></span>
-<span class="r-in">  <span class="co">#----------------------------------------------------</span></span>
-<span class="r-in">  <span class="fu">evNormOrdStatsScalar</span><span class="op">(</span>r <span class="op">=</span> <span class="fl">1</span>, n <span class="op">=</span> <span class="fl">10</span>, method <span class="op">=</span> <span class="st">"mc"</span>, nmc <span class="op">=</span> <span class="fl">10000</span><span class="op">)</span> </span>
+<span class="r-in"><span>  <span class="co">#[1] -1.546635</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="co"># Based on method="mc" with 10,000 Monte Carlo trials</span></span></span>
+<span class="r-in"><span>  <span class="co">#----------------------------------------------------</span></span></span>
+<span class="r-in"><span>  <span class="fu">evNormOrdStatsScalar</span><span class="op">(</span>r <span class="op">=</span> <span class="fl">1</span>, n <span class="op">=</span> <span class="fl">10</span>, method <span class="op">=</span> <span class="st">"mc"</span>, nmc <span class="op">=</span> <span class="fl">10000</span><span class="op">)</span> </span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] -1.544318</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> attr(,"confint")</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>    95%LCL    95%UCL </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> -1.555838 -1.532797 </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> attr(,"nmc")</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] 10000</span>
-<span class="r-in">  <span class="co">#[1] -1.544318</span></span>
-<span class="r-in">  <span class="co">#attr(,"confint")</span></span>
-<span class="r-in">  <span class="co">#   95%LCL    95%UCL </span></span>
-<span class="r-in">  <span class="co">#-1.555838 -1.532797 </span></span>
-<span class="r-in">  <span class="co">#attr(,"nmc")</span></span>
-<span class="r-in">  <span class="co">#[1] 10000</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="co">#====================</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="co"># Compute the expected values of all of the order statistics </span></span>
-<span class="r-in">  <span class="co"># for a random sample of size 10 from a standard normal distribution</span></span>
-<span class="r-in">  <span class="co"># based on Royston's (1982) method:</span></span>
-<span class="r-in">  <span class="co">#--------------------------------------------------------------------</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="fu">evNormOrdStats</span><span class="op">(</span><span class="fl">10</span><span class="op">)</span> </span>
+<span class="r-in"><span>  <span class="co">#[1] -1.544318</span></span></span>
+<span class="r-in"><span>  <span class="co">#attr(,"confint")</span></span></span>
+<span class="r-in"><span>  <span class="co">#   95%LCL    95%UCL </span></span></span>
+<span class="r-in"><span>  <span class="co">#-1.555838 -1.532797 </span></span></span>
+<span class="r-in"><span>  <span class="co">#attr(,"nmc")</span></span></span>
+<span class="r-in"><span>  <span class="co">#[1] 10000</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="co">#====================</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="co"># Compute the expected values of all of the order statistics </span></span></span>
+<span class="r-in"><span>  <span class="co"># for a random sample of size 10 from a standard normal distribution</span></span></span>
+<span class="r-in"><span>  <span class="co"># based on Royston's (1982) method:</span></span></span>
+<span class="r-in"><span>  <span class="co">#--------------------------------------------------------------------</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="fu">evNormOrdStats</span><span class="op">(</span><span class="fl">10</span><span class="op">)</span> </span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  [1] -1.5387527 -1.0013570 -0.6560591 -0.3757647 -0.1226678  0.1226678</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  [7]  0.3757647  0.6560591  1.0013570  1.5387527</span>
-<span class="r-in">  <span class="co">#[1] -1.5387527 -1.0013570 -0.6560591 -0.3757647 -0.1226678</span></span>
-<span class="r-in">  <span class="co">#[6]  0.1226678  0.3757647  0.6560591  1.0013570  1.5387527</span></span>
-<span class="r-in"></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="co"># Compare the above with Blom (1958) scores:</span></span>
-<span class="r-in">  <span class="co">#-------------------------------------------</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="fu">evNormOrdStats</span><span class="op">(</span><span class="fl">10</span>, method <span class="op">=</span> <span class="st">"blom"</span><span class="op">)</span> </span>
+<span class="r-in"><span>  <span class="co">#[1] -1.5387527 -1.0013570 -0.6560591 -0.3757647 -0.1226678</span></span></span>
+<span class="r-in"><span>  <span class="co">#[6]  0.1226678  0.3757647  0.6560591  1.0013570  1.5387527</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="co"># Compare the above with Blom (1958) scores:</span></span></span>
+<span class="r-in"><span>  <span class="co">#-------------------------------------------</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="fu">evNormOrdStats</span><span class="op">(</span><span class="fl">10</span>, method <span class="op">=</span> <span class="st">"blom"</span><span class="op">)</span> </span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  [1] -1.5466353 -1.0004905 -0.6554235 -0.3754618 -0.1225808  0.1225808</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  [7]  0.3754618  0.6554235  1.0004905  1.5466353</span>
-<span class="r-in">  <span class="co">#[1] -1.5466353 -1.0004905 -0.6554235 -0.3754618 -0.1225808</span></span>
-<span class="r-in">  <span class="co">#[6]  0.1225808  0.3754618  0.6554235  1.0004905  1.5466353</span></span>
+<span class="r-in"><span>  <span class="co">#[1] -1.5466353 -1.0004905 -0.6554235 -0.3754618 -0.1225808</span></span></span>
+<span class="r-in"><span>  <span class="co">#[6]  0.1225808  0.3754618  0.6554235  1.0004905  1.5466353</span></span></span>
 </code></pre></div>
     </div>
   </div>
@@ -288,7 +310,7 @@
 </div>
 
 <div class="pkgdown">
-  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.2.</p>
+  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.6.</p>
 </div>
 
       </footer></div>

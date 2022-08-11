@@ -54,35 +54,41 @@
     </div>
 
     <div id="ref-usage">
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="fu">elnorm</span><span class="op">(</span><span class="va">x</span>, method <span class="op">=</span> <span class="st">"mvue"</span>, ci <span class="op">=</span> <span class="cn">FALSE</span>, ci.type <span class="op">=</span> <span class="st">"two-sided"</span>, 
-    ci.method <span class="op">=</span> <span class="st">"exact"</span>, conf.level <span class="op">=</span> <span class="fl">0.95</span><span class="op">)</span></code></pre></div>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">elnorm</span><span class="op">(</span><span class="va">x</span>, method <span class="op">=</span> <span class="st">"mvue"</span>, ci <span class="op">=</span> <span class="cn">FALSE</span>, ci.type <span class="op">=</span> <span class="st">"two-sided"</span>, </span>
+<span>    ci.method <span class="op">=</span> <span class="st">"exact"</span>, conf.level <span class="op">=</span> <span class="fl">0.95</span><span class="op">)</span></span></code></pre></div>
     </div>
 
     <div id="arguments">
     <h2>Arguments</h2>
     <dl><dt>x</dt>
 <dd><p>numeric vector of observations.</p></dd>
-<dt>method</dt>
+
+  <dt>method</dt>
 <dd><p>character string specifying the method of estimation.  Possible values are 
   <code>"mvue"</code> (minimum variance unbiased; the default), and <code>"mle/mme"</code> 
   (maximum likelihood/method of moments).    
   See the DETAILS section for more information on these estimation methods.</p></dd>
-<dt>ci</dt>
+
+  <dt>ci</dt>
 <dd><p>logical scalar indicating whether to compute a confidence interval for the 
   mean.  The default value is <code>FALSE</code>.</p></dd>
-<dt>ci.type</dt>
+
+  <dt>ci.type</dt>
 <dd><p>character string indicating what kind of confidence interval to compute.  The 
   possible values are <code>"two-sided"</code> (the default), <code>"lower"</code>, and 
   <code>"upper"</code>.  This argument is ignored if <code>ci=FALSE</code>.</p></dd>
-<dt>ci.method</dt>
+
+  <dt>ci.method</dt>
 <dd><p>character string indicating what method to use to construct the confidence interval 
   for the mean or variance.  The only possible value is <code>"exact"</code> (the default).  
   See the DETAILS section for more information.  This argument is ignored if 
   <code>ci=FALSE</code>.</p></dd>
-<dt>conf.level</dt>
+
+  <dt>conf.level</dt>
 <dd><p>a scalar between 0 and 1 indicating the confidence level of the confidence interval.  
   The default value is <code>conf.level=0.95</code>. This argument is ignored if 
   <code>ci=FALSE</code>.</p></dd>
+
 </dl></div>
     <div id="details">
     <h2>Details</h2>
@@ -99,8 +105,12 @@
     </div>
     <div id="value">
     <h2>Value</h2>
-    <p>a list of class <code>"estimate"</code> containing the estimated parameters and other information.  
-  See <br><code><a href="estimate.object.html">estimate.object</a></code> for details.</p>
+    
+
+<p>a list of class <code>"estimate"</code> containing the estimated parameters and other information.  
+  See <br></p>
+<p></p>
+<p><code><a href="estimate.object.html">estimate.object</a></code> for details.</p>
     </div>
     <div id="references">
     <h2>References</h2>
@@ -147,11 +157,11 @@
 
     <div id="ref-examples">
     <h2>Examples</h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in">  <span class="co"># Using the Reference area TcCB data in the data frame EPA.94b.tccb.df, </span></span>
-<span class="r-in">  <span class="co"># estimate the mean and standard deviation of the log-transformed distribution, </span></span>
-<span class="r-in">  <span class="co"># and construct a 95% confidence interval for the mean.</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="fu"><a href="https://rdrr.io/r/base/with.html" class="external-link">with</a></span><span class="op">(</span><span class="va">EPA.94b.tccb.df</span>, <span class="fu">elnorm</span><span class="op">(</span><span class="va">TcCB</span><span class="op">[</span><span class="va">Area</span> <span class="op">==</span> <span class="st">"Reference"</span><span class="op">]</span>, ci <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span><span class="op">)</span>  </span>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span>  <span class="co"># Using the Reference area TcCB data in the data frame EPA.94b.tccb.df, </span></span></span>
+<span class="r-in"><span>  <span class="co"># estimate the mean and standard deviation of the log-transformed distribution, </span></span></span>
+<span class="r-in"><span>  <span class="co"># and construct a 95% confidence interval for the mean.</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/r/base/with.html" class="external-link">with</a></span><span class="op">(</span><span class="va">EPA.94b.tccb.df</span>, <span class="fu">elnorm</span><span class="op">(</span><span class="va">TcCB</span><span class="op">[</span><span class="va">Area</span> <span class="op">==</span> <span class="st">"Reference"</span><span class="op">]</span>, ci <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span><span class="op">)</span>  </span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> $distribution</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] "Lognormal"</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
@@ -205,31 +215,31 @@
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> attr(,"class")</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] "estimate"</span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="co">#Results of Distribution Parameter Estimation</span></span>
-<span class="r-in">  <span class="co">#--------------------------------------------</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Assumed Distribution:            Lognormal</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Estimated Parameter(s):          meanlog = -0.6195712</span></span>
-<span class="r-in">  <span class="co">#                                 sdlog   =  0.4679530</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Estimation Method:               mvue</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Data:                            TcCB[Area == "Reference"]</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Sample Size:                     47</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Confidence Interval for:         mean</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Confidence Interval Method:      Exact</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Confidence Interval Type:        two-sided</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Confidence Level:                95%</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Confidence Interval:             LCL = -0.7569673</span></span>
-<span class="r-in">  <span class="co">#                                 UCL = -0.4821751</span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="co">#Results of Distribution Parameter Estimation</span></span></span>
+<span class="r-in"><span>  <span class="co">#--------------------------------------------</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Assumed Distribution:            Lognormal</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Estimated Parameter(s):          meanlog = -0.6195712</span></span></span>
+<span class="r-in"><span>  <span class="co">#                                 sdlog   =  0.4679530</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Estimation Method:               mvue</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Data:                            TcCB[Area == "Reference"]</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Sample Size:                     47</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Confidence Interval for:         mean</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Confidence Interval Method:      Exact</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Confidence Interval Type:        two-sided</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Confidence Level:                95%</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Confidence Interval:             LCL = -0.7569673</span></span></span>
+<span class="r-in"><span>  <span class="co">#                                 UCL = -0.4821751</span></span></span>
 </code></pre></div>
     </div>
   </div>
@@ -244,7 +254,7 @@
 </div>
 
 <div class="pkgdown">
-  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.2.</p>
+  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.6.</p>
 </div>
 
       </footer></div>

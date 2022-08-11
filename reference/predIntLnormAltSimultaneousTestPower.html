@@ -56,10 +56,10 @@
     </div>
 
     <div id="ref-usage">
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="fu">predIntLnormAltSimultaneousTestPower</span><span class="op">(</span><span class="va">n</span>, df <span class="op">=</span> <span class="va">n</span> <span class="op">-</span> <span class="fl">1</span>, n.geomean <span class="op">=</span> <span class="fl">1</span>, k <span class="op">=</span> <span class="fl">1</span>, 
-    m <span class="op">=</span> <span class="fl">2</span>, r <span class="op">=</span> <span class="fl">1</span>, rule <span class="op">=</span> <span class="st">"k.of.m"</span>, ratio.of.means <span class="op">=</span> <span class="fl">1</span>, cv <span class="op">=</span> <span class="fl">1</span>, pi.type <span class="op">=</span> <span class="st">"upper"</span>, 
-    conf.level <span class="op">=</span> <span class="fl">0.95</span>, r.shifted <span class="op">=</span> <span class="va">r</span>, K.tol <span class="op">=</span> <span class="va">.Machine</span><span class="op">$</span><span class="va">double.eps</span><span class="op">^</span><span class="fl">0.5</span>, 
-    integrate.args.list <span class="op">=</span> <span class="cn">NULL</span><span class="op">)</span></code></pre></div>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">predIntLnormAltSimultaneousTestPower</span><span class="op">(</span><span class="va">n</span>, df <span class="op">=</span> <span class="va">n</span> <span class="op">-</span> <span class="fl">1</span>, n.geomean <span class="op">=</span> <span class="fl">1</span>, k <span class="op">=</span> <span class="fl">1</span>, </span>
+<span>    m <span class="op">=</span> <span class="fl">2</span>, r <span class="op">=</span> <span class="fl">1</span>, rule <span class="op">=</span> <span class="st">"k.of.m"</span>, ratio.of.means <span class="op">=</span> <span class="fl">1</span>, cv <span class="op">=</span> <span class="fl">1</span>, pi.type <span class="op">=</span> <span class="st">"upper"</span>, </span>
+<span>    conf.level <span class="op">=</span> <span class="fl">0.95</span>, r.shifted <span class="op">=</span> <span class="va">r</span>, K.tol <span class="op">=</span> <span class="va">.Machine</span><span class="op">$</span><span class="va">double.eps</span><span class="op">^</span><span class="fl">0.5</span>, </span>
+<span>    integrate.args.list <span class="op">=</span> <span class="cn">NULL</span><span class="op">)</span></span></code></pre></div>
     </div>
 
     <div id="arguments">
@@ -67,66 +67,80 @@
     <dl><dt>n</dt>
 <dd><p>vector of positive integers greater than 2 indicating the sample size upon which 
   the prediction interval is based.</p></dd>
-<dt>df</dt>
+
+  <dt>df</dt>
 <dd><p>vector of positive integers indicating the degrees of freedom associated with 
   the sample size.  The default value is <code>df=n-1</code>.</p></dd>
-<dt>n.geomean</dt>
+
+  <dt>n.geomean</dt>
 <dd><p>positive integer specifying the sample size associated with the future geometric 
   means.  
   The default value is <code>n.geomean=1</code> (i.e., individual observations).  Note 
   that all future geometric means must be based on the same sample size.</p></dd>
-<dt>k</dt>
+
+  <dt>k</dt>
 <dd><p>for the \(k\)-of-\(m\) rule (<code>rule="k.of.m"</code>), vector of positive integers 
   specifying the minimum number of observations (or averages) out of \(m\) 
   observations (or averages) (all obtained on one future sampling “occassion”) 
   the prediction interval should contain with confidence level <code>conf.level</code>.  
   The default value is <code>k=1</code>.  This argument is ignored when the argument 
   <code>rule</code> is not equal to <code>"k.of.m"</code>.</p></dd>
-<dt>m</dt>
+
+  <dt>m</dt>
 <dd><p>vector of positive integers specifying the maximum number of future observations (or 
   averages) on one future sampling “occasion”.  
   The default value is <code>m=2</code>, except when <code>rule="Modified.CA"</code>, in which 
   case this argument is ignored and <code>m</code> is automatically set equal to <code>4</code>.</p></dd>
-<dt>r</dt>
+
+  <dt>r</dt>
 <dd><p>vector of positive integers specifying the number of future sampling “occasions”.  
   The default value is <code>r=1</code>.</p></dd>
-<dt>rule</dt>
+
+  <dt>rule</dt>
 <dd><p>character string specifying which rule to use.  The possible values are 
   <code>"k.of.m"</code> (\(k\)-of-\(m\) rule; the default), <code>"CA"</code> (California rule), 
   and <code>"Modified.CA"</code> (modified California rule).  
   See the DETAILS section below for more information.</p></dd>
-<dt>ratio.of.means</dt>
+
+  <dt>ratio.of.means</dt>
 <dd><p>numeric vector specifying the ratio of the mean of the population that will be 
   sampled to produce the future observations vs. the mean of the population that 
   was sampled to construct the prediction interval.  See the DETAILS section below 
   for more information.  The default value is <code>ratio.of.means=1</code>.</p></dd>
-<dt>cv</dt>
+
+  <dt>cv</dt>
 <dd><p>numeric vector of positive values specifying the coefficient of variation for 
   both the population that was sampled to construct the prediction interval <b>and</b> 
   the population that will be sampled to produce the future observations.  The 
   default value is <code>cv=1</code>.</p></dd>
-<dt>pi.type</dt>
+
+  <dt>pi.type</dt>
 <dd><p>character string indicating what kind of prediction interval to compute.  
   The possible values are <code>pi.type="upper"</code> (the default), and 
   <code>pi.type="lower"</code>.</p></dd>
-<dt>conf.level</dt>
+
+  <dt>conf.level</dt>
 <dd><p>vector of values between 0 and 1 indicating the confidence level of the prediction interval.  
   The default value is <code>conf.level=0.95</code>.</p></dd>
-<dt>r.shifted</dt>
+
+  <dt>r.shifted</dt>
 <dd><p>vector of positive integers specifying the number of future sampling occasions for 
   which the mean is shifted.  All values must be integeters 
   between <code>1</code> and the corresponding element of <code>r</code>.  The default value is 
   <code>r.shifted=r</code>.</p></dd>
-<dt>K.tol</dt>
+
+  <dt>K.tol</dt>
 <dd><p>numeric scalar indicating the tolerance to use in the nonlinear search algorithm to 
   compute \(K\).  The default value is <code>K.tol=.Machine$double.eps^(1/2)</code>.  
   For many applications, the value of \(K\) needs to be known only to the second 
   decimal place, in which case setting <code>K.tol=1e-4</code> will speed up computation a 
   bit.</p></dd>
-<dt>integrate.args.list</dt>
+
+  <dt>integrate.args.list</dt>
 <dd><p>a list of arguments to supply to the <code><a href="https://rdrr.io/r/stats/integrate.html" class="external-link">integrate</a></code> function.  The 
   default value is <code>integrate.args.list=NULL</code> which means that the 
   default values of <code><a href="https://rdrr.io/r/stats/integrate.html" class="external-link">integrate</a></code> are used.</p></dd>
+
 </dl></div>
     <div id="details">
     <h2>Details</h2>
@@ -195,7 +209,9 @@
     </div>
     <div id="value">
     <h2>Value</h2>
-    <p>vector of values between 0 and 1 equal to the probability that 
+    
+
+<p>vector of values between 0 and 1 equal to the probability that 
   the rule will be violated.</p>
     </div>
     <div id="references">
@@ -218,53 +234,53 @@
 
     <div id="ref-examples">
     <h2>Examples</h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in">  <span class="co"># For the k-of-m rule with n=4, k=1, m=3, and r=1, show how the power increases </span></span>
-<span class="r-in">  <span class="co"># as ratio.of.means increases.  Assume a 95% upper prediction interval.</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="fu">predIntLnormAltSimultaneousTestPower</span><span class="op">(</span>n <span class="op">=</span> <span class="fl">4</span>, m <span class="op">=</span> <span class="fl">3</span>, ratio.of.means <span class="op">=</span> <span class="fl">1</span><span class="op">:</span><span class="fl">3</span><span class="op">)</span> </span>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span>  <span class="co"># For the k-of-m rule with n=4, k=1, m=3, and r=1, show how the power increases </span></span></span>
+<span class="r-in"><span>  <span class="co"># as ratio.of.means increases.  Assume a 95% upper prediction interval.</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="fu">predIntLnormAltSimultaneousTestPower</span><span class="op">(</span>n <span class="op">=</span> <span class="fl">4</span>, m <span class="op">=</span> <span class="fl">3</span>, ratio.of.means <span class="op">=</span> <span class="fl">1</span><span class="op">:</span><span class="fl">3</span><span class="op">)</span> </span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] 0.0500000 0.2356914 0.4236723</span>
-<span class="r-in">  <span class="co">#[1] 0.0500000 0.2356914 0.4236723</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="co">#----------</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="co"># Look at how the power increases with sample size for an upper one-sided </span></span>
-<span class="r-in">  <span class="co"># prediction interval using the k-of-m rule with k=1, m=3, r=20, </span></span>
-<span class="r-in">  <span class="co"># ratio.of.means=4, and a confidence level of 95%.</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="fu">predIntLnormAltSimultaneousTestPower</span><span class="op">(</span>n <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">4</span>, <span class="fl">8</span><span class="op">)</span>, m <span class="op">=</span> <span class="fl">3</span>, r <span class="op">=</span> <span class="fl">20</span>, ratio.of.means <span class="op">=</span> <span class="fl">4</span><span class="op">)</span> </span>
+<span class="r-in"><span>  <span class="co">#[1] 0.0500000 0.2356914 0.4236723</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="co">#----------</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="co"># Look at how the power increases with sample size for an upper one-sided </span></span></span>
+<span class="r-in"><span>  <span class="co"># prediction interval using the k-of-m rule with k=1, m=3, r=20, </span></span></span>
+<span class="r-in"><span>  <span class="co"># ratio.of.means=4, and a confidence level of 95%.</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="fu">predIntLnormAltSimultaneousTestPower</span><span class="op">(</span>n <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">4</span>, <span class="fl">8</span><span class="op">)</span>, m <span class="op">=</span> <span class="fl">3</span>, r <span class="op">=</span> <span class="fl">20</span>, ratio.of.means <span class="op">=</span> <span class="fl">4</span><span class="op">)</span> </span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] 0.4915743 0.8218175</span>
-<span class="r-in">  <span class="co">#[1] 0.4915743 0.8218175</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="co">#----------</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="co"># Compare the power for the 1-of-3 rule with the power for the California and </span></span>
-<span class="r-in">  <span class="co"># Modified California rules, based on a 95% upper prediction interval and </span></span>
-<span class="r-in">  <span class="co"># ratio.of.means=4.  Assume a sample size of n=8.  Note that in this case the </span></span>
-<span class="r-in">  <span class="co"># power for the Modified California rule is greater than the power for the </span></span>
-<span class="r-in">  <span class="co"># 1-of-3 rule and California rule.</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="fu">predIntLnormAltSimultaneousTestPower</span><span class="op">(</span>n <span class="op">=</span> <span class="fl">8</span>, k <span class="op">=</span> <span class="fl">1</span>, m <span class="op">=</span> <span class="fl">3</span>, ratio.of.means <span class="op">=</span> <span class="fl">4</span><span class="op">)</span> </span>
+<span class="r-in"><span>  <span class="co">#[1] 0.4915743 0.8218175</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="co">#----------</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="co"># Compare the power for the 1-of-3 rule with the power for the California and </span></span></span>
+<span class="r-in"><span>  <span class="co"># Modified California rules, based on a 95% upper prediction interval and </span></span></span>
+<span class="r-in"><span>  <span class="co"># ratio.of.means=4.  Assume a sample size of n=8.  Note that in this case the </span></span></span>
+<span class="r-in"><span>  <span class="co"># power for the Modified California rule is greater than the power for the </span></span></span>
+<span class="r-in"><span>  <span class="co"># 1-of-3 rule and California rule.</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="fu">predIntLnormAltSimultaneousTestPower</span><span class="op">(</span>n <span class="op">=</span> <span class="fl">8</span>, k <span class="op">=</span> <span class="fl">1</span>, m <span class="op">=</span> <span class="fl">3</span>, ratio.of.means <span class="op">=</span> <span class="fl">4</span><span class="op">)</span> </span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] 0.6594845</span>
-<span class="r-in">  <span class="co">#[1] 0.6594845 </span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="fu">predIntLnormAltSimultaneousTestPower</span><span class="op">(</span>n <span class="op">=</span> <span class="fl">8</span>, m <span class="op">=</span> <span class="fl">3</span>, rule <span class="op">=</span> <span class="st">"CA"</span>, ratio.of.means <span class="op">=</span> <span class="fl">4</span><span class="op">)</span> </span>
+<span class="r-in"><span>  <span class="co">#[1] 0.6594845 </span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="fu">predIntLnormAltSimultaneousTestPower</span><span class="op">(</span>n <span class="op">=</span> <span class="fl">8</span>, m <span class="op">=</span> <span class="fl">3</span>, rule <span class="op">=</span> <span class="st">"CA"</span>, ratio.of.means <span class="op">=</span> <span class="fl">4</span><span class="op">)</span> </span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] 0.5864311</span>
-<span class="r-in">  <span class="co">#[1] 0.5864311 </span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="fu">predIntLnormAltSimultaneousTestPower</span><span class="op">(</span>n <span class="op">=</span> <span class="fl">8</span>, rule <span class="op">=</span> <span class="st">"Modified.CA"</span>, ratio.of.means <span class="op">=</span> <span class="fl">4</span><span class="op">)</span> </span>
+<span class="r-in"><span>  <span class="co">#[1] 0.5864311 </span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="fu">predIntLnormAltSimultaneousTestPower</span><span class="op">(</span>n <span class="op">=</span> <span class="fl">8</span>, rule <span class="op">=</span> <span class="st">"Modified.CA"</span>, ratio.of.means <span class="op">=</span> <span class="fl">4</span><span class="op">)</span> </span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] 0.691135</span>
-<span class="r-in">  <span class="co">#[1] 0.691135</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="co">#----------</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="co"># Show how the power for an upper 95% simultaneous prediction limit increases </span></span>
-<span class="r-in">  <span class="co"># as the number of future sampling occasions r increases.  Here, we'll use the </span></span>
-<span class="r-in">  <span class="co"># 1-of-3 rule with n=8 and ratio.of.means=4.</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="fu">predIntLnormAltSimultaneousTestPower</span><span class="op">(</span>n <span class="op">=</span> <span class="fl">8</span>, k <span class="op">=</span> <span class="fl">1</span>, m <span class="op">=</span> <span class="fl">3</span>, r <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">1</span>, <span class="fl">2</span>, <span class="fl">5</span>, <span class="fl">10</span><span class="op">)</span>, </span>
-<span class="r-in">    ratio.of.means <span class="op">=</span> <span class="fl">4</span><span class="op">)</span> </span>
+<span class="r-in"><span>  <span class="co">#[1] 0.691135</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="co">#----------</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="co"># Show how the power for an upper 95% simultaneous prediction limit increases </span></span></span>
+<span class="r-in"><span>  <span class="co"># as the number of future sampling occasions r increases.  Here, we'll use the </span></span></span>
+<span class="r-in"><span>  <span class="co"># 1-of-3 rule with n=8 and ratio.of.means=4.</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="fu">predIntLnormAltSimultaneousTestPower</span><span class="op">(</span>n <span class="op">=</span> <span class="fl">8</span>, k <span class="op">=</span> <span class="fl">1</span>, m <span class="op">=</span> <span class="fl">3</span>, r <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">1</span>, <span class="fl">2</span>, <span class="fl">5</span>, <span class="fl">10</span><span class="op">)</span>, </span></span>
+<span class="r-in"><span>    ratio.of.means <span class="op">=</span> <span class="fl">4</span><span class="op">)</span> </span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] 0.6594845 0.7529575 0.8180814 0.8302302</span>
-<span class="r-in">  <span class="co">#[1] 0.6594845 0.7529576 0.8180814 0.8302302</span></span>
+<span class="r-in"><span>  <span class="co">#[1] 0.6594845 0.7529576 0.8180814 0.8302302</span></span></span>
 </code></pre></div>
     </div>
   </div>
@@ -279,7 +295,7 @@
 </div>
 
 <div class="pkgdown">
-  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.2.</p>
+  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.6.</p>
 </div>
 
       </footer></div>

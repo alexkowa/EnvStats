@@ -50,8 +50,8 @@
     </div>
 
     <div id="ref-usage">
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="fu">oneSamplePermutationTest</span><span class="op">(</span><span class="va">x</span>, alternative <span class="op">=</span> <span class="st">"two.sided"</span>, mu <span class="op">=</span> <span class="fl">0</span>, exact <span class="op">=</span> <span class="cn">FALSE</span>, 
-    n.permutations <span class="op">=</span> <span class="fl">5000</span>, seed <span class="op">=</span> <span class="cn">NULL</span>, <span class="va">...</span><span class="op">)</span></code></pre></div>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">oneSamplePermutationTest</span><span class="op">(</span><span class="va">x</span>, alternative <span class="op">=</span> <span class="st">"two.sided"</span>, mu <span class="op">=</span> <span class="fl">0</span>, exact <span class="op">=</span> <span class="cn">FALSE</span>, </span>
+<span>    n.permutations <span class="op">=</span> <span class="fl">5000</span>, seed <span class="op">=</span> <span class="cn">NULL</span>, <span class="va">...</span><span class="op">)</span></span></code></pre></div>
     </div>
 
     <div id="arguments">
@@ -60,30 +60,37 @@
 <dd><p>numeric vector of observations.  
   Missing (<code>NA</code>), undefined (<code>NaN</code>), and infinite (<code>Inf</code>, <code>-Inf</code>) 
   values are allowed but will be removed.</p></dd>
-<dt>alternative</dt>
+
+  <dt>alternative</dt>
 <dd><p>character string indicating the kind of alternative hypothesis.  The possible values 
   are <code>"two.sided"</code> (the default), <code>"less"</code>, and <code>"greater"</code>.</p></dd>
-<dt>mu</dt>
+
+  <dt>mu</dt>
 <dd><p>numeric scalar indicating the hypothesized value of the mean.  
   The default value is <code>mu=0</code>.</p></dd>
-<dt>exact</dt>
+
+  <dt>exact</dt>
 <dd><p>logical scalar indicating whether to perform the exact permutation test 
   (i.e., enumerate all possible permutations) or simply sample from the permutation 
   distribution.  The default value is <code>exact=FALSE</code>.</p></dd>
-<dt>n.permutations</dt>
+
+  <dt>n.permutations</dt>
 <dd><p>integer indicating how many times to sample from the permutation distribution when 
   <code>exact=FALSE</code>.  The default value is <code>n.permutations=5000</code>.  
   This argument is ignored when <code>exact=TRUE</code>.</p></dd>
-<dt>seed</dt>
+
+  <dt>seed</dt>
 <dd><p>positive integer to pass to the <span style="R">R</span> function <code><a href="https://rdrr.io/r/base/Random.html" class="external-link">set.seed</a></code>.  The 
   default is <code>seed=NULL</code>, in which case the current value of 
   <code><a href="https://rdrr.io/r/base/Random.html" class="external-link">.Random.seed</a></code> is used.  
   Using the <code>seed</code> argument lets you reproduce the exact same result if all 
   other arguments stay the same.</p></dd>
-<dt>...</dt>
+
+  <dt>...</dt>
 <dd><p>arguments that can be supplied to the <code><a href="https://rdrr.io/r/base/format.html" class="external-link">format</a></code> function.  This 
   argument is used when creating the <code>names</code> attribute for the <code>statistic</code> 
   component of the returned list (see <code><a href="permutationTest.object.html">permutationTest.object</a></code>).</p></dd>
+
 </dl></div>
     <div id="details">
     <h2>Details</h2>
@@ -154,7 +161,9 @@
     </div>
     <div id="value">
     <h2>Value</h2>
-    <p>A list of class <code>"permutationTest"</code> containing the results of the hypothesis 
+    
+
+<p>A list of class <code>"permutationTest"</code> containing the results of the hypothesis 
   test.  See the help file for <code><a href="permutationTest.object.html">permutationTest.object</a></code> for details.</p>
     </div>
     <div id="references">
@@ -202,22 +211,22 @@
 
     <div id="ref-examples">
     <h2>Examples</h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in">  <span class="co"># Generate 10 observations from a logistic distribution with parameters </span></span>
-<span class="r-in">  <span class="co"># location=7 and scale=2, and test the null hypothesis that the true mean </span></span>
-<span class="r-in">  <span class="co"># is equal to 5 against the alternative that the true mean is greater than 5. </span></span>
-<span class="r-in">  <span class="co"># Use the exact permutation distribution. </span></span>
-<span class="r-in">  <span class="co"># (Note: the call to set.seed() allows you to reproduce this example).</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="fu"><a href="https://rdrr.io/r/base/Random.html" class="external-link">set.seed</a></span><span class="op">(</span><span class="fl">23</span><span class="op">)</span> </span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="va">dat</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/Logistic.html" class="external-link">rlogis</a></span><span class="op">(</span><span class="fl">10</span>, location <span class="op">=</span> <span class="fl">7</span>, scale <span class="op">=</span> <span class="fl">2</span><span class="op">)</span> </span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="va">test.list</span> <span class="op">&lt;-</span> <span class="fu">oneSamplePermutationTest</span><span class="op">(</span><span class="va">dat</span>, mu <span class="op">=</span> <span class="fl">5</span>, </span>
-<span class="r-in">    alternative <span class="op">=</span> <span class="st">"greater"</span>, exact <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span> </span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="co"># Print the results of the test </span></span>
-<span class="r-in">  <span class="co">#------------------------------</span></span>
-<span class="r-in">  <span class="va">test.list</span> </span>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span>  <span class="co"># Generate 10 observations from a logistic distribution with parameters </span></span></span>
+<span class="r-in"><span>  <span class="co"># location=7 and scale=2, and test the null hypothesis that the true mean </span></span></span>
+<span class="r-in"><span>  <span class="co"># is equal to 5 against the alternative that the true mean is greater than 5. </span></span></span>
+<span class="r-in"><span>  <span class="co"># Use the exact permutation distribution. </span></span></span>
+<span class="r-in"><span>  <span class="co"># (Note: the call to set.seed() allows you to reproduce this example).</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/r/base/Random.html" class="external-link">set.seed</a></span><span class="op">(</span><span class="fl">23</span><span class="op">)</span> </span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="va">dat</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/Logistic.html" class="external-link">rlogis</a></span><span class="op">(</span><span class="fl">10</span>, location <span class="op">=</span> <span class="fl">7</span>, scale <span class="op">=</span> <span class="fl">2</span><span class="op">)</span> </span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="va">test.list</span> <span class="op">&lt;-</span> <span class="fu">oneSamplePermutationTest</span><span class="op">(</span><span class="va">dat</span>, mu <span class="op">=</span> <span class="fl">5</span>, </span></span>
+<span class="r-in"><span>    alternative <span class="op">=</span> <span class="st">"greater"</span>, exact <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span> </span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="co"># Print the results of the test </span></span></span>
+<span class="r-in"><span>  <span class="co">#------------------------------</span></span></span>
+<span class="r-in"><span>  <span class="va">test.list</span> </span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> $statistic</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Sum(x - 5) </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   49.77294 </span>
@@ -467,54 +476,54 @@
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> attr(,"class")</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] "permutationTest"</span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="co">#Results of Hypothesis Test</span></span>
-<span class="r-in">  <span class="co">#--------------------------</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Null Hypothesis:                 Mean (Median) = 5</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Alternative Hypothesis:          True Mean (Median) is greater than 5</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Test Name:                       One-Sample Permutation Test</span></span>
-<span class="r-in">  <span class="co">#                                 (Exact)</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Estimated Parameter(s):          Mean = 9.977294</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Data:                            dat</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Sample Size:                     10</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Test Statistic:                  Sum(x - 5) = 49.77294</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#P-value:                         0.001953125</span></span>
-<span class="r-in"></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="co"># Plot the results of the test </span></span>
-<span class="r-in">  <span class="co">#-----------------------------</span></span>
-<span class="r-in">  <span class="fu"><a href="https://rdrr.io/r/grDevices/dev.html" class="external-link">dev.new</a></span><span class="op">(</span><span class="op">)</span></span>
-<span class="r-in">  <span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">test.list</span><span class="op">)</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="co">#==========</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="co"># The guidance document "Supplemental Guidance to RAGS: Calculating the </span></span>
-<span class="r-in">  <span class="co"># Concentration Term" (USEPA, 1992d) contains an example of 15 observations </span></span>
-<span class="r-in">  <span class="co"># of chromium concentrations (mg/kg) which are assumed to come from a </span></span>
-<span class="r-in">  <span class="co"># lognormal distribution.  These data are stored in the vector </span></span>
-<span class="r-in">  <span class="co"># EPA.92d.chromium.vec.  Here, we will use the permutation test to test </span></span>
-<span class="r-in">  <span class="co"># the null hypothesis that the mean (median) of the log-transformed chromium </span></span>
-<span class="r-in">  <span class="co"># concentrations is less than or equal to log(100 mg/kg) vs. the alternative </span></span>
-<span class="r-in">  <span class="co"># that it is greater than log(100 mg/kg).  Note that we *cannot* use the </span></span>
-<span class="r-in">  <span class="co"># permutation test to test a hypothesis about the mean on the original scale </span></span>
-<span class="r-in">  <span class="co"># because the data are not assumed to be symmetric about some mean, they are </span></span>
-<span class="r-in">  <span class="co"># assumed to come from a lognormal distribution.</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co"># We will sample from the permutation distribution.</span></span>
-<span class="r-in">  <span class="co"># (Note: setting the argument seed=542 allows you to reproduce this example).</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="va">test.list</span> <span class="op">&lt;-</span> <span class="fu">oneSamplePermutationTest</span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/Log.html" class="external-link">log</a></span><span class="op">(</span><span class="va">EPA.92d.chromium.vec</span><span class="op">)</span>, </span>
-<span class="r-in">    mu <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/Log.html" class="external-link">log</a></span><span class="op">(</span><span class="fl">100</span><span class="op">)</span>, alternative <span class="op">=</span> <span class="st">"greater"</span>, seed <span class="op">=</span> <span class="fl">542</span><span class="op">)</span> </span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="va">test.list</span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="co">#Results of Hypothesis Test</span></span></span>
+<span class="r-in"><span>  <span class="co">#--------------------------</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Null Hypothesis:                 Mean (Median) = 5</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Alternative Hypothesis:          True Mean (Median) is greater than 5</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Test Name:                       One-Sample Permutation Test</span></span></span>
+<span class="r-in"><span>  <span class="co">#                                 (Exact)</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Estimated Parameter(s):          Mean = 9.977294</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Data:                            dat</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Sample Size:                     10</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Test Statistic:                  Sum(x - 5) = 49.77294</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#P-value:                         0.001953125</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="co"># Plot the results of the test </span></span></span>
+<span class="r-in"><span>  <span class="co">#-----------------------------</span></span></span>
+<span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/r/grDevices/dev.html" class="external-link">dev.new</a></span><span class="op">(</span><span class="op">)</span></span></span>
+<span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">test.list</span><span class="op">)</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="co">#==========</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="co"># The guidance document "Supplemental Guidance to RAGS: Calculating the </span></span></span>
+<span class="r-in"><span>  <span class="co"># Concentration Term" (USEPA, 1992d) contains an example of 15 observations </span></span></span>
+<span class="r-in"><span>  <span class="co"># of chromium concentrations (mg/kg) which are assumed to come from a </span></span></span>
+<span class="r-in"><span>  <span class="co"># lognormal distribution.  These data are stored in the vector </span></span></span>
+<span class="r-in"><span>  <span class="co"># EPA.92d.chromium.vec.  Here, we will use the permutation test to test </span></span></span>
+<span class="r-in"><span>  <span class="co"># the null hypothesis that the mean (median) of the log-transformed chromium </span></span></span>
+<span class="r-in"><span>  <span class="co"># concentrations is less than or equal to log(100 mg/kg) vs. the alternative </span></span></span>
+<span class="r-in"><span>  <span class="co"># that it is greater than log(100 mg/kg).  Note that we *cannot* use the </span></span></span>
+<span class="r-in"><span>  <span class="co"># permutation test to test a hypothesis about the mean on the original scale </span></span></span>
+<span class="r-in"><span>  <span class="co"># because the data are not assumed to be symmetric about some mean, they are </span></span></span>
+<span class="r-in"><span>  <span class="co"># assumed to come from a lognormal distribution.</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co"># We will sample from the permutation distribution.</span></span></span>
+<span class="r-in"><span>  <span class="co"># (Note: setting the argument seed=542 allows you to reproduce this example).</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="va">test.list</span> <span class="op">&lt;-</span> <span class="fu">oneSamplePermutationTest</span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/Log.html" class="external-link">log</a></span><span class="op">(</span><span class="va">EPA.92d.chromium.vec</span><span class="op">)</span>, </span></span>
+<span class="r-in"><span>    mu <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/Log.html" class="external-link">log</a></span><span class="op">(</span><span class="fl">100</span><span class="op">)</span>, alternative <span class="op">=</span> <span class="st">"greater"</span>, seed <span class="op">=</span> <span class="fl">542</span><span class="op">)</span> </span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="va">test.list</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> $statistic</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Sum(x - 4.60517) </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>        -3.398017 </span>
@@ -1562,41 +1571,41 @@
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> attr(,"class")</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] "permutationTest"</span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="co">#Results of Hypothesis Test</span></span>
-<span class="r-in">  <span class="co">#--------------------------</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Null Hypothesis:                 Mean (Median) = 4.60517</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Alternative Hypothesis:          True Mean (Median) is greater than 4.60517</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Test Name:                       One-Sample Permutation Test</span></span>
-<span class="r-in">  <span class="co">#                                 (Based on Sampling</span></span>
-<span class="r-in">  <span class="co">#                                 Permutation Distribution</span></span>
-<span class="r-in">  <span class="co">#                                 5000 Times)</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Estimated Parameter(s):          Mean = 4.378636</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Data:                            log(EPA.92d.chromium.vec)</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Sample Size:                     15</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Test Statistic:                  Sum(x - 4.60517) = -3.398017</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#P-value:                         0.7598</span></span>
-<span class="r-in"></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="co"># Plot the results of the test </span></span>
-<span class="r-in">  <span class="co">#-----------------------------</span></span>
-<span class="r-in">  <span class="fu"><a href="https://rdrr.io/r/grDevices/dev.html" class="external-link">dev.new</a></span><span class="op">(</span><span class="op">)</span></span>
-<span class="r-in">  <span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">test.list</span><span class="op">)</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="co">#----------</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="co"># Clean up</span></span>
-<span class="r-in">  <span class="co">#---------</span></span>
-<span class="r-in">  <span class="fu"><a href="https://rdrr.io/r/base/rm.html" class="external-link">rm</a></span><span class="op">(</span><span class="va">test.list</span><span class="op">)</span></span>
-<span class="r-in">  <span class="fu"><a href="https://rdrr.io/r/grDevices/dev.html" class="external-link">graphics.off</a></span><span class="op">(</span><span class="op">)</span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="co">#Results of Hypothesis Test</span></span></span>
+<span class="r-in"><span>  <span class="co">#--------------------------</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Null Hypothesis:                 Mean (Median) = 4.60517</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Alternative Hypothesis:          True Mean (Median) is greater than 4.60517</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Test Name:                       One-Sample Permutation Test</span></span></span>
+<span class="r-in"><span>  <span class="co">#                                 (Based on Sampling</span></span></span>
+<span class="r-in"><span>  <span class="co">#                                 Permutation Distribution</span></span></span>
+<span class="r-in"><span>  <span class="co">#                                 5000 Times)</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Estimated Parameter(s):          Mean = 4.378636</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Data:                            log(EPA.92d.chromium.vec)</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Sample Size:                     15</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Test Statistic:                  Sum(x - 4.60517) = -3.398017</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#P-value:                         0.7598</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="co"># Plot the results of the test </span></span></span>
+<span class="r-in"><span>  <span class="co">#-----------------------------</span></span></span>
+<span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/r/grDevices/dev.html" class="external-link">dev.new</a></span><span class="op">(</span><span class="op">)</span></span></span>
+<span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">test.list</span><span class="op">)</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="co">#----------</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="co"># Clean up</span></span></span>
+<span class="r-in"><span>  <span class="co">#---------</span></span></span>
+<span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/r/base/rm.html" class="external-link">rm</a></span><span class="op">(</span><span class="va">test.list</span><span class="op">)</span></span></span>
+<span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/r/grDevices/dev.html" class="external-link">graphics.off</a></span><span class="op">(</span><span class="op">)</span></span></span>
 </code></pre></div>
     </div>
   </div>
@@ -1611,7 +1620,7 @@
 </div>
 
 <div class="pkgdown">
-  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.2.</p>
+  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.6.</p>
 </div>
 
       </footer></div>

@@ -54,24 +54,26 @@
     </div>
 
     <div id="ref-usage">
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="fu">simulateVector</span><span class="op">(</span><span class="va">n</span>, distribution <span class="op">=</span> <span class="st">"norm"</span>, param.list <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>mean <span class="op">=</span> <span class="fl">0</span>, sd <span class="op">=</span> <span class="fl">1</span><span class="op">)</span>,
-    sample.method <span class="op">=</span> <span class="st">"SRS"</span>, seed <span class="op">=</span> <span class="cn">NULL</span>, sorted <span class="op">=</span> <span class="cn">FALSE</span>,
-    left.tail.cutoff <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/ifelse.html" class="external-link">ifelse</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/is.finite.html" class="external-link">is.finite</a></span><span class="op">(</span><span class="va">supp.min</span><span class="op">)</span>, <span class="fl">0</span>, <span class="va">.Machine</span><span class="op">$</span><span class="va">double.eps</span><span class="op">)</span>,
-    right.tail.cutoff <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/ifelse.html" class="external-link">ifelse</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/is.finite.html" class="external-link">is.finite</a></span><span class="op">(</span><span class="va">supp.max</span><span class="op">)</span>, <span class="fl">0</span>, <span class="va">.Machine</span><span class="op">$</span><span class="va">double.eps</span><span class="op">)</span><span class="op">)</span></code></pre></div>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">simulateVector</span><span class="op">(</span><span class="va">n</span>, distribution <span class="op">=</span> <span class="st">"norm"</span>, param.list <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>mean <span class="op">=</span> <span class="fl">0</span>, sd <span class="op">=</span> <span class="fl">1</span><span class="op">)</span>,</span>
+<span>    sample.method <span class="op">=</span> <span class="st">"SRS"</span>, seed <span class="op">=</span> <span class="cn">NULL</span>, sorted <span class="op">=</span> <span class="cn">FALSE</span>,</span>
+<span>    left.tail.cutoff <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/ifelse.html" class="external-link">ifelse</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/is.finite.html" class="external-link">is.finite</a></span><span class="op">(</span><span class="va">supp.min</span><span class="op">)</span>, <span class="fl">0</span>, <span class="va">.Machine</span><span class="op">$</span><span class="va">double.eps</span><span class="op">)</span>,</span>
+<span>    right.tail.cutoff <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/ifelse.html" class="external-link">ifelse</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/is.finite.html" class="external-link">is.finite</a></span><span class="op">(</span><span class="va">supp.max</span><span class="op">)</span>, <span class="fl">0</span>, <span class="va">.Machine</span><span class="op">$</span><span class="va">double.eps</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
     </div>
 
     <div id="arguments">
     <h2>Arguments</h2>
     <dl><dt>n</dt>
 <dd><p>a positive integer indicating the number of random numbers to generate.</p></dd>
-<dt>distribution</dt>
+
+  <dt>distribution</dt>
 <dd><p>a character string denoting the distribution abbreviation.  The default value is
   <code>distribution="norm"</code>.  See the help file for <code><a href="Distribution.df.html">Distribution.df</a></code>
   for a list of possible distribution abbreviations.</p>
 <p>Alternatively, the character string <code>"emp"</code> may be used to denote sampling
   from an empirical distribution based on a set of observations.  The vector
   containing the observations is specified in the argument <code>param.list</code>.</p></dd>
-<dt>param.list</dt>
+
+  <dt>param.list</dt>
 <dd><p>a list with values for the parameters of the distribution.
   The default value is <code>param.list=list(mean=0, sd=1)</code>.
   See the help file for <code><a href="Distribution.df.html">Distribution.df</a></code> for the names and
@@ -83,19 +85,23 @@
   <code><a href="Empirical.html">qemp</a></code> function through <code>param.list</code>.  For example, you
   may set <br><code>param.list=list(obs=</code><em>name</em><code>, discrete=T)</code> to
   specify an empirical distribution based on a discrete random variable.</p></dd>
-<dt>sample.method</dt>
+
+  <dt>sample.method</dt>
 <dd><p>a character string indicating whether to use simple random sampling <br>
   (<code>sample.method="SRS"</code>, the default) or
   Latin Hypercube sampling <br>
   (<code>sample.method="LHS"</code>).</p></dd>
-<dt>seed</dt>
+
+  <dt>seed</dt>
 <dd><p>integer to supply to the <span style="R">R</span> function <code><a href="https://rdrr.io/r/base/Random.html" class="external-link">set.seed</a></code>.
   The default value is <code>seed=NULL</code>, in which case the random seed is
   not set but instead based on the current value of <code>.Random.seed</code>.</p></dd>
-<dt>sorted</dt>
+
+  <dt>sorted</dt>
 <dd><p>logical scalar indicating whether to return the random numbers in sorted
   (ascending) order.  The default value is <code>sorted=FALSE</code>.</p></dd>
-<dt>left.tail.cutoff</dt>
+
+  <dt>left.tail.cutoff</dt>
 <dd><p>a scalar between 0 and 1 indicating what proportion of the left-tail of
   the probability distribution to omit for Latin Hypercube sampling.
   For densities with a finite support minimum (e.g., <a href="https://rdrr.io/r/stats/Lognormal.html" class="external-link">Lognormal</a> or
@@ -103,7 +109,8 @@
   for densities with a support minimum of \(-\infty\), the default value is
   <code>left.tail.cutoff=.Machine$double.eps</code>.
   This argument is ignored if <code>sample.method="SRS"</code>.</p></dd>
-<dt>right.tail.cutoff</dt>
+
+  <dt>right.tail.cutoff</dt>
 <dd><p>a scalar between 0 and 1 indicating what proportion of the right-tail of
   the probability distribution to omit for Latin Hypercube sampling.
   For densities with a finite support maximum (e.g., <a href="https://rdrr.io/r/stats/Beta.html" class="external-link">Beta</a> or
@@ -111,6 +118,7 @@
   for densities with a support maximum of \(\infty\), the default value
   is <code>right.tail.cutoff=.Machine$double.eps</code>.
   This argument is ignored if <code>sample.method="SRS"</code>.</p></dd>
+
 </dl></div>
     <div id="details">
     <h2>Details</h2>
@@ -147,7 +155,9 @@
     </div>
     <div id="value">
     <h2>Value</h2>
-    <p>a numeric vector of random numbers from the specified distribution.</p>
+    
+
+<p>a numeric vector of random numbers from the specified distribution.</p>
     </div>
     <div id="references">
     <h2>References</h2>
@@ -192,62 +202,62 @@
 
     <div id="ref-examples">
     <h2>Examples</h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in">  <span class="co"># Generate 10 observations from a lognormal distribution with</span></span>
-<span class="r-in">  <span class="co"># parameters mean=10 and cv=1 using simple random sampling:</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="fu">simulateVector</span><span class="op">(</span><span class="fl">10</span>, distribution <span class="op">=</span> <span class="st">"lnormAlt"</span>,</span>
-<span class="r-in">    param.list <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>mean <span class="op">=</span> <span class="fl">10</span>, cv <span class="op">=</span> <span class="fl">1</span><span class="op">)</span>, seed <span class="op">=</span> <span class="fl">47</span>,</span>
-<span class="r-in">    sort <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span>  <span class="co"># Generate 10 observations from a lognormal distribution with</span></span></span>
+<span class="r-in"><span>  <span class="co"># parameters mean=10 and cv=1 using simple random sampling:</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="fu">simulateVector</span><span class="op">(</span><span class="fl">10</span>, distribution <span class="op">=</span> <span class="st">"lnormAlt"</span>,</span></span>
+<span class="r-in"><span>    param.list <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>mean <span class="op">=</span> <span class="fl">10</span>, cv <span class="op">=</span> <span class="fl">1</span><span class="op">)</span>, seed <span class="op">=</span> <span class="fl">47</span>,</span></span>
+<span class="r-in"><span>    sort <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  [1]  2.086931  2.863589  3.112866  5.592502  5.732602  7.160707  7.741327</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  [8]  8.251306 12.782493 37.214748</span>
-<span class="r-in">  <span class="co"># [1]  2.086931  2.863589  3.112866  5.592502  5.732602  7.160707</span></span>
-<span class="r-in">  <span class="co"># [7]  7.741327  8.251306 12.782493 37.214748</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="co">#----------</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="co"># Repeat the above example by calling rlnormAlt directly:</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="fu"><a href="https://rdrr.io/r/base/Random.html" class="external-link">set.seed</a></span><span class="op">(</span><span class="fl">47</span><span class="op">)</span></span>
-<span class="r-in">  <span class="fu"><a href="https://rdrr.io/r/base/sort.html" class="external-link">sort</a></span><span class="op">(</span><span class="fu"><a href="LognormalAlt.html">rlnormAlt</a></span><span class="op">(</span><span class="fl">10</span>, mean <span class="op">=</span> <span class="fl">10</span>, cv <span class="op">=</span> <span class="fl">1</span><span class="op">)</span><span class="op">)</span></span>
+<span class="r-in"><span>  <span class="co"># [1]  2.086931  2.863589  3.112866  5.592502  5.732602  7.160707</span></span></span>
+<span class="r-in"><span>  <span class="co"># [7]  7.741327  8.251306 12.782493 37.214748</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="co">#----------</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="co"># Repeat the above example by calling rlnormAlt directly:</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/r/base/Random.html" class="external-link">set.seed</a></span><span class="op">(</span><span class="fl">47</span><span class="op">)</span></span></span>
+<span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/r/base/sort.html" class="external-link">sort</a></span><span class="op">(</span><span class="fu"><a href="LognormalAlt.html">rlnormAlt</a></span><span class="op">(</span><span class="fl">10</span>, mean <span class="op">=</span> <span class="fl">10</span>, cv <span class="op">=</span> <span class="fl">1</span><span class="op">)</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  [1]  2.086931  2.863589  3.112866  5.592502  5.732602  7.160707  7.741327</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  [8]  8.251306 12.782493 37.214748</span>
-<span class="r-in">  <span class="co"># [1]  2.086931  2.863589  3.112866  5.592502  5.732602  7.160707</span></span>
-<span class="r-in">  <span class="co"># [7]  7.741327  8.251306 12.782493 37.214748</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="co">#----------</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="co"># Now generate 10 observations from the same lognormal distribution</span></span>
-<span class="r-in">  <span class="co"># but use Latin Hypercube sampling.  Note that the largest value</span></span>
-<span class="r-in">  <span class="co"># is larger than for simple random sampling:</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="fu">simulateVector</span><span class="op">(</span><span class="fl">10</span>, distribution <span class="op">=</span> <span class="st">"lnormAlt"</span>,</span>
-<span class="r-in">    param.list <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>mean <span class="op">=</span> <span class="fl">10</span>, cv <span class="op">=</span> <span class="fl">1</span><span class="op">)</span>, seed <span class="op">=</span> <span class="fl">47</span>,</span>
-<span class="r-in">    sample.method <span class="op">=</span> <span class="st">"LHS"</span>, sort <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span>
+<span class="r-in"><span>  <span class="co"># [1]  2.086931  2.863589  3.112866  5.592502  5.732602  7.160707</span></span></span>
+<span class="r-in"><span>  <span class="co"># [7]  7.741327  8.251306 12.782493 37.214748</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="co">#----------</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="co"># Now generate 10 observations from the same lognormal distribution</span></span></span>
+<span class="r-in"><span>  <span class="co"># but use Latin Hypercube sampling.  Note that the largest value</span></span></span>
+<span class="r-in"><span>  <span class="co"># is larger than for simple random sampling:</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="fu">simulateVector</span><span class="op">(</span><span class="fl">10</span>, distribution <span class="op">=</span> <span class="st">"lnormAlt"</span>,</span></span>
+<span class="r-in"><span>    param.list <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>mean <span class="op">=</span> <span class="fl">10</span>, cv <span class="op">=</span> <span class="fl">1</span><span class="op">)</span>, seed <span class="op">=</span> <span class="fl">47</span>,</span></span>
+<span class="r-in"><span>    sample.method <span class="op">=</span> <span class="st">"LHS"</span>, sort <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  [1]  2.406149  2.848428  4.311175  5.510171  6.467852  8.174608  9.506874</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  [8] 12.298185 17.022151 53.552699</span>
-<span class="r-in">  <span class="co"># [1]  2.406149  2.848428  4.311175  5.510171  6.467852  8.174608</span></span>
-<span class="r-in">  <span class="co"># [7]  9.506874 12.298185 17.022151 53.552699</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="co">#==========</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="co"># Generate 50 observations from a Pareto distribution with parameters</span></span>
-<span class="r-in">  <span class="co"># location=10 and shape=2, then use this resulting vector of</span></span>
-<span class="r-in">  <span class="co"># observations as the basis for generating 3 observations from an</span></span>
-<span class="r-in">  <span class="co"># empirical distribution using Latin Hypercube sampling:</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="fu"><a href="https://rdrr.io/r/base/Random.html" class="external-link">set.seed</a></span><span class="op">(</span><span class="fl">321</span><span class="op">)</span></span>
-<span class="r-in">  <span class="va">pareto.rns</span> <span class="op">&lt;-</span> <span class="fu"><a href="Pareto.html">rpareto</a></span><span class="op">(</span><span class="fl">50</span>, location <span class="op">=</span> <span class="fl">10</span>, shape <span class="op">=</span> <span class="fl">2</span><span class="op">)</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="fu">simulateVector</span><span class="op">(</span><span class="fl">3</span>, distribution <span class="op">=</span> <span class="st">"emp"</span>,</span>
-<span class="r-in">    param.list <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>obs <span class="op">=</span> <span class="va">pareto.rns</span><span class="op">)</span>, sample.method <span class="op">=</span> <span class="st">"LHS"</span><span class="op">)</span></span>
+<span class="r-in"><span>  <span class="co"># [1]  2.406149  2.848428  4.311175  5.510171  6.467852  8.174608</span></span></span>
+<span class="r-in"><span>  <span class="co"># [7]  9.506874 12.298185 17.022151 53.552699</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="co">#==========</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="co"># Generate 50 observations from a Pareto distribution with parameters</span></span></span>
+<span class="r-in"><span>  <span class="co"># location=10 and shape=2, then use this resulting vector of</span></span></span>
+<span class="r-in"><span>  <span class="co"># observations as the basis for generating 3 observations from an</span></span></span>
+<span class="r-in"><span>  <span class="co"># empirical distribution using Latin Hypercube sampling:</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/r/base/Random.html" class="external-link">set.seed</a></span><span class="op">(</span><span class="fl">321</span><span class="op">)</span></span></span>
+<span class="r-in"><span>  <span class="va">pareto.rns</span> <span class="op">&lt;-</span> <span class="fu"><a href="Pareto.html">rpareto</a></span><span class="op">(</span><span class="fl">50</span>, location <span class="op">=</span> <span class="fl">10</span>, shape <span class="op">=</span> <span class="fl">2</span><span class="op">)</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="fu">simulateVector</span><span class="op">(</span><span class="fl">3</span>, distribution <span class="op">=</span> <span class="st">"emp"</span>,</span></span>
+<span class="r-in"><span>    param.list <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>obs <span class="op">=</span> <span class="va">pareto.rns</span><span class="op">)</span>, sample.method <span class="op">=</span> <span class="st">"LHS"</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] 11.50685 17.47335 13.50962</span>
-<span class="r-in">  <span class="co">#[1] 11.50685 13.50962 17.47335</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="co">#==========</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="co"># Clean up</span></span>
-<span class="r-in">  <span class="co">#---------</span></span>
-<span class="r-in">  <span class="fu"><a href="https://rdrr.io/r/base/rm.html" class="external-link">rm</a></span><span class="op">(</span><span class="va">pareto.rns</span><span class="op">)</span></span>
+<span class="r-in"><span>  <span class="co">#[1] 11.50685 13.50962 17.47335</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="co">#==========</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="co"># Clean up</span></span></span>
+<span class="r-in"><span>  <span class="co">#---------</span></span></span>
+<span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/r/base/rm.html" class="external-link">rm</a></span><span class="op">(</span><span class="va">pareto.rns</span><span class="op">)</span></span></span>
 </code></pre></div>
     </div>
   </div>
@@ -262,7 +272,7 @@
 </div>
 
 <div class="pkgdown">
-  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.2.</p>
+  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.6.</p>
 </div>
 
       </footer></div>

@@ -66,57 +66,84 @@
     </div>
     <div id="value">
     <h2>Value</h2>
-    <p><strong>Required Components</strong><br>  The following components must be included in a legitimate list of 
+    <p></p>
+<p><strong>Required Components</strong></p>
+<p></p>
+<p><br></p>
+
+
+<p>The following components must be included in a legitimate list of 
   class <code>"gofGroup"</code>.</p>
 <dl><dt>distribution</dt>
 <dd><p>a character string indicating the name of the 
     assumed distribution (see <br><code><a href="Distribution.df.html">Distribution.df</a></code>).</p></dd>
-<dt>dist.abb</dt>
+
+  <dt>dist.abb</dt>
 <dd><p>a character string containing the abbreviated name 
     of the distribution (see <br><code><a href="Distribution.df.html">Distribution.df</a></code>).</p></dd>
-<dt>statistic</dt>
+
+  <dt>statistic</dt>
 <dd><p>a numeric scalar with a names attribute containing 
     the name and value of the goodness-of-fit statistic.</p></dd>
-<dt>sample.size</dt>
+
+  <dt>sample.size</dt>
 <dd><p>a numeric scalar containing the number 
     of non-missing observations in the sample used for the 
     goodness-of-fit test.</p></dd>
-<dt>parameters</dt>
+
+  <dt>parameters</dt>
 <dd><p>numeric vector with a names attribute containing 
     the name(s) and value(s) of the parameter(s) associated with the 
     test statistic given in the <code>statistic</code> component.</p></dd>
-<dt>p.value</dt>
+
+  <dt>p.value</dt>
 <dd><p>numeric scalar containing the p-value associated with 
     the goodness-of-fit statistic.</p></dd>
-<dt>alternative</dt>
+
+  <dt>alternative</dt>
 <dd><p>character string indicating the alternative hypothesis.</p></dd>
-<dt>method</dt>
+
+  <dt>method</dt>
 <dd><p>character string indicating the name of the 
     goodness-of-fit test (e.g., <br><code>"Wilk-Shapiro GOF (Normal Scores)"</code>).</p></dd>
-<dt>data.name</dt>
+
+  <dt>data.name</dt>
 <dd><p>character string indicating the name of the data 
     object used for the goodness-of-fit test.</p></dd>
-<dt>grouping.variable</dt>
+
+  <dt>grouping.variable</dt>
 <dd><p>character string indicating the name of the variable 
     defining the groups.</p></dd>
-<dt>bad.obs</dt>
+
+  <dt>bad.obs</dt>
 <dd><p>numeric vector indicating the number of missing (<code>NA</code>), 
     undefined (<code>NaN</code>) and/or infinite (<code>Inf</code>, <code>-Inf</code>) 
     values that were removed from each group and the grouping variable 
     prior to performing the goodness-of-fit test.</p></dd>
-<dt>n.groups</dt>
+
+  <dt>n.groups</dt>
 <dd><p>numeric scalar containing the number of groups.</p></dd>
-<dt>group.names</dt>
+
+  <dt>group.names</dt>
 <dd><p>character vector containing the levels of the grouping 
     variable, i.e., the names of each of the groups.</p></dd>
-<dt>group.scores</dt>
+
+  <dt>group.scores</dt>
 <dd><p>numeric vector containing the individual statistics for 
     each group.</p></dd>
-</dl><p><strong>Optional Component</strong><br>  The following component is included when <code><a href="gofGroupTest.html">gofGroupTest</a></code> is 
+
+
+  </dl><p><strong>Optional Component</strong></p>
+<p></p>
+<p><br></p>
+
+
+<p>The following component is included when <code><a href="gofGroupTest.html">gofGroupTest</a></code> is 
   called with a formula for the first argument and a <code>data</code> argument.</p>
 <dl><dt>parent.of.data</dt>
 <dd><p>character string indicating the name of the object supplied 
     in the <code>data</code> argument.</p></dd>
+
 </dl></div>
     <div id="note">
     <h2>Note</h2>
@@ -136,38 +163,38 @@
 
     <div id="ref-examples">
     <h2>Examples</h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in">  <span class="co"># Create an object of class "gofGroup", then print it out. </span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="co"># Example 10-4 of USEPA (2009, page 10-20) gives an example of </span></span>
-<span class="r-in">  <span class="co"># simultaneously testing the assumption of normality for nickel </span></span>
-<span class="r-in">  <span class="co"># concentrations (ppb) in groundwater collected at 4 monitoring </span></span>
-<span class="r-in">  <span class="co"># wells over 5 months.  The data for this example are stored in </span></span>
-<span class="r-in">  <span class="co"># EPA.09.Ex.10.1.nickel.df.</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="va">gofGroup.obj</span> <span class="op">&lt;-</span> <span class="fu"><a href="gofGroupTest.html">gofGroupTest</a></span><span class="op">(</span><span class="va">Nickel.ppb</span> <span class="op">~</span> <span class="va">Well</span>, </span>
-<span class="r-in">    data <span class="op">=</span> <span class="va">EPA.09.Ex.10.1.nickel.df</span><span class="op">)</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="fu"><a href="https://rdrr.io/r/base/mode.html" class="external-link">mode</a></span><span class="op">(</span><span class="va">gofGroup.obj</span><span class="op">)</span> </span>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span>  <span class="co"># Create an object of class "gofGroup", then print it out. </span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="co"># Example 10-4 of USEPA (2009, page 10-20) gives an example of </span></span></span>
+<span class="r-in"><span>  <span class="co"># simultaneously testing the assumption of normality for nickel </span></span></span>
+<span class="r-in"><span>  <span class="co"># concentrations (ppb) in groundwater collected at 4 monitoring </span></span></span>
+<span class="r-in"><span>  <span class="co"># wells over 5 months.  The data for this example are stored in </span></span></span>
+<span class="r-in"><span>  <span class="co"># EPA.09.Ex.10.1.nickel.df.</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="va">gofGroup.obj</span> <span class="op">&lt;-</span> <span class="fu"><a href="gofGroupTest.html">gofGroupTest</a></span><span class="op">(</span><span class="va">Nickel.ppb</span> <span class="op">~</span> <span class="va">Well</span>, </span></span>
+<span class="r-in"><span>    data <span class="op">=</span> <span class="va">EPA.09.Ex.10.1.nickel.df</span><span class="op">)</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/r/base/mode.html" class="external-link">mode</a></span><span class="op">(</span><span class="va">gofGroup.obj</span><span class="op">)</span> </span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] "list"</span>
-<span class="r-in">  <span class="co">#[1] "list" </span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="fu"><a href="https://rdrr.io/r/base/class.html" class="external-link">class</a></span><span class="op">(</span><span class="va">gofGroup.obj</span><span class="op">)</span> </span>
+<span class="r-in"><span>  <span class="co">#[1] "list" </span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/r/base/class.html" class="external-link">class</a></span><span class="op">(</span><span class="va">gofGroup.obj</span><span class="op">)</span> </span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] "gofGroup"</span>
-<span class="r-in">  <span class="co">#[1] "gofGroup" </span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="fu"><a href="https://rdrr.io/r/base/names.html" class="external-link">names</a></span><span class="op">(</span><span class="va">gofGroup.obj</span><span class="op">)</span> </span>
+<span class="r-in"><span>  <span class="co">#[1] "gofGroup" </span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/r/base/names.html" class="external-link">names</a></span><span class="op">(</span><span class="va">gofGroup.obj</span><span class="op">)</span> </span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  [1] "distribution"      "dist.abb"          "statistic"        </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  [4] "sample.size"       "parameters"        "p.value"          </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  [7] "alternative"       "method"            "data.name"        </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [10] "grouping.variable" "parent.of.data"    "bad.obs"          </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [13] "n.groups"          "group.names"       "group.scores"     </span>
-<span class="r-in">  <span class="co"># [1] "distribution"      "dist.abb"          "statistic"        </span></span>
-<span class="r-in">  <span class="co"># [4] "sample.size"       "parameters"        "p.value"          </span></span>
-<span class="r-in">  <span class="co"># [7] "alternative"       "method"            "data.name"        </span></span>
-<span class="r-in">  <span class="co">#[10] "grouping.variable" "parent.of.data"    "bad.obs"          </span></span>
-<span class="r-in">  <span class="co">#[13] "n.groups"          "group.names"       "group.scores"</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="va">gofGroup.obj</span> </span>
+<span class="r-in"><span>  <span class="co"># [1] "distribution"      "dist.abb"          "statistic"        </span></span></span>
+<span class="r-in"><span>  <span class="co"># [4] "sample.size"       "parameters"        "p.value"          </span></span></span>
+<span class="r-in"><span>  <span class="co"># [7] "alternative"       "method"            "data.name"        </span></span></span>
+<span class="r-in"><span>  <span class="co">#[10] "grouping.variable" "parent.of.data"    "bad.obs"          </span></span></span>
+<span class="r-in"><span>  <span class="co">#[13] "n.groups"          "group.names"       "group.scores"</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="va">gofGroup.obj</span> </span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> $distribution</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] "Normal"</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
@@ -219,66 +246,66 @@
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> attr(,"class")</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] "gofGroup"</span>
-<span class="r-in">  <span class="co">#Results of Group Goodness-of-Fit Test</span></span>
-<span class="r-in">  <span class="co">#-------------------------------------</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Test Method:                     Wilk-Shapiro GOF (Normal Scores)</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Hypothesized Distribution:       Normal</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Data:                            Nickel.ppb</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Grouping Variable:               Well</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Data Source:                     EPA.09.Ex.10.1.nickel.df</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Number of Groups:                4</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Sample Sizes:                    Well.1 = 5</span></span>
-<span class="r-in">  <span class="co">#                                 Well.2 = 5</span></span>
-<span class="r-in">  <span class="co">#                                 Well.3 = 5</span></span>
-<span class="r-in">  <span class="co">#                                 Well.4 = 5</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Test Statistic:                  z (G) = -3.658696</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#P-values for</span></span>
-<span class="r-in">  <span class="co">#Individual Tests:                Well.1 = 0.03510747</span></span>
-<span class="r-in">  <span class="co">#                                 Well.2 = 0.02385344</span></span>
-<span class="r-in">  <span class="co">#                                 Well.3 = 0.01120775</span></span>
-<span class="r-in">  <span class="co">#                                 Well.4 = 0.10681461</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#P-value for</span></span>
-<span class="r-in">  <span class="co">#Group Test:                      0.0001267509</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Alternative Hypothesis:          At least one group</span></span>
-<span class="r-in">  <span class="co">#                                 does not come from a</span></span>
-<span class="r-in">  <span class="co">#                                 Normal Distribution.  </span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="co">#==========</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="co"># Extract the p-values</span></span>
-<span class="r-in">  <span class="co">#---------------------</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="va">gofGroup.obj</span><span class="op">$</span><span class="va">p.value</span></span>
+<span class="r-in"><span>  <span class="co">#Results of Group Goodness-of-Fit Test</span></span></span>
+<span class="r-in"><span>  <span class="co">#-------------------------------------</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Test Method:                     Wilk-Shapiro GOF (Normal Scores)</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Hypothesized Distribution:       Normal</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Data:                            Nickel.ppb</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Grouping Variable:               Well</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Data Source:                     EPA.09.Ex.10.1.nickel.df</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Number of Groups:                4</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Sample Sizes:                    Well.1 = 5</span></span></span>
+<span class="r-in"><span>  <span class="co">#                                 Well.2 = 5</span></span></span>
+<span class="r-in"><span>  <span class="co">#                                 Well.3 = 5</span></span></span>
+<span class="r-in"><span>  <span class="co">#                                 Well.4 = 5</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Test Statistic:                  z (G) = -3.658696</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#P-values for</span></span></span>
+<span class="r-in"><span>  <span class="co">#Individual Tests:                Well.1 = 0.03510747</span></span></span>
+<span class="r-in"><span>  <span class="co">#                                 Well.2 = 0.02385344</span></span></span>
+<span class="r-in"><span>  <span class="co">#                                 Well.3 = 0.01120775</span></span></span>
+<span class="r-in"><span>  <span class="co">#                                 Well.4 = 0.10681461</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#P-value for</span></span></span>
+<span class="r-in"><span>  <span class="co">#Group Test:                      0.0001267509</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Alternative Hypothesis:          At least one group</span></span></span>
+<span class="r-in"><span>  <span class="co">#                                 does not come from a</span></span></span>
+<span class="r-in"><span>  <span class="co">#                                 Normal Distribution.  </span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="co">#==========</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="co"># Extract the p-values</span></span></span>
+<span class="r-in"><span>  <span class="co">#---------------------</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="va">gofGroup.obj</span><span class="op">$</span><span class="va">p.value</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>       Well.1       Well.2       Well.3       Well.4        z (G) </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 0.0351074733 0.0238534406 0.0112077511 0.1068146088 0.0001267509 </span>
-<span class="r-in">  <span class="co">#      Well.1       Well.2       Well.3       Well.4        z (G) </span></span>
-<span class="r-in">  <span class="co">#0.0351074733 0.0238534406 0.0112077511 0.1068146088 0.0001267509 </span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="co">#==========</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="co"># Plot the results of the test</span></span>
-<span class="r-in">  <span class="co">#-----------------------------</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="fu"><a href="https://rdrr.io/r/grDevices/dev.html" class="external-link">dev.new</a></span><span class="op">(</span><span class="op">)</span></span>
-<span class="r-in">  <span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">gofGroup.obj</span><span class="op">)</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="co">#==========</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="co"># Clean up</span></span>
-<span class="r-in">  <span class="co">#---------</span></span>
-<span class="r-in">  <span class="fu"><a href="https://rdrr.io/r/base/rm.html" class="external-link">rm</a></span><span class="op">(</span><span class="va">gofGroup.obj</span><span class="op">)</span></span>
-<span class="r-in">  <span class="fu"><a href="https://rdrr.io/r/grDevices/dev.html" class="external-link">graphics.off</a></span><span class="op">(</span><span class="op">)</span></span>
+<span class="r-in"><span>  <span class="co">#      Well.1       Well.2       Well.3       Well.4        z (G) </span></span></span>
+<span class="r-in"><span>  <span class="co">#0.0351074733 0.0238534406 0.0112077511 0.1068146088 0.0001267509 </span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="co">#==========</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="co"># Plot the results of the test</span></span></span>
+<span class="r-in"><span>  <span class="co">#-----------------------------</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/r/grDevices/dev.html" class="external-link">dev.new</a></span><span class="op">(</span><span class="op">)</span></span></span>
+<span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">gofGroup.obj</span><span class="op">)</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="co">#==========</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="co"># Clean up</span></span></span>
+<span class="r-in"><span>  <span class="co">#---------</span></span></span>
+<span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/r/base/rm.html" class="external-link">rm</a></span><span class="op">(</span><span class="va">gofGroup.obj</span><span class="op">)</span></span></span>
+<span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/r/grDevices/dev.html" class="external-link">graphics.off</a></span><span class="op">(</span><span class="op">)</span></span></span>
 </code></pre></div>
     </div>
   </div>
@@ -293,7 +320,7 @@
 </div>
 
 <div class="pkgdown">
-  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.2.</p>
+  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.6.</p>
 </div>
 
       </footer></div>

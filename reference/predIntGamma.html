@@ -52,13 +52,13 @@
     </div>
 
     <div id="ref-usage">
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="fu">predIntGamma</span><span class="op">(</span><span class="va">x</span>, n.transmean <span class="op">=</span> <span class="fl">1</span>, k <span class="op">=</span> <span class="fl">1</span>, method <span class="op">=</span> <span class="st">"Bonferroni"</span>, 
-    pi.type <span class="op">=</span> <span class="st">"two-sided"</span>, conf.level <span class="op">=</span> <span class="fl">0.95</span>, est.method <span class="op">=</span> <span class="st">"mle"</span>, 
-    normal.approx.transform <span class="op">=</span> <span class="st">"kulkarni.powar"</span><span class="op">)</span>
-
-  <span class="fu">predIntGammaAlt</span><span class="op">(</span><span class="va">x</span>, n.transmean <span class="op">=</span> <span class="fl">1</span>, k <span class="op">=</span> <span class="fl">1</span>, method <span class="op">=</span> <span class="st">"Bonferroni"</span>, 
-    pi.type <span class="op">=</span> <span class="st">"two-sided"</span>, conf.level <span class="op">=</span> <span class="fl">0.95</span>, est.method <span class="op">=</span> <span class="st">"mle"</span>,
-    normal.approx.transform <span class="op">=</span> <span class="st">"kulkarni.powar"</span><span class="op">)</span></code></pre></div>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">predIntGamma</span><span class="op">(</span><span class="va">x</span>, n.transmean <span class="op">=</span> <span class="fl">1</span>, k <span class="op">=</span> <span class="fl">1</span>, method <span class="op">=</span> <span class="st">"Bonferroni"</span>, </span>
+<span>    pi.type <span class="op">=</span> <span class="st">"two-sided"</span>, conf.level <span class="op">=</span> <span class="fl">0.95</span>, est.method <span class="op">=</span> <span class="st">"mle"</span>, </span>
+<span>    normal.approx.transform <span class="op">=</span> <span class="st">"kulkarni.powar"</span><span class="op">)</span></span>
+<span></span>
+<span>  <span class="fu">predIntGammaAlt</span><span class="op">(</span><span class="va">x</span>, n.transmean <span class="op">=</span> <span class="fl">1</span>, k <span class="op">=</span> <span class="fl">1</span>, method <span class="op">=</span> <span class="st">"Bonferroni"</span>, </span>
+<span>    pi.type <span class="op">=</span> <span class="st">"two-sided"</span>, conf.level <span class="op">=</span> <span class="fl">0.95</span>, est.method <span class="op">=</span> <span class="st">"mle"</span>,</span>
+<span>    normal.approx.transform <span class="op">=</span> <span class="st">"kulkarni.powar"</span><span class="op">)</span></span></code></pre></div>
     </div>
 
     <div id="arguments">
@@ -66,38 +66,46 @@
     <dl><dt>x</dt>
 <dd><p>numeric vector of non-negative observations. Missing (<code>NA</code>), undefined (<code>NaN</code>), and 
   infinite (<code>Inf</code>, <code>-Inf</code>) values are allowed but will be removed.</p></dd>
-<dt>n.transmean</dt>
+
+  <dt>n.transmean</dt>
 <dd><p>positive integer specifying the sample size associated with the <code>k</code> 
   future transformed means (see the DETAILS section for an explanation of 
   what the transformation is).  The default value is <code>n.transmean=1</code> 
   (i.e., predicting future observations).  Note that all future 
   transformed means must be based on the same sample size.</p></dd>
-<dt>k</dt>
+
+  <dt>k</dt>
 <dd><p>positive integer specifying the number of future observations or means 
   the prediction interval should contain with confidence level <code>conf.level</code>.  
   The default value is <code>k=1</code>.</p></dd>
-<dt>method</dt>
+
+  <dt>method</dt>
 <dd><p>character string specifying the method to use if the number of future observations 
   or averages (<code>k</code>) is greater than 1.  The possible values are <code>"Bonferroni"</code> 
   (approximate method based on Bonferonni inequality; the default), and <br><code>"exact"</code> (exact method due to Dunnett, 1955).  See the DETAILS section for more information.  
   This argument is ignored if <code>k=1</code>.</p></dd>
-<dt>pi.type</dt>
+
+  <dt>pi.type</dt>
 <dd><p>character string indicating what kind of prediction interval to compute.  
   The possible values are <code>"two-sided"</code> (the default), <code>"lower"</code>, and 
   <code>"upper"</code>.</p></dd>
-<dt>conf.level</dt>
+
+  <dt>conf.level</dt>
 <dd><p>a scalar between 0 and 1 indicating the confidence level associated with the prediction 
   interval.  The default value is <code>conf.level=0.95</code>.</p></dd>
-<dt>est.method</dt>
+
+  <dt>est.method</dt>
 <dd><p>character string specifying the method of estimation for the shape and scale 
   distribution parameters.  The possible values are 
   <code>"mle"</code> (maximum likelihood; the default), 
   <code>"bcmle"</code> (bias-corrected mle), <code>"mme"</code> (method of moments), and 
   <code>"mmue"</code> (method of moments based on the unbiased estimator of variance). 
   See the DETAILS section of the help file for <code><a href="egamma.html">egamma</a></code> for more information.</p></dd>
-<dt>normal.approx.transform</dt>
+
+  <dt>normal.approx.transform</dt>
 <dd><p>character string indicating which power transformation to use.  
   Possible values are <code>"kulkarni.powar"</code> (the default), <code>"cube.root"</code>, and <br><code>"fourth.root"</code>.  See the DETAILS section for more informaiton.</p></dd>
+
 </dl></div>
     <div id="details">
     <h2>Details</h2>
@@ -139,17 +147,27 @@
 </ol></div>
     <div id="value">
     <h2>Value</h2>
-    <p>A list of class <code>"estimate"</code> containing the estimated parameters, 
-  the prediction interval, and other information.  See <code><a href="estimate.object.html">estimate.object</a></code>  for details.  
-  In addition to the usual components contained in an object of class 
-<code>"estimate"</code>, the returned value also includes two additional 
+    
+
+<p>A list of class <code>"estimate"</code> containing the estimated parameters, 
+  the prediction interval, and other information.  See <code><a href="estimate.object.html">estimate.object</a></code></p>
+ 
+
+<p>for details.</p>
+
+
+<p>In addition to the usual components contained in an object of class</p>
+<p></p>
+<p><code>"estimate"</code>, the returned value also includes two additional 
   components within the <code>"interval"</code> component:</p>
 <dl><dt>n.transmean</dt>
 <dd><p>the value of <code>n.transmean</code> supplied in the 
     call to <code>predIntGamma</code> or <code>predIntGammaAlt</code>.</p></dd>
-<dt>normal.transform.power</dt>
+
+  <dt>normal.transform.power</dt>
 <dd><p>the value of the power used to 
     transform the original data to approximate normality.</p></dd>
+  
 </dl></div>
     <div id="references">
     <h2>References</h2>
@@ -239,15 +257,15 @@
 
     <div id="ref-examples">
     <h2>Examples</h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in">  <span class="co"># Generate 20 observations from a gamma distribution with parameters </span></span>
-<span class="r-in">  <span class="co"># shape=3 and scale=2, then create a prediciton interval for the </span></span>
-<span class="r-in">  <span class="co"># next observation. </span></span>
-<span class="r-in">  <span class="co"># (Note: the call to set.seed simply allows you to reproduce this </span></span>
-<span class="r-in">  <span class="co"># example.)</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="fu"><a href="https://rdrr.io/r/base/Random.html" class="external-link">set.seed</a></span><span class="op">(</span><span class="fl">250</span><span class="op">)</span> </span>
-<span class="r-in">  <span class="va">dat</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/GammaDist.html" class="external-link">rgamma</a></span><span class="op">(</span><span class="fl">20</span>, shape <span class="op">=</span> <span class="fl">3</span>, scale <span class="op">=</span> <span class="fl">2</span><span class="op">)</span> </span>
-<span class="r-in">  <span class="fu">predIntGamma</span><span class="op">(</span><span class="va">dat</span><span class="op">)</span></span>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span>  <span class="co"># Generate 20 observations from a gamma distribution with parameters </span></span></span>
+<span class="r-in"><span>  <span class="co"># shape=3 and scale=2, then create a prediciton interval for the </span></span></span>
+<span class="r-in"><span>  <span class="co"># next observation. </span></span></span>
+<span class="r-in"><span>  <span class="co"># (Note: the call to set.seed simply allows you to reproduce this </span></span></span>
+<span class="r-in"><span>  <span class="co"># example.)</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/r/base/Random.html" class="external-link">set.seed</a></span><span class="op">(</span><span class="fl">250</span><span class="op">)</span> </span></span>
+<span class="r-in"><span>  <span class="va">dat</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/GammaDist.html" class="external-link">rgamma</a></span><span class="op">(</span><span class="fl">20</span>, shape <span class="op">=</span> <span class="fl">3</span>, scale <span class="op">=</span> <span class="fl">2</span><span class="op">)</span> </span></span>
+<span class="r-in"><span>  <span class="fu">predIntGamma</span><span class="op">(</span><span class="va">dat</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> $distribution</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] "Gamma"</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
@@ -307,48 +325,48 @@
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> attr(,"class")</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] "estimate"</span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="co">#Results of Distribution Parameter Estimation</span></span>
-<span class="r-in">  <span class="co">#--------------------------------------------</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Assumed Distribution:            Gamma</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Estimated Parameter(s):          shape = 2.203862</span></span>
-<span class="r-in">  <span class="co">#                                 scale = 2.174928</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Estimation Method:               mle</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Data:                            dat</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Sample Size:                     20</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Prediction Interval Method:      exact using</span></span>
-<span class="r-in">  <span class="co">#                                 Kulkarni &amp; Powar (2010)</span></span>
-<span class="r-in">  <span class="co">#                                 transformation to Normality</span></span>
-<span class="r-in">  <span class="co">#                                 based on mle of 'shape'</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Normal Transform Power:          0.246</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Prediction Interval Type:        two-sided</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Confidence Level:                95%</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Number of Future Observations:   1</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Prediction Interval:             LPL =  0.5371569</span></span>
-<span class="r-in">  <span class="co">#                                 UPL = 15.5313783</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="co">#--------------------------------------------------------------------</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="co"># Using the same data as in the previous example, create an upper </span></span>
-<span class="r-in">  <span class="co"># one-sided prediction interval for the next three averages of </span></span>
-<span class="r-in">  <span class="co"># order 2 (i.e., each mean is based on 2 future observations), and </span></span>
-<span class="r-in">  <span class="co"># use the bias-corrected estimate of shape.</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="va">pred.list</span> <span class="op">&lt;-</span> <span class="fu">predIntGamma</span><span class="op">(</span><span class="va">dat</span>, n.transmean <span class="op">=</span> <span class="fl">2</span>, k <span class="op">=</span> <span class="fl">3</span>, </span>
-<span class="r-in">    pi.type <span class="op">=</span> <span class="st">"upper"</span>, est.method <span class="op">=</span> <span class="st">"bcmle"</span><span class="op">)</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="va">pred.list</span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="co">#Results of Distribution Parameter Estimation</span></span></span>
+<span class="r-in"><span>  <span class="co">#--------------------------------------------</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Assumed Distribution:            Gamma</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Estimated Parameter(s):          shape = 2.203862</span></span></span>
+<span class="r-in"><span>  <span class="co">#                                 scale = 2.174928</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Estimation Method:               mle</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Data:                            dat</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Sample Size:                     20</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Prediction Interval Method:      exact using</span></span></span>
+<span class="r-in"><span>  <span class="co">#                                 Kulkarni &amp; Powar (2010)</span></span></span>
+<span class="r-in"><span>  <span class="co">#                                 transformation to Normality</span></span></span>
+<span class="r-in"><span>  <span class="co">#                                 based on mle of 'shape'</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Normal Transform Power:          0.246</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Prediction Interval Type:        two-sided</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Confidence Level:                95%</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Number of Future Observations:   1</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Prediction Interval:             LPL =  0.5371569</span></span></span>
+<span class="r-in"><span>  <span class="co">#                                 UPL = 15.5313783</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="co">#--------------------------------------------------------------------</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="co"># Using the same data as in the previous example, create an upper </span></span></span>
+<span class="r-in"><span>  <span class="co"># one-sided prediction interval for the next three averages of </span></span></span>
+<span class="r-in"><span>  <span class="co"># order 2 (i.e., each mean is based on 2 future observations), and </span></span></span>
+<span class="r-in"><span>  <span class="co"># use the bias-corrected estimate of shape.</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="va">pred.list</span> <span class="op">&lt;-</span> <span class="fu">predIntGamma</span><span class="op">(</span><span class="va">dat</span>, n.transmean <span class="op">=</span> <span class="fl">2</span>, k <span class="op">=</span> <span class="fl">3</span>, </span></span>
+<span class="r-in"><span>    pi.type <span class="op">=</span> <span class="st">"upper"</span>, est.method <span class="op">=</span> <span class="st">"bcmle"</span><span class="op">)</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="va">pred.list</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> $distribution</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] "Gamma"</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
@@ -408,86 +426,86 @@
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> attr(,"class")</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] "estimate"</span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="co">#Results of Distribution Parameter Estimation</span></span>
-<span class="r-in">  <span class="co">#--------------------------------------------</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Assumed Distribution:            Gamma</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Estimated Parameter(s):          shape = 1.906616</span></span>
-<span class="r-in">  <span class="co">#                                 scale = 2.514005</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Estimation Method:               bcmle</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Data:                            dat</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Sample Size:                     20</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Prediction Interval Method:      Bonferroni using</span></span>
-<span class="r-in">  <span class="co">#                                 Kulkarni &amp; Powar (2010)</span></span>
-<span class="r-in">  <span class="co">#                                 transformation to Normality</span></span>
-<span class="r-in">  <span class="co">#                                 based on bcmle of 'shape'</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Normal Transform Power:          0.246</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Prediction Interval Type:        upper</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Confidence Level:                95%</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Number of Future</span></span>
-<span class="r-in">  <span class="co">#Transformed Means:               3</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Sample Size for</span></span>
-<span class="r-in">  <span class="co">#Transformed Means:               2</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Prediction Interval:             LPL =  0.00000</span></span>
-<span class="r-in">  <span class="co">#                                 UPL = 12.17404</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="co">#--------------------------------------------------------------------</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="co"># Continuing with the above example, assume the distribution shifts </span></span>
-<span class="r-in">  <span class="co"># in the future to a gamma distribution with shape = 5 and scale = 2.</span></span>
-<span class="r-in">  <span class="co"># Create 6 future observations from this distribution, and create 3 </span></span>
-<span class="r-in">  <span class="co"># means by pairing the observations sequentially.  Note we must first </span></span>
-<span class="r-in">  <span class="co"># transform these observations using the power 0.246, then compute the </span></span>
-<span class="r-in">  <span class="co"># means based on the transformed data, and then transform the means </span></span>
-<span class="r-in">  <span class="co"># back to the original scale and compare them to the upper prediction </span></span>
-<span class="r-in">  <span class="co"># limit of 12.17</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="fu"><a href="https://rdrr.io/r/base/Random.html" class="external-link">set.seed</a></span><span class="op">(</span><span class="fl">427</span><span class="op">)</span></span>
-<span class="r-in">  <span class="va">new.dat</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/GammaDist.html" class="external-link">rgamma</a></span><span class="op">(</span><span class="fl">6</span>, shape <span class="op">=</span> <span class="fl">5</span>, scale <span class="op">=</span> <span class="fl">2</span><span class="op">)</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="va">p</span> <span class="op">&lt;-</span> <span class="va">pred.list</span><span class="op">$</span><span class="va">interval</span><span class="op">$</span><span class="va">normal.transform.power</span></span>
-<span class="r-in">  <span class="va">p</span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="co">#Results of Distribution Parameter Estimation</span></span></span>
+<span class="r-in"><span>  <span class="co">#--------------------------------------------</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Assumed Distribution:            Gamma</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Estimated Parameter(s):          shape = 1.906616</span></span></span>
+<span class="r-in"><span>  <span class="co">#                                 scale = 2.514005</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Estimation Method:               bcmle</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Data:                            dat</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Sample Size:                     20</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Prediction Interval Method:      Bonferroni using</span></span></span>
+<span class="r-in"><span>  <span class="co">#                                 Kulkarni &amp; Powar (2010)</span></span></span>
+<span class="r-in"><span>  <span class="co">#                                 transformation to Normality</span></span></span>
+<span class="r-in"><span>  <span class="co">#                                 based on bcmle of 'shape'</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Normal Transform Power:          0.246</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Prediction Interval Type:        upper</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Confidence Level:                95%</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Number of Future</span></span></span>
+<span class="r-in"><span>  <span class="co">#Transformed Means:               3</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Sample Size for</span></span></span>
+<span class="r-in"><span>  <span class="co">#Transformed Means:               2</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Prediction Interval:             LPL =  0.00000</span></span></span>
+<span class="r-in"><span>  <span class="co">#                                 UPL = 12.17404</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="co">#--------------------------------------------------------------------</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="co"># Continuing with the above example, assume the distribution shifts </span></span></span>
+<span class="r-in"><span>  <span class="co"># in the future to a gamma distribution with shape = 5 and scale = 2.</span></span></span>
+<span class="r-in"><span>  <span class="co"># Create 6 future observations from this distribution, and create 3 </span></span></span>
+<span class="r-in"><span>  <span class="co"># means by pairing the observations sequentially.  Note we must first </span></span></span>
+<span class="r-in"><span>  <span class="co"># transform these observations using the power 0.246, then compute the </span></span></span>
+<span class="r-in"><span>  <span class="co"># means based on the transformed data, and then transform the means </span></span></span>
+<span class="r-in"><span>  <span class="co"># back to the original scale and compare them to the upper prediction </span></span></span>
+<span class="r-in"><span>  <span class="co"># limit of 12.17</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/r/base/Random.html" class="external-link">set.seed</a></span><span class="op">(</span><span class="fl">427</span><span class="op">)</span></span></span>
+<span class="r-in"><span>  <span class="va">new.dat</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/GammaDist.html" class="external-link">rgamma</a></span><span class="op">(</span><span class="fl">6</span>, shape <span class="op">=</span> <span class="fl">5</span>, scale <span class="op">=</span> <span class="fl">2</span><span class="op">)</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="va">p</span> <span class="op">&lt;-</span> <span class="va">pred.list</span><span class="op">$</span><span class="va">interval</span><span class="op">$</span><span class="va">normal.transform.power</span></span></span>
+<span class="r-in"><span>  <span class="va">p</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] 0.246</span>
-<span class="r-in">  <span class="co">#[1] 0.246</span></span>
-<span class="r-in"> </span>
-<span class="r-in">  <span class="va">new.dat.trans</span> <span class="op">&lt;-</span> <span class="va">new.dat</span><span class="op">^</span><span class="va">p</span></span>
-<span class="r-in">  <span class="va">means.trans</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/mean.html" class="external-link">mean</a></span><span class="op">(</span><span class="va">new.dat.trans</span><span class="op">[</span><span class="fl">1</span><span class="op">:</span><span class="fl">2</span><span class="op">]</span><span class="op">)</span>, <span class="fu"><a href="https://rdrr.io/r/base/mean.html" class="external-link">mean</a></span><span class="op">(</span><span class="va">new.dat.trans</span><span class="op">[</span><span class="fl">3</span><span class="op">:</span><span class="fl">4</span><span class="op">]</span><span class="op">)</span>, </span>
-<span class="r-in">    <span class="fu"><a href="https://rdrr.io/r/base/mean.html" class="external-link">mean</a></span><span class="op">(</span><span class="va">new.dat.trans</span><span class="op">[</span><span class="fl">5</span><span class="op">:</span><span class="fl">6</span><span class="op">]</span><span class="op">)</span><span class="op">)</span></span>
-<span class="r-in">  <span class="va">means</span> <span class="op">&lt;-</span> <span class="va">means.trans</span><span class="op">^</span><span class="op">(</span><span class="fl">1</span><span class="op">/</span><span class="va">p</span><span class="op">)</span></span>
-<span class="r-in">  <span class="va">means</span></span>
+<span class="r-in"><span>  <span class="co">#[1] 0.246</span></span></span>
+<span class="r-in"><span> </span></span>
+<span class="r-in"><span>  <span class="va">new.dat.trans</span> <span class="op">&lt;-</span> <span class="va">new.dat</span><span class="op">^</span><span class="va">p</span></span></span>
+<span class="r-in"><span>  <span class="va">means.trans</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/mean.html" class="external-link">mean</a></span><span class="op">(</span><span class="va">new.dat.trans</span><span class="op">[</span><span class="fl">1</span><span class="op">:</span><span class="fl">2</span><span class="op">]</span><span class="op">)</span>, <span class="fu"><a href="https://rdrr.io/r/base/mean.html" class="external-link">mean</a></span><span class="op">(</span><span class="va">new.dat.trans</span><span class="op">[</span><span class="fl">3</span><span class="op">:</span><span class="fl">4</span><span class="op">]</span><span class="op">)</span>, </span></span>
+<span class="r-in"><span>    <span class="fu"><a href="https://rdrr.io/r/base/mean.html" class="external-link">mean</a></span><span class="op">(</span><span class="va">new.dat.trans</span><span class="op">[</span><span class="fl">5</span><span class="op">:</span><span class="fl">6</span><span class="op">]</span><span class="op">)</span><span class="op">)</span></span></span>
+<span class="r-in"><span>  <span class="va">means</span> <span class="op">&lt;-</span> <span class="va">means.trans</span><span class="op">^</span><span class="op">(</span><span class="fl">1</span><span class="op">/</span><span class="va">p</span><span class="op">)</span></span></span>
+<span class="r-in"><span>  <span class="va">means</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] 11.74214 17.05299 11.65272</span>
-<span class="r-in">  <span class="co">#[1] 11.74214 17.05299 11.65272</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="fu"><a href="https://rdrr.io/r/base/any.html" class="external-link">any</a></span><span class="op">(</span><span class="va">means</span> <span class="op">&gt;</span> <span class="va">pred.list</span><span class="op">$</span><span class="va">interval</span><span class="op">$</span><span class="va">limits</span><span class="op">[</span><span class="st">"UPL"</span><span class="op">]</span><span class="op">)</span></span>
+<span class="r-in"><span>  <span class="co">#[1] 11.74214 17.05299 11.65272</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/r/base/any.html" class="external-link">any</a></span><span class="op">(</span><span class="va">means</span> <span class="op">&gt;</span> <span class="va">pred.list</span><span class="op">$</span><span class="va">interval</span><span class="op">$</span><span class="va">limits</span><span class="op">[</span><span class="st">"UPL"</span><span class="op">]</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] TRUE</span>
-<span class="r-in">  <span class="co">#[1] TRUE</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="co">#----------</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="co"># Clean up</span></span>
-<span class="r-in">  <span class="fu"><a href="https://rdrr.io/r/base/rm.html" class="external-link">rm</a></span><span class="op">(</span><span class="va">dat</span>, <span class="va">pred.list</span>, <span class="va">new.dat</span>, <span class="va">p</span>, <span class="va">new.dat.trans</span>, <span class="va">means.trans</span>, <span class="va">means</span><span class="op">)</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="co">#--------------------------------------------------------------------</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="co"># Reproduce part of the example on page 73 of </span></span>
-<span class="r-in">  <span class="co"># Krishnamoorthy et al. (2008), which uses alkalinity concentrations </span></span>
-<span class="r-in">  <span class="co"># reported in Gibbons (1994) and Gibbons et al. (2009) to construct a </span></span>
-<span class="r-in">  <span class="co"># one-sided upper 90% prediction limit.</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="fu">predIntGamma</span><span class="op">(</span><span class="va">Gibbons.et.al.09.Alkilinity.vec</span>, pi.type <span class="op">=</span> <span class="st">"upper"</span>, </span>
-<span class="r-in">    conf.level <span class="op">=</span> <span class="fl">0.9</span>, normal.approx.transform <span class="op">=</span> <span class="st">"cube.root"</span><span class="op">)</span></span>
+<span class="r-in"><span>  <span class="co">#[1] TRUE</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="co">#----------</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="co"># Clean up</span></span></span>
+<span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/r/base/rm.html" class="external-link">rm</a></span><span class="op">(</span><span class="va">dat</span>, <span class="va">pred.list</span>, <span class="va">new.dat</span>, <span class="va">p</span>, <span class="va">new.dat.trans</span>, <span class="va">means.trans</span>, <span class="va">means</span><span class="op">)</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="co">#--------------------------------------------------------------------</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="co"># Reproduce part of the example on page 73 of </span></span></span>
+<span class="r-in"><span>  <span class="co"># Krishnamoorthy et al. (2008), which uses alkalinity concentrations </span></span></span>
+<span class="r-in"><span>  <span class="co"># reported in Gibbons (1994) and Gibbons et al. (2009) to construct a </span></span></span>
+<span class="r-in"><span>  <span class="co"># one-sided upper 90% prediction limit.</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="fu">predIntGamma</span><span class="op">(</span><span class="va">Gibbons.et.al.09.Alkilinity.vec</span>, pi.type <span class="op">=</span> <span class="st">"upper"</span>, </span></span>
+<span class="r-in"><span>    conf.level <span class="op">=</span> <span class="fl">0.9</span>, normal.approx.transform <span class="op">=</span> <span class="st">"cube.root"</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> $distribution</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] "Gamma"</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
@@ -547,35 +565,35 @@
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> attr(,"class")</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] "estimate"</span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="co">#Results of Distribution Parameter Estimation</span></span>
-<span class="r-in">  <span class="co">#--------------------------------------------</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Assumed Distribution:            Gamma</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Estimated Parameter(s):          shape = 9.375013</span></span>
-<span class="r-in">  <span class="co">#                                 scale = 6.202461</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Estimation Method:               mle</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Data:                            Gibbons.et.al.09.Alkilinity.vec</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Sample Size:                     27</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Prediction Interval Method:      exact using</span></span>
-<span class="r-in">  <span class="co">#                                 Wilson &amp; Hilferty (1931) cube-root</span></span>
-<span class="r-in">  <span class="co">#                                 transformation to Normality</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Normal Transform Power:          0.3333333</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Prediction Interval Type:        upper</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Confidence Level:                90%</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Number of Future Observations:   1</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Prediction Interval:             LPL =  0.0000</span></span>
-<span class="r-in">  <span class="co">#                                 UPL = 85.3495</span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="co">#Results of Distribution Parameter Estimation</span></span></span>
+<span class="r-in"><span>  <span class="co">#--------------------------------------------</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Assumed Distribution:            Gamma</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Estimated Parameter(s):          shape = 9.375013</span></span></span>
+<span class="r-in"><span>  <span class="co">#                                 scale = 6.202461</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Estimation Method:               mle</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Data:                            Gibbons.et.al.09.Alkilinity.vec</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Sample Size:                     27</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Prediction Interval Method:      exact using</span></span></span>
+<span class="r-in"><span>  <span class="co">#                                 Wilson &amp; Hilferty (1931) cube-root</span></span></span>
+<span class="r-in"><span>  <span class="co">#                                 transformation to Normality</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Normal Transform Power:          0.3333333</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Prediction Interval Type:        upper</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Confidence Level:                90%</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Number of Future Observations:   1</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Prediction Interval:             LPL =  0.0000</span></span></span>
+<span class="r-in"><span>  <span class="co">#                                 UPL = 85.3495</span></span></span>
 </code></pre></div>
     </div>
   </div>
@@ -590,7 +608,7 @@
 </div>
 
 <div class="pkgdown">
-  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.2.</p>
+  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.6.</p>
 </div>
 
       </footer></div>

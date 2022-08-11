@@ -52,27 +52,33 @@
     </div>
 
     <div id="ref-usage">
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="fu">dpareto</span><span class="op">(</span><span class="va">x</span>, <span class="va">location</span>, shape <span class="op">=</span> <span class="fl">1</span><span class="op">)</span>
-  <span class="fu">ppareto</span><span class="op">(</span><span class="va">q</span>, <span class="va">location</span>, shape <span class="op">=</span> <span class="fl">1</span><span class="op">)</span>
-  <span class="fu">qpareto</span><span class="op">(</span><span class="va">p</span>, <span class="va">location</span>, shape <span class="op">=</span> <span class="fl">1</span><span class="op">)</span>
-  <span class="fu">rpareto</span><span class="op">(</span><span class="va">n</span>, <span class="va">location</span>, shape <span class="op">=</span> <span class="fl">1</span><span class="op">)</span></code></pre></div>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">dpareto</span><span class="op">(</span><span class="va">x</span>, <span class="va">location</span>, shape <span class="op">=</span> <span class="fl">1</span><span class="op">)</span></span>
+<span>  <span class="fu">ppareto</span><span class="op">(</span><span class="va">q</span>, <span class="va">location</span>, shape <span class="op">=</span> <span class="fl">1</span><span class="op">)</span></span>
+<span>  <span class="fu">qpareto</span><span class="op">(</span><span class="va">p</span>, <span class="va">location</span>, shape <span class="op">=</span> <span class="fl">1</span><span class="op">)</span></span>
+<span>  <span class="fu">rpareto</span><span class="op">(</span><span class="va">n</span>, <span class="va">location</span>, shape <span class="op">=</span> <span class="fl">1</span><span class="op">)</span></span></code></pre></div>
     </div>
 
     <div id="arguments">
     <h2>Arguments</h2>
     <dl><dt>x</dt>
 <dd><p>vector of quantiles.</p></dd>
-<dt>q</dt>
+
+  <dt>q</dt>
 <dd><p>vector of quantiles.</p></dd>
-<dt>p</dt>
+
+  <dt>p</dt>
 <dd><p>vector of probabilities between 0 and 1.</p></dd>
-<dt>n</dt>
+
+  <dt>n</dt>
 <dd><p>sample size.  If <code>length(n)</code> is larger than 1, then <code>length(n)</code> 
   random values are returned.</p></dd>
-<dt>location</dt>
+
+  <dt>location</dt>
 <dd><p>vector of (positive) location parameters.</p></dd>
-<dt>shape</dt>
+
+  <dt>shape</dt>
 <dd><p>vector of (positive) shape parameters.  The default is <code>shape=1</code>.</p></dd>
+
 </dl></div>
     <div id="details">
     <h2>Details</h2>
@@ -92,8 +98,10 @@
     </div>
     <div id="value">
     <h2>Value</h2>
-    <p><code>dpareto</code> gives the density, <code>ppareto</code> gives the distribution function, 
-<code>qpareto</code> gives the quantile function, and <code>rpareto</code> generates random 
+    <p></p>
+<p><code>dpareto</code> gives the density, <code>ppareto</code> gives the distribution function,</p>
+<p></p>
+<p><code>qpareto</code> gives the quantile function, and <code>rpareto</code> generates random 
   deviates.</p>
     </div>
     <div id="references">
@@ -142,41 +150,41 @@
 
     <div id="ref-examples">
     <h2>Examples</h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in">  <span class="co"># Density of a Pareto distribution with parameters location=1 and shape=1, </span></span>
-<span class="r-in">  <span class="co"># evaluated at 2, 3 and 4: </span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="fu">dpareto</span><span class="op">(</span><span class="fl">2</span><span class="op">:</span><span class="fl">4</span>, <span class="fl">1</span>, <span class="fl">1</span><span class="op">)</span> </span>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span>  <span class="co"># Density of a Pareto distribution with parameters location=1 and shape=1, </span></span></span>
+<span class="r-in"><span>  <span class="co"># evaluated at 2, 3 and 4: </span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="fu">dpareto</span><span class="op">(</span><span class="fl">2</span><span class="op">:</span><span class="fl">4</span>, <span class="fl">1</span>, <span class="fl">1</span><span class="op">)</span> </span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] 0.2500000 0.1111111 0.0625000</span>
-<span class="r-in">  <span class="co">#[1] 0.2500000 0.1111111 0.0625000</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="co">#----------</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="co"># The cdf of a Pareto distribution with parameters location=2 and shape=1, </span></span>
-<span class="r-in">  <span class="co"># evaluated at 3, 4, and 5: </span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="fu">ppareto</span><span class="op">(</span><span class="fl">3</span><span class="op">:</span><span class="fl">5</span>, <span class="fl">2</span>, <span class="fl">1</span><span class="op">)</span> </span>
+<span class="r-in"><span>  <span class="co">#[1] 0.2500000 0.1111111 0.0625000</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="co">#----------</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="co"># The cdf of a Pareto distribution with parameters location=2 and shape=1, </span></span></span>
+<span class="r-in"><span>  <span class="co"># evaluated at 3, 4, and 5: </span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="fu">ppareto</span><span class="op">(</span><span class="fl">3</span><span class="op">:</span><span class="fl">5</span>, <span class="fl">2</span>, <span class="fl">1</span><span class="op">)</span> </span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] 0.3333333 0.5000000 0.6000000</span>
-<span class="r-in">  <span class="co">#[1] 0.3333333 0.5000000 0.6000000</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="co">#----------</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="co"># The 25'th percentile of a Pareto distribution with parameters </span></span>
-<span class="r-in">  <span class="co"># location=1 and shape=1: </span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="fu">qpareto</span><span class="op">(</span><span class="fl">0.25</span>, <span class="fl">1</span>, <span class="fl">1</span><span class="op">)</span> </span>
+<span class="r-in"><span>  <span class="co">#[1] 0.3333333 0.5000000 0.6000000</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="co">#----------</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="co"># The 25'th percentile of a Pareto distribution with parameters </span></span></span>
+<span class="r-in"><span>  <span class="co"># location=1 and shape=1: </span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="fu">qpareto</span><span class="op">(</span><span class="fl">0.25</span>, <span class="fl">1</span>, <span class="fl">1</span><span class="op">)</span> </span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] 1.333333</span>
-<span class="r-in">  <span class="co">#[1] 1.333333</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="co">#----------</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="co"># A random sample of 4 numbers from a Pareto distribution with parameters </span></span>
-<span class="r-in">  <span class="co"># location=3 and shape=2. </span></span>
-<span class="r-in">  <span class="co"># (Note: the call to set.seed simply allows you to reproduce this example.)</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="fu"><a href="https://rdrr.io/r/base/Random.html" class="external-link">set.seed</a></span><span class="op">(</span><span class="fl">10</span><span class="op">)</span> </span>
-<span class="r-in">  <span class="fu">rpareto</span><span class="op">(</span><span class="fl">4</span>, <span class="fl">3</span>, <span class="fl">2</span><span class="op">)</span></span>
+<span class="r-in"><span>  <span class="co">#[1] 1.333333</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="co">#----------</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="co"># A random sample of 4 numbers from a Pareto distribution with parameters </span></span></span>
+<span class="r-in"><span>  <span class="co"># location=3 and shape=2. </span></span></span>
+<span class="r-in"><span>  <span class="co"># (Note: the call to set.seed simply allows you to reproduce this example.)</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/r/base/Random.html" class="external-link">set.seed</a></span><span class="op">(</span><span class="fl">10</span><span class="op">)</span> </span></span>
+<span class="r-in"><span>  <span class="fu">rpareto</span><span class="op">(</span><span class="fl">4</span>, <span class="fl">3</span>, <span class="fl">2</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] 4.274728 3.603148 3.962862 5.415322</span>
-<span class="r-in">  <span class="co">#[1] 4.274728 3.603148 3.962862 5.415322</span></span>
+<span class="r-in"><span>  <span class="co">#[1] 4.274728 3.603148 3.962862 5.415322</span></span></span>
 </code></pre></div>
     </div>
   </div>
@@ -191,7 +199,7 @@
 </div>
 
 <div class="pkgdown">
-  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.2.</p>
+  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.6.</p>
 </div>
 
       </footer></div>

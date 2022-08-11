@@ -52,35 +52,41 @@
     </div>
 
     <div id="ref-usage">
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="fu">epois</span><span class="op">(</span><span class="va">x</span>, method <span class="op">=</span> <span class="st">"mle/mme/mvue"</span>, ci <span class="op">=</span> <span class="cn">FALSE</span>, ci.type <span class="op">=</span> <span class="st">"two-sided"</span>, 
-    ci.method <span class="op">=</span> <span class="st">"exact"</span>, conf.level <span class="op">=</span> <span class="fl">0.95</span><span class="op">)</span></code></pre></div>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">epois</span><span class="op">(</span><span class="va">x</span>, method <span class="op">=</span> <span class="st">"mle/mme/mvue"</span>, ci <span class="op">=</span> <span class="cn">FALSE</span>, ci.type <span class="op">=</span> <span class="st">"two-sided"</span>, </span>
+<span>    ci.method <span class="op">=</span> <span class="st">"exact"</span>, conf.level <span class="op">=</span> <span class="fl">0.95</span><span class="op">)</span></span></code></pre></div>
     </div>
 
     <div id="arguments">
     <h2>Arguments</h2>
     <dl><dt>x</dt>
 <dd><p>numeric vector of observations.</p></dd>
-<dt>method</dt>
+
+  <dt>method</dt>
 <dd><p>character string specifying the method of estimation.  Currently the only possible 
   value is <code>"mle/mme/mvue"</code> (maximum likelihood/method of moments/minimum variance unbiased; 
   the default).  See the DETAILS section for more information.</p></dd>
-<dt>ci</dt>
+
+  <dt>ci</dt>
 <dd><p>logical scalar indicating whether to compute a confidence interval for the 
   location or scale parameter.  The default value is <code>FALSE</code>.</p></dd>
-<dt>ci.type</dt>
+
+  <dt>ci.type</dt>
 <dd><p>character string indicating what kind of confidence interval to compute.  The 
   possible values are <code>"two-sided"</code> (the default), <code>"lower"</code>, and 
   <code>"upper"</code>.  This argument is ignored if <code>ci=FALSE</code>.</p></dd>
-<dt>ci.method</dt>
+
+  <dt>ci.method</dt>
 <dd><p>character string indicating what method to use to construct the confidence interval 
   for the location or scale parameter.  Possible values are <code>"exact"</code> 
   (the default), <code>"pearson.hartley.approx"</code> (Pearson-Hartley approximation), and 
   <code>"normal.approx"</code> (normal approximation).  See the DETAILS section for more 
   information.  This argument is ignored if <code>ci=FALSE</code>.</p></dd>
-<dt>conf.level</dt>
+
+  <dt>conf.level</dt>
 <dd><p>a scalar between 0 and 1 indicating the confidence level of the confidence interval.  
   The default value is <code>conf.level=0.95</code>. This argument is ignored if 
   <code>ci=FALSE</code>.</p></dd>
+
 </dl></div>
     <div id="details">
     <h2>Details</h2>
@@ -147,7 +153,12 @@
     </div>
     <div id="value">
     <h2>Value</h2>
-    <p>a list of class <code>"estimate"</code> containing the estimated parameters and other information. <br>  See <code><a href="estimate.object.html">estimate.object</a></code> for details.</p>
+    
+
+<p>a list of class <code>"estimate"</code> containing the estimated parameters and other information. <br></p>
+ 
+
+<p>See <code><a href="estimate.object.html">estimate.object</a></code> for details.</p>
     </div>
     <div id="references">
     <h2>References</h2>
@@ -194,14 +205,14 @@
 
     <div id="ref-examples">
     <h2>Examples</h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in">  <span class="co"># Generate 20 observations from a Poisson distribution with parameter </span></span>
-<span class="r-in">  <span class="co"># lambda=2, then estimate the parameter and construct a 90% confidence </span></span>
-<span class="r-in">  <span class="co"># interval. </span></span>
-<span class="r-in">  <span class="co"># (Note: the call to set.seed simply allows you to reproduce this example.)</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="fu"><a href="https://rdrr.io/r/base/Random.html" class="external-link">set.seed</a></span><span class="op">(</span><span class="fl">250</span><span class="op">)</span> </span>
-<span class="r-in">  <span class="va">dat</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/Poisson.html" class="external-link">rpois</a></span><span class="op">(</span><span class="fl">20</span>, lambda <span class="op">=</span> <span class="fl">2</span><span class="op">)</span> </span>
-<span class="r-in">  <span class="fu">epois</span><span class="op">(</span><span class="va">dat</span>, ci <span class="op">=</span> <span class="cn">TRUE</span>, conf.level <span class="op">=</span> <span class="fl">0.9</span><span class="op">)</span> </span>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span>  <span class="co"># Generate 20 observations from a Poisson distribution with parameter </span></span></span>
+<span class="r-in"><span>  <span class="co"># lambda=2, then estimate the parameter and construct a 90% confidence </span></span></span>
+<span class="r-in"><span>  <span class="co"># interval. </span></span></span>
+<span class="r-in"><span>  <span class="co"># (Note: the call to set.seed simply allows you to reproduce this example.)</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/r/base/Random.html" class="external-link">set.seed</a></span><span class="op">(</span><span class="fl">250</span><span class="op">)</span> </span></span>
+<span class="r-in"><span>  <span class="va">dat</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/Poisson.html" class="external-link">rpois</a></span><span class="op">(</span><span class="fl">20</span>, lambda <span class="op">=</span> <span class="fl">2</span><span class="op">)</span> </span></span>
+<span class="r-in"><span>  <span class="fu">epois</span><span class="op">(</span><span class="va">dat</span>, ci <span class="op">=</span> <span class="cn">TRUE</span>, conf.level <span class="op">=</span> <span class="fl">0.9</span><span class="op">)</span> </span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> $distribution</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] "Poisson"</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
@@ -252,56 +263,56 @@
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> attr(,"class")</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] "estimate"</span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="co">#Results of Distribution Parameter Estimation</span></span>
-<span class="r-in">  <span class="co">#--------------------------------------------</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Assumed Distribution:            Poisson</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Estimated Parameter(s):          lambda = 1.8</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Estimation Method:               mle/mme/mvue</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Data:                            dat</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Sample Size:                     20</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Confidence Interval for:         lambda</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Confidence Interval Method:      exact</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Confidence Interval Type:        two-sided</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Confidence Level:                90%</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Confidence Interval:             LCL = 1.336558</span></span>
-<span class="r-in">  <span class="co">#                                 UCL = 2.377037</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="co">#----------</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="co"># Compare the different ways of constructing confidence intervals for </span></span>
-<span class="r-in">  <span class="co"># lambda using the same data as in the previous example:</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="fu">epois</span><span class="op">(</span><span class="va">dat</span>, ci <span class="op">=</span> <span class="cn">TRUE</span>, ci.method <span class="op">=</span> <span class="st">"pearson"</span>, </span>
-<span class="r-in">    conf.level <span class="op">=</span> <span class="fl">0.9</span><span class="op">)</span><span class="op">$</span><span class="va">interval</span><span class="op">$</span><span class="va">limits</span> </span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="co">#Results of Distribution Parameter Estimation</span></span></span>
+<span class="r-in"><span>  <span class="co">#--------------------------------------------</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Assumed Distribution:            Poisson</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Estimated Parameter(s):          lambda = 1.8</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Estimation Method:               mle/mme/mvue</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Data:                            dat</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Sample Size:                     20</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Confidence Interval for:         lambda</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Confidence Interval Method:      exact</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Confidence Interval Type:        two-sided</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Confidence Level:                90%</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Confidence Interval:             LCL = 1.336558</span></span></span>
+<span class="r-in"><span>  <span class="co">#                                 UCL = 2.377037</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="co">#----------</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="co"># Compare the different ways of constructing confidence intervals for </span></span></span>
+<span class="r-in"><span>  <span class="co"># lambda using the same data as in the previous example:</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="fu">epois</span><span class="op">(</span><span class="va">dat</span>, ci <span class="op">=</span> <span class="cn">TRUE</span>, ci.method <span class="op">=</span> <span class="st">"pearson"</span>, </span></span>
+<span class="r-in"><span>    conf.level <span class="op">=</span> <span class="fl">0.9</span><span class="op">)</span><span class="op">$</span><span class="va">interval</span><span class="op">$</span><span class="va">limits</span> </span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>      LCL      UCL </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 1.336558 2.377037 </span>
-<span class="r-in">  <span class="co">#     LCL      UCL </span></span>
-<span class="r-in">  <span class="co">#1.336558 2.377037</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="fu">epois</span><span class="op">(</span><span class="va">dat</span>, ci <span class="op">=</span> <span class="cn">TRUE</span>, ci.method <span class="op">=</span> <span class="st">"normal.approx"</span>,  </span>
-<span class="r-in">    conf.level <span class="op">=</span> <span class="fl">0.9</span><span class="op">)</span><span class="op">$</span><span class="va">interval</span><span class="op">$</span><span class="va">limits</span> </span>
+<span class="r-in"><span>  <span class="co">#     LCL      UCL </span></span></span>
+<span class="r-in"><span>  <span class="co">#1.336558 2.377037</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="fu">epois</span><span class="op">(</span><span class="va">dat</span>, ci <span class="op">=</span> <span class="cn">TRUE</span>, ci.method <span class="op">=</span> <span class="st">"normal.approx"</span>,  </span></span>
+<span class="r-in"><span>    conf.level <span class="op">=</span> <span class="fl">0.9</span><span class="op">)</span><span class="op">$</span><span class="va">interval</span><span class="op">$</span><span class="va">limits</span> </span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>      LCL      UCL </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 1.306544 2.293456 </span>
-<span class="r-in">  <span class="co">#     LCL      UCL </span></span>
-<span class="r-in">  <span class="co">#1.306544 2.293456 </span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="co">#----------</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="co"># Clean up</span></span>
-<span class="r-in">  <span class="co">#---------</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="fu"><a href="https://rdrr.io/r/base/rm.html" class="external-link">rm</a></span><span class="op">(</span><span class="va">dat</span><span class="op">)</span></span>
+<span class="r-in"><span>  <span class="co">#     LCL      UCL </span></span></span>
+<span class="r-in"><span>  <span class="co">#1.306544 2.293456 </span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="co">#----------</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="co"># Clean up</span></span></span>
+<span class="r-in"><span>  <span class="co">#---------</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/r/base/rm.html" class="external-link">rm</a></span><span class="op">(</span><span class="va">dat</span><span class="op">)</span></span></span>
 </code></pre></div>
     </div>
   </div>
@@ -316,7 +327,7 @@
 </div>
 
 <div class="pkgdown">
-  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.2.</p>
+  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.6.</p>
 </div>
 
       </footer></div>

@@ -62,42 +62,44 @@ The function plot.gof is automatically called by plot
     </div>
 
     <div id="ref-usage">
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="co"># S3 method for gof</span>
-<span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">x</span>, plot.type <span class="op">=</span> <span class="st">"Summary"</span>, 
-  captions <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>PDFs <span class="op">=</span> <span class="cn">NULL</span>, CDFs <span class="op">=</span> <span class="cn">NULL</span>, QQ <span class="op">=</span> <span class="cn">NULL</span>, MDQQ <span class="op">=</span> <span class="cn">NULL</span>, Results <span class="op">=</span> <span class="cn">NULL</span><span class="op">)</span>, 
-  x.labels <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>PDFs <span class="op">=</span> <span class="cn">NULL</span>, CDFs <span class="op">=</span> <span class="cn">NULL</span>, QQ <span class="op">=</span> <span class="cn">NULL</span>, MDQQ <span class="op">=</span> <span class="cn">NULL</span><span class="op">)</span>, 
-  y.labels <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>PDFs <span class="op">=</span> <span class="cn">NULL</span>, CDFs <span class="op">=</span> <span class="cn">NULL</span>, QQ <span class="op">=</span> <span class="cn">NULL</span>, MDQQ <span class="op">=</span> <span class="cn">NULL</span><span class="op">)</span>, 
-  same.window <span class="op">=</span> <span class="cn">FALSE</span>, ask <span class="op">=</span> <span class="va">same.window</span> <span class="op">&amp;</span> <span class="va">plot.type</span> <span class="op">==</span> <span class="st">"All"</span>, hist.col <span class="op">=</span> <span class="st">"cyan"</span>, 
-  fitted.pdf.col <span class="op">=</span> <span class="st">"black"</span>, fitted.pdf.lwd <span class="op">=</span> <span class="fl">3</span> <span class="op">*</span> <span class="fu"><a href="https://rdrr.io/r/graphics/par.html" class="external-link">par</a></span><span class="op">(</span><span class="st">"cex"</span><span class="op">)</span>, fitted.pdf.lty <span class="op">=</span> <span class="fl">1</span>, 
-  plot.pos.con <span class="op">=</span> <span class="kw"><a href="https://rdrr.io/r/base/switch.html" class="external-link">switch</a></span><span class="op">(</span><span class="va">dist.abb</span>, norm <span class="op">=</span> , lnorm <span class="op">=</span> , lnormAlt <span class="op">=</span> , lnorm3 <span class="op">=</span> <span class="fl">0.375</span>, 
-    evd <span class="op">=</span> <span class="fl">0.44</span>, <span class="fl">0.4</span><span class="op">)</span>, ecdf.col <span class="op">=</span> <span class="st">"cyan"</span>, fitted.cdf.col <span class="op">=</span> <span class="st">"black"</span>, 
-  ecdf.lwd <span class="op">=</span> <span class="fl">3</span> <span class="op">*</span> <span class="fu"><a href="https://rdrr.io/r/graphics/par.html" class="external-link">par</a></span><span class="op">(</span><span class="st">"cex"</span><span class="op">)</span>, fitted.cdf.lwd <span class="op">=</span> <span class="fl">3</span> <span class="op">*</span> <span class="fu"><a href="https://rdrr.io/r/graphics/par.html" class="external-link">par</a></span><span class="op">(</span><span class="st">"cex"</span><span class="op">)</span>, ecdf.lty <span class="op">=</span> <span class="fl">1</span>, 
-  fitted.cdf.lty <span class="op">=</span> <span class="fl">2</span>, add.line <span class="op">=</span> <span class="cn">TRUE</span>, 
-  digits <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/ifelse.html" class="external-link">ifelse</a></span><span class="op">(</span><span class="va">plot.type</span> <span class="op">==</span> <span class="st">"Summary"</span>, <span class="fl">2</span>, <span class="va">.Options</span><span class="op">$</span><span class="va">digits</span><span class="op">)</span>, 
-  test.result.font <span class="op">=</span> <span class="fl">1</span>, 
-  test.result.cex <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/ifelse.html" class="external-link">ifelse</a></span><span class="op">(</span><span class="va">plot.type</span> <span class="op">==</span> <span class="st">"Summary"</span>, <span class="fl">0.9</span>, <span class="fl">1</span><span class="op">)</span> <span class="op">*</span> <span class="fu"><a href="https://rdrr.io/r/graphics/par.html" class="external-link">par</a></span><span class="op">(</span><span class="st">"cex"</span><span class="op">)</span>, 
-  test.result.mar <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">0</span>, <span class="fl">0</span>, <span class="fl">3</span>, <span class="fl">0</span><span class="op">)</span> <span class="op">+</span> <span class="fl">0.1</span>, 
-  cex.main <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/ifelse.html" class="external-link">ifelse</a></span><span class="op">(</span><span class="va">plot.type</span> <span class="op">==</span> <span class="st">"Summary"</span>, <span class="fl">1.2</span>, <span class="fl">1.5</span><span class="op">)</span> <span class="op">*</span> <span class="fu"><a href="https://rdrr.io/r/graphics/par.html" class="external-link">par</a></span><span class="op">(</span><span class="st">"cex"</span><span class="op">)</span>, 
-  cex.axis <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/ifelse.html" class="external-link">ifelse</a></span><span class="op">(</span><span class="va">plot.type</span> <span class="op">==</span> <span class="st">"Summary"</span>, <span class="fl">0.9</span>, <span class="fl">1</span><span class="op">)</span> <span class="op">*</span> <span class="fu"><a href="https://rdrr.io/r/graphics/par.html" class="external-link">par</a></span><span class="op">(</span><span class="st">"cex"</span><span class="op">)</span>, 
-  cex.lab <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/ifelse.html" class="external-link">ifelse</a></span><span class="op">(</span><span class="va">plot.type</span> <span class="op">==</span> <span class="st">"Summary"</span>, <span class="fl">0.9</span>, <span class="fl">1</span><span class="op">)</span> <span class="op">*</span> <span class="fu"><a href="https://rdrr.io/r/graphics/par.html" class="external-link">par</a></span><span class="op">(</span><span class="st">"cex"</span><span class="op">)</span>, 
-  main <span class="op">=</span> <span class="cn">NULL</span>, xlab <span class="op">=</span> <span class="cn">NULL</span>, ylab <span class="op">=</span> <span class="cn">NULL</span>, xlim <span class="op">=</span> <span class="cn">NULL</span>, ylim <span class="op">=</span> <span class="cn">NULL</span>, 
-  add.om.title <span class="op">=</span> <span class="cn">TRUE</span>, 
-  oma <span class="op">=</span> <span class="kw">if</span> <span class="op">(</span><span class="va">plot.type</span> <span class="op">==</span> <span class="st">"Summary"</span> <span class="op">&amp;</span> <span class="va">add.om.title</span><span class="op">)</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">0</span>, <span class="fl">0</span>, <span class="fl">2.5</span>, <span class="fl">0</span><span class="op">)</span> <span class="kw">else</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">0</span>, <span class="fl">0</span>, <span class="fl">0</span>, <span class="fl">0</span><span class="op">)</span>, 
-  om.title <span class="op">=</span> <span class="cn">NULL</span>, om.font <span class="op">=</span> <span class="fl">2</span>, om.cex.main <span class="op">=</span> <span class="fl">1.75</span> <span class="op">*</span> <span class="fu"><a href="https://rdrr.io/r/graphics/par.html" class="external-link">par</a></span><span class="op">(</span><span class="st">"cex"</span><span class="op">)</span>, om.line <span class="op">=</span> <span class="fl">0.5</span>, <span class="va">...</span><span class="op">)</span></code></pre></div>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="co"># S3 method for gof</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">x</span>, plot.type <span class="op">=</span> <span class="st">"Summary"</span>, </span>
+<span>  captions <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>PDFs <span class="op">=</span> <span class="cn">NULL</span>, CDFs <span class="op">=</span> <span class="cn">NULL</span>, QQ <span class="op">=</span> <span class="cn">NULL</span>, MDQQ <span class="op">=</span> <span class="cn">NULL</span>, Results <span class="op">=</span> <span class="cn">NULL</span><span class="op">)</span>, </span>
+<span>  x.labels <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>PDFs <span class="op">=</span> <span class="cn">NULL</span>, CDFs <span class="op">=</span> <span class="cn">NULL</span>, QQ <span class="op">=</span> <span class="cn">NULL</span>, MDQQ <span class="op">=</span> <span class="cn">NULL</span><span class="op">)</span>, </span>
+<span>  y.labels <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>PDFs <span class="op">=</span> <span class="cn">NULL</span>, CDFs <span class="op">=</span> <span class="cn">NULL</span>, QQ <span class="op">=</span> <span class="cn">NULL</span>, MDQQ <span class="op">=</span> <span class="cn">NULL</span><span class="op">)</span>, </span>
+<span>  same.window <span class="op">=</span> <span class="cn">FALSE</span>, ask <span class="op">=</span> <span class="va">same.window</span> <span class="op">&amp;</span> <span class="va">plot.type</span> <span class="op">==</span> <span class="st">"All"</span>, hist.col <span class="op">=</span> <span class="st">"cyan"</span>, </span>
+<span>  fitted.pdf.col <span class="op">=</span> <span class="st">"black"</span>, fitted.pdf.lwd <span class="op">=</span> <span class="fl">3</span> <span class="op">*</span> <span class="fu"><a href="https://rdrr.io/r/graphics/par.html" class="external-link">par</a></span><span class="op">(</span><span class="st">"cex"</span><span class="op">)</span>, fitted.pdf.lty <span class="op">=</span> <span class="fl">1</span>, </span>
+<span>  plot.pos.con <span class="op">=</span> <span class="kw"><a href="https://rdrr.io/r/base/switch.html" class="external-link">switch</a></span><span class="op">(</span><span class="va">dist.abb</span>, norm <span class="op">=</span> , lnorm <span class="op">=</span> , lnormAlt <span class="op">=</span> , lnorm3 <span class="op">=</span> <span class="fl">0.375</span>, </span>
+<span>    evd <span class="op">=</span> <span class="fl">0.44</span>, <span class="fl">0.4</span><span class="op">)</span>, ecdf.col <span class="op">=</span> <span class="st">"cyan"</span>, fitted.cdf.col <span class="op">=</span> <span class="st">"black"</span>, </span>
+<span>  ecdf.lwd <span class="op">=</span> <span class="fl">3</span> <span class="op">*</span> <span class="fu"><a href="https://rdrr.io/r/graphics/par.html" class="external-link">par</a></span><span class="op">(</span><span class="st">"cex"</span><span class="op">)</span>, fitted.cdf.lwd <span class="op">=</span> <span class="fl">3</span> <span class="op">*</span> <span class="fu"><a href="https://rdrr.io/r/graphics/par.html" class="external-link">par</a></span><span class="op">(</span><span class="st">"cex"</span><span class="op">)</span>, ecdf.lty <span class="op">=</span> <span class="fl">1</span>, </span>
+<span>  fitted.cdf.lty <span class="op">=</span> <span class="fl">2</span>, add.line <span class="op">=</span> <span class="cn">TRUE</span>, </span>
+<span>  digits <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/ifelse.html" class="external-link">ifelse</a></span><span class="op">(</span><span class="va">plot.type</span> <span class="op">==</span> <span class="st">"Summary"</span>, <span class="fl">2</span>, <span class="va">.Options</span><span class="op">$</span><span class="va">digits</span><span class="op">)</span>, </span>
+<span>  test.result.font <span class="op">=</span> <span class="fl">1</span>, </span>
+<span>  test.result.cex <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/ifelse.html" class="external-link">ifelse</a></span><span class="op">(</span><span class="va">plot.type</span> <span class="op">==</span> <span class="st">"Summary"</span>, <span class="fl">0.9</span>, <span class="fl">1</span><span class="op">)</span> <span class="op">*</span> <span class="fu"><a href="https://rdrr.io/r/graphics/par.html" class="external-link">par</a></span><span class="op">(</span><span class="st">"cex"</span><span class="op">)</span>, </span>
+<span>  test.result.mar <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">0</span>, <span class="fl">0</span>, <span class="fl">3</span>, <span class="fl">0</span><span class="op">)</span> <span class="op">+</span> <span class="fl">0.1</span>, </span>
+<span>  cex.main <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/ifelse.html" class="external-link">ifelse</a></span><span class="op">(</span><span class="va">plot.type</span> <span class="op">==</span> <span class="st">"Summary"</span>, <span class="fl">1.2</span>, <span class="fl">1.5</span><span class="op">)</span> <span class="op">*</span> <span class="fu"><a href="https://rdrr.io/r/graphics/par.html" class="external-link">par</a></span><span class="op">(</span><span class="st">"cex"</span><span class="op">)</span>, </span>
+<span>  cex.axis <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/ifelse.html" class="external-link">ifelse</a></span><span class="op">(</span><span class="va">plot.type</span> <span class="op">==</span> <span class="st">"Summary"</span>, <span class="fl">0.9</span>, <span class="fl">1</span><span class="op">)</span> <span class="op">*</span> <span class="fu"><a href="https://rdrr.io/r/graphics/par.html" class="external-link">par</a></span><span class="op">(</span><span class="st">"cex"</span><span class="op">)</span>, </span>
+<span>  cex.lab <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/ifelse.html" class="external-link">ifelse</a></span><span class="op">(</span><span class="va">plot.type</span> <span class="op">==</span> <span class="st">"Summary"</span>, <span class="fl">0.9</span>, <span class="fl">1</span><span class="op">)</span> <span class="op">*</span> <span class="fu"><a href="https://rdrr.io/r/graphics/par.html" class="external-link">par</a></span><span class="op">(</span><span class="st">"cex"</span><span class="op">)</span>, </span>
+<span>  main <span class="op">=</span> <span class="cn">NULL</span>, xlab <span class="op">=</span> <span class="cn">NULL</span>, ylab <span class="op">=</span> <span class="cn">NULL</span>, xlim <span class="op">=</span> <span class="cn">NULL</span>, ylim <span class="op">=</span> <span class="cn">NULL</span>, </span>
+<span>  add.om.title <span class="op">=</span> <span class="cn">TRUE</span>, </span>
+<span>  oma <span class="op">=</span> <span class="kw">if</span> <span class="op">(</span><span class="va">plot.type</span> <span class="op">==</span> <span class="st">"Summary"</span> <span class="op">&amp;</span> <span class="va">add.om.title</span><span class="op">)</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">0</span>, <span class="fl">0</span>, <span class="fl">2.5</span>, <span class="fl">0</span><span class="op">)</span> <span class="kw">else</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">0</span>, <span class="fl">0</span>, <span class="fl">0</span>, <span class="fl">0</span><span class="op">)</span>, </span>
+<span>  om.title <span class="op">=</span> <span class="cn">NULL</span>, om.font <span class="op">=</span> <span class="fl">2</span>, om.cex.main <span class="op">=</span> <span class="fl">1.75</span> <span class="op">*</span> <span class="fu"><a href="https://rdrr.io/r/graphics/par.html" class="external-link">par</a></span><span class="op">(</span><span class="st">"cex"</span><span class="op">)</span>, om.line <span class="op">=</span> <span class="fl">0.5</span>, <span class="va">...</span><span class="op">)</span></span></code></pre></div>
     </div>
 
     <div id="arguments">
     <h2>Arguments</h2>
     <dl><dt>x</dt>
 <dd><p>an object of class <code>"gof"</code>.  See <code><a href="gof.object.html">gof.object</a></code> for details.</p></dd>
-<dt>plot.type</dt>
+
+  <dt>plot.type</dt>
 <dd><p>character string indicating what kind of plot to create.  Only one particular 
   plot type will be created, unless <code>plot.type="All"</code>, in which case all plots 
   will be created sequentially.  The possible values of <code>plot.type</code> are: 
   <code>"Summary"</code> (the default), <code>"PDFs: Observed and Fitted"</code>, 
   <code>"CDFs: Observed and Fitted"</code>, <code>"Q-Q Plot"</code>, <code>"Tukey M-D Q-Q Plot"</code>, 
   <code>"Test Results"</code>, and <code>"All"</code>.  See the DETAILS section for more information.</p></dd>
-<dt>captions</dt>
+
+  <dt>captions</dt>
 <dd><p>a list with 1 to 5 components with the names <code>"PDFs"</code>, <code>"CDFs"</code>, 
   <code>"QQ"</code>, <code>"MDQQ"</code>, and/or <code>"Results"</code>.  Each component either has 
   the value <code>NULL</code> or else it is a character string containing the title for that 
@@ -108,7 +110,8 @@ The function plot.gof is automatically called by plot
   different from the default ones.  If you are creating only one kind of plot, 
   then you can just use the <code>main</code> argument to specify a title different 
   from the default one.</p></dd>
-<dt>x.labels</dt>
+
+  <dt>x.labels</dt>
 <dd><p>a list of 1 to 4 components with the names <code>"PDFs"</code>, <code>"CDFs"</code>, <code>"QQ"</code>, 
   and/or <code>"MDQQ"</code>.  Each component either has the value 
   <code>NULL</code> or else it is a character string containing the label for the 
@@ -121,7 +124,8 @@ The function plot.gof is automatically called by plot
   labels different from the default ones.  If you are creating only one plot, 
   then you can just use the <code>xlab</code> argument to 
   specify an \(x\)-axis label different from the default one.</p></dd>
-<dt>y.labels</dt>
+
+  <dt>y.labels</dt>
 <dd><p>a list of 1 to 4 components with the names <code>"PDFs"</code>, <code>"CDFs"</code>, <code>"QQ"</code>, 
   and/or <code>"MDQQ"</code>.  Each component either has the value 
   <code>NULL</code> or else it is a character string containing the label for the 
@@ -134,42 +138,60 @@ The function plot.gof is automatically called by plot
   labels different from the default ones.  If you are creating only one plot, 
   then you can just use the <code>ylab</code> argument to 
   specify a \(y\)-axis label different from the default one.</p></dd>
-<dt>same.window</dt>
+
+  <dt>same.window</dt>
 <dd><p>logical scalar indicating whether to produce all plots in the same graphics 
   window (<code>same.window=TRUE</code>), or to create a new graphics 
   window for each separate plot (<code>same.window=FALSE</code>; the default).  
   The argument is relevant only when <code>plot.type="All"</code>.</p></dd>
-<dt>ask</dt>
+
+  <dt>ask</dt>
 <dd><p>logical scalar supplied to the function <code><a href="https://rdrr.io/r/grDevices/devAskNewPage.html" class="external-link">devAskNewPage</a></code>, indicating 
   whether to prompt the user before creating a new plot within a single graphics 
   window.  The default value is <code>FALSE</code> unless <code>same.window=TRUE</code> and 
   <code>plot.type == "All"</code>.</p></dd>
-<dt>digits</dt>
+
+  <dt>digits</dt>
 <dd><p>scalar indicating how many significant digits to print for the distribution 
   parameters.  If <code>plot.type == "Summary"</code>, the default value is 
   <code>digits=2</code>, otherwise it is <code>.Options$digits</code> (i.e., the current 
   setting of <code>options("digits")</code>).  
   This argument is ignored when <code>plot.type="PDFs: Observed and Fitted"</code>.</p></dd>
-</dl><p><b>Arguments associated with <code>plot.type="PDFs: Observed and Fitted"</code>:</b><br></p>
+
+
+
+
+</dl><p><b>Arguments associated with <code>plot.type="PDFs: Observed and Fitted"</code>:</b></p>
+<p></p>
+<p><br></p>
 <dl><dt>hist.col</dt>
 <dd><p>a character string or numeric scalar determining the color of the histogram 
   used to display the distribution of the observed values.  The default value is 
   <code>hist.col="cyan"</code>.  See the entry for <code>col</code> in the <span style="R">R</span> help file for 
   <code><a href="https://rdrr.io/r/graphics/par.html" class="external-link">par</a></code> for more information.</p></dd>
-<dt>fitted.pdf.col</dt>
+
+  <dt>fitted.pdf.col</dt>
 <dd><p>a character string or numeric scalar determining the color of the fitted PDF 
   (which is displayed as a line for continuous distributions and a histogram for 
   discrete distributions).  The default value is <code>fitted.pdf.col="black"</code>.  
   See the entry for <code>col</code> in the <span style="R">R</span> help file for <code><a href="https://rdrr.io/r/graphics/par.html" class="external-link">par</a></code> for more information.</p></dd>
-<dt>fitted.pdf.lwd</dt>
+
+  <dt>fitted.pdf.lwd</dt>
 <dd><p>numeric scalar determining the width of the line used to display the fitted PDF.  
   The default value is <code>fitted.pdf.lwd=3*par("cex")</code>.  
   See the entry for <code>lwd</code> in the <span style="R">R</span> help file for <code><a href="https://rdrr.io/r/graphics/par.html" class="external-link">par</a></code> for more information.</p></dd>
-<dt>fitted.pdf.lty</dt>
+
+  <dt>fitted.pdf.lty</dt>
 <dd><p>numeric scalar determining the line type used to display the fitted PDF.  
   The default value is <code>fitted.pdf.lty=1</code>.  
   See the entry for <code>lty</code> in the <span style="R">R</span> help file for <code><a href="https://rdrr.io/r/graphics/par.html" class="external-link">par</a></code> for more information.</p></dd>
-</dl><p><b>Arguments associated with <code>plot.type="CDFs: Observed and Fitted"</code>:</b><br></p>
+
+
+
+
+</dl><p><b>Arguments associated with <code>plot.type="CDFs: Observed and Fitted"</code>:</b></p>
+<p></p>
+<p><br></p>
 <dl><dt>plot.pos.con</dt>
 <dd><p>numeric scalar between 0 and 1 containing the value of the plotting position 
   constant used to construct the observed (empirical) CDF.  The default value of 
@@ -185,72 +207,116 @@ The function plot.gof is automatically called by plot
 <p><b>NOTE:</b>  This argument is also used to determine the value of the 
   plotting position constant for the Q-Q plot (<code>plot.type="Q-Q Plot"</code>), or the 
   Tukey Mean-Difference Q-Q plot (<code>plot.type="Tukey M-D Q-Q Plot"</code>).</p></dd>
-<dt>ecdf.col</dt>
+
+  <dt>ecdf.col</dt>
 <dd><p>a character string or numeric scalar determining the color of the line  
   used to display the empirical CDF.  The default value is 
   <code>ecdf.col="cyan"</code>.  See the entry for <code>col</code> in the <span style="R">R</span> help file for 
   <code><a href="https://rdrr.io/r/graphics/par.html" class="external-link">par</a></code> for more information.</p></dd>
-<dt>fitted.cdf.col</dt>
+
+  <dt>fitted.cdf.col</dt>
 <dd><p>a character string or numeric scalar determining the color of the line used 
   to display the fitted CDF.  The default value is <code>fitted.cdf.col="black"</code>.  
   See the entry for <code>col</code> in the <span style="R">R</span> help file for <code><a href="https://rdrr.io/r/graphics/par.html" class="external-link">par</a></code> for more information.</p></dd>
-<dt>ecdf.lwd</dt>
+
+  <dt>ecdf.lwd</dt>
 <dd><p>numeric scalar determining the width of the line used to display the empirical CDF.  
   The default value is <code>ecdf.lwd=3*par("cex")</code>.  
   See the entry for <code>lwd</code> in the <span style="R">R</span> help file for <code><a href="https://rdrr.io/r/graphics/par.html" class="external-link">par</a></code> for more information.</p></dd>
-<dt>fitted.cdf.lwd</dt>
+
+  <dt>fitted.cdf.lwd</dt>
 <dd><p>numeric scalar determining the width of the line used to display the fitted CDF.  
   The default value is <code>fitted.cdf.lwd=3*par("cex")</code>.  
   See the entry for <code>lwd</code> in the <span style="R">R</span> help file for <code><a href="https://rdrr.io/r/graphics/par.html" class="external-link">par</a></code> for more information.</p></dd>
-<dt>ecdf.lty</dt>
+
+  <dt>ecdf.lty</dt>
 <dd><p>numeric scalar determining the line type used to display the empirical CDF.  
   The default value is <code>ecdf.lty=1</code>.  
   See the entry for <code>lty</code> in the <span style="R">R</span> help file for <code><a href="https://rdrr.io/r/graphics/par.html" class="external-link">par</a></code> for more information.</p></dd>
-<dt>fitted.cdf.lty</dt>
+
+  <dt>fitted.cdf.lty</dt>
 <dd><p>numeric scalar determining the line type used to display the fitted CDF.  
   The default value is <code>fitted.cdf.lty=2</code>.  
   See the entry for <code>lty</code> in the <span style="R">R</span> help file for <code><a href="https://rdrr.io/r/graphics/par.html" class="external-link">par</a></code> for more information.</p></dd>
-</dl><p><b>Arguments associated with <code>plot.type="Q-Q Plot"</code> or</b><br><b><code>plot.type="Tukey M-D Q-Q Plot"</code>:</b><br>As explained above, <code>plot.pos.con</code> is used for these plot types.  Also: <br></p>
+
+
+</dl><p><b>Arguments associated with <code>plot.type="Q-Q Plot"</code> or</b></p>
+<p></p>
+<p><br></p>
+
+
+<p><b><code>plot.type="Tukey M-D Q-Q Plot"</code>:</b></p>
+<p></p>
+<p><br></p>
+
+
+
+<p>As explained above, <code>plot.pos.con</code> is used for these plot types.  Also: <br></p>
 <dl><dt>add.line</dt>
 <dd><p>logical scalar indicating whether to add a line to the plot.  If <code>add.line=TRUE</code> 
   and <code>plot.type="Q-Q Plot"</code>, a 0-1 line is added to the plot.  
   If <code>add.line=TRUE</code> and <code>plot.type="Tukey M-D Q-Q Plot"</code>, a horizontal 
   line at \(y=0\) is added to the plot.  The default value is <code>add.line=TRUE</code>.</p></dd>
-</dl><p><b>Arguments associated with <code>plot.type="Test Results"</code></b><br></p>
+
+
+
+
+</dl><p><b>Arguments associated with <code>plot.type="Test Results"</code></b></p>
+<p></p>
+<p><br></p>
 <dl><dt>test.result.font</dt>
 <dd><p>numeric scalar indicating which font to use to print out the test results.  
   The default value is <code>test.result.font=1</code>.  See the description of the 
   <code>font</code> argument in the help file for <code><a href="https://rdrr.io/r/graphics/par.html" class="external-link">par</a></code> for more information.  
   You may get better results if you use a font number that corresponds to a fixed 
   font (e.g., courier).</p></dd>
-<dt>test.result.cex</dt>
+
+  <dt>test.result.cex</dt>
 <dd><p>numeric scalar indicating the value of <code>cex</code> to use to print out the 
   test results.  The default value is <code>0.9*par("cex")</code> when 
   <code>plot.type="Summary"</code>, otherwise it is <code>par("cex")</code>. 
   See the description of the <code>cex</code> argument in the help file for 
   <code><a href="https://rdrr.io/r/graphics/par.html" class="external-link">par</a></code> for more information.</p></dd>
-<dt>test.result.mar</dt>
+
+  <dt>test.result.mar</dt>
 <dd><p>numeric vector indicating the value of <code>mar</code> to use to print out the 
   test results.  The default value is <code>test.result.mar=c(0, 0, 3, 0)+0.1</code>.  
   See the description of the <code>mar</code> argument in the help file for 
   <code><a href="https://rdrr.io/r/graphics/par.html" class="external-link">par</a></code> for more information.</p></dd>
-</dl><p><b>Arguments associated with <code>plot.type="Summary"</code></b><br></p>
+
+
+
+
+</dl><p><b>Arguments associated with <code>plot.type="Summary"</code></b></p>
+<p></p>
+<p><br></p>
 <dl><dt>add.om.title</dt>
 <dd><p>logical scalar indicating whether to add a title in the outer margin when <br><code>plot.type="Summary"</code>.  The default value is <code>add.om.title=TRUE</code>.</p></dd>
-<dt>om.title</dt>
+
+  <dt>om.title</dt>
 <dd><p>character string containing the outer margin title.  The default value is <br><code>om.title=NULL</code>, which will result in a default title.</p></dd>
-<dt>om.font</dt>
+
+  <dt>om.font</dt>
 <dd><p>numeric scalar indicating the font to use for the outer margin.  The default 
   value is <code>om.font=2</code>.</p></dd>
-<dt>om.cex.main</dt>
+
+  <dt>om.cex.main</dt>
 <dd><p>numeric scalar indicating the value of <code>cex</code> for the outer margin title.  
   The default value is <code>1.75 * par("cex")</code>.</p></dd>
-<dt>om.line</dt>
+
+  <dt>om.line</dt>
 <dd><p>numeric scalar indicating the line to place the outer margin title on.  The 
   default value is <code>om.line=0.5</code>.</p></dd>
-</dl><p><b>Graphics parameters:</b><br></p>
+
+
+
+
+</dl><p><b>Graphics parameters:</b></p>
+<p></p>
+<p><br></p>
 <dl><dt>cex.main, cex.axis, cex.lab, main, xlab, ylab, xlim, ylim, oma, ...</dt>
 <dd><p>additional graphics parameters.  See the help file for <code><a href="https://rdrr.io/r/graphics/par.html" class="external-link">par</a></code>.</p></dd>
+
 </dl></div>
     <div id="details">
     <h2>Details</h2>
@@ -278,7 +344,8 @@ The function plot.gof is automatically called by plot
     </div>
     <div id="value">
     <h2>Value</h2>
-    <p><code>plot.gof</code> invisibly returns the first argument, <code>x</code>.</p>
+    <p></p>
+<p><code>plot.gof</code> invisibly returns the first argument, <code>x</code>.</p>
     </div>
     <div id="references">
     <h2>References</h2>
@@ -297,45 +364,45 @@ The function plot.gof is automatically called by plot
 
     <div id="ref-examples">
     <h2>Examples</h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in">  <span class="co"># Create an object of class "gof" then plot the results.</span></span>
-<span class="r-in">  <span class="co"># (Note: the call to set.seed simply allows you to reproduce </span></span>
-<span class="r-in">  <span class="co"># this example.)</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="fu"><a href="https://rdrr.io/r/base/Random.html" class="external-link">set.seed</a></span><span class="op">(</span><span class="fl">250</span><span class="op">)</span> </span>
-<span class="r-in">  <span class="va">dat</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/Normal.html" class="external-link">rnorm</a></span><span class="op">(</span><span class="fl">20</span>, mean <span class="op">=</span> <span class="fl">3</span>, sd <span class="op">=</span> <span class="fl">2</span><span class="op">)</span> </span>
-<span class="r-in">  <span class="va">gof.obj</span> <span class="op">&lt;-</span> <span class="fu"><a href="gofTest.html">gofTest</a></span><span class="op">(</span><span class="va">dat</span><span class="op">)</span> </span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="co"># Summary plot (the default)</span></span>
-<span class="r-in">  <span class="co">#---------------------------</span></span>
-<span class="r-in">  <span class="fu"><a href="https://rdrr.io/r/grDevices/dev.html" class="external-link">dev.new</a></span><span class="op">(</span><span class="op">)</span></span>
-<span class="r-in">  <span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">gof.obj</span><span class="op">)</span></span>
-<span class="r-in"></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="co"># Make your own titles for the summary plot</span></span>
-<span class="r-in">  <span class="co">#------------------------------------------</span></span>
-<span class="r-in">  <span class="fu"><a href="https://rdrr.io/r/grDevices/dev.html" class="external-link">dev.new</a></span><span class="op">(</span><span class="op">)</span></span>
-<span class="r-in">  <span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">gof.obj</span>, captions <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>PDFs <span class="op">=</span> <span class="st">"Compare PDFs"</span>, </span>
-<span class="r-in">    CDFs <span class="op">=</span> <span class="st">"Compare CDFs"</span>, QQ <span class="op">=</span> <span class="st">"Q-Q Plot"</span>, Results <span class="op">=</span> <span class="st">"Results"</span><span class="op">)</span>,</span>
-<span class="r-in">    om.title <span class="op">=</span> <span class="st">"Summary"</span><span class="op">)</span></span>
-<span class="r-in"></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="co"># Just the Q-Q Plot</span></span>
-<span class="r-in">  <span class="co">#------------------</span></span>
-<span class="r-in">  <span class="fu"><a href="https://rdrr.io/r/grDevices/dev.html" class="external-link">dev.new</a></span><span class="op">(</span><span class="op">)</span></span>
-<span class="r-in">  <span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">gof.obj</span>, plot.type<span class="op">=</span><span class="st">"Q-Q"</span><span class="op">)</span></span>
-<span class="r-in"></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="co"># Make your own title for the Q-Q Plot</span></span>
-<span class="r-in">  <span class="co">#-------------------------------------</span></span>
-<span class="r-in">  <span class="fu"><a href="https://rdrr.io/r/grDevices/dev.html" class="external-link">dev.new</a></span><span class="op">(</span><span class="op">)</span></span>
-<span class="r-in">  <span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">gof.obj</span>, plot.type<span class="op">=</span><span class="st">"Q-Q"</span>, main <span class="op">=</span> <span class="st">"Q-Q Plot"</span><span class="op">)</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="co">#==========</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="co"># Clean up</span></span>
-<span class="r-in">  <span class="co">#---------</span></span>
-<span class="r-in">  <span class="fu"><a href="https://rdrr.io/r/base/rm.html" class="external-link">rm</a></span><span class="op">(</span><span class="va">dat</span>, <span class="va">gof.obj</span><span class="op">)</span></span>
-<span class="r-in">  <span class="fu"><a href="https://rdrr.io/r/grDevices/dev.html" class="external-link">graphics.off</a></span><span class="op">(</span><span class="op">)</span></span>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span>  <span class="co"># Create an object of class "gof" then plot the results.</span></span></span>
+<span class="r-in"><span>  <span class="co"># (Note: the call to set.seed simply allows you to reproduce </span></span></span>
+<span class="r-in"><span>  <span class="co"># this example.)</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/r/base/Random.html" class="external-link">set.seed</a></span><span class="op">(</span><span class="fl">250</span><span class="op">)</span> </span></span>
+<span class="r-in"><span>  <span class="va">dat</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/Normal.html" class="external-link">rnorm</a></span><span class="op">(</span><span class="fl">20</span>, mean <span class="op">=</span> <span class="fl">3</span>, sd <span class="op">=</span> <span class="fl">2</span><span class="op">)</span> </span></span>
+<span class="r-in"><span>  <span class="va">gof.obj</span> <span class="op">&lt;-</span> <span class="fu"><a href="gofTest.html">gofTest</a></span><span class="op">(</span><span class="va">dat</span><span class="op">)</span> </span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="co"># Summary plot (the default)</span></span></span>
+<span class="r-in"><span>  <span class="co">#---------------------------</span></span></span>
+<span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/r/grDevices/dev.html" class="external-link">dev.new</a></span><span class="op">(</span><span class="op">)</span></span></span>
+<span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">gof.obj</span><span class="op">)</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="co"># Make your own titles for the summary plot</span></span></span>
+<span class="r-in"><span>  <span class="co">#------------------------------------------</span></span></span>
+<span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/r/grDevices/dev.html" class="external-link">dev.new</a></span><span class="op">(</span><span class="op">)</span></span></span>
+<span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">gof.obj</span>, captions <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>PDFs <span class="op">=</span> <span class="st">"Compare PDFs"</span>, </span></span>
+<span class="r-in"><span>    CDFs <span class="op">=</span> <span class="st">"Compare CDFs"</span>, QQ <span class="op">=</span> <span class="st">"Q-Q Plot"</span>, Results <span class="op">=</span> <span class="st">"Results"</span><span class="op">)</span>,</span></span>
+<span class="r-in"><span>    om.title <span class="op">=</span> <span class="st">"Summary"</span><span class="op">)</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="co"># Just the Q-Q Plot</span></span></span>
+<span class="r-in"><span>  <span class="co">#------------------</span></span></span>
+<span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/r/grDevices/dev.html" class="external-link">dev.new</a></span><span class="op">(</span><span class="op">)</span></span></span>
+<span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">gof.obj</span>, plot.type<span class="op">=</span><span class="st">"Q-Q"</span><span class="op">)</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="co"># Make your own title for the Q-Q Plot</span></span></span>
+<span class="r-in"><span>  <span class="co">#-------------------------------------</span></span></span>
+<span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/r/grDevices/dev.html" class="external-link">dev.new</a></span><span class="op">(</span><span class="op">)</span></span></span>
+<span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">gof.obj</span>, plot.type<span class="op">=</span><span class="st">"Q-Q"</span>, main <span class="op">=</span> <span class="st">"Q-Q Plot"</span><span class="op">)</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="co">#==========</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="co"># Clean up</span></span></span>
+<span class="r-in"><span>  <span class="co">#---------</span></span></span>
+<span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/r/base/rm.html" class="external-link">rm</a></span><span class="op">(</span><span class="va">dat</span>, <span class="va">gof.obj</span><span class="op">)</span></span></span>
+<span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/r/grDevices/dev.html" class="external-link">graphics.off</a></span><span class="op">(</span><span class="op">)</span></span></span>
 </code></pre></div>
     </div>
   </div>
@@ -350,7 +417,7 @@ The function plot.gof is automatically called by plot
 </div>
 
 <div class="pkgdown">
-  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.2.</p>
+  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.6.</p>
 </div>
 
       </footer></div>

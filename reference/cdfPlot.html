@@ -50,13 +50,13 @@
     </div>
 
     <div id="ref-usage">
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="fu">cdfPlot</span><span class="op">(</span>distribution <span class="op">=</span> <span class="st">"norm"</span>, param.list <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>mean <span class="op">=</span> <span class="fl">0</span>, sd <span class="op">=</span> <span class="fl">1</span><span class="op">)</span>, 
-    left.tail.cutoff <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/ifelse.html" class="external-link">ifelse</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/is.finite.html" class="external-link">is.finite</a></span><span class="op">(</span><span class="va">supp.min</span><span class="op">)</span>, <span class="fl">0</span>, <span class="fl">0.001</span><span class="op">)</span>, 
-    right.tail.cutoff <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/ifelse.html" class="external-link">ifelse</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/is.finite.html" class="external-link">is.finite</a></span><span class="op">(</span><span class="va">supp.max</span><span class="op">)</span>, <span class="fl">0</span>, <span class="fl">0.001</span><span class="op">)</span>, plot.it <span class="op">=</span> <span class="cn">TRUE</span>, 
-    add <span class="op">=</span> <span class="cn">FALSE</span>, n.points <span class="op">=</span> <span class="fl">1000</span>, cdf.col <span class="op">=</span> <span class="st">"black"</span>, cdf.lwd <span class="op">=</span> <span class="fl">3</span> <span class="op">*</span> <span class="fu"><a href="https://rdrr.io/r/graphics/par.html" class="external-link">par</a></span><span class="op">(</span><span class="st">"cex"</span><span class="op">)</span>, 
-    cdf.lty <span class="op">=</span> <span class="fl">1</span>, curve.fill <span class="op">=</span> <span class="cn">FALSE</span>, curve.fill.col <span class="op">=</span> <span class="st">"cyan"</span>, 
-    digits <span class="op">=</span> <span class="va">.Options</span><span class="op">$</span><span class="va">digits</span>, <span class="va">...</span>, type <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/ifelse.html" class="external-link">ifelse</a></span><span class="op">(</span><span class="va">discrete</span>, <span class="st">"s"</span>, <span class="st">"l"</span><span class="op">)</span>, 
-    main <span class="op">=</span> <span class="cn">NULL</span>, xlab <span class="op">=</span> <span class="cn">NULL</span>, ylab <span class="op">=</span> <span class="cn">NULL</span>, xlim <span class="op">=</span> <span class="cn">NULL</span>, ylim <span class="op">=</span> <span class="cn">NULL</span><span class="op">)</span></code></pre></div>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">cdfPlot</span><span class="op">(</span>distribution <span class="op">=</span> <span class="st">"norm"</span>, param.list <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>mean <span class="op">=</span> <span class="fl">0</span>, sd <span class="op">=</span> <span class="fl">1</span><span class="op">)</span>, </span>
+<span>    left.tail.cutoff <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/ifelse.html" class="external-link">ifelse</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/is.finite.html" class="external-link">is.finite</a></span><span class="op">(</span><span class="va">supp.min</span><span class="op">)</span>, <span class="fl">0</span>, <span class="fl">0.001</span><span class="op">)</span>, </span>
+<span>    right.tail.cutoff <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/ifelse.html" class="external-link">ifelse</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/is.finite.html" class="external-link">is.finite</a></span><span class="op">(</span><span class="va">supp.max</span><span class="op">)</span>, <span class="fl">0</span>, <span class="fl">0.001</span><span class="op">)</span>, plot.it <span class="op">=</span> <span class="cn">TRUE</span>, </span>
+<span>    add <span class="op">=</span> <span class="cn">FALSE</span>, n.points <span class="op">=</span> <span class="fl">1000</span>, cdf.col <span class="op">=</span> <span class="st">"black"</span>, cdf.lwd <span class="op">=</span> <span class="fl">3</span> <span class="op">*</span> <span class="fu"><a href="https://rdrr.io/r/graphics/par.html" class="external-link">par</a></span><span class="op">(</span><span class="st">"cex"</span><span class="op">)</span>, </span>
+<span>    cdf.lty <span class="op">=</span> <span class="fl">1</span>, curve.fill <span class="op">=</span> <span class="cn">FALSE</span>, curve.fill.col <span class="op">=</span> <span class="st">"cyan"</span>, </span>
+<span>    digits <span class="op">=</span> <span class="va">.Options</span><span class="op">$</span><span class="va">digits</span>, <span class="va">...</span>, type <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/ifelse.html" class="external-link">ifelse</a></span><span class="op">(</span><span class="va">discrete</span>, <span class="st">"s"</span>, <span class="st">"l"</span><span class="op">)</span>, </span>
+<span>    main <span class="op">=</span> <span class="cn">NULL</span>, xlab <span class="op">=</span> <span class="cn">NULL</span>, ylab <span class="op">=</span> <span class="cn">NULL</span>, xlim <span class="op">=</span> <span class="cn">NULL</span>, ylim <span class="op">=</span> <span class="cn">NULL</span><span class="op">)</span></span></code></pre></div>
     </div>
 
     <div id="arguments">
@@ -65,63 +65,76 @@
 <dd><p>a character string denoting the distribution abbreviation.  The default value is 
   <code>distribution="norm"</code>.  See the help file for <code><a href="Distribution.df.html">Distribution.df</a></code> for a 
   list of possible distribution abbreviations.</p></dd>
-<dt>param.list</dt>
+
+  <dt>param.list</dt>
 <dd><p>a list with values for the parameters of the distribution.  The default value is 
   <code>param.list=list(mean=0, sd=1)</code>.  See the help file for 
   <code><a href="Distribution.df.html">Distribution.df</a></code> for the names and possible values of the parameters 
   associated with each distribution.</p></dd>
-<dt>left.tail.cutoff</dt>
+
+  <dt>left.tail.cutoff</dt>
 <dd><p>a numeric scalar indicating what proportion of the left-tail of the probability 
   distribution to omit from the plot.  For densities with a finite support minimum 
   (e.g., <a href="https://rdrr.io/r/stats/Lognormal.html" class="external-link">Lognormal</a>) the default value is <code>0</code>; for all other densities the default 
   value is <code>0.001</code>.</p></dd>
-<dt>right.tail.cutoff</dt>
+
+  <dt>right.tail.cutoff</dt>
 <dd><p>a scalar indicating what proportion of the right-tail of the probability 
   distribution to omit from the plot.  For densities with a finite support maximum 
   (e.g., <a href="https://rdrr.io/r/stats/Binomial.html" class="external-link">Binomial</a>) the default value is <code>0</code>; for all other densities the 
   default value is <code>0.001</code>.</p></dd>
-<dt>plot.it</dt>
+
+  <dt>plot.it</dt>
 <dd><p>a logical scalar indicating whether to create a plot or add to the existing plot 
   (see <code>add</code>) on the current graphics device.  If <code>plot.it=FALSE</code>, no 
   plot is produced, but a list of \((x, y)\) values is returned (see the section 
   VALUE below). The default value is <code>plot.it=TRUE</code>.</p></dd>
-<dt>add</dt>
+
+  <dt>add</dt>
 <dd><p>a logical scalar indicating whether to add the cumulative distribution function curve 
   to the existing plot (<code>add=TRUE</code>), or to create a new plot 
   (<code>add=FALSE</code>; the default).  This argument is ignored if <code>plot.it=FALSE</code>.</p></dd>
-<dt>n.points</dt>
+
+  <dt>n.points</dt>
 <dd><p>a numeric scalar specifying at how many evenly-spaced points the cumulative 
   distribution function will be evaluated.  The default value is <code>n.points=1000</code>.</p></dd>
-<dt>cdf.col</dt>
+
+  <dt>cdf.col</dt>
 <dd><p>a numeric scalar or character string determining 
   the color of the cdf line in the plot.  
   The default value is <code>pdf.col="black"</code>.  See the entry for <code>col</code> in the 
   help file for <code><a href="https://rdrr.io/r/graphics/par.html" class="external-link">par</a></code> for more information.</p></dd>
-<dt>cdf.lwd</dt>
+
+  <dt>cdf.lwd</dt>
 <dd><p>a numeric scalar determining the width of the cdf 
   line in the plot.  
   The default value is <code>pdf.lwd=3*par("cex")</code>.  
   See the entry for <code>lwd</code> in the help file for <code><a href="https://rdrr.io/r/graphics/par.html" class="external-link">par</a></code> 
   for more information.</p></dd>
-<dt>cdf.lty</dt>
+
+  <dt>cdf.lty</dt>
 <dd><p>a numeric scalar determining the line type of 
   the cdf line in the plot.  
   The default value is <code>pdf.lty=1</code>.  See the entry for 
   <code>lty</code> in the help file for <code><a href="https://rdrr.io/r/graphics/par.html" class="external-link">par</a></code> for more information.</p></dd>
-<dt>curve.fill</dt>
+
+  <dt>curve.fill</dt>
 <dd><p>a logical value indicating whether to fill in 
   the area below the cumulative distribution function curve with the color specified by 
   <code>curve.fill.col</code>.  The default value is <code>curve.fill=FALSE</code>.</p></dd>
-<dt>curve.fill.col</dt>
+
+  <dt>curve.fill.col</dt>
 <dd><p>when <code>curve.fill=TRUE</code>, a numeric scalar or character string 
   indicating what color to use to fill in the 
   area below the cumulative distribution function curve.  The default value is 
   <code>curve.fill.col="cyan"</code>.  See the entry for <code>col</code> in the 
   help file for <code><a href="https://rdrr.io/r/graphics/par.html" class="external-link">par</a></code> for more information.</p></dd>
-<dt>digits</dt>
+
+  <dt>digits</dt>
 <dd><p>a scalar indicating how many significant digits to print for the distribution 
   parameters.  The default value is <code>digits=.Options$digits</code>.</p></dd>
-<dt>type, main, xlab, ylab, xlim, ylim, ...</dt>
+
+  <dt>type, main, xlab, ylab, xlim, ylim, ...</dt>
 <dd><p>additional graphical parameters (see <code><a href="https://rdrr.io/r/graphics/lines.html" class="external-link">lines</a></code> and <code><a href="https://rdrr.io/r/graphics/par.html" class="external-link">par</a></code>).  
   In particular, the argument <code>type</code> specifies the kind of line type.  
   By default, the function <code>cdfPlot</code> plots a step function (<code>type="s"</code>) 
@@ -130,6 +143,7 @@
   The user may override these defaults by supplying the graphics parameter <code>type</code> 
   (<code>type="s"</code> for a step function, <code>type="l"</code> for linear interpolation, 
   <code>type="p"</code> for points only, etc.).</p></dd>
+
 </dl></div>
     <div id="details">
     <h2>Details</h2>
@@ -152,12 +166,15 @@
     </div>
     <div id="value">
     <h2>Value</h2>
-    <p><code>cdfPlot</code> invisibly returns a list giving coordinates of the points 
+    <p></p>
+<p><code>cdfPlot</code> invisibly returns a list giving coordinates of the points 
   that have been or would have been plotted:</p>
 <dl><dt>Quantiles</dt>
 <dd><p>The quantiles used for the plot.</p></dd>
-<dt>Cumulative.Probabilities</dt>
+
+  <dt>Cumulative.Probabilities</dt>
 <dd><p>The values of the cdf associated with the quantiles.</p></dd>
+
 </dl></div>
     <div id="references">
     <h2>References</h2>
@@ -184,31 +201,31 @@
 
     <div id="ref-examples">
     <h2>Examples</h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in">  <span class="co"># Plot the cdf of the standard normal distribution </span></span>
-<span class="r-in">  <span class="co">#-------------------------------------------------</span></span>
-<span class="r-in">  <span class="fu"><a href="https://rdrr.io/r/grDevices/dev.html" class="external-link">dev.new</a></span><span class="op">(</span><span class="op">)</span></span>
-<span class="r-in">  <span class="fu">cdfPlot</span><span class="op">(</span><span class="op">)</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="co">#==========</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="co"># Plot the cdf of the standard normal distribution</span></span>
-<span class="r-in">  <span class="co"># and a N(2, 2) distribution on the sample plot. </span></span>
-<span class="r-in">  <span class="co">#-------------------------------------------------</span></span>
-<span class="r-in">  <span class="fu"><a href="https://rdrr.io/r/grDevices/dev.html" class="external-link">dev.new</a></span><span class="op">(</span><span class="op">)</span></span>
-<span class="r-in">  <span class="fu">cdfPlot</span><span class="op">(</span>param.list <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>mean<span class="op">=</span><span class="fl">2</span>, sd<span class="op">=</span><span class="fl">2</span><span class="op">)</span>, main <span class="op">=</span> <span class="st">""</span><span class="op">)</span> </span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="fu">cdfPlot</span><span class="op">(</span>add <span class="op">=</span> <span class="cn">TRUE</span>, cdf.col <span class="op">=</span> <span class="st">"red"</span><span class="op">)</span> </span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="fu"><a href="https://rdrr.io/r/graphics/legend.html" class="external-link">legend</a></span><span class="op">(</span><span class="st">"topleft"</span>, legend <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"N(2,2)"</span>, <span class="st">"N(0,1)"</span><span class="op">)</span>, </span>
-<span class="r-in">    col <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"black"</span>, <span class="st">"red"</span><span class="op">)</span>, lwd <span class="op">=</span> <span class="fl">3</span> <span class="op">*</span> <span class="fu"><a href="https://rdrr.io/r/graphics/par.html" class="external-link">par</a></span><span class="op">(</span><span class="st">"cex"</span><span class="op">)</span><span class="op">)</span> </span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="fu"><a href="https://rdrr.io/r/graphics/title.html" class="external-link">title</a></span><span class="op">(</span><span class="st">"CDF Plots for Two Normal Distributions"</span><span class="op">)</span></span>
-<span class="r-in"> </span>
-<span class="r-in">  <span class="co">#==========</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="co"># Clean up</span></span>
-<span class="r-in">  <span class="co">#---------</span></span>
-<span class="r-in">  <span class="fu"><a href="https://rdrr.io/r/grDevices/dev.html" class="external-link">graphics.off</a></span><span class="op">(</span><span class="op">)</span></span>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span>  <span class="co"># Plot the cdf of the standard normal distribution </span></span></span>
+<span class="r-in"><span>  <span class="co">#-------------------------------------------------</span></span></span>
+<span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/r/grDevices/dev.html" class="external-link">dev.new</a></span><span class="op">(</span><span class="op">)</span></span></span>
+<span class="r-in"><span>  <span class="fu">cdfPlot</span><span class="op">(</span><span class="op">)</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="co">#==========</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="co"># Plot the cdf of the standard normal distribution</span></span></span>
+<span class="r-in"><span>  <span class="co"># and a N(2, 2) distribution on the sample plot. </span></span></span>
+<span class="r-in"><span>  <span class="co">#-------------------------------------------------</span></span></span>
+<span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/r/grDevices/dev.html" class="external-link">dev.new</a></span><span class="op">(</span><span class="op">)</span></span></span>
+<span class="r-in"><span>  <span class="fu">cdfPlot</span><span class="op">(</span>param.list <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>mean<span class="op">=</span><span class="fl">2</span>, sd<span class="op">=</span><span class="fl">2</span><span class="op">)</span>, main <span class="op">=</span> <span class="st">""</span><span class="op">)</span> </span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="fu">cdfPlot</span><span class="op">(</span>add <span class="op">=</span> <span class="cn">TRUE</span>, cdf.col <span class="op">=</span> <span class="st">"red"</span><span class="op">)</span> </span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/r/graphics/legend.html" class="external-link">legend</a></span><span class="op">(</span><span class="st">"topleft"</span>, legend <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"N(2,2)"</span>, <span class="st">"N(0,1)"</span><span class="op">)</span>, </span></span>
+<span class="r-in"><span>    col <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"black"</span>, <span class="st">"red"</span><span class="op">)</span>, lwd <span class="op">=</span> <span class="fl">3</span> <span class="op">*</span> <span class="fu"><a href="https://rdrr.io/r/graphics/par.html" class="external-link">par</a></span><span class="op">(</span><span class="st">"cex"</span><span class="op">)</span><span class="op">)</span> </span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/r/graphics/title.html" class="external-link">title</a></span><span class="op">(</span><span class="st">"CDF Plots for Two Normal Distributions"</span><span class="op">)</span></span></span>
+<span class="r-in"><span> </span></span>
+<span class="r-in"><span>  <span class="co">#==========</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="co"># Clean up</span></span></span>
+<span class="r-in"><span>  <span class="co">#---------</span></span></span>
+<span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/r/grDevices/dev.html" class="external-link">graphics.off</a></span><span class="op">(</span><span class="op">)</span></span></span>
 </code></pre></div>
     </div>
   </div>
@@ -223,7 +240,7 @@
 </div>
 
 <div class="pkgdown">
-  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.2.</p>
+  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.6.</p>
 </div>
 
       </footer></div>

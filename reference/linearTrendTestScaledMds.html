@@ -54,9 +54,9 @@
     </div>
 
     <div id="ref-usage">
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="fu">linearTrendTestScaledMds</span><span class="op">(</span><span class="va">n</span>, x <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/lapply.html" class="external-link">lapply</a></span><span class="op">(</span><span class="va">n</span>, <span class="va">seq</span><span class="op">)</span>, alpha <span class="op">=</span> <span class="fl">0.05</span>, power <span class="op">=</span> <span class="fl">0.95</span>, 
-    alternative <span class="op">=</span> <span class="st">"two.sided"</span>, two.sided.direction <span class="op">=</span> <span class="st">"greater"</span>, approx <span class="op">=</span> <span class="cn">FALSE</span>, 
-    tol <span class="op">=</span> <span class="fl">1e-07</span>, maxiter <span class="op">=</span> <span class="fl">1000</span><span class="op">)</span></code></pre></div>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">linearTrendTestScaledMds</span><span class="op">(</span><span class="va">n</span>, x <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/lapply.html" class="external-link">lapply</a></span><span class="op">(</span><span class="va">n</span>, <span class="va">seq</span><span class="op">)</span>, alpha <span class="op">=</span> <span class="fl">0.05</span>, power <span class="op">=</span> <span class="fl">0.95</span>, </span>
+<span>    alternative <span class="op">=</span> <span class="st">"two.sided"</span>, two.sided.direction <span class="op">=</span> <span class="st">"greater"</span>, approx <span class="op">=</span> <span class="cn">FALSE</span>, </span>
+<span>    tol <span class="op">=</span> <span class="fl">1e-07</span>, maxiter <span class="op">=</span> <span class="fl">1000</span><span class="op">)</span></span></code></pre></div>
     </div>
 
     <div id="arguments">
@@ -66,7 +66,8 @@
   larger than 2.  This argument is ignored when <code>x</code> is supplied.  
   Missing (<code>NA</code>), undefined (<code>NaN</code>), and infinite (<code>Inf</code>, <code>-Inf</code>) 
   values are not allowed.</p></dd>
-<dt>x</dt>
+
+  <dt>x</dt>
 <dd><p>numeric vector of predictor variable values, or a list in which each component is 
   a numeric vector of predictor variable values.  Usually, the predictor variable is 
   time (e.g., days, months, quarters, etc.).  The default value is 
@@ -77,32 +78,40 @@
   must contain at least three elements, two of which must be unique.  
   Missing (<code>NA</code>), undefined (<code>NaN</code>), and infinite (<code>Inf</code>, <code>-Inf</code>) 
   values are not allowed.</p></dd>
-<dt>alpha</dt>
+
+  <dt>alpha</dt>
 <dd><p>numeric vector of numbers between 0 and 1 indicating the Type I error level 
   associated with the hypothesis test.  The default value is <code>alpha=0.05</code>.</p></dd>
-<dt>power</dt>
+
+  <dt>power</dt>
 <dd><p>numeric vector of numbers between 0 and 1 indicating the power 
   associated with the hypothesis test.  The default value is <code>power=0.95</code>.</p></dd>
-<dt>alternative</dt>
+
+  <dt>alternative</dt>
 <dd><p>character string indicating the kind of alternative hypothesis.  The possible values 
   are <code>"two.sided"</code> (the default), <code>"greater"</code>, and <code>"less"</code>.</p></dd>
-<dt>two.sided.direction</dt>
+
+  <dt>two.sided.direction</dt>
 <dd><p>character string indicating the direction (positive or negative) for the 
   scaled minimal detectable slope when <code>alternative="two.sided"</code>.  When <br><code>two.sided.direction="greater"</code> (the default), the scaled minimal 
   detectable slope is positive.  When <code>two.sided.direction="less"</code>, 
   the scaled minimal detectable slope is negative.  This argument 
   is ignored if <code>alternative="less"</code> or <code>alternative="greater"</code>.</p></dd>
-<dt>approx</dt>
+
+  <dt>approx</dt>
 <dd><p>logical scalar indicating whether to compute the power based on an approximation to 
   the non-central t-distribution.  The default value is <code>approx=FALSE</code>.</p></dd>
-<dt>tol</dt>
+
+  <dt>tol</dt>
 <dd><p>numeric scalar indicating the toloerance to use in the 
   <code><a href="https://rdrr.io/r/stats/uniroot.html" class="external-link">uniroot</a></code> search algorithm.  
   The default value is <code>tol=1e-7</code>.</p></dd>
-<dt>maxiter</dt>
+
+  <dt>maxiter</dt>
 <dd><p>positive integer indicating the maximum number of iterations 
   argument to pass to the <code><a href="https://rdrr.io/r/stats/uniroot.html" class="external-link">uniroot</a></code> function.  The default 
   value is <code>maxiter=1000</code>.</p></dd>
+
 </dl></div>
     <div id="details">
     <h2>Details</h2>
@@ -119,9 +128,13 @@
     </div>
     <div id="value">
     <h2>Value</h2>
-    <p>numeric vector of computed scaled minimal detectable slopes.  When 
-<code>alternative="less"</code>, or <code>alternative="two.sided"</code> and 
-<code>two.sided.direction="less"</code>, the computed slopes are negative.  Otherwise, 
+    
+
+<p>numeric vector of computed scaled minimal detectable slopes.  When</p>
+<p></p>
+<p><code>alternative="less"</code>, or <code>alternative="two.sided"</code> and</p>
+<p></p>
+<p><code>two.sided.direction="less"</code>, the computed slopes are negative.  Otherwise, 
   the slopes are positive.</p>
     </div>
     <div id="references">
@@ -146,75 +159,75 @@
 
     <div id="ref-examples">
     <h2>Examples</h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in">  <span class="co"># Look at how the scaled minimal detectable slope for the t-test for linear </span></span>
-<span class="r-in">  <span class="co"># trend increases with increasing required power:</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="fu"><a href="https://rdrr.io/r/base/seq.html" class="external-link">seq</a></span><span class="op">(</span><span class="fl">0.5</span>, <span class="fl">0.9</span>, by <span class="op">=</span> <span class="fl">0.1</span><span class="op">)</span> </span>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span>  <span class="co"># Look at how the scaled minimal detectable slope for the t-test for linear </span></span></span>
+<span class="r-in"><span>  <span class="co"># trend increases with increasing required power:</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/r/base/seq.html" class="external-link">seq</a></span><span class="op">(</span><span class="fl">0.5</span>, <span class="fl">0.9</span>, by <span class="op">=</span> <span class="fl">0.1</span><span class="op">)</span> </span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] 0.5 0.6 0.7 0.8 0.9</span>
-<span class="r-in">  <span class="co">#[1] 0.5 0.6 0.7 0.8 0.9 </span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="va">scaled.mds</span> <span class="op">&lt;-</span> <span class="fu">linearTrendTestScaledMds</span><span class="op">(</span>n <span class="op">=</span> <span class="fl">10</span>, power <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/seq.html" class="external-link">seq</a></span><span class="op">(</span><span class="fl">0.5</span>, <span class="fl">0.9</span>, by <span class="op">=</span> <span class="fl">0.1</span><span class="op">)</span><span class="op">)</span> </span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="fu"><a href="https://rdrr.io/r/base/Round.html" class="external-link">round</a></span><span class="op">(</span><span class="va">scaled.mds</span>, <span class="fl">2</span><span class="op">)</span> </span>
+<span class="r-in"><span>  <span class="co">#[1] 0.5 0.6 0.7 0.8 0.9 </span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="va">scaled.mds</span> <span class="op">&lt;-</span> <span class="fu">linearTrendTestScaledMds</span><span class="op">(</span>n <span class="op">=</span> <span class="fl">10</span>, power <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/seq.html" class="external-link">seq</a></span><span class="op">(</span><span class="fl">0.5</span>, <span class="fl">0.9</span>, by <span class="op">=</span> <span class="fl">0.1</span><span class="op">)</span><span class="op">)</span> </span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/r/base/Round.html" class="external-link">round</a></span><span class="op">(</span><span class="va">scaled.mds</span>, <span class="fl">2</span><span class="op">)</span> </span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] 0.25 0.28 0.31 0.35 0.41</span>
-<span class="r-in">  <span class="co">#[1] 0.25 0.28 0.31 0.35 0.41</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="co">#----------</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="co"># Repeat the last example, but compute the scaled minimal detectable slopes </span></span>
-<span class="r-in">  <span class="co"># based on the approximate power instead of the exact:</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="va">scaled.mds</span> <span class="op">&lt;-</span> <span class="fu">linearTrendTestScaledMds</span><span class="op">(</span>n <span class="op">=</span> <span class="fl">10</span>, power <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/seq.html" class="external-link">seq</a></span><span class="op">(</span><span class="fl">0.5</span>, <span class="fl">0.9</span>, by <span class="op">=</span> <span class="fl">0.1</span><span class="op">)</span>, </span>
-<span class="r-in">    approx <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span> </span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="fu"><a href="https://rdrr.io/r/base/Round.html" class="external-link">round</a></span><span class="op">(</span><span class="va">scaled.mds</span>, <span class="fl">2</span><span class="op">)</span> </span>
+<span class="r-in"><span>  <span class="co">#[1] 0.25 0.28 0.31 0.35 0.41</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="co">#----------</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="co"># Repeat the last example, but compute the scaled minimal detectable slopes </span></span></span>
+<span class="r-in"><span>  <span class="co"># based on the approximate power instead of the exact:</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="va">scaled.mds</span> <span class="op">&lt;-</span> <span class="fu">linearTrendTestScaledMds</span><span class="op">(</span>n <span class="op">=</span> <span class="fl">10</span>, power <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/seq.html" class="external-link">seq</a></span><span class="op">(</span><span class="fl">0.5</span>, <span class="fl">0.9</span>, by <span class="op">=</span> <span class="fl">0.1</span><span class="op">)</span>, </span></span>
+<span class="r-in"><span>    approx <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span> </span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/r/base/Round.html" class="external-link">round</a></span><span class="op">(</span><span class="va">scaled.mds</span>, <span class="fl">2</span><span class="op">)</span> </span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] 0.25 0.28 0.31 0.35 0.41</span>
-<span class="r-in">  <span class="co">#[1] 0.25 0.28 0.31 0.35 0.41</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="co">#==========</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="co"># Look at how the scaled minimal detectable slope for the t-test for linear trend </span></span>
-<span class="r-in">  <span class="co"># decreases with increasing sample size:</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="fu"><a href="https://rdrr.io/r/base/seq.html" class="external-link">seq</a></span><span class="op">(</span><span class="fl">10</span>, <span class="fl">50</span>, by <span class="op">=</span> <span class="fl">10</span><span class="op">)</span> </span>
+<span class="r-in"><span>  <span class="co">#[1] 0.25 0.28 0.31 0.35 0.41</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="co">#==========</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="co"># Look at how the scaled minimal detectable slope for the t-test for linear trend </span></span></span>
+<span class="r-in"><span>  <span class="co"># decreases with increasing sample size:</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/r/base/seq.html" class="external-link">seq</a></span><span class="op">(</span><span class="fl">10</span>, <span class="fl">50</span>, by <span class="op">=</span> <span class="fl">10</span><span class="op">)</span> </span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] 10 20 30 40 50</span>
-<span class="r-in">  <span class="co">#[1] 10 20 30 40 50 </span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="va">scaled.mds</span> <span class="op">&lt;-</span> <span class="fu">linearTrendTestScaledMds</span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/seq.html" class="external-link">seq</a></span><span class="op">(</span><span class="fl">10</span>, <span class="fl">50</span>, by <span class="op">=</span> <span class="fl">10</span><span class="op">)</span>, alternative <span class="op">=</span> <span class="st">"greater"</span><span class="op">)</span> </span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="fu"><a href="https://rdrr.io/r/base/Round.html" class="external-link">round</a></span><span class="op">(</span><span class="va">scaled.mds</span>, <span class="fl">2</span><span class="op">)</span> </span>
+<span class="r-in"><span>  <span class="co">#[1] 10 20 30 40 50 </span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="va">scaled.mds</span> <span class="op">&lt;-</span> <span class="fu">linearTrendTestScaledMds</span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/seq.html" class="external-link">seq</a></span><span class="op">(</span><span class="fl">10</span>, <span class="fl">50</span>, by <span class="op">=</span> <span class="fl">10</span><span class="op">)</span>, alternative <span class="op">=</span> <span class="st">"greater"</span><span class="op">)</span> </span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/r/base/Round.html" class="external-link">round</a></span><span class="op">(</span><span class="va">scaled.mds</span>, <span class="fl">2</span><span class="op">)</span> </span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] 0.40 0.13 0.07 0.05 0.03</span>
-<span class="r-in">  <span class="co">#[1] 0.40 0.13 0.07 0.05 0.03</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="co">#==========</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="co"># Look at how the scaled minimal detectable slope for the t-test for linear trend </span></span>
-<span class="r-in">  <span class="co"># decreases with increasing values of Type I error:</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="va">scaled.mds</span> <span class="op">&lt;-</span> <span class="fu">linearTrendTestScaledMds</span><span class="op">(</span><span class="fl">10</span>, alpha <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">0.001</span>, <span class="fl">0.01</span>, <span class="fl">0.05</span>, <span class="fl">0.1</span><span class="op">)</span>, </span>
-<span class="r-in">    alternative<span class="op">=</span><span class="st">"greater"</span><span class="op">)</span> </span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="fu"><a href="https://rdrr.io/r/base/Round.html" class="external-link">round</a></span><span class="op">(</span><span class="va">scaled.mds</span>, <span class="fl">2</span><span class="op">)</span> </span>
+<span class="r-in"><span>  <span class="co">#[1] 0.40 0.13 0.07 0.05 0.03</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="co">#==========</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="co"># Look at how the scaled minimal detectable slope for the t-test for linear trend </span></span></span>
+<span class="r-in"><span>  <span class="co"># decreases with increasing values of Type I error:</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="va">scaled.mds</span> <span class="op">&lt;-</span> <span class="fu">linearTrendTestScaledMds</span><span class="op">(</span><span class="fl">10</span>, alpha <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">0.001</span>, <span class="fl">0.01</span>, <span class="fl">0.05</span>, <span class="fl">0.1</span><span class="op">)</span>, </span></span>
+<span class="r-in"><span>    alternative<span class="op">=</span><span class="st">"greater"</span><span class="op">)</span> </span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/r/base/Round.html" class="external-link">round</a></span><span class="op">(</span><span class="va">scaled.mds</span>, <span class="fl">2</span><span class="op">)</span> </span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] 0.76 0.53 0.40 0.34</span>
-<span class="r-in">  <span class="co">#[1] 0.76 0.53 0.40 0.34</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="co">#----------</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="co"># Repeat the last example, but compute the scaled minimal detectable slopes </span></span>
-<span class="r-in">  <span class="co"># based on the approximate power instead of the exact:</span></span>
-<span class="r-in"> </span>
-<span class="r-in">  <span class="va">scaled.mds</span> <span class="op">&lt;-</span> <span class="fu">linearTrendTestScaledMds</span><span class="op">(</span><span class="fl">10</span>, alpha <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">0.001</span>, <span class="fl">0.01</span>, <span class="fl">0.05</span>, <span class="fl">0.1</span><span class="op">)</span>, </span>
-<span class="r-in">    alternative<span class="op">=</span><span class="st">"greater"</span>, approx <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span> </span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="fu"><a href="https://rdrr.io/r/base/Round.html" class="external-link">round</a></span><span class="op">(</span><span class="va">scaled.mds</span>, <span class="fl">2</span><span class="op">)</span> </span>
+<span class="r-in"><span>  <span class="co">#[1] 0.76 0.53 0.40 0.34</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="co">#----------</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="co"># Repeat the last example, but compute the scaled minimal detectable slopes </span></span></span>
+<span class="r-in"><span>  <span class="co"># based on the approximate power instead of the exact:</span></span></span>
+<span class="r-in"><span> </span></span>
+<span class="r-in"><span>  <span class="va">scaled.mds</span> <span class="op">&lt;-</span> <span class="fu">linearTrendTestScaledMds</span><span class="op">(</span><span class="fl">10</span>, alpha <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">0.001</span>, <span class="fl">0.01</span>, <span class="fl">0.05</span>, <span class="fl">0.1</span><span class="op">)</span>, </span></span>
+<span class="r-in"><span>    alternative<span class="op">=</span><span class="st">"greater"</span>, approx <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span> </span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/r/base/Round.html" class="external-link">round</a></span><span class="op">(</span><span class="va">scaled.mds</span>, <span class="fl">2</span><span class="op">)</span> </span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] 0.70 0.52 0.41 0.36</span>
-<span class="r-in">  <span class="co">#[1] 0.70 0.52 0.41 0.36</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="co">#==========</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="co"># Clean up</span></span>
-<span class="r-in">  <span class="co">#---------</span></span>
-<span class="r-in">  <span class="fu"><a href="https://rdrr.io/r/base/rm.html" class="external-link">rm</a></span><span class="op">(</span><span class="va">scaled.mds</span><span class="op">)</span></span>
+<span class="r-in"><span>  <span class="co">#[1] 0.70 0.52 0.41 0.36</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="co">#==========</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="co"># Clean up</span></span></span>
+<span class="r-in"><span>  <span class="co">#---------</span></span></span>
+<span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/r/base/rm.html" class="external-link">rm</a></span><span class="op">(</span><span class="va">scaled.mds</span><span class="op">)</span></span></span>
 </code></pre></div>
     </div>
   </div>
@@ -229,7 +242,7 @@
 </div>
 
 <div class="pkgdown">
-  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.2.</p>
+  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.6.</p>
 </div>
 
       </footer></div>

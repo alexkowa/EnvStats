@@ -62,13 +62,13 @@
     </div>
 
     <div id="ref-usage">
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="fu">predIntLnormSimultaneous</span><span class="op">(</span><span class="va">x</span>, n.geomean <span class="op">=</span> <span class="fl">1</span>, k <span class="op">=</span> <span class="fl">1</span>, m <span class="op">=</span> <span class="fl">2</span>, r <span class="op">=</span> <span class="fl">1</span>, rule <span class="op">=</span> <span class="st">"k.of.m"</span>,
-    delta.over.sigma <span class="op">=</span> <span class="fl">0</span>, pi.type <span class="op">=</span> <span class="st">"upper"</span>, conf.level <span class="op">=</span> <span class="fl">0.95</span>,
-    K.tol <span class="op">=</span> <span class="va">.Machine</span><span class="op">$</span><span class="va">double.eps</span><span class="op">^</span><span class="fl">0.5</span><span class="op">)</span>
-
-  <span class="fu">predIntLnormAltSimultaneous</span><span class="op">(</span><span class="va">x</span>, n.geomean <span class="op">=</span> <span class="fl">1</span>, k <span class="op">=</span> <span class="fl">1</span>, m <span class="op">=</span> <span class="fl">2</span>, r <span class="op">=</span> <span class="fl">1</span>, rule <span class="op">=</span> <span class="st">"k.of.m"</span>,
-    delta.over.sigma <span class="op">=</span> <span class="fl">0</span>, pi.type <span class="op">=</span> <span class="st">"upper"</span>, conf.level <span class="op">=</span> <span class="fl">0.95</span>,
-    K.tol <span class="op">=</span> <span class="va">.Machine</span><span class="op">$</span><span class="va">double.eps</span><span class="op">^</span><span class="fl">0.5</span>, est.arg.list <span class="op">=</span> <span class="cn">NULL</span><span class="op">)</span></code></pre></div>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">predIntLnormSimultaneous</span><span class="op">(</span><span class="va">x</span>, n.geomean <span class="op">=</span> <span class="fl">1</span>, k <span class="op">=</span> <span class="fl">1</span>, m <span class="op">=</span> <span class="fl">2</span>, r <span class="op">=</span> <span class="fl">1</span>, rule <span class="op">=</span> <span class="st">"k.of.m"</span>,</span>
+<span>    delta.over.sigma <span class="op">=</span> <span class="fl">0</span>, pi.type <span class="op">=</span> <span class="st">"upper"</span>, conf.level <span class="op">=</span> <span class="fl">0.95</span>,</span>
+<span>    K.tol <span class="op">=</span> <span class="va">.Machine</span><span class="op">$</span><span class="va">double.eps</span><span class="op">^</span><span class="fl">0.5</span><span class="op">)</span></span>
+<span></span>
+<span>  <span class="fu">predIntLnormAltSimultaneous</span><span class="op">(</span><span class="va">x</span>, n.geomean <span class="op">=</span> <span class="fl">1</span>, k <span class="op">=</span> <span class="fl">1</span>, m <span class="op">=</span> <span class="fl">2</span>, r <span class="op">=</span> <span class="fl">1</span>, rule <span class="op">=</span> <span class="st">"k.of.m"</span>,</span>
+<span>    delta.over.sigma <span class="op">=</span> <span class="fl">0</span>, pi.type <span class="op">=</span> <span class="st">"upper"</span>, conf.level <span class="op">=</span> <span class="fl">0.95</span>,</span>
+<span>    K.tol <span class="op">=</span> <span class="va">.Machine</span><span class="op">$</span><span class="va">double.eps</span><span class="op">^</span><span class="fl">0.5</span>, est.arg.list <span class="op">=</span> <span class="cn">NULL</span><span class="op">)</span></span></code></pre></div>
     </div>
 
     <div id="arguments">
@@ -85,32 +85,38 @@
 <p>If <code>x</code> is a numeric vector,
   missing (<code>NA</code>), undefined (<code>NaN</code>), and infinite (<code>Inf</code>, <code>-Inf</code>)
   values are allowed but will be removed.</p></dd>
-<dt>n.geomean</dt>
+
+  <dt>n.geomean</dt>
 <dd><p>positive integer specifying the sample size associated with future
   geometric means.  The default value is <code>n.geomean=1</code> (i.e., individual
   observations).  Note that all future geometric means must be based on the same
   sample size.</p></dd>
-<dt>k</dt>
+
+  <dt>k</dt>
 <dd><p>for the \(k\)-of-\(m\) rule (<code>rule="k.of.m"</code>), a positive integer
   specifying the minimum number of observations (or geometric means) out of \(m\)
   observations (or geometric means) (all obtained on one future sampling “occassion”)
   the prediction interval should contain with confidence level <code>conf.level</code>.
   The default value is <code>k=1</code>.  This argument is ignored when the argument
   <code>rule</code> is not equal to <code>"k.of.m"</code>.</p></dd>
-<dt>m</dt>
+
+  <dt>m</dt>
 <dd><p>positive integer specifying the maximum number of future observations (or
   geometric means) on one future sampling “occasion”.
   The default value is <code>m=2</code>, except when <code>rule="Modified.CA"</code>, in which
   case this argument is ignored and <code>m</code> is automatically set equal to <code>4</code>.</p></dd>
-<dt>r</dt>
+
+  <dt>r</dt>
 <dd><p>positive integer specifying the number of future sampling “occasions”.
   The default value is <code>r=1</code>.</p></dd>
-<dt>rule</dt>
+
+  <dt>rule</dt>
 <dd><p>character string specifying which rule to use.  The possible values are
   <code>"k.of.m"</code> (\(k\)-of-\(m\) rule; the default), <code>"CA"</code> (California rule),
   and <code>"Modified.CA"</code> (modified California rule).
   See the DETAILS section below for more information.</p></dd>
-<dt>delta.over.sigma</dt>
+
+  <dt>delta.over.sigma</dt>
 <dd><p>numeric scalar indicating the ratio \(\Delta/\sigma\).  The quantity
   \(\Delta\) (delta) denotes the difference between the mean of the population
   (on the log-scale) that was sampled to construct the prediction interval, and the
@@ -119,24 +125,29 @@
   deviation (on the log-scale) for both populations.
   See the DETAILS section below for more information.  The default value is
   <code>delta.over.sigma=0</code>.</p></dd>
-<dt>pi.type</dt>
+
+  <dt>pi.type</dt>
 <dd><p>character string indicating what kind of prediction interval to compute.
   The possible values are <code>pi.type="upper"</code> (the default),
   <code>pi.type="lower"</code> and <code>pi.type="two-sided"</code>.</p></dd>
-<dt>conf.level</dt>
+
+  <dt>conf.level</dt>
 <dd><p>a scalar between 0 and 1 indicating the confidence level of the prediction interval.
   The default value is <code>conf.level=0.95</code>.</p></dd>
-<dt>K.tol</dt>
+
+  <dt>K.tol</dt>
 <dd><p>numeric scalar indicating the tolerance to use in the nonlinear search algorithm to
   compute \(K\).  The default value is <code>K.tol=.Machine$double.eps^(1/2)</code>.
   For many applications, the value of \(K\) needs to be known only to the second
   decimal place, in which case setting <code>K.tol=1e-4</code> will speed up computation a
   bit.</p></dd>
-<dt>est.arg.list</dt>
+
+  <dt>est.arg.list</dt>
 <dd><p>a list containing arguments to pass to the function
   <code><a href="elnormAlt.html">elnormAlt</a></code> for estimating the mean and coefficient of variation.
   The default value is <code>est.arg.list=NULL</code>, which implies the default values
   will be used in the call to <code><a href="elnormAlt.html">elnormAlt</a></code>.</p></dd>
+
 </dl></div>
     <div id="details">
     <h2>Details</h2>
@@ -153,13 +164,21 @@
     </div>
     <div id="value">
     <h2>Value</h2>
-    <p>If <code>x</code> is a numeric vector, <code>predIntLnormSimultaneous</code> returns a list of
+    
+
+<p>If <code>x</code> is a numeric vector, <code>predIntLnormSimultaneous</code> returns a list of
   class <code>"estimate"</code> containing the estimated parameters, the prediction interval,
-  and other information.  See the help file for <br><code><a href="estimate.object.html">estimate.object</a></code> for details.
-  If <code>x</code> is the result of calling an estimation function,
-<code>predIntLnormSimultaneous</code> returns a list whose class is the same as <code>x</code>.
-  The list contains the same components as <code>x</code>, as well as a component called
-<code>interval</code> containing the prediction interval information.
+  and other information.  See the help file for <br></p>
+<p></p>
+<p><code><a href="estimate.object.html">estimate.object</a></code> for details.</p>
+
+
+<p>If <code>x</code> is the result of calling an estimation function,</p>
+<p></p>
+<p><code>predIntLnormSimultaneous</code> returns a list whose class is the same as <code>x</code>.
+  The list contains the same components as <code>x</code>, as well as a component called</p>
+<p></p>
+<p><code>interval</code> containing the prediction interval information.
   If <code>x</code> already has a component called <code>interval</code>, this component is
   replaced with the prediction interval information.</p>
     </div>
@@ -301,17 +320,17 @@
 
     <div id="ref-examples">
     <h2>Examples</h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in">  <span class="co"># Generate 8 observations from a lognormal distribution with parameters</span></span>
-<span class="r-in">  <span class="co"># mean=10 and cv=1, then use predIntLnormAltSimultaneous to estimate the</span></span>
-<span class="r-in">  <span class="co"># mean and coefficient of variation of the true distribution and construct an</span></span>
-<span class="r-in">  <span class="co"># upper 95% prediction interval to contain at least 1 out of the next</span></span>
-<span class="r-in">  <span class="co"># 3 observations.</span></span>
-<span class="r-in">  <span class="co"># (Note: the call to set.seed simply allows you to reproduce this example.)</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="fu"><a href="https://rdrr.io/r/base/Random.html" class="external-link">set.seed</a></span><span class="op">(</span><span class="fl">479</span><span class="op">)</span></span>
-<span class="r-in">  <span class="va">dat</span> <span class="op">&lt;-</span> <span class="fu"><a href="LognormalAlt.html">rlnormAlt</a></span><span class="op">(</span><span class="fl">8</span>, mean <span class="op">=</span> <span class="fl">10</span>, cv <span class="op">=</span> <span class="fl">1</span><span class="op">)</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="fu">predIntLnormAltSimultaneous</span><span class="op">(</span><span class="va">dat</span>, k <span class="op">=</span> <span class="fl">1</span>, m <span class="op">=</span> <span class="fl">3</span><span class="op">)</span></span>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span>  <span class="co"># Generate 8 observations from a lognormal distribution with parameters</span></span></span>
+<span class="r-in"><span>  <span class="co"># mean=10 and cv=1, then use predIntLnormAltSimultaneous to estimate the</span></span></span>
+<span class="r-in"><span>  <span class="co"># mean and coefficient of variation of the true distribution and construct an</span></span></span>
+<span class="r-in"><span>  <span class="co"># upper 95% prediction interval to contain at least 1 out of the next</span></span></span>
+<span class="r-in"><span>  <span class="co"># 3 observations.</span></span></span>
+<span class="r-in"><span>  <span class="co"># (Note: the call to set.seed simply allows you to reproduce this example.)</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/r/base/Random.html" class="external-link">set.seed</a></span><span class="op">(</span><span class="fl">479</span><span class="op">)</span></span></span>
+<span class="r-in"><span>  <span class="va">dat</span> <span class="op">&lt;-</span> <span class="fu"><a href="LognormalAlt.html">rlnormAlt</a></span><span class="op">(</span><span class="fl">8</span>, mean <span class="op">=</span> <span class="fl">10</span>, cv <span class="op">=</span> <span class="fl">1</span><span class="op">)</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="fu">predIntLnormAltSimultaneous</span><span class="op">(</span><span class="va">dat</span>, k <span class="op">=</span> <span class="fl">1</span>, m <span class="op">=</span> <span class="fl">3</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> $distribution</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] "Lognormal"</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
@@ -380,94 +399,94 @@
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> attr(,"class")</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] "estimate"</span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="co"># Compare the 95% 1-of-3 upper prediction limit to the California and</span></span>
-<span class="r-in">  <span class="co"># Modified California upper prediction limits.  Note that the upper</span></span>
-<span class="r-in">  <span class="co"># prediction limit for the Modified California rule is between the limit</span></span>
-<span class="r-in">  <span class="co"># for the 1-of-3 rule and the limit for the California rule.</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="fu">predIntLnormAltSimultaneous</span><span class="op">(</span><span class="va">dat</span>, k <span class="op">=</span> <span class="fl">1</span>, m <span class="op">=</span> <span class="fl">3</span><span class="op">)</span><span class="op">$</span><span class="va">interval</span><span class="op">$</span><span class="va">limits</span><span class="op">[</span><span class="st">"UPL"</span><span class="op">]</span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="co"># Compare the 95% 1-of-3 upper prediction limit to the California and</span></span></span>
+<span class="r-in"><span>  <span class="co"># Modified California upper prediction limits.  Note that the upper</span></span></span>
+<span class="r-in"><span>  <span class="co"># prediction limit for the Modified California rule is between the limit</span></span></span>
+<span class="r-in"><span>  <span class="co"># for the 1-of-3 rule and the limit for the California rule.</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="fu">predIntLnormAltSimultaneous</span><span class="op">(</span><span class="va">dat</span>, k <span class="op">=</span> <span class="fl">1</span>, m <span class="op">=</span> <span class="fl">3</span><span class="op">)</span><span class="op">$</span><span class="va">interval</span><span class="op">$</span><span class="va">limits</span><span class="op">[</span><span class="st">"UPL"</span><span class="op">]</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>      UPL </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 12.67555 </span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="fu">predIntLnormAltSimultaneous</span><span class="op">(</span><span class="va">dat</span>, m <span class="op">=</span> <span class="fl">3</span>, rule <span class="op">=</span> <span class="st">"CA"</span><span class="op">)</span><span class="op">$</span><span class="va">interval</span><span class="op">$</span><span class="va">limits</span><span class="op">[</span><span class="st">"UPL"</span><span class="op">]</span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="fu">predIntLnormAltSimultaneous</span><span class="op">(</span><span class="va">dat</span>, m <span class="op">=</span> <span class="fl">3</span>, rule <span class="op">=</span> <span class="st">"CA"</span><span class="op">)</span><span class="op">$</span><span class="va">interval</span><span class="op">$</span><span class="va">limits</span><span class="op">[</span><span class="st">"UPL"</span><span class="op">]</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>      UPL </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 25.03606 </span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="fu">predIntLnormAltSimultaneous</span><span class="op">(</span><span class="va">dat</span>, rule <span class="op">=</span> <span class="st">"Modified.CA"</span><span class="op">)</span><span class="op">$</span><span class="va">interval</span><span class="op">$</span><span class="va">limits</span><span class="op">[</span><span class="st">"UPL"</span><span class="op">]</span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="fu">predIntLnormAltSimultaneous</span><span class="op">(</span><span class="va">dat</span>, rule <span class="op">=</span> <span class="st">"Modified.CA"</span><span class="op">)</span><span class="op">$</span><span class="va">interval</span><span class="op">$</span><span class="va">limits</span><span class="op">[</span><span class="st">"UPL"</span><span class="op">]</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>      UPL </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 17.10475 </span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="co"># Show how the upper 95% simultaneous prediction limit increases</span></span>
-<span class="r-in">  <span class="co"># as the number of future sampling occasions r increases.</span></span>
-<span class="r-in">  <span class="co"># Here, we'll use the 1-of-3 rule.</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="fu">predIntLnormAltSimultaneous</span><span class="op">(</span><span class="va">dat</span>, k <span class="op">=</span> <span class="fl">1</span>, m <span class="op">=</span> <span class="fl">3</span><span class="op">)</span><span class="op">$</span><span class="va">interval</span><span class="op">$</span><span class="va">limits</span><span class="op">[</span><span class="st">"UPL"</span><span class="op">]</span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="co"># Show how the upper 95% simultaneous prediction limit increases</span></span></span>
+<span class="r-in"><span>  <span class="co"># as the number of future sampling occasions r increases.</span></span></span>
+<span class="r-in"><span>  <span class="co"># Here, we'll use the 1-of-3 rule.</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="fu">predIntLnormAltSimultaneous</span><span class="op">(</span><span class="va">dat</span>, k <span class="op">=</span> <span class="fl">1</span>, m <span class="op">=</span> <span class="fl">3</span><span class="op">)</span><span class="op">$</span><span class="va">interval</span><span class="op">$</span><span class="va">limits</span><span class="op">[</span><span class="st">"UPL"</span><span class="op">]</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>      UPL </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 12.67555 </span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="fu">predIntLnormAltSimultaneous</span><span class="op">(</span><span class="va">dat</span>, k <span class="op">=</span> <span class="fl">1</span>, m <span class="op">=</span> <span class="fl">3</span>, r <span class="op">=</span> <span class="fl">10</span><span class="op">)</span><span class="op">$</span><span class="va">interval</span><span class="op">$</span><span class="va">limits</span><span class="op">[</span><span class="st">"UPL"</span><span class="op">]</span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="fu">predIntLnormAltSimultaneous</span><span class="op">(</span><span class="va">dat</span>, k <span class="op">=</span> <span class="fl">1</span>, m <span class="op">=</span> <span class="fl">3</span>, r <span class="op">=</span> <span class="fl">10</span><span class="op">)</span><span class="op">$</span><span class="va">interval</span><span class="op">$</span><span class="va">limits</span><span class="op">[</span><span class="st">"UPL"</span><span class="op">]</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>      UPL </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 27.72615 </span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="co"># Compare the upper simultaneous prediction limit for the 1-of-3 rule</span></span>
-<span class="r-in">  <span class="co"># based on individual observations versus based on geometric means of</span></span>
-<span class="r-in">  <span class="co"># order 4.</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="fu">predIntLnormAltSimultaneous</span><span class="op">(</span><span class="va">dat</span>, k <span class="op">=</span> <span class="fl">1</span>, m <span class="op">=</span> <span class="fl">3</span><span class="op">)</span><span class="op">$</span><span class="va">interval</span><span class="op">$</span><span class="va">limits</span><span class="op">[</span><span class="st">"UPL"</span><span class="op">]</span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="co"># Compare the upper simultaneous prediction limit for the 1-of-3 rule</span></span></span>
+<span class="r-in"><span>  <span class="co"># based on individual observations versus based on geometric means of</span></span></span>
+<span class="r-in"><span>  <span class="co"># order 4.</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="fu">predIntLnormAltSimultaneous</span><span class="op">(</span><span class="va">dat</span>, k <span class="op">=</span> <span class="fl">1</span>, m <span class="op">=</span> <span class="fl">3</span><span class="op">)</span><span class="op">$</span><span class="va">interval</span><span class="op">$</span><span class="va">limits</span><span class="op">[</span><span class="st">"UPL"</span><span class="op">]</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>      UPL </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 12.67555 </span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="fu">predIntLnormAltSimultaneous</span><span class="op">(</span><span class="va">dat</span>, n.geomean <span class="op">=</span> <span class="fl">4</span>, k <span class="op">=</span> <span class="fl">1</span>,</span>
-<span class="r-in">    m <span class="op">=</span> <span class="fl">3</span><span class="op">)</span><span class="op">$</span><span class="va">interval</span><span class="op">$</span><span class="va">limits</span><span class="op">[</span><span class="st">"UPL"</span><span class="op">]</span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="fu">predIntLnormAltSimultaneous</span><span class="op">(</span><span class="va">dat</span>, n.geomean <span class="op">=</span> <span class="fl">4</span>, k <span class="op">=</span> <span class="fl">1</span>,</span></span>
+<span class="r-in"><span>    m <span class="op">=</span> <span class="fl">3</span><span class="op">)</span><span class="op">$</span><span class="va">interval</span><span class="op">$</span><span class="va">limits</span><span class="op">[</span><span class="st">"UPL"</span><span class="op">]</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>      UPL </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 11.95532 </span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="co">#==========</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="co"># Example 19-1 of USEPA (2009, p. 19-17) shows how to compute an</span></span>
-<span class="r-in">  <span class="co"># upper simultaneous prediction limit for the 1-of-3 rule for</span></span>
-<span class="r-in">  <span class="co"># r = 2 future sampling occasions.  The data for this example are</span></span>
-<span class="r-in">  <span class="co"># stored in EPA.09.Ex.19.1.sulfate.df.</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="co"># We will pool data from 4 background wells that were sampled on</span></span>
-<span class="r-in">  <span class="co"># a number of different occasions, giving us a sample size of</span></span>
-<span class="r-in">  <span class="co"># n = 25 to use to construct the prediction limit.</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="co"># There are 50 compliance wells and we will monitor 10 different</span></span>
-<span class="r-in">  <span class="co"># constituents at each well at each of the r=2 future sampling</span></span>
-<span class="r-in">  <span class="co"># occasions.  To determine the confidence level we require for</span></span>
-<span class="r-in">  <span class="co"># the simultaneous prediction interval, USEPA (2009) recommends</span></span>
-<span class="r-in">  <span class="co"># setting the individual Type I Error level at each well to</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="co"># 1 - (1 - SWFPR)^(1 / (Number of Constituents * Number of Wells))</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="co"># which translates to setting the confidence limit to</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="co"># (1 - SWFPR)^(1 / (Number of Constituents * Number of Wells))</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="co"># where SWFPR = site-wide false positive rate.  For this example, we</span></span>
-<span class="r-in">  <span class="co"># will set SWFPR = 0.1.  Thus, the confidence level is given by:</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="va">nc</span> <span class="op">&lt;-</span> <span class="fl">10</span></span>
-<span class="r-in">  <span class="va">nw</span> <span class="op">&lt;-</span> <span class="fl">50</span></span>
-<span class="r-in">  <span class="va">SWFPR</span> <span class="op">&lt;-</span> <span class="fl">0.1</span></span>
-<span class="r-in">  <span class="va">conf.level</span> <span class="op">&lt;-</span> <span class="op">(</span><span class="fl">1</span> <span class="op">-</span> <span class="va">SWFPR</span><span class="op">)</span><span class="op">^</span><span class="op">(</span><span class="fl">1</span> <span class="op">/</span> <span class="op">(</span><span class="va">nc</span> <span class="op">*</span> <span class="va">nw</span><span class="op">)</span><span class="op">)</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="va">conf.level</span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="co">#==========</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="co"># Example 19-1 of USEPA (2009, p. 19-17) shows how to compute an</span></span></span>
+<span class="r-in"><span>  <span class="co"># upper simultaneous prediction limit for the 1-of-3 rule for</span></span></span>
+<span class="r-in"><span>  <span class="co"># r = 2 future sampling occasions.  The data for this example are</span></span></span>
+<span class="r-in"><span>  <span class="co"># stored in EPA.09.Ex.19.1.sulfate.df.</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="co"># We will pool data from 4 background wells that were sampled on</span></span></span>
+<span class="r-in"><span>  <span class="co"># a number of different occasions, giving us a sample size of</span></span></span>
+<span class="r-in"><span>  <span class="co"># n = 25 to use to construct the prediction limit.</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="co"># There are 50 compliance wells and we will monitor 10 different</span></span></span>
+<span class="r-in"><span>  <span class="co"># constituents at each well at each of the r=2 future sampling</span></span></span>
+<span class="r-in"><span>  <span class="co"># occasions.  To determine the confidence level we require for</span></span></span>
+<span class="r-in"><span>  <span class="co"># the simultaneous prediction interval, USEPA (2009) recommends</span></span></span>
+<span class="r-in"><span>  <span class="co"># setting the individual Type I Error level at each well to</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="co"># 1 - (1 - SWFPR)^(1 / (Number of Constituents * Number of Wells))</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="co"># which translates to setting the confidence limit to</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="co"># (1 - SWFPR)^(1 / (Number of Constituents * Number of Wells))</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="co"># where SWFPR = site-wide false positive rate.  For this example, we</span></span></span>
+<span class="r-in"><span>  <span class="co"># will set SWFPR = 0.1.  Thus, the confidence level is given by:</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="va">nc</span> <span class="op">&lt;-</span> <span class="fl">10</span></span></span>
+<span class="r-in"><span>  <span class="va">nw</span> <span class="op">&lt;-</span> <span class="fl">50</span></span></span>
+<span class="r-in"><span>  <span class="va">SWFPR</span> <span class="op">&lt;-</span> <span class="fl">0.1</span></span></span>
+<span class="r-in"><span>  <span class="va">conf.level</span> <span class="op">&lt;-</span> <span class="op">(</span><span class="fl">1</span> <span class="op">-</span> <span class="va">SWFPR</span><span class="op">)</span><span class="op">^</span><span class="op">(</span><span class="fl">1</span> <span class="op">/</span> <span class="op">(</span><span class="va">nc</span> <span class="op">*</span> <span class="va">nw</span><span class="op">)</span><span class="op">)</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="va">conf.level</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] 0.9997893</span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="co">#----------</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="co"># Look at the data:</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="fu"><a href="https://rdrr.io/r/base/names.html" class="external-link">names</a></span><span class="op">(</span><span class="va">EPA.09.Ex.19.1.sulfate.df</span><span class="op">)</span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="co">#----------</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="co"># Look at the data:</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/r/base/names.html" class="external-link">names</a></span><span class="op">(</span><span class="va">EPA.09.Ex.19.1.sulfate.df</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] "Well"                 "Month"                "Day"                 </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [4] "Year"                 "Date"                 "Sulfate.mg.per.l"    </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [7] "log.Sulfate.mg.per.l"</span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="va">EPA.09.Ex.19.1.sulfate.df</span><span class="op">[</span>,</span>
-<span class="r-in">    <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"Well"</span>, <span class="st">"Date"</span>, <span class="st">"Sulfate.mg.per.l"</span>, <span class="st">"log.Sulfate.mg.per.l"</span><span class="op">)</span><span class="op">]</span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="va">EPA.09.Ex.19.1.sulfate.df</span><span class="op">[</span>,</span></span>
+<span class="r-in"><span>    <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"Well"</span>, <span class="st">"Date"</span>, <span class="st">"Sulfate.mg.per.l"</span>, <span class="st">"log.Sulfate.mg.per.l"</span><span class="op">)</span><span class="op">]</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>     Well       Date Sulfate.mg.per.l log.Sulfate.mg.per.l</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 1  GW-01 1999-07-08             63.0             4.143135</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 2  GW-01 1999-09-12             51.0             3.931826</span>
@@ -494,17 +513,17 @@
 <span class="r-out co"><span class="r-pr">#&gt;</span> 23 GW-09 2000-10-24             85.5             4.448516</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 24 GW-09 2002-12-01            188.0             5.236442</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 25 GW-09 2003-03-24            150.0             5.010635</span>
-<span class="r-in"></span>
-<span class="r-in"></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="co"># Construct the upper simultaneous prediction limit for the</span></span>
-<span class="r-in">  <span class="co"># 1-of-3 plan assuming a lognormal distribution for the</span></span>
-<span class="r-in">  <span class="co"># sulfate data</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="va">Sulfate</span> <span class="op">&lt;-</span> <span class="va">EPA.09.Ex.19.1.sulfate.df</span><span class="op">$</span><span class="va">Sulfate.mg.per.l</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="fu">predIntLnormSimultaneous</span><span class="op">(</span>x <span class="op">=</span> <span class="va">Sulfate</span>, k <span class="op">=</span> <span class="fl">1</span>, m <span class="op">=</span> <span class="fl">3</span>, r <span class="op">=</span> <span class="fl">2</span>,</span>
-<span class="r-in">    rule <span class="op">=</span> <span class="st">"k.of.m"</span>, pi.type <span class="op">=</span> <span class="st">"upper"</span>, conf.level <span class="op">=</span> <span class="va">conf.level</span><span class="op">)</span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="co"># Construct the upper simultaneous prediction limit for the</span></span></span>
+<span class="r-in"><span>  <span class="co"># 1-of-3 plan assuming a lognormal distribution for the</span></span></span>
+<span class="r-in"><span>  <span class="co"># sulfate data</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="va">Sulfate</span> <span class="op">&lt;-</span> <span class="va">EPA.09.Ex.19.1.sulfate.df</span><span class="op">$</span><span class="va">Sulfate.mg.per.l</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="fu">predIntLnormSimultaneous</span><span class="op">(</span>x <span class="op">=</span> <span class="va">Sulfate</span>, k <span class="op">=</span> <span class="fl">1</span>, m <span class="op">=</span> <span class="fl">3</span>, r <span class="op">=</span> <span class="fl">2</span>,</span></span>
+<span class="r-in"><span>    rule <span class="op">=</span> <span class="st">"k.of.m"</span>, pi.type <span class="op">=</span> <span class="st">"upper"</span>, conf.level <span class="op">=</span> <span class="va">conf.level</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> $distribution</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] "Lognormal"</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
@@ -573,12 +592,12 @@
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> attr(,"class")</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] "estimate"</span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="co">#==========</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="co"># two-sided prediction interval</span></span>
-<span class="r-in">  <span class="fu">predIntLnormSimultaneous</span><span class="op">(</span>x <span class="op">=</span> <span class="va">Sulfate</span>, k <span class="op">=</span> <span class="fl">1</span>, m <span class="op">=</span> <span class="fl">3</span>, r <span class="op">=</span> <span class="fl">2</span>,</span>
-<span class="r-in">    rule <span class="op">=</span> <span class="st">"k.of.m"</span>, pi.type <span class="op">=</span> <span class="st">"two-sided"</span>, conf.level <span class="op">=</span> <span class="va">conf.level</span><span class="op">)</span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="co">#==========</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="co"># two-sided prediction interval</span></span></span>
+<span class="r-in"><span>  <span class="fu">predIntLnormSimultaneous</span><span class="op">(</span>x <span class="op">=</span> <span class="va">Sulfate</span>, k <span class="op">=</span> <span class="fl">1</span>, m <span class="op">=</span> <span class="fl">3</span>, r <span class="op">=</span> <span class="fl">2</span>,</span></span>
+<span class="r-in"><span>    rule <span class="op">=</span> <span class="st">"k.of.m"</span>, pi.type <span class="op">=</span> <span class="st">"two-sided"</span>, conf.level <span class="op">=</span> <span class="va">conf.level</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> $distribution</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] "Lognormal"</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
@@ -647,7 +666,7 @@
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> attr(,"class")</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] "estimate"</span>
-<span class="r-in"></span>
+<span class="r-in"><span></span></span>
 </code></pre></div>
     </div>
   </div>
@@ -662,7 +681,7 @@
 </div>
 
 <div class="pkgdown">
-  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.2.</p>
+  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.6.</p>
 </div>
 
       </footer></div>

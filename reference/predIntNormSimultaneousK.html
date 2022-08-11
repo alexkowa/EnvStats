@@ -57,9 +57,9 @@
     </div>
 
     <div id="ref-usage">
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="fu">predIntNormSimultaneousK</span><span class="op">(</span><span class="va">n</span>, df <span class="op">=</span> <span class="va">n</span> <span class="op">-</span> <span class="fl">1</span>, n.mean <span class="op">=</span> <span class="fl">1</span>, k <span class="op">=</span> <span class="fl">1</span>, m <span class="op">=</span> <span class="fl">2</span>, r <span class="op">=</span> <span class="fl">1</span>,
-    rule <span class="op">=</span> <span class="st">"k.of.m"</span>, delta.over.sigma <span class="op">=</span> <span class="fl">0</span>, pi.type <span class="op">=</span> <span class="st">"upper"</span>, conf.level <span class="op">=</span> <span class="fl">0.95</span>,
-    K.tol <span class="op">=</span> <span class="va">.Machine</span><span class="op">$</span><span class="va">double.eps</span><span class="op">^</span><span class="fl">0.5</span>, integrate.args.list <span class="op">=</span> <span class="cn">NULL</span><span class="op">)</span></code></pre></div>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">predIntNormSimultaneousK</span><span class="op">(</span><span class="va">n</span>, df <span class="op">=</span> <span class="va">n</span> <span class="op">-</span> <span class="fl">1</span>, n.mean <span class="op">=</span> <span class="fl">1</span>, k <span class="op">=</span> <span class="fl">1</span>, m <span class="op">=</span> <span class="fl">2</span>, r <span class="op">=</span> <span class="fl">1</span>,</span>
+<span>    rule <span class="op">=</span> <span class="st">"k.of.m"</span>, delta.over.sigma <span class="op">=</span> <span class="fl">0</span>, pi.type <span class="op">=</span> <span class="st">"upper"</span>, conf.level <span class="op">=</span> <span class="fl">0.95</span>,</span>
+<span>    K.tol <span class="op">=</span> <span class="va">.Machine</span><span class="op">$</span><span class="va">double.eps</span><span class="op">^</span><span class="fl">0.5</span>, integrate.args.list <span class="op">=</span> <span class="cn">NULL</span><span class="op">)</span></span></code></pre></div>
     </div>
 
     <div id="arguments">
@@ -67,34 +67,41 @@
     <dl><dt>n</dt>
 <dd><p>a positive integer greater than 2 indicating the sample size upon which the
   prediction interval is based.</p></dd>
-<dt>df</dt>
+
+  <dt>df</dt>
 <dd><p>the degrees of freedom associated with the prediction interval.  The default is
   <code>df=n-1</code>.</p></dd>
-<dt>n.mean</dt>
+
+  <dt>n.mean</dt>
 <dd><p>positive integer specifying the sample size associated with the future averages.
   The default value is <code>n.mean=1</code> (i.e., individual observations).  Note that all
   future averages must be based on the same sample size.</p></dd>
-<dt>k</dt>
+
+  <dt>k</dt>
 <dd><p>for the \(k\)-of-\(m\) rule (<code>rule="k.of.m"</code>), a positive integer
   specifying the minimum number of observations (or averages) out of \(m\)
   observations (or averages) (all obtained on one future sampling “occassion”)
   the prediction interval should contain with confidence level <code>conf.level</code>.
   The default value is <code>k=1</code>.  This argument is ignored when the argument
   <code>rule</code> is not equal to <code>"k.of.m"</code>.</p></dd>
-<dt>m</dt>
+
+  <dt>m</dt>
 <dd><p>positive integer specifying the maximum number of future observations (or
   averages) on one future sampling “occasion”.
   The default value is <code>m=2</code>, except when <code>rule="Modified.CA"</code>, in which
   case this argument is ignored and <code>m</code> is automatically set equal to <code>4</code>.</p></dd>
-<dt>r</dt>
+
+  <dt>r</dt>
 <dd><p>positive integer specifying the number of future sampling “occasions”.
   The default value is <code>r=1</code>.</p></dd>
-<dt>rule</dt>
+
+  <dt>rule</dt>
 <dd><p>character string specifying which rule to use.  The possible values are
   <code>"k.of.m"</code> (\(k\)-of-\(m\) rule; the default), <code>"CA"</code> (California rule),
   and <code>"Modified.CA"</code> (modified California rule).
   See the DETAILS section below for more information.</p></dd>
-<dt>delta.over.sigma</dt>
+
+  <dt>delta.over.sigma</dt>
 <dd><p>numeric scalar indicating the ratio \(\Delta/\sigma\).  The quantity
   \(\Delta\) (delta) denotes the difference between the mean of the population
   that was sampled to construct the prediction interval, and the mean of the
@@ -102,23 +109,28 @@
   \(\sigma\) (sigma) denotes the population standard deviation for both populations.
   See the DETAILS section below for more information.  The default value is
   <code>delta.over.sigma=0</code>.</p></dd>
-<dt>pi.type</dt>
+
+  <dt>pi.type</dt>
 <dd><p>character string indicating what kind of prediction interval to compute.
   The possible values are <code>pi.type="upper"</code> (the default),
   <code>pi.type="lower"</code> and <code>pi.type="two-sided"</code>.</p></dd>
-<dt>conf.level</dt>
+
+  <dt>conf.level</dt>
 <dd><p>a scalar between 0 and 1 indicating the confidence level of the prediction interval.
   The default value is <code>conf.level=0.95</code>.</p></dd>
-<dt>K.tol</dt>
+
+  <dt>K.tol</dt>
 <dd><p>numeric scalar indicating the tolerance to use in the nonlinear search algorithm to
   compute \(K\).  The default value is <code>K.tol=.Machine$double.eps^(1/2)</code>.
   For many applications, the value of \(K\) needs to be known only to the second
   decimal place, in which case setting <code>K.tol=1e-4</code> will speed up computation a
   bit.</p></dd>
-<dt>integrate.args.list</dt>
+
+  <dt>integrate.args.list</dt>
 <dd><p>a list of arguments to supply to the <code><a href="https://rdrr.io/r/stats/integrate.html" class="external-link">integrate</a></code> function.  The
   default value is <code>integrate.args.list=NULL</code> which means that the
   default values of <code><a href="https://rdrr.io/r/stats/integrate.html" class="external-link">integrate</a></code> are used.</p></dd>
+
 </dl></div>
     <div id="details">
     <h2>Details</h2>
@@ -279,7 +291,9 @@
     </div>
     <div id="value">
     <h2>Value</h2>
-    <p>A numeric scalar equal to \(K\), the multiplier of estimated standard
+    
+
+<p>A numeric scalar equal to \(K\), the multiplier of estimated standard
   deviation that is used to construct the simultaneous prediction interval.</p>
     </div>
     <div id="references">
@@ -422,90 +436,90 @@
 
     <div id="ref-examples">
     <h2>Examples</h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in">  <span class="co"># Compute the value of K for an upper 95% simultaneous prediction</span></span>
-<span class="r-in">  <span class="co"># interval to contain at least 1 out of the next 3 observations</span></span>
-<span class="r-in">  <span class="co"># given a background sample size of n=8.</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="fu">predIntNormSimultaneousK</span><span class="op">(</span>n <span class="op">=</span> <span class="fl">8</span>, k <span class="op">=</span> <span class="fl">1</span>, m <span class="op">=</span> <span class="fl">3</span><span class="op">)</span></span>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span>  <span class="co"># Compute the value of K for an upper 95% simultaneous prediction</span></span></span>
+<span class="r-in"><span>  <span class="co"># interval to contain at least 1 out of the next 3 observations</span></span></span>
+<span class="r-in"><span>  <span class="co"># given a background sample size of n=8.</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="fu">predIntNormSimultaneousK</span><span class="op">(</span>n <span class="op">=</span> <span class="fl">8</span>, k <span class="op">=</span> <span class="fl">1</span>, m <span class="op">=</span> <span class="fl">3</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] 0.5123091</span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="co">#----------</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="co"># Compare the value of K for a 95% 1-of-3 upper prediction interval to</span></span>
-<span class="r-in">  <span class="co"># the value for the California and Modified California rules.</span></span>
-<span class="r-in">  <span class="co"># Note that the value of K for the Modified California rule is between</span></span>
-<span class="r-in">  <span class="co"># the value of K for the 1-of-3 rule and the California rule.</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="fu">predIntNormSimultaneousK</span><span class="op">(</span>n <span class="op">=</span> <span class="fl">8</span>, k <span class="op">=</span> <span class="fl">1</span>, m <span class="op">=</span> <span class="fl">3</span><span class="op">)</span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="co">#----------</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="co"># Compare the value of K for a 95% 1-of-3 upper prediction interval to</span></span></span>
+<span class="r-in"><span>  <span class="co"># the value for the California and Modified California rules.</span></span></span>
+<span class="r-in"><span>  <span class="co"># Note that the value of K for the Modified California rule is between</span></span></span>
+<span class="r-in"><span>  <span class="co"># the value of K for the 1-of-3 rule and the California rule.</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="fu">predIntNormSimultaneousK</span><span class="op">(</span>n <span class="op">=</span> <span class="fl">8</span>, k <span class="op">=</span> <span class="fl">1</span>, m <span class="op">=</span> <span class="fl">3</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] 0.5123091</span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="fu">predIntNormSimultaneousK</span><span class="op">(</span>n <span class="op">=</span> <span class="fl">8</span>, m <span class="op">=</span> <span class="fl">3</span>, rule <span class="op">=</span> <span class="st">"CA"</span><span class="op">)</span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="fu">predIntNormSimultaneousK</span><span class="op">(</span>n <span class="op">=</span> <span class="fl">8</span>, m <span class="op">=</span> <span class="fl">3</span>, rule <span class="op">=</span> <span class="st">"CA"</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] 1.252077</span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="fu">predIntNormSimultaneousK</span><span class="op">(</span>n <span class="op">=</span> <span class="fl">8</span>, rule <span class="op">=</span> <span class="st">"Modified.CA"</span><span class="op">)</span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="fu">predIntNormSimultaneousK</span><span class="op">(</span>n <span class="op">=</span> <span class="fl">8</span>, rule <span class="op">=</span> <span class="st">"Modified.CA"</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] 0.8380233</span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="co">#----------</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="co"># Show how the value of K for an upper 95% simultaneous prediction</span></span>
-<span class="r-in">  <span class="co"># limit increases as the number of future sampling occasions r increases.</span></span>
-<span class="r-in">  <span class="co"># Here, we'll use the 1-of-3 rule.</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="fu">predIntNormSimultaneousK</span><span class="op">(</span>n <span class="op">=</span> <span class="fl">8</span>, k <span class="op">=</span> <span class="fl">1</span>, m <span class="op">=</span> <span class="fl">3</span><span class="op">)</span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="co">#----------</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="co"># Show how the value of K for an upper 95% simultaneous prediction</span></span></span>
+<span class="r-in"><span>  <span class="co"># limit increases as the number of future sampling occasions r increases.</span></span></span>
+<span class="r-in"><span>  <span class="co"># Here, we'll use the 1-of-3 rule.</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="fu">predIntNormSimultaneousK</span><span class="op">(</span>n <span class="op">=</span> <span class="fl">8</span>, k <span class="op">=</span> <span class="fl">1</span>, m <span class="op">=</span> <span class="fl">3</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] 0.5123091</span>
-<span class="r-in"></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="fu">predIntNormSimultaneousK</span><span class="op">(</span>n <span class="op">=</span> <span class="fl">8</span>, k <span class="op">=</span> <span class="fl">1</span>, m <span class="op">=</span> <span class="fl">3</span>, r <span class="op">=</span> <span class="fl">10</span><span class="op">)</span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="fu">predIntNormSimultaneousK</span><span class="op">(</span>n <span class="op">=</span> <span class="fl">8</span>, k <span class="op">=</span> <span class="fl">1</span>, m <span class="op">=</span> <span class="fl">3</span>, r <span class="op">=</span> <span class="fl">10</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] 1.363002</span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="co">#==========</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="co"># Example 19-1 of USEPA (2009, p. 19-17) shows how to compute an</span></span>
-<span class="r-in">  <span class="co"># upper simultaneous prediction limit for the 1-of-3 rule for</span></span>
-<span class="r-in">  <span class="co"># r = 2 future sampling occasions.  The data for this example are</span></span>
-<span class="r-in">  <span class="co"># stored in EPA.09.Ex.19.1.sulfate.df.</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="co"># We will pool data from 4 background wells that were sampled on</span></span>
-<span class="r-in">  <span class="co"># a number of different occasions, giving us a sample size of</span></span>
-<span class="r-in">  <span class="co"># n = 25 to use to construct the prediction limit.</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="co"># There are 50 compliance wells and we will monitor 10 different</span></span>
-<span class="r-in">  <span class="co"># constituents at each well at each of the r=2 future sampling</span></span>
-<span class="r-in">  <span class="co"># occasions.  To determine the confidence level we require for</span></span>
-<span class="r-in">  <span class="co"># the simultaneous prediction interval, USEPA (2009) recommends</span></span>
-<span class="r-in">  <span class="co"># setting the individual Type I Error level at each well to</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="co"># 1 - (1 - SWFPR)^(1 / (Number of Constituents * Number of Wells))</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="co"># which translates to setting the confidence limit to</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="co"># (1 - SWFPR)^(1 / (Number of Constituents * Number of Wells))</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="co"># where SWFPR = site-wide false positive rate.  For this example, we</span></span>
-<span class="r-in">  <span class="co"># will set SWFPR = 0.1.  Thus, the confidence level is given by:</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="va">nc</span> <span class="op">&lt;-</span> <span class="fl">10</span></span>
-<span class="r-in">  <span class="va">nw</span> <span class="op">&lt;-</span> <span class="fl">50</span></span>
-<span class="r-in">  <span class="va">SWFPR</span> <span class="op">&lt;-</span> <span class="fl">0.1</span></span>
-<span class="r-in">  <span class="va">conf.level</span> <span class="op">&lt;-</span> <span class="op">(</span><span class="fl">1</span> <span class="op">-</span> <span class="va">SWFPR</span><span class="op">)</span><span class="op">^</span><span class="op">(</span><span class="fl">1</span> <span class="op">/</span> <span class="op">(</span><span class="va">nc</span> <span class="op">*</span> <span class="va">nw</span><span class="op">)</span><span class="op">)</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="va">conf.level</span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="co">#==========</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="co"># Example 19-1 of USEPA (2009, p. 19-17) shows how to compute an</span></span></span>
+<span class="r-in"><span>  <span class="co"># upper simultaneous prediction limit for the 1-of-3 rule for</span></span></span>
+<span class="r-in"><span>  <span class="co"># r = 2 future sampling occasions.  The data for this example are</span></span></span>
+<span class="r-in"><span>  <span class="co"># stored in EPA.09.Ex.19.1.sulfate.df.</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="co"># We will pool data from 4 background wells that were sampled on</span></span></span>
+<span class="r-in"><span>  <span class="co"># a number of different occasions, giving us a sample size of</span></span></span>
+<span class="r-in"><span>  <span class="co"># n = 25 to use to construct the prediction limit.</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="co"># There are 50 compliance wells and we will monitor 10 different</span></span></span>
+<span class="r-in"><span>  <span class="co"># constituents at each well at each of the r=2 future sampling</span></span></span>
+<span class="r-in"><span>  <span class="co"># occasions.  To determine the confidence level we require for</span></span></span>
+<span class="r-in"><span>  <span class="co"># the simultaneous prediction interval, USEPA (2009) recommends</span></span></span>
+<span class="r-in"><span>  <span class="co"># setting the individual Type I Error level at each well to</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="co"># 1 - (1 - SWFPR)^(1 / (Number of Constituents * Number of Wells))</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="co"># which translates to setting the confidence limit to</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="co"># (1 - SWFPR)^(1 / (Number of Constituents * Number of Wells))</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="co"># where SWFPR = site-wide false positive rate.  For this example, we</span></span></span>
+<span class="r-in"><span>  <span class="co"># will set SWFPR = 0.1.  Thus, the confidence level is given by:</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="va">nc</span> <span class="op">&lt;-</span> <span class="fl">10</span></span></span>
+<span class="r-in"><span>  <span class="va">nw</span> <span class="op">&lt;-</span> <span class="fl">50</span></span></span>
+<span class="r-in"><span>  <span class="va">SWFPR</span> <span class="op">&lt;-</span> <span class="fl">0.1</span></span></span>
+<span class="r-in"><span>  <span class="va">conf.level</span> <span class="op">&lt;-</span> <span class="op">(</span><span class="fl">1</span> <span class="op">-</span> <span class="va">SWFPR</span><span class="op">)</span><span class="op">^</span><span class="op">(</span><span class="fl">1</span> <span class="op">/</span> <span class="op">(</span><span class="va">nc</span> <span class="op">*</span> <span class="va">nw</span><span class="op">)</span><span class="op">)</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="va">conf.level</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] 0.9997893</span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="co">#----------</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="co"># Compute the value of K for the upper simultaneous prediction</span></span>
-<span class="r-in">  <span class="co"># limit for the 1-of-3 plan.</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="fu">predIntNormSimultaneousK</span><span class="op">(</span>n <span class="op">=</span> <span class="fl">25</span>, k <span class="op">=</span> <span class="fl">1</span>, m <span class="op">=</span> <span class="fl">3</span>, r <span class="op">=</span> <span class="fl">2</span>,</span>
-<span class="r-in">    rule <span class="op">=</span> <span class="st">"k.of.m"</span>, pi.type <span class="op">=</span> <span class="st">"upper"</span>, conf.level <span class="op">=</span> <span class="va">conf.level</span><span class="op">)</span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="co">#----------</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="co"># Compute the value of K for the upper simultaneous prediction</span></span></span>
+<span class="r-in"><span>  <span class="co"># limit for the 1-of-3 plan.</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="fu">predIntNormSimultaneousK</span><span class="op">(</span>n <span class="op">=</span> <span class="fl">25</span>, k <span class="op">=</span> <span class="fl">1</span>, m <span class="op">=</span> <span class="fl">3</span>, r <span class="op">=</span> <span class="fl">2</span>,</span></span>
+<span class="r-in"><span>    rule <span class="op">=</span> <span class="st">"k.of.m"</span>, pi.type <span class="op">=</span> <span class="st">"upper"</span>, conf.level <span class="op">=</span> <span class="va">conf.level</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] 2.014365</span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="co">#two-sided option</span></span>
-<span class="r-in">  <span class="fu">predIntNormSimultaneousK</span><span class="op">(</span>n <span class="op">=</span> <span class="fl">25</span>, k <span class="op">=</span> <span class="fl">1</span>, m <span class="op">=</span> <span class="fl">3</span>, r <span class="op">=</span> <span class="fl">2</span>,</span>
-<span class="r-in">   rule <span class="op">=</span> <span class="st">"k.of.m"</span>, pi.type <span class="op">=</span> <span class="st">"two-sided"</span>, conf.level <span class="op">=</span> <span class="va">conf.level</span><span class="op">)</span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="co">#two-sided option</span></span></span>
+<span class="r-in"><span>  <span class="fu">predIntNormSimultaneousK</span><span class="op">(</span>n <span class="op">=</span> <span class="fl">25</span>, k <span class="op">=</span> <span class="fl">1</span>, m <span class="op">=</span> <span class="fl">3</span>, r <span class="op">=</span> <span class="fl">2</span>,</span></span>
+<span class="r-in"><span>   rule <span class="op">=</span> <span class="st">"k.of.m"</span>, pi.type <span class="op">=</span> <span class="st">"two-sided"</span>, conf.level <span class="op">=</span> <span class="va">conf.level</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] 2.014365</span>
-<span class="r-in"></span>
+<span class="r-in"><span></span></span>
 </code></pre></div>
     </div>
   </div>
@@ -520,7 +534,7 @@
 </div>
 
 <div class="pkgdown">
-  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.2.</p>
+  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.6.</p>
 </div>
 
       </footer></div>

@@ -54,11 +54,11 @@
     </div>
 
     <div id="ref-usage">
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="fu">boxcoxCensored</span><span class="op">(</span><span class="va">x</span>, <span class="va">censored</span>, censoring.side <span class="op">=</span> <span class="st">"left"</span>, 
-    lambda <span class="op">=</span> <span class="op">{</span><span class="kw">if</span> <span class="op">(</span><span class="va">optimize</span><span class="op">)</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="op">-</span><span class="fl">2</span>, <span class="fl">2</span><span class="op">)</span> <span class="kw">else</span> <span class="fu"><a href="https://rdrr.io/r/base/seq.html" class="external-link">seq</a></span><span class="op">(</span><span class="op">-</span><span class="fl">2</span>, <span class="fl">2</span>, by <span class="op">=</span> <span class="fl">0.5</span><span class="op">)</span><span class="op">}</span>, optimize <span class="op">=</span> <span class="cn">FALSE</span>, 
-    objective.name <span class="op">=</span> <span class="st">"PPCC"</span>, eps <span class="op">=</span> <span class="va">.Machine</span><span class="op">$</span><span class="va">double.eps</span>, 
-    include.x.and.censored <span class="op">=</span> <span class="cn">TRUE</span>, prob.method <span class="op">=</span> <span class="st">"michael-schucany"</span>, 
-    plot.pos.con <span class="op">=</span> <span class="fl">0.375</span><span class="op">)</span></code></pre></div>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">boxcoxCensored</span><span class="op">(</span><span class="va">x</span>, <span class="va">censored</span>, censoring.side <span class="op">=</span> <span class="st">"left"</span>, </span>
+<span>    lambda <span class="op">=</span> <span class="op">{</span><span class="kw">if</span> <span class="op">(</span><span class="va">optimize</span><span class="op">)</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="op">-</span><span class="fl">2</span>, <span class="fl">2</span><span class="op">)</span> <span class="kw">else</span> <span class="fu"><a href="https://rdrr.io/r/base/seq.html" class="external-link">seq</a></span><span class="op">(</span><span class="op">-</span><span class="fl">2</span>, <span class="fl">2</span>, by <span class="op">=</span> <span class="fl">0.5</span><span class="op">)</span><span class="op">}</span>, optimize <span class="op">=</span> <span class="cn">FALSE</span>, </span>
+<span>    objective.name <span class="op">=</span> <span class="st">"PPCC"</span>, eps <span class="op">=</span> <span class="va">.Machine</span><span class="op">$</span><span class="va">double.eps</span>, </span>
+<span>    include.x.and.censored <span class="op">=</span> <span class="cn">TRUE</span>, prob.method <span class="op">=</span> <span class="st">"michael-schucany"</span>, </span>
+<span>    plot.pos.con <span class="op">=</span> <span class="fl">0.375</span><span class="op">)</span></span></code></pre></div>
     </div>
 
     <div id="arguments">
@@ -67,41 +67,49 @@
 <dd><p>a numeric vector of positive numbers.  
   Missing (<code>NA</code>), undefined (<code>NaN</code>), and infinite (<code>-Inf, Inf</code>) 
   values are allowed but will be removed.</p></dd>
-<dt>censored</dt>
+
+  <dt>censored</dt>
 <dd><p>numeric or logical vector indicating which values of <code>x</code> are censored.  This must be the 
   same length as <code>x</code>.  If the mode of <code>censored</code> is <code>"logical"</code>, <code>TRUE</code> values 
   correspond to elements of <code>x</code> that are censored, and <code>FALSE</code> values correspond to 
   elements of <code>x</code> that are not censored.  If the mode of <code>censored</code> is <code>"numeric"</code>, 
   it must contain only <code>1</code>'s and <code>0</code>'s; <code>1</code> corresponds to <code>TRUE</code> and 
   <code>0</code> corresponds to <code>FALSE</code>.  Missing (<code>NA</code>) values are allowed but will be removed.</p></dd>
-<dt>censoring.side</dt>
+
+  <dt>censoring.side</dt>
 <dd><p>character string indicating on which side the censoring occurs.  The possible values are 
   <code>"left"</code> (the default) and <code>"right"</code>.</p></dd>
-<dt>lambda</dt>
+
+  <dt>lambda</dt>
 <dd><p>numeric vector of finite values indicating what powers to use for the 
   Box-Cox transformation.  When <code>optimize=FALSE</code>, the default value is <br><code>lambda=seq(-2, 2, by=0.5)</code>.  When <code>optimize=TRUE</code>, <code>lambda</code> 
   must be a vector with two values indicating the range over which the 
   optimization will occur and the range of these two values must include 1.  
   In this case, the default value is <code>lambda=c(-2, 2)</code>.</p></dd>
-<dt>optimize</dt>
+
+  <dt>optimize</dt>
 <dd><p>logical scalar indicating whether to simply evalute the objective function at the 
   given values of <code>lambda</code> (<code>optimize=FALSE</code>; the default), or to compute 
   the optimal power transformation within the bounds specified by 
   <code>lambda</code> (<code>optimize=TRUE</code>).</p></dd>
-<dt>objective.name</dt>
+
+  <dt>objective.name</dt>
 <dd><p>character string indicating what objective to use. The possible values are
   <code>"PPCC"</code> (probability plot correlation coefficient; the default), 
   <code>"Shapiro-Wilk"</code> (the Shapiro-Wilk goodness-of-fit statistic), and 
   <code>"Log-Likelihood"</code> (the log-likelihood function).</p></dd>
-<dt>eps</dt>
+
+  <dt>eps</dt>
 <dd><p>finite, positive numeric scalar.  When the absolute value of <code>lambda</code> is less 
   than <code>eps</code>, lambda is assumed to be 0 for the Box-Cox transformation.  
   The default value is <code>eps=.Machine$double.eps</code>.</p></dd>
-<dt>include.x.and.censored</dt>
+
+  <dt>include.x.and.censored</dt>
 <dd><p>logical scalar indicating whether to include the finite, non-missing values of 
   the argument <code>x</code> and the corresponding values of <code>censored</code> with the 
   returned object.  The default value is <code>include.x.and.censored=TRUE</code>.</p></dd>
-<dt>prob.method</dt>
+
+  <dt>prob.method</dt>
 <dd><p>for multiply censored data, 
   character string indicating what method to use to compute the plotting positions 
   (empirical probabilities) when <br><code>objective.name="PPCC"</code>.  Possible values are: <br></p>
@@ -112,7 +120,8 @@
   See the DETAILS section for more explanation.</p>
 <p>This argument is ignored if <code>objective.name</code> is not equal to <code>"PPCC"</code> 
   and/or the data are singly censored.</p></dd>
-<dt>plot.pos.con</dt>
+
+  <dt>plot.pos.con</dt>
 <dd><p>for multiply censored data, 
   numeric scalar between 0 and 1 containing the value of the plotting position 
   constant when <code>objective.name="PPCC"</code>.  
@@ -122,6 +131,7 @@
   <code>"michael-schucany"</code> or <code>"hirsch-stedinger"</code>.</p>
 <p>This argument is ignored if <code>objective.name</code> is not equal to <code>"PPCC"</code> 
   and/or the data are singly censored.</p></dd>
+
 </dl></div>
     <div id="details">
     <h2>Details</h2>
@@ -243,7 +253,11 @@
     </div>
     <div id="value">
     <h2>Value</h2>
-    <p><code>boxcoxCensored</code> returns a list of class <code>"boxcoxCensored"</code>  containing the results.  
+    <p></p>
+<p><code>boxcoxCensored</code> returns a list of class <code>"boxcoxCensored"</code></p>
+ 
+
+<p>containing the results.  
   See the help file for <code><a href="boxcoxCensored.object.html">boxcoxCensored.object</a></code> for details.</p>
     </div>
     <div id="references">
@@ -348,33 +362,33 @@
 
     <div id="ref-examples">
     <h2>Examples</h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in">  <span class="co"># Generate 15 observations from a lognormal distribution with </span></span>
-<span class="r-in">  <span class="co"># mean=10 and cv=2 and censor the observations less than 2.  </span></span>
-<span class="r-in">  <span class="co"># Then generate 15 more observations from this distribution and </span></span>
-<span class="r-in">  <span class="co"># censor the observations less than 4.  </span></span>
-<span class="r-in">  <span class="co"># Then Look at some values of various objectives for various transformations.  </span></span>
-<span class="r-in">  <span class="co"># Note that for both the PPCC objective the optimal value is about -0.3, </span></span>
-<span class="r-in">  <span class="co"># whereas for the Log-Likelihood objective it is about 0.3.</span></span>
-<span class="r-in">  <span class="co"># (Note: the call to set.seed simply allows you to reproduce this example.)</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="fu"><a href="https://rdrr.io/r/base/Random.html" class="external-link">set.seed</a></span><span class="op">(</span><span class="fl">250</span><span class="op">)</span> </span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="va">x.1</span> <span class="op">&lt;-</span> <span class="fu"><a href="LognormalAlt.html">rlnormAlt</a></span><span class="op">(</span><span class="fl">15</span>, mean <span class="op">=</span> <span class="fl">10</span>, cv <span class="op">=</span> <span class="fl">2</span><span class="op">)</span> </span>
-<span class="r-in">  <span class="va">censored.1</span> <span class="op">&lt;-</span> <span class="va">x.1</span> <span class="op">&lt;</span> <span class="fl">2</span></span>
-<span class="r-in">  <span class="va">x.1</span><span class="op">[</span><span class="va">censored.1</span><span class="op">]</span> <span class="op">&lt;-</span> <span class="fl">2</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="va">x.2</span> <span class="op">&lt;-</span> <span class="fu"><a href="LognormalAlt.html">rlnormAlt</a></span><span class="op">(</span><span class="fl">15</span>, mean <span class="op">=</span> <span class="fl">10</span>, cv <span class="op">=</span> <span class="fl">2</span><span class="op">)</span> </span>
-<span class="r-in">  <span class="va">censored.2</span> <span class="op">&lt;-</span> <span class="va">x.2</span> <span class="op">&lt;</span> <span class="fl">4</span></span>
-<span class="r-in">  <span class="va">x.2</span><span class="op">[</span><span class="va">censored.2</span><span class="op">]</span> <span class="op">&lt;-</span> <span class="fl">4</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="va">x</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="va">x.1</span>, <span class="va">x.2</span><span class="op">)</span></span>
-<span class="r-in">  <span class="va">censored</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="va">censored.1</span>, <span class="va">censored.2</span><span class="op">)</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="co">#--------------------------</span></span>
-<span class="r-in">  <span class="co"># Using the PPCC objective:</span></span>
-<span class="r-in">  <span class="co">#--------------------------</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="fu">boxcoxCensored</span><span class="op">(</span><span class="va">x</span>, <span class="va">censored</span><span class="op">)</span> </span>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span>  <span class="co"># Generate 15 observations from a lognormal distribution with </span></span></span>
+<span class="r-in"><span>  <span class="co"># mean=10 and cv=2 and censor the observations less than 2.  </span></span></span>
+<span class="r-in"><span>  <span class="co"># Then generate 15 more observations from this distribution and </span></span></span>
+<span class="r-in"><span>  <span class="co"># censor the observations less than 4.  </span></span></span>
+<span class="r-in"><span>  <span class="co"># Then Look at some values of various objectives for various transformations.  </span></span></span>
+<span class="r-in"><span>  <span class="co"># Note that for both the PPCC objective the optimal value is about -0.3, </span></span></span>
+<span class="r-in"><span>  <span class="co"># whereas for the Log-Likelihood objective it is about 0.3.</span></span></span>
+<span class="r-in"><span>  <span class="co"># (Note: the call to set.seed simply allows you to reproduce this example.)</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/r/base/Random.html" class="external-link">set.seed</a></span><span class="op">(</span><span class="fl">250</span><span class="op">)</span> </span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="va">x.1</span> <span class="op">&lt;-</span> <span class="fu"><a href="LognormalAlt.html">rlnormAlt</a></span><span class="op">(</span><span class="fl">15</span>, mean <span class="op">=</span> <span class="fl">10</span>, cv <span class="op">=</span> <span class="fl">2</span><span class="op">)</span> </span></span>
+<span class="r-in"><span>  <span class="va">censored.1</span> <span class="op">&lt;-</span> <span class="va">x.1</span> <span class="op">&lt;</span> <span class="fl">2</span></span></span>
+<span class="r-in"><span>  <span class="va">x.1</span><span class="op">[</span><span class="va">censored.1</span><span class="op">]</span> <span class="op">&lt;-</span> <span class="fl">2</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="va">x.2</span> <span class="op">&lt;-</span> <span class="fu"><a href="LognormalAlt.html">rlnormAlt</a></span><span class="op">(</span><span class="fl">15</span>, mean <span class="op">=</span> <span class="fl">10</span>, cv <span class="op">=</span> <span class="fl">2</span><span class="op">)</span> </span></span>
+<span class="r-in"><span>  <span class="va">censored.2</span> <span class="op">&lt;-</span> <span class="va">x.2</span> <span class="op">&lt;</span> <span class="fl">4</span></span></span>
+<span class="r-in"><span>  <span class="va">x.2</span><span class="op">[</span><span class="va">censored.2</span><span class="op">]</span> <span class="op">&lt;-</span> <span class="fl">4</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="va">x</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="va">x.1</span>, <span class="va">x.2</span><span class="op">)</span></span></span>
+<span class="r-in"><span>  <span class="va">censored</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="va">censored.1</span>, <span class="va">censored.2</span><span class="op">)</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="co">#--------------------------</span></span></span>
+<span class="r-in"><span>  <span class="co"># Using the PPCC objective:</span></span></span>
+<span class="r-in"><span>  <span class="co">#--------------------------</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="fu">boxcoxCensored</span><span class="op">(</span><span class="va">x</span>, <span class="va">censored</span><span class="op">)</span> </span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> $lambda</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] -2.0 -1.5 -1.0 -0.5  0.0  0.5  1.0  1.5  2.0</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
@@ -430,38 +444,38 @@
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> attr(,"class")</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] "boxcoxCensored"</span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="co">#Results of Box-Cox Transformation</span></span>
-<span class="r-in">  <span class="co">#Based on Type I Censored Data</span></span>
-<span class="r-in">  <span class="co">#---------------------------------</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Objective Name:                  PPCC</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Data:                            x</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Censoring Variable:              censored</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Censoring Side:                  left</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Censoring Level(s):              2 4 </span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Sample Size:                     30</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Percent Censored:                26.7%</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co"># lambda      PPCC</span></span>
-<span class="r-in">  <span class="co">#   -2.0 0.8954683</span></span>
-<span class="r-in">  <span class="co">#   -1.5 0.9338467</span></span>
-<span class="r-in">  <span class="co">#   -1.0 0.9643680</span></span>
-<span class="r-in">  <span class="co">#   -0.5 0.9812969</span></span>
-<span class="r-in">  <span class="co">#    0.0 0.9776834</span></span>
-<span class="r-in">  <span class="co">#    0.5 0.9471025</span></span>
-<span class="r-in">  <span class="co">#    1.0 0.8901990</span></span>
-<span class="r-in">  <span class="co">#    1.5 0.8187488</span></span>
-<span class="r-in">  <span class="co">#    2.0 0.7480494</span></span>
-<span class="r-in"></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="fu">boxcoxCensored</span><span class="op">(</span><span class="va">x</span>, <span class="va">censored</span>, optimize <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="co">#Results of Box-Cox Transformation</span></span></span>
+<span class="r-in"><span>  <span class="co">#Based on Type I Censored Data</span></span></span>
+<span class="r-in"><span>  <span class="co">#---------------------------------</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Objective Name:                  PPCC</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Data:                            x</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Censoring Variable:              censored</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Censoring Side:                  left</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Censoring Level(s):              2 4 </span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Sample Size:                     30</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Percent Censored:                26.7%</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co"># lambda      PPCC</span></span></span>
+<span class="r-in"><span>  <span class="co">#   -2.0 0.8954683</span></span></span>
+<span class="r-in"><span>  <span class="co">#   -1.5 0.9338467</span></span></span>
+<span class="r-in"><span>  <span class="co">#   -1.0 0.9643680</span></span></span>
+<span class="r-in"><span>  <span class="co">#   -0.5 0.9812969</span></span></span>
+<span class="r-in"><span>  <span class="co">#    0.0 0.9776834</span></span></span>
+<span class="r-in"><span>  <span class="co">#    0.5 0.9471025</span></span></span>
+<span class="r-in"><span>  <span class="co">#    1.0 0.8901990</span></span></span>
+<span class="r-in"><span>  <span class="co">#    1.5 0.8187488</span></span></span>
+<span class="r-in"><span>  <span class="co">#    2.0 0.7480494</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="fu">boxcoxCensored</span><span class="op">(</span><span class="va">x</span>, <span class="va">censored</span>, optimize <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> $lambda</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] -0.3194799</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
@@ -516,38 +530,38 @@
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> attr(,"class")</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] "boxcoxCensored"</span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="co">#Results of Box-Cox Transformation</span></span>
-<span class="r-in">  <span class="co">#Based on Type I Censored Data</span></span>
-<span class="r-in">  <span class="co">#---------------------------------</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Objective Name:                  PPCC</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Data:                            x</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Censoring Variable:              censored</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Censoring Side:                  left</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Censoring Level(s):              2 4 </span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Sample Size:                     30</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Percent Censored:                26.7%</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Bounds for Optimization:         lower = -2</span></span>
-<span class="r-in">  <span class="co">#                                 upper =  2</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Optimal Value:                   lambda = -0.3194799</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Value of Objective:              PPCC = 0.9827546</span></span>
-<span class="r-in"></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="co">#-----------------------------------</span></span>
-<span class="r-in">  <span class="co"># Using the Log-Likelihodd objective</span></span>
-<span class="r-in">  <span class="co">#-----------------------------------</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="fu">boxcoxCensored</span><span class="op">(</span><span class="va">x</span>, <span class="va">censored</span>, objective.name <span class="op">=</span> <span class="st">"Log-Likelihood"</span><span class="op">)</span> </span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="co">#Results of Box-Cox Transformation</span></span></span>
+<span class="r-in"><span>  <span class="co">#Based on Type I Censored Data</span></span></span>
+<span class="r-in"><span>  <span class="co">#---------------------------------</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Objective Name:                  PPCC</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Data:                            x</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Censoring Variable:              censored</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Censoring Side:                  left</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Censoring Level(s):              2 4 </span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Sample Size:                     30</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Percent Censored:                26.7%</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Bounds for Optimization:         lower = -2</span></span></span>
+<span class="r-in"><span>  <span class="co">#                                 upper =  2</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Optimal Value:                   lambda = -0.3194799</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Value of Objective:              PPCC = 0.9827546</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="co">#-----------------------------------</span></span></span>
+<span class="r-in"><span>  <span class="co"># Using the Log-Likelihodd objective</span></span></span>
+<span class="r-in"><span>  <span class="co">#-----------------------------------</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="fu">boxcoxCensored</span><span class="op">(</span><span class="va">x</span>, <span class="va">censored</span>, objective.name <span class="op">=</span> <span class="st">"Log-Likelihood"</span><span class="op">)</span> </span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> $lambda</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] -2.0 -1.5 -1.0 -0.5  0.0  0.5  1.0  1.5  2.0</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
@@ -603,39 +617,39 @@
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> attr(,"class")</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] "boxcoxCensored"</span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="co">#Results of Box-Cox Transformation</span></span>
-<span class="r-in">  <span class="co">#Based on Type I Censored Data</span></span>
-<span class="r-in">  <span class="co">#---------------------------------</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Objective Name:                  Log-Likelihood</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Data:                            x</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Censoring Variable:              censored</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Censoring Side:                  left</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Censoring Level(s):              2 4 </span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Sample Size:                     30</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Percent Censored:                26.7%</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co"># lambda Log-Likelihood</span></span>
-<span class="r-in">  <span class="co">#   -2.0      -95.38785</span></span>
-<span class="r-in">  <span class="co">#   -1.5      -84.76697</span></span>
-<span class="r-in">  <span class="co">#   -1.0      -75.36204</span></span>
-<span class="r-in">  <span class="co">#   -0.5      -68.12058</span></span>
-<span class="r-in">  <span class="co">#    0.0      -63.98902</span></span>
-<span class="r-in">  <span class="co">#    0.5      -63.56701</span></span>
-<span class="r-in">  <span class="co">#    1.0      -66.92599</span></span>
-<span class="r-in">  <span class="co">#    1.5      -73.61638</span></span>
-<span class="r-in">  <span class="co">#    2.0      -82.87970</span></span>
-<span class="r-in"></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="fu">boxcoxCensored</span><span class="op">(</span><span class="va">x</span>, <span class="va">censored</span>, objective.name <span class="op">=</span> <span class="st">"Log-Likelihood"</span>, </span>
-<span class="r-in">    optimize <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span> </span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="co">#Results of Box-Cox Transformation</span></span></span>
+<span class="r-in"><span>  <span class="co">#Based on Type I Censored Data</span></span></span>
+<span class="r-in"><span>  <span class="co">#---------------------------------</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Objective Name:                  Log-Likelihood</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Data:                            x</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Censoring Variable:              censored</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Censoring Side:                  left</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Censoring Level(s):              2 4 </span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Sample Size:                     30</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Percent Censored:                26.7%</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co"># lambda Log-Likelihood</span></span></span>
+<span class="r-in"><span>  <span class="co">#   -2.0      -95.38785</span></span></span>
+<span class="r-in"><span>  <span class="co">#   -1.5      -84.76697</span></span></span>
+<span class="r-in"><span>  <span class="co">#   -1.0      -75.36204</span></span></span>
+<span class="r-in"><span>  <span class="co">#   -0.5      -68.12058</span></span></span>
+<span class="r-in"><span>  <span class="co">#    0.0      -63.98902</span></span></span>
+<span class="r-in"><span>  <span class="co">#    0.5      -63.56701</span></span></span>
+<span class="r-in"><span>  <span class="co">#    1.0      -66.92599</span></span></span>
+<span class="r-in"><span>  <span class="co">#    1.5      -73.61638</span></span></span>
+<span class="r-in"><span>  <span class="co">#    2.0      -82.87970</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="fu">boxcoxCensored</span><span class="op">(</span><span class="va">x</span>, <span class="va">censored</span>, objective.name <span class="op">=</span> <span class="st">"Log-Likelihood"</span>, </span></span>
+<span class="r-in"><span>    optimize <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span> </span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> $lambda</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] 0.3049744</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
@@ -690,50 +704,50 @@
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> attr(,"class")</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] "boxcoxCensored"</span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="co">#Results of Box-Cox Transformation</span></span>
-<span class="r-in">  <span class="co">#Based on Type I Censored Data</span></span>
-<span class="r-in">  <span class="co">#---------------------------------</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Objective Name:                  Log-Likelihood</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Data:                            x</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Censoring Variable:              censored</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Censoring Side:                  left</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Censoring Level(s):              2 4 </span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Sample Size:                     30</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Percent Censored:                26.7%</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Bounds for Optimization:         lower = -2</span></span>
-<span class="r-in">  <span class="co">#                                 upper =  2</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Optimal Value:                   lambda = 0.3049744</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Value of Objective:              Log-Likelihood = -63.2733</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="co">#----------</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="co"># Plot the results based on the PPCC objective</span></span>
-<span class="r-in">  <span class="co">#---------------------------------------------</span></span>
-<span class="r-in">  <span class="va">boxcox.list</span> <span class="op">&lt;-</span> <span class="fu">boxcoxCensored</span><span class="op">(</span><span class="va">x</span>, <span class="va">censored</span><span class="op">)</span></span>
-<span class="r-in">  <span class="fu"><a href="https://rdrr.io/r/grDevices/dev.html" class="external-link">dev.new</a></span><span class="op">(</span><span class="op">)</span></span>
-<span class="r-in">  <span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">boxcox.list</span><span class="op">)</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="co">#Look at QQ-Plots for the candidate values of lambda</span></span>
-<span class="r-in">  <span class="co">#---------------------------------------------------</span></span>
-<span class="r-in">  <span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">boxcox.list</span>, plot.type <span class="op">=</span> <span class="st">"Q-Q Plots"</span>, same.window <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span> </span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="co">#==========</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="co"># Clean up</span></span>
-<span class="r-in">  <span class="co">#---------</span></span>
-<span class="r-in">  <span class="fu"><a href="https://rdrr.io/r/base/rm.html" class="external-link">rm</a></span><span class="op">(</span><span class="va">x.1</span>, <span class="va">censored.1</span>, <span class="va">x.2</span>, <span class="va">censored.2</span>, <span class="va">x</span>, <span class="va">censored</span>, <span class="va">boxcox.list</span><span class="op">)</span></span>
-<span class="r-in">  <span class="fu"><a href="https://rdrr.io/r/grDevices/dev.html" class="external-link">graphics.off</a></span><span class="op">(</span><span class="op">)</span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="co">#Results of Box-Cox Transformation</span></span></span>
+<span class="r-in"><span>  <span class="co">#Based on Type I Censored Data</span></span></span>
+<span class="r-in"><span>  <span class="co">#---------------------------------</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Objective Name:                  Log-Likelihood</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Data:                            x</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Censoring Variable:              censored</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Censoring Side:                  left</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Censoring Level(s):              2 4 </span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Sample Size:                     30</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Percent Censored:                26.7%</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Bounds for Optimization:         lower = -2</span></span></span>
+<span class="r-in"><span>  <span class="co">#                                 upper =  2</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Optimal Value:                   lambda = 0.3049744</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Value of Objective:              Log-Likelihood = -63.2733</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="co">#----------</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="co"># Plot the results based on the PPCC objective</span></span></span>
+<span class="r-in"><span>  <span class="co">#---------------------------------------------</span></span></span>
+<span class="r-in"><span>  <span class="va">boxcox.list</span> <span class="op">&lt;-</span> <span class="fu">boxcoxCensored</span><span class="op">(</span><span class="va">x</span>, <span class="va">censored</span><span class="op">)</span></span></span>
+<span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/r/grDevices/dev.html" class="external-link">dev.new</a></span><span class="op">(</span><span class="op">)</span></span></span>
+<span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">boxcox.list</span><span class="op">)</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="co">#Look at QQ-Plots for the candidate values of lambda</span></span></span>
+<span class="r-in"><span>  <span class="co">#---------------------------------------------------</span></span></span>
+<span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">boxcox.list</span>, plot.type <span class="op">=</span> <span class="st">"Q-Q Plots"</span>, same.window <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span> </span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="co">#==========</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="co"># Clean up</span></span></span>
+<span class="r-in"><span>  <span class="co">#---------</span></span></span>
+<span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/r/base/rm.html" class="external-link">rm</a></span><span class="op">(</span><span class="va">x.1</span>, <span class="va">censored.1</span>, <span class="va">x.2</span>, <span class="va">censored.2</span>, <span class="va">x</span>, <span class="va">censored</span>, <span class="va">boxcox.list</span><span class="op">)</span></span></span>
+<span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/r/grDevices/dev.html" class="external-link">graphics.off</a></span><span class="op">(</span><span class="op">)</span></span></span>
 </code></pre></div>
     </div>
   </div>
@@ -748,7 +762,7 @@
 </div>
 
 <div class="pkgdown">
-  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.2.</p>
+  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.6.</p>
 </div>
 
       </footer></div>

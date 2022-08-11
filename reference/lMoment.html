@@ -50,23 +50,26 @@
     </div>
 
     <div id="ref-usage">
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="fu">lMoment</span><span class="op">(</span><span class="va">x</span>, r <span class="op">=</span> <span class="fl">1</span>, method <span class="op">=</span> <span class="st">"unbiased"</span>, 
-    plot.pos.cons <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span>a <span class="op">=</span> <span class="fl">0.35</span>, b <span class="op">=</span> <span class="fl">0</span><span class="op">)</span>, na.rm <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></code></pre></div>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">lMoment</span><span class="op">(</span><span class="va">x</span>, r <span class="op">=</span> <span class="fl">1</span>, method <span class="op">=</span> <span class="st">"unbiased"</span>, </span>
+<span>    plot.pos.cons <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span>a <span class="op">=</span> <span class="fl">0.35</span>, b <span class="op">=</span> <span class="fl">0</span><span class="op">)</span>, na.rm <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span></code></pre></div>
     </div>
 
     <div id="arguments">
     <h2>Arguments</h2>
     <dl><dt>x</dt>
 <dd><p>numeric vector of observations.</p></dd>
-<dt>r</dt>
+
+  <dt>r</dt>
 <dd><p>positive integer specifying the order of the moment.</p></dd>
-<dt>method</dt>
+
+  <dt>method</dt>
 <dd><p>character string specifying what method to use to compute the 
   \(L\)-moment.  The possible values are <code>"unbiased"</code> 
   (method based on the U-statistic; the default), or <code>"plotting.position"</code> 
   (method based on the plotting position formula).  See the DETAILS section for 
   more information.</p></dd>
-<dt>plot.pos.cons</dt>
+
+  <dt>plot.pos.cons</dt>
 <dd><p>numeric vector of length 2 specifying the constants used in the formula for the 
   plotting positions when <code>method="plotting.position"</code>.  The default value is 
   <code>plot.pos.cons=c(a=0.35, b=0)</code>.  If this vector has a names attribute with 
@@ -75,11 +78,13 @@
   the first element is mapped to the name <code>"a"</code> and the second element to the 
   name <code>"b"</code>.  See the DETAILS section for more information.  This argument is 
   ignored if <code>method="ubiased"</code>.</p></dd>
-<dt>na.rm</dt>
+
+  <dt>na.rm</dt>
 <dd><p>logical scalar indicating whether to remove missing values from <code>x</code>.  
   If <code>na.rm=FALSE</code> (the default) and <code>x</code> contains missing values, 
   then a missing value (<code>NA</code>) is returned.  If <code>na.rm=TRUE</code>, missing 
   values are removed from <code>x</code> prior to computing the \(L\)-moment.</p></dd>
+
 </dl></div>
     <div id="details">
     <h2>Details</h2>
@@ -183,7 +188,9 @@
     </div>
     <div id="value">
     <h2>Value</h2>
-    <p>A numeric scalar--the value of the \(r\)'th \(L\)-moment as defined by Hosking (1990).</p>
+    
+
+<p>A numeric scalar--the value of the \(r\)'th \(L\)-moment as defined by Hosking (1990).</p>
     </div>
     <div id="references">
     <h2>References</h2>
@@ -237,51 +244,51 @@
 
     <div id="ref-examples">
     <h2>Examples</h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in">  <span class="co"># Generate 20 observations from a generalized extreme value distribution </span></span>
-<span class="r-in">  <span class="co"># with parameters location=10, scale=2, and shape=.25, then compute the </span></span>
-<span class="r-in">  <span class="co"># first four L-moments. </span></span>
-<span class="r-in">  <span class="co"># (Note: the call to set.seed simply allows you to reproduce this example.)</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="fu"><a href="https://rdrr.io/r/base/Random.html" class="external-link">set.seed</a></span><span class="op">(</span><span class="fl">250</span><span class="op">)</span> </span>
-<span class="r-in">  <span class="va">dat</span> <span class="op">&lt;-</span> <span class="fu"><a href="GEVD.html">rgevd</a></span><span class="op">(</span><span class="fl">20</span>, location <span class="op">=</span> <span class="fl">10</span>, scale <span class="op">=</span> <span class="fl">2</span>, shape <span class="op">=</span> <span class="fl">0.25</span><span class="op">)</span> </span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="fu">lMoment</span><span class="op">(</span><span class="va">dat</span><span class="op">)</span> </span>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span>  <span class="co"># Generate 20 observations from a generalized extreme value distribution </span></span></span>
+<span class="r-in"><span>  <span class="co"># with parameters location=10, scale=2, and shape=.25, then compute the </span></span></span>
+<span class="r-in"><span>  <span class="co"># first four L-moments. </span></span></span>
+<span class="r-in"><span>  <span class="co"># (Note: the call to set.seed simply allows you to reproduce this example.)</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/r/base/Random.html" class="external-link">set.seed</a></span><span class="op">(</span><span class="fl">250</span><span class="op">)</span> </span></span>
+<span class="r-in"><span>  <span class="va">dat</span> <span class="op">&lt;-</span> <span class="fu"><a href="GEVD.html">rgevd</a></span><span class="op">(</span><span class="fl">20</span>, location <span class="op">=</span> <span class="fl">10</span>, scale <span class="op">=</span> <span class="fl">2</span>, shape <span class="op">=</span> <span class="fl">0.25</span><span class="op">)</span> </span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="fu">lMoment</span><span class="op">(</span><span class="va">dat</span><span class="op">)</span> </span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] 10.59556</span>
-<span class="r-in">  <span class="co">#[1] 10.59556 </span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="fu">lMoment</span><span class="op">(</span><span class="va">dat</span>, <span class="fl">2</span><span class="op">)</span> </span>
+<span class="r-in"><span>  <span class="co">#[1] 10.59556 </span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="fu">lMoment</span><span class="op">(</span><span class="va">dat</span>, <span class="fl">2</span><span class="op">)</span> </span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] 1.0014</span>
-<span class="r-in">  <span class="co">#[1] 1.0014 </span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="fu">lMoment</span><span class="op">(</span><span class="va">dat</span>, <span class="fl">3</span><span class="op">)</span> </span>
+<span class="r-in"><span>  <span class="co">#[1] 1.0014 </span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="fu">lMoment</span><span class="op">(</span><span class="va">dat</span>, <span class="fl">3</span><span class="op">)</span> </span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] 0.1681165</span>
-<span class="r-in">  <span class="co">#[1] 0.1681165</span></span>
-<span class="r-in"> </span>
-<span class="r-in">  <span class="fu">lMoment</span><span class="op">(</span><span class="va">dat</span>, <span class="fl">4</span><span class="op">)</span> </span>
+<span class="r-in"><span>  <span class="co">#[1] 0.1681165</span></span></span>
+<span class="r-in"><span> </span></span>
+<span class="r-in"><span>  <span class="fu">lMoment</span><span class="op">(</span><span class="va">dat</span>, <span class="fl">4</span><span class="op">)</span> </span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] 0.08732692</span>
-<span class="r-in">  <span class="co">#[1] 0.08732692</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="co">#----------</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="co"># Now compute some L-moments based on the plotting-position estimators:</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="fu">lMoment</span><span class="op">(</span><span class="va">dat</span>, method <span class="op">=</span> <span class="st">"plotting.position"</span><span class="op">)</span> </span>
+<span class="r-in"><span>  <span class="co">#[1] 0.08732692</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="co">#----------</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="co"># Now compute some L-moments based on the plotting-position estimators:</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="fu">lMoment</span><span class="op">(</span><span class="va">dat</span>, method <span class="op">=</span> <span class="st">"plotting.position"</span><span class="op">)</span> </span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] 10.59556</span>
-<span class="r-in">  <span class="co">#[1] 10.59556</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="fu">lMoment</span><span class="op">(</span><span class="va">dat</span>, <span class="fl">2</span>, method <span class="op">=</span> <span class="st">"plotting.position"</span><span class="op">)</span> </span>
+<span class="r-in"><span>  <span class="co">#[1] 10.59556</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="fu">lMoment</span><span class="op">(</span><span class="va">dat</span>, <span class="fl">2</span>, method <span class="op">=</span> <span class="st">"plotting.position"</span><span class="op">)</span> </span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] 1.110264</span>
-<span class="r-in">  <span class="co">#[1] 1.110264 </span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="fu">lMoment</span><span class="op">(</span><span class="va">dat</span>, <span class="fl">3</span>, method<span class="op">=</span><span class="st">"plotting.position"</span>, plot.pos.cons <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">.325</span>,<span class="fl">1</span><span class="op">)</span><span class="op">)</span> </span>
+<span class="r-in"><span>  <span class="co">#[1] 1.110264 </span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="fu">lMoment</span><span class="op">(</span><span class="va">dat</span>, <span class="fl">3</span>, method<span class="op">=</span><span class="st">"plotting.position"</span>, plot.pos.cons <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">.325</span>,<span class="fl">1</span><span class="op">)</span><span class="op">)</span> </span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] -0.4430792</span>
-<span class="r-in">  <span class="co">#[1] -0.4430792</span></span>
-<span class="r-in"> </span>
-<span class="r-in">  <span class="co">#----------</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="co"># Clean up</span></span>
-<span class="r-in">  <span class="co">#---------</span></span>
-<span class="r-in">  <span class="fu"><a href="https://rdrr.io/r/base/rm.html" class="external-link">rm</a></span><span class="op">(</span><span class="va">dat</span><span class="op">)</span></span>
+<span class="r-in"><span>  <span class="co">#[1] -0.4430792</span></span></span>
+<span class="r-in"><span> </span></span>
+<span class="r-in"><span>  <span class="co">#----------</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="co"># Clean up</span></span></span>
+<span class="r-in"><span>  <span class="co">#---------</span></span></span>
+<span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/r/base/rm.html" class="external-link">rm</a></span><span class="op">(</span><span class="va">dat</span><span class="op">)</span></span></span>
 </code></pre></div>
     </div>
   </div>
@@ -296,7 +303,7 @@
 </div>
 
 <div class="pkgdown">
-  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.2.</p>
+  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.6.</p>
 </div>
 
       </footer></div>

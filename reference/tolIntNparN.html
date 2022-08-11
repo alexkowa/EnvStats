@@ -56,10 +56,10 @@
     </div>
 
     <div id="ref-usage">
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="fu">tolIntNparN</span><span class="op">(</span>coverage <span class="op">=</span> <span class="fl">0.95</span>, conf.level <span class="op">=</span> <span class="fl">0.95</span>, cov.type <span class="op">=</span> <span class="st">"content"</span>, 
-    ltl.rank <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/ifelse.html" class="external-link">ifelse</a></span><span class="op">(</span><span class="va">ti.type</span> <span class="op">==</span> <span class="st">"upper"</span>, <span class="fl">0</span>, <span class="fl">1</span><span class="op">)</span>, 
-    n.plus.one.minus.utl.rank <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/ifelse.html" class="external-link">ifelse</a></span><span class="op">(</span><span class="va">ti.type</span> <span class="op">==</span> <span class="st">"lower"</span>, <span class="fl">0</span>, <span class="fl">1</span><span class="op">)</span>,  
-    ti.type <span class="op">=</span> <span class="st">"two.sided"</span><span class="op">)</span></code></pre></div>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">tolIntNparN</span><span class="op">(</span>coverage <span class="op">=</span> <span class="fl">0.95</span>, conf.level <span class="op">=</span> <span class="fl">0.95</span>, cov.type <span class="op">=</span> <span class="st">"content"</span>, </span>
+<span>    ltl.rank <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/ifelse.html" class="external-link">ifelse</a></span><span class="op">(</span><span class="va">ti.type</span> <span class="op">==</span> <span class="st">"upper"</span>, <span class="fl">0</span>, <span class="fl">1</span><span class="op">)</span>, </span>
+<span>    n.plus.one.minus.utl.rank <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/ifelse.html" class="external-link">ifelse</a></span><span class="op">(</span><span class="va">ti.type</span> <span class="op">==</span> <span class="st">"lower"</span>, <span class="fl">0</span>, <span class="fl">1</span><span class="op">)</span>,  </span>
+<span>    ti.type <span class="op">=</span> <span class="st">"two.sided"</span><span class="op">)</span></span></code></pre></div>
     </div>
 
     <div id="arguments">
@@ -67,29 +67,35 @@
     <dl><dt>coverage</dt>
 <dd><p>numeric vector of values between 0 and 1 indicating the desired coverage of the 
   tolerance interval.</p></dd>
-<dt>conf.level</dt>
+
+  <dt>conf.level</dt>
 <dd><p>numeric vector of values between 0 and 1 indicating the confidence level of the 
   tolerance interval.</p></dd>
-<dt>cov.type</dt>
+
+  <dt>cov.type</dt>
 <dd><p>character string specifying the coverage type for the tolerance interval.  
   The possible values are <code>"content"</code> (\(\beta\)-content; the default), and 
   <code>"expectation"</code> (\(\beta\)-expectation).</p></dd>
-<dt>ltl.rank</dt>
+
+  <dt>ltl.rank</dt>
 <dd><p>vector of positive integers indicating the rank of the order statistic to use for the lower bound 
   of the tolerance interval.  If <code>ti.type="two-sided"</code> or <br><code>ti.type="lower"</code>, 
   the default value is <code>ltl.rank=1</code> (implying the minimum value of <code>x</code> is used 
   as the lower bound of the tolerance interval).  If <br><code>ti.type="upper"</code>, this argument 
   is set equal to <code>0</code>.</p></dd>
-<dt>n.plus.one.minus.utl.rank</dt>
+
+  <dt>n.plus.one.minus.utl.rank</dt>
 <dd><p>vector of positive integers related to the rank of the order statistic to use for 
   the upper bound of the tolerance interval.  A value of 
   <code>n.plus.one.minus.utl.rank=1</code> (the default) means use the 
   first largest value, and in general a value of <br><code>n.plus.one.minus.utl.rank=</code>\(i\) means use the \(i\)'th largest value.  
   If <br><code>ti.type="lower"</code>, this argument is set equal to <code>0</code>.</p></dd>
-<dt>ti.type</dt>
+
+  <dt>ti.type</dt>
 <dd><p>character string indicating what kind of tolerance interval to compute.  
   The possible values are <code>"two-sided"</code> (the default), <code>"lower"</code>, and 
   <code>"upper"</code>.</p></dd>
+
 </dl></div>
     <div id="details">
     <h2>Details</h2>
@@ -126,7 +132,9 @@
     </div>
     <div id="value">
     <h2>Value</h2>
-    <p>A vector of positive integers indicating the required sample size(s) for the specified 
+    
+
+<p>A vector of positive integers indicating the required sample size(s) for the specified 
   nonparametric tolerance interval(s).</p>
     </div>
     <div id="references">
@@ -155,52 +163,52 @@
 
     <div id="ref-examples">
     <h2>Examples</h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in">  <span class="co"># Look at how the required sample size for a nonparametric tolerance interval increases </span></span>
-<span class="r-in">  <span class="co"># with increasing confidence level:</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="fu"><a href="https://rdrr.io/r/base/seq.html" class="external-link">seq</a></span><span class="op">(</span><span class="fl">0.5</span>, <span class="fl">0.9</span>, by <span class="op">=</span> <span class="fl">0.1</span><span class="op">)</span> </span>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span>  <span class="co"># Look at how the required sample size for a nonparametric tolerance interval increases </span></span></span>
+<span class="r-in"><span>  <span class="co"># with increasing confidence level:</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/r/base/seq.html" class="external-link">seq</a></span><span class="op">(</span><span class="fl">0.5</span>, <span class="fl">0.9</span>, by <span class="op">=</span> <span class="fl">0.1</span><span class="op">)</span> </span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] 0.5 0.6 0.7 0.8 0.9</span>
-<span class="r-in">  <span class="co">#[1] 0.5 0.6 0.7 0.8 0.9 </span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="fu">tolIntNparN</span><span class="op">(</span>conf.level <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/seq.html" class="external-link">seq</a></span><span class="op">(</span><span class="fl">0.5</span>, <span class="fl">0.9</span>, by <span class="op">=</span> <span class="fl">0.1</span><span class="op">)</span><span class="op">)</span> </span>
+<span class="r-in"><span>  <span class="co">#[1] 0.5 0.6 0.7 0.8 0.9 </span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="fu">tolIntNparN</span><span class="op">(</span>conf.level <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/seq.html" class="external-link">seq</a></span><span class="op">(</span><span class="fl">0.5</span>, <span class="fl">0.9</span>, by <span class="op">=</span> <span class="fl">0.1</span><span class="op">)</span><span class="op">)</span> </span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] 34 40 49 59 77</span>
-<span class="r-in">  <span class="co">#[1] 34 40 49 59 77</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="co">#----------</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="co"># Look at how the required sample size for a nonparametric tolerance interval increases </span></span>
-<span class="r-in">  <span class="co"># with increasing coverage:</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="fu">tolIntNparN</span><span class="op">(</span>coverage <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/seq.html" class="external-link">seq</a></span><span class="op">(</span><span class="fl">0.5</span>, <span class="fl">0.9</span>, by <span class="op">=</span> <span class="fl">0.1</span><span class="op">)</span><span class="op">)</span> </span>
+<span class="r-in"><span>  <span class="co">#[1] 34 40 49 59 77</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="co">#----------</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="co"># Look at how the required sample size for a nonparametric tolerance interval increases </span></span></span>
+<span class="r-in"><span>  <span class="co"># with increasing coverage:</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="fu">tolIntNparN</span><span class="op">(</span>coverage <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/seq.html" class="external-link">seq</a></span><span class="op">(</span><span class="fl">0.5</span>, <span class="fl">0.9</span>, by <span class="op">=</span> <span class="fl">0.1</span><span class="op">)</span><span class="op">)</span> </span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1]  8 10 14 22 46</span>
-<span class="r-in">  <span class="co">#[1]  8 10 14 22 46</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="co">#----------</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="co"># Look at how the required sample size for a nonparametric tolerance interval increases </span></span>
-<span class="r-in">  <span class="co"># with the rank of the lower tolerance limit:</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="fu">tolIntNparN</span><span class="op">(</span>ltl.rank <span class="op">=</span> <span class="fl">1</span><span class="op">:</span><span class="fl">5</span><span class="op">)</span> </span>
+<span class="r-in"><span>  <span class="co">#[1]  8 10 14 22 46</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="co">#----------</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="co"># Look at how the required sample size for a nonparametric tolerance interval increases </span></span></span>
+<span class="r-in"><span>  <span class="co"># with the rank of the lower tolerance limit:</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="fu">tolIntNparN</span><span class="op">(</span>ltl.rank <span class="op">=</span> <span class="fl">1</span><span class="op">:</span><span class="fl">5</span><span class="op">)</span> </span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1]  93 124 153 181 208</span>
-<span class="r-in">  <span class="co">#[1]  93 124 153 181 208</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="co">#==========</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="co"># Example 17-4 on page 17-21 of USEPA (2009) uses copper concentrations (ppb) from 3 </span></span>
-<span class="r-in">  <span class="co"># background wells to set an upper limit for 2 compliance wells.  The maximum value from </span></span>
-<span class="r-in">  <span class="co"># the 3 wells is set to the 95% confidence upper tolerance limit, and we need to </span></span>
-<span class="r-in">  <span class="co"># determine the coverage of this tolerance interval.  </span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="fu"><a href="tolIntNparCoverage.html">tolIntNparCoverage</a></span><span class="op">(</span>n <span class="op">=</span> <span class="fl">24</span>, conf.level <span class="op">=</span> <span class="fl">0.95</span>, ti.type <span class="op">=</span> <span class="st">"upper"</span><span class="op">)</span></span>
+<span class="r-in"><span>  <span class="co">#[1]  93 124 153 181 208</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="co">#==========</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="co"># Example 17-4 on page 17-21 of USEPA (2009) uses copper concentrations (ppb) from 3 </span></span></span>
+<span class="r-in"><span>  <span class="co"># background wells to set an upper limit for 2 compliance wells.  The maximum value from </span></span></span>
+<span class="r-in"><span>  <span class="co"># the 3 wells is set to the 95% confidence upper tolerance limit, and we need to </span></span></span>
+<span class="r-in"><span>  <span class="co"># determine the coverage of this tolerance interval.  </span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="fu"><a href="tolIntNparCoverage.html">tolIntNparCoverage</a></span><span class="op">(</span>n <span class="op">=</span> <span class="fl">24</span>, conf.level <span class="op">=</span> <span class="fl">0.95</span>, ti.type <span class="op">=</span> <span class="st">"upper"</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] 0.8826538</span>
-<span class="r-in">  <span class="co">#[1] 0.8826538</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="co"># Here we will modify the example and determine the sample size required to produce </span></span>
-<span class="r-in">  <span class="co"># a tolerance interval with 95% confidence level AND 95% coverage. </span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="fu">tolIntNparN</span><span class="op">(</span>coverage <span class="op">=</span> <span class="fl">0.95</span>, conf.level <span class="op">=</span> <span class="fl">0.95</span>, ti.type <span class="op">=</span> <span class="st">"upper"</span><span class="op">)</span></span>
+<span class="r-in"><span>  <span class="co">#[1] 0.8826538</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="co"># Here we will modify the example and determine the sample size required to produce </span></span></span>
+<span class="r-in"><span>  <span class="co"># a tolerance interval with 95% confidence level AND 95% coverage. </span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="fu">tolIntNparN</span><span class="op">(</span>coverage <span class="op">=</span> <span class="fl">0.95</span>, conf.level <span class="op">=</span> <span class="fl">0.95</span>, ti.type <span class="op">=</span> <span class="st">"upper"</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] 59</span>
-<span class="r-in">  <span class="co">#[1] 59</span></span>
+<span class="r-in"><span>  <span class="co">#[1] 59</span></span></span>
 </code></pre></div>
     </div>
   </div>
@@ -215,7 +223,7 @@
 </div>
 
 <div class="pkgdown">
-  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.2.</p>
+  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.6.</p>
 </div>
 
       </footer></div>

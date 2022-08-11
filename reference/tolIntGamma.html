@@ -52,13 +52,13 @@
     </div>
 
     <div id="ref-usage">
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="fu">tolIntGamma</span><span class="op">(</span><span class="va">x</span>, coverage <span class="op">=</span> <span class="fl">0.95</span>, cov.type <span class="op">=</span> <span class="st">"content"</span>, 
-    ti.type <span class="op">=</span> <span class="st">"two-sided"</span>, conf.level <span class="op">=</span> <span class="fl">0.95</span>, method <span class="op">=</span> <span class="st">"exact"</span>, 
-    est.method <span class="op">=</span> <span class="st">"mle"</span>, normal.approx.transform <span class="op">=</span> <span class="st">"kulkarni.powar"</span><span class="op">)</span>
-
-  <span class="fu">tolIntGammaAlt</span><span class="op">(</span><span class="va">x</span>, coverage <span class="op">=</span> <span class="fl">0.95</span>, cov.type <span class="op">=</span> <span class="st">"content"</span>, 
-    ti.type <span class="op">=</span> <span class="st">"two-sided"</span>, conf.level <span class="op">=</span> <span class="fl">0.95</span>, method <span class="op">=</span> <span class="st">"exact"</span>, 
-    est.method <span class="op">=</span> <span class="st">"mle"</span>, normal.approx.transform <span class="op">=</span> <span class="st">"kulkarni.powar"</span><span class="op">)</span></code></pre></div>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">tolIntGamma</span><span class="op">(</span><span class="va">x</span>, coverage <span class="op">=</span> <span class="fl">0.95</span>, cov.type <span class="op">=</span> <span class="st">"content"</span>, </span>
+<span>    ti.type <span class="op">=</span> <span class="st">"two-sided"</span>, conf.level <span class="op">=</span> <span class="fl">0.95</span>, method <span class="op">=</span> <span class="st">"exact"</span>, </span>
+<span>    est.method <span class="op">=</span> <span class="st">"mle"</span>, normal.approx.transform <span class="op">=</span> <span class="st">"kulkarni.powar"</span><span class="op">)</span></span>
+<span></span>
+<span>  <span class="fu">tolIntGammaAlt</span><span class="op">(</span><span class="va">x</span>, coverage <span class="op">=</span> <span class="fl">0.95</span>, cov.type <span class="op">=</span> <span class="st">"content"</span>, </span>
+<span>    ti.type <span class="op">=</span> <span class="st">"two-sided"</span>, conf.level <span class="op">=</span> <span class="fl">0.95</span>, method <span class="op">=</span> <span class="st">"exact"</span>, </span>
+<span>    est.method <span class="op">=</span> <span class="st">"mle"</span>, normal.approx.transform <span class="op">=</span> <span class="st">"kulkarni.powar"</span><span class="op">)</span></span></code></pre></div>
     </div>
 
     <div id="arguments">
@@ -66,38 +66,46 @@
     <dl><dt>x</dt>
 <dd><p>numeric vector of non-negative observations. Missing (<code>NA</code>), undefined (<code>NaN</code>), and 
   infinite (<code>Inf</code>, <code>-Inf</code>) values are allowed but will be removed.</p></dd>
-<dt>coverage</dt>
+
+  <dt>coverage</dt>
 <dd><p>a scalar between 0 and 1 indicating the desired coverage of the tolerance interval.  
   The default value is <code>coverage=0.95</code>.  If <code>cov.type="expectation"</code>, 
   this argument is ignored.</p></dd>
-<dt>cov.type</dt>
+
+  <dt>cov.type</dt>
 <dd><p>character string specifying the coverage type for the tolerance interval.  
   The possible values are <code>"content"</code> (\(\beta\)-content; the default), and 
   <code>"expectation"</code> (\(\beta\)-expectation).  See the DETAILS section for more 
   information.</p></dd>
-<dt>ti.type</dt>
+
+  <dt>ti.type</dt>
 <dd><p>character string indicating what kind of tolerance interval to compute.  
   The possible values are <code>"two-sided"</code> (the default), <code>"lower"</code>, and 
   <code>"upper"</code>.</p></dd>
-<dt>conf.level</dt>
+
+  <dt>conf.level</dt>
 <dd><p>a scalar between 0 and 1 indicating the confidence level associated with the tolerance 
   interval.  The default value is <code>conf.level=0.95</code>.</p></dd>
-<dt>method</dt>
+
+  <dt>method</dt>
 <dd><p>for the case of a two-sided tolerance interval, a character string specifying the 
   method for constructing the two-sided normal distribution tolerance interval using 
   the transformed data.  This argument is ignored if <code>ti.type="lower"</code> or 
   <code>ti.type="upper"</code>.  The possible values are <code>"exact"</code> (the default) and <br><code>"wald.wolfowitz"</code> (the Wald-Wolfowitz approximation).  See the DETAILS section 
   of the help file for <code><a href="tolIntNorm.html">tolIntNorm</a></code> for more information.</p></dd>
-<dt>est.method</dt>
+
+  <dt>est.method</dt>
 <dd><p>character string specifying the method of estimation for the shape and scale 
   distribution parameters.  The possible values are 
   <code>"mle"</code> (maximum likelihood; the default), 
   <code>"bcmle"</code> (bias-corrected mle), <code>"mme"</code> (method of moments), and 
   <code>"mmue"</code> (method of moments based on the unbiased estimator of variance). 
   See the DETAILS section of the help file for <code><a href="egamma.html">egamma</a></code> for more information.</p></dd>
-<dt>normal.approx.transform</dt>
+
+  <dt>normal.approx.transform</dt>
 <dd><p>character string indicating which power transformation to use.  
   Possible values are <code>"kulkarni.powar"</code> (the default), <code>"cube.root"</code>, and <br><code>"fourth.root"</code>.  See the DETAILS section for more informaiton.</p></dd>
+
 </dl></div>
     <div id="details">
     <h2>Details</h2>
@@ -123,14 +131,23 @@
     </div>
     <div id="value">
     <h2>Value</h2>
-    <p>A list of class <code>"estimate"</code> containing the estimated parameters, 
-  the tolerance interval, and other information.  See <code><a href="estimate.object.html">estimate.object</a></code>  for details.
-  In addition to the usual components contained in an object of class 
-<code>"estimate"</code>, the returned value also includes an additional 
+    
+
+<p>A list of class <code>"estimate"</code> containing the estimated parameters, 
+  the tolerance interval, and other information.  See <code><a href="estimate.object.html">estimate.object</a></code></p>
+ 
+
+<p>for details.</p>
+
+
+<p>In addition to the usual components contained in an object of class</p>
+<p></p>
+<p><code>"estimate"</code>, the returned value also includes an additional 
   component within the <code>"interval"</code> component:</p>
 <dl><dt>normal.transform.power</dt>
 <dd><p>the value of the power used to 
     transform the original data to approximate normality.</p></dd>
+  
 </dl></div>
     <div id="references">
     <h2>References</h2>
@@ -225,14 +242,14 @@
 
     <div id="ref-examples">
     <h2>Examples</h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in">  <span class="co"># Generate 20 observations from a gamma distribution with parameters </span></span>
-<span class="r-in">  <span class="co"># shape=3 and scale=2, then create a tolerance interval. </span></span>
-<span class="r-in">  <span class="co"># (Note: the call to set.seed simply allows you to reproduce this </span></span>
-<span class="r-in">  <span class="co"># example.)</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="fu"><a href="https://rdrr.io/r/base/Random.html" class="external-link">set.seed</a></span><span class="op">(</span><span class="fl">250</span><span class="op">)</span> </span>
-<span class="r-in">  <span class="va">dat</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/GammaDist.html" class="external-link">rgamma</a></span><span class="op">(</span><span class="fl">20</span>, shape <span class="op">=</span> <span class="fl">3</span>, scale <span class="op">=</span> <span class="fl">2</span><span class="op">)</span> </span>
-<span class="r-in">  <span class="fu">tolIntGamma</span><span class="op">(</span><span class="va">dat</span><span class="op">)</span></span>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span>  <span class="co"># Generate 20 observations from a gamma distribution with parameters </span></span></span>
+<span class="r-in"><span>  <span class="co"># shape=3 and scale=2, then create a tolerance interval. </span></span></span>
+<span class="r-in"><span>  <span class="co"># (Note: the call to set.seed simply allows you to reproduce this </span></span></span>
+<span class="r-in"><span>  <span class="co"># example.)</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/r/base/Random.html" class="external-link">set.seed</a></span><span class="op">(</span><span class="fl">250</span><span class="op">)</span> </span></span>
+<span class="r-in"><span>  <span class="va">dat</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/GammaDist.html" class="external-link">rgamma</a></span><span class="op">(</span><span class="fl">20</span>, shape <span class="op">=</span> <span class="fl">3</span>, scale <span class="op">=</span> <span class="fl">2</span><span class="op">)</span> </span></span>
+<span class="r-in"><span>  <span class="fu">tolIntGamma</span><span class="op">(</span><span class="va">dat</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> $distribution</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] "Gamma"</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
@@ -292,46 +309,46 @@
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> attr(,"class")</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] "estimate"</span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="co">#Results of Distribution Parameter Estimation</span></span>
-<span class="r-in">  <span class="co">#--------------------------------------------</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Assumed Distribution:            Gamma</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Estimated Parameter(s):          shape = 2.203862</span></span>
-<span class="r-in">  <span class="co">#                                 scale = 2.174928</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Estimation Method:               mle</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Data:                            dat</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Sample Size:                     20</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Tolerance Interval Coverage:     95%</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Coverage Type:                   content</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Tolerance Interval Method:       Exact using</span></span>
-<span class="r-in">  <span class="co">#                                 Kulkarni &amp; Powar (2010)</span></span>
-<span class="r-in">  <span class="co">#                                 transformation to Normality</span></span>
-<span class="r-in">  <span class="co">#                                 based on mle of 'shape'</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Tolerance Interval Type:         two-sided</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Confidence Level:                95%</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Number of Future Observations:   1</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Tolerance Interval:              LTL =  0.2340438</span></span>
-<span class="r-in">  <span class="co">#                                 UTL = 21.2996464</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="co">#--------------------------------------------------------------------</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="co"># Using the same data as in the previous example, create an upper </span></span>
-<span class="r-in">  <span class="co"># one-sided tolerance interval and use the bias-corrected estimate of </span></span>
-<span class="r-in">  <span class="co"># shape.</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="fu">tolIntGamma</span><span class="op">(</span><span class="va">dat</span>, ti.type <span class="op">=</span> <span class="st">"upper"</span>, est.method <span class="op">=</span> <span class="st">"bcmle"</span><span class="op">)</span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="co">#Results of Distribution Parameter Estimation</span></span></span>
+<span class="r-in"><span>  <span class="co">#--------------------------------------------</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Assumed Distribution:            Gamma</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Estimated Parameter(s):          shape = 2.203862</span></span></span>
+<span class="r-in"><span>  <span class="co">#                                 scale = 2.174928</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Estimation Method:               mle</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Data:                            dat</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Sample Size:                     20</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Tolerance Interval Coverage:     95%</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Coverage Type:                   content</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Tolerance Interval Method:       Exact using</span></span></span>
+<span class="r-in"><span>  <span class="co">#                                 Kulkarni &amp; Powar (2010)</span></span></span>
+<span class="r-in"><span>  <span class="co">#                                 transformation to Normality</span></span></span>
+<span class="r-in"><span>  <span class="co">#                                 based on mle of 'shape'</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Tolerance Interval Type:         two-sided</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Confidence Level:                95%</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Number of Future Observations:   1</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Tolerance Interval:              LTL =  0.2340438</span></span></span>
+<span class="r-in"><span>  <span class="co">#                                 UTL = 21.2996464</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="co">#--------------------------------------------------------------------</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="co"># Using the same data as in the previous example, create an upper </span></span></span>
+<span class="r-in"><span>  <span class="co"># one-sided tolerance interval and use the bias-corrected estimate of </span></span></span>
+<span class="r-in"><span>  <span class="co"># shape.</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="fu">tolIntGamma</span><span class="op">(</span><span class="va">dat</span>, ti.type <span class="op">=</span> <span class="st">"upper"</span>, est.method <span class="op">=</span> <span class="st">"bcmle"</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> $distribution</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] "Gamma"</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
@@ -391,57 +408,57 @@
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> attr(,"class")</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] "estimate"</span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="co">#Results of Distribution Parameter Estimation</span></span>
-<span class="r-in">  <span class="co">#--------------------------------------------</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Assumed Distribution:            Gamma</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Estimated Parameter(s):          shape = 1.906616</span></span>
-<span class="r-in">  <span class="co">#                                 scale = 2.514005</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Estimation Method:               bcmle</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Data:                            dat</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Sample Size:                     20</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Tolerance Interval Coverage:     95%</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Coverage Type:                   content</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Tolerance Interval Method:       Exact using</span></span>
-<span class="r-in">  <span class="co">#                                 Kulkarni &amp; Powar (2010)</span></span>
-<span class="r-in">  <span class="co">#                                 transformation to Normality</span></span>
-<span class="r-in">  <span class="co">#                                 based on bcmle of 'shape'</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Tolerance Interval Type:         upper</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Confidence Level:                95%</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Tolerance Interval:              LTL =  0.00000</span></span>
-<span class="r-in">  <span class="co">#                                 UTL = 17.72107</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="co">#----------</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="co"># Clean up</span></span>
-<span class="r-in">  <span class="fu"><a href="https://rdrr.io/r/base/rm.html" class="external-link">rm</a></span><span class="op">(</span><span class="va">dat</span><span class="op">)</span></span>
-<span class="r-in">  </span>
-<span class="r-in">  <span class="co">#--------------------------------------------------------------------</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="co"># Example 17-3 of USEPA (2009, p. 17-17) shows how to construct a </span></span>
-<span class="r-in">  <span class="co"># beta-content upper tolerance limit with 95% coverage and 95% </span></span>
-<span class="r-in">  <span class="co"># confidence  using chrysene data and assuming a lognormal </span></span>
-<span class="r-in">  <span class="co"># distribution.  Here we will use the same chrysene data but assume a </span></span>
-<span class="r-in">  <span class="co"># gamma distribution.</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="kw"><a href="https://rdrr.io/r/base/attach.html" class="external-link">attach</a></span><span class="op">(</span><span class="va">EPA.09.Ex.17.3.chrysene.df</span><span class="op">)</span></span>
-<span class="r-in">  <span class="va">Chrysene</span> <span class="op">&lt;-</span> <span class="va">Chrysene.ppb</span><span class="op">[</span><span class="va">Well.type</span> <span class="op">==</span> <span class="st">"Background"</span><span class="op">]</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="co">#----------</span></span>
-<span class="r-in">  <span class="co"># First perform a goodness-of-fit test for a gamma distribution</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="fu"><a href="gofTest.html">gofTest</a></span><span class="op">(</span><span class="va">Chrysene</span>, dist <span class="op">=</span> <span class="st">"gamma"</span><span class="op">)</span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="co">#Results of Distribution Parameter Estimation</span></span></span>
+<span class="r-in"><span>  <span class="co">#--------------------------------------------</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Assumed Distribution:            Gamma</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Estimated Parameter(s):          shape = 1.906616</span></span></span>
+<span class="r-in"><span>  <span class="co">#                                 scale = 2.514005</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Estimation Method:               bcmle</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Data:                            dat</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Sample Size:                     20</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Tolerance Interval Coverage:     95%</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Coverage Type:                   content</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Tolerance Interval Method:       Exact using</span></span></span>
+<span class="r-in"><span>  <span class="co">#                                 Kulkarni &amp; Powar (2010)</span></span></span>
+<span class="r-in"><span>  <span class="co">#                                 transformation to Normality</span></span></span>
+<span class="r-in"><span>  <span class="co">#                                 based on bcmle of 'shape'</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Tolerance Interval Type:         upper</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Confidence Level:                95%</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Tolerance Interval:              LTL =  0.00000</span></span></span>
+<span class="r-in"><span>  <span class="co">#                                 UTL = 17.72107</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="co">#----------</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="co"># Clean up</span></span></span>
+<span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/r/base/rm.html" class="external-link">rm</a></span><span class="op">(</span><span class="va">dat</span><span class="op">)</span></span></span>
+<span class="r-in"><span>  </span></span>
+<span class="r-in"><span>  <span class="co">#--------------------------------------------------------------------</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="co"># Example 17-3 of USEPA (2009, p. 17-17) shows how to construct a </span></span></span>
+<span class="r-in"><span>  <span class="co"># beta-content upper tolerance limit with 95% coverage and 95% </span></span></span>
+<span class="r-in"><span>  <span class="co"># confidence  using chrysene data and assuming a lognormal </span></span></span>
+<span class="r-in"><span>  <span class="co"># distribution.  Here we will use the same chrysene data but assume a </span></span></span>
+<span class="r-in"><span>  <span class="co"># gamma distribution.</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="kw"><a href="https://rdrr.io/r/base/attach.html" class="external-link">attach</a></span><span class="op">(</span><span class="va">EPA.09.Ex.17.3.chrysene.df</span><span class="op">)</span></span></span>
+<span class="r-in"><span>  <span class="va">Chrysene</span> <span class="op">&lt;-</span> <span class="va">Chrysene.ppb</span><span class="op">[</span><span class="va">Well.type</span> <span class="op">==</span> <span class="st">"Background"</span><span class="op">]</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="co">#----------</span></span></span>
+<span class="r-in"><span>  <span class="co"># First perform a goodness-of-fit test for a gamma distribution</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="fu"><a href="gofTest.html">gofTest</a></span><span class="op">(</span><span class="va">Chrysene</span>, dist <span class="op">=</span> <span class="st">"gamma"</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> $distribution</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] "Gamma"</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
@@ -492,38 +509,38 @@
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> attr(,"class")</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] "gof"</span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="co">#Results of Goodness-of-Fit Test</span></span>
-<span class="r-in">  <span class="co">#-------------------------------</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Test Method:                     Shapiro-Wilk GOF Based on </span></span>
-<span class="r-in">  <span class="co">#                                 Chen &amp; Balakrisnan (1995)</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Hypothesized Distribution:       Gamma</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Estimated Parameter(s):          shape = 2.806929</span></span>
-<span class="r-in">  <span class="co">#                                 scale = 5.286026</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Estimation Method:               mle</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Data:                            Chrysene</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Sample Size:                     8</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Test Statistic:                  W = 0.9156306</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Test Statistic Parameter:        n = 8</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#P-value:                         0.3954223</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Alternative Hypothesis:          True cdf does not equal the</span></span>
-<span class="r-in">  <span class="co">#                                 Gamma Distribution.</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="co">#----------</span></span>
-<span class="r-in">  <span class="co"># Now compute the upper tolerance limit</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="fu">tolIntGamma</span><span class="op">(</span><span class="va">Chrysene</span>, ti.type <span class="op">=</span> <span class="st">"upper"</span>, coverage <span class="op">=</span> <span class="fl">0.95</span>, </span>
-<span class="r-in">    conf.level <span class="op">=</span> <span class="fl">0.95</span><span class="op">)</span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="co">#Results of Goodness-of-Fit Test</span></span></span>
+<span class="r-in"><span>  <span class="co">#-------------------------------</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Test Method:                     Shapiro-Wilk GOF Based on </span></span></span>
+<span class="r-in"><span>  <span class="co">#                                 Chen &amp; Balakrisnan (1995)</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Hypothesized Distribution:       Gamma</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Estimated Parameter(s):          shape = 2.806929</span></span></span>
+<span class="r-in"><span>  <span class="co">#                                 scale = 5.286026</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Estimation Method:               mle</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Data:                            Chrysene</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Sample Size:                     8</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Test Statistic:                  W = 0.9156306</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Test Statistic Parameter:        n = 8</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#P-value:                         0.3954223</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Alternative Hypothesis:          True cdf does not equal the</span></span></span>
+<span class="r-in"><span>  <span class="co">#                                 Gamma Distribution.</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="co">#----------</span></span></span>
+<span class="r-in"><span>  <span class="co"># Now compute the upper tolerance limit</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="fu">tolIntGamma</span><span class="op">(</span><span class="va">Chrysene</span>, ti.type <span class="op">=</span> <span class="st">"upper"</span>, coverage <span class="op">=</span> <span class="fl">0.95</span>, </span></span>
+<span class="r-in"><span>    conf.level <span class="op">=</span> <span class="fl">0.95</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> $distribution</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] "Gamma"</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
@@ -583,65 +600,65 @@
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> attr(,"class")</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] "estimate"</span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="co">#Results of Distribution Parameter Estimation</span></span>
-<span class="r-in">  <span class="co">#--------------------------------------------</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Assumed Distribution:            Gamma</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Estimated Parameter(s):          shape = 2.806929</span></span>
-<span class="r-in">  <span class="co">#                                 scale = 5.286026</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Estimation Method:               mle</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Data:                            Chrysene</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Sample Size:                     8</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Tolerance Interval Coverage:     95%</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Coverage Type:                   content</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Tolerance Interval Method:       Exact using</span></span>
-<span class="r-in">  <span class="co">#                                 Kulkarni &amp; Powar (2010)</span></span>
-<span class="r-in">  <span class="co">#                                 transformation to Normality</span></span>
-<span class="r-in">  <span class="co">#                                 based on mle of 'shape'</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Tolerance Interval Type:         upper</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Confidence Level:                95%</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Tolerance Interval:              LTL =  0.00000</span></span>
-<span class="r-in">  <span class="co">#                                 UTL = 69.32425</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="co">#----------</span></span>
-<span class="r-in">  <span class="co"># Compare this upper tolerance limit of 69 ppb to the upper tolerance limit </span></span>
-<span class="r-in">  <span class="co"># assuming a lognormal distribution.</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="fu"><a href="tolIntLnorm.html">tolIntLnorm</a></span><span class="op">(</span><span class="va">Chrysene</span>, ti.type <span class="op">=</span> <span class="st">"upper"</span>, coverage <span class="op">=</span> <span class="fl">0.95</span>, </span>
-<span class="r-in">    conf.level <span class="op">=</span> <span class="fl">0.95</span><span class="op">)</span><span class="op">$</span><span class="va">interval</span><span class="op">$</span><span class="va">limits</span><span class="op">[</span><span class="st">"UTL"</span><span class="op">]</span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="co">#Results of Distribution Parameter Estimation</span></span></span>
+<span class="r-in"><span>  <span class="co">#--------------------------------------------</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Assumed Distribution:            Gamma</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Estimated Parameter(s):          shape = 2.806929</span></span></span>
+<span class="r-in"><span>  <span class="co">#                                 scale = 5.286026</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Estimation Method:               mle</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Data:                            Chrysene</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Sample Size:                     8</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Tolerance Interval Coverage:     95%</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Coverage Type:                   content</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Tolerance Interval Method:       Exact using</span></span></span>
+<span class="r-in"><span>  <span class="co">#                                 Kulkarni &amp; Powar (2010)</span></span></span>
+<span class="r-in"><span>  <span class="co">#                                 transformation to Normality</span></span></span>
+<span class="r-in"><span>  <span class="co">#                                 based on mle of 'shape'</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Tolerance Interval Type:         upper</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Confidence Level:                95%</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Tolerance Interval:              LTL =  0.00000</span></span></span>
+<span class="r-in"><span>  <span class="co">#                                 UTL = 69.32425</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="co">#----------</span></span></span>
+<span class="r-in"><span>  <span class="co"># Compare this upper tolerance limit of 69 ppb to the upper tolerance limit </span></span></span>
+<span class="r-in"><span>  <span class="co"># assuming a lognormal distribution.</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="fu"><a href="tolIntLnorm.html">tolIntLnorm</a></span><span class="op">(</span><span class="va">Chrysene</span>, ti.type <span class="op">=</span> <span class="st">"upper"</span>, coverage <span class="op">=</span> <span class="fl">0.95</span>, </span></span>
+<span class="r-in"><span>    conf.level <span class="op">=</span> <span class="fl">0.95</span><span class="op">)</span><span class="op">$</span><span class="va">interval</span><span class="op">$</span><span class="va">limits</span><span class="op">[</span><span class="st">"UTL"</span><span class="op">]</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>     UTL </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 90.9247 </span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="co">#    UTL </span></span>
-<span class="r-in">  <span class="co">#90.9247</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="co">#----------</span></span>
-<span class="r-in">  <span class="co"># Clean up</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="fu"><a href="https://rdrr.io/r/base/rm.html" class="external-link">rm</a></span><span class="op">(</span><span class="va">Chrysene</span><span class="op">)</span></span>
-<span class="r-in">  <span class="kw"><a href="https://rdrr.io/r/base/detach.html" class="external-link">detach</a></span><span class="op">(</span><span class="st">"EPA.09.Ex.17.3.chrysene.df"</span><span class="op">)</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="co">#--------------------------------------------------------------------</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="co"># Reproduce some of the example on page 73 of </span></span>
-<span class="r-in">  <span class="co"># Krishnamoorthy et al. (2008), which uses alkalinity concentrations </span></span>
-<span class="r-in">  <span class="co"># reported in Gibbons (1994) and Gibbons et al. (2009) to construct </span></span>
-<span class="r-in">  <span class="co"># two-sided and one-sided upper tolerance limits for various values </span></span>
-<span class="r-in">  <span class="co"># of coverage using a 95% confidence level.</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="fu">tolIntGamma</span><span class="op">(</span><span class="va">Gibbons.et.al.09.Alkilinity.vec</span>, ti.type <span class="op">=</span> <span class="st">"upper"</span>, </span>
-<span class="r-in">    coverage <span class="op">=</span> <span class="fl">0.9</span>, normal.approx.transform <span class="op">=</span> <span class="st">"cube.root"</span><span class="op">)</span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="co">#    UTL </span></span></span>
+<span class="r-in"><span>  <span class="co">#90.9247</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="co">#----------</span></span></span>
+<span class="r-in"><span>  <span class="co"># Clean up</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/r/base/rm.html" class="external-link">rm</a></span><span class="op">(</span><span class="va">Chrysene</span><span class="op">)</span></span></span>
+<span class="r-in"><span>  <span class="kw"><a href="https://rdrr.io/r/base/detach.html" class="external-link">detach</a></span><span class="op">(</span><span class="st">"EPA.09.Ex.17.3.chrysene.df"</span><span class="op">)</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="co">#--------------------------------------------------------------------</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="co"># Reproduce some of the example on page 73 of </span></span></span>
+<span class="r-in"><span>  <span class="co"># Krishnamoorthy et al. (2008), which uses alkalinity concentrations </span></span></span>
+<span class="r-in"><span>  <span class="co"># reported in Gibbons (1994) and Gibbons et al. (2009) to construct </span></span></span>
+<span class="r-in"><span>  <span class="co"># two-sided and one-sided upper tolerance limits for various values </span></span></span>
+<span class="r-in"><span>  <span class="co"># of coverage using a 95% confidence level.</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="fu">tolIntGamma</span><span class="op">(</span><span class="va">Gibbons.et.al.09.Alkilinity.vec</span>, ti.type <span class="op">=</span> <span class="st">"upper"</span>, </span></span>
+<span class="r-in"><span>    coverage <span class="op">=</span> <span class="fl">0.9</span>, normal.approx.transform <span class="op">=</span> <span class="st">"cube.root"</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> $distribution</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] "Gamma"</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
@@ -701,38 +718,38 @@
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> attr(,"class")</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] "estimate"</span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="co">#Results of Distribution Parameter Estimation</span></span>
-<span class="r-in">  <span class="co">#--------------------------------------------</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Assumed Distribution:            Gamma</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Estimated Parameter(s):          shape = 9.375013</span></span>
-<span class="r-in">  <span class="co">#                                 scale = 6.202461</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Estimation Method:               mle</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Data:                            Gibbons.et.al.09.Alkilinity.vec</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Sample Size:                     27</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Tolerance Interval Coverage:     90%</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Coverage Type:                   content</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Tolerance Interval Method:       Exact using</span></span>
-<span class="r-in">  <span class="co">#                                 Wilson &amp; Hilferty (1931) cube-root</span></span>
-<span class="r-in">  <span class="co">#                                 transformation to Normality</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Tolerance Interval Type:         upper</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Confidence Level:                95%</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Tolerance Interval:              LTL =  0.00000</span></span>
-<span class="r-in">  <span class="co">#                                 UTL = 97.70502</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="fu">tolIntGamma</span><span class="op">(</span><span class="va">Gibbons.et.al.09.Alkilinity.vec</span>,  </span>
-<span class="r-in">    coverage <span class="op">=</span> <span class="fl">0.99</span>, normal.approx.transform <span class="op">=</span> <span class="st">"cube.root"</span><span class="op">)</span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="co">#Results of Distribution Parameter Estimation</span></span></span>
+<span class="r-in"><span>  <span class="co">#--------------------------------------------</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Assumed Distribution:            Gamma</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Estimated Parameter(s):          shape = 9.375013</span></span></span>
+<span class="r-in"><span>  <span class="co">#                                 scale = 6.202461</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Estimation Method:               mle</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Data:                            Gibbons.et.al.09.Alkilinity.vec</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Sample Size:                     27</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Tolerance Interval Coverage:     90%</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Coverage Type:                   content</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Tolerance Interval Method:       Exact using</span></span></span>
+<span class="r-in"><span>  <span class="co">#                                 Wilson &amp; Hilferty (1931) cube-root</span></span></span>
+<span class="r-in"><span>  <span class="co">#                                 transformation to Normality</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Tolerance Interval Type:         upper</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Confidence Level:                95%</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Tolerance Interval:              LTL =  0.00000</span></span></span>
+<span class="r-in"><span>  <span class="co">#                                 UTL = 97.70502</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="fu">tolIntGamma</span><span class="op">(</span><span class="va">Gibbons.et.al.09.Alkilinity.vec</span>,  </span></span>
+<span class="r-in"><span>    coverage <span class="op">=</span> <span class="fl">0.99</span>, normal.approx.transform <span class="op">=</span> <span class="st">"cube.root"</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> $distribution</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] "Gamma"</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
@@ -792,35 +809,35 @@
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> attr(,"class")</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] "estimate"</span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="co">#Results of Distribution Parameter Estimation</span></span>
-<span class="r-in">  <span class="co">#--------------------------------------------</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Assumed Distribution:            Gamma</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Estimated Parameter(s):          shape = 9.375013</span></span>
-<span class="r-in">  <span class="co">#                                 scale = 6.202461</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Estimation Method:               mle</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Data:                            Gibbons.et.al.09.Alkilinity.vec</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Sample Size:                     27</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Tolerance Interval Coverage:     99%</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Coverage Type:                   content</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Tolerance Interval Method:       Exact using</span></span>
-<span class="r-in">  <span class="co">#                                 Wilson &amp; Hilferty (1931) cube-root</span></span>
-<span class="r-in">  <span class="co">#                                 transformation to Normality</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Tolerance Interval Type:         two-sided</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Confidence Level:                95%</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Tolerance Interval:              LTL =  13.14318</span></span>
-<span class="r-in">  <span class="co">#                                 UTL = 148.43876</span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="co">#Results of Distribution Parameter Estimation</span></span></span>
+<span class="r-in"><span>  <span class="co">#--------------------------------------------</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Assumed Distribution:            Gamma</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Estimated Parameter(s):          shape = 9.375013</span></span></span>
+<span class="r-in"><span>  <span class="co">#                                 scale = 6.202461</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Estimation Method:               mle</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Data:                            Gibbons.et.al.09.Alkilinity.vec</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Sample Size:                     27</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Tolerance Interval Coverage:     99%</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Coverage Type:                   content</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Tolerance Interval Method:       Exact using</span></span></span>
+<span class="r-in"><span>  <span class="co">#                                 Wilson &amp; Hilferty (1931) cube-root</span></span></span>
+<span class="r-in"><span>  <span class="co">#                                 transformation to Normality</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Tolerance Interval Type:         two-sided</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Confidence Level:                95%</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Tolerance Interval:              LTL =  13.14318</span></span></span>
+<span class="r-in"><span>  <span class="co">#                                 UTL = 148.43876</span></span></span>
 </code></pre></div>
     </div>
   </div>
@@ -835,7 +852,7 @@
 </div>
 
 <div class="pkgdown">
-  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.2.</p>
+  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.6.</p>
 </div>
 
       </footer></div>

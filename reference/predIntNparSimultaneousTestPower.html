@@ -58,12 +58,12 @@
     </div>
 
     <div id="ref-usage">
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="fu">predIntNparSimultaneousTestPower</span><span class="op">(</span><span class="va">n</span>, n.median <span class="op">=</span> <span class="fl">1</span>, k <span class="op">=</span> <span class="fl">1</span>, m <span class="op">=</span> <span class="fl">2</span>, r <span class="op">=</span> <span class="fl">1</span>, 
-    rule <span class="op">=</span> <span class="st">"k.of.m"</span>, lpl.rank <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/ifelse.html" class="external-link">ifelse</a></span><span class="op">(</span><span class="va">pi.type</span> <span class="op">==</span> <span class="st">"upper"</span>, <span class="fl">0</span>, <span class="fl">1</span><span class="op">)</span>, 
-    n.plus.one.minus.upl.rank <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/ifelse.html" class="external-link">ifelse</a></span><span class="op">(</span><span class="va">pi.type</span> <span class="op">==</span> <span class="st">"lower"</span>, <span class="fl">0</span>, <span class="fl">1</span><span class="op">)</span>, 
-    delta.over.sigma <span class="op">=</span> <span class="fl">0</span>, pi.type <span class="op">=</span> <span class="st">"upper"</span>, r.shifted <span class="op">=</span> <span class="va">r</span>,  
-    method <span class="op">=</span> <span class="st">"approx"</span>, NMC <span class="op">=</span> <span class="fl">100</span>, ci <span class="op">=</span> <span class="cn">FALSE</span>, ci.conf.level <span class="op">=</span> <span class="fl">0.95</span>, 
-    integrate.args.list <span class="op">=</span> <span class="cn">NULL</span>, evNormOrdStats.method <span class="op">=</span> <span class="st">"royston"</span><span class="op">)</span></code></pre></div>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">predIntNparSimultaneousTestPower</span><span class="op">(</span><span class="va">n</span>, n.median <span class="op">=</span> <span class="fl">1</span>, k <span class="op">=</span> <span class="fl">1</span>, m <span class="op">=</span> <span class="fl">2</span>, r <span class="op">=</span> <span class="fl">1</span>, </span>
+<span>    rule <span class="op">=</span> <span class="st">"k.of.m"</span>, lpl.rank <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/ifelse.html" class="external-link">ifelse</a></span><span class="op">(</span><span class="va">pi.type</span> <span class="op">==</span> <span class="st">"upper"</span>, <span class="fl">0</span>, <span class="fl">1</span><span class="op">)</span>, </span>
+<span>    n.plus.one.minus.upl.rank <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/ifelse.html" class="external-link">ifelse</a></span><span class="op">(</span><span class="va">pi.type</span> <span class="op">==</span> <span class="st">"lower"</span>, <span class="fl">0</span>, <span class="fl">1</span><span class="op">)</span>, </span>
+<span>    delta.over.sigma <span class="op">=</span> <span class="fl">0</span>, pi.type <span class="op">=</span> <span class="st">"upper"</span>, r.shifted <span class="op">=</span> <span class="va">r</span>,  </span>
+<span>    method <span class="op">=</span> <span class="st">"approx"</span>, NMC <span class="op">=</span> <span class="fl">100</span>, ci <span class="op">=</span> <span class="cn">FALSE</span>, ci.conf.level <span class="op">=</span> <span class="fl">0.95</span>, </span>
+<span>    integrate.args.list <span class="op">=</span> <span class="cn">NULL</span>, evNormOrdStats.method <span class="op">=</span> <span class="st">"royston"</span><span class="op">)</span></span></code></pre></div>
     </div>
 
     <div id="arguments">
@@ -72,79 +72,96 @@
 <dd><p>vector of positive integers specifying the sample sizes.  
   Missing (<code>NA</code>), undefined (<code>NaN</code>), and infinite (<code>Inf</code>, <code>-Inf</code>) 
   values are not allowed.</p></dd>
-<dt>n.median</dt>
+
+  <dt>n.median</dt>
 <dd><p>vector of positive odd integers specifying the sample size associated with the 
   future medians.  The default value is <code>n.median=1</code> (i.e., individual 
   observations).  Note that all future medians must be based on the same 
   sample size.</p></dd>
-<dt>k</dt>
+
+  <dt>k</dt>
 <dd><p>for the \(k\)-of-\(m\) rule (<code>rule="k.of.m"</code>), a vector of positive integers 
   specifying the minimum number of observations (or medians) out of \(m\) 
   observations (or medians) (all obtained on one future sampling “occassion”) 
   the prediction interval should contain.  
   The default value is <code>k=1</code>.  This argument is ignored when the argument 
   <code>rule</code> is not equal to <code>"k.of.m"</code>.</p></dd>
-<dt>m</dt>
+
+  <dt>m</dt>
 <dd><p>vector of positive integers specifying the maximum number of future observations (or 
   medians) on one future sampling “occasion”.  
   The default value is <code>m=2</code>, except when <code>rule="Modified.CA"</code>, in which 
   case this argument is ignored and <code>m</code> is automatically set equal to <code>4</code>.</p></dd>
-<dt>r</dt>
+
+  <dt>r</dt>
 <dd><p>vector of positive integers specifying the number of future sampling 
   “occasions”.  The default value is <code>r=1</code>.</p></dd>
-<dt>rule</dt>
+
+  <dt>rule</dt>
 <dd><p>character string specifying which rule to use.  The possible values are 
   <code>"k.of.m"</code> (\(k\)-of-\(m\) rule; the default), <code>"CA"</code> (California rule), 
   and <code>"Modified.CA"</code> (modified California rule).</p></dd>
-<dt>lpl.rank</dt>
+
+  <dt>lpl.rank</dt>
 <dd><p>vector of non-negative integers indicating the rank of the order statistic to use for 
   the lower bound of the prediction interval.  When <code>pi.type="lower"</code>, the 
   default value is <code>lpl.rank=1</code> (implying the minimum value of <code>x</code> is used 
   as the lower bound of the prediction interval).  When <code>pi.type="upper"</code>, 
   the argument <code>lpl.rank</code> is set equal to <code>0</code>.</p></dd>
-<dt>n.plus.one.minus.upl.rank</dt>
+
+  <dt>n.plus.one.minus.upl.rank</dt>
 <dd><p>vector of non-negative integers related to the rank of the order statistic to use for 
   the upper bound of the prediction interval.  A value of <code>n.plus.one.minus.upl.rank=1</code> 
   (the default) means use the first largest value, and in general a value of <br><code>n.plus.one.minus.upl.rank=</code>\(i\) means use the \(i\)'th largest value. 
   When <code>pi.type="lower"</code>, the argument <code>n.plus.one.minus.upl.rank</code> is set 
   equal to <code>0</code>.</p></dd>
-<dt>delta.over.sigma</dt>
+
+  <dt>delta.over.sigma</dt>
 <dd><p>numeric vector indicating the ratio \(\Delta/\sigma\).  The quantity 
   \(\Delta\) (delta) denotes the difference between the mean of the population 
   that was sampled to construct the prediction interval, and the mean of the 
   population that will be sampled to produce the future observations.  The quantity 
   \(\sigma\) (sigma) denotes the population standard deviation for both populations.  
   The default value is <br><code>delta.over.sigma=0</code>.</p></dd>
-<dt>pi.type</dt>
+
+  <dt>pi.type</dt>
 <dd><p>character string indicating what kind of prediction interval to compute.  
   The possible values are <code>"two.sided"</code> (the default), <code>"lower"</code>, and 
   <code>"upper"</code>.</p></dd>
-<dt>r.shifted</dt>
+
+  <dt>r.shifted</dt>
 <dd><p>vector of positive integers specifying the number of future sampling occasions for 
   which the scaled mean is shifted by \(\Delta/\sigma\).  All values must be 
   integeters between <code>1</code> and the corresponding element of <code>r</code>.  
   The default value is <code>r.shifted=r</code>.</p></dd>
-<dt>method</dt>
+
+  <dt>method</dt>
 <dd><p>character string indicating what method to use to compute the power.  The possible 
   values are <code>"approx"</code> (approximation based on <br><code><a href="predIntNormSimultaneousTestPower.html">predIntNormSimultaneousTestPower</a></code>; the default) and 
   <code>"simulate"</code> (Monte Carlo simulation).</p></dd>
-<dt>NMC</dt>
+
+  <dt>NMC</dt>
 <dd><p>positive integer indicating the number of Monte Carlo trials to run when <br><code>method="simulate"</code>.  The default value is <code>NMC=100</code>.</p></dd>
-<dt>ci</dt>
+
+  <dt>ci</dt>
 <dd><p>logical scalar indicating whether to compute a confidence interval for the power 
   when <code>method="simulate"</code>.  The default value is <code>ci=FALSE</code>.</p></dd>
-<dt>ci.conf.level</dt>
+
+  <dt>ci.conf.level</dt>
 <dd><p>numeric scalar between 0 and 1 indicating the confidence level associated with the 
   confidence interval for the power.  The argument is ignored if <code>ci=FALSE</code> 
   or <code>method="approx"</code>.</p></dd>
-<dt>integrate.args.list</dt>
+
+  <dt>integrate.args.list</dt>
 <dd><p>list of arguments to supply to the <code><a href="https://rdrr.io/r/stats/integrate.html" class="external-link">integrate</a></code> function.  The default 
   value is <code>NULL</code>.</p></dd>
-<dt>evNormOrdStats.method</dt>
+
+  <dt>evNormOrdStats.method</dt>
 <dd><p>character string indicating which method to use in the call to 
   <code><a href="evNormOrdStats.html">evNormOrdStatsScalar</a></code> when <code>method="approx"</code>.  The default 
   value is <code>evNormOrdStats.method="royston"</code>.  See the DETAILS section for 
   more information.</p></dd>
+
 </dl></div>
     <div id="details">
     <h2>Details</h2>
@@ -269,7 +286,9 @@
     </div>
     <div id="value">
     <h2>Value</h2>
-    <p>vector of values between 0 and 1 equal to the probability that 
+    
+
+<p>vector of values between 0 and 1 equal to the probability that 
   the rule will be violated.</p>
     </div>
     <div id="references">
@@ -303,133 +322,133 @@
 
     <div id="ref-examples">
     <h2>Examples</h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in">  <span class="co"># Example 19-5 of USEPA (2009, p. 19-33) shows how to compute nonparametric upper </span></span>
-<span class="r-in">  <span class="co"># simultaneous prediction limits for various rules based on trace mercury data (ppb) </span></span>
-<span class="r-in">  <span class="co"># collected in the past year from a site with four background wells and 10 compliance </span></span>
-<span class="r-in">  <span class="co"># wells (data for two of the compliance wells  are shown in the guidance document).  </span></span>
-<span class="r-in">  <span class="co"># The facility must monitor the 10 compliance wells for five constituents </span></span>
-<span class="r-in">  <span class="co"># (including mercury) annually.</span></span>
-<span class="r-in">  </span>
-<span class="r-in">  <span class="co"># Here we will compute the confidence levels and powers associated with  </span></span>
-<span class="r-in">  <span class="co"># two different sampling plans: </span></span>
-<span class="r-in">  <span class="co"># 1) the 1-of-2 retesting plan for a median of order 3 using the </span></span>
-<span class="r-in">  <span class="co">#    background maximum and </span></span>
-<span class="r-in">  <span class="co"># 2) the 1-of-4 plan on individual observations using the 3rd highest </span></span>
-<span class="r-in">  <span class="co">#    background value.</span></span>
-<span class="r-in">  <span class="co"># Power will be computed assuming a normal distribution and setting </span></span>
-<span class="r-in">  <span class="co"># delta.over.sigma equal to 2, 3, and 4.</span></span>
-<span class="r-in">  <span class="co"># The data for this example are stored in EPA.09.Ex.19.5.mercury.df.</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="co"># We will pool data from 4 background wells that were sampled on </span></span>
-<span class="r-in">  <span class="co"># a number of different occasions, giving us a sample size of </span></span>
-<span class="r-in">  <span class="co"># n = 20 to use to construct the prediction limit.</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="co"># There are 10 compliance wells and we will monitor 5 different </span></span>
-<span class="r-in">  <span class="co"># constituents at each well annually.  For this example, USEPA (2009) </span></span>
-<span class="r-in">  <span class="co"># recommends setting r to the product of the number of compliance wells and </span></span>
-<span class="r-in">  <span class="co"># the number of evaluations per year.  </span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="co"># To determine the minimum confidence level we require for </span></span>
-<span class="r-in">  <span class="co"># the simultaneous prediction interval, USEPA (2009) recommends </span></span>
-<span class="r-in">  <span class="co"># setting the maximum allowed individual Type I Error level per constituent to:</span></span>
-<span class="r-in"> </span>
-<span class="r-in">  <span class="co"># 1 - (1 - SWFPR)^(1 / Number of Constituents)</span></span>
-<span class="r-in">  </span>
-<span class="r-in">  <span class="co"># which translates to setting the confidence limit to </span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="co"># (1 - SWFPR)^(1 / Number of Constituents)</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="co"># where SWFPR = site-wide false positive rate.  For this example, we </span></span>
-<span class="r-in">  <span class="co"># will set SWFPR = 0.1.  Thus, the required individual Type I Error level </span></span>
-<span class="r-in">  <span class="co"># and confidence level per constituent are given as follows:</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="co"># n  = 20 based on 4 Background Wells</span></span>
-<span class="r-in">  <span class="co"># nw = 10 Compliance Wells</span></span>
-<span class="r-in">  <span class="co"># nc =  5 Constituents</span></span>
-<span class="r-in">  <span class="co"># ne =  1 Evaluation per year</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="va">n</span>  <span class="op">&lt;-</span> <span class="fl">20</span></span>
-<span class="r-in">  <span class="va">nw</span> <span class="op">&lt;-</span> <span class="fl">10</span></span>
-<span class="r-in">  <span class="va">nc</span> <span class="op">&lt;-</span>  <span class="fl">5</span></span>
-<span class="r-in">  <span class="va">ne</span> <span class="op">&lt;-</span>  <span class="fl">1</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="co"># Set number of future sampling occasions r to </span></span>
-<span class="r-in">  <span class="co"># Number Compliance Wells x Number Evaluations per Year</span></span>
-<span class="r-in">  <span class="va">r</span>  <span class="op">&lt;-</span>  <span class="va">nw</span> <span class="op">*</span> <span class="va">ne</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="va">conf.level</span> <span class="op">&lt;-</span> <span class="op">(</span><span class="fl">1</span> <span class="op">-</span> <span class="fl">0.1</span><span class="op">)</span><span class="op">^</span><span class="op">(</span><span class="fl">1</span> <span class="op">/</span> <span class="va">nc</span><span class="op">)</span></span>
-<span class="r-in">  <span class="va">conf.level</span></span>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span>  <span class="co"># Example 19-5 of USEPA (2009, p. 19-33) shows how to compute nonparametric upper </span></span></span>
+<span class="r-in"><span>  <span class="co"># simultaneous prediction limits for various rules based on trace mercury data (ppb) </span></span></span>
+<span class="r-in"><span>  <span class="co"># collected in the past year from a site with four background wells and 10 compliance </span></span></span>
+<span class="r-in"><span>  <span class="co"># wells (data for two of the compliance wells  are shown in the guidance document).  </span></span></span>
+<span class="r-in"><span>  <span class="co"># The facility must monitor the 10 compliance wells for five constituents </span></span></span>
+<span class="r-in"><span>  <span class="co"># (including mercury) annually.</span></span></span>
+<span class="r-in"><span>  </span></span>
+<span class="r-in"><span>  <span class="co"># Here we will compute the confidence levels and powers associated with  </span></span></span>
+<span class="r-in"><span>  <span class="co"># two different sampling plans: </span></span></span>
+<span class="r-in"><span>  <span class="co"># 1) the 1-of-2 retesting plan for a median of order 3 using the </span></span></span>
+<span class="r-in"><span>  <span class="co">#    background maximum and </span></span></span>
+<span class="r-in"><span>  <span class="co"># 2) the 1-of-4 plan on individual observations using the 3rd highest </span></span></span>
+<span class="r-in"><span>  <span class="co">#    background value.</span></span></span>
+<span class="r-in"><span>  <span class="co"># Power will be computed assuming a normal distribution and setting </span></span></span>
+<span class="r-in"><span>  <span class="co"># delta.over.sigma equal to 2, 3, and 4.</span></span></span>
+<span class="r-in"><span>  <span class="co"># The data for this example are stored in EPA.09.Ex.19.5.mercury.df.</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="co"># We will pool data from 4 background wells that were sampled on </span></span></span>
+<span class="r-in"><span>  <span class="co"># a number of different occasions, giving us a sample size of </span></span></span>
+<span class="r-in"><span>  <span class="co"># n = 20 to use to construct the prediction limit.</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="co"># There are 10 compliance wells and we will monitor 5 different </span></span></span>
+<span class="r-in"><span>  <span class="co"># constituents at each well annually.  For this example, USEPA (2009) </span></span></span>
+<span class="r-in"><span>  <span class="co"># recommends setting r to the product of the number of compliance wells and </span></span></span>
+<span class="r-in"><span>  <span class="co"># the number of evaluations per year.  </span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="co"># To determine the minimum confidence level we require for </span></span></span>
+<span class="r-in"><span>  <span class="co"># the simultaneous prediction interval, USEPA (2009) recommends </span></span></span>
+<span class="r-in"><span>  <span class="co"># setting the maximum allowed individual Type I Error level per constituent to:</span></span></span>
+<span class="r-in"><span> </span></span>
+<span class="r-in"><span>  <span class="co"># 1 - (1 - SWFPR)^(1 / Number of Constituents)</span></span></span>
+<span class="r-in"><span>  </span></span>
+<span class="r-in"><span>  <span class="co"># which translates to setting the confidence limit to </span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="co"># (1 - SWFPR)^(1 / Number of Constituents)</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="co"># where SWFPR = site-wide false positive rate.  For this example, we </span></span></span>
+<span class="r-in"><span>  <span class="co"># will set SWFPR = 0.1.  Thus, the required individual Type I Error level </span></span></span>
+<span class="r-in"><span>  <span class="co"># and confidence level per constituent are given as follows:</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="co"># n  = 20 based on 4 Background Wells</span></span></span>
+<span class="r-in"><span>  <span class="co"># nw = 10 Compliance Wells</span></span></span>
+<span class="r-in"><span>  <span class="co"># nc =  5 Constituents</span></span></span>
+<span class="r-in"><span>  <span class="co"># ne =  1 Evaluation per year</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="va">n</span>  <span class="op">&lt;-</span> <span class="fl">20</span></span></span>
+<span class="r-in"><span>  <span class="va">nw</span> <span class="op">&lt;-</span> <span class="fl">10</span></span></span>
+<span class="r-in"><span>  <span class="va">nc</span> <span class="op">&lt;-</span>  <span class="fl">5</span></span></span>
+<span class="r-in"><span>  <span class="va">ne</span> <span class="op">&lt;-</span>  <span class="fl">1</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="co"># Set number of future sampling occasions r to </span></span></span>
+<span class="r-in"><span>  <span class="co"># Number Compliance Wells x Number Evaluations per Year</span></span></span>
+<span class="r-in"><span>  <span class="va">r</span>  <span class="op">&lt;-</span>  <span class="va">nw</span> <span class="op">*</span> <span class="va">ne</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="va">conf.level</span> <span class="op">&lt;-</span> <span class="op">(</span><span class="fl">1</span> <span class="op">-</span> <span class="fl">0.1</span><span class="op">)</span><span class="op">^</span><span class="op">(</span><span class="fl">1</span> <span class="op">/</span> <span class="va">nc</span><span class="op">)</span></span></span>
+<span class="r-in"><span>  <span class="va">conf.level</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] 0.9791484</span>
-<span class="r-in">  <span class="co">#[1] 0.9791484</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="co"># So the required confidence level is 0.98, or 98%.</span></span>
-<span class="r-in">  <span class="co"># Now determine the confidence level associated with each plan.</span></span>
-<span class="r-in">  <span class="co"># Note that both plans achieve the required confidence level.</span></span>
-<span class="r-in"> </span>
-<span class="r-in">  <span class="co"># 1) the 1-of-2 retesting plan for a median of order 3 using the </span></span>
-<span class="r-in">  <span class="co">#    background maximum</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="fu"><a href="predIntNparSimultaneousConfLevel.html">predIntNparSimultaneousConfLevel</a></span><span class="op">(</span>n <span class="op">=</span> <span class="fl">20</span>, n.median <span class="op">=</span> <span class="fl">3</span>, k <span class="op">=</span> <span class="fl">1</span>, m <span class="op">=</span> <span class="fl">2</span>, r <span class="op">=</span> <span class="va">r</span><span class="op">)</span></span>
+<span class="r-in"><span>  <span class="co">#[1] 0.9791484</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="co"># So the required confidence level is 0.98, or 98%.</span></span></span>
+<span class="r-in"><span>  <span class="co"># Now determine the confidence level associated with each plan.</span></span></span>
+<span class="r-in"><span>  <span class="co"># Note that both plans achieve the required confidence level.</span></span></span>
+<span class="r-in"><span> </span></span>
+<span class="r-in"><span>  <span class="co"># 1) the 1-of-2 retesting plan for a median of order 3 using the </span></span></span>
+<span class="r-in"><span>  <span class="co">#    background maximum</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="fu"><a href="predIntNparSimultaneousConfLevel.html">predIntNparSimultaneousConfLevel</a></span><span class="op">(</span>n <span class="op">=</span> <span class="fl">20</span>, n.median <span class="op">=</span> <span class="fl">3</span>, k <span class="op">=</span> <span class="fl">1</span>, m <span class="op">=</span> <span class="fl">2</span>, r <span class="op">=</span> <span class="va">r</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] 0.9940354</span>
-<span class="r-in">  <span class="co">#[1] 0.9940354</span></span>
-<span class="r-in"></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="co"># 2) the 1-of-4 plan based on individual observations using the 3rd highest </span></span>
-<span class="r-in">  <span class="co">#    background value.</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="fu"><a href="predIntNparSimultaneousConfLevel.html">predIntNparSimultaneousConfLevel</a></span><span class="op">(</span>n <span class="op">=</span> <span class="fl">20</span>, k <span class="op">=</span> <span class="fl">1</span>, m <span class="op">=</span> <span class="fl">4</span>, r <span class="op">=</span> <span class="va">r</span>, </span>
-<span class="r-in">    n.plus.one.minus.upl.rank <span class="op">=</span> <span class="fl">3</span><span class="op">)</span></span>
+<span class="r-in"><span>  <span class="co">#[1] 0.9940354</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="co"># 2) the 1-of-4 plan based on individual observations using the 3rd highest </span></span></span>
+<span class="r-in"><span>  <span class="co">#    background value.</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="fu"><a href="predIntNparSimultaneousConfLevel.html">predIntNparSimultaneousConfLevel</a></span><span class="op">(</span>n <span class="op">=</span> <span class="fl">20</span>, k <span class="op">=</span> <span class="fl">1</span>, m <span class="op">=</span> <span class="fl">4</span>, r <span class="op">=</span> <span class="va">r</span>, </span></span>
+<span class="r-in"><span>    n.plus.one.minus.upl.rank <span class="op">=</span> <span class="fl">3</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] 0.9864909</span>
-<span class="r-in">  <span class="co">#[1] 0.9864909</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="co">#------------------------------------------------------------------------------</span></span>
-<span class="r-in">  <span class="co"># Compute approximate power of each plan to detect contamination at just 1 well </span></span>
-<span class="r-in">  <span class="co"># assuming true underying distribution of Hg is Normal at all wells and </span></span>
-<span class="r-in">  <span class="co"># using delta.over.sigma equal to 2, 3, and 4.</span></span>
-<span class="r-in">  <span class="co">#------------------------------------------------------------------------------</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="co"># Computer aproximate power for </span></span>
-<span class="r-in">  <span class="co"># 1) the 1-of-2 retesting plan for a median of order 3 using the </span></span>
-<span class="r-in">  <span class="co">#    background maximum</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="fu">predIntNparSimultaneousTestPower</span><span class="op">(</span>n <span class="op">=</span> <span class="fl">20</span>, n.median <span class="op">=</span> <span class="fl">3</span>, k <span class="op">=</span> <span class="fl">1</span>, m <span class="op">=</span> <span class="fl">2</span>, r <span class="op">=</span> <span class="va">r</span>, </span>
-<span class="r-in">    delta.over.sigma <span class="op">=</span> <span class="fl">2</span><span class="op">:</span><span class="fl">4</span>, r.shifted <span class="op">=</span> <span class="fl">1</span><span class="op">)</span></span>
+<span class="r-in"><span>  <span class="co">#[1] 0.9864909</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="co">#------------------------------------------------------------------------------</span></span></span>
+<span class="r-in"><span>  <span class="co"># Compute approximate power of each plan to detect contamination at just 1 well </span></span></span>
+<span class="r-in"><span>  <span class="co"># assuming true underying distribution of Hg is Normal at all wells and </span></span></span>
+<span class="r-in"><span>  <span class="co"># using delta.over.sigma equal to 2, 3, and 4.</span></span></span>
+<span class="r-in"><span>  <span class="co">#------------------------------------------------------------------------------</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="co"># Computer aproximate power for </span></span></span>
+<span class="r-in"><span>  <span class="co"># 1) the 1-of-2 retesting plan for a median of order 3 using the </span></span></span>
+<span class="r-in"><span>  <span class="co">#    background maximum</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="fu">predIntNparSimultaneousTestPower</span><span class="op">(</span>n <span class="op">=</span> <span class="fl">20</span>, n.median <span class="op">=</span> <span class="fl">3</span>, k <span class="op">=</span> <span class="fl">1</span>, m <span class="op">=</span> <span class="fl">2</span>, r <span class="op">=</span> <span class="va">r</span>, </span></span>
+<span class="r-in"><span>    delta.over.sigma <span class="op">=</span> <span class="fl">2</span><span class="op">:</span><span class="fl">4</span>, r.shifted <span class="op">=</span> <span class="fl">1</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] 0.3953712 0.9129671 0.9983054</span>
-<span class="r-in">  <span class="co">#[1] 0.3953712 0.9129671 0.9983054</span></span>
-<span class="r-in"></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="co"># Compute approximate power for</span></span>
-<span class="r-in">  <span class="co"># 2) the 1-of-4 plan based on individual observations using the 3rd highest </span></span>
-<span class="r-in">  <span class="co">#    background value.</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="fu">predIntNparSimultaneousTestPower</span><span class="op">(</span>n <span class="op">=</span> <span class="fl">20</span>, k <span class="op">=</span> <span class="fl">1</span>, m <span class="op">=</span> <span class="fl">4</span>, r <span class="op">=</span> <span class="va">r</span>, </span>
-<span class="r-in">    n.plus.one.minus.upl.rank <span class="op">=</span> <span class="fl">3</span>, delta.over.sigma <span class="op">=</span> <span class="fl">2</span><span class="op">:</span><span class="fl">4</span>, r.shifted <span class="op">=</span> <span class="fl">1</span><span class="op">)</span></span>
+<span class="r-in"><span>  <span class="co">#[1] 0.3953712 0.9129671 0.9983054</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="co"># Compute approximate power for</span></span></span>
+<span class="r-in"><span>  <span class="co"># 2) the 1-of-4 plan based on individual observations using the 3rd highest </span></span></span>
+<span class="r-in"><span>  <span class="co">#    background value.</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="fu">predIntNparSimultaneousTestPower</span><span class="op">(</span>n <span class="op">=</span> <span class="fl">20</span>, k <span class="op">=</span> <span class="fl">1</span>, m <span class="op">=</span> <span class="fl">4</span>, r <span class="op">=</span> <span class="va">r</span>, </span></span>
+<span class="r-in"><span>    n.plus.one.minus.upl.rank <span class="op">=</span> <span class="fl">3</span>, delta.over.sigma <span class="op">=</span> <span class="fl">2</span><span class="op">:</span><span class="fl">4</span>, r.shifted <span class="op">=</span> <span class="fl">1</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] 0.4367972 0.8694664 0.9888779</span>
-<span class="r-in">  <span class="co">#[1] 0.4367972 0.8694664 0.9888779</span></span>
-<span class="r-in"></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="co">#----------</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="kw">if</span> <span class="op">(</span><span class="cn">FALSE</span><span class="op">)</span> <span class="op">{</span></span>
-<span class="r-in">  <span class="co"># Compare estimated power using approximation method with estimated power</span></span>
-<span class="r-in">  <span class="co"># using Monte Carlo simulation for the 1-of-4 plan based on individual </span></span>
-<span class="r-in">  <span class="co"># observations using the 3rd highest background value.</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="fu">predIntNparSimultaneousTestPower</span><span class="op">(</span>n <span class="op">=</span> <span class="fl">20</span>, k <span class="op">=</span> <span class="fl">1</span>, m <span class="op">=</span> <span class="fl">4</span>, r <span class="op">=</span> <span class="va">r</span>, </span>
-<span class="r-in">    n.plus.one.minus.upl.rank <span class="op">=</span> <span class="fl">3</span>, delta.over.sigma <span class="op">=</span> <span class="fl">2</span><span class="op">:</span><span class="fl">4</span>, r.shifted <span class="op">=</span> <span class="fl">1</span>, </span>
-<span class="r-in">    method <span class="op">=</span> <span class="st">"simulate"</span>, ci <span class="op">=</span> <span class="cn">TRUE</span>, NMC <span class="op">=</span> <span class="fl">1000</span><span class="op">)</span></span>
-<span class="r-in">  <span class="co">#[1] 0.437 0.863 0.989</span></span>
-<span class="r-in">  <span class="co">#attr(,"conf.int")</span></span>
-<span class="r-in">  <span class="co">#         [,1]      [,2]      [,3]</span></span>
-<span class="r-in">  <span class="co">#LCL 0.4111999 0.8451148 0.9835747</span></span>
-<span class="r-in">  <span class="co">#UCL 0.4628001 0.8808852 0.9944253</span></span>
-<span class="r-in">  <span class="op">}</span></span>
-<span class="r-in"> </span>
-<span class="r-in">  <span class="co">#==========</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="co"># Cleanup</span></span>
-<span class="r-in">  <span class="co">#--------</span></span>
-<span class="r-in">  <span class="fu"><a href="https://rdrr.io/r/base/rm.html" class="external-link">rm</a></span><span class="op">(</span><span class="va">n</span>, <span class="va">nw</span>, <span class="va">nc</span>, <span class="va">ne</span>, <span class="va">r</span>, <span class="va">conf.level</span><span class="op">)</span> </span>
+<span class="r-in"><span>  <span class="co">#[1] 0.4367972 0.8694664 0.9888779</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="co">#----------</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="kw">if</span> <span class="op">(</span><span class="cn">FALSE</span><span class="op">)</span> <span class="op">{</span></span></span>
+<span class="r-in"><span>  <span class="co"># Compare estimated power using approximation method with estimated power</span></span></span>
+<span class="r-in"><span>  <span class="co"># using Monte Carlo simulation for the 1-of-4 plan based on individual </span></span></span>
+<span class="r-in"><span>  <span class="co"># observations using the 3rd highest background value.</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="fu">predIntNparSimultaneousTestPower</span><span class="op">(</span>n <span class="op">=</span> <span class="fl">20</span>, k <span class="op">=</span> <span class="fl">1</span>, m <span class="op">=</span> <span class="fl">4</span>, r <span class="op">=</span> <span class="va">r</span>, </span></span>
+<span class="r-in"><span>    n.plus.one.minus.upl.rank <span class="op">=</span> <span class="fl">3</span>, delta.over.sigma <span class="op">=</span> <span class="fl">2</span><span class="op">:</span><span class="fl">4</span>, r.shifted <span class="op">=</span> <span class="fl">1</span>, </span></span>
+<span class="r-in"><span>    method <span class="op">=</span> <span class="st">"simulate"</span>, ci <span class="op">=</span> <span class="cn">TRUE</span>, NMC <span class="op">=</span> <span class="fl">1000</span><span class="op">)</span></span></span>
+<span class="r-in"><span>  <span class="co">#[1] 0.437 0.863 0.989</span></span></span>
+<span class="r-in"><span>  <span class="co">#attr(,"conf.int")</span></span></span>
+<span class="r-in"><span>  <span class="co">#         [,1]      [,2]      [,3]</span></span></span>
+<span class="r-in"><span>  <span class="co">#LCL 0.4111999 0.8451148 0.9835747</span></span></span>
+<span class="r-in"><span>  <span class="co">#UCL 0.4628001 0.8808852 0.9944253</span></span></span>
+<span class="r-in"><span>  <span class="op">}</span></span></span>
+<span class="r-in"><span> </span></span>
+<span class="r-in"><span>  <span class="co">#==========</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="co"># Cleanup</span></span></span>
+<span class="r-in"><span>  <span class="co">#--------</span></span></span>
+<span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/r/base/rm.html" class="external-link">rm</a></span><span class="op">(</span><span class="va">n</span>, <span class="va">nw</span>, <span class="va">nc</span>, <span class="va">ne</span>, <span class="va">r</span>, <span class="va">conf.level</span><span class="op">)</span> </span></span>
 </code></pre></div>
     </div>
   </div>
@@ -444,7 +463,7 @@
 </div>
 
 <div class="pkgdown">
-  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.2.</p>
+  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.6.</p>
 </div>
 
       </footer></div>

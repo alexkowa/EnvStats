@@ -54,10 +54,10 @@
     </div>
 
     <div id="ref-usage">
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="fu">tolIntLnormCensored</span><span class="op">(</span><span class="va">x</span>, <span class="va">censored</span>, censoring.side <span class="op">=</span> <span class="st">"left"</span>, coverage <span class="op">=</span> <span class="fl">0.95</span>, 
-    cov.type <span class="op">=</span> <span class="st">"content"</span>, ti.type <span class="op">=</span> <span class="st">"two-sided"</span>, conf.level <span class="op">=</span> <span class="fl">0.95</span>, 
-    method <span class="op">=</span> <span class="st">"mle"</span>, ti.method <span class="op">=</span> <span class="st">"exact.for.complete"</span>, seed <span class="op">=</span> <span class="cn">NULL</span>, 
-    nmc <span class="op">=</span> <span class="fl">1000</span><span class="op">)</span></code></pre></div>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">tolIntLnormCensored</span><span class="op">(</span><span class="va">x</span>, <span class="va">censored</span>, censoring.side <span class="op">=</span> <span class="st">"left"</span>, coverage <span class="op">=</span> <span class="fl">0.95</span>, </span>
+<span>    cov.type <span class="op">=</span> <span class="st">"content"</span>, ti.type <span class="op">=</span> <span class="st">"two-sided"</span>, conf.level <span class="op">=</span> <span class="fl">0.95</span>, </span>
+<span>    method <span class="op">=</span> <span class="st">"mle"</span>, ti.method <span class="op">=</span> <span class="st">"exact.for.complete"</span>, seed <span class="op">=</span> <span class="cn">NULL</span>, </span>
+<span>    nmc <span class="op">=</span> <span class="fl">1000</span><span class="op">)</span></span></code></pre></div>
     </div>
 
     <div id="arguments">
@@ -65,32 +65,39 @@
     <dl><dt>x</dt>
 <dd><p>numeric vector of positive observations.  Missing (<code>NA</code>), undefined (<code>NaN</code>), and 
   infinite (<code>Inf</code>, <code>-Inf</code>) values are allowed but will be removed.</p></dd>
-<dt>censored</dt>
+
+  <dt>censored</dt>
 <dd><p>numeric or logical vector indicating which values of <code>x</code> are censored.  This must be the 
   same length as <code>x</code>.  If the mode of <code>censored</code> is <code>"logical"</code>, <code>TRUE</code> values 
   correspond to elements of <code>x</code> that are censored, and <code>FALSE</code> values correspond to 
   elements of <code>x</code> that are not censored.  If the mode of <code>censored</code> is <code>"numeric"</code>, 
   it must contain only <code>1</code>'s and <code>0</code>'s; <code>1</code> corresponds to <code>TRUE</code> and 
   <code>0</code> corresponds to <code>FALSE</code>.  Missing (<code>NA</code>) values are allowed but will be removed.</p></dd>
-<dt>censoring.side</dt>
+
+  <dt>censoring.side</dt>
 <dd><p>character string indicating on which side the censoring occurs.  The possible values are 
   <code>"left"</code> (the default) and <code>"right"</code>.</p></dd>
-<dt>coverage</dt>
+
+  <dt>coverage</dt>
 <dd><p>a scalar between 0 and 1 indicating the desired coverage of the tolerance interval.  
   The default value is <code>coverage=0.95</code>.</p></dd>
-<dt>cov.type</dt>
+
+  <dt>cov.type</dt>
 <dd><p>character string specifying the coverage type for the tolerance interval.  
   The possible values are <code>"content"</code> (\(\beta\)-content; the default), and 
   <code>"expectation"</code> (\(\beta\)-expectation).  See the DETAILS section for more 
   information.</p></dd>
-<dt>ti.type</dt>
+
+  <dt>ti.type</dt>
 <dd><p>character string indicating what kind of tolerance interval to compute.  
   The possible values are <code>"two-sided"</code> (the default), <code>"lower"</code>, and 
   <code>"upper"</code>.</p></dd>
-<dt>conf.level</dt>
+
+  <dt>conf.level</dt>
 <dd><p>a scalar between 0 and 1 indicating the confidence level associated with the tolerance 
   interval.  The default value is <code>conf.level=0.95</code>.</p></dd>
-<dt>method</dt>
+
+  <dt>method</dt>
 <dd><p>character string indicating the method to use for parameter estimation on the log-scale.  <br><br>
   For singly censored data, possible values are <code>"mle"</code> (the default), <code>"bcmle"</code>, 
   <code>"qq.reg"</code>, <code>"qq.reg.w.cen.level"</code>, <code>"impute.w.qq.reg"</code>, <br><code>"impute.w.qq.reg.w.cen.level"</code>, <code>"impute.w.mle"</code>, <br><code>"iterative.impute.w.qq.reg"</code>, 
@@ -98,22 +105,26 @@
   for details. <br><br>
   For multiply censored data, possible values are <code>"mle"</code> (the default), <code>"qq.reg"</code>, 
   <code>"impute.w.qq.reg"</code>, and <code>"half.cen.level"</code>.  See the help file for <br><code><a href="enormCensored.html">enormCensored</a></code> for details.</p></dd>
-<dt>ti.method</dt>
+
+  <dt>ti.method</dt>
 <dd><p>character string specifying the method for constructing the tolerance 
   interval.  Possible values are: <br><code>"exact.for.complete"</code> (the default), <br><code>"gpq"</code> (Generalized Pivotal Quantity), and <br><code>"wald.wolfowitz.for.complete"</code> (only available for a two-sided tolerance interval,  
   i.e., when <code>ti.type="two-sided"</code>).  <br> 
   See the DETAILS section for more information.</p></dd>
-<dt>seed</dt>
+
+  <dt>seed</dt>
 <dd><p>for the case when <code>ti.method="gpq"</code>, a positive integer to pass to the 
   function <code><a href="gpqTolIntNormCensored.html">gpqTolIntNormSinglyCensored</a></code> or 
   <code><a href="gpqTolIntNormCensored.html">gpqTolIntNormMultiplyCensored</a></code>.  This argument is 
   ignored if <code>seed=NULL</code> (the default).  Using the <code>seed</code> 
   argument lets you reproduce the exact same result if all other 
   arguments stay the same.</p></dd>
-<dt>nmc</dt>
+
+  <dt>nmc</dt>
 <dd><p>for the case when <code>ti.method="gpq"</code>, a positive integer \(\ge 10\) 
   indicating the number of Monte Carlo trials to run in order to compute the 
   GPQ(s).</p></dd>
+
 </dl></div>
     <div id="details">
     <h2>Details</h2>
@@ -125,7 +136,9 @@
     </div>
     <div id="value">
     <h2>Value</h2>
-    <p>A list of class <code>"estimateCensored"</code> containing the estimated 
+    
+
+<p>A list of class <code>"estimateCensored"</code> containing the estimated 
   parameters, the tolerance interval, and other information.  
   See <code><a href="estimateCensored.object.html">estimateCensored.object</a></code> for details.</p>
     </div>
@@ -192,28 +205,28 @@
 
     <div id="ref-examples">
     <h2>Examples</h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in">  <span class="co"># Generate 20 observations from a lognormal distribution with parameters </span></span>
-<span class="r-in">  <span class="co"># mean=10 and cv=1, censor the observations less than 5, </span></span>
-<span class="r-in">  <span class="co"># then create a one-sided upper tolerance interval with 90% </span></span>
-<span class="r-in">  <span class="co"># coverage and 95% confidence based on these Type I left, singly </span></span>
-<span class="r-in">  <span class="co"># censored data. </span></span>
-<span class="r-in">  <span class="co"># (Note: the call to set.seed allows you to reproduce this example.)</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="fu"><a href="https://rdrr.io/r/base/Random.html" class="external-link">set.seed</a></span><span class="op">(</span><span class="fl">250</span><span class="op">)</span> </span>
-<span class="r-in">  <span class="va">dat</span> <span class="op">&lt;-</span> <span class="fu"><a href="LognormalAlt.html">rlnormAlt</a></span><span class="op">(</span><span class="fl">20</span>, mean <span class="op">=</span> <span class="fl">10</span>, cv <span class="op">=</span> <span class="fl">1</span><span class="op">)</span></span>
-<span class="r-in">  <span class="fu"><a href="https://rdrr.io/r/base/sort.html" class="external-link">sort</a></span><span class="op">(</span><span class="va">dat</span><span class="op">)</span></span>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span>  <span class="co"># Generate 20 observations from a lognormal distribution with parameters </span></span></span>
+<span class="r-in"><span>  <span class="co"># mean=10 and cv=1, censor the observations less than 5, </span></span></span>
+<span class="r-in"><span>  <span class="co"># then create a one-sided upper tolerance interval with 90% </span></span></span>
+<span class="r-in"><span>  <span class="co"># coverage and 95% confidence based on these Type I left, singly </span></span></span>
+<span class="r-in"><span>  <span class="co"># censored data. </span></span></span>
+<span class="r-in"><span>  <span class="co"># (Note: the call to set.seed allows you to reproduce this example.)</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/r/base/Random.html" class="external-link">set.seed</a></span><span class="op">(</span><span class="fl">250</span><span class="op">)</span> </span></span>
+<span class="r-in"><span>  <span class="va">dat</span> <span class="op">&lt;-</span> <span class="fu"><a href="LognormalAlt.html">rlnormAlt</a></span><span class="op">(</span><span class="fl">20</span>, mean <span class="op">=</span> <span class="fl">10</span>, cv <span class="op">=</span> <span class="fl">1</span><span class="op">)</span></span></span>
+<span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/r/base/sort.html" class="external-link">sort</a></span><span class="op">(</span><span class="va">dat</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  [1]  2.608298  3.185459  4.196216  4.383764  4.569752  5.136130  5.209538</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  [8]  5.916284  6.199076  6.214755  6.255779  6.778361  7.074972  7.100494</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [15]  8.930845 10.388766 11.402769 14.247062 14.559506 15.437340</span>
-<span class="r-in">  <span class="co"># [1]  2.608298  3.185459  4.196216  4.383764  4.569752  5.136130</span></span>
-<span class="r-in">  <span class="co"># [7]  5.209538  5.916284  6.199076  6.214755  6.255779  6.778361</span></span>
-<span class="r-in">  <span class="co">#[13]  7.074972  7.100494  8.930845 10.388766 11.402769 14.247062</span></span>
-<span class="r-in">  <span class="co">#[19] 14.559506 15.437340</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="va">censored</span> <span class="op">&lt;-</span> <span class="va">dat</span> <span class="op">&lt;</span> <span class="fl">5</span></span>
-<span class="r-in">  <span class="va">dat</span><span class="op">[</span><span class="va">censored</span><span class="op">]</span> <span class="op">&lt;-</span> <span class="fl">5</span></span>
-<span class="r-in"> </span>
-<span class="r-in">  <span class="fu">tolIntLnormCensored</span><span class="op">(</span><span class="va">dat</span>, <span class="va">censored</span>, coverage <span class="op">=</span> <span class="fl">0.9</span>, ti.type<span class="op">=</span><span class="st">"upper"</span><span class="op">)</span></span>
+<span class="r-in"><span>  <span class="co"># [1]  2.608298  3.185459  4.196216  4.383764  4.569752  5.136130</span></span></span>
+<span class="r-in"><span>  <span class="co"># [7]  5.209538  5.916284  6.199076  6.214755  6.255779  6.778361</span></span></span>
+<span class="r-in"><span>  <span class="co">#[13]  7.074972  7.100494  8.930845 10.388766 11.402769 14.247062</span></span></span>
+<span class="r-in"><span>  <span class="co">#[19] 14.559506 15.437340</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="va">censored</span> <span class="op">&lt;-</span> <span class="va">dat</span> <span class="op">&lt;</span> <span class="fl">5</span></span></span>
+<span class="r-in"><span>  <span class="va">dat</span><span class="op">[</span><span class="va">censored</span><span class="op">]</span> <span class="op">&lt;-</span> <span class="fl">5</span></span></span>
+<span class="r-in"><span> </span></span>
+<span class="r-in"><span>  <span class="fu">tolIntLnormCensored</span><span class="op">(</span><span class="va">dat</span>, <span class="va">censored</span>, coverage <span class="op">=</span> <span class="fl">0.9</span>, ti.type<span class="op">=</span><span class="st">"upper"</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> $distribution</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] "Lognormal"</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
@@ -282,124 +295,124 @@
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> attr(,"class")</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] "estimateCensored"</span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="co">#Results of Distribution Parameter Estimation</span></span>
-<span class="r-in">  <span class="co">#Based on Type I Censored Data</span></span>
-<span class="r-in">  <span class="co">#--------------------------------------------</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Assumed Distribution:            Lognormal</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Censoring Side:                  left</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Censoring Level(s):              5 </span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Estimated Parameter(s):          meanlog = 1.8993686</span></span>
-<span class="r-in">  <span class="co">#                                 sdlog   = 0.4804343</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Estimation Method:               MLE</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Data:                            dat</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Censoring Variable:              censored</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Sample Size:                     20</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Percent Censored:                25%</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Assumed Sample Size:             20</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Tolerance Interval Coverage:     90%</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Coverage Type:                   content</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Tolerance Interval Method:       Exact for</span></span>
-<span class="r-in">  <span class="co">#                                 Complete Data</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Tolerance Interval Type:         upper</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Confidence Level:                95%</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Tolerance Interval:              LTL =  0.00000</span></span>
-<span class="r-in">  <span class="co">#                                 UTL = 16.85556</span></span>
-<span class="r-in"></span>
-<span class="r-in"><span class="kw">if</span> <span class="op">(</span><span class="cn">FALSE</span><span class="op">)</span> <span class="op">{</span></span>
-<span class="r-in">  <span class="co"># Note:  The true 90'th percentile is 20.55231</span></span>
-<span class="r-in">  <span class="co">#---------------------------------------------</span></span>
-<span class="r-in">  <span class="fu"><a href="LognormalAlt.html">qlnormAlt</a></span><span class="op">(</span><span class="fl">0.9</span>, mean <span class="op">=</span> <span class="fl">10</span>, cv <span class="op">=</span> <span class="fl">1</span><span class="op">)</span></span>
-<span class="r-in">  <span class="co">#[1] 20.55231</span></span>
-<span class="r-in"></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="co"># Compare the result using the method "gpq"</span></span>
-<span class="r-in">  <span class="fu">tolIntLnormCensored</span><span class="op">(</span><span class="va">dat</span>, <span class="va">censored</span>, coverage <span class="op">=</span> <span class="fl">0.9</span>, ti.type<span class="op">=</span><span class="st">"upper"</span>, </span>
-<span class="r-in">    ti.method <span class="op">=</span> <span class="st">"gpq"</span>, seed <span class="op">=</span> <span class="fl">432</span><span class="op">)</span><span class="op">$</span><span class="va">interval</span><span class="op">$</span><span class="va">limits</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="co">#     LTL      UTL </span></span>
-<span class="r-in">  <span class="co"># 0.00000 17.85474</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="co"># Clean Up</span></span>
-<span class="r-in">  <span class="co">#---------</span></span>
-<span class="r-in">  <span class="fu"><a href="https://rdrr.io/r/base/rm.html" class="external-link">rm</a></span><span class="op">(</span><span class="va">dat</span>, <span class="va">censored</span><span class="op">)</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="co">#--------------------------------------------------------------</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="co"># Example 15-1 of USEPA (2009, p. 15-10) shows how to estimate </span></span>
-<span class="r-in">  <span class="co"># the mean and standard deviation using log-transformed multiply </span></span>
-<span class="r-in">  <span class="co"># left-censored manganese concentration data.  Here we'll construct a </span></span>
-<span class="r-in">  <span class="co"># 95</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="va">EPA.09.Ex.15.1.manganese.df</span></span>
-<span class="r-in">  <span class="co">#    Sample   Well Manganese.Orig.ppb Manganese.ppb Censored</span></span>
-<span class="r-in">  <span class="co"># 1       1 Well.1                 &lt;5           5.0     TRUE</span></span>
-<span class="r-in">  <span class="co"># 2       2 Well.1               12.1          12.1    FALSE</span></span>
-<span class="r-in">  <span class="co"># 3       3 Well.1               16.9          16.9    FALSE</span></span>
-<span class="r-in">  <span class="co"># ...</span></span>
-<span class="r-in">  <span class="co"># 23      3 Well.5                3.3           3.3    FALSE</span></span>
-<span class="r-in">  <span class="co"># 24      4 Well.5                8.4           8.4    FALSE</span></span>
-<span class="r-in">  <span class="co"># 25      5 Well.5                 &lt;2           2.0     TRUE</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="fu"><a href="https://rdrr.io/r/base/with.html" class="external-link">with</a></span><span class="op">(</span><span class="va">EPA.09.Ex.15.1.manganese.df</span>, </span>
-<span class="r-in">    <span class="fu">tolIntLnormCensored</span><span class="op">(</span><span class="va">Manganese.ppb</span>, <span class="va">Censored</span>, coverage <span class="op">=</span> <span class="fl">0.9</span>, </span>
-<span class="r-in">      ti.type <span class="op">=</span> <span class="st">"upper"</span><span class="op">)</span><span class="op">)</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="co">#Results of Distribution Parameter Estimation</span></span>
-<span class="r-in">  <span class="co">#Based on Type I Censored Data</span></span>
-<span class="r-in">  <span class="co">#--------------------------------------------</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Assumed Distribution:            Lognormal</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Censoring Side:                  left</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Censoring Level(s):              2 5 </span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Estimated Parameter(s):          meanlog = 2.215905</span></span>
-<span class="r-in">  <span class="co">#                                 sdlog   = 1.356291</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Estimation Method:               MLE</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Data:                            Manganese.ppb</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Censoring Variable:              censored</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Sample Size:                     25</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Percent Censored:                24</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Assumed Sample Size:             25</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Tolerance Interval Coverage:     90</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Coverage Type:                   content</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Tolerance Interval Method:       Exact for</span></span>
-<span class="r-in">  <span class="co">#                                 Complete Data</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Tolerance Interval Type:         upper</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Confidence Level:                95</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Tolerance Interval:              LTL =   0.0000</span></span>
-<span class="r-in">  <span class="co">#                                 UTL = 110.9305</span></span>
-<span class="r-in">  <span class="op">}</span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="co">#Results of Distribution Parameter Estimation</span></span></span>
+<span class="r-in"><span>  <span class="co">#Based on Type I Censored Data</span></span></span>
+<span class="r-in"><span>  <span class="co">#--------------------------------------------</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Assumed Distribution:            Lognormal</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Censoring Side:                  left</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Censoring Level(s):              5 </span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Estimated Parameter(s):          meanlog = 1.8993686</span></span></span>
+<span class="r-in"><span>  <span class="co">#                                 sdlog   = 0.4804343</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Estimation Method:               MLE</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Data:                            dat</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Censoring Variable:              censored</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Sample Size:                     20</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Percent Censored:                25%</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Assumed Sample Size:             20</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Tolerance Interval Coverage:     90%</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Coverage Type:                   content</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Tolerance Interval Method:       Exact for</span></span></span>
+<span class="r-in"><span>  <span class="co">#                                 Complete Data</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Tolerance Interval Type:         upper</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Confidence Level:                95%</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Tolerance Interval:              LTL =  0.00000</span></span></span>
+<span class="r-in"><span>  <span class="co">#                                 UTL = 16.85556</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="kw">if</span> <span class="op">(</span><span class="cn">FALSE</span><span class="op">)</span> <span class="op">{</span></span></span>
+<span class="r-in"><span>  <span class="co"># Note:  The true 90'th percentile is 20.55231</span></span></span>
+<span class="r-in"><span>  <span class="co">#---------------------------------------------</span></span></span>
+<span class="r-in"><span>  <span class="fu"><a href="LognormalAlt.html">qlnormAlt</a></span><span class="op">(</span><span class="fl">0.9</span>, mean <span class="op">=</span> <span class="fl">10</span>, cv <span class="op">=</span> <span class="fl">1</span><span class="op">)</span></span></span>
+<span class="r-in"><span>  <span class="co">#[1] 20.55231</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="co"># Compare the result using the method "gpq"</span></span></span>
+<span class="r-in"><span>  <span class="fu">tolIntLnormCensored</span><span class="op">(</span><span class="va">dat</span>, <span class="va">censored</span>, coverage <span class="op">=</span> <span class="fl">0.9</span>, ti.type<span class="op">=</span><span class="st">"upper"</span>, </span></span>
+<span class="r-in"><span>    ti.method <span class="op">=</span> <span class="st">"gpq"</span>, seed <span class="op">=</span> <span class="fl">432</span><span class="op">)</span><span class="op">$</span><span class="va">interval</span><span class="op">$</span><span class="va">limits</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="co">#     LTL      UTL </span></span></span>
+<span class="r-in"><span>  <span class="co"># 0.00000 17.85474</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="co"># Clean Up</span></span></span>
+<span class="r-in"><span>  <span class="co">#---------</span></span></span>
+<span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/r/base/rm.html" class="external-link">rm</a></span><span class="op">(</span><span class="va">dat</span>, <span class="va">censored</span><span class="op">)</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="co">#--------------------------------------------------------------</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="co"># Example 15-1 of USEPA (2009, p. 15-10) shows how to estimate </span></span></span>
+<span class="r-in"><span>  <span class="co"># the mean and standard deviation using log-transformed multiply </span></span></span>
+<span class="r-in"><span>  <span class="co"># left-censored manganese concentration data.  Here we'll construct a </span></span></span>
+<span class="r-in"><span>  <span class="co"># 95</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="va">EPA.09.Ex.15.1.manganese.df</span></span></span>
+<span class="r-in"><span>  <span class="co">#    Sample   Well Manganese.Orig.ppb Manganese.ppb Censored</span></span></span>
+<span class="r-in"><span>  <span class="co"># 1       1 Well.1                 &lt;5           5.0     TRUE</span></span></span>
+<span class="r-in"><span>  <span class="co"># 2       2 Well.1               12.1          12.1    FALSE</span></span></span>
+<span class="r-in"><span>  <span class="co"># 3       3 Well.1               16.9          16.9    FALSE</span></span></span>
+<span class="r-in"><span>  <span class="co"># ...</span></span></span>
+<span class="r-in"><span>  <span class="co"># 23      3 Well.5                3.3           3.3    FALSE</span></span></span>
+<span class="r-in"><span>  <span class="co"># 24      4 Well.5                8.4           8.4    FALSE</span></span></span>
+<span class="r-in"><span>  <span class="co"># 25      5 Well.5                 &lt;2           2.0     TRUE</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/r/base/with.html" class="external-link">with</a></span><span class="op">(</span><span class="va">EPA.09.Ex.15.1.manganese.df</span>, </span></span>
+<span class="r-in"><span>    <span class="fu">tolIntLnormCensored</span><span class="op">(</span><span class="va">Manganese.ppb</span>, <span class="va">Censored</span>, coverage <span class="op">=</span> <span class="fl">0.9</span>, </span></span>
+<span class="r-in"><span>      ti.type <span class="op">=</span> <span class="st">"upper"</span><span class="op">)</span><span class="op">)</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="co">#Results of Distribution Parameter Estimation</span></span></span>
+<span class="r-in"><span>  <span class="co">#Based on Type I Censored Data</span></span></span>
+<span class="r-in"><span>  <span class="co">#--------------------------------------------</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Assumed Distribution:            Lognormal</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Censoring Side:                  left</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Censoring Level(s):              2 5 </span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Estimated Parameter(s):          meanlog = 2.215905</span></span></span>
+<span class="r-in"><span>  <span class="co">#                                 sdlog   = 1.356291</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Estimation Method:               MLE</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Data:                            Manganese.ppb</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Censoring Variable:              censored</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Sample Size:                     25</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Percent Censored:                24</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Assumed Sample Size:             25</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Tolerance Interval Coverage:     90</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Coverage Type:                   content</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Tolerance Interval Method:       Exact for</span></span></span>
+<span class="r-in"><span>  <span class="co">#                                 Complete Data</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Tolerance Interval Type:         upper</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Confidence Level:                95</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Tolerance Interval:              LTL =   0.0000</span></span></span>
+<span class="r-in"><span>  <span class="co">#                                 UTL = 110.9305</span></span></span>
+<span class="r-in"><span>  <span class="op">}</span></span></span>
 </code></pre></div>
     </div>
   </div>
@@ -414,7 +427,7 @@
 </div>
 
 <div class="pkgdown">
-  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.2.</p>
+  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.6.</p>
 </div>
 
       </footer></div>

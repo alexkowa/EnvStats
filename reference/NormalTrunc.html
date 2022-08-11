@@ -54,35 +54,43 @@
     </div>
 
     <div id="ref-usage">
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="fu">dnormTrunc</span><span class="op">(</span><span class="va">x</span>, mean <span class="op">=</span> <span class="fl">0</span>, sd <span class="op">=</span> <span class="fl">1</span>, min <span class="op">=</span> <span class="op">-</span><span class="cn">Inf</span>, max <span class="op">=</span> <span class="cn">Inf</span><span class="op">)</span>
-  <span class="fu">pnormTrunc</span><span class="op">(</span><span class="va">q</span>, mean <span class="op">=</span> <span class="fl">0</span>, sd <span class="op">=</span> <span class="fl">1</span>, min <span class="op">=</span> <span class="op">-</span><span class="cn">Inf</span>, max <span class="op">=</span> <span class="cn">Inf</span><span class="op">)</span>
-  <span class="fu">qnormTrunc</span><span class="op">(</span><span class="va">p</span>, mean <span class="op">=</span> <span class="fl">0</span>, sd <span class="op">=</span> <span class="fl">1</span>, min <span class="op">=</span> <span class="op">-</span><span class="cn">Inf</span>, max <span class="op">=</span> <span class="cn">Inf</span><span class="op">)</span>
-  <span class="fu">rnormTrunc</span><span class="op">(</span><span class="va">n</span>, mean <span class="op">=</span> <span class="fl">0</span>, sd <span class="op">=</span> <span class="fl">1</span>, min <span class="op">=</span> <span class="op">-</span><span class="cn">Inf</span>, max <span class="op">=</span> <span class="cn">Inf</span><span class="op">)</span></code></pre></div>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">dnormTrunc</span><span class="op">(</span><span class="va">x</span>, mean <span class="op">=</span> <span class="fl">0</span>, sd <span class="op">=</span> <span class="fl">1</span>, min <span class="op">=</span> <span class="op">-</span><span class="cn">Inf</span>, max <span class="op">=</span> <span class="cn">Inf</span><span class="op">)</span></span>
+<span>  <span class="fu">pnormTrunc</span><span class="op">(</span><span class="va">q</span>, mean <span class="op">=</span> <span class="fl">0</span>, sd <span class="op">=</span> <span class="fl">1</span>, min <span class="op">=</span> <span class="op">-</span><span class="cn">Inf</span>, max <span class="op">=</span> <span class="cn">Inf</span><span class="op">)</span></span>
+<span>  <span class="fu">qnormTrunc</span><span class="op">(</span><span class="va">p</span>, mean <span class="op">=</span> <span class="fl">0</span>, sd <span class="op">=</span> <span class="fl">1</span>, min <span class="op">=</span> <span class="op">-</span><span class="cn">Inf</span>, max <span class="op">=</span> <span class="cn">Inf</span><span class="op">)</span></span>
+<span>  <span class="fu">rnormTrunc</span><span class="op">(</span><span class="va">n</span>, mean <span class="op">=</span> <span class="fl">0</span>, sd <span class="op">=</span> <span class="fl">1</span>, min <span class="op">=</span> <span class="op">-</span><span class="cn">Inf</span>, max <span class="op">=</span> <span class="cn">Inf</span><span class="op">)</span></span></code></pre></div>
     </div>
 
     <div id="arguments">
     <h2>Arguments</h2>
     <dl><dt>x</dt>
 <dd><p>vector of quantiles.</p></dd>
-<dt>q</dt>
+
+  <dt>q</dt>
 <dd><p>vector of quantiles.</p></dd>
-<dt>p</dt>
+
+  <dt>p</dt>
 <dd><p>vector of probabilities between 0 and 1.</p></dd>
-<dt>n</dt>
+
+  <dt>n</dt>
 <dd><p>sample size.  If <code>length(n)</code> is larger than 1, then <code>length(n)</code> 
   random values are returned.</p></dd>
-<dt>mean</dt>
+
+  <dt>mean</dt>
 <dd><p>vector of means of the distribution of the non-truncated random variable.  
   The default is <code>mean=0</code>.</p></dd>
-<dt>sd</dt>
+
+  <dt>sd</dt>
 <dd><p>vector of (positive) standard deviations of the non-truncated random variable.  
   The default is <code>sd=1</code>.</p></dd>
-<dt>min</dt>
+
+  <dt>min</dt>
 <dd><p>vector of minimum values for truncation on the left.  The default value is 
   <code>min=-Inf</code>.</p></dd>
-<dt>max</dt>
+
+  <dt>max</dt>
 <dd><p>vector of maximum values for truncation on the right.  The default value is 
   <code>max=Inf</code>.</p></dd>
+
 </dl></div>
     <div id="details">
     <h2>Details</h2>
@@ -114,8 +122,10 @@
     </div>
     <div id="value">
     <h2>Value</h2>
-    <p><code>dnormTrunc</code> gives the density, <code>pnormTrunc</code> gives the distribution function, 
-<code>qnormTrunc</code> gives the quantile function, and <code>rnormTrunc</code> generates random 
+    <p></p>
+<p><code>dnormTrunc</code> gives the density, <code>pnormTrunc</code> gives the distribution function,</p>
+<p></p>
+<p><code>qnormTrunc</code> gives the quantile function, and <code>rnormTrunc</code> generates random 
   deviates.</p>
     </div>
     <div id="references">
@@ -145,41 +155,41 @@
 
     <div id="ref-examples">
     <h2>Examples</h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in">  <span class="co"># Density of a truncated normal distribution with parameters </span></span>
-<span class="r-in">  <span class="co"># mean=10, sd=2, min=8, max=13, evaluated at 10 and 11.5:</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="fu">dnormTrunc</span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">10</span>, <span class="fl">11.5</span><span class="op">)</span>, <span class="fl">10</span>, <span class="fl">2</span>, <span class="fl">8</span>, <span class="fl">13</span><span class="op">)</span> </span>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span>  <span class="co"># Density of a truncated normal distribution with parameters </span></span></span>
+<span class="r-in"><span>  <span class="co"># mean=10, sd=2, min=8, max=13, evaluated at 10 and 11.5:</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="fu">dnormTrunc</span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">10</span>, <span class="fl">11.5</span><span class="op">)</span>, <span class="fl">10</span>, <span class="fl">2</span>, <span class="fl">8</span>, <span class="fl">13</span><span class="op">)</span> </span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] 0.2575358 0.1943982</span>
-<span class="r-in">  <span class="co">#[1] 0.2575358 0.1943982</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="co">#----------</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="co"># The cdf of a truncated normal distribution with parameters </span></span>
-<span class="r-in">  <span class="co"># mean=10, sd=2, min=8, max=13, evaluated at 10 and 11.5:</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="fu">pnormTrunc</span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">10</span>, <span class="fl">11.5</span><span class="op">)</span>, <span class="fl">10</span>, <span class="fl">2</span>, <span class="fl">8</span>, <span class="fl">13</span><span class="op">)</span> </span>
+<span class="r-in"><span>  <span class="co">#[1] 0.2575358 0.1943982</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="co">#----------</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="co"># The cdf of a truncated normal distribution with parameters </span></span></span>
+<span class="r-in"><span>  <span class="co"># mean=10, sd=2, min=8, max=13, evaluated at 10 and 11.5:</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="fu">pnormTrunc</span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">10</span>, <span class="fl">11.5</span><span class="op">)</span>, <span class="fl">10</span>, <span class="fl">2</span>, <span class="fl">8</span>, <span class="fl">13</span><span class="op">)</span> </span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] 0.4407078 0.7936573</span>
-<span class="r-in">  <span class="co">#[1] 0.4407078 0.7936573</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="co">#----------</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="co"># The median of a truncated normal distribution with parameters </span></span>
-<span class="r-in">  <span class="co"># mean=10, sd=2, min=8, max=13:</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="fu">qnormTrunc</span><span class="op">(</span><span class="fl">.5</span>, <span class="fl">10</span>, <span class="fl">2</span>, <span class="fl">8</span>, <span class="fl">13</span><span class="op">)</span> </span>
+<span class="r-in"><span>  <span class="co">#[1] 0.4407078 0.7936573</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="co">#----------</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="co"># The median of a truncated normal distribution with parameters </span></span></span>
+<span class="r-in"><span>  <span class="co"># mean=10, sd=2, min=8, max=13:</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="fu">qnormTrunc</span><span class="op">(</span><span class="fl">.5</span>, <span class="fl">10</span>, <span class="fl">2</span>, <span class="fl">8</span>, <span class="fl">13</span><span class="op">)</span> </span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] 10.23074</span>
-<span class="r-in">  <span class="co">#[1] 10.23074</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="co">#----------</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="co"># A random sample of 3 observations from a truncated normal distribution </span></span>
-<span class="r-in">  <span class="co"># with parameters mean=10, sd=2, min=8, max=13. </span></span>
-<span class="r-in">  <span class="co"># (Note: the call to set.seed simply allows you to reproduce this example.)</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="fu"><a href="https://rdrr.io/r/base/Random.html" class="external-link">set.seed</a></span><span class="op">(</span><span class="fl">20</span><span class="op">)</span> </span>
-<span class="r-in">  <span class="fu">rnormTrunc</span><span class="op">(</span><span class="fl">3</span>, <span class="fl">10</span>, <span class="fl">2</span>, <span class="fl">8</span>, <span class="fl">13</span><span class="op">)</span> </span>
+<span class="r-in"><span>  <span class="co">#[1] 10.23074</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="co">#----------</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="co"># A random sample of 3 observations from a truncated normal distribution </span></span></span>
+<span class="r-in"><span>  <span class="co"># with parameters mean=10, sd=2, min=8, max=13. </span></span></span>
+<span class="r-in"><span>  <span class="co"># (Note: the call to set.seed simply allows you to reproduce this example.)</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/r/base/Random.html" class="external-link">set.seed</a></span><span class="op">(</span><span class="fl">20</span><span class="op">)</span> </span></span>
+<span class="r-in"><span>  <span class="fu">rnormTrunc</span><span class="op">(</span><span class="fl">3</span>, <span class="fl">10</span>, <span class="fl">2</span>, <span class="fl">8</span>, <span class="fl">13</span><span class="op">)</span> </span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] 11.975223 11.373711  9.361258</span>
-<span class="r-in">  <span class="co">#[1] 11.975223 11.373711  9.361258</span></span>
+<span class="r-in"><span>  <span class="co">#[1] 11.975223 11.373711  9.361258</span></span></span>
 </code></pre></div>
     </div>
   </div>
@@ -194,7 +204,7 @@
 </div>
 
 <div class="pkgdown">
-  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.2.</p>
+  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.6.</p>
 </div>
 
       </footer></div>

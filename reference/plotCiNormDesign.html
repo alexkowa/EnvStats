@@ -52,15 +52,15 @@
     </div>
 
     <div id="ref-usage">
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="fu">plotCiNormDesign</span><span class="op">(</span>x.var <span class="op">=</span> <span class="st">"n"</span>, y.var <span class="op">=</span> <span class="st">"half.width"</span>, 
-    range.x.var <span class="op">=</span> <span class="cn">NULL</span>, n.or.n1 <span class="op">=</span> <span class="fl">25</span>, n2 <span class="op">=</span> <span class="va">n.or.n1</span>, 
-    half.width <span class="op">=</span> <span class="va">sigma.hat</span><span class="op">/</span><span class="fl">2</span>, sigma.hat <span class="op">=</span> <span class="fl">1</span>, conf.level <span class="op">=</span> <span class="fl">0.95</span>, 
-    sample.type <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/ifelse.html" class="external-link">ifelse</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/missing.html" class="external-link">missing</a></span><span class="op">(</span><span class="va">n2</span><span class="op">)</span>, <span class="st">"one.sample"</span>, <span class="st">"two.sample"</span><span class="op">)</span>, 
-    round.up <span class="op">=</span> <span class="cn">FALSE</span>, n.max <span class="op">=</span> <span class="fl">5000</span>, tol <span class="op">=</span> <span class="fl">1e-07</span>, maxiter <span class="op">=</span> <span class="fl">1000</span>,
-    plot.it <span class="op">=</span> <span class="cn">TRUE</span>, add <span class="op">=</span> <span class="cn">FALSE</span>, n.points <span class="op">=</span> <span class="fl">100</span>,
-    plot.col <span class="op">=</span> <span class="st">"black"</span>, plot.lwd <span class="op">=</span> <span class="fl">3</span> <span class="op">*</span> <span class="fu"><a href="https://rdrr.io/r/graphics/par.html" class="external-link">par</a></span><span class="op">(</span><span class="st">"cex"</span><span class="op">)</span>, plot.lty <span class="op">=</span> <span class="fl">1</span>, 
-    digits <span class="op">=</span> <span class="va">.Options</span><span class="op">$</span><span class="va">digits</span>, 
-    main <span class="op">=</span> <span class="cn">NULL</span>, xlab <span class="op">=</span> <span class="cn">NULL</span>, ylab <span class="op">=</span> <span class="cn">NULL</span>, type <span class="op">=</span> <span class="st">"l"</span>, <span class="va">...</span><span class="op">)</span></code></pre></div>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">plotCiNormDesign</span><span class="op">(</span>x.var <span class="op">=</span> <span class="st">"n"</span>, y.var <span class="op">=</span> <span class="st">"half.width"</span>, </span>
+<span>    range.x.var <span class="op">=</span> <span class="cn">NULL</span>, n.or.n1 <span class="op">=</span> <span class="fl">25</span>, n2 <span class="op">=</span> <span class="va">n.or.n1</span>, </span>
+<span>    half.width <span class="op">=</span> <span class="va">sigma.hat</span><span class="op">/</span><span class="fl">2</span>, sigma.hat <span class="op">=</span> <span class="fl">1</span>, conf.level <span class="op">=</span> <span class="fl">0.95</span>, </span>
+<span>    sample.type <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/ifelse.html" class="external-link">ifelse</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/missing.html" class="external-link">missing</a></span><span class="op">(</span><span class="va">n2</span><span class="op">)</span>, <span class="st">"one.sample"</span>, <span class="st">"two.sample"</span><span class="op">)</span>, </span>
+<span>    round.up <span class="op">=</span> <span class="cn">FALSE</span>, n.max <span class="op">=</span> <span class="fl">5000</span>, tol <span class="op">=</span> <span class="fl">1e-07</span>, maxiter <span class="op">=</span> <span class="fl">1000</span>,</span>
+<span>    plot.it <span class="op">=</span> <span class="cn">TRUE</span>, add <span class="op">=</span> <span class="cn">FALSE</span>, n.points <span class="op">=</span> <span class="fl">100</span>,</span>
+<span>    plot.col <span class="op">=</span> <span class="st">"black"</span>, plot.lwd <span class="op">=</span> <span class="fl">3</span> <span class="op">*</span> <span class="fu"><a href="https://rdrr.io/r/graphics/par.html" class="external-link">par</a></span><span class="op">(</span><span class="st">"cex"</span><span class="op">)</span>, plot.lty <span class="op">=</span> <span class="fl">1</span>, </span>
+<span>    digits <span class="op">=</span> <span class="va">.Options</span><span class="op">$</span><span class="va">digits</span>, </span>
+<span>    main <span class="op">=</span> <span class="cn">NULL</span>, xlab <span class="op">=</span> <span class="cn">NULL</span>, ylab <span class="op">=</span> <span class="cn">NULL</span>, type <span class="op">=</span> <span class="st">"l"</span>, <span class="va">...</span><span class="op">)</span></span></code></pre></div>
     </div>
 
     <div id="arguments">
@@ -71,18 +71,21 @@
   <code>"half.width"</code> (the half-width of the confidence interval), 
   <code>"sigma.hat"</code> (the estimated standard deviation), and 
   <code>"conf.level"</code> (the confidence level).</p></dd>
-<dt>y.var</dt>
+
+  <dt>y.var</dt>
 <dd><p>character string indicating what variable to use for the y-axis.  
   Possible values are <code>"half.width"</code> (the half-width of the confidence interval; the default), and 
   <code>"n"</code> (sample size).</p></dd>
-<dt>range.x.var</dt>
+
+  <dt>range.x.var</dt>
 <dd><p>numeric vector of length 2 indicating the range of the x-variable to use for the plot.  
   The default value depends on the value of <code>x.var</code>.  
   When <code>x.var="n"</code> the default value is <code>c(2,50)</code>.  
   When <code>x.var="half.width"</code> the default value is <code>c(0.1/sigma.hat, 2/sigma.hat)</code>.  
   When <code>x.var="sigma.hat"</code>, the default value is <code>c(0.1, 2)</code>.  
   When <code>x.var="conf.level"</code>, the default value is <code>c(0.5, 0.99)</code>.</p></dd>
-<dt>n.or.n1</dt>
+
+  <dt>n.or.n1</dt>
 <dd><p>numeric scalar indicating the sample size.  The default value is <code>n.or.n1=25</code>.  
   When <code>sample.type="one.sample"</code>, this argument denotes the number of observations 
   in the single sample.  
@@ -90,75 +93,93 @@
   from group 1. 
   Missing (<code>NA</code>), undefined (<code>NaN</code>), and infinite (<code>Inf</code>, <code>-Inf</code>) values are not allowed.  
   This argument is ignored if either <code>x.var="n"</code> or <code>y.var="n"</code>.</p></dd>
-<dt>n2</dt>
+
+  <dt>n2</dt>
 <dd><p>numeric scalar indicating the sample size for group 2.  
   The default value is the value of <code>n.or.n1</code>.  
   Missing (<code>NA</code>), undefined (<code>NaN</code>), and infinite (<code>Inf</code>, <code>-Inf</code>) values are not allowed.  
   This argument is ignored when <br><code>sample.type="one.sample"</code>.</p></dd>
-<dt>half.width</dt>
+
+  <dt>half.width</dt>
 <dd><p>positive numeric scalar indicating the half-width of the confidence interval.  
   The default value is <code>sigma.hat/2</code>.  
   Missing (<code>NA</code>), undefined (<code>NaN</code>), and infinite (<code>Inf</code>, <code>-Inf</code>) values are not allowed. 
   This argument is ignored if either <br><code>x.var="half.width"</code> or <code>y.var="half.width"</code>.</p></dd>
-<dt>sigma.hat</dt>
+
+  <dt>sigma.hat</dt>
 <dd><p>positive numeric scalar specifying the estimated standard deviation.  
   The default value is <code>sigma.hat=1</code>.  
   This argument is ignored if <code>x.var="sigma.hat"</code>.</p></dd>
-<dt>conf.level</dt>
+
+  <dt>conf.level</dt>
 <dd><p>a scalar between 0 and 1 indicating the confidence level associated with the confidence interval.  
   The default value is <code>conf.level=0.95</code>.  This argument is ignored if <code>x.var="conf.level"</code>.</p></dd>
-<dt>sample.type</dt>
+
+  <dt>sample.type</dt>
 <dd><p>character string indicating whether this is a one-sample or two-sample confidence interval. <br> 
   When <code>sample.type="one.sample"</code>, the computations for the plot are based on a confidence 
   interval for a single mean.  <br>
   When <code>sample.type="two.sample"</code>, the computations for the 
   plot are based on a confidence interval for the difference between two means. <br>  
   The default value is <code>sample.type="one.sample"</code> unless the argument <code>n2</code> is supplied.</p></dd>
-<dt>round.up</dt>
+
+  <dt>round.up</dt>
 <dd><p>logical scalar indicating whether to round up the computed sample sizes to the next smallest integer.  
   The default value is <code>round.up=FALSE</code>.  This argument is ignored unless <code>y.var="n"</code>.</p></dd>
-<dt>n.max</dt>
+
+  <dt>n.max</dt>
 <dd><p>for the case when <code>y.var="n"</code>, positive integer greater than 1 
   specifying the maximum sample size for the single 
   group when <code>sample.type="one.sample"</code> or for group 1 when 
   <code>sample.type="two.sample"</code>.  The default value is <code>n.max=5000</code>.</p></dd>
-<dt>tol</dt>
+
+  <dt>tol</dt>
 <dd><p>for the case when <code>y.var="n"</code>, numeric scalar indicating the tolerance to 
   use in the <code><a href="https://rdrr.io/r/stats/uniroot.html" class="external-link">uniroot</a></code> search algorithm.  The default value is 
   <code>tol=1e-7</code>.</p></dd>
-<dt>maxiter</dt>
+
+  <dt>maxiter</dt>
 <dd><p>for the case when <code>y.var="n"</code>, positive integer indicating the maximum 
   number of iterations to use in the <code><a href="https://rdrr.io/r/stats/uniroot.html" class="external-link">uniroot</a></code> search algorithm.  
   The default value is <code>maxiter=1000</code>.</p></dd>
-<dt>plot.it</dt>
+
+  <dt>plot.it</dt>
 <dd><p>a logical scalar indicating whether to create a plot or add to the existing plot 
   (see explanation of the argument <code>add</code> below) on the current graphics device.  
   If <code>plot.it=FALSE</code>, no plot is produced, but a list of (x,y) values is returned 
   (see the section VALUE).  The default value is <code>plot.it=TRUE</code>.</p></dd>
-<dt>add</dt>
+
+  <dt>add</dt>
 <dd><p>a logical scalar indicating whether to add the design plot to the existing plot (<code>add=TRUE</code>), 
   or to create a plot from scratch (<code>add=FALSE</code>).  The default value is <code>add=FALSE</code>.  
   This argument is ignored if <code>plot.it=FALSE</code>.</p></dd>
-<dt>n.points</dt>
+
+  <dt>n.points</dt>
 <dd><p>a numeric scalar specifying how many (x,y) pairs to use to produce the plot.  
   There are <code>n.points</code> x-values evenly spaced between <code>range.x.var[1]</code> and <br><code>range.x.var[2]</code>.  The default value is <code>n.points=100</code>.</p></dd>
-<dt>plot.col</dt>
+
+  <dt>plot.col</dt>
 <dd><p>a numeric scalar or character string determining the color of the plotted line or points.  The default value 
   is <code>plot.col=1</code>.  See the entry for <code>col</code> in the help file for <code><a href="https://rdrr.io/r/graphics/par.html" class="external-link">par</a></code> 
   for more information.</p></dd>
-<dt>plot.lwd</dt>
+
+  <dt>plot.lwd</dt>
 <dd><p>a numeric scalar determining the width of the plotted line.  The default value is 
   <code>3*par("cex")</code>.  See the entry for <code>lwd</code> in the help file for <code><a href="https://rdrr.io/r/graphics/par.html" class="external-link">par</a></code> 
   for more information.</p></dd>
-<dt>plot.lty</dt>
+
+  <dt>plot.lty</dt>
 <dd><p>a numeric scalar determining the line type of the plotted line.  The default value is 
   <code>plot.lty=1</code>.  See the entry for <code>lty</code> in the help file for <code><a href="https://rdrr.io/r/graphics/par.html" class="external-link">par</a></code> 
   for more information.</p></dd>
-<dt>digits</dt>
+
+  <dt>digits</dt>
 <dd><p>a scalar indicating how many significant digits to print out on the plot.  The default 
   value is the current setting of <code><a href="https://rdrr.io/r/base/options.html" class="external-link">options</a>("digits")</code>.</p></dd>
-<dt>main, xlab, ylab, type, ...</dt>
+
+  <dt>main, xlab, ylab, type, ...</dt>
 <dd><p>additional graphical parameters (see <code><a href="https://rdrr.io/r/graphics/par.html" class="external-link">par</a></code>).</p></dd>
+
 </dl></div>
     <div id="details">
     <h2>Details</h2>
@@ -170,11 +191,14 @@
     </div>
     <div id="value">
     <h2>Value</h2>
-    <p><code>plotCiNormDesign</code> invisibly returns a list with components:</p>
+    <p></p>
+<p><code>plotCiNormDesign</code> invisibly returns a list with components:</p>
 <dl><dt>x.var</dt>
 <dd><p>x-coordinates of points that have been or would have been plotted.</p></dd>
-<dt>y.var</dt>
+
+  <dt>y.var</dt>
 <dd><p>y-coordinates of points that have been or would have been plotted.</p></dd>
+
 </dl></div>
     <div id="references">
     <h2>References</h2>
@@ -223,44 +247,44 @@
 
     <div id="ref-examples">
     <h2>Examples</h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in">  <span class="co"># Look at the relationship between half-width and sample size </span></span>
-<span class="r-in">  <span class="co"># for a one-sample confidence interval for the mean, assuming </span></span>
-<span class="r-in">  <span class="co"># an estimated standard deviation of 1 and a confidence level of 95%.</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="fu"><a href="https://rdrr.io/r/grDevices/dev.html" class="external-link">dev.new</a></span><span class="op">(</span><span class="op">)</span></span>
-<span class="r-in">  <span class="fu">plotCiNormDesign</span><span class="op">(</span><span class="op">)</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="co">#--------------------------------------------------------------------</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="co"># Plot sample size vs. the estimated standard deviation for </span></span>
-<span class="r-in">  <span class="co"># various levels of confidence, using a half-width of 0.5.</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="fu"><a href="https://rdrr.io/r/grDevices/dev.html" class="external-link">dev.new</a></span><span class="op">(</span><span class="op">)</span></span>
-<span class="r-in">  <span class="fu">plotCiNormDesign</span><span class="op">(</span>x.var <span class="op">=</span> <span class="st">"sigma.hat"</span>, y.var <span class="op">=</span> <span class="st">"n"</span>, main <span class="op">=</span> <span class="st">""</span><span class="op">)</span> </span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="fu">plotCiNormDesign</span><span class="op">(</span>x.var <span class="op">=</span> <span class="st">"sigma.hat"</span>, y.var <span class="op">=</span> <span class="st">"n"</span>, conf.level <span class="op">=</span> <span class="fl">0.9</span>, </span>
-<span class="r-in">    add <span class="op">=</span> <span class="cn">TRUE</span>, plot.col <span class="op">=</span> <span class="fl">2</span><span class="op">)</span> </span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="fu">plotCiNormDesign</span><span class="op">(</span>x.var <span class="op">=</span> <span class="st">"sigma.hat"</span>, y.var <span class="op">=</span> <span class="st">"n"</span>, conf.level <span class="op">=</span> <span class="fl">0.8</span>, </span>
-<span class="r-in">    add <span class="op">=</span> <span class="cn">TRUE</span>, plot.col <span class="op">=</span> <span class="fl">3</span><span class="op">)</span> </span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="fu"><a href="https://rdrr.io/r/graphics/legend.html" class="external-link">legend</a></span><span class="op">(</span><span class="fl">0.25</span>, <span class="fl">60</span>, <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"95%"</span>, <span class="st">"90%"</span>, <span class="st">"80%"</span><span class="op">)</span>, lty <span class="op">=</span> <span class="fl">1</span>, lwd <span class="op">=</span> <span class="fl">3</span>, col <span class="op">=</span> <span class="fl">1</span><span class="op">:</span><span class="fl">3</span><span class="op">)</span> </span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="fu"><a href="https://rdrr.io/r/graphics/mtext.html" class="external-link">mtext</a></span><span class="op">(</span><span class="st">"Sample Size vs. Estimated SD for Confidence Interval for Mean"</span>,</span>
-<span class="r-in">    font <span class="op">=</span> <span class="fl">2</span>, cex <span class="op">=</span> <span class="fl">1.25</span>, line <span class="op">=</span> <span class="fl">2.75</span><span class="op">)</span></span>
-<span class="r-in">  <span class="fu"><a href="https://rdrr.io/r/graphics/mtext.html" class="external-link">mtext</a></span><span class="op">(</span><span class="st">"with Half-Width=0.5 and Various Confidence Levels"</span>, font <span class="op">=</span> <span class="fl">2</span>, </span>
-<span class="r-in">    cex <span class="op">=</span> <span class="fl">1.25</span>, line <span class="op">=</span> <span class="fl">1.25</span><span class="op">)</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="co">#--------------------------------------------------------------------</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="co"># Modifying the example on pages 21-4 to 21-5 of USEPA (2009), </span></span>
-<span class="r-in">  <span class="co"># look at the relationship between half-width and sample size for a </span></span>
-<span class="r-in">  <span class="co"># 95% confidence interval for the mean level of Aldicarb at the </span></span>
-<span class="r-in">  <span class="co"># first compliance well.  Use the estimated standard deviation from </span></span>
-<span class="r-in">  <span class="co"># the first four months of data. </span></span>
-<span class="r-in">  <span class="co"># (The data are stored in EPA.09.Ex.21.1.aldicarb.df.)</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="va">EPA.09.Ex.21.1.aldicarb.df</span></span>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span>  <span class="co"># Look at the relationship between half-width and sample size </span></span></span>
+<span class="r-in"><span>  <span class="co"># for a one-sample confidence interval for the mean, assuming </span></span></span>
+<span class="r-in"><span>  <span class="co"># an estimated standard deviation of 1 and a confidence level of 95%.</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/r/grDevices/dev.html" class="external-link">dev.new</a></span><span class="op">(</span><span class="op">)</span></span></span>
+<span class="r-in"><span>  <span class="fu">plotCiNormDesign</span><span class="op">(</span><span class="op">)</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="co">#--------------------------------------------------------------------</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="co"># Plot sample size vs. the estimated standard deviation for </span></span></span>
+<span class="r-in"><span>  <span class="co"># various levels of confidence, using a half-width of 0.5.</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/r/grDevices/dev.html" class="external-link">dev.new</a></span><span class="op">(</span><span class="op">)</span></span></span>
+<span class="r-in"><span>  <span class="fu">plotCiNormDesign</span><span class="op">(</span>x.var <span class="op">=</span> <span class="st">"sigma.hat"</span>, y.var <span class="op">=</span> <span class="st">"n"</span>, main <span class="op">=</span> <span class="st">""</span><span class="op">)</span> </span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="fu">plotCiNormDesign</span><span class="op">(</span>x.var <span class="op">=</span> <span class="st">"sigma.hat"</span>, y.var <span class="op">=</span> <span class="st">"n"</span>, conf.level <span class="op">=</span> <span class="fl">0.9</span>, </span></span>
+<span class="r-in"><span>    add <span class="op">=</span> <span class="cn">TRUE</span>, plot.col <span class="op">=</span> <span class="fl">2</span><span class="op">)</span> </span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="fu">plotCiNormDesign</span><span class="op">(</span>x.var <span class="op">=</span> <span class="st">"sigma.hat"</span>, y.var <span class="op">=</span> <span class="st">"n"</span>, conf.level <span class="op">=</span> <span class="fl">0.8</span>, </span></span>
+<span class="r-in"><span>    add <span class="op">=</span> <span class="cn">TRUE</span>, plot.col <span class="op">=</span> <span class="fl">3</span><span class="op">)</span> </span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/r/graphics/legend.html" class="external-link">legend</a></span><span class="op">(</span><span class="fl">0.25</span>, <span class="fl">60</span>, <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"95%"</span>, <span class="st">"90%"</span>, <span class="st">"80%"</span><span class="op">)</span>, lty <span class="op">=</span> <span class="fl">1</span>, lwd <span class="op">=</span> <span class="fl">3</span>, col <span class="op">=</span> <span class="fl">1</span><span class="op">:</span><span class="fl">3</span><span class="op">)</span> </span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/r/graphics/mtext.html" class="external-link">mtext</a></span><span class="op">(</span><span class="st">"Sample Size vs. Estimated SD for Confidence Interval for Mean"</span>,</span></span>
+<span class="r-in"><span>    font <span class="op">=</span> <span class="fl">2</span>, cex <span class="op">=</span> <span class="fl">1.25</span>, line <span class="op">=</span> <span class="fl">2.75</span><span class="op">)</span></span></span>
+<span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/r/graphics/mtext.html" class="external-link">mtext</a></span><span class="op">(</span><span class="st">"with Half-Width=0.5 and Various Confidence Levels"</span>, font <span class="op">=</span> <span class="fl">2</span>, </span></span>
+<span class="r-in"><span>    cex <span class="op">=</span> <span class="fl">1.25</span>, line <span class="op">=</span> <span class="fl">1.25</span><span class="op">)</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="co">#--------------------------------------------------------------------</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="co"># Modifying the example on pages 21-4 to 21-5 of USEPA (2009), </span></span></span>
+<span class="r-in"><span>  <span class="co"># look at the relationship between half-width and sample size for a </span></span></span>
+<span class="r-in"><span>  <span class="co"># 95% confidence interval for the mean level of Aldicarb at the </span></span></span>
+<span class="r-in"><span>  <span class="co"># first compliance well.  Use the estimated standard deviation from </span></span></span>
+<span class="r-in"><span>  <span class="co"># the first four months of data. </span></span></span>
+<span class="r-in"><span>  <span class="co"># (The data are stored in EPA.09.Ex.21.1.aldicarb.df.)</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="va">EPA.09.Ex.21.1.aldicarb.df</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>    Month   Well Aldicarb.ppb</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 1      1 Well.1         19.9</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 2      2 Well.1         29.6</span>
@@ -274,37 +298,37 @@
 <span class="r-out co"><span class="r-pr">#&gt;</span> 10     2 Well.3          3.3</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 11     3 Well.3          2.3</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 12     4 Well.3          6.9</span>
-<span class="r-in">  <span class="co">#   Month   Well Aldicarb.ppb</span></span>
-<span class="r-in">  <span class="co">#1      1 Well.1         19.9</span></span>
-<span class="r-in">  <span class="co">#2      2 Well.1         29.6</span></span>
-<span class="r-in">  <span class="co">#3      3 Well.1         18.7</span></span>
-<span class="r-in">  <span class="co">#4      4 Well.1         24.2</span></span>
-<span class="r-in">  <span class="co">#...</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="va">mu.hat</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/with.html" class="external-link">with</a></span><span class="op">(</span><span class="va">EPA.09.Ex.21.1.aldicarb.df</span>, </span>
-<span class="r-in">    <span class="fu"><a href="https://rdrr.io/r/base/mean.html" class="external-link">mean</a></span><span class="op">(</span><span class="va">Aldicarb.ppb</span><span class="op">[</span><span class="va">Well</span><span class="op">==</span><span class="st">"Well.1"</span><span class="op">]</span><span class="op">)</span><span class="op">)</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="va">mu.hat</span> </span>
+<span class="r-in"><span>  <span class="co">#   Month   Well Aldicarb.ppb</span></span></span>
+<span class="r-in"><span>  <span class="co">#1      1 Well.1         19.9</span></span></span>
+<span class="r-in"><span>  <span class="co">#2      2 Well.1         29.6</span></span></span>
+<span class="r-in"><span>  <span class="co">#3      3 Well.1         18.7</span></span></span>
+<span class="r-in"><span>  <span class="co">#4      4 Well.1         24.2</span></span></span>
+<span class="r-in"><span>  <span class="co">#...</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="va">mu.hat</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/with.html" class="external-link">with</a></span><span class="op">(</span><span class="va">EPA.09.Ex.21.1.aldicarb.df</span>, </span></span>
+<span class="r-in"><span>    <span class="fu"><a href="https://rdrr.io/r/base/mean.html" class="external-link">mean</a></span><span class="op">(</span><span class="va">Aldicarb.ppb</span><span class="op">[</span><span class="va">Well</span><span class="op">==</span><span class="st">"Well.1"</span><span class="op">]</span><span class="op">)</span><span class="op">)</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="va">mu.hat</span> </span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] 23.1</span>
-<span class="r-in">  <span class="co">#[1] 23.1 </span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="va">sigma.hat</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/with.html" class="external-link">with</a></span><span class="op">(</span><span class="va">EPA.09.Ex.21.1.aldicarb.df</span>, </span>
-<span class="r-in">    <span class="fu"><a href="https://rdrr.io/r/stats/sd.html" class="external-link">sd</a></span><span class="op">(</span><span class="va">Aldicarb.ppb</span><span class="op">[</span><span class="va">Well</span><span class="op">==</span><span class="st">"Well.1"</span><span class="op">]</span><span class="op">)</span><span class="op">)</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="va">sigma.hat</span> </span>
+<span class="r-in"><span>  <span class="co">#[1] 23.1 </span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="va">sigma.hat</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/with.html" class="external-link">with</a></span><span class="op">(</span><span class="va">EPA.09.Ex.21.1.aldicarb.df</span>, </span></span>
+<span class="r-in"><span>    <span class="fu"><a href="https://rdrr.io/r/stats/sd.html" class="external-link">sd</a></span><span class="op">(</span><span class="va">Aldicarb.ppb</span><span class="op">[</span><span class="va">Well</span><span class="op">==</span><span class="st">"Well.1"</span><span class="op">]</span><span class="op">)</span><span class="op">)</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="va">sigma.hat</span> </span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] 4.93491</span>
-<span class="r-in">  <span class="co">#[1] 4.93491 </span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="fu"><a href="https://rdrr.io/r/grDevices/dev.html" class="external-link">dev.new</a></span><span class="op">(</span><span class="op">)</span></span>
-<span class="r-in">  <span class="fu">plotCiNormDesign</span><span class="op">(</span>sigma.hat <span class="op">=</span> <span class="va">sigma.hat</span>, digits <span class="op">=</span> <span class="fl">2</span>, </span>
-<span class="r-in">    range.x.var <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">2</span>, <span class="fl">25</span><span class="op">)</span><span class="op">)</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="co">#==========</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="co"># Clean up</span></span>
-<span class="r-in">  <span class="co">#---------</span></span>
-<span class="r-in">  <span class="fu"><a href="https://rdrr.io/r/base/rm.html" class="external-link">rm</a></span><span class="op">(</span><span class="va">mu.hat</span>, <span class="va">sigma.hat</span><span class="op">)</span></span>
-<span class="r-in">  <span class="fu"><a href="https://rdrr.io/r/grDevices/dev.html" class="external-link">graphics.off</a></span><span class="op">(</span><span class="op">)</span></span>
+<span class="r-in"><span>  <span class="co">#[1] 4.93491 </span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/r/grDevices/dev.html" class="external-link">dev.new</a></span><span class="op">(</span><span class="op">)</span></span></span>
+<span class="r-in"><span>  <span class="fu">plotCiNormDesign</span><span class="op">(</span>sigma.hat <span class="op">=</span> <span class="va">sigma.hat</span>, digits <span class="op">=</span> <span class="fl">2</span>, </span></span>
+<span class="r-in"><span>    range.x.var <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">2</span>, <span class="fl">25</span><span class="op">)</span><span class="op">)</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="co">#==========</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="co"># Clean up</span></span></span>
+<span class="r-in"><span>  <span class="co">#---------</span></span></span>
+<span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/r/base/rm.html" class="external-link">rm</a></span><span class="op">(</span><span class="va">mu.hat</span>, <span class="va">sigma.hat</span><span class="op">)</span></span></span>
+<span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/r/grDevices/dev.html" class="external-link">graphics.off</a></span><span class="op">(</span><span class="op">)</span></span></span>
 </code></pre></div>
     </div>
   </div>
@@ -319,7 +343,7 @@
 </div>
 
 <div class="pkgdown">
-  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.2.</p>
+  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.6.</p>
 </div>
 
       </footer></div>

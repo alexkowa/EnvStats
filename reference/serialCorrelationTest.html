@@ -64,15 +64,15 @@ Currently, there is a default method and a method for objects of class "lm".'><!
     </div>
 
     <div id="ref-usage">
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="fu">serialCorrelationTest</span><span class="op">(</span><span class="va">x</span>, <span class="va">...</span><span class="op">)</span>
-
-  <span class="co"># S3 method for default</span>
-<span class="fu">serialCorrelationTest</span><span class="op">(</span><span class="va">x</span>, test <span class="op">=</span> <span class="st">"rank.von.Neumann"</span>, 
-    alternative <span class="op">=</span> <span class="st">"two.sided"</span>, conf.level <span class="op">=</span> <span class="fl">0.95</span>, <span class="va">...</span><span class="op">)</span> 
-
-  <span class="co"># S3 method for lm</span>
-<span class="fu">serialCorrelationTest</span><span class="op">(</span><span class="va">x</span>, test <span class="op">=</span> <span class="st">"rank.von.Neumann"</span>, 
-    alternative <span class="op">=</span> <span class="st">"two.sided"</span>, conf.level <span class="op">=</span> <span class="fl">0.95</span>, <span class="va">...</span><span class="op">)</span></code></pre></div>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">serialCorrelationTest</span><span class="op">(</span><span class="va">x</span>, <span class="va">...</span><span class="op">)</span></span>
+<span></span>
+<span>  <span class="co"># S3 method for default</span></span>
+<span><span class="fu">serialCorrelationTest</span><span class="op">(</span><span class="va">x</span>, test <span class="op">=</span> <span class="st">"rank.von.Neumann"</span>, </span>
+<span>    alternative <span class="op">=</span> <span class="st">"two.sided"</span>, conf.level <span class="op">=</span> <span class="fl">0.95</span>, <span class="va">...</span><span class="op">)</span> </span>
+<span></span>
+<span>  <span class="co"># S3 method for lm</span></span>
+<span><span class="fu">serialCorrelationTest</span><span class="op">(</span><span class="va">x</span>, test <span class="op">=</span> <span class="st">"rank.von.Neumann"</span>, </span>
+<span>    alternative <span class="op">=</span> <span class="st">"two.sided"</span>, conf.level <span class="op">=</span> <span class="fl">0.95</span>, <span class="va">...</span><span class="op">)</span></span></code></pre></div>
     </div>
 
     <div id="arguments">
@@ -91,17 +91,22 @@ Currently, there is a default method and a method for objects of class "lm".'><!
 <p>Note:  when <code>x</code> is an object of class <code>"lm"</code>, the linear model 
   should have been fit using the argument <code>na.action=na.exclude</code> in the 
   call to <code><a href="https://rdrr.io/r/stats/lm.html" class="external-link">lm</a></code> in order to correctly deal with missing values.</p></dd>
-<dt>test</dt>
+
+  <dt>test</dt>
 <dd><p>character string indicating which test to use.  The possible values are: <br><code>"rank.von.Neumann"</code> (rank von Neumann ratio test; the default), <br><code>"AR1.yw"</code> (z-test based on Yule-Walker lag-one estimate of correlation), and <br><code>"AR1.mle"</code> (z-test based on MLE of lag-one correlation).</p></dd>
-<dt>alternative</dt>
+
+  <dt>alternative</dt>
 <dd><p>character string indicating the kind of alternative hypothesis.  The possible 
   values are <code>"two.sided"</code> (the default), <code>"greater"</code>, and <code>"less"</code>.</p></dd>
-<dt>conf.level</dt>
+
+  <dt>conf.level</dt>
 <dd><p>numeric scalar between 0 and 1 indicating the confidence level associated with 
   the confidence interval for the population lag-one autocorrelation.  The default 
   value is <code>conf.level=0.95</code>.</p></dd>
-<dt>...</dt>
+
+  <dt>...</dt>
 <dd><p>optional arguments for possible future methods.  Currently not used.</p></dd>
+
 </dl></div>
     <div id="details">
     <h2>Details</h2>
@@ -254,7 +259,9 @@ Currently, there is a default method and a method for objects of class "lm".'><!
     </div>
     <div id="value">
     <h2>Value</h2>
-    <p>A list of class <code>"htest"</code> containing the results of the hypothesis test.  
+    
+
+<p>A list of class <code>"htest"</code> containing the results of the hypothesis test.  
   See the help file for <code><a href="htest.object.html">htest.object</a></code> for details.</p>
     </div>
     <div id="references">
@@ -349,24 +356,24 @@ Currently, there is a default method and a method for objects of class "lm".'><!
 
     <div id="ref-examples">
     <h2>Examples</h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in">  <span class="co"># Generate a purely random normal process, then use serialCorrelationTest </span></span>
-<span class="r-in">  <span class="co"># to test for the presence of correlation. </span></span>
-<span class="r-in">  <span class="co"># (Note: the call to set.seed allows you to reproduce this example.) </span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="fu"><a href="https://rdrr.io/r/base/Random.html" class="external-link">set.seed</a></span><span class="op">(</span><span class="fl">345</span><span class="op">)</span> </span>
-<span class="r-in">  <span class="va">x</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/Normal.html" class="external-link">rnorm</a></span><span class="op">(</span><span class="fl">100</span><span class="op">)</span> </span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="co"># Look at the data</span></span>
-<span class="r-in">  <span class="co">#-----------------</span></span>
-<span class="r-in">  <span class="fu"><a href="https://rdrr.io/r/grDevices/dev.html" class="external-link">dev.new</a></span><span class="op">(</span><span class="op">)</span></span>
-<span class="r-in">  <span class="fu"><a href="https://rdrr.io/r/stats/ts.plot.html" class="external-link">ts.plot</a></span><span class="op">(</span><span class="va">x</span><span class="op">)</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="fu"><a href="https://rdrr.io/r/grDevices/dev.html" class="external-link">dev.new</a></span><span class="op">(</span><span class="op">)</span></span>
-<span class="r-in">  <span class="fu"><a href="https://rdrr.io/r/stats/acf.html" class="external-link">acf</a></span><span class="op">(</span><span class="va">x</span><span class="op">)</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="co"># Test for serial correlation</span></span>
-<span class="r-in">  <span class="co">#----------------------------</span></span>
-<span class="r-in">  <span class="fu">serialCorrelationTest</span><span class="op">(</span><span class="va">x</span><span class="op">)</span> </span>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span>  <span class="co"># Generate a purely random normal process, then use serialCorrelationTest </span></span></span>
+<span class="r-in"><span>  <span class="co"># to test for the presence of correlation. </span></span></span>
+<span class="r-in"><span>  <span class="co"># (Note: the call to set.seed allows you to reproduce this example.) </span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/r/base/Random.html" class="external-link">set.seed</a></span><span class="op">(</span><span class="fl">345</span><span class="op">)</span> </span></span>
+<span class="r-in"><span>  <span class="va">x</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/Normal.html" class="external-link">rnorm</a></span><span class="op">(</span><span class="fl">100</span><span class="op">)</span> </span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="co"># Look at the data</span></span></span>
+<span class="r-in"><span>  <span class="co">#-----------------</span></span></span>
+<span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/r/grDevices/dev.html" class="external-link">dev.new</a></span><span class="op">(</span><span class="op">)</span></span></span>
+<span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/r/stats/ts.plot.html" class="external-link">ts.plot</a></span><span class="op">(</span><span class="va">x</span><span class="op">)</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/r/grDevices/dev.html" class="external-link">dev.new</a></span><span class="op">(</span><span class="op">)</span></span></span>
+<span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/r/stats/acf.html" class="external-link">acf</a></span><span class="op">(</span><span class="va">x</span><span class="op">)</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="co"># Test for serial correlation</span></span></span>
+<span class="r-in"><span>  <span class="co">#----------------------------</span></span></span>
+<span class="r-in"><span>  <span class="fu">serialCorrelationTest</span><span class="op">(</span><span class="va">x</span><span class="op">)</span> </span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> $statistic</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>      RVN </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 1.929733 </span>
@@ -428,65 +435,65 @@ Currently, there is a default method and a method for objects of class "lm".'><!
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> attr(,"class")</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] "htestEnvStats"</span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="co">#Results of Hypothesis Test</span></span>
-<span class="r-in">  <span class="co">#--------------------------</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Null Hypothesis:                 rho = 0</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Alternative Hypothesis:          True rho is not equal to 0</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Test Name:                       Rank von Neumann Test for</span></span>
-<span class="r-in">  <span class="co">#                                 Lag-1 Autocorrelation</span></span>
-<span class="r-in">  <span class="co">#                                 (Beta Approximation)</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Estimated Parameter(s):          rho = 0.02773737</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Estimation Method:               Yule-Walker</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Data:                            x</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Sample Size:                     100</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Test Statistic:                  RVN = 1.929733</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#P-value:                         0.7253405</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Confidence Interval for:         rho</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Confidence Interval Method:      Normal Approximation</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Confidence Interval Type:        two-sided</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Confidence Level:                95%</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Confidence Interval:             LCL = -0.1681836</span></span>
-<span class="r-in">  <span class="co">#                                 UCL =  0.2236584</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="co"># Clean up</span></span>
-<span class="r-in">  <span class="co">#---------</span></span>
-<span class="r-in">  <span class="fu"><a href="https://rdrr.io/r/base/rm.html" class="external-link">rm</a></span><span class="op">(</span><span class="va">x</span><span class="op">)</span></span>
-<span class="r-in">  <span class="fu"><a href="https://rdrr.io/r/grDevices/dev.html" class="external-link">graphics.off</a></span><span class="op">(</span><span class="op">)</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="co">#==========</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="co"># Now use the R function arima.sim to generate an AR(1) process with a </span></span>
-<span class="r-in">  <span class="co"># lag-1 autocorrelation of 0.8, then test for autocorrelation.</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="fu"><a href="https://rdrr.io/r/base/Random.html" class="external-link">set.seed</a></span><span class="op">(</span><span class="fl">432</span><span class="op">)</span> </span>
-<span class="r-in">  <span class="va">y</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/arima.sim.html" class="external-link">arima.sim</a></span><span class="op">(</span>model <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>ar <span class="op">=</span> <span class="fl">0.8</span><span class="op">)</span>, n <span class="op">=</span> <span class="fl">100</span><span class="op">)</span> </span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="co"># Look at the data</span></span>
-<span class="r-in">  <span class="co">#-----------------</span></span>
-<span class="r-in">  <span class="fu"><a href="https://rdrr.io/r/grDevices/dev.html" class="external-link">dev.new</a></span><span class="op">(</span><span class="op">)</span></span>
-<span class="r-in">  <span class="fu"><a href="https://rdrr.io/r/stats/ts.plot.html" class="external-link">ts.plot</a></span><span class="op">(</span><span class="va">y</span><span class="op">)</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="fu"><a href="https://rdrr.io/r/grDevices/dev.html" class="external-link">dev.new</a></span><span class="op">(</span><span class="op">)</span></span>
-<span class="r-in">  <span class="fu"><a href="https://rdrr.io/r/stats/acf.html" class="external-link">acf</a></span><span class="op">(</span><span class="va">y</span><span class="op">)</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="co"># Test for serial correlation</span></span>
-<span class="r-in">  <span class="co">#----------------------------</span></span>
-<span class="r-in">  <span class="fu">serialCorrelationTest</span><span class="op">(</span><span class="va">y</span><span class="op">)</span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="co">#Results of Hypothesis Test</span></span></span>
+<span class="r-in"><span>  <span class="co">#--------------------------</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Null Hypothesis:                 rho = 0</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Alternative Hypothesis:          True rho is not equal to 0</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Test Name:                       Rank von Neumann Test for</span></span></span>
+<span class="r-in"><span>  <span class="co">#                                 Lag-1 Autocorrelation</span></span></span>
+<span class="r-in"><span>  <span class="co">#                                 (Beta Approximation)</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Estimated Parameter(s):          rho = 0.02773737</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Estimation Method:               Yule-Walker</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Data:                            x</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Sample Size:                     100</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Test Statistic:                  RVN = 1.929733</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#P-value:                         0.7253405</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Confidence Interval for:         rho</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Confidence Interval Method:      Normal Approximation</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Confidence Interval Type:        two-sided</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Confidence Level:                95%</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Confidence Interval:             LCL = -0.1681836</span></span></span>
+<span class="r-in"><span>  <span class="co">#                                 UCL =  0.2236584</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="co"># Clean up</span></span></span>
+<span class="r-in"><span>  <span class="co">#---------</span></span></span>
+<span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/r/base/rm.html" class="external-link">rm</a></span><span class="op">(</span><span class="va">x</span><span class="op">)</span></span></span>
+<span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/r/grDevices/dev.html" class="external-link">graphics.off</a></span><span class="op">(</span><span class="op">)</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="co">#==========</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="co"># Now use the R function arima.sim to generate an AR(1) process with a </span></span></span>
+<span class="r-in"><span>  <span class="co"># lag-1 autocorrelation of 0.8, then test for autocorrelation.</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/r/base/Random.html" class="external-link">set.seed</a></span><span class="op">(</span><span class="fl">432</span><span class="op">)</span> </span></span>
+<span class="r-in"><span>  <span class="va">y</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/arima.sim.html" class="external-link">arima.sim</a></span><span class="op">(</span>model <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>ar <span class="op">=</span> <span class="fl">0.8</span><span class="op">)</span>, n <span class="op">=</span> <span class="fl">100</span><span class="op">)</span> </span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="co"># Look at the data</span></span></span>
+<span class="r-in"><span>  <span class="co">#-----------------</span></span></span>
+<span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/r/grDevices/dev.html" class="external-link">dev.new</a></span><span class="op">(</span><span class="op">)</span></span></span>
+<span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/r/stats/ts.plot.html" class="external-link">ts.plot</a></span><span class="op">(</span><span class="va">y</span><span class="op">)</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/r/grDevices/dev.html" class="external-link">dev.new</a></span><span class="op">(</span><span class="op">)</span></span></span>
+<span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/r/stats/acf.html" class="external-link">acf</a></span><span class="op">(</span><span class="va">y</span><span class="op">)</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="co"># Test for serial correlation</span></span></span>
+<span class="r-in"><span>  <span class="co">#----------------------------</span></span></span>
+<span class="r-in"><span>  <span class="fu">serialCorrelationTest</span><span class="op">(</span><span class="va">y</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> $statistic</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>       RVN </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 0.3743174 </span>
@@ -548,64 +555,64 @@ Currently, there is a default method and a method for objects of class "lm".'><!
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> attr(,"class")</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] "htestEnvStats"</span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="co">#Results of Hypothesis Test</span></span>
-<span class="r-in">  <span class="co">#--------------------------</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Null Hypothesis:                 rho = 0</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Alternative Hypothesis:          True rho is not equal to 0</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Test Name:                       Rank von Neumann Test for</span></span>
-<span class="r-in">  <span class="co">#                                 Lag-1 Autocorrelation</span></span>
-<span class="r-in">  <span class="co">#                                 (Beta Approximation)</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Estimated Parameter(s):          rho = 0.835214</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Estimation Method:               Yule-Walker</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Data:                            y</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Sample Size:                     100</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Test Statistic:                  RVN = 0.3743174</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#P-value:                         0</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Confidence Interval for:         rho</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Confidence Interval Method:      Normal Approximation</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Confidence Interval Type:        two-sided</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Confidence Level:                95%</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Confidence Interval:             LCL = 0.7274307</span></span>
-<span class="r-in">  <span class="co">#                                 UCL = 0.9429973</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="co">#----------</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="co"># Clean up</span></span>
-<span class="r-in">  <span class="co">#---------</span></span>
-<span class="r-in">  <span class="fu"><a href="https://rdrr.io/r/base/rm.html" class="external-link">rm</a></span><span class="op">(</span><span class="va">y</span><span class="op">)</span></span>
-<span class="r-in">  <span class="fu"><a href="https://rdrr.io/r/grDevices/dev.html" class="external-link">graphics.off</a></span><span class="op">(</span><span class="op">)</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="co">#==========</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="co"># The data frame Air.df contains information on ozone (ppb^1/3), </span></span>
-<span class="r-in">  <span class="co"># radiation (langleys), temperature (degrees F), and wind speed (mph) </span></span>
-<span class="r-in">  <span class="co"># for 153 consecutive days between May 1 and September 30, 1973.  </span></span>
-<span class="r-in">  <span class="co"># First test for serial correlation in (the cube root of) ozone.  </span></span>
-<span class="r-in">  <span class="co"># Note that we must use the test based on the MLE because the time series </span></span>
-<span class="r-in">  <span class="co"># contains missing values.  Serial correlation appears to be present.  </span></span>
-<span class="r-in">  <span class="co"># Next fit a linear model that includes the predictor variables temperature, </span></span>
-<span class="r-in">  <span class="co"># radiation, and wind speed, and test for the presence of serial correlation </span></span>
-<span class="r-in">  <span class="co"># in the residuals.  There is no evidence of serial correlation.</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="co"># Look at the data</span></span>
-<span class="r-in">  <span class="co">#-----------------</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="va">Air.df</span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="co">#Results of Hypothesis Test</span></span></span>
+<span class="r-in"><span>  <span class="co">#--------------------------</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Null Hypothesis:                 rho = 0</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Alternative Hypothesis:          True rho is not equal to 0</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Test Name:                       Rank von Neumann Test for</span></span></span>
+<span class="r-in"><span>  <span class="co">#                                 Lag-1 Autocorrelation</span></span></span>
+<span class="r-in"><span>  <span class="co">#                                 (Beta Approximation)</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Estimated Parameter(s):          rho = 0.835214</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Estimation Method:               Yule-Walker</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Data:                            y</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Sample Size:                     100</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Test Statistic:                  RVN = 0.3743174</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#P-value:                         0</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Confidence Interval for:         rho</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Confidence Interval Method:      Normal Approximation</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Confidence Interval Type:        two-sided</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Confidence Level:                95%</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Confidence Interval:             LCL = 0.7274307</span></span></span>
+<span class="r-in"><span>  <span class="co">#                                 UCL = 0.9429973</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="co">#----------</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="co"># Clean up</span></span></span>
+<span class="r-in"><span>  <span class="co">#---------</span></span></span>
+<span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/r/base/rm.html" class="external-link">rm</a></span><span class="op">(</span><span class="va">y</span><span class="op">)</span></span></span>
+<span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/r/grDevices/dev.html" class="external-link">graphics.off</a></span><span class="op">(</span><span class="op">)</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="co">#==========</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="co"># The data frame Air.df contains information on ozone (ppb^1/3), </span></span></span>
+<span class="r-in"><span>  <span class="co"># radiation (langleys), temperature (degrees F), and wind speed (mph) </span></span></span>
+<span class="r-in"><span>  <span class="co"># for 153 consecutive days between May 1 and September 30, 1973.  </span></span></span>
+<span class="r-in"><span>  <span class="co"># First test for serial correlation in (the cube root of) ozone.  </span></span></span>
+<span class="r-in"><span>  <span class="co"># Note that we must use the test based on the MLE because the time series </span></span></span>
+<span class="r-in"><span>  <span class="co"># contains missing values.  Serial correlation appears to be present.  </span></span></span>
+<span class="r-in"><span>  <span class="co"># Next fit a linear model that includes the predictor variables temperature, </span></span></span>
+<span class="r-in"><span>  <span class="co"># radiation, and wind speed, and test for the presence of serial correlation </span></span></span>
+<span class="r-in"><span>  <span class="co"># in the residuals.  There is no evidence of serial correlation.</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="co"># Look at the data</span></span></span>
+<span class="r-in"><span>  <span class="co">#-----------------</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="va">Air.df</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>               ozone radiation temperature wind</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 05/01/1973 3.448217       190          67  7.4</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 05/02/1973 3.301927       118          72  8.0</span>
@@ -760,25 +767,25 @@ Currently, there is a default method and a method for objects of class "lm".'><!
 <span class="r-out co"><span class="r-pr">#&gt;</span> 09/28/1973 2.410142       191          75 14.3</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 09/29/1973 2.620741       131          76  8.0</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 09/30/1973 2.714418       223          68 11.5</span>
-<span class="r-in">  <span class="co">#              ozone radiation temperature wind</span></span>
-<span class="r-in">  <span class="co">#05/01/1973 3.448217       190          67  7.4</span></span>
-<span class="r-in">  <span class="co">#05/02/1973 3.301927       118          72  8.0</span></span>
-<span class="r-in">  <span class="co">#05/03/1973 2.289428       149          74 12.6</span></span>
-<span class="r-in">  <span class="co">#05/04/1973 2.620741       313          62 11.5</span></span>
-<span class="r-in">  <span class="co">#05/05/1973       NA        NA          56 14.3</span></span>
-<span class="r-in">  <span class="co">#...</span></span>
-<span class="r-in">  <span class="co">#09/27/1973       NA       145          77 13.2</span></span>
-<span class="r-in">  <span class="co">#09/28/1973 2.410142       191          75 14.3</span></span>
-<span class="r-in">  <span class="co">#09/29/1973 2.620741       131          76  8.0</span></span>
-<span class="r-in">  <span class="co">#09/30/1973 2.714418       223          68 11.5</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="co">#----------</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="co"># Test for serial correlation</span></span>
-<span class="r-in">  <span class="co">#----------------------------</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="fu"><a href="https://rdrr.io/r/base/with.html" class="external-link">with</a></span><span class="op">(</span><span class="va">Air.df</span>, </span>
-<span class="r-in">    <span class="fu">serialCorrelationTest</span><span class="op">(</span><span class="va">ozone</span>, test <span class="op">=</span> <span class="st">"AR1.mle"</span><span class="op">)</span><span class="op">)</span></span>
+<span class="r-in"><span>  <span class="co">#              ozone radiation temperature wind</span></span></span>
+<span class="r-in"><span>  <span class="co">#05/01/1973 3.448217       190          67  7.4</span></span></span>
+<span class="r-in"><span>  <span class="co">#05/02/1973 3.301927       118          72  8.0</span></span></span>
+<span class="r-in"><span>  <span class="co">#05/03/1973 2.289428       149          74 12.6</span></span></span>
+<span class="r-in"><span>  <span class="co">#05/04/1973 2.620741       313          62 11.5</span></span></span>
+<span class="r-in"><span>  <span class="co">#05/05/1973       NA        NA          56 14.3</span></span></span>
+<span class="r-in"><span>  <span class="co">#...</span></span></span>
+<span class="r-in"><span>  <span class="co">#09/27/1973       NA       145          77 13.2</span></span></span>
+<span class="r-in"><span>  <span class="co">#09/28/1973 2.410142       191          75 14.3</span></span></span>
+<span class="r-in"><span>  <span class="co">#09/29/1973 2.620741       131          76  8.0</span></span></span>
+<span class="r-in"><span>  <span class="co">#09/30/1973 2.714418       223          68 11.5</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="co">#----------</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="co"># Test for serial correlation</span></span></span>
+<span class="r-in"><span>  <span class="co">#----------------------------</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/r/base/with.html" class="external-link">with</a></span><span class="op">(</span><span class="va">Air.df</span>, </span></span>
+<span class="r-in"><span>    <span class="fu">serialCorrelationTest</span><span class="op">(</span><span class="va">ozone</span>, test <span class="op">=</span> <span class="st">"AR1.mle"</span><span class="op">)</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> $statistic</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>        z </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 7.586952 </span>
@@ -841,60 +848,60 @@ Currently, there is a default method and a method for objects of class "lm".'><!
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> attr(,"class")</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] "htestEnvStats"</span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="co">#Results of Hypothesis Test</span></span>
-<span class="r-in">  <span class="co">#--------------------------</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Null Hypothesis:                 rho = 0</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Alternative Hypothesis:          True rho is not equal to 0</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Test Name:                       z-Test for</span></span>
-<span class="r-in">  <span class="co">#                                 Lag-1 Autocorrelation</span></span>
-<span class="r-in">  <span class="co">#                                 (Wald Test Based on MLE)</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Estimated Parameter(s):          rho = 0.5641616</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Estimation Method:               Maximum Likelihood</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Data:                            ozone</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Sample Size:                     153</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Number NA/NaN/Inf's:             37</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Test Statistic:                  z = 7.586952</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#P-value:                         3.28626e-14</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Confidence Interval for:         rho</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Confidence Interval Method:      Normal Approximation</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Confidence Interval Type:        two-sided</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Confidence Level:                95%</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Confidence Interval:             LCL = 0.4184197</span></span>
-<span class="r-in">  <span class="co">#                                 UCL = 0.7099034</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="co">#----------</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="co"># Next fit a linear model that includes the predictor variables temperature, </span></span>
-<span class="r-in">  <span class="co"># radiation, and wind speed, and test for the presence of serial correlation </span></span>
-<span class="r-in">  <span class="co"># in the residuals.  Note setting the argument na.action = na.exclude in the </span></span>
-<span class="r-in">  <span class="co"># call to lm to correctly deal with missing values.</span></span>
-<span class="r-in">  <span class="co">#----------------------------------------------------------------------------</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="va">lm.ozone</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/lm.html" class="external-link">lm</a></span><span class="op">(</span><span class="va">ozone</span> <span class="op">~</span> <span class="va">radiation</span> <span class="op">+</span> <span class="va">temperature</span> <span class="op">+</span> <span class="va">wind</span> <span class="op">+</span> </span>
-<span class="r-in">    <span class="fu"><a href="https://rdrr.io/r/base/AsIs.html" class="external-link">I</a></span><span class="op">(</span><span class="va">temperature</span><span class="op">^</span><span class="fl">2</span><span class="op">)</span> <span class="op">+</span> <span class="fu"><a href="https://rdrr.io/r/base/AsIs.html" class="external-link">I</a></span><span class="op">(</span><span class="va">wind</span><span class="op">^</span><span class="fl">2</span><span class="op">)</span>, </span>
-<span class="r-in">    data <span class="op">=</span> <span class="va">Air.df</span>, na.action <span class="op">=</span> <span class="va">na.exclude</span><span class="op">)</span> </span>
-<span class="r-in"></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="co"># Now test for serial correlation in the residuals.</span></span>
-<span class="r-in">  <span class="co">#--------------------------------------------------</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="fu">serialCorrelationTest</span><span class="op">(</span><span class="va">lm.ozone</span>, test <span class="op">=</span> <span class="st">"AR1.mle"</span><span class="op">)</span> </span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="co">#Results of Hypothesis Test</span></span></span>
+<span class="r-in"><span>  <span class="co">#--------------------------</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Null Hypothesis:                 rho = 0</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Alternative Hypothesis:          True rho is not equal to 0</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Test Name:                       z-Test for</span></span></span>
+<span class="r-in"><span>  <span class="co">#                                 Lag-1 Autocorrelation</span></span></span>
+<span class="r-in"><span>  <span class="co">#                                 (Wald Test Based on MLE)</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Estimated Parameter(s):          rho = 0.5641616</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Estimation Method:               Maximum Likelihood</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Data:                            ozone</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Sample Size:                     153</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Number NA/NaN/Inf's:             37</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Test Statistic:                  z = 7.586952</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#P-value:                         3.28626e-14</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Confidence Interval for:         rho</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Confidence Interval Method:      Normal Approximation</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Confidence Interval Type:        two-sided</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Confidence Level:                95%</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Confidence Interval:             LCL = 0.4184197</span></span></span>
+<span class="r-in"><span>  <span class="co">#                                 UCL = 0.7099034</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="co">#----------</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="co"># Next fit a linear model that includes the predictor variables temperature, </span></span></span>
+<span class="r-in"><span>  <span class="co"># radiation, and wind speed, and test for the presence of serial correlation </span></span></span>
+<span class="r-in"><span>  <span class="co"># in the residuals.  Note setting the argument na.action = na.exclude in the </span></span></span>
+<span class="r-in"><span>  <span class="co"># call to lm to correctly deal with missing values.</span></span></span>
+<span class="r-in"><span>  <span class="co">#----------------------------------------------------------------------------</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="va">lm.ozone</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/lm.html" class="external-link">lm</a></span><span class="op">(</span><span class="va">ozone</span> <span class="op">~</span> <span class="va">radiation</span> <span class="op">+</span> <span class="va">temperature</span> <span class="op">+</span> <span class="va">wind</span> <span class="op">+</span> </span></span>
+<span class="r-in"><span>    <span class="fu"><a href="https://rdrr.io/r/base/AsIs.html" class="external-link">I</a></span><span class="op">(</span><span class="va">temperature</span><span class="op">^</span><span class="fl">2</span><span class="op">)</span> <span class="op">+</span> <span class="fu"><a href="https://rdrr.io/r/base/AsIs.html" class="external-link">I</a></span><span class="op">(</span><span class="va">wind</span><span class="op">^</span><span class="fl">2</span><span class="op">)</span>, </span></span>
+<span class="r-in"><span>    data <span class="op">=</span> <span class="va">Air.df</span>, na.action <span class="op">=</span> <span class="va">na.exclude</span><span class="op">)</span> </span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="co"># Now test for serial correlation in the residuals.</span></span></span>
+<span class="r-in"><span>  <span class="co">#--------------------------------------------------</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="fu">serialCorrelationTest</span><span class="op">(</span><span class="va">lm.ozone</span>, test <span class="op">=</span> <span class="st">"AR1.mle"</span><span class="op">)</span> </span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> $statistic</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>        z </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 1.285963 </span>
@@ -960,49 +967,49 @@ Currently, there is a default method and a method for objects of class "lm".'><!
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> attr(,"class")</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] "htestEnvStats"</span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="co">#Results of Hypothesis Test</span></span>
-<span class="r-in">  <span class="co">#--------------------------</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Null Hypothesis:                 rho = 0</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Alternative Hypothesis:          True rho is not equal to 0</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Test Name:                       z-Test for</span></span>
-<span class="r-in">  <span class="co">#                                 Lag-1 Autocorrelation</span></span>
-<span class="r-in">  <span class="co">#                                 (Wald Test Based on MLE)</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Estimated Parameter(s):          rho = 0.1298024</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Estimation Method:               Maximum Likelihood</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Data:                            Residuals</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Data Source:                     lm.ozone</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Sample Size:                     153</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Number NA/NaN/Inf's:             42</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Test Statistic:                  z = 1.285963</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#P-value:                         0.1984559</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Confidence Interval for:         rho</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Confidence Interval Method:      Normal Approximation</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Confidence Interval Type:        two-sided</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Confidence Level:                95%</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Confidence Interval:             LCL = -0.06803223</span></span>
-<span class="r-in">  <span class="co">#                                 UCL =  0.32763704</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="co"># Clean up</span></span>
-<span class="r-in">  <span class="co">#---------</span></span>
-<span class="r-in">  <span class="fu"><a href="https://rdrr.io/r/base/rm.html" class="external-link">rm</a></span><span class="op">(</span><span class="va">lm.ozone</span><span class="op">)</span></span>
-<span class="r-in"></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="co">#Results of Hypothesis Test</span></span></span>
+<span class="r-in"><span>  <span class="co">#--------------------------</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Null Hypothesis:                 rho = 0</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Alternative Hypothesis:          True rho is not equal to 0</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Test Name:                       z-Test for</span></span></span>
+<span class="r-in"><span>  <span class="co">#                                 Lag-1 Autocorrelation</span></span></span>
+<span class="r-in"><span>  <span class="co">#                                 (Wald Test Based on MLE)</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Estimated Parameter(s):          rho = 0.1298024</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Estimation Method:               Maximum Likelihood</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Data:                            Residuals</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Data Source:                     lm.ozone</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Sample Size:                     153</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Number NA/NaN/Inf's:             42</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Test Statistic:                  z = 1.285963</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#P-value:                         0.1984559</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Confidence Interval for:         rho</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Confidence Interval Method:      Normal Approximation</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Confidence Interval Type:        two-sided</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Confidence Level:                95%</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Confidence Interval:             LCL = -0.06803223</span></span></span>
+<span class="r-in"><span>  <span class="co">#                                 UCL =  0.32763704</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="co"># Clean up</span></span></span>
+<span class="r-in"><span>  <span class="co">#---------</span></span></span>
+<span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/r/base/rm.html" class="external-link">rm</a></span><span class="op">(</span><span class="va">lm.ozone</span><span class="op">)</span></span></span>
+<span class="r-in"><span></span></span>
 </code></pre></div>
     </div>
   </div>
@@ -1017,7 +1024,7 @@ Currently, there is a default method and a method for objects of class "lm".'><!
 </div>
 
 <div class="pkgdown">
-  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.2.</p>
+  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.6.</p>
 </div>
 
       </footer></div>

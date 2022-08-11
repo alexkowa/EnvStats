@@ -54,33 +54,39 @@
     </div>
 
     <div id="ref-usage">
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="fu">ezmnorm</span><span class="op">(</span><span class="va">x</span>, method <span class="op">=</span> <span class="st">"mvue"</span>, ci <span class="op">=</span> <span class="cn">FALSE</span>, ci.type <span class="op">=</span> <span class="st">"two-sided"</span>, 
-    ci.method <span class="op">=</span> <span class="st">"normal.approx"</span>, conf.level <span class="op">=</span> <span class="fl">0.95</span><span class="op">)</span></code></pre></div>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">ezmnorm</span><span class="op">(</span><span class="va">x</span>, method <span class="op">=</span> <span class="st">"mvue"</span>, ci <span class="op">=</span> <span class="cn">FALSE</span>, ci.type <span class="op">=</span> <span class="st">"two-sided"</span>, </span>
+<span>    ci.method <span class="op">=</span> <span class="st">"normal.approx"</span>, conf.level <span class="op">=</span> <span class="fl">0.95</span><span class="op">)</span></span></code></pre></div>
     </div>
 
     <div id="arguments">
     <h2>Arguments</h2>
     <dl><dt>x</dt>
 <dd><p>numeric vector of observations.</p></dd>
-<dt>method</dt>
+
+  <dt>method</dt>
 <dd><p>character string specifying the method of estimation.  Currently, the only possible 
   value is <code>"mvue"</code> (minimum variance unbiased; the default).  See the DETAILS 
   section for more information.</p></dd>
-<dt>ci</dt>
+
+  <dt>ci</dt>
 <dd><p>logical scalar indicating whether to compute a confidence interval for the 
   mean.  The default value is <code>FALSE</code>.</p></dd>
-<dt>ci.type</dt>
+
+  <dt>ci.type</dt>
 <dd><p>character string indicating what kind of confidence interval to compute.  The 
   possible values are <code>"two-sided"</code> (the default), <code>"lower"</code>, and 
   <code>"upper"</code>.  This argument is ignored if <code>ci=FALSE</code>.</p></dd>
-<dt>ci.method</dt>
+
+  <dt>ci.method</dt>
 <dd><p>character string indicating what method to use to construct the confidence interval 
   for the mean.  Currently the only possible value is <code>"normal.approx"</code> 
   (the default).  See the DETAILS section for more information.</p></dd>
-<dt>conf.level</dt>
+
+  <dt>conf.level</dt>
 <dd><p>a scalar between 0 and 1 indicating the confidence level of the confidence interval.  
   The default value is <code>conf.level=0.95</code>. This argument is ignored if 
   <code>ci=FALSE</code>.</p></dd>
+
 </dl></div>
     <div id="details">
     <h2>Details</h2>
@@ -133,10 +139,18 @@
     </div>
     <div id="value">
     <h2>Value</h2>
-    <p>a list of class <code>"estimate"</code> containing the estimated parameters and other information.  
-  See <br><code><a href="estimate.object.html">estimate.object</a></code> for details.
-  The component called <code>parameters</code> is a numeric vector with the following 
-  estimated parameters:</p><table class="table table"><tr><td><b>Parameter Name</b></td><td><b>Explanation</b></td></tr><tr><td><code>mean</code></td><td>mean of the normal (Gaussian) part of the distribution.</td></tr><tr><td><code>sd</code></td><td>standard deviation of the normal (Gaussian) part of the distribution.</td></tr><tr><td><code>p.zero</code></td><td>probability that an observation will be 0.</td></tr><tr><td><code>mean.zmnorm</code></td><td>mean of the overall zero-modified normal distribution.</td></tr><tr><td><code>sd.zmnorm</code></td><td>standard deviation of the overall normal distribution.</td></tr></table></div>
+    
+
+<p>a list of class <code>"estimate"</code> containing the estimated parameters and other information.  
+  See <br></p>
+<p></p>
+<p><code><a href="estimate.object.html">estimate.object</a></code> for details.</p>
+
+
+<p>The component called <code>parameters</code> is a numeric vector with the following 
+  estimated parameters:</p>
+<p></p>
+<table class="table table"><tr><td><b>Parameter Name</b></td><td><b>Explanation</b></td></tr><tr><td><code>mean</code></td><td>mean of the normal (Gaussian) part of the distribution.</td></tr><tr><td><code>sd</code></td><td>standard deviation of the normal (Gaussian) part of the distribution.</td></tr><tr><td><code>p.zero</code></td><td>probability that an observation will be 0.</td></tr><tr><td><code>mean.zmnorm</code></td><td>mean of the overall zero-modified normal distribution.</td></tr><tr><td><code>sd.zmnorm</code></td><td>standard deviation of the overall normal distribution.</td></tr></table></div>
     <div id="references">
     <h2>References</h2>
     <p>Aitchison, J. (1955).  On the Distribution of a Positive Random Variable Having 
@@ -182,15 +196,15 @@
 
     <div id="ref-examples">
     <h2>Examples</h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in">  <span class="co"># Generate 100 observations from a zero-modified normal distribution </span></span>
-<span class="r-in">  <span class="co"># with mean=4, sd=2, and p.zero=0.5, then estimate the parameters.  </span></span>
-<span class="r-in">  <span class="co"># According to equations (1) and (2) above, the overall mean is </span></span>
-<span class="r-in">  <span class="co"># mean.zmnorm=2 and the overall standard deviation is sd.zmnorm=sqrt(6).  </span></span>
-<span class="r-in">  <span class="co"># (Note: the call to set.seed simply allows you to reproduce this example.)</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="fu"><a href="https://rdrr.io/r/base/Random.html" class="external-link">set.seed</a></span><span class="op">(</span><span class="fl">250</span><span class="op">)</span> </span>
-<span class="r-in">  <span class="va">dat</span> <span class="op">&lt;-</span> <span class="fu"><a href="ZeroModifiedNormal.html">rzmnorm</a></span><span class="op">(</span><span class="fl">100</span>, mean <span class="op">=</span> <span class="fl">4</span>, sd <span class="op">=</span> <span class="fl">2</span>, p.zero <span class="op">=</span> <span class="fl">0.5</span><span class="op">)</span> </span>
-<span class="r-in">  <span class="fu">ezmnorm</span><span class="op">(</span><span class="va">dat</span>, ci <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span> </span>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span>  <span class="co"># Generate 100 observations from a zero-modified normal distribution </span></span></span>
+<span class="r-in"><span>  <span class="co"># with mean=4, sd=2, and p.zero=0.5, then estimate the parameters.  </span></span></span>
+<span class="r-in"><span>  <span class="co"># According to equations (1) and (2) above, the overall mean is </span></span></span>
+<span class="r-in"><span>  <span class="co"># mean.zmnorm=2 and the overall standard deviation is sd.zmnorm=sqrt(6).  </span></span></span>
+<span class="r-in"><span>  <span class="co"># (Note: the call to set.seed simply allows you to reproduce this example.)</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/r/base/Random.html" class="external-link">set.seed</a></span><span class="op">(</span><span class="fl">250</span><span class="op">)</span> </span></span>
+<span class="r-in"><span>  <span class="va">dat</span> <span class="op">&lt;-</span> <span class="fu"><a href="ZeroModifiedNormal.html">rzmnorm</a></span><span class="op">(</span><span class="fl">100</span>, mean <span class="op">=</span> <span class="fl">4</span>, sd <span class="op">=</span> <span class="fl">2</span>, p.zero <span class="op">=</span> <span class="fl">0.5</span><span class="op">)</span> </span></span>
+<span class="r-in"><span>  <span class="fu">ezmnorm</span><span class="op">(</span><span class="va">dat</span>, ci <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span> </span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> $distribution</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] "Zero-Modified Normal"</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
@@ -244,44 +258,44 @@
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> attr(,"class")</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] "estimate"</span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="co">#Results of Distribution Parameter Estimation</span></span>
-<span class="r-in">  <span class="co">#--------------------------------------------</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Assumed Distribution:            Zero-Modified Normal</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Estimated Parameter(s):          mean        = 4.037732</span></span>
-<span class="r-in">  <span class="co">#                                 sd          = 1.917004</span></span>
-<span class="r-in">  <span class="co">#                                 p.zero      = 0.450000</span></span>
-<span class="r-in">  <span class="co">#                                 mean.zmnorm = 2.220753</span></span>
-<span class="r-in">  <span class="co">#                                 sd.zmnorm   = 2.465829</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Estimation Method:               mvue</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Data:                            dat</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Sample Size:                     100</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Confidence Interval for:         mean.zmnorm</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Confidence Interval Method:      Normal Approximation</span></span>
-<span class="r-in">  <span class="co">#                                 (t Distribution)</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Confidence Interval Type:        two-sided</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Confidence Level:                95%</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Confidence Interval:             LCL = 1.731417</span></span>
-<span class="r-in">  <span class="co">#                                 UCL = 2.710088</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="co">#----------</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="co"># Following Example 9 on page 34 of USEPA (1992c), compute an </span></span>
-<span class="r-in">  <span class="co"># estimate of the mean of the zinc data, assuming a </span></span>
-<span class="r-in">  <span class="co"># zero-modified normal distribution. The data are stored in </span></span>
-<span class="r-in">  <span class="co"># EPA.92c.zinc.df.</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">EPA.92c.zinc.df</span><span class="op">)</span> </span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="co">#Results of Distribution Parameter Estimation</span></span></span>
+<span class="r-in"><span>  <span class="co">#--------------------------------------------</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Assumed Distribution:            Zero-Modified Normal</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Estimated Parameter(s):          mean        = 4.037732</span></span></span>
+<span class="r-in"><span>  <span class="co">#                                 sd          = 1.917004</span></span></span>
+<span class="r-in"><span>  <span class="co">#                                 p.zero      = 0.450000</span></span></span>
+<span class="r-in"><span>  <span class="co">#                                 mean.zmnorm = 2.220753</span></span></span>
+<span class="r-in"><span>  <span class="co">#                                 sd.zmnorm   = 2.465829</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Estimation Method:               mvue</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Data:                            dat</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Sample Size:                     100</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Confidence Interval for:         mean.zmnorm</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Confidence Interval Method:      Normal Approximation</span></span></span>
+<span class="r-in"><span>  <span class="co">#                                 (t Distribution)</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Confidence Interval Type:        two-sided</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Confidence Level:                95%</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Confidence Interval:             LCL = 1.731417</span></span></span>
+<span class="r-in"><span>  <span class="co">#                                 UCL = 2.710088</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="co">#----------</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="co"># Following Example 9 on page 34 of USEPA (1992c), compute an </span></span></span>
+<span class="r-in"><span>  <span class="co"># estimate of the mean of the zinc data, assuming a </span></span></span>
+<span class="r-in"><span>  <span class="co"># zero-modified normal distribution. The data are stored in </span></span></span>
+<span class="r-in"><span>  <span class="co"># EPA.92c.zinc.df.</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">EPA.92c.zinc.df</span><span class="op">)</span> </span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   Zinc.orig  Zinc Censored Sample Well</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 1        &lt;7  7.00     TRUE      1    1</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 2     11.41 11.41    FALSE      2    1</span>
@@ -289,17 +303,17 @@
 <span class="r-out co"><span class="r-pr">#&gt;</span> 4        &lt;7  7.00     TRUE      4    1</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 5        &lt;7  7.00     TRUE      5    1</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 6     10.00 10.00    FALSE      6    1</span>
-<span class="r-in">  <span class="co">#  Zinc.orig  Zinc Censored Sample Well</span></span>
-<span class="r-in">  <span class="co">#1        &lt;7  7.00     TRUE      1    1</span></span>
-<span class="r-in">  <span class="co">#2     11.41 11.41    FALSE      2    1</span></span>
-<span class="r-in">  <span class="co">#3        &lt;7  7.00     TRUE      3    1</span></span>
-<span class="r-in">  <span class="co">#4        &lt;7  7.00     TRUE      4    1</span></span>
-<span class="r-in">  <span class="co">#5        &lt;7  7.00     TRUE      5    1</span></span>
-<span class="r-in">  <span class="co">#6     10.00 10.00    FALSE      6    1</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="va">New.Zinc</span> <span class="op">&lt;-</span> <span class="va">EPA.92c.zinc.df</span><span class="op">$</span><span class="va">Zinc</span> </span>
-<span class="r-in">  <span class="va">New.Zinc</span><span class="op">[</span><span class="va">EPA.92c.zinc.df</span><span class="op">$</span><span class="va">Censored</span><span class="op">]</span> <span class="op">&lt;-</span> <span class="fl">0</span> </span>
-<span class="r-in">  <span class="fu">ezmnorm</span><span class="op">(</span><span class="va">New.Zinc</span>, ci <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span> </span>
+<span class="r-in"><span>  <span class="co">#  Zinc.orig  Zinc Censored Sample Well</span></span></span>
+<span class="r-in"><span>  <span class="co">#1        &lt;7  7.00     TRUE      1    1</span></span></span>
+<span class="r-in"><span>  <span class="co">#2     11.41 11.41    FALSE      2    1</span></span></span>
+<span class="r-in"><span>  <span class="co">#3        &lt;7  7.00     TRUE      3    1</span></span></span>
+<span class="r-in"><span>  <span class="co">#4        &lt;7  7.00     TRUE      4    1</span></span></span>
+<span class="r-in"><span>  <span class="co">#5        &lt;7  7.00     TRUE      5    1</span></span></span>
+<span class="r-in"><span>  <span class="co">#6     10.00 10.00    FALSE      6    1</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="va">New.Zinc</span> <span class="op">&lt;-</span> <span class="va">EPA.92c.zinc.df</span><span class="op">$</span><span class="va">Zinc</span> </span></span>
+<span class="r-in"><span>  <span class="va">New.Zinc</span><span class="op">[</span><span class="va">EPA.92c.zinc.df</span><span class="op">$</span><span class="va">Censored</span><span class="op">]</span> <span class="op">&lt;-</span> <span class="fl">0</span> </span></span>
+<span class="r-in"><span>  <span class="fu">ezmnorm</span><span class="op">(</span><span class="va">New.Zinc</span>, ci <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span> </span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> $distribution</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] "Zero-Modified Normal"</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
@@ -353,40 +367,40 @@
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> attr(,"class")</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] "estimate"</span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="co">#Results of Distribution Parameter Estimation</span></span>
-<span class="r-in">  <span class="co">#--------------------------------------------</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Assumed Distribution:            Zero-Modified Normal</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Estimated Parameter(s):          mean        = 11.891000</span></span>
-<span class="r-in">  <span class="co">#                                 sd          =  1.594523</span></span>
-<span class="r-in">  <span class="co">#                                 p.zero      =  0.500000</span></span>
-<span class="r-in">  <span class="co">#                                 mean.zmnorm =  5.945500</span></span>
-<span class="r-in">  <span class="co">#                                 sd.zmnorm   =  6.123235</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Estimation Method:               mvue</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Data:                            New.Zinc</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Sample Size:                     40</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Confidence Interval for:         mean.zmnorm</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Confidence Interval Method:      Normal Approximation</span></span>
-<span class="r-in">  <span class="co">#                                 (t Distribution)</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Confidence Interval Type:        two-sided</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Confidence Level:                95%</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Confidence Interval:             LCL = 3.985545</span></span>
-<span class="r-in">  <span class="co">#                                 UCL = 7.905455</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="co">#----------</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="co"># Clean up</span></span>
-<span class="r-in">  <span class="fu"><a href="https://rdrr.io/r/base/rm.html" class="external-link">rm</a></span><span class="op">(</span><span class="va">dat</span>, <span class="va">New.Zinc</span><span class="op">)</span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="co">#Results of Distribution Parameter Estimation</span></span></span>
+<span class="r-in"><span>  <span class="co">#--------------------------------------------</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Assumed Distribution:            Zero-Modified Normal</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Estimated Parameter(s):          mean        = 11.891000</span></span></span>
+<span class="r-in"><span>  <span class="co">#                                 sd          =  1.594523</span></span></span>
+<span class="r-in"><span>  <span class="co">#                                 p.zero      =  0.500000</span></span></span>
+<span class="r-in"><span>  <span class="co">#                                 mean.zmnorm =  5.945500</span></span></span>
+<span class="r-in"><span>  <span class="co">#                                 sd.zmnorm   =  6.123235</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Estimation Method:               mvue</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Data:                            New.Zinc</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Sample Size:                     40</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Confidence Interval for:         mean.zmnorm</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Confidence Interval Method:      Normal Approximation</span></span></span>
+<span class="r-in"><span>  <span class="co">#                                 (t Distribution)</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Confidence Interval Type:        two-sided</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Confidence Level:                95%</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Confidence Interval:             LCL = 3.985545</span></span></span>
+<span class="r-in"><span>  <span class="co">#                                 UCL = 7.905455</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="co">#----------</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="co"># Clean up</span></span></span>
+<span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/r/base/rm.html" class="external-link">rm</a></span><span class="op">(</span><span class="va">dat</span>, <span class="va">New.Zinc</span><span class="op">)</span></span></span>
 </code></pre></div>
     </div>
   </div>
@@ -401,7 +415,7 @@
 </div>
 
 <div class="pkgdown">
-  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.2.</p>
+  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.6.</p>
 </div>
 
       </footer></div>

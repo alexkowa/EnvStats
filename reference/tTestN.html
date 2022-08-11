@@ -52,10 +52,10 @@
     </div>
 
     <div id="ref-usage">
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="fu">tTestN</span><span class="op">(</span><span class="va">delta.over.sigma</span>, alpha <span class="op">=</span> <span class="fl">0.05</span>, power <span class="op">=</span> <span class="fl">0.95</span>, 
-    sample.type <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/ifelse.html" class="external-link">ifelse</a></span><span class="op">(</span><span class="op">!</span><span class="fu"><a href="https://rdrr.io/r/base/NULL.html" class="external-link">is.null</a></span><span class="op">(</span><span class="va">n2</span><span class="op">)</span>, <span class="st">"two.sample"</span>, <span class="st">"one.sample"</span><span class="op">)</span>, 
-    alternative <span class="op">=</span> <span class="st">"two.sided"</span>, approx <span class="op">=</span> <span class="cn">FALSE</span>, n2 <span class="op">=</span> <span class="cn">NULL</span>, round.up <span class="op">=</span> <span class="cn">TRUE</span>, 
-    n.max <span class="op">=</span> <span class="fl">5000</span>, tol <span class="op">=</span> <span class="fl">1e-07</span>, maxiter <span class="op">=</span> <span class="fl">1000</span><span class="op">)</span></code></pre></div>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">tTestN</span><span class="op">(</span><span class="va">delta.over.sigma</span>, alpha <span class="op">=</span> <span class="fl">0.05</span>, power <span class="op">=</span> <span class="fl">0.95</span>, </span>
+<span>    sample.type <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/ifelse.html" class="external-link">ifelse</a></span><span class="op">(</span><span class="op">!</span><span class="fu"><a href="https://rdrr.io/r/base/NULL.html" class="external-link">is.null</a></span><span class="op">(</span><span class="va">n2</span><span class="op">)</span>, <span class="st">"two.sample"</span>, <span class="st">"one.sample"</span><span class="op">)</span>, </span>
+<span>    alternative <span class="op">=</span> <span class="st">"two.sided"</span>, approx <span class="op">=</span> <span class="cn">FALSE</span>, n2 <span class="op">=</span> <span class="cn">NULL</span>, round.up <span class="op">=</span> <span class="cn">TRUE</span>, </span>
+<span>    n.max <span class="op">=</span> <span class="fl">5000</span>, tol <span class="op">=</span> <span class="fl">1e-07</span>, maxiter <span class="op">=</span> <span class="fl">1000</span><span class="op">)</span></span></code></pre></div>
     </div>
 
     <div id="arguments">
@@ -66,18 +66,22 @@
   \(\delta = \mu_1 - \mu_2\) for the two-sample case) 
   to the population standard deviation (\(\sigma\)).  This is also called the 
   “scaled difference”.</p></dd>
-<dt>alpha</dt>
+
+  <dt>alpha</dt>
 <dd><p>numeric vector of numbers between 0 and 1 indicating the Type I error level 
   associated with the hypothesis test.  The default value is <code>alpha=0.05</code>.</p></dd>
-<dt>power</dt>
+
+  <dt>power</dt>
 <dd><p>numeric vector of numbers between 0 and 1 indicating the power  
   associated with the hypothesis test.  The default value is <code>power=0.95</code>.</p></dd>
-<dt>sample.type</dt>
+
+  <dt>sample.type</dt>
 <dd><p>character string indicating whether to compute power based on a one-sample or 
   two-sample hypothesis test.  When <code>sample.type="one.sample"</code>, the computed 
   power is based on a hypothesis test for a single mean.  When <br><code>sample.type="two.sample"</code>, the computed power is based on a hypothesis test 
   for the difference between two means.  The default value is <br><code>sample.type="one.sample"</code> unless the argument <code>n2</code> is supplied.</p></dd>
-<dt>alternative</dt>
+
+  <dt>alternative</dt>
 <dd><p>character string indicating the kind of alternative hypothesis.  The possible values 
   are:</p>
 <p></p><ul><li><p><code>"two.sided"</code> (the default).  \(H_a: \mu \ne \mu_0\) for the one-sample case and 
@@ -87,31 +91,38 @@
 <li><p><code>"less"</code>.  \(H_a: \mu &lt; \mu_0\) for the one-sample case and 
     \(H_a: \mu_1 &lt; \mu_2\) for the two-sample case.</p></li>
 </ul></dd>
-<dt>approx</dt>
+
+  <dt>approx</dt>
 <dd><p>logical scalar indicating whether to compute the power based on an approximation to 
   the non-central t-distribution.  The default value is <code>FALSE</code>.</p></dd>
-<dt>n2</dt>
+
+  <dt>n2</dt>
 <dd><p>numeric vector of sample sizes for group 2.  The default value is 
   <code>NULL</code> in which case it is assumed that the sample sizes for groups 
   1 and 2 are equal.  
   This argument is ignored when <code>sample.type="one.sample"</code>. 
   Missing (<code>NA</code>), undefined (<code>NaN</code>), and infinite (<code>Inf</code>, <code>-Inf</code>) 
   values are <b><em>not</em></b> allowed.</p></dd>
-<dt>round.up</dt>
+
+  <dt>round.up</dt>
 <dd><p>logical scalar indicating whether to round up the values of the computed 
   sample size(s) to the next smallest integer.  The default value is 
   <code>TRUE</code>.</p></dd>
-<dt>n.max</dt>
+
+  <dt>n.max</dt>
 <dd><p>positive integer greater than 1 indicating the maximum sample size when <br><code>sample.type="one.sample"</code> or the maximum sample size for group 1 
   when <code>sample.type="two.sample"</code>.  The default value is <code>n.max=5000</code>.</p></dd>
-<dt>tol</dt>
+
+  <dt>tol</dt>
 <dd><p>numeric scalar indicating the toloerance to use in the 
   <code><a href="https://rdrr.io/r/stats/uniroot.html" class="external-link">uniroot</a></code> search algorithm.  
   The default value is <code>tol=1e-7</code>.</p></dd>
-<dt>maxiter</dt>
+
+  <dt>maxiter</dt>
 <dd><p>positive integer indicating the maximum number of iterations 
   argument to pass to the <code><a href="https://rdrr.io/r/stats/uniroot.html" class="external-link">uniroot</a></code> function.  The default 
   value is <code>maxiter=1000</code>.</p></dd>
+
 </dl></div>
     <div id="details">
     <h2>Details</h2>
@@ -124,13 +135,21 @@
     </div>
     <div id="value">
     <h2>Value</h2>
-    <p>When <code>sample.type="one.sample"</code>, <code>tTestN</code> returns a numeric vector of sample sizes.
-  When <code>sample.type="two.sample"</code> and <code>n2</code> is not supplied, 
+    
+
+<p>When <code>sample.type="one.sample"</code>, <code>tTestN</code> returns a numeric vector of sample sizes.</p>
+
+
+<p>When <code>sample.type="two.sample"</code> and <code>n2</code> is not supplied, 
   equal sample sizes for each group is assumed and <code>tTestN</code> returns a numeric vector of 
-  sample sizes indicating the required sample size <em>for each group</em>.  
-  When <code>sample.type="two.sample"</code> and <code>n2</code> is supplied, 
-<code>tTestN</code> returns a list with two components called <code>n1</code> and 
-<code>n2</code>, specifying the sample sizes for each group.</p>
+  sample sizes indicating the required sample size <em>for each group</em>.</p>
+
+
+<p>When <code>sample.type="two.sample"</code> and <code>n2</code> is supplied,</p>
+<p></p>
+<p><code>tTestN</code> returns a list with two components called <code>n1</code> and</p>
+<p></p>
+<p><code>n2</code>, specifying the sample sizes for each group.</p>
     </div>
     <div id="references">
     <h2>References</h2>
@@ -153,92 +172,92 @@
 
     <div id="ref-examples">
     <h2>Examples</h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in">  <span class="co"># Look at how the required sample size for the one-sample t-test </span></span>
-<span class="r-in">  <span class="co"># increases with increasing required power:</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="fu"><a href="https://rdrr.io/r/base/seq.html" class="external-link">seq</a></span><span class="op">(</span><span class="fl">0.5</span>, <span class="fl">0.9</span>, by <span class="op">=</span> <span class="fl">0.1</span><span class="op">)</span> </span>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span>  <span class="co"># Look at how the required sample size for the one-sample t-test </span></span></span>
+<span class="r-in"><span>  <span class="co"># increases with increasing required power:</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/r/base/seq.html" class="external-link">seq</a></span><span class="op">(</span><span class="fl">0.5</span>, <span class="fl">0.9</span>, by <span class="op">=</span> <span class="fl">0.1</span><span class="op">)</span> </span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] 0.5 0.6 0.7 0.8 0.9</span>
-<span class="r-in">  <span class="co">#[1] 0.5 0.6 0.7 0.8 0.9 </span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="fu">tTestN</span><span class="op">(</span>delta.over.sigma <span class="op">=</span> <span class="fl">0.5</span>, power <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/seq.html" class="external-link">seq</a></span><span class="op">(</span><span class="fl">0.5</span>, <span class="fl">0.9</span>, by <span class="op">=</span> <span class="fl">0.1</span><span class="op">)</span><span class="op">)</span> </span>
+<span class="r-in"><span>  <span class="co">#[1] 0.5 0.6 0.7 0.8 0.9 </span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="fu">tTestN</span><span class="op">(</span>delta.over.sigma <span class="op">=</span> <span class="fl">0.5</span>, power <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/seq.html" class="external-link">seq</a></span><span class="op">(</span><span class="fl">0.5</span>, <span class="fl">0.9</span>, by <span class="op">=</span> <span class="fl">0.1</span><span class="op">)</span><span class="op">)</span> </span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] 18 22 27 34 44</span>
-<span class="r-in">  <span class="co">#[1] 18 22 27 34 44</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="co">#----------</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="co"># Repeat the last example, but compute the sample size based on the </span></span>
-<span class="r-in">  <span class="co"># approximation to the power instead of the exact method:</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="fu">tTestN</span><span class="op">(</span>delta.over.sigma <span class="op">=</span> <span class="fl">0.5</span>, power <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/seq.html" class="external-link">seq</a></span><span class="op">(</span><span class="fl">0.5</span>, <span class="fl">0.9</span>, by <span class="op">=</span> <span class="fl">0.1</span><span class="op">)</span>, </span>
-<span class="r-in">    approx <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span> </span>
+<span class="r-in"><span>  <span class="co">#[1] 18 22 27 34 44</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="co">#----------</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="co"># Repeat the last example, but compute the sample size based on the </span></span></span>
+<span class="r-in"><span>  <span class="co"># approximation to the power instead of the exact method:</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="fu">tTestN</span><span class="op">(</span>delta.over.sigma <span class="op">=</span> <span class="fl">0.5</span>, power <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/seq.html" class="external-link">seq</a></span><span class="op">(</span><span class="fl">0.5</span>, <span class="fl">0.9</span>, by <span class="op">=</span> <span class="fl">0.1</span><span class="op">)</span>, </span></span>
+<span class="r-in"><span>    approx <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span> </span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] 18 22 27 34 45</span>
-<span class="r-in">  <span class="co">#[1] 18 22 27 34 45</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="co">#==========</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="co"># Look at how the required sample size for the two-sample t-test </span></span>
-<span class="r-in">  <span class="co"># decreases with increasing scaled difference:</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="fu"><a href="https://rdrr.io/r/base/seq.html" class="external-link">seq</a></span><span class="op">(</span><span class="fl">0.5</span>, <span class="fl">2</span>,by <span class="op">=</span> <span class="fl">0.5</span><span class="op">)</span> </span>
+<span class="r-in"><span>  <span class="co">#[1] 18 22 27 34 45</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="co">#==========</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="co"># Look at how the required sample size for the two-sample t-test </span></span></span>
+<span class="r-in"><span>  <span class="co"># decreases with increasing scaled difference:</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/r/base/seq.html" class="external-link">seq</a></span><span class="op">(</span><span class="fl">0.5</span>, <span class="fl">2</span>,by <span class="op">=</span> <span class="fl">0.5</span><span class="op">)</span> </span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] 0.5 1.0 1.5 2.0</span>
-<span class="r-in">  <span class="co">#[1] 0.5 1.0 1.5 2.0 </span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="fu">tTestN</span><span class="op">(</span>delta.over.sigma <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/seq.html" class="external-link">seq</a></span><span class="op">(</span><span class="fl">0.5</span>, <span class="fl">2</span>, by <span class="op">=</span> <span class="fl">0.5</span><span class="op">)</span>, sample.type <span class="op">=</span> <span class="st">"two"</span><span class="op">)</span> </span>
+<span class="r-in"><span>  <span class="co">#[1] 0.5 1.0 1.5 2.0 </span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="fu">tTestN</span><span class="op">(</span>delta.over.sigma <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/seq.html" class="external-link">seq</a></span><span class="op">(</span><span class="fl">0.5</span>, <span class="fl">2</span>, by <span class="op">=</span> <span class="fl">0.5</span><span class="op">)</span>, sample.type <span class="op">=</span> <span class="st">"two"</span><span class="op">)</span> </span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] 105  27  13   8</span>
-<span class="r-in">  <span class="co">#[1] 105  27  13   8</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="co">#----------</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="co"># Look at how the required sample size for the two-sample t-test decreases </span></span>
-<span class="r-in">  <span class="co"># with increasing values of Type I error:</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="fu">tTestN</span><span class="op">(</span>delta.over.sigma <span class="op">=</span> <span class="fl">0.5</span>, alpha <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">0.001</span>, <span class="fl">0.01</span>, <span class="fl">0.05</span>, <span class="fl">0.1</span><span class="op">)</span>, </span>
-<span class="r-in">    sample.type<span class="op">=</span><span class="st">"two"</span><span class="op">)</span> </span>
+<span class="r-in"><span>  <span class="co">#[1] 105  27  13   8</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="co">#----------</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="co"># Look at how the required sample size for the two-sample t-test decreases </span></span></span>
+<span class="r-in"><span>  <span class="co"># with increasing values of Type I error:</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="fu">tTestN</span><span class="op">(</span>delta.over.sigma <span class="op">=</span> <span class="fl">0.5</span>, alpha <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">0.001</span>, <span class="fl">0.01</span>, <span class="fl">0.05</span>, <span class="fl">0.1</span><span class="op">)</span>, </span></span>
+<span class="r-in"><span>    sample.type<span class="op">=</span><span class="st">"two"</span><span class="op">)</span> </span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] 198 145 105  88</span>
-<span class="r-in">  <span class="co">#[1] 198 145 105  88</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="co">#----------</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="co"># For the two-sample t-test, compare the total sample size required to </span></span>
-<span class="r-in">  <span class="co"># detect a scaled difference of 1 for equal sample sizes versus the case </span></span>
-<span class="r-in">  <span class="co"># when the sample size for the second group is constrained to be 20.  </span></span>
-<span class="r-in">  <span class="co"># Assume a 5% significance level and 95% power.  Note that for the case </span></span>
-<span class="r-in">  <span class="co"># of equal sample sizes, a total of 54 samples (27+27) are required, </span></span>
-<span class="r-in">  <span class="co"># whereas when n2 is constrained to be 20, a total of 62 samples </span></span>
-<span class="r-in">  <span class="co"># (42 + 20) are required.</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="fu">tTestN</span><span class="op">(</span><span class="fl">1</span>, sample.type<span class="op">=</span><span class="st">"two"</span><span class="op">)</span> </span>
+<span class="r-in"><span>  <span class="co">#[1] 198 145 105  88</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="co">#----------</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="co"># For the two-sample t-test, compare the total sample size required to </span></span></span>
+<span class="r-in"><span>  <span class="co"># detect a scaled difference of 1 for equal sample sizes versus the case </span></span></span>
+<span class="r-in"><span>  <span class="co"># when the sample size for the second group is constrained to be 20.  </span></span></span>
+<span class="r-in"><span>  <span class="co"># Assume a 5% significance level and 95% power.  Note that for the case </span></span></span>
+<span class="r-in"><span>  <span class="co"># of equal sample sizes, a total of 54 samples (27+27) are required, </span></span></span>
+<span class="r-in"><span>  <span class="co"># whereas when n2 is constrained to be 20, a total of 62 samples </span></span></span>
+<span class="r-in"><span>  <span class="co"># (42 + 20) are required.</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="fu">tTestN</span><span class="op">(</span><span class="fl">1</span>, sample.type<span class="op">=</span><span class="st">"two"</span><span class="op">)</span> </span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] 27</span>
-<span class="r-in">  <span class="co">#[1] 27 </span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="fu">tTestN</span><span class="op">(</span><span class="fl">1</span>, n2 <span class="op">=</span> <span class="fl">20</span><span class="op">)</span></span>
+<span class="r-in"><span>  <span class="co">#[1] 27 </span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="fu">tTestN</span><span class="op">(</span><span class="fl">1</span>, n2 <span class="op">=</span> <span class="fl">20</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> $n1</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] 42</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> $n2</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] 20</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-in">  <span class="co">#$n1</span></span>
-<span class="r-in">  <span class="co">#[1] 42</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#$n2</span></span>
-<span class="r-in">  <span class="co">#[1] 20</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="co">#==========</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="co"># Modifying the example on pages 21-4 to 21-5 of USEPA (2009), determine the </span></span>
-<span class="r-in">  <span class="co"># required sample size to detect a mean aldicarb level greater than the MCL </span></span>
-<span class="r-in">  <span class="co"># of 7 ppb at the third compliance well with a power of 95%, assuming the </span></span>
-<span class="r-in">  <span class="co"># true mean is 10 or 14.  Use the estimated standard deviation from the </span></span>
-<span class="r-in">  <span class="co"># first four months of data to estimate the true population standard </span></span>
-<span class="r-in">  <span class="co"># deviation, use a Type I error level of alpha=0.01, and assume an </span></span>
-<span class="r-in">  <span class="co"># upper one-sided alternative (third compliance well mean larger than 7).  </span></span>
-<span class="r-in">  <span class="co"># (The data are stored in EPA.09.Ex.21.1.aldicarb.df.) </span></span>
-<span class="r-in">  <span class="co"># Note that the required sample size changes from 11 to 5 as the true mean </span></span>
-<span class="r-in">  <span class="co"># increases from 10 to 14.</span></span>
-<span class="r-in"></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="va">EPA.09.Ex.21.1.aldicarb.df</span></span>
+<span class="r-in"><span>  <span class="co">#$n1</span></span></span>
+<span class="r-in"><span>  <span class="co">#[1] 42</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#$n2</span></span></span>
+<span class="r-in"><span>  <span class="co">#[1] 20</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="co">#==========</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="co"># Modifying the example on pages 21-4 to 21-5 of USEPA (2009), determine the </span></span></span>
+<span class="r-in"><span>  <span class="co"># required sample size to detect a mean aldicarb level greater than the MCL </span></span></span>
+<span class="r-in"><span>  <span class="co"># of 7 ppb at the third compliance well with a power of 95%, assuming the </span></span></span>
+<span class="r-in"><span>  <span class="co"># true mean is 10 or 14.  Use the estimated standard deviation from the </span></span></span>
+<span class="r-in"><span>  <span class="co"># first four months of data to estimate the true population standard </span></span></span>
+<span class="r-in"><span>  <span class="co"># deviation, use a Type I error level of alpha=0.01, and assume an </span></span></span>
+<span class="r-in"><span>  <span class="co"># upper one-sided alternative (third compliance well mean larger than 7).  </span></span></span>
+<span class="r-in"><span>  <span class="co"># (The data are stored in EPA.09.Ex.21.1.aldicarb.df.) </span></span></span>
+<span class="r-in"><span>  <span class="co"># Note that the required sample size changes from 11 to 5 as the true mean </span></span></span>
+<span class="r-in"><span>  <span class="co"># increases from 10 to 14.</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="va">EPA.09.Ex.21.1.aldicarb.df</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>    Month   Well Aldicarb.ppb</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 1      1 Well.1         19.9</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 2      2 Well.1         29.6</span>
@@ -252,36 +271,36 @@
 <span class="r-out co"><span class="r-pr">#&gt;</span> 10     2 Well.3          3.3</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 11     3 Well.3          2.3</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 12     4 Well.3          6.9</span>
-<span class="r-in">  <span class="co">#   Month   Well Aldicarb.ppb</span></span>
-<span class="r-in">  <span class="co">#1      1 Well.1         19.9</span></span>
-<span class="r-in">  <span class="co">#2      2 Well.1         29.6</span></span>
-<span class="r-in">  <span class="co">#3      3 Well.1         18.7</span></span>
-<span class="r-in">  <span class="co">#4      4 Well.1         24.2</span></span>
-<span class="r-in">  <span class="co">#5      1 Well.2         23.7</span></span>
-<span class="r-in">  <span class="co">#6      2 Well.2         21.9</span></span>
-<span class="r-in">  <span class="co">#7      3 Well.2         26.9</span></span>
-<span class="r-in">  <span class="co">#8      4 Well.2         26.1</span></span>
-<span class="r-in">  <span class="co">#9      1 Well.3          5.6</span></span>
-<span class="r-in">  <span class="co">#10     2 Well.3          3.3</span></span>
-<span class="r-in">  <span class="co">#11     3 Well.3          2.3</span></span>
-<span class="r-in">  <span class="co">#12     4 Well.3          6.9</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="va">sigma</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/with.html" class="external-link">with</a></span><span class="op">(</span><span class="va">EPA.09.Ex.21.1.aldicarb.df</span>, </span>
-<span class="r-in">    <span class="fu"><a href="https://rdrr.io/r/stats/sd.html" class="external-link">sd</a></span><span class="op">(</span><span class="va">Aldicarb.ppb</span><span class="op">[</span><span class="va">Well</span> <span class="op">==</span> <span class="st">"Well.3"</span><span class="op">]</span><span class="op">)</span><span class="op">)</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="va">sigma</span></span>
+<span class="r-in"><span>  <span class="co">#   Month   Well Aldicarb.ppb</span></span></span>
+<span class="r-in"><span>  <span class="co">#1      1 Well.1         19.9</span></span></span>
+<span class="r-in"><span>  <span class="co">#2      2 Well.1         29.6</span></span></span>
+<span class="r-in"><span>  <span class="co">#3      3 Well.1         18.7</span></span></span>
+<span class="r-in"><span>  <span class="co">#4      4 Well.1         24.2</span></span></span>
+<span class="r-in"><span>  <span class="co">#5      1 Well.2         23.7</span></span></span>
+<span class="r-in"><span>  <span class="co">#6      2 Well.2         21.9</span></span></span>
+<span class="r-in"><span>  <span class="co">#7      3 Well.2         26.9</span></span></span>
+<span class="r-in"><span>  <span class="co">#8      4 Well.2         26.1</span></span></span>
+<span class="r-in"><span>  <span class="co">#9      1 Well.3          5.6</span></span></span>
+<span class="r-in"><span>  <span class="co">#10     2 Well.3          3.3</span></span></span>
+<span class="r-in"><span>  <span class="co">#11     3 Well.3          2.3</span></span></span>
+<span class="r-in"><span>  <span class="co">#12     4 Well.3          6.9</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="va">sigma</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/with.html" class="external-link">with</a></span><span class="op">(</span><span class="va">EPA.09.Ex.21.1.aldicarb.df</span>, </span></span>
+<span class="r-in"><span>    <span class="fu"><a href="https://rdrr.io/r/stats/sd.html" class="external-link">sd</a></span><span class="op">(</span><span class="va">Aldicarb.ppb</span><span class="op">[</span><span class="va">Well</span> <span class="op">==</span> <span class="st">"Well.3"</span><span class="op">]</span><span class="op">)</span><span class="op">)</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="va">sigma</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] 2.101388</span>
-<span class="r-in">  <span class="co">#[1] 2.101388</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="fu">tTestN</span><span class="op">(</span>delta.over.sigma <span class="op">=</span> <span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">10</span>, <span class="fl">14</span><span class="op">)</span> <span class="op">-</span> <span class="fl">7</span><span class="op">)</span><span class="op">/</span><span class="va">sigma</span>, </span>
-<span class="r-in">    alpha <span class="op">=</span> <span class="fl">0.01</span>, sample.type<span class="op">=</span><span class="st">"one"</span>, alternative<span class="op">=</span><span class="st">"greater"</span><span class="op">)</span> </span>
+<span class="r-in"><span>  <span class="co">#[1] 2.101388</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="fu">tTestN</span><span class="op">(</span>delta.over.sigma <span class="op">=</span> <span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">10</span>, <span class="fl">14</span><span class="op">)</span> <span class="op">-</span> <span class="fl">7</span><span class="op">)</span><span class="op">/</span><span class="va">sigma</span>, </span></span>
+<span class="r-in"><span>    alpha <span class="op">=</span> <span class="fl">0.01</span>, sample.type<span class="op">=</span><span class="st">"one"</span>, alternative<span class="op">=</span><span class="st">"greater"</span><span class="op">)</span> </span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] 11  5</span>
-<span class="r-in">  <span class="co">#[1] 11  5</span></span>
-<span class="r-in"></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="co"># Clean up</span></span>
-<span class="r-in">  <span class="co">#---------</span></span>
-<span class="r-in">  <span class="fu"><a href="https://rdrr.io/r/base/rm.html" class="external-link">rm</a></span><span class="op">(</span><span class="va">sigma</span><span class="op">)</span></span>
+<span class="r-in"><span>  <span class="co">#[1] 11  5</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="co"># Clean up</span></span></span>
+<span class="r-in"><span>  <span class="co">#---------</span></span></span>
+<span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/r/base/rm.html" class="external-link">rm</a></span><span class="op">(</span><span class="va">sigma</span><span class="op">)</span></span></span>
 </code></pre></div>
     </div>
   </div>
@@ -296,7 +315,7 @@
 </div>
 
 <div class="pkgdown">
-  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.2.</p>
+  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.6.</p>
 </div>
 
       </footer></div>

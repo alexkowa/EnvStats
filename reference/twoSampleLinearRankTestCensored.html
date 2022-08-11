@@ -52,10 +52,10 @@
     </div>
 
     <div id="ref-usage">
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="fu">twoSampleLinearRankTestCensored</span><span class="op">(</span><span class="va">x</span>, <span class="va">x.censored</span>, <span class="va">y</span>, <span class="va">y.censored</span>, 
-    censoring.side <span class="op">=</span> <span class="st">"left"</span>, location.shift.null <span class="op">=</span> <span class="fl">0</span>, scale.shift.null <span class="op">=</span> <span class="fl">1</span>, 
-    alternative <span class="op">=</span> <span class="st">"two.sided"</span>, test <span class="op">=</span> <span class="st">"logrank"</span>, variance <span class="op">=</span> <span class="st">"hypergeometric"</span>, 
-    surv.est <span class="op">=</span> <span class="st">"prentice"</span>, shift.type <span class="op">=</span> <span class="st">"location"</span><span class="op">)</span></code></pre></div>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">twoSampleLinearRankTestCensored</span><span class="op">(</span><span class="va">x</span>, <span class="va">x.censored</span>, <span class="va">y</span>, <span class="va">y.censored</span>, </span>
+<span>    censoring.side <span class="op">=</span> <span class="st">"left"</span>, location.shift.null <span class="op">=</span> <span class="fl">0</span>, scale.shift.null <span class="op">=</span> <span class="fl">1</span>, </span>
+<span>    alternative <span class="op">=</span> <span class="st">"two.sided"</span>, test <span class="op">=</span> <span class="st">"logrank"</span>, variance <span class="op">=</span> <span class="st">"hypergeometric"</span>, </span>
+<span>    surv.est <span class="op">=</span> <span class="st">"prentice"</span>, shift.type <span class="op">=</span> <span class="st">"location"</span><span class="op">)</span></span></code></pre></div>
     </div>
 
     <div id="arguments">
@@ -64,7 +64,8 @@
 <dd><p>numeric vector of values for the first sample.  
   Missing (<code>NA</code>), undefined (<code>NaN</code>), and infinite (<code>Inf</code>, 
   <code>-Inf</code>) values are allowed but will be removed.</p></dd>
-<dt>x.censored</dt>
+
+  <dt>x.censored</dt>
 <dd><p>numeric or logical vector indicating which values of <code>x</code> are censored.  
   This must be the same length as <code>x</code>.  If the mode of <code>x.censored</code> is 
   <code>"logical"</code>, <code>TRUE</code> values correspond to elements of <code>x</code> that are 
@@ -73,11 +74,13 @@
   <code>1</code>'s and <code>0</code>'s; <code>1</code> corresponds to <code>TRUE</code> and <code>0</code> 
   corresponds to <code>FALSE</code>.  Missing (<code>NA</code>) values are allowed but will be 
   removed.</p></dd>
-<dt>y</dt>
+
+  <dt>y</dt>
 <dd><p>numeric vector of values for the second sample.  
   Missing (<code>NA</code>), undefined (<code>NaN</code>), and infinite (<code>Inf</code>, 
   <code>-Inf</code>) values are allowed but will be removed.</p></dd>
-<dt>y.censored</dt>
+
+  <dt>y.censored</dt>
 <dd><p>numeric or logical vector indicating which values of <code>y</code> are censored.  
   This must be the same length as <code>y</code>.  If the mode of <code>y.censored</code> is 
   <code>"logical"</code>, <code>TRUE</code> values correspond to elements of <code>y</code> that are 
@@ -86,39 +89,48 @@
   <code>1</code>'s and <code>0</code>'s; <code>1</code> corresponds to <code>TRUE</code> and <code>0</code> 
   corresponds to <code>FALSE</code>.  Missing (<code>NA</code>) values are allowed but will be 
   removed.</p></dd>
-<dt>censoring.side</dt>
+
+  <dt>censoring.side</dt>
 <dd><p>character string indicating on which side the censoring occurs for the data in 
   <code>x</code> and <code>y</code>.  The possible values are <code>"left"</code> (the default) and 
   <code>"right"</code>.</p></dd>
-<dt>location.shift.null</dt>
+
+  <dt>location.shift.null</dt>
 <dd><p>numeric scalar indicating the hypothesized value of \(\Delta\), the location 
   shift between the two distributions, under the null hypothesis.  The default value is 
   <code>location.shift.null=0</code>.  This argument is ignored if <code>shift.type="scale"</code>.</p></dd>
-<dt>scale.shift.null</dt>
+
+  <dt>scale.shift.null</dt>
 <dd><p>numeric scalar indicating the hypothesized value of \(\tau\), the scale shift 
   between the two distributions, under the null hypothesis.  The default value is <br><code>scale.shift.null=1</code>.  This argument is ignored if <code>shift.type="location"</code>.</p></dd>
-<dt>alternative</dt>
+
+  <dt>alternative</dt>
 <dd><p>character string indicating the kind of alternative hypothesis.  The possible values 
   are <code>"two.sided"</code> (the default), <code>"less"</code>, and <code>"greater"</code>.  See the 
   DETAILS section below for more information.</p></dd>
-<dt>test</dt>
+
+  <dt>test</dt>
 <dd><p>character string indicating which linear rank test to use.  The possible values are:  
   <code>"logrank"</code> (the default), <code>"tarone-ware"</code>, <code>"gehan"</code>, 
   <code>"peto-peto"</code>, <code>"normal.scores.1"</code>, <code>"normal.scores.2"</code>, 
   and <code>"generalized.sign"</code>.  See the DETAILS section below for more information.</p></dd>
-<dt>variance</dt>
+
+  <dt>variance</dt>
 <dd><p>character string indicating which kind of variance to compute for the test.  The 
   possible values are: <code>"hypergeometric"</code> (the default), <code>"permutation"</code>, 
   and <code>"asymptotic"</code>.  See the DETAILS section below for more information.</p></dd>
-<dt>surv.est</dt>
+
+  <dt>surv.est</dt>
 <dd><p>character string indicating what method to use to estimate the survival function.  
   The possible values are <code>"prentice"</code> (the default), <code>"kaplan-meier"</code>, <br><code>"peto-peto"</code>, and <code>"altshuler"</code>.  When <code>test="logrank"</code> the  
   argument <br><code>surv.est</code> is automatically set to <code>"altshuler"</code> and cannot 
   be changed by the user.  
   See the DETAILS section below for more information.</p></dd>
-<dt>shift.type</dt>
+
+  <dt>shift.type</dt>
 <dd><p>character string indicating which kind of shift is being tested.  The possible values 
   are <code>"location"</code> (the default) and <code>"scale"</code>.</p></dd>
+
 </dl></div>
     <div id="details">
     <h2>Details</h2>
@@ -295,7 +307,9 @@
     </div>
     <div id="value">
     <h2>Value</h2>
-    <p>a list of class <code>"htestCensored"</code> containing the results of the hypothesis test.  
+    
+
+<p>a list of class <code>"htestCensored"</code> containing the results of the hypothesis test.  
   See the help file for <code><a href="htestCensored.object.html">htestCensored.object</a></code> for details.</p>
     </div>
     <div id="references">
@@ -460,14 +474,14 @@
 
     <div id="ref-examples">
     <h2>Examples</h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in">  <span class="co"># The last part of the EXAMPLES section in the help file for </span></span>
-<span class="r-in">  <span class="co"># cdfCompareCensored compares the empirical distribution of copper and zinc </span></span>
-<span class="r-in">  <span class="co"># between two sites:  Alluvial Fan and Basin-Trough (Millard and Deverel, 1988).  </span></span>
-<span class="r-in">  <span class="co"># The data for this example are stored in Millard.Deverel.88.df.  Perform a </span></span>
-<span class="r-in">  <span class="co"># test to determine if there is a significant difference between these two </span></span>
-<span class="r-in">  <span class="co"># sites (perform a separate test for the copper and the zinc).</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="va">Millard.Deverel.88.df</span></span>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span>  <span class="co"># The last part of the EXAMPLES section in the help file for </span></span></span>
+<span class="r-in"><span>  <span class="co"># cdfCompareCensored compares the empirical distribution of copper and zinc </span></span></span>
+<span class="r-in"><span>  <span class="co"># between two sites:  Alluvial Fan and Basin-Trough (Millard and Deverel, 1988).  </span></span></span>
+<span class="r-in"><span>  <span class="co"># The data for this example are stored in Millard.Deverel.88.df.  Perform a </span></span></span>
+<span class="r-in"><span>  <span class="co"># test to determine if there is a significant difference between these two </span></span></span>
+<span class="r-in"><span>  <span class="co"># sites (perform a separate test for the copper and the zinc).</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="va">Millard.Deverel.88.df</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>     Cu.orig Cu Cu.censored Zn.orig  Zn Zn.censored         Zone Location</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 1       &lt; 1  1        TRUE     &lt;10  10        TRUE Alluvial.Fan        1</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 2       &lt; 1  1        TRUE       9   9       FALSE Alluvial.Fan        2</span>
@@ -587,56 +601,56 @@
 <span class="r-out co"><span class="r-pr">#&gt;</span> 116       5  5       FALSE      50  50       FALSE Basin.Trough       48</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 117      14 14       FALSE      90  90       FALSE Basin.Trough       49</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 118       4  4       FALSE      20  20       FALSE Basin.Trough       50</span>
-<span class="r-in">  <span class="co">#    Cu.orig Cu Cu.censored Zn.orig  Zn Zn.censored         Zone Location</span></span>
-<span class="r-in">  <span class="co">#1       &lt; 1  1        TRUE     &lt;10  10        TRUE Alluvial.Fan        1</span></span>
-<span class="r-in">  <span class="co">#2       &lt; 1  1        TRUE       9   9       FALSE Alluvial.Fan        2</span></span>
-<span class="r-in">  <span class="co">#3         3  3       FALSE      NA  NA       FALSE Alluvial.Fan        3</span></span>
-<span class="r-in">  <span class="co">#.</span></span>
-<span class="r-in">  <span class="co">#.</span></span>
-<span class="r-in">  <span class="co">#.</span></span>
-<span class="r-in">  <span class="co">#116       5  5       FALSE      50  50       FALSE Basin.Trough       48</span></span>
-<span class="r-in">  <span class="co">#117      14 14       FALSE      90  90       FALSE Basin.Trough       49</span></span>
-<span class="r-in">  <span class="co">#118       4  4       FALSE      20  20       FALSE Basin.Trough       50</span></span>
-<span class="r-in"></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="co">#------------------------------</span></span>
-<span class="r-in">  <span class="co"># First look at the copper data </span></span>
-<span class="r-in">  <span class="co">#------------------------------</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="va">Cu.AF</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/with.html" class="external-link">with</a></span><span class="op">(</span><span class="va">Millard.Deverel.88.df</span>, </span>
-<span class="r-in">    <span class="va">Cu</span><span class="op">[</span><span class="va">Zone</span> <span class="op">==</span> <span class="st">"Alluvial.Fan"</span><span class="op">]</span><span class="op">)</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="va">Cu.AF.cen</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/with.html" class="external-link">with</a></span><span class="op">(</span><span class="va">Millard.Deverel.88.df</span>, </span>
-<span class="r-in">    <span class="va">Cu.censored</span><span class="op">[</span><span class="va">Zone</span> <span class="op">==</span> <span class="st">"Alluvial.Fan"</span><span class="op">]</span><span class="op">)</span> </span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="va">Cu.BT</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/with.html" class="external-link">with</a></span><span class="op">(</span><span class="va">Millard.Deverel.88.df</span>, </span>
-<span class="r-in">    <span class="va">Cu</span><span class="op">[</span><span class="va">Zone</span> <span class="op">==</span> <span class="st">"Basin.Trough"</span><span class="op">]</span><span class="op">)</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="va">Cu.BT.cen</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/with.html" class="external-link">with</a></span><span class="op">(</span><span class="va">Millard.Deverel.88.df</span>, </span>
-<span class="r-in">    <span class="va">Cu.censored</span><span class="op">[</span><span class="va">Zone</span> <span class="op">==</span> <span class="st">"Basin.Trough"</span><span class="op">]</span><span class="op">)</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="co"># Note the large number of tied observations in the copper data</span></span>
-<span class="r-in">  <span class="co">#-------------------------------------------------------------- </span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="fu"><a href="https://rdrr.io/r/base/table.html" class="external-link">table</a></span><span class="op">(</span><span class="va">Cu.AF</span><span class="op">[</span><span class="op">!</span><span class="va">Cu.AF.cen</span><span class="op">]</span><span class="op">)</span> </span>
+<span class="r-in"><span>  <span class="co">#    Cu.orig Cu Cu.censored Zn.orig  Zn Zn.censored         Zone Location</span></span></span>
+<span class="r-in"><span>  <span class="co">#1       &lt; 1  1        TRUE     &lt;10  10        TRUE Alluvial.Fan        1</span></span></span>
+<span class="r-in"><span>  <span class="co">#2       &lt; 1  1        TRUE       9   9       FALSE Alluvial.Fan        2</span></span></span>
+<span class="r-in"><span>  <span class="co">#3         3  3       FALSE      NA  NA       FALSE Alluvial.Fan        3</span></span></span>
+<span class="r-in"><span>  <span class="co">#.</span></span></span>
+<span class="r-in"><span>  <span class="co">#.</span></span></span>
+<span class="r-in"><span>  <span class="co">#.</span></span></span>
+<span class="r-in"><span>  <span class="co">#116       5  5       FALSE      50  50       FALSE Basin.Trough       48</span></span></span>
+<span class="r-in"><span>  <span class="co">#117      14 14       FALSE      90  90       FALSE Basin.Trough       49</span></span></span>
+<span class="r-in"><span>  <span class="co">#118       4  4       FALSE      20  20       FALSE Basin.Trough       50</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="co">#------------------------------</span></span></span>
+<span class="r-in"><span>  <span class="co"># First look at the copper data </span></span></span>
+<span class="r-in"><span>  <span class="co">#------------------------------</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="va">Cu.AF</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/with.html" class="external-link">with</a></span><span class="op">(</span><span class="va">Millard.Deverel.88.df</span>, </span></span>
+<span class="r-in"><span>    <span class="va">Cu</span><span class="op">[</span><span class="va">Zone</span> <span class="op">==</span> <span class="st">"Alluvial.Fan"</span><span class="op">]</span><span class="op">)</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="va">Cu.AF.cen</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/with.html" class="external-link">with</a></span><span class="op">(</span><span class="va">Millard.Deverel.88.df</span>, </span></span>
+<span class="r-in"><span>    <span class="va">Cu.censored</span><span class="op">[</span><span class="va">Zone</span> <span class="op">==</span> <span class="st">"Alluvial.Fan"</span><span class="op">]</span><span class="op">)</span> </span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="va">Cu.BT</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/with.html" class="external-link">with</a></span><span class="op">(</span><span class="va">Millard.Deverel.88.df</span>, </span></span>
+<span class="r-in"><span>    <span class="va">Cu</span><span class="op">[</span><span class="va">Zone</span> <span class="op">==</span> <span class="st">"Basin.Trough"</span><span class="op">]</span><span class="op">)</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="va">Cu.BT.cen</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/with.html" class="external-link">with</a></span><span class="op">(</span><span class="va">Millard.Deverel.88.df</span>, </span></span>
+<span class="r-in"><span>    <span class="va">Cu.censored</span><span class="op">[</span><span class="va">Zone</span> <span class="op">==</span> <span class="st">"Basin.Trough"</span><span class="op">]</span><span class="op">)</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="co"># Note the large number of tied observations in the copper data</span></span></span>
+<span class="r-in"><span>  <span class="co">#-------------------------------------------------------------- </span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/r/base/table.html" class="external-link">table</a></span><span class="op">(</span><span class="va">Cu.AF</span><span class="op">[</span><span class="op">!</span><span class="va">Cu.AF.cen</span><span class="op">]</span><span class="op">)</span> </span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  1  2  3  4  5  7  8  9 10 11 12 16 20 </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  5 21  6  3  3  3  1  1  1  1  1  1  1 </span>
-<span class="r-in">  <span class="co"># 1  2  3  4  5  7  8  9 10 11 12 16 20 </span></span>
-<span class="r-in">  <span class="co"># 5 21  6  3  3  3  1  1  1  1  1  1  1</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="fu"><a href="https://rdrr.io/r/base/table.html" class="external-link">table</a></span><span class="op">(</span><span class="va">Cu.BT</span><span class="op">[</span><span class="op">!</span><span class="va">Cu.BT.cen</span><span class="op">]</span><span class="op">)</span> </span>
+<span class="r-in"><span>  <span class="co"># 1  2  3  4  5  7  8  9 10 11 12 16 20 </span></span></span>
+<span class="r-in"><span>  <span class="co"># 5 21  6  3  3  3  1  1  1  1  1  1  1</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/r/base/table.html" class="external-link">table</a></span><span class="op">(</span><span class="va">Cu.BT</span><span class="op">[</span><span class="op">!</span><span class="va">Cu.BT.cen</span><span class="op">]</span><span class="op">)</span> </span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  1  2  3  4  5  6  8  9 12 14 15 17 23 </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  7  4  8  5  1  2  1  2  1  1  1  1  1 </span>
-<span class="r-in">  <span class="co"># 1  2  3  4  5  6  8  9 12 14 15 17 23 </span></span>
-<span class="r-in">  <span class="co"># 7  4  8  5  1  2  1  2  1  1  1  1  1</span></span>
-<span class="r-in"></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="co"># Logrank test with hypergeometric variance:</span></span>
-<span class="r-in">  <span class="co">#-------------------------------------------</span></span>
-<span class="r-in">  <span class="fu">twoSampleLinearRankTestCensored</span><span class="op">(</span>x <span class="op">=</span> <span class="va">Cu.AF</span>, x.censored <span class="op">=</span> <span class="va">Cu.AF.cen</span>, </span>
-<span class="r-in">    y <span class="op">=</span> <span class="va">Cu.BT</span>, y.censored <span class="op">=</span> <span class="va">Cu.BT.cen</span><span class="op">)</span></span>
+<span class="r-in"><span>  <span class="co"># 1  2  3  4  5  6  8  9 12 14 15 17 23 </span></span></span>
+<span class="r-in"><span>  <span class="co"># 7  4  8  5  1  2  1  2  1  1  1  1  1</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="co"># Logrank test with hypergeometric variance:</span></span></span>
+<span class="r-in"><span>  <span class="co">#-------------------------------------------</span></span></span>
+<span class="r-in"><span>  <span class="fu">twoSampleLinearRankTestCensored</span><span class="op">(</span>x <span class="op">=</span> <span class="va">Cu.AF</span>, x.censored <span class="op">=</span> <span class="va">Cu.AF.cen</span>, </span></span>
+<span class="r-in"><span>    y <span class="op">=</span> <span class="va">Cu.BT</span>, y.censored <span class="op">=</span> <span class="va">Cu.BT.cen</span><span class="op">)</span></span></span>
 <span class="r-wrn co"><span class="r-pr">#&gt;</span> <span class="warning">Warning: </span>3 observations with NA/NaN/Inf in 'x' and/or 'x.censored' removed.</span>
 <span class="r-wrn co"><span class="r-pr">#&gt;</span> <span class="warning">Warning: </span>1 observations with NA/NaN/Inf in 'y' and/or 'y.censored' removed.</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> $statistic</span>
@@ -698,108 +712,108 @@
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> attr(,"class")</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] "htestCensored"</span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="co">#Results of Hypothesis Test</span></span>
-<span class="r-in">  <span class="co">#Based on Censored Data</span></span>
-<span class="r-in">  <span class="co">#--------------------------</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Null Hypothesis:                 Fy(t) = Fx(t)</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Alternative Hypothesis:          Fy(t) != Fx(t) for at least one t</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Test Name:                       Two-Sample Linear Rank Test:</span></span>
-<span class="r-in">  <span class="co">#                                 Logrank Test</span></span>
-<span class="r-in">  <span class="co">#                                 with Hypergeometric Variance</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Censoring Side:                  left</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Censoring Level(s):              x =  1  5 10 20 </span></span>
-<span class="r-in">  <span class="co">#                                 y =  1  2  5 10 15 </span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Data:                            x = Cu.AF</span></span>
-<span class="r-in">  <span class="co">#                                 y = Cu.BT</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Censoring Variable:              x = Cu.AF.cen</span></span>
-<span class="r-in">  <span class="co">#                                 y = Cu.BT.cen</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Number NA/NaN/Inf's Removed:     x = 3</span></span>
-<span class="r-in">  <span class="co">#                                 y = 1</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Sample Sizes:                    nx = 65</span></span>
-<span class="r-in">  <span class="co">#                                 ny = 49</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Percent Censored:                x = 26.2%</span></span>
-<span class="r-in">  <span class="co">#                                 y = 28.6%</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Test Statistics:                 nu     = -1.8791355</span></span>
-<span class="r-in">  <span class="co">#                                 var.nu = 13.6533490</span></span>
-<span class="r-in">  <span class="co">#                                 z      = -0.5085557</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#P-value:                         0.6110637</span></span>
-<span class="r-in"></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="co"># Compare the p-values produced by the Normal Scores 2 test</span></span>
-<span class="r-in">  <span class="co"># using the hypergeomtric vs. permutation variance estimates.</span></span>
-<span class="r-in">  <span class="co"># Note how much larger the estimated variance is based on</span></span>
-<span class="r-in">  <span class="co"># the permuation variance estimate:</span></span>
-<span class="r-in">  <span class="co">#-----------------------------------------------------------</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="fu">twoSampleLinearRankTestCensored</span><span class="op">(</span>x <span class="op">=</span> <span class="va">Cu.AF</span>, x.censored <span class="op">=</span> <span class="va">Cu.AF.cen</span>, </span>
-<span class="r-in">    y <span class="op">=</span> <span class="va">Cu.BT</span>, y.censored <span class="op">=</span> <span class="va">Cu.BT.cen</span>, </span>
-<span class="r-in">    test <span class="op">=</span> <span class="st">"normal.scores.2"</span><span class="op">)</span><span class="op">$</span><span class="va">p.value</span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="co">#Results of Hypothesis Test</span></span></span>
+<span class="r-in"><span>  <span class="co">#Based on Censored Data</span></span></span>
+<span class="r-in"><span>  <span class="co">#--------------------------</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Null Hypothesis:                 Fy(t) = Fx(t)</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Alternative Hypothesis:          Fy(t) != Fx(t) for at least one t</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Test Name:                       Two-Sample Linear Rank Test:</span></span></span>
+<span class="r-in"><span>  <span class="co">#                                 Logrank Test</span></span></span>
+<span class="r-in"><span>  <span class="co">#                                 with Hypergeometric Variance</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Censoring Side:                  left</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Censoring Level(s):              x =  1  5 10 20 </span></span></span>
+<span class="r-in"><span>  <span class="co">#                                 y =  1  2  5 10 15 </span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Data:                            x = Cu.AF</span></span></span>
+<span class="r-in"><span>  <span class="co">#                                 y = Cu.BT</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Censoring Variable:              x = Cu.AF.cen</span></span></span>
+<span class="r-in"><span>  <span class="co">#                                 y = Cu.BT.cen</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Number NA/NaN/Inf's Removed:     x = 3</span></span></span>
+<span class="r-in"><span>  <span class="co">#                                 y = 1</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Sample Sizes:                    nx = 65</span></span></span>
+<span class="r-in"><span>  <span class="co">#                                 ny = 49</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Percent Censored:                x = 26.2%</span></span></span>
+<span class="r-in"><span>  <span class="co">#                                 y = 28.6%</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Test Statistics:                 nu     = -1.8791355</span></span></span>
+<span class="r-in"><span>  <span class="co">#                                 var.nu = 13.6533490</span></span></span>
+<span class="r-in"><span>  <span class="co">#                                 z      = -0.5085557</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#P-value:                         0.6110637</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="co"># Compare the p-values produced by the Normal Scores 2 test</span></span></span>
+<span class="r-in"><span>  <span class="co"># using the hypergeomtric vs. permutation variance estimates.</span></span></span>
+<span class="r-in"><span>  <span class="co"># Note how much larger the estimated variance is based on</span></span></span>
+<span class="r-in"><span>  <span class="co"># the permuation variance estimate:</span></span></span>
+<span class="r-in"><span>  <span class="co">#-----------------------------------------------------------</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="fu">twoSampleLinearRankTestCensored</span><span class="op">(</span>x <span class="op">=</span> <span class="va">Cu.AF</span>, x.censored <span class="op">=</span> <span class="va">Cu.AF.cen</span>, </span></span>
+<span class="r-in"><span>    y <span class="op">=</span> <span class="va">Cu.BT</span>, y.censored <span class="op">=</span> <span class="va">Cu.BT.cen</span>, </span></span>
+<span class="r-in"><span>    test <span class="op">=</span> <span class="st">"normal.scores.2"</span><span class="op">)</span><span class="op">$</span><span class="va">p.value</span></span></span>
 <span class="r-wrn co"><span class="r-pr">#&gt;</span> <span class="warning">Warning: </span>3 observations with NA/NaN/Inf in 'x' and/or 'x.censored' removed.</span>
 <span class="r-wrn co"><span class="r-pr">#&gt;</span> <span class="warning">Warning: </span>1 observations with NA/NaN/Inf in 'y' and/or 'y.censored' removed.</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] 0.2008913</span>
-<span class="r-in">  <span class="co">#[1] 0.2008913</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="fu">twoSampleLinearRankTestCensored</span><span class="op">(</span>x <span class="op">=</span> <span class="va">Cu.AF</span>, x.censored <span class="op">=</span> <span class="va">Cu.AF.cen</span>, </span>
-<span class="r-in">    y <span class="op">=</span> <span class="va">Cu.BT</span>, y.censored <span class="op">=</span> <span class="va">Cu.BT.cen</span>, </span>
-<span class="r-in">    test <span class="op">=</span> <span class="st">"normal.scores.2"</span>, variance <span class="op">=</span> <span class="st">"permutation"</span><span class="op">)</span><span class="op">$</span><span class="va">p.value</span></span>
+<span class="r-in"><span>  <span class="co">#[1] 0.2008913</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="fu">twoSampleLinearRankTestCensored</span><span class="op">(</span>x <span class="op">=</span> <span class="va">Cu.AF</span>, x.censored <span class="op">=</span> <span class="va">Cu.AF.cen</span>, </span></span>
+<span class="r-in"><span>    y <span class="op">=</span> <span class="va">Cu.BT</span>, y.censored <span class="op">=</span> <span class="va">Cu.BT.cen</span>, </span></span>
+<span class="r-in"><span>    test <span class="op">=</span> <span class="st">"normal.scores.2"</span>, variance <span class="op">=</span> <span class="st">"permutation"</span><span class="op">)</span><span class="op">$</span><span class="va">p.value</span></span></span>
 <span class="r-wrn co"><span class="r-pr">#&gt;</span> <span class="warning">Warning: </span>3 observations with NA/NaN/Inf in 'x' and/or 'x.censored' removed.</span>
 <span class="r-wrn co"><span class="r-pr">#&gt;</span> <span class="warning">Warning: </span>1 observations with NA/NaN/Inf in 'y' and/or 'y.censored' removed.</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] 0.657001</span>
-<span class="r-in">  <span class="co">#[1] [1] 0.657001</span></span>
-<span class="r-in"></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="co">#--------------------------</span></span>
-<span class="r-in">  <span class="co"># Now look at the zinc data</span></span>
-<span class="r-in">  <span class="co">#--------------------------</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="va">Zn.AF</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/with.html" class="external-link">with</a></span><span class="op">(</span><span class="va">Millard.Deverel.88.df</span>, </span>
-<span class="r-in">    <span class="va">Zn</span><span class="op">[</span><span class="va">Zone</span> <span class="op">==</span> <span class="st">"Alluvial.Fan"</span><span class="op">]</span><span class="op">)</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="va">Zn.AF.cen</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/with.html" class="external-link">with</a></span><span class="op">(</span><span class="va">Millard.Deverel.88.df</span>, </span>
-<span class="r-in">    <span class="va">Zn.censored</span><span class="op">[</span><span class="va">Zone</span> <span class="op">==</span> <span class="st">"Alluvial.Fan"</span><span class="op">]</span><span class="op">)</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="va">Zn.BT</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/with.html" class="external-link">with</a></span><span class="op">(</span><span class="va">Millard.Deverel.88.df</span>, </span>
-<span class="r-in">    <span class="va">Zn</span><span class="op">[</span><span class="va">Zone</span> <span class="op">==</span> <span class="st">"Basin.Trough"</span><span class="op">]</span><span class="op">)</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="va">Zn.BT.cen</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/with.html" class="external-link">with</a></span><span class="op">(</span><span class="va">Millard.Deverel.88.df</span>, </span>
-<span class="r-in">    <span class="va">Zn.censored</span><span class="op">[</span><span class="va">Zone</span> <span class="op">==</span> <span class="st">"Basin.Trough"</span><span class="op">]</span><span class="op">)</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="co"># Note the moderate number of tied observations in the zinc data, </span></span>
-<span class="r-in">  <span class="co"># and the "outlier" of 620 in the Alluvial Fan data.</span></span>
-<span class="r-in">  <span class="co">#--------------------------------------------------------------- </span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="fu"><a href="https://rdrr.io/r/base/table.html" class="external-link">table</a></span><span class="op">(</span><span class="va">Zn.AF</span><span class="op">[</span><span class="op">!</span><span class="va">Zn.AF.cen</span><span class="op">]</span><span class="op">)</span> </span>
+<span class="r-in"><span>  <span class="co">#[1] [1] 0.657001</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="co">#--------------------------</span></span></span>
+<span class="r-in"><span>  <span class="co"># Now look at the zinc data</span></span></span>
+<span class="r-in"><span>  <span class="co">#--------------------------</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="va">Zn.AF</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/with.html" class="external-link">with</a></span><span class="op">(</span><span class="va">Millard.Deverel.88.df</span>, </span></span>
+<span class="r-in"><span>    <span class="va">Zn</span><span class="op">[</span><span class="va">Zone</span> <span class="op">==</span> <span class="st">"Alluvial.Fan"</span><span class="op">]</span><span class="op">)</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="va">Zn.AF.cen</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/with.html" class="external-link">with</a></span><span class="op">(</span><span class="va">Millard.Deverel.88.df</span>, </span></span>
+<span class="r-in"><span>    <span class="va">Zn.censored</span><span class="op">[</span><span class="va">Zone</span> <span class="op">==</span> <span class="st">"Alluvial.Fan"</span><span class="op">]</span><span class="op">)</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="va">Zn.BT</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/with.html" class="external-link">with</a></span><span class="op">(</span><span class="va">Millard.Deverel.88.df</span>, </span></span>
+<span class="r-in"><span>    <span class="va">Zn</span><span class="op">[</span><span class="va">Zone</span> <span class="op">==</span> <span class="st">"Basin.Trough"</span><span class="op">]</span><span class="op">)</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="va">Zn.BT.cen</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/with.html" class="external-link">with</a></span><span class="op">(</span><span class="va">Millard.Deverel.88.df</span>, </span></span>
+<span class="r-in"><span>    <span class="va">Zn.censored</span><span class="op">[</span><span class="va">Zone</span> <span class="op">==</span> <span class="st">"Basin.Trough"</span><span class="op">]</span><span class="op">)</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="co"># Note the moderate number of tied observations in the zinc data, </span></span></span>
+<span class="r-in"><span>  <span class="co"># and the "outlier" of 620 in the Alluvial Fan data.</span></span></span>
+<span class="r-in"><span>  <span class="co">#--------------------------------------------------------------- </span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/r/base/table.html" class="external-link">table</a></span><span class="op">(</span><span class="va">Zn.AF</span><span class="op">[</span><span class="op">!</span><span class="va">Zn.AF.cen</span><span class="op">]</span><span class="op">)</span> </span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   5   7   8   9  10  11  12  17  18  19  20  23  29  30  33  40  50 620 </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   1   1   1   1  20   2   1   1   1   1  14   1   1   1   1   1   1   1 </span>
-<span class="r-in">  <span class="co">#  5   7   8   9  10  11  12  17  18  19  20  23  29  30  33  40  50 620 </span></span>
-<span class="r-in">  <span class="co">#  1   1   1   1  20   2   1   1   1   1  14   1   1   1   1   1   1   1 </span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="fu"><a href="https://rdrr.io/r/base/table.html" class="external-link">table</a></span><span class="op">(</span><span class="va">Zn.BT</span><span class="op">[</span><span class="op">!</span><span class="va">Zn.BT.cen</span><span class="op">]</span><span class="op">)</span> </span>
+<span class="r-in"><span>  <span class="co">#  5   7   8   9  10  11  12  17  18  19  20  23  29  30  33  40  50 620 </span></span></span>
+<span class="r-in"><span>  <span class="co">#  1   1   1   1  20   2   1   1   1   1  14   1   1   1   1   1   1   1 </span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/r/base/table.html" class="external-link">table</a></span><span class="op">(</span><span class="va">Zn.BT</span><span class="op">[</span><span class="op">!</span><span class="va">Zn.BT.cen</span><span class="op">]</span><span class="op">)</span> </span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  3  4  5  6  8 10 11 12 13 14 15 17 20 25 30 40 50 60 70 90 </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  2  2  2  1  1  5  1  2  1  1  1  2 11  1  4  3  2  2  1  1 </span>
-<span class="r-in">  <span class="co"># 3  4  5  6  8 10 11 12 13 14 15 17 20 25 30 40 50 60 70 90 </span></span>
-<span class="r-in">  <span class="co"># 2  2  2  1  1  5  1  2  1  1  1  2 11  1  4  3  2  2  1  1</span></span>
-<span class="r-in"></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="co"># Logrank test with hypergeometric variance:</span></span>
-<span class="r-in">  <span class="co">#-------------------------------------------</span></span>
-<span class="r-in">  <span class="fu">twoSampleLinearRankTestCensored</span><span class="op">(</span>x <span class="op">=</span> <span class="va">Zn.AF</span>, x.censored <span class="op">=</span> <span class="va">Zn.AF.cen</span>, </span>
-<span class="r-in">    y <span class="op">=</span> <span class="va">Zn.BT</span>, y.censored <span class="op">=</span> <span class="va">Zn.BT.cen</span><span class="op">)</span></span>
+<span class="r-in"><span>  <span class="co"># 3  4  5  6  8 10 11 12 13 14 15 17 20 25 30 40 50 60 70 90 </span></span></span>
+<span class="r-in"><span>  <span class="co"># 2  2  2  1  1  5  1  2  1  1  1  2 11  1  4  3  2  2  1  1</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="co"># Logrank test with hypergeometric variance:</span></span></span>
+<span class="r-in"><span>  <span class="co">#-------------------------------------------</span></span></span>
+<span class="r-in"><span>  <span class="fu">twoSampleLinearRankTestCensored</span><span class="op">(</span>x <span class="op">=</span> <span class="va">Zn.AF</span>, x.censored <span class="op">=</span> <span class="va">Zn.AF.cen</span>, </span></span>
+<span class="r-in"><span>    y <span class="op">=</span> <span class="va">Zn.BT</span>, y.censored <span class="op">=</span> <span class="va">Zn.BT.cen</span><span class="op">)</span></span></span>
 <span class="r-wrn co"><span class="r-pr">#&gt;</span> <span class="warning">Warning: </span>1 observations with NA/NaN/Inf in 'x' and/or 'x.censored' removed.</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> $statistic</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>        nu    var.nu         z </span>
@@ -860,97 +874,97 @@
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> attr(,"class")</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] "htestCensored"</span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="co">#Results of Hypothesis Test</span></span>
-<span class="r-in">  <span class="co">#Based on Censored Data</span></span>
-<span class="r-in">  <span class="co">#--------------------------</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Null Hypothesis:                 Fy(t) = Fx(t)</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Alternative Hypothesis:          Fy(t) != Fx(t) for at least one t</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Test Name:                       Two-Sample Linear Rank Test:</span></span>
-<span class="r-in">  <span class="co">#                                 Logrank Test</span></span>
-<span class="r-in">  <span class="co">#                                 with Hypergeometric Variance</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Censoring Side:                  left</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Censoring Level(s):              x =  3 10 </span></span>
-<span class="r-in">  <span class="co">#                                 y =  3 10 </span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Data:                            x = Zn.AF</span></span>
-<span class="r-in">  <span class="co">#                                 y = Zn.BT</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Censoring Variable:              x = Zn.AF.cen</span></span>
-<span class="r-in">  <span class="co">#                                 y = Zn.BT.cen</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Number NA/NaN/Inf's Removed:     x = 1</span></span>
-<span class="r-in">  <span class="co">#                                 y = 0</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Sample Sizes:                    nx = 67</span></span>
-<span class="r-in">  <span class="co">#                                 ny = 50</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Percent Censored:                x = 23.9%</span></span>
-<span class="r-in">  <span class="co">#                                 y =  8.0%</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Test Statistics:                 nu     = -6.992999</span></span>
-<span class="r-in">  <span class="co">#                                 var.nu = 17.203227</span></span>
-<span class="r-in">  <span class="co">#                                 z      = -1.686004</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#P-value:                         0.09179512</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="co">#----------</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="co"># Compare the p-values produced by the Logrank, Gehan, Peto-Peto, </span></span>
-<span class="r-in">  <span class="co"># and Tarone-Ware tests using the hypergeometric variance.</span></span>
-<span class="r-in">  <span class="co">#-----------------------------------------------------------</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="fu">twoSampleLinearRankTestCensored</span><span class="op">(</span>x <span class="op">=</span> <span class="va">Zn.AF</span>, x.censored <span class="op">=</span> <span class="va">Zn.AF.cen</span>, </span>
-<span class="r-in">    y <span class="op">=</span> <span class="va">Zn.BT</span>, y.censored <span class="op">=</span> <span class="va">Zn.BT.cen</span>, </span>
-<span class="r-in">    test <span class="op">=</span> <span class="st">"logrank"</span><span class="op">)</span><span class="op">$</span><span class="va">p.value</span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="co">#Results of Hypothesis Test</span></span></span>
+<span class="r-in"><span>  <span class="co">#Based on Censored Data</span></span></span>
+<span class="r-in"><span>  <span class="co">#--------------------------</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Null Hypothesis:                 Fy(t) = Fx(t)</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Alternative Hypothesis:          Fy(t) != Fx(t) for at least one t</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Test Name:                       Two-Sample Linear Rank Test:</span></span></span>
+<span class="r-in"><span>  <span class="co">#                                 Logrank Test</span></span></span>
+<span class="r-in"><span>  <span class="co">#                                 with Hypergeometric Variance</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Censoring Side:                  left</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Censoring Level(s):              x =  3 10 </span></span></span>
+<span class="r-in"><span>  <span class="co">#                                 y =  3 10 </span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Data:                            x = Zn.AF</span></span></span>
+<span class="r-in"><span>  <span class="co">#                                 y = Zn.BT</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Censoring Variable:              x = Zn.AF.cen</span></span></span>
+<span class="r-in"><span>  <span class="co">#                                 y = Zn.BT.cen</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Number NA/NaN/Inf's Removed:     x = 1</span></span></span>
+<span class="r-in"><span>  <span class="co">#                                 y = 0</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Sample Sizes:                    nx = 67</span></span></span>
+<span class="r-in"><span>  <span class="co">#                                 ny = 50</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Percent Censored:                x = 23.9%</span></span></span>
+<span class="r-in"><span>  <span class="co">#                                 y =  8.0%</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Test Statistics:                 nu     = -6.992999</span></span></span>
+<span class="r-in"><span>  <span class="co">#                                 var.nu = 17.203227</span></span></span>
+<span class="r-in"><span>  <span class="co">#                                 z      = -1.686004</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#P-value:                         0.09179512</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="co">#----------</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="co"># Compare the p-values produced by the Logrank, Gehan, Peto-Peto, </span></span></span>
+<span class="r-in"><span>  <span class="co"># and Tarone-Ware tests using the hypergeometric variance.</span></span></span>
+<span class="r-in"><span>  <span class="co">#-----------------------------------------------------------</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="fu">twoSampleLinearRankTestCensored</span><span class="op">(</span>x <span class="op">=</span> <span class="va">Zn.AF</span>, x.censored <span class="op">=</span> <span class="va">Zn.AF.cen</span>, </span></span>
+<span class="r-in"><span>    y <span class="op">=</span> <span class="va">Zn.BT</span>, y.censored <span class="op">=</span> <span class="va">Zn.BT.cen</span>, </span></span>
+<span class="r-in"><span>    test <span class="op">=</span> <span class="st">"logrank"</span><span class="op">)</span><span class="op">$</span><span class="va">p.value</span></span></span>
 <span class="r-wrn co"><span class="r-pr">#&gt;</span> <span class="warning">Warning: </span>1 observations with NA/NaN/Inf in 'x' and/or 'x.censored' removed.</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] 0.09179512</span>
-<span class="r-in">  <span class="co">#[1] 0.09179512</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="fu">twoSampleLinearRankTestCensored</span><span class="op">(</span>x <span class="op">=</span> <span class="va">Zn.AF</span>, x.censored <span class="op">=</span> <span class="va">Zn.AF.cen</span>, </span>
-<span class="r-in">    y <span class="op">=</span> <span class="va">Zn.BT</span>, y.censored <span class="op">=</span> <span class="va">Zn.BT.cen</span>, </span>
-<span class="r-in">    test <span class="op">=</span> <span class="st">"gehan"</span><span class="op">)</span><span class="op">$</span><span class="va">p.value</span></span>
+<span class="r-in"><span>  <span class="co">#[1] 0.09179512</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="fu">twoSampleLinearRankTestCensored</span><span class="op">(</span>x <span class="op">=</span> <span class="va">Zn.AF</span>, x.censored <span class="op">=</span> <span class="va">Zn.AF.cen</span>, </span></span>
+<span class="r-in"><span>    y <span class="op">=</span> <span class="va">Zn.BT</span>, y.censored <span class="op">=</span> <span class="va">Zn.BT.cen</span>, </span></span>
+<span class="r-in"><span>    test <span class="op">=</span> <span class="st">"gehan"</span><span class="op">)</span><span class="op">$</span><span class="va">p.value</span></span></span>
 <span class="r-wrn co"><span class="r-pr">#&gt;</span> <span class="warning">Warning: </span>1 observations with NA/NaN/Inf in 'x' and/or 'x.censored' removed.</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] 0.0185445</span>
-<span class="r-in">  <span class="co">#[1] 0.0185445</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="fu">twoSampleLinearRankTestCensored</span><span class="op">(</span>x <span class="op">=</span> <span class="va">Zn.AF</span>, x.censored <span class="op">=</span> <span class="va">Zn.AF.cen</span>, </span>
-<span class="r-in">    y <span class="op">=</span> <span class="va">Zn.BT</span>, y.censored <span class="op">=</span> <span class="va">Zn.BT.cen</span>, </span>
-<span class="r-in">    test <span class="op">=</span> <span class="st">"peto-peto"</span><span class="op">)</span><span class="op">$</span><span class="va">p.value</span></span>
+<span class="r-in"><span>  <span class="co">#[1] 0.0185445</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="fu">twoSampleLinearRankTestCensored</span><span class="op">(</span>x <span class="op">=</span> <span class="va">Zn.AF</span>, x.censored <span class="op">=</span> <span class="va">Zn.AF.cen</span>, </span></span>
+<span class="r-in"><span>    y <span class="op">=</span> <span class="va">Zn.BT</span>, y.censored <span class="op">=</span> <span class="va">Zn.BT.cen</span>, </span></span>
+<span class="r-in"><span>    test <span class="op">=</span> <span class="st">"peto-peto"</span><span class="op">)</span><span class="op">$</span><span class="va">p.value</span></span></span>
 <span class="r-wrn co"><span class="r-pr">#&gt;</span> <span class="warning">Warning: </span>1 observations with NA/NaN/Inf in 'x' and/or 'x.censored' removed.</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] 0.009704529</span>
-<span class="r-in">  <span class="co">#[1] 0.009704529</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="fu">twoSampleLinearRankTestCensored</span><span class="op">(</span>x <span class="op">=</span> <span class="va">Zn.AF</span>, x.censored <span class="op">=</span> <span class="va">Zn.AF.cen</span>, </span>
-<span class="r-in">    y <span class="op">=</span> <span class="va">Zn.BT</span>, y.censored <span class="op">=</span> <span class="va">Zn.BT.cen</span>, </span>
-<span class="r-in">    test <span class="op">=</span> <span class="st">"tarone-ware"</span><span class="op">)</span><span class="op">$</span><span class="va">p.value</span></span>
+<span class="r-in"><span>  <span class="co">#[1] 0.009704529</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="fu">twoSampleLinearRankTestCensored</span><span class="op">(</span>x <span class="op">=</span> <span class="va">Zn.AF</span>, x.censored <span class="op">=</span> <span class="va">Zn.AF.cen</span>, </span></span>
+<span class="r-in"><span>    y <span class="op">=</span> <span class="va">Zn.BT</span>, y.censored <span class="op">=</span> <span class="va">Zn.BT.cen</span>, </span></span>
+<span class="r-in"><span>    test <span class="op">=</span> <span class="st">"tarone-ware"</span><span class="op">)</span><span class="op">$</span><span class="va">p.value</span></span></span>
 <span class="r-wrn co"><span class="r-pr">#&gt;</span> <span class="warning">Warning: </span>1 observations with NA/NaN/Inf in 'x' and/or 'x.censored' removed.</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] 0.03457803</span>
-<span class="r-in">  <span class="co">#[1] 0.03457803</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="co">#----------</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="co"># Clean up</span></span>
-<span class="r-in">  <span class="co">#---------</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="fu"><a href="https://rdrr.io/r/base/rm.html" class="external-link">rm</a></span><span class="op">(</span><span class="va">Cu.AF</span>, <span class="va">Cu.AF.cen</span>, <span class="va">Cu.BT</span>, <span class="va">Cu.BT.cen</span>, </span>
-<span class="r-in">     <span class="va">Zn.AF</span>, <span class="va">Zn.AF.cen</span>, <span class="va">Zn.BT</span>, <span class="va">Zn.BT.cen</span><span class="op">)</span></span>
-<span class="r-in"></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="co">#==========</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="co"># Example 16.5 on pages 16-22 to 16.23 of USEPA (2009) shows how to perform </span></span>
-<span class="r-in">  <span class="co"># the Tarone-Ware two sample linear rank test based on censored data using </span></span>
-<span class="r-in">  <span class="co"># observations on tetrachloroethylene (PCE) (ppb) collected at one background </span></span>
-<span class="r-in">  <span class="co"># and one compliance well.  The data for this example are stored in </span></span>
-<span class="r-in">  <span class="co"># EPA.09.Ex.16.5.PCE.df.</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="va">EPA.09.Ex.16.5.PCE.df</span></span>
+<span class="r-in"><span>  <span class="co">#[1] 0.03457803</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="co">#----------</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="co"># Clean up</span></span></span>
+<span class="r-in"><span>  <span class="co">#---------</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/r/base/rm.html" class="external-link">rm</a></span><span class="op">(</span><span class="va">Cu.AF</span>, <span class="va">Cu.AF.cen</span>, <span class="va">Cu.BT</span>, <span class="va">Cu.BT.cen</span>, </span></span>
+<span class="r-in"><span>     <span class="va">Zn.AF</span>, <span class="va">Zn.AF.cen</span>, <span class="va">Zn.BT</span>, <span class="va">Zn.BT.cen</span><span class="op">)</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="co">#==========</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="co"># Example 16.5 on pages 16-22 to 16.23 of USEPA (2009) shows how to perform </span></span></span>
+<span class="r-in"><span>  <span class="co"># the Tarone-Ware two sample linear rank test based on censored data using </span></span></span>
+<span class="r-in"><span>  <span class="co"># observations on tetrachloroethylene (PCE) (ppb) collected at one background </span></span></span>
+<span class="r-in"><span>  <span class="co"># and one compliance well.  The data for this example are stored in </span></span></span>
+<span class="r-in"><span>  <span class="co"># EPA.09.Ex.16.5.PCE.df.</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="va">EPA.09.Ex.16.5.PCE.df</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>     Well.type PCE.Orig.ppb PCE.ppb Censored</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 1  Background           &lt;4     4.0     TRUE</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 2  Background          1.5     1.5    FALSE</span>
@@ -966,30 +980,30 @@
 <span class="r-out co"><span class="r-pr">#&gt;</span> 12 Compliance           10    10.0    FALSE</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 13 Compliance          6.8     6.8    FALSE</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 14 Compliance           &lt;5     5.0     TRUE</span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="co">#    Well.type PCE.Orig.ppb PCE.ppb Censored</span></span>
-<span class="r-in">  <span class="co">#1  Background           &lt;4     4.0     TRUE</span></span>
-<span class="r-in">  <span class="co">#2  Background          1.5     1.5    FALSE</span></span>
-<span class="r-in">  <span class="co">#3  Background           &lt;2     2.0     TRUE</span></span>
-<span class="r-in">  <span class="co">#4  Background          8.7     8.7    FALSE</span></span>
-<span class="r-in">  <span class="co">#5  Background          5.1     5.1    FALSE</span></span>
-<span class="r-in">  <span class="co">#6  Background           &lt;5     5.0     TRUE</span></span>
-<span class="r-in">  <span class="co">#7  Compliance          6.4     6.4    FALSE</span></span>
-<span class="r-in">  <span class="co">#8  Compliance         10.9    10.9    FALSE</span></span>
-<span class="r-in">  <span class="co">#9  Compliance            7     7.0    FALSE</span></span>
-<span class="r-in">  <span class="co">#10 Compliance         14.3    14.3    FALSE</span></span>
-<span class="r-in">  <span class="co">#11 Compliance          1.9     1.9    FALSE</span></span>
-<span class="r-in">  <span class="co">#12 Compliance           10    10.0    FALSE</span></span>
-<span class="r-in">  <span class="co">#13 Compliance          6.8     6.8    FALSE</span></span>
-<span class="r-in">  <span class="co">#14 Compliance           &lt;5     5.0     TRUE</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="fu"><a href="https://rdrr.io/r/base/with.html" class="external-link">with</a></span><span class="op">(</span><span class="va">EPA.09.Ex.16.5.PCE.df</span>, </span>
-<span class="r-in">    <span class="fu">twoSampleLinearRankTestCensored</span><span class="op">(</span></span>
-<span class="r-in">      x <span class="op">=</span> <span class="va">PCE.ppb</span><span class="op">[</span><span class="va">Well.type</span> <span class="op">==</span> <span class="st">"Compliance"</span><span class="op">]</span>, </span>
-<span class="r-in">      x.censored <span class="op">=</span> <span class="va">Censored</span><span class="op">[</span><span class="va">Well.type</span> <span class="op">==</span> <span class="st">"Compliance"</span><span class="op">]</span>, </span>
-<span class="r-in">      y <span class="op">=</span> <span class="va">PCE.ppb</span><span class="op">[</span><span class="va">Well.type</span> <span class="op">==</span> <span class="st">"Background"</span><span class="op">]</span>, </span>
-<span class="r-in">      y.censored <span class="op">=</span> <span class="va">Censored</span><span class="op">[</span><span class="va">Well.type</span> <span class="op">==</span> <span class="st">"Background"</span><span class="op">]</span>, </span>
-<span class="r-in">      test <span class="op">=</span> <span class="st">"tarone-ware"</span>, alternative <span class="op">=</span> <span class="st">"greater"</span><span class="op">)</span><span class="op">)</span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="co">#    Well.type PCE.Orig.ppb PCE.ppb Censored</span></span></span>
+<span class="r-in"><span>  <span class="co">#1  Background           &lt;4     4.0     TRUE</span></span></span>
+<span class="r-in"><span>  <span class="co">#2  Background          1.5     1.5    FALSE</span></span></span>
+<span class="r-in"><span>  <span class="co">#3  Background           &lt;2     2.0     TRUE</span></span></span>
+<span class="r-in"><span>  <span class="co">#4  Background          8.7     8.7    FALSE</span></span></span>
+<span class="r-in"><span>  <span class="co">#5  Background          5.1     5.1    FALSE</span></span></span>
+<span class="r-in"><span>  <span class="co">#6  Background           &lt;5     5.0     TRUE</span></span></span>
+<span class="r-in"><span>  <span class="co">#7  Compliance          6.4     6.4    FALSE</span></span></span>
+<span class="r-in"><span>  <span class="co">#8  Compliance         10.9    10.9    FALSE</span></span></span>
+<span class="r-in"><span>  <span class="co">#9  Compliance            7     7.0    FALSE</span></span></span>
+<span class="r-in"><span>  <span class="co">#10 Compliance         14.3    14.3    FALSE</span></span></span>
+<span class="r-in"><span>  <span class="co">#11 Compliance          1.9     1.9    FALSE</span></span></span>
+<span class="r-in"><span>  <span class="co">#12 Compliance           10    10.0    FALSE</span></span></span>
+<span class="r-in"><span>  <span class="co">#13 Compliance          6.8     6.8    FALSE</span></span></span>
+<span class="r-in"><span>  <span class="co">#14 Compliance           &lt;5     5.0     TRUE</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/r/base/with.html" class="external-link">with</a></span><span class="op">(</span><span class="va">EPA.09.Ex.16.5.PCE.df</span>, </span></span>
+<span class="r-in"><span>    <span class="fu">twoSampleLinearRankTestCensored</span><span class="op">(</span></span></span>
+<span class="r-in"><span>      x <span class="op">=</span> <span class="va">PCE.ppb</span><span class="op">[</span><span class="va">Well.type</span> <span class="op">==</span> <span class="st">"Compliance"</span><span class="op">]</span>, </span></span>
+<span class="r-in"><span>      x.censored <span class="op">=</span> <span class="va">Censored</span><span class="op">[</span><span class="va">Well.type</span> <span class="op">==</span> <span class="st">"Compliance"</span><span class="op">]</span>, </span></span>
+<span class="r-in"><span>      y <span class="op">=</span> <span class="va">PCE.ppb</span><span class="op">[</span><span class="va">Well.type</span> <span class="op">==</span> <span class="st">"Background"</span><span class="op">]</span>, </span></span>
+<span class="r-in"><span>      y.censored <span class="op">=</span> <span class="va">Censored</span><span class="op">[</span><span class="va">Well.type</span> <span class="op">==</span> <span class="st">"Background"</span><span class="op">]</span>, </span></span>
+<span class="r-in"><span>      test <span class="op">=</span> <span class="st">"tarone-ware"</span>, alternative <span class="op">=</span> <span class="st">"greater"</span><span class="op">)</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> $statistic</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>        nu    var.nu         z </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  8.458912 20.912407  1.849748 </span>
@@ -1049,122 +1063,122 @@
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> attr(,"class")</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] "htestCensored"</span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="co">#Results of Hypothesis Test</span></span>
-<span class="r-in">  <span class="co">#Based on Censored Data</span></span>
-<span class="r-in">  <span class="co">#--------------------------</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Null Hypothesis:                 Fy(t) = Fx(t)</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Alternative Hypothesis:          Fy(t) &gt; Fx(t) for at least one t</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Test Name:                       Two-Sample Linear Rank Test:</span></span>
-<span class="r-in">  <span class="co">#                                 Tarone-Ware Test</span></span>
-<span class="r-in">  <span class="co">#                                 with Hypergeometric Variance</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Censoring Side:                  left</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Censoring Level(s):              x = 5 </span></span>
-<span class="r-in">  <span class="co">#                                 y = 2 4 5 </span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Data:                            x = PCE.ppb[Well.type == "Compliance"]</span></span>
-<span class="r-in">  <span class="co">#                                 y = PCE.ppb[Well.type == "Background"]</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Censoring Variable:              x = Censored[Well.type == "Compliance"]</span></span>
-<span class="r-in">  <span class="co">#                                 y = Censored[Well.type == "Background"]</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Sample Sizes:                    nx = 8</span></span>
-<span class="r-in">  <span class="co">#                                 ny = 6</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Percent Censored:                x = 12.5%</span></span>
-<span class="r-in">  <span class="co">#                                 y = 50.0%</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Test Statistics:                 nu     =  8.458912</span></span>
-<span class="r-in">  <span class="co">#                                 var.nu = 20.912407</span></span>
-<span class="r-in">  <span class="co">#                                 z      =  1.849748</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#P-value:                         0.03217495</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="co"># Compare the p-value for the Tarone-Ware test with p-values from </span></span>
-<span class="r-in">  <span class="co"># the logrank, Gehan, and Peto-Peto tests</span></span>
-<span class="r-in">  <span class="co">#-----------------------------------------------------------------</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="fu"><a href="https://rdrr.io/r/base/with.html" class="external-link">with</a></span><span class="op">(</span><span class="va">EPA.09.Ex.16.5.PCE.df</span>, </span>
-<span class="r-in">    <span class="fu">twoSampleLinearRankTestCensored</span><span class="op">(</span></span>
-<span class="r-in">      x <span class="op">=</span> <span class="va">PCE.ppb</span><span class="op">[</span><span class="va">Well.type</span> <span class="op">==</span> <span class="st">"Compliance"</span><span class="op">]</span>, </span>
-<span class="r-in">      x.censored <span class="op">=</span> <span class="va">Censored</span><span class="op">[</span><span class="va">Well.type</span> <span class="op">==</span> <span class="st">"Compliance"</span><span class="op">]</span>, </span>
-<span class="r-in">      y <span class="op">=</span> <span class="va">PCE.ppb</span><span class="op">[</span><span class="va">Well.type</span> <span class="op">==</span> <span class="st">"Background"</span><span class="op">]</span>, </span>
-<span class="r-in">      y.censored <span class="op">=</span> <span class="va">Censored</span><span class="op">[</span><span class="va">Well.type</span> <span class="op">==</span> <span class="st">"Background"</span><span class="op">]</span>, </span>
-<span class="r-in">      test <span class="op">=</span> <span class="st">"tarone-ware"</span>, alternative <span class="op">=</span> <span class="st">"greater"</span><span class="op">)</span><span class="op">)</span><span class="op">$</span><span class="va">p.value</span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="co">#Results of Hypothesis Test</span></span></span>
+<span class="r-in"><span>  <span class="co">#Based on Censored Data</span></span></span>
+<span class="r-in"><span>  <span class="co">#--------------------------</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Null Hypothesis:                 Fy(t) = Fx(t)</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Alternative Hypothesis:          Fy(t) &gt; Fx(t) for at least one t</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Test Name:                       Two-Sample Linear Rank Test:</span></span></span>
+<span class="r-in"><span>  <span class="co">#                                 Tarone-Ware Test</span></span></span>
+<span class="r-in"><span>  <span class="co">#                                 with Hypergeometric Variance</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Censoring Side:                  left</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Censoring Level(s):              x = 5 </span></span></span>
+<span class="r-in"><span>  <span class="co">#                                 y = 2 4 5 </span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Data:                            x = PCE.ppb[Well.type == "Compliance"]</span></span></span>
+<span class="r-in"><span>  <span class="co">#                                 y = PCE.ppb[Well.type == "Background"]</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Censoring Variable:              x = Censored[Well.type == "Compliance"]</span></span></span>
+<span class="r-in"><span>  <span class="co">#                                 y = Censored[Well.type == "Background"]</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Sample Sizes:                    nx = 8</span></span></span>
+<span class="r-in"><span>  <span class="co">#                                 ny = 6</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Percent Censored:                x = 12.5%</span></span></span>
+<span class="r-in"><span>  <span class="co">#                                 y = 50.0%</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Test Statistics:                 nu     =  8.458912</span></span></span>
+<span class="r-in"><span>  <span class="co">#                                 var.nu = 20.912407</span></span></span>
+<span class="r-in"><span>  <span class="co">#                                 z      =  1.849748</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#P-value:                         0.03217495</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="co"># Compare the p-value for the Tarone-Ware test with p-values from </span></span></span>
+<span class="r-in"><span>  <span class="co"># the logrank, Gehan, and Peto-Peto tests</span></span></span>
+<span class="r-in"><span>  <span class="co">#-----------------------------------------------------------------</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/r/base/with.html" class="external-link">with</a></span><span class="op">(</span><span class="va">EPA.09.Ex.16.5.PCE.df</span>, </span></span>
+<span class="r-in"><span>    <span class="fu">twoSampleLinearRankTestCensored</span><span class="op">(</span></span></span>
+<span class="r-in"><span>      x <span class="op">=</span> <span class="va">PCE.ppb</span><span class="op">[</span><span class="va">Well.type</span> <span class="op">==</span> <span class="st">"Compliance"</span><span class="op">]</span>, </span></span>
+<span class="r-in"><span>      x.censored <span class="op">=</span> <span class="va">Censored</span><span class="op">[</span><span class="va">Well.type</span> <span class="op">==</span> <span class="st">"Compliance"</span><span class="op">]</span>, </span></span>
+<span class="r-in"><span>      y <span class="op">=</span> <span class="va">PCE.ppb</span><span class="op">[</span><span class="va">Well.type</span> <span class="op">==</span> <span class="st">"Background"</span><span class="op">]</span>, </span></span>
+<span class="r-in"><span>      y.censored <span class="op">=</span> <span class="va">Censored</span><span class="op">[</span><span class="va">Well.type</span> <span class="op">==</span> <span class="st">"Background"</span><span class="op">]</span>, </span></span>
+<span class="r-in"><span>      test <span class="op">=</span> <span class="st">"tarone-ware"</span>, alternative <span class="op">=</span> <span class="st">"greater"</span><span class="op">)</span><span class="op">)</span><span class="op">$</span><span class="va">p.value</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] 0.03217495</span>
-<span class="r-in">  <span class="co">#[1] 0.03217495</span></span>
-<span class="r-in"></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="fu"><a href="https://rdrr.io/r/base/with.html" class="external-link">with</a></span><span class="op">(</span><span class="va">EPA.09.Ex.16.5.PCE.df</span>, </span>
-<span class="r-in">    <span class="fu">twoSampleLinearRankTestCensored</span><span class="op">(</span></span>
-<span class="r-in">      x <span class="op">=</span> <span class="va">PCE.ppb</span><span class="op">[</span><span class="va">Well.type</span> <span class="op">==</span> <span class="st">"Compliance"</span><span class="op">]</span>, </span>
-<span class="r-in">      x.censored <span class="op">=</span> <span class="va">Censored</span><span class="op">[</span><span class="va">Well.type</span> <span class="op">==</span> <span class="st">"Compliance"</span><span class="op">]</span>, </span>
-<span class="r-in">      y <span class="op">=</span> <span class="va">PCE.ppb</span><span class="op">[</span><span class="va">Well.type</span> <span class="op">==</span> <span class="st">"Background"</span><span class="op">]</span>, </span>
-<span class="r-in">      y.censored <span class="op">=</span> <span class="va">Censored</span><span class="op">[</span><span class="va">Well.type</span> <span class="op">==</span> <span class="st">"Background"</span><span class="op">]</span>, </span>
-<span class="r-in">      test <span class="op">=</span> <span class="st">"logrank"</span>, alternative <span class="op">=</span> <span class="st">"greater"</span><span class="op">)</span><span class="op">)</span><span class="op">$</span><span class="va">p.value</span></span>
+<span class="r-in"><span>  <span class="co">#[1] 0.03217495</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/r/base/with.html" class="external-link">with</a></span><span class="op">(</span><span class="va">EPA.09.Ex.16.5.PCE.df</span>, </span></span>
+<span class="r-in"><span>    <span class="fu">twoSampleLinearRankTestCensored</span><span class="op">(</span></span></span>
+<span class="r-in"><span>      x <span class="op">=</span> <span class="va">PCE.ppb</span><span class="op">[</span><span class="va">Well.type</span> <span class="op">==</span> <span class="st">"Compliance"</span><span class="op">]</span>, </span></span>
+<span class="r-in"><span>      x.censored <span class="op">=</span> <span class="va">Censored</span><span class="op">[</span><span class="va">Well.type</span> <span class="op">==</span> <span class="st">"Compliance"</span><span class="op">]</span>, </span></span>
+<span class="r-in"><span>      y <span class="op">=</span> <span class="va">PCE.ppb</span><span class="op">[</span><span class="va">Well.type</span> <span class="op">==</span> <span class="st">"Background"</span><span class="op">]</span>, </span></span>
+<span class="r-in"><span>      y.censored <span class="op">=</span> <span class="va">Censored</span><span class="op">[</span><span class="va">Well.type</span> <span class="op">==</span> <span class="st">"Background"</span><span class="op">]</span>, </span></span>
+<span class="r-in"><span>      test <span class="op">=</span> <span class="st">"logrank"</span>, alternative <span class="op">=</span> <span class="st">"greater"</span><span class="op">)</span><span class="op">)</span><span class="op">$</span><span class="va">p.value</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] 0.02752793</span>
-<span class="r-in">  <span class="co">#[1] 0.02752793</span></span>
-<span class="r-in"></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="fu"><a href="https://rdrr.io/r/base/with.html" class="external-link">with</a></span><span class="op">(</span><span class="va">EPA.09.Ex.16.5.PCE.df</span>, </span>
-<span class="r-in">    <span class="fu">twoSampleLinearRankTestCensored</span><span class="op">(</span></span>
-<span class="r-in">      x <span class="op">=</span> <span class="va">PCE.ppb</span><span class="op">[</span><span class="va">Well.type</span> <span class="op">==</span> <span class="st">"Compliance"</span><span class="op">]</span>, </span>
-<span class="r-in">      x.censored <span class="op">=</span> <span class="va">Censored</span><span class="op">[</span><span class="va">Well.type</span> <span class="op">==</span> <span class="st">"Compliance"</span><span class="op">]</span>, </span>
-<span class="r-in">      y <span class="op">=</span> <span class="va">PCE.ppb</span><span class="op">[</span><span class="va">Well.type</span> <span class="op">==</span> <span class="st">"Background"</span><span class="op">]</span>, </span>
-<span class="r-in">      y.censored <span class="op">=</span> <span class="va">Censored</span><span class="op">[</span><span class="va">Well.type</span> <span class="op">==</span> <span class="st">"Background"</span><span class="op">]</span>, </span>
-<span class="r-in">      test <span class="op">=</span> <span class="st">"gehan"</span>, alternative <span class="op">=</span> <span class="st">"greater"</span><span class="op">)</span><span class="op">)</span><span class="op">$</span><span class="va">p.value</span></span>
+<span class="r-in"><span>  <span class="co">#[1] 0.02752793</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/r/base/with.html" class="external-link">with</a></span><span class="op">(</span><span class="va">EPA.09.Ex.16.5.PCE.df</span>, </span></span>
+<span class="r-in"><span>    <span class="fu">twoSampleLinearRankTestCensored</span><span class="op">(</span></span></span>
+<span class="r-in"><span>      x <span class="op">=</span> <span class="va">PCE.ppb</span><span class="op">[</span><span class="va">Well.type</span> <span class="op">==</span> <span class="st">"Compliance"</span><span class="op">]</span>, </span></span>
+<span class="r-in"><span>      x.censored <span class="op">=</span> <span class="va">Censored</span><span class="op">[</span><span class="va">Well.type</span> <span class="op">==</span> <span class="st">"Compliance"</span><span class="op">]</span>, </span></span>
+<span class="r-in"><span>      y <span class="op">=</span> <span class="va">PCE.ppb</span><span class="op">[</span><span class="va">Well.type</span> <span class="op">==</span> <span class="st">"Background"</span><span class="op">]</span>, </span></span>
+<span class="r-in"><span>      y.censored <span class="op">=</span> <span class="va">Censored</span><span class="op">[</span><span class="va">Well.type</span> <span class="op">==</span> <span class="st">"Background"</span><span class="op">]</span>, </span></span>
+<span class="r-in"><span>      test <span class="op">=</span> <span class="st">"gehan"</span>, alternative <span class="op">=</span> <span class="st">"greater"</span><span class="op">)</span><span class="op">)</span><span class="op">$</span><span class="va">p.value</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] 0.03656224</span>
-<span class="r-in">  <span class="co">#[1] 0.03656224</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="fu"><a href="https://rdrr.io/r/base/with.html" class="external-link">with</a></span><span class="op">(</span><span class="va">EPA.09.Ex.16.5.PCE.df</span>, </span>
-<span class="r-in">    <span class="fu">twoSampleLinearRankTestCensored</span><span class="op">(</span></span>
-<span class="r-in">      x <span class="op">=</span> <span class="va">PCE.ppb</span><span class="op">[</span><span class="va">Well.type</span> <span class="op">==</span> <span class="st">"Compliance"</span><span class="op">]</span>, </span>
-<span class="r-in">      x.censored <span class="op">=</span> <span class="va">Censored</span><span class="op">[</span><span class="va">Well.type</span> <span class="op">==</span> <span class="st">"Compliance"</span><span class="op">]</span>, </span>
-<span class="r-in">      y <span class="op">=</span> <span class="va">PCE.ppb</span><span class="op">[</span><span class="va">Well.type</span> <span class="op">==</span> <span class="st">"Background"</span><span class="op">]</span>, </span>
-<span class="r-in">      y.censored <span class="op">=</span> <span class="va">Censored</span><span class="op">[</span><span class="va">Well.type</span> <span class="op">==</span> <span class="st">"Background"</span><span class="op">]</span>, </span>
-<span class="r-in">      test <span class="op">=</span> <span class="st">"peto-peto"</span>, alternative <span class="op">=</span> <span class="st">"greater"</span><span class="op">)</span><span class="op">)</span><span class="op">$</span><span class="va">p.value</span></span>
+<span class="r-in"><span>  <span class="co">#[1] 0.03656224</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/r/base/with.html" class="external-link">with</a></span><span class="op">(</span><span class="va">EPA.09.Ex.16.5.PCE.df</span>, </span></span>
+<span class="r-in"><span>    <span class="fu">twoSampleLinearRankTestCensored</span><span class="op">(</span></span></span>
+<span class="r-in"><span>      x <span class="op">=</span> <span class="va">PCE.ppb</span><span class="op">[</span><span class="va">Well.type</span> <span class="op">==</span> <span class="st">"Compliance"</span><span class="op">]</span>, </span></span>
+<span class="r-in"><span>      x.censored <span class="op">=</span> <span class="va">Censored</span><span class="op">[</span><span class="va">Well.type</span> <span class="op">==</span> <span class="st">"Compliance"</span><span class="op">]</span>, </span></span>
+<span class="r-in"><span>      y <span class="op">=</span> <span class="va">PCE.ppb</span><span class="op">[</span><span class="va">Well.type</span> <span class="op">==</span> <span class="st">"Background"</span><span class="op">]</span>, </span></span>
+<span class="r-in"><span>      y.censored <span class="op">=</span> <span class="va">Censored</span><span class="op">[</span><span class="va">Well.type</span> <span class="op">==</span> <span class="st">"Background"</span><span class="op">]</span>, </span></span>
+<span class="r-in"><span>      test <span class="op">=</span> <span class="st">"peto-peto"</span>, alternative <span class="op">=</span> <span class="st">"greater"</span><span class="op">)</span><span class="op">)</span><span class="op">$</span><span class="va">p.value</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] 0.03127296</span>
-<span class="r-in">  <span class="co">#[1] 0.03127296</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="co">#==========</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="co"># The results shown in Table 9 of Millard and Deverel (1988, p.2097) are correct </span></span>
-<span class="r-in">  <span class="co"># only for the hypergeometric variance and the modified MWW tests; the other </span></span>
-<span class="r-in">  <span class="co"># results were computed as if there were no ties.  Re-compute the correct </span></span>
-<span class="r-in">  <span class="co"># z-statistics and p-values for the copper and zinc data. </span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="va">test</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/rep.html" class="external-link">rep</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"gehan"</span>, <span class="st">"logrank"</span>, <span class="st">"peto-peto"</span><span class="op">)</span>, <span class="fl">2</span><span class="op">)</span>, <span class="st">"peto-peto"</span>, </span>
-<span class="r-in">    <span class="st">"normal.scores.1"</span>, <span class="st">"normal.scores.2"</span>, <span class="st">"normal.scores.2"</span><span class="op">)</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="va">variance</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/rep.html" class="external-link">rep</a></span><span class="op">(</span><span class="st">"permutation"</span>, <span class="fl">3</span><span class="op">)</span>, <span class="fu"><a href="https://rdrr.io/r/base/rep.html" class="external-link">rep</a></span><span class="op">(</span><span class="st">"hypergeometric"</span>, <span class="fl">3</span><span class="op">)</span>, </span>
-<span class="r-in">    <span class="st">"asymptotic"</span>, <span class="fu"><a href="https://rdrr.io/r/base/rep.html" class="external-link">rep</a></span><span class="op">(</span><span class="st">"permutation"</span>, <span class="fl">2</span><span class="op">)</span>, <span class="st">"hypergeometric"</span><span class="op">)</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="va">stats.mat</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/matrix.html" class="external-link">matrix</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/numeric.html" class="external-link">as.numeric</a></span><span class="op">(</span><span class="cn">NA</span><span class="op">)</span>, ncol <span class="op">=</span> <span class="fl">4</span>, nrow <span class="op">=</span> <span class="fl">10</span><span class="op">)</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="kw">for</span><span class="op">(</span><span class="va">i</span> <span class="kw">in</span> <span class="fl">1</span><span class="op">:</span><span class="fl">10</span><span class="op">)</span> <span class="op">{</span></span>
-<span class="r-in">    <span class="va">dum.list</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/with.html" class="external-link">with</a></span><span class="op">(</span><span class="va">Millard.Deverel.88.df</span>, </span>
-<span class="r-in">        <span class="fu">twoSampleLinearRankTestCensored</span><span class="op">(</span></span>
-<span class="r-in">          x <span class="op">=</span> <span class="va">Cu</span><span class="op">[</span><span class="va">Zone</span> <span class="op">==</span> <span class="st">"Basin.Trough"</span><span class="op">]</span>, </span>
-<span class="r-in">          x.censored <span class="op">=</span> <span class="va">Cu.censored</span><span class="op">[</span><span class="va">Zone</span> <span class="op">==</span> <span class="st">"Basin.Trough"</span><span class="op">]</span>,</span>
-<span class="r-in">          y <span class="op">=</span> <span class="va">Cu</span><span class="op">[</span><span class="va">Zone</span> <span class="op">==</span> <span class="st">"Alluvial.Fan"</span><span class="op">]</span>, </span>
-<span class="r-in">          y.censored <span class="op">=</span> <span class="va">Cu.censored</span><span class="op">[</span><span class="va">Zone</span> <span class="op">==</span> <span class="st">"Alluvial.Fan"</span><span class="op">]</span>, </span>
-<span class="r-in">          test <span class="op">=</span> <span class="va">test</span><span class="op">[</span><span class="va">i</span><span class="op">]</span>, variance <span class="op">=</span> <span class="va">variance</span><span class="op">[</span><span class="va">i</span><span class="op">]</span><span class="op">)</span><span class="op">)</span></span>
-<span class="r-in">    <span class="va">stats.mat</span><span class="op">[</span><span class="va">i</span>, <span class="fl">1</span><span class="op">:</span><span class="fl">2</span><span class="op">]</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="va">dum.list</span><span class="op">$</span><span class="va">statistic</span><span class="op">[</span><span class="st">"z"</span><span class="op">]</span>, <span class="va">dum.list</span><span class="op">$</span><span class="va">p.value</span><span class="op">)</span></span>
-<span class="r-in"></span>
-<span class="r-in">    <span class="va">dum.list</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/with.html" class="external-link">with</a></span><span class="op">(</span><span class="va">Millard.Deverel.88.df</span>, </span>
-<span class="r-in">        <span class="fu">twoSampleLinearRankTestCensored</span><span class="op">(</span></span>
-<span class="r-in">          x <span class="op">=</span> <span class="va">Zn</span><span class="op">[</span><span class="va">Zone</span> <span class="op">==</span> <span class="st">"Basin.Trough"</span><span class="op">]</span>, </span>
-<span class="r-in">          x.censored <span class="op">=</span> <span class="va">Zn.censored</span><span class="op">[</span><span class="va">Zone</span> <span class="op">==</span> <span class="st">"Basin.Trough"</span><span class="op">]</span>,</span>
-<span class="r-in">          y <span class="op">=</span> <span class="va">Zn</span><span class="op">[</span><span class="va">Zone</span> <span class="op">==</span> <span class="st">"Alluvial.Fan"</span><span class="op">]</span>, </span>
-<span class="r-in">          y.censored <span class="op">=</span> <span class="va">Zn.censored</span><span class="op">[</span><span class="va">Zone</span> <span class="op">==</span> <span class="st">"Alluvial.Fan"</span><span class="op">]</span>, </span>
-<span class="r-in">          test <span class="op">=</span> <span class="va">test</span><span class="op">[</span><span class="va">i</span><span class="op">]</span>, variance <span class="op">=</span> <span class="va">variance</span><span class="op">[</span><span class="va">i</span><span class="op">]</span><span class="op">)</span><span class="op">)</span></span>
-<span class="r-in">    <span class="va">stats.mat</span><span class="op">[</span><span class="va">i</span>, <span class="fl">3</span><span class="op">:</span><span class="fl">4</span><span class="op">]</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="va">dum.list</span><span class="op">$</span><span class="va">statistic</span><span class="op">[</span><span class="st">"z"</span><span class="op">]</span>, <span class="va">dum.list</span><span class="op">$</span><span class="va">p.value</span><span class="op">)</span></span>
-<span class="r-in">  <span class="op">}</span></span>
+<span class="r-in"><span>  <span class="co">#[1] 0.03127296</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="co">#==========</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="co"># The results shown in Table 9 of Millard and Deverel (1988, p.2097) are correct </span></span></span>
+<span class="r-in"><span>  <span class="co"># only for the hypergeometric variance and the modified MWW tests; the other </span></span></span>
+<span class="r-in"><span>  <span class="co"># results were computed as if there were no ties.  Re-compute the correct </span></span></span>
+<span class="r-in"><span>  <span class="co"># z-statistics and p-values for the copper and zinc data. </span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="va">test</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/rep.html" class="external-link">rep</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"gehan"</span>, <span class="st">"logrank"</span>, <span class="st">"peto-peto"</span><span class="op">)</span>, <span class="fl">2</span><span class="op">)</span>, <span class="st">"peto-peto"</span>, </span></span>
+<span class="r-in"><span>    <span class="st">"normal.scores.1"</span>, <span class="st">"normal.scores.2"</span>, <span class="st">"normal.scores.2"</span><span class="op">)</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="va">variance</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/rep.html" class="external-link">rep</a></span><span class="op">(</span><span class="st">"permutation"</span>, <span class="fl">3</span><span class="op">)</span>, <span class="fu"><a href="https://rdrr.io/r/base/rep.html" class="external-link">rep</a></span><span class="op">(</span><span class="st">"hypergeometric"</span>, <span class="fl">3</span><span class="op">)</span>, </span></span>
+<span class="r-in"><span>    <span class="st">"asymptotic"</span>, <span class="fu"><a href="https://rdrr.io/r/base/rep.html" class="external-link">rep</a></span><span class="op">(</span><span class="st">"permutation"</span>, <span class="fl">2</span><span class="op">)</span>, <span class="st">"hypergeometric"</span><span class="op">)</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="va">stats.mat</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/matrix.html" class="external-link">matrix</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/numeric.html" class="external-link">as.numeric</a></span><span class="op">(</span><span class="cn">NA</span><span class="op">)</span>, ncol <span class="op">=</span> <span class="fl">4</span>, nrow <span class="op">=</span> <span class="fl">10</span><span class="op">)</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="kw">for</span><span class="op">(</span><span class="va">i</span> <span class="kw">in</span> <span class="fl">1</span><span class="op">:</span><span class="fl">10</span><span class="op">)</span> <span class="op">{</span></span></span>
+<span class="r-in"><span>    <span class="va">dum.list</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/with.html" class="external-link">with</a></span><span class="op">(</span><span class="va">Millard.Deverel.88.df</span>, </span></span>
+<span class="r-in"><span>        <span class="fu">twoSampleLinearRankTestCensored</span><span class="op">(</span></span></span>
+<span class="r-in"><span>          x <span class="op">=</span> <span class="va">Cu</span><span class="op">[</span><span class="va">Zone</span> <span class="op">==</span> <span class="st">"Basin.Trough"</span><span class="op">]</span>, </span></span>
+<span class="r-in"><span>          x.censored <span class="op">=</span> <span class="va">Cu.censored</span><span class="op">[</span><span class="va">Zone</span> <span class="op">==</span> <span class="st">"Basin.Trough"</span><span class="op">]</span>,</span></span>
+<span class="r-in"><span>          y <span class="op">=</span> <span class="va">Cu</span><span class="op">[</span><span class="va">Zone</span> <span class="op">==</span> <span class="st">"Alluvial.Fan"</span><span class="op">]</span>, </span></span>
+<span class="r-in"><span>          y.censored <span class="op">=</span> <span class="va">Cu.censored</span><span class="op">[</span><span class="va">Zone</span> <span class="op">==</span> <span class="st">"Alluvial.Fan"</span><span class="op">]</span>, </span></span>
+<span class="r-in"><span>          test <span class="op">=</span> <span class="va">test</span><span class="op">[</span><span class="va">i</span><span class="op">]</span>, variance <span class="op">=</span> <span class="va">variance</span><span class="op">[</span><span class="va">i</span><span class="op">]</span><span class="op">)</span><span class="op">)</span></span></span>
+<span class="r-in"><span>    <span class="va">stats.mat</span><span class="op">[</span><span class="va">i</span>, <span class="fl">1</span><span class="op">:</span><span class="fl">2</span><span class="op">]</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="va">dum.list</span><span class="op">$</span><span class="va">statistic</span><span class="op">[</span><span class="st">"z"</span><span class="op">]</span>, <span class="va">dum.list</span><span class="op">$</span><span class="va">p.value</span><span class="op">)</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>    <span class="va">dum.list</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/with.html" class="external-link">with</a></span><span class="op">(</span><span class="va">Millard.Deverel.88.df</span>, </span></span>
+<span class="r-in"><span>        <span class="fu">twoSampleLinearRankTestCensored</span><span class="op">(</span></span></span>
+<span class="r-in"><span>          x <span class="op">=</span> <span class="va">Zn</span><span class="op">[</span><span class="va">Zone</span> <span class="op">==</span> <span class="st">"Basin.Trough"</span><span class="op">]</span>, </span></span>
+<span class="r-in"><span>          x.censored <span class="op">=</span> <span class="va">Zn.censored</span><span class="op">[</span><span class="va">Zone</span> <span class="op">==</span> <span class="st">"Basin.Trough"</span><span class="op">]</span>,</span></span>
+<span class="r-in"><span>          y <span class="op">=</span> <span class="va">Zn</span><span class="op">[</span><span class="va">Zone</span> <span class="op">==</span> <span class="st">"Alluvial.Fan"</span><span class="op">]</span>, </span></span>
+<span class="r-in"><span>          y.censored <span class="op">=</span> <span class="va">Zn.censored</span><span class="op">[</span><span class="va">Zone</span> <span class="op">==</span> <span class="st">"Alluvial.Fan"</span><span class="op">]</span>, </span></span>
+<span class="r-in"><span>          test <span class="op">=</span> <span class="va">test</span><span class="op">[</span><span class="va">i</span><span class="op">]</span>, variance <span class="op">=</span> <span class="va">variance</span><span class="op">[</span><span class="va">i</span><span class="op">]</span><span class="op">)</span><span class="op">)</span></span></span>
+<span class="r-in"><span>    <span class="va">stats.mat</span><span class="op">[</span><span class="va">i</span>, <span class="fl">3</span><span class="op">:</span><span class="fl">4</span><span class="op">]</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="va">dum.list</span><span class="op">$</span><span class="va">statistic</span><span class="op">[</span><span class="st">"z"</span><span class="op">]</span>, <span class="va">dum.list</span><span class="op">$</span><span class="va">p.value</span><span class="op">)</span></span></span>
+<span class="r-in"><span>  <span class="op">}</span></span></span>
 <span class="r-wrn co"><span class="r-pr">#&gt;</span> <span class="warning">Warning: </span>1 observations with NA/NaN/Inf in 'x' and/or 'x.censored' removed.</span>
 <span class="r-wrn co"><span class="r-pr">#&gt;</span> <span class="warning">Warning: </span>3 observations with NA/NaN/Inf in 'y' and/or 'y.censored' removed.</span>
 <span class="r-wrn co"><span class="r-pr">#&gt;</span> <span class="warning">Warning: </span>1 observations with NA/NaN/Inf in 'y' and/or 'y.censored' removed.</span>
@@ -1195,11 +1209,11 @@
 <span class="r-wrn co"><span class="r-pr">#&gt;</span> <span class="warning">Warning: </span>1 observations with NA/NaN/Inf in 'x' and/or 'x.censored' removed.</span>
 <span class="r-wrn co"><span class="r-pr">#&gt;</span> <span class="warning">Warning: </span>3 observations with NA/NaN/Inf in 'y' and/or 'y.censored' removed.</span>
 <span class="r-wrn co"><span class="r-pr">#&gt;</span> <span class="warning">Warning: </span>1 observations with NA/NaN/Inf in 'y' and/or 'y.censored' removed.</span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="fu"><a href="https://rdrr.io/r/base/dimnames.html" class="external-link">dimnames</a></span><span class="op">(</span><span class="va">stats.mat</span><span class="op">)</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/paste.html" class="external-link">paste</a></span><span class="op">(</span><span class="va">test</span>, <span class="va">variance</span>, sep <span class="op">=</span> <span class="st">"."</span><span class="op">)</span>, </span>
-<span class="r-in">    <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"Cu.Z"</span>, <span class="st">"Cu.p.value"</span>, <span class="st">"Zn.Z"</span>, <span class="st">"Zn.p.value"</span><span class="op">)</span><span class="op">)</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="fu"><a href="https://rdrr.io/r/base/Round.html" class="external-link">round</a></span><span class="op">(</span><span class="va">stats.mat</span>, <span class="fl">2</span><span class="op">)</span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/r/base/dimnames.html" class="external-link">dimnames</a></span><span class="op">(</span><span class="va">stats.mat</span><span class="op">)</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/paste.html" class="external-link">paste</a></span><span class="op">(</span><span class="va">test</span>, <span class="va">variance</span>, sep <span class="op">=</span> <span class="st">"."</span><span class="op">)</span>, </span></span>
+<span class="r-in"><span>    <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"Cu.Z"</span>, <span class="st">"Cu.p.value"</span>, <span class="st">"Zn.Z"</span>, <span class="st">"Zn.p.value"</span><span class="op">)</span><span class="op">)</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/r/base/Round.html" class="external-link">round</a></span><span class="op">(</span><span class="va">stats.mat</span>, <span class="fl">2</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>                                Cu.Z Cu.p.value Zn.Z Zn.p.value</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> gehan.permutation              0.87       0.38 2.49       0.01</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> logrank.permutation            0.79       0.43 1.75       0.08</span>
@@ -1211,23 +1225,23 @@
 <span class="r-out co"><span class="r-pr">#&gt;</span> normal.scores.1.permutation    0.94       0.34 2.37       0.02</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> normal.scores.2.permutation    0.98       0.33 2.39       0.02</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> normal.scores.2.hypergeometric 1.28       0.20 2.48       0.01</span>
-<span class="r-in">  <span class="co">#                               Cu.Z Cu.p.value Zn.Z Zn.p.value</span></span>
-<span class="r-in">  <span class="co">#gehan.permutation              0.87       0.38 2.49       0.01</span></span>
-<span class="r-in">  <span class="co">#logrank.permutation            0.79       0.43 1.75       0.08</span></span>
-<span class="r-in">  <span class="co">#peto-peto.permutation          0.92       0.36 2.42       0.02</span></span>
-<span class="r-in">  <span class="co">#gehan.hypergeometric           0.71       0.48 2.35       0.02</span></span>
-<span class="r-in">  <span class="co">#logrank.hypergeometric         0.51       0.61 1.69       0.09</span></span>
-<span class="r-in">  <span class="co">#peto-peto.hypergeometric       1.03       0.30 2.59       0.01</span></span>
-<span class="r-in">  <span class="co">#peto-peto.asymptotic           0.90       0.37 2.37       0.02</span></span>
-<span class="r-in">  <span class="co">#normal.scores.1.permutation    0.94       0.34 2.37       0.02</span></span>
-<span class="r-in">  <span class="co">#normal.scores.2.permutation    0.98       0.33 2.39       0.02</span></span>
-<span class="r-in">  <span class="co">#normal.scores.2.hypergeometric 1.28       0.20 2.48       0.01</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="co">#----------</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="co"># Clean up</span></span>
-<span class="r-in">  <span class="co">#---------</span></span>
-<span class="r-in">  <span class="fu"><a href="https://rdrr.io/r/base/rm.html" class="external-link">rm</a></span><span class="op">(</span><span class="va">test</span>, <span class="va">variance</span>, <span class="va">stats.mat</span>, <span class="va">i</span>, <span class="va">dum.list</span><span class="op">)</span></span>
+<span class="r-in"><span>  <span class="co">#                               Cu.Z Cu.p.value Zn.Z Zn.p.value</span></span></span>
+<span class="r-in"><span>  <span class="co">#gehan.permutation              0.87       0.38 2.49       0.01</span></span></span>
+<span class="r-in"><span>  <span class="co">#logrank.permutation            0.79       0.43 1.75       0.08</span></span></span>
+<span class="r-in"><span>  <span class="co">#peto-peto.permutation          0.92       0.36 2.42       0.02</span></span></span>
+<span class="r-in"><span>  <span class="co">#gehan.hypergeometric           0.71       0.48 2.35       0.02</span></span></span>
+<span class="r-in"><span>  <span class="co">#logrank.hypergeometric         0.51       0.61 1.69       0.09</span></span></span>
+<span class="r-in"><span>  <span class="co">#peto-peto.hypergeometric       1.03       0.30 2.59       0.01</span></span></span>
+<span class="r-in"><span>  <span class="co">#peto-peto.asymptotic           0.90       0.37 2.37       0.02</span></span></span>
+<span class="r-in"><span>  <span class="co">#normal.scores.1.permutation    0.94       0.34 2.37       0.02</span></span></span>
+<span class="r-in"><span>  <span class="co">#normal.scores.2.permutation    0.98       0.33 2.39       0.02</span></span></span>
+<span class="r-in"><span>  <span class="co">#normal.scores.2.hypergeometric 1.28       0.20 2.48       0.01</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="co">#----------</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="co"># Clean up</span></span></span>
+<span class="r-in"><span>  <span class="co">#---------</span></span></span>
+<span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/r/base/rm.html" class="external-link">rm</a></span><span class="op">(</span><span class="va">test</span>, <span class="va">variance</span>, <span class="va">stats.mat</span>, <span class="va">i</span>, <span class="va">dum.list</span><span class="op">)</span></span></span>
 </code></pre></div>
     </div>
   </div>
@@ -1242,7 +1256,7 @@
 </div>
 
 <div class="pkgdown">
-  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.2.</p>
+  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.6.</p>
 </div>
 
       </footer></div>

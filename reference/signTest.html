@@ -54,8 +54,8 @@
     </div>
 
     <div id="ref-usage">
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="fu">signTest</span><span class="op">(</span><span class="va">x</span>, y <span class="op">=</span> <span class="cn">NULL</span>, alternative <span class="op">=</span> <span class="st">"two.sided"</span>, mu <span class="op">=</span> <span class="fl">0</span>, paired <span class="op">=</span> <span class="cn">FALSE</span>, 
-    conf.level <span class="op">=</span> <span class="fl">0.95</span><span class="op">)</span></code></pre></div>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">signTest</span><span class="op">(</span><span class="va">x</span>, y <span class="op">=</span> <span class="cn">NULL</span>, alternative <span class="op">=</span> <span class="st">"two.sided"</span>, mu <span class="op">=</span> <span class="fl">0</span>, paired <span class="op">=</span> <span class="cn">FALSE</span>, </span>
+<span>    conf.level <span class="op">=</span> <span class="fl">0.95</span><span class="op">)</span></span></code></pre></div>
     </div>
 
     <div id="arguments">
@@ -64,26 +64,32 @@
 <dd><p>numeric vector of observations.  
   Missing (<code>NA</code>), undefined (<code>NaN</code>), and infinite (<code>Inf</code>, <code>-Inf</code>) 
   values are allowed but will be removed.</p></dd>
-<dt>y</dt>
+
+  <dt>y</dt>
 <dd><p>optional numeric vector of observations that are paired with the observations in 
   <code>x</code>.  The length of <code>y</code> must be the same as the length of <code>x</code>.  
   This argument is ignored if <code>paired=FALSE</code>, and must be supplied if 
   <code>paired=TRUE</code>.  The default value is <code>y=NULL</code>.  
   Missing (<code>NA</code>), undefined (<code>NaN</code>), and infinite (<code>Inf</code>, <code>-Inf</code>) 
   values are allowed but will be removed.</p></dd>
-<dt>alternative</dt>
+
+  <dt>alternative</dt>
 <dd><p>character string indicating the kind of alternative hypothesis.  The possible values 
   are <code>"two.sided"</code> (the default), <code>"greater"</code>, and <code>"less"</code>.</p></dd>
-<dt>mu</dt>
+
+  <dt>mu</dt>
 <dd><p>numeric scalar indicating the hypothesized value of the median.  The default value is 
   <code>mu=0</code>.</p></dd>
-<dt>paired</dt>
+
+  <dt>paired</dt>
 <dd><p>logical scalar indicating whether to perform a paired or one-sample sign test.  
   The possible values are <code>paired=FALSE</code> (the default; indicates a one-sample 
   sign test) and <code>paired=TRUE</code>.</p></dd>
-<dt>conf.level</dt>
+
+  <dt>conf.level</dt>
 <dd><p>numeric scalar between 0 and 1 indicating the confidence level associated with the 
   confidence interval for the population median.  The default value is <br><code>conf.level=0.95</code>.</p></dd>
+
 </dl></div>
     <div id="details">
     <h2>Details</h2>
@@ -144,7 +150,9 @@
     </div>
     <div id="value">
     <h2>Value</h2>
-    <p>A list of class <code>"htest"</code> containing the results of the hypothesis test.  
+    
+
+<p>A list of class <code>"htest"</code> containing the results of the hypothesis test.  
   See the help file for <code><a href="htest.object.html">htest.object</a></code> for details.</p>
     </div>
     <div id="references">
@@ -201,15 +209,15 @@
 
     <div id="ref-examples">
     <h2>Examples</h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in">  <span class="co"># Generate 10 observations from a lognormal distribution with parameters </span></span>
-<span class="r-in">  <span class="co"># meanlog=2 and sdlog=1.  The median of this distribution is e^2 (about 7.4). </span></span>
-<span class="r-in">  <span class="co"># Test the null hypothesis that the true median is equal to 5 against the </span></span>
-<span class="r-in">  <span class="co"># alternative that the true mean is greater than 5. </span></span>
-<span class="r-in">  <span class="co"># (Note: the call to set.seed allows you to reproduce this example).</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="fu"><a href="https://rdrr.io/r/base/Random.html" class="external-link">set.seed</a></span><span class="op">(</span><span class="fl">23</span><span class="op">)</span> </span>
-<span class="r-in">  <span class="va">dat</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/Lognormal.html" class="external-link">rlnorm</a></span><span class="op">(</span><span class="fl">10</span>, meanlog <span class="op">=</span> <span class="fl">2</span>, sdlog <span class="op">=</span> <span class="fl">1</span><span class="op">)</span> </span>
-<span class="r-in">  <span class="fu">signTest</span><span class="op">(</span><span class="va">dat</span>, mu <span class="op">=</span> <span class="fl">5</span><span class="op">)</span> </span>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span>  <span class="co"># Generate 10 observations from a lognormal distribution with parameters </span></span></span>
+<span class="r-in"><span>  <span class="co"># meanlog=2 and sdlog=1.  The median of this distribution is e^2 (about 7.4). </span></span></span>
+<span class="r-in"><span>  <span class="co"># Test the null hypothesis that the true median is equal to 5 against the </span></span></span>
+<span class="r-in"><span>  <span class="co"># alternative that the true mean is greater than 5. </span></span></span>
+<span class="r-in"><span>  <span class="co"># (Note: the call to set.seed allows you to reproduce this example).</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/r/base/Random.html" class="external-link">set.seed</a></span><span class="op">(</span><span class="fl">23</span><span class="op">)</span> </span></span>
+<span class="r-in"><span>  <span class="va">dat</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/Lognormal.html" class="external-link">rlnorm</a></span><span class="op">(</span><span class="fl">10</span>, meanlog <span class="op">=</span> <span class="fl">2</span>, sdlog <span class="op">=</span> <span class="fl">1</span><span class="op">)</span> </span></span>
+<span class="r-in"><span>  <span class="fu">signTest</span><span class="op">(</span><span class="va">dat</span>, mu <span class="op">=</span> <span class="fl">5</span><span class="op">)</span> </span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> $statistic</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> # Obs &gt; median </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>              9 </span>
@@ -271,55 +279,55 @@
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> attr(,"class")</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] "htestEnvStats"</span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="co">#Results of Hypothesis Test</span></span>
-<span class="r-in">  <span class="co">#--------------------------</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Null Hypothesis:                 median = 5</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Alternative Hypothesis:          True median is not equal to 5</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Test Name:                       Sign test</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Estimated Parameter(s):          median = 19.21717</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Data:                            dat</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Test Statistic:                  # Obs &gt; median = 9</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#P-value:                         0.02148438</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Confidence Interval for:         median</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Confidence Interval Method:      exact</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Confidence Interval Type:        two-sided</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Confidence Level:                93.45703%</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Confidence Limit Rank(s):        3 9 </span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Confidence Interval:             LCL =  7.732538</span></span>
-<span class="r-in">  <span class="co">#                                 UCL = 35.722459</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="co"># Clean up</span></span>
-<span class="r-in">  <span class="co">#---------</span></span>
-<span class="r-in">  <span class="fu"><a href="https://rdrr.io/r/base/rm.html" class="external-link">rm</a></span><span class="op">(</span><span class="va">dat</span><span class="op">)</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="co">#==========</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="co"># The guidance document "Supplemental Guidance to RAGS: Calculating the </span></span>
-<span class="r-in">  <span class="co"># Concentration Term" (USEPA, 1992d) contains an example of 15 observations </span></span>
-<span class="r-in">  <span class="co"># of chromium concentrations (mg/kg) which are assumed to come from a </span></span>
-<span class="r-in">  <span class="co"># lognormal distribution.  These data are stored in the vector </span></span>
-<span class="r-in">  <span class="co"># EPA.92d.chromium.vec.  Here, we will use the sign test to test the null </span></span>
-<span class="r-in">  <span class="co"># hypothesis that the median chromium concentration is less than or equal to </span></span>
-<span class="r-in">  <span class="co"># 100 mg/kg vs. the alternative that it is greater than 100 mg/kg.  The </span></span>
-<span class="r-in">  <span class="co"># estimated median is 110 mg/kg.  There are 8 out of 15 observations greater </span></span>
-<span class="r-in">  <span class="co"># than 100 mg/kg, the p-value is equal to 0.5, and the lower 94% confidence </span></span>
-<span class="r-in">  <span class="co"># limit is 41 mg/kg.</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="fu">signTest</span><span class="op">(</span><span class="va">EPA.92d.chromium.vec</span>, mu <span class="op">=</span> <span class="fl">100</span>, alternative <span class="op">=</span> <span class="st">"greater"</span><span class="op">)</span> </span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="co">#Results of Hypothesis Test</span></span></span>
+<span class="r-in"><span>  <span class="co">#--------------------------</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Null Hypothesis:                 median = 5</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Alternative Hypothesis:          True median is not equal to 5</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Test Name:                       Sign test</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Estimated Parameter(s):          median = 19.21717</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Data:                            dat</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Test Statistic:                  # Obs &gt; median = 9</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#P-value:                         0.02148438</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Confidence Interval for:         median</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Confidence Interval Method:      exact</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Confidence Interval Type:        two-sided</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Confidence Level:                93.45703%</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Confidence Limit Rank(s):        3 9 </span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Confidence Interval:             LCL =  7.732538</span></span></span>
+<span class="r-in"><span>  <span class="co">#                                 UCL = 35.722459</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="co"># Clean up</span></span></span>
+<span class="r-in"><span>  <span class="co">#---------</span></span></span>
+<span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/r/base/rm.html" class="external-link">rm</a></span><span class="op">(</span><span class="va">dat</span><span class="op">)</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="co">#==========</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="co"># The guidance document "Supplemental Guidance to RAGS: Calculating the </span></span></span>
+<span class="r-in"><span>  <span class="co"># Concentration Term" (USEPA, 1992d) contains an example of 15 observations </span></span></span>
+<span class="r-in"><span>  <span class="co"># of chromium concentrations (mg/kg) which are assumed to come from a </span></span></span>
+<span class="r-in"><span>  <span class="co"># lognormal distribution.  These data are stored in the vector </span></span></span>
+<span class="r-in"><span>  <span class="co"># EPA.92d.chromium.vec.  Here, we will use the sign test to test the null </span></span></span>
+<span class="r-in"><span>  <span class="co"># hypothesis that the median chromium concentration is less than or equal to </span></span></span>
+<span class="r-in"><span>  <span class="co"># 100 mg/kg vs. the alternative that it is greater than 100 mg/kg.  The </span></span></span>
+<span class="r-in"><span>  <span class="co"># estimated median is 110 mg/kg.  There are 8 out of 15 observations greater </span></span></span>
+<span class="r-in"><span>  <span class="co"># than 100 mg/kg, the p-value is equal to 0.5, and the lower 94% confidence </span></span></span>
+<span class="r-in"><span>  <span class="co"># limit is 41 mg/kg.</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="fu">signTest</span><span class="op">(</span><span class="va">EPA.92d.chromium.vec</span>, mu <span class="op">=</span> <span class="fl">100</span>, alternative <span class="op">=</span> <span class="st">"greater"</span><span class="op">)</span> </span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> $statistic</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> # Obs &gt; median </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>              8 </span>
@@ -381,36 +389,36 @@
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> attr(,"class")</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] "htestEnvStats"</span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="co">#Results of Hypothesis Test</span></span>
-<span class="r-in">  <span class="co">#--------------------------</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Null Hypothesis:                 median = 100</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Alternative Hypothesis:          True median is greater than 100</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Test Name:                       Sign test</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Estimated Parameter(s):          median = 110</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Data:                            EPA.92d.chromium.vec</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Test Statistic:                  # Obs &gt; median = 8</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#P-value:                         0.5</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Confidence Interval for:         median</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Confidence Interval Method:      exact</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Confidence Interval Type:        lower</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Confidence Level:                94.07654%</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Confidence Limit Rank(s):        5 </span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Confidence Interval:             LCL =  41</span></span>
-<span class="r-in">  <span class="co">#                                 UCL = Inf</span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="co">#Results of Hypothesis Test</span></span></span>
+<span class="r-in"><span>  <span class="co">#--------------------------</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Null Hypothesis:                 median = 100</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Alternative Hypothesis:          True median is greater than 100</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Test Name:                       Sign test</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Estimated Parameter(s):          median = 110</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Data:                            EPA.92d.chromium.vec</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Test Statistic:                  # Obs &gt; median = 8</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#P-value:                         0.5</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Confidence Interval for:         median</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Confidence Interval Method:      exact</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Confidence Interval Type:        lower</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Confidence Level:                94.07654%</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Confidence Limit Rank(s):        5 </span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Confidence Interval:             LCL =  41</span></span></span>
+<span class="r-in"><span>  <span class="co">#                                 UCL = Inf</span></span></span>
 </code></pre></div>
     </div>
   </div>
@@ -425,7 +433,7 @@
 </div>
 
 <div class="pkgdown">
-  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.2.</p>
+  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.6.</p>
 </div>
 
       </footer></div>

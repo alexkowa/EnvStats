@@ -54,7 +54,7 @@
     </div>
 
     <div id="ref-usage">
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="fu">aovPower</span><span class="op">(</span><span class="va">n.vec</span>, mu.vec <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/rep.html" class="external-link">rep</a></span><span class="op">(</span><span class="fl">0</span>, <span class="fu"><a href="https://rdrr.io/r/base/length.html" class="external-link">length</a></span><span class="op">(</span><span class="va">n.vec</span><span class="op">)</span><span class="op">)</span>, sigma <span class="op">=</span> <span class="fl">1</span>, alpha <span class="op">=</span> <span class="fl">0.05</span><span class="op">)</span></code></pre></div>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">aovPower</span><span class="op">(</span><span class="va">n.vec</span>, mu.vec <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/rep.html" class="external-link">rep</a></span><span class="op">(</span><span class="fl">0</span>, <span class="fu"><a href="https://rdrr.io/r/base/length.html" class="external-link">length</a></span><span class="op">(</span><span class="va">n.vec</span><span class="op">)</span><span class="op">)</span>, sigma <span class="op">=</span> <span class="fl">1</span>, alpha <span class="op">=</span> <span class="fl">0.05</span><span class="op">)</span></span></code></pre></div>
     </div>
 
     <div id="arguments">
@@ -64,17 +64,21 @@
   denotes the sample size for group \(i\).  The length of <code>n.vec</code> must be at least 2, 
   and all elements of <code>n.vec</code> must be greater than or equal to 2.  Missing (<code>NA</code>), 
   undefined (<code>NaN</code>), and infinite (<code>Inf</code>, <code>-Inf</code>) values are not allowed.</p></dd>
-<dt>mu.vec</dt>
+
+  <dt>mu.vec</dt>
 <dd><p>numeric vector of population means.  The length of <code>mu.vec</code> must be the 
   same as the length of <code>n.vec</code>.  The default value is a vector of zeros.  
   Missing (<code>NA</code>), undefined (<code>NaN</code>), and infinite (<code>Inf</code>, <code>-Inf</code>) 
   values are not allowed.</p></dd>
-<dt>sigma</dt>
+
+  <dt>sigma</dt>
 <dd><p>numeric scalar specifying the population standard deviation (\(\sigma\)) 
   for each group. The default value is <code>sigma=1</code>.</p></dd>
-<dt>alpha</dt>
+
+  <dt>alpha</dt>
 <dd><p>numeric scalar between 0 and 1 indicating the Type I error level associated 
   with the hypothesis test.  The default value is <code>alpha=0.05</code>.</p></dd>
+
 </dl></div>
     <div id="details">
     <h2>Details</h2>
@@ -122,7 +126,9 @@
     </div>
     <div id="value">
     <h2>Value</h2>
-    <p>a numeric scalar indicating the power of the one-way fixed-effects ANOVA for 
+    
+
+<p>a numeric scalar indicating the power of the one-way fixed-effects ANOVA for 
   the given sample sizes, population means, population standard deviation, and 
   significance level.</p>
     </div>
@@ -179,114 +185,114 @@
 
     <div id="ref-examples">
     <h2>Examples</h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in">  <span class="co"># Look at how the power of a one-way ANOVA increases </span></span>
-<span class="r-in">  <span class="co"># with increasing sample size:</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="fu">aovPower</span><span class="op">(</span>n.vec <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/rep.html" class="external-link">rep</a></span><span class="op">(</span><span class="fl">5</span>, <span class="fl">3</span><span class="op">)</span>, mu.vec <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">10</span>, <span class="fl">15</span>, <span class="fl">20</span><span class="op">)</span>, sigma <span class="op">=</span> <span class="fl">5</span><span class="op">)</span> </span>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span>  <span class="co"># Look at how the power of a one-way ANOVA increases </span></span></span>
+<span class="r-in"><span>  <span class="co"># with increasing sample size:</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="fu">aovPower</span><span class="op">(</span>n.vec <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/rep.html" class="external-link">rep</a></span><span class="op">(</span><span class="fl">5</span>, <span class="fl">3</span><span class="op">)</span>, mu.vec <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">10</span>, <span class="fl">15</span>, <span class="fl">20</span><span class="op">)</span>, sigma <span class="op">=</span> <span class="fl">5</span><span class="op">)</span> </span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] 0.7015083</span>
-<span class="r-in">  <span class="co">#[1] 0.7015083 </span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="fu">aovPower</span><span class="op">(</span>n.vec <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/rep.html" class="external-link">rep</a></span><span class="op">(</span><span class="fl">10</span>, <span class="fl">3</span><span class="op">)</span>, mu.vec <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">10</span>, <span class="fl">15</span>, <span class="fl">20</span><span class="op">)</span>, sigma <span class="op">=</span> <span class="fl">5</span><span class="op">)</span> </span>
+<span class="r-in"><span>  <span class="co">#[1] 0.7015083 </span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="fu">aovPower</span><span class="op">(</span>n.vec <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/rep.html" class="external-link">rep</a></span><span class="op">(</span><span class="fl">10</span>, <span class="fl">3</span><span class="op">)</span>, mu.vec <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">10</span>, <span class="fl">15</span>, <span class="fl">20</span><span class="op">)</span>, sigma <span class="op">=</span> <span class="fl">5</span><span class="op">)</span> </span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] 0.9732551</span>
-<span class="r-in">  <span class="co">#[1] 0.9732551</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="co">#----------------------------------------------------------------</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="co"># Look at how the power of a one-way ANOVA increases </span></span>
-<span class="r-in">  <span class="co"># with increasing variability in the population means:</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="fu">aovPower</span><span class="op">(</span>n.vec <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/rep.html" class="external-link">rep</a></span><span class="op">(</span><span class="fl">5</span>,<span class="fl">3</span><span class="op">)</span>, mu.vec <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">10</span>, <span class="fl">10</span>, <span class="fl">11</span><span class="op">)</span>, sigma<span class="op">=</span><span class="fl">5</span><span class="op">)</span> </span>
+<span class="r-in"><span>  <span class="co">#[1] 0.9732551</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="co">#----------------------------------------------------------------</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="co"># Look at how the power of a one-way ANOVA increases </span></span></span>
+<span class="r-in"><span>  <span class="co"># with increasing variability in the population means:</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="fu">aovPower</span><span class="op">(</span>n.vec <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/rep.html" class="external-link">rep</a></span><span class="op">(</span><span class="fl">5</span>,<span class="fl">3</span><span class="op">)</span>, mu.vec <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">10</span>, <span class="fl">10</span>, <span class="fl">11</span><span class="op">)</span>, sigma<span class="op">=</span><span class="fl">5</span><span class="op">)</span> </span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] 0.05795739</span>
-<span class="r-in">  <span class="co">#[1] 0.05795739 </span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="fu">aovPower</span><span class="op">(</span>n.vec <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/rep.html" class="external-link">rep</a></span><span class="op">(</span><span class="fl">5</span>, <span class="fl">3</span><span class="op">)</span>, mu.vec <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">10</span>, <span class="fl">10</span>, <span class="fl">15</span><span class="op">)</span>, sigma <span class="op">=</span> <span class="fl">5</span><span class="op">)</span> </span>
+<span class="r-in"><span>  <span class="co">#[1] 0.05795739 </span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="fu">aovPower</span><span class="op">(</span>n.vec <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/rep.html" class="external-link">rep</a></span><span class="op">(</span><span class="fl">5</span>, <span class="fl">3</span><span class="op">)</span>, mu.vec <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">10</span>, <span class="fl">10</span>, <span class="fl">15</span><span class="op">)</span>, sigma <span class="op">=</span> <span class="fl">5</span><span class="op">)</span> </span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] 0.2831863</span>
-<span class="r-in">  <span class="co">#[1] 0.2831863 </span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="fu">aovPower</span><span class="op">(</span>n.vec <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/rep.html" class="external-link">rep</a></span><span class="op">(</span><span class="fl">5</span>, <span class="fl">3</span><span class="op">)</span>, mu.vec <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">10</span>, <span class="fl">13</span>, <span class="fl">15</span><span class="op">)</span>, sigma <span class="op">=</span> <span class="fl">5</span><span class="op">)</span> </span>
+<span class="r-in"><span>  <span class="co">#[1] 0.2831863 </span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="fu">aovPower</span><span class="op">(</span>n.vec <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/rep.html" class="external-link">rep</a></span><span class="op">(</span><span class="fl">5</span>, <span class="fl">3</span><span class="op">)</span>, mu.vec <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">10</span>, <span class="fl">13</span>, <span class="fl">15</span><span class="op">)</span>, sigma <span class="op">=</span> <span class="fl">5</span><span class="op">)</span> </span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] 0.2236093</span>
-<span class="r-in">  <span class="co">#[1] 0.2236093 </span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="fu">aovPower</span><span class="op">(</span>n.vec <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/rep.html" class="external-link">rep</a></span><span class="op">(</span><span class="fl">5</span>, <span class="fl">3</span><span class="op">)</span>, mu.vec <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">10</span>, <span class="fl">15</span>, <span class="fl">20</span><span class="op">)</span>, sigma <span class="op">=</span> <span class="fl">5</span><span class="op">)</span> </span>
+<span class="r-in"><span>  <span class="co">#[1] 0.2236093 </span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="fu">aovPower</span><span class="op">(</span>n.vec <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/rep.html" class="external-link">rep</a></span><span class="op">(</span><span class="fl">5</span>, <span class="fl">3</span><span class="op">)</span>, mu.vec <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">10</span>, <span class="fl">15</span>, <span class="fl">20</span><span class="op">)</span>, sigma <span class="op">=</span> <span class="fl">5</span><span class="op">)</span> </span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] 0.7015083</span>
-<span class="r-in">  <span class="co">#[1] 0.7015083</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="co">#----------------------------------------------------------------</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="co"># Look at how the power of a one-way ANOVA increases </span></span>
-<span class="r-in">  <span class="co"># with increasing values of Type I error:</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="fu">aovPower</span><span class="op">(</span>n.vec <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/rep.html" class="external-link">rep</a></span><span class="op">(</span><span class="fl">10</span>,<span class="fl">3</span><span class="op">)</span>, mu.vec <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">10</span>, <span class="fl">12</span>, <span class="fl">14</span><span class="op">)</span>, </span>
-<span class="r-in">    sigma <span class="op">=</span> <span class="fl">5</span>, alpha <span class="op">=</span> <span class="fl">0.001</span><span class="op">)</span> </span>
+<span class="r-in"><span>  <span class="co">#[1] 0.7015083</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="co">#----------------------------------------------------------------</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="co"># Look at how the power of a one-way ANOVA increases </span></span></span>
+<span class="r-in"><span>  <span class="co"># with increasing values of Type I error:</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="fu">aovPower</span><span class="op">(</span>n.vec <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/rep.html" class="external-link">rep</a></span><span class="op">(</span><span class="fl">10</span>,<span class="fl">3</span><span class="op">)</span>, mu.vec <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">10</span>, <span class="fl">12</span>, <span class="fl">14</span><span class="op">)</span>, </span></span>
+<span class="r-in"><span>    sigma <span class="op">=</span> <span class="fl">5</span>, alpha <span class="op">=</span> <span class="fl">0.001</span><span class="op">)</span> </span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] 0.02655785</span>
-<span class="r-in">  <span class="co">#[1] 0.02655785 </span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="fu">aovPower</span><span class="op">(</span>n.vec <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/rep.html" class="external-link">rep</a></span><span class="op">(</span><span class="fl">10</span>,<span class="fl">3</span><span class="op">)</span>, mu.vec <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">10</span>, <span class="fl">12</span>, <span class="fl">14</span><span class="op">)</span>, </span>
-<span class="r-in">    sigma <span class="op">=</span> <span class="fl">5</span>, alpha <span class="op">=</span> <span class="fl">0.01</span><span class="op">)</span> </span>
+<span class="r-in"><span>  <span class="co">#[1] 0.02655785 </span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="fu">aovPower</span><span class="op">(</span>n.vec <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/rep.html" class="external-link">rep</a></span><span class="op">(</span><span class="fl">10</span>,<span class="fl">3</span><span class="op">)</span>, mu.vec <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">10</span>, <span class="fl">12</span>, <span class="fl">14</span><span class="op">)</span>, </span></span>
+<span class="r-in"><span>    sigma <span class="op">=</span> <span class="fl">5</span>, alpha <span class="op">=</span> <span class="fl">0.01</span><span class="op">)</span> </span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] 0.1223527</span>
-<span class="r-in">  <span class="co">#[1] 0.1223527 </span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="fu">aovPower</span><span class="op">(</span>n.vec <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/rep.html" class="external-link">rep</a></span><span class="op">(</span><span class="fl">10</span>,<span class="fl">3</span><span class="op">)</span>, mu.vec <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">10</span>, <span class="fl">12</span>, <span class="fl">14</span><span class="op">)</span>, </span>
-<span class="r-in">    sigma <span class="op">=</span> <span class="fl">5</span>, alpha <span class="op">=</span> <span class="fl">0.05</span><span class="op">)</span> </span>
+<span class="r-in"><span>  <span class="co">#[1] 0.1223527 </span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="fu">aovPower</span><span class="op">(</span>n.vec <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/rep.html" class="external-link">rep</a></span><span class="op">(</span><span class="fl">10</span>,<span class="fl">3</span><span class="op">)</span>, mu.vec <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">10</span>, <span class="fl">12</span>, <span class="fl">14</span><span class="op">)</span>, </span></span>
+<span class="r-in"><span>    sigma <span class="op">=</span> <span class="fl">5</span>, alpha <span class="op">=</span> <span class="fl">0.05</span><span class="op">)</span> </span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] 0.3085313</span>
-<span class="r-in">  <span class="co">#[1] 0.3085313 </span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="fu">aovPower</span><span class="op">(</span>n.vec <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/rep.html" class="external-link">rep</a></span><span class="op">(</span><span class="fl">10</span>,<span class="fl">3</span><span class="op">)</span>, mu.vec <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">10</span>, <span class="fl">12</span>, <span class="fl">14</span><span class="op">)</span>, </span>
-<span class="r-in">    sigma <span class="op">=</span> <span class="fl">5</span>, alpha <span class="op">=</span> <span class="fl">0.1</span><span class="op">)</span> </span>
+<span class="r-in"><span>  <span class="co">#[1] 0.3085313 </span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="fu">aovPower</span><span class="op">(</span>n.vec <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/rep.html" class="external-link">rep</a></span><span class="op">(</span><span class="fl">10</span>,<span class="fl">3</span><span class="op">)</span>, mu.vec <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">10</span>, <span class="fl">12</span>, <span class="fl">14</span><span class="op">)</span>, </span></span>
+<span class="r-in"><span>    sigma <span class="op">=</span> <span class="fl">5</span>, alpha <span class="op">=</span> <span class="fl">0.1</span><span class="op">)</span> </span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] 0.4373292</span>
-<span class="r-in">  <span class="co">#[1] 0.4373292</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="co">#==========</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="co"># The example on pages 5-11 to 5-14 of USEPA (1989b) shows </span></span>
-<span class="r-in">  <span class="co"># log-transformed concentrations of lead (mg/L) at two </span></span>
-<span class="r-in">  <span class="co"># background wells and four compliance wells, where observations </span></span>
-<span class="r-in">  <span class="co"># were taken once per month over four months (the data are </span></span>
-<span class="r-in">  <span class="co"># stored in EPA.89b.loglead.df.)  Assume the true mean levels </span></span>
-<span class="r-in">  <span class="co"># at each well are 3.9, 3.9, 4.5, 4.5, 4.5, and 5, respectively. </span></span>
-<span class="r-in">  <span class="co"># Compute the power of a one-way ANOVA to test for mean </span></span>
-<span class="r-in">  <span class="co"># differences between wells.  Use alpha=0.05, and assume the </span></span>
-<span class="r-in">  <span class="co"># true standard deviation is equal to the one estimated from </span></span>
-<span class="r-in">  <span class="co"># the data in this example.</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="co"># First look at the data </span></span>
-<span class="r-in">  <span class="fu"><a href="https://rdrr.io/r/base/names.html" class="external-link">names</a></span><span class="op">(</span><span class="va">EPA.89b.loglead.df</span><span class="op">)</span></span>
+<span class="r-in"><span>  <span class="co">#[1] 0.4373292</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="co">#==========</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="co"># The example on pages 5-11 to 5-14 of USEPA (1989b) shows </span></span></span>
+<span class="r-in"><span>  <span class="co"># log-transformed concentrations of lead (mg/L) at two </span></span></span>
+<span class="r-in"><span>  <span class="co"># background wells and four compliance wells, where observations </span></span></span>
+<span class="r-in"><span>  <span class="co"># were taken once per month over four months (the data are </span></span></span>
+<span class="r-in"><span>  <span class="co"># stored in EPA.89b.loglead.df.)  Assume the true mean levels </span></span></span>
+<span class="r-in"><span>  <span class="co"># at each well are 3.9, 3.9, 4.5, 4.5, 4.5, and 5, respectively. </span></span></span>
+<span class="r-in"><span>  <span class="co"># Compute the power of a one-way ANOVA to test for mean </span></span></span>
+<span class="r-in"><span>  <span class="co"># differences between wells.  Use alpha=0.05, and assume the </span></span></span>
+<span class="r-in"><span>  <span class="co"># true standard deviation is equal to the one estimated from </span></span></span>
+<span class="r-in"><span>  <span class="co"># the data in this example.</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="co"># First look at the data </span></span></span>
+<span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/r/base/names.html" class="external-link">names</a></span><span class="op">(</span><span class="va">EPA.89b.loglead.df</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] "LogLead"   "Month"     "Well"      "Well.type"</span>
-<span class="r-in">  <span class="co">#[1] "LogLead"   "Month"     "Well"      "Well.type"</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="fu"><a href="https://rdrr.io/r/grDevices/dev.html" class="external-link">dev.new</a></span><span class="op">(</span><span class="op">)</span></span>
-<span class="r-in">  <span class="fu"><a href="stripChart.html">stripChart</a></span><span class="op">(</span><span class="va">LogLead</span> <span class="op">~</span> <span class="va">Well</span>, data <span class="op">=</span> <span class="va">EPA.89b.loglead.df</span>,</span>
-<span class="r-in">    show.ci <span class="op">=</span> <span class="cn">FALSE</span>, xlab <span class="op">=</span> <span class="st">"Well Number"</span>, </span>
-<span class="r-in">    ylab<span class="op">=</span><span class="st">"Log [ Lead (ug/L) ]"</span>, </span>
-<span class="r-in">    main<span class="op">=</span><span class="st">"Lead Concentrations at Six Wells"</span><span class="op">)</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="co"># Note: The assumption of a constant variance across </span></span>
-<span class="r-in">  <span class="co"># all wells is suspect.</span></span>
-<span class="r-in"></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="co"># Now perform the ANOVA and get the estimated sd </span></span>
-<span class="r-in">  <span class="va">aov.list</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/aov.html" class="external-link">aov</a></span><span class="op">(</span><span class="va">LogLead</span> <span class="op">~</span> <span class="va">Well</span>, data<span class="op">=</span><span class="va">EPA.89b.loglead.df</span><span class="op">)</span> </span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="fu"><a href="https://rdrr.io/r/base/summary.html" class="external-link">summary</a></span><span class="op">(</span><span class="va">aov.list</span><span class="op">)</span> </span>
+<span class="r-in"><span>  <span class="co">#[1] "LogLead"   "Month"     "Well"      "Well.type"</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/r/grDevices/dev.html" class="external-link">dev.new</a></span><span class="op">(</span><span class="op">)</span></span></span>
+<span class="r-in"><span>  <span class="fu"><a href="stripChart.html">stripChart</a></span><span class="op">(</span><span class="va">LogLead</span> <span class="op">~</span> <span class="va">Well</span>, data <span class="op">=</span> <span class="va">EPA.89b.loglead.df</span>,</span></span>
+<span class="r-in"><span>    show.ci <span class="op">=</span> <span class="cn">FALSE</span>, xlab <span class="op">=</span> <span class="st">"Well Number"</span>, </span></span>
+<span class="r-in"><span>    ylab<span class="op">=</span><span class="st">"Log [ Lead (ug/L) ]"</span>, </span></span>
+<span class="r-in"><span>    main<span class="op">=</span><span class="st">"Lead Concentrations at Six Wells"</span><span class="op">)</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="co"># Note: The assumption of a constant variance across </span></span></span>
+<span class="r-in"><span>  <span class="co"># all wells is suspect.</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="co"># Now perform the ANOVA and get the estimated sd </span></span></span>
+<span class="r-in"><span>  <span class="va">aov.list</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/aov.html" class="external-link">aov</a></span><span class="op">(</span><span class="va">LogLead</span> <span class="op">~</span> <span class="va">Well</span>, data<span class="op">=</span><span class="va">EPA.89b.loglead.df</span><span class="op">)</span> </span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/r/base/summary.html" class="external-link">summary</a></span><span class="op">(</span><span class="va">aov.list</span><span class="op">)</span> </span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>             Df Sum Sq Mean Sq F value Pr(&gt;F)  </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Well         5  5.745  1.1489   3.347  0.026 *</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Residuals   18  6.179  0.3433                 </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> ---</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1</span>
-<span class="r-in">  <span class="co">#            Df Sum Sq Mean Sq F value  Pr(&gt;F)  </span></span>
-<span class="r-in">  <span class="co">#Well         5 5.7447 1.14895  3.3469 0.02599 *</span></span>
-<span class="r-in">  <span class="co">#Residuals   18 6.1791 0.34328                  </span></span>
-<span class="r-in">  <span class="co">#---</span></span>
-<span class="r-in">  <span class="co">#Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 '' 1 </span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="co"># Now call the function aovPower </span></span>
-<span class="r-in">  <span class="fu">aovPower</span><span class="op">(</span>n.vec <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/rep.html" class="external-link">rep</a></span><span class="op">(</span><span class="fl">4</span>, <span class="fl">6</span><span class="op">)</span>, </span>
-<span class="r-in">    mu.vec <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">3.9</span>,<span class="fl">3.9</span>,<span class="fl">4.5</span>,<span class="fl">4.5</span>,<span class="fl">4.5</span>,<span class="fl">5</span><span class="op">)</span>, sigma<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/MathFun.html" class="external-link">sqrt</a></span><span class="op">(</span><span class="fl">0.34</span><span class="op">)</span><span class="op">)</span> </span>
+<span class="r-in"><span>  <span class="co">#            Df Sum Sq Mean Sq F value  Pr(&gt;F)  </span></span></span>
+<span class="r-in"><span>  <span class="co">#Well         5 5.7447 1.14895  3.3469 0.02599 *</span></span></span>
+<span class="r-in"><span>  <span class="co">#Residuals   18 6.1791 0.34328                  </span></span></span>
+<span class="r-in"><span>  <span class="co">#---</span></span></span>
+<span class="r-in"><span>  <span class="co">#Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 '' 1 </span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="co"># Now call the function aovPower </span></span></span>
+<span class="r-in"><span>  <span class="fu">aovPower</span><span class="op">(</span>n.vec <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/rep.html" class="external-link">rep</a></span><span class="op">(</span><span class="fl">4</span>, <span class="fl">6</span><span class="op">)</span>, </span></span>
+<span class="r-in"><span>    mu.vec <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">3.9</span>,<span class="fl">3.9</span>,<span class="fl">4.5</span>,<span class="fl">4.5</span>,<span class="fl">4.5</span>,<span class="fl">5</span><span class="op">)</span>, sigma<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/MathFun.html" class="external-link">sqrt</a></span><span class="op">(</span><span class="fl">0.34</span><span class="op">)</span><span class="op">)</span> </span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] 0.5523148</span>
-<span class="r-in">  <span class="co">#[1] 0.5523148</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="co"># Clean up</span></span>
-<span class="r-in">  <span class="fu"><a href="https://rdrr.io/r/base/rm.html" class="external-link">rm</a></span><span class="op">(</span><span class="va">aov.list</span><span class="op">)</span></span>
+<span class="r-in"><span>  <span class="co">#[1] 0.5523148</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="co"># Clean up</span></span></span>
+<span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/r/base/rm.html" class="external-link">rm</a></span><span class="op">(</span><span class="va">aov.list</span><span class="op">)</span></span></span>
 </code></pre></div>
     </div>
   </div>
@@ -301,7 +307,7 @@
 </div>
 
 <div class="pkgdown">
-  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.2.</p>
+  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.6.</p>
 </div>
 
       </footer></div>

@@ -60,11 +60,11 @@
     </div>
 
     <div id="ref-usage">
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="fu">tolIntLnorm</span><span class="op">(</span><span class="va">x</span>, coverage <span class="op">=</span> <span class="fl">0.95</span>, cov.type <span class="op">=</span> <span class="st">"content"</span>, ti.type <span class="op">=</span> <span class="st">"two-sided"</span>, 
-    conf.level <span class="op">=</span> <span class="fl">0.95</span>, method <span class="op">=</span> <span class="st">"exact"</span><span class="op">)</span>
-
-  <span class="fu">tolIntLnormAlt</span><span class="op">(</span><span class="va">x</span>, coverage <span class="op">=</span> <span class="fl">0.95</span>, cov.type <span class="op">=</span> <span class="st">"content"</span>, ti.type <span class="op">=</span> <span class="st">"two-sided"</span>, 
-    conf.level <span class="op">=</span> <span class="fl">0.95</span>, method <span class="op">=</span> <span class="st">"exact"</span>, est.method <span class="op">=</span> <span class="st">"mvue"</span><span class="op">)</span></code></pre></div>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">tolIntLnorm</span><span class="op">(</span><span class="va">x</span>, coverage <span class="op">=</span> <span class="fl">0.95</span>, cov.type <span class="op">=</span> <span class="st">"content"</span>, ti.type <span class="op">=</span> <span class="st">"two-sided"</span>, </span>
+<span>    conf.level <span class="op">=</span> <span class="fl">0.95</span>, method <span class="op">=</span> <span class="st">"exact"</span><span class="op">)</span></span>
+<span></span>
+<span>  <span class="fu">tolIntLnormAlt</span><span class="op">(</span><span class="va">x</span>, coverage <span class="op">=</span> <span class="fl">0.95</span>, cov.type <span class="op">=</span> <span class="st">"content"</span>, ti.type <span class="op">=</span> <span class="st">"two-sided"</span>, </span>
+<span>    conf.level <span class="op">=</span> <span class="fl">0.95</span>, method <span class="op">=</span> <span class="st">"exact"</span>, est.method <span class="op">=</span> <span class="st">"mvue"</span><span class="op">)</span></span></code></pre></div>
     </div>
 
     <div id="arguments">
@@ -80,29 +80,35 @@
 <p>If <code>x</code> is a numeric vector, 
   missing (<code>NA</code>), undefined (<code>NaN</code>), and infinite (<code>Inf</code>, <code>-Inf</code>) 
   values are allowed but will be removed.</p></dd>
-<dt>coverage</dt>
+
+  <dt>coverage</dt>
 <dd><p>a scalar between 0 and 1 indicating the desired coverage of the tolerance interval.  
   The default value is <code>coverage=0.95</code>.  If <code>cov.type="expectation"</code>, 
   this argument is ignored.</p></dd>
-<dt>cov.type</dt>
+
+  <dt>cov.type</dt>
 <dd><p>character string specifying the coverage type for the tolerance interval.  
   The possible values are <code>"content"</code> (\(\beta\)-content; the default), and 
   <code>"expectation"</code> (\(\beta\)-expectation).  See the DETAILS section for more 
   information.</p></dd>
-<dt>ti.type</dt>
+
+  <dt>ti.type</dt>
 <dd><p>character string indicating what kind of tolerance interval to compute.  
   The possible values are <code>"two-sided"</code> (the default), <code>"lower"</code>, and 
   <code>"upper"</code>.</p></dd>
-<dt>conf.level</dt>
+
+  <dt>conf.level</dt>
 <dd><p>a scalar between 0 and 1 indicating the confidence level associated with the 
   tolerance interval.  The default value is <code>conf.level=0.95</code>.</p></dd>
-<dt>method</dt>
+
+  <dt>method</dt>
 <dd><p>for the case of a two-sided tolerance interval, a character string specifying the 
   method for constructing the tolerance interval.  This argument is ignored if 
   <code>ti.type="lower"</code> or <code>ti.type="upper"</code>.  The possible values are <br><code>"exact"</code> (the default) and <code>"wald.wolfowitz"</code> (the Wald-Wolfowitz 
   approximation).  See the DETAILS section in this help file and the DETAILS section 
   in the help file for <code><a href="tolIntNorm.html">tolIntNorm</a></code> for more information.</p></dd>
-<dt>est.method</dt>
+
+  <dt>est.method</dt>
 <dd><p>for <code>tolIntLnormAlt</code>, a character string specifying the method of estimating 
   the mean and coefficient of variation.  <em>This argument has no effect on the 
   method of constructing the tolerance interval</em>.  Possible values are 
@@ -111,6 +117,7 @@
   <code>"mme"</code> (method of moments), and <code>"mmue"</code> 
   (method of moments based on the unbiased estimate of variance).  See the DETAILS 
   section of <code><a href="elnormAlt.html">elnormAlt</a></code> for more information on these estimation methods.</p></dd>
+
 </dl></div>
     <div id="details">
     <h2>Details</h2>
@@ -126,14 +133,21 @@
     </div>
     <div id="value">
     <h2>Value</h2>
-    <p>If <code>x</code> is a numeric vector, a list of class 
-<code>"estimate"</code> containing the estimated parameters, a component called 
-<code>interval</code> containing the tolerance interval information, and other 
-  information.  See <code><a href="estimate.object.html">estimate.object</a></code> for details.
-  If <code>x</code> is the result of calling an estimation function, a list whose 
+    
+
+<p>If <code>x</code> is a numeric vector, a list of class</p>
+<p></p>
+<p><code>"estimate"</code> containing the estimated parameters, a component called</p>
+<p></p>
+<p><code>interval</code> containing the tolerance interval information, and other 
+  information.  See <code><a href="estimate.object.html">estimate.object</a></code> for details.</p>
+
+
+<p>If <code>x</code> is the result of calling an estimation function, a list whose 
   class is the same as <code>x</code>.  The list contains the same 
-  components as <code>x</code>.  If <code>x</code> already has a component called 
-<code>interval</code>, this component is replaced with the tolerance interval 
+  components as <code>x</code>.  If <code>x</code> already has a component called</p>
+<p></p>
+<p><code>interval</code>, this component is replaced with the tolerance interval 
   information.</p>
     </div>
     <div id="references">
@@ -202,16 +216,16 @@
 
     <div id="ref-examples">
     <h2>Examples</h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in">  <span class="co"># Generate 20 observations from a lognormal distribution with parameters </span></span>
-<span class="r-in">  <span class="co"># meanlog=0 and sdlog=1.  Use tolIntLnorm to estimate </span></span>
-<span class="r-in">  <span class="co"># the mean and standard deviation of the log of the true distribution, and </span></span>
-<span class="r-in">  <span class="co"># construct a two-sided 90% beta-content tolerance interval with associated </span></span>
-<span class="r-in">  <span class="co"># confidence level 95%. </span></span>
-<span class="r-in">  <span class="co"># (Note: the call to set.seed simply allows you to reproduce this example.)</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="fu"><a href="https://rdrr.io/r/base/Random.html" class="external-link">set.seed</a></span><span class="op">(</span><span class="fl">250</span><span class="op">)</span> </span>
-<span class="r-in">  <span class="va">dat</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/Lognormal.html" class="external-link">rlnorm</a></span><span class="op">(</span><span class="fl">20</span><span class="op">)</span> </span>
-<span class="r-in">  <span class="fu">tolIntLnorm</span><span class="op">(</span><span class="va">dat</span>, coverage <span class="op">=</span> <span class="fl">0.9</span><span class="op">)</span> </span>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span>  <span class="co"># Generate 20 observations from a lognormal distribution with parameters </span></span></span>
+<span class="r-in"><span>  <span class="co"># meanlog=0 and sdlog=1.  Use tolIntLnorm to estimate </span></span></span>
+<span class="r-in"><span>  <span class="co"># the mean and standard deviation of the log of the true distribution, and </span></span></span>
+<span class="r-in"><span>  <span class="co"># construct a two-sided 90% beta-content tolerance interval with associated </span></span></span>
+<span class="r-in"><span>  <span class="co"># confidence level 95%. </span></span></span>
+<span class="r-in"><span>  <span class="co"># (Note: the call to set.seed simply allows you to reproduce this example.)</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/r/base/Random.html" class="external-link">set.seed</a></span><span class="op">(</span><span class="fl">250</span><span class="op">)</span> </span></span>
+<span class="r-in"><span>  <span class="va">dat</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/Lognormal.html" class="external-link">rlnorm</a></span><span class="op">(</span><span class="fl">20</span><span class="op">)</span> </span></span>
+<span class="r-in"><span>  <span class="fu">tolIntLnorm</span><span class="op">(</span><span class="va">dat</span>, coverage <span class="op">=</span> <span class="fl">0.9</span><span class="op">)</span> </span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> $distribution</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] "Lognormal"</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
@@ -268,57 +282,57 @@
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> attr(,"class")</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] "estimate"</span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="co">#Results of Distribution Parameter Estimation</span></span>
-<span class="r-in">  <span class="co">#--------------------------------------------</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Assumed Distribution:            Lognormal</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Estimated Parameter(s):          meanlog = -0.06941976</span></span>
-<span class="r-in">  <span class="co">#                                 sdlog   =  0.59011300</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Estimation Method:               mvue</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Data:                            dat</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Sample Size:                     20</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Tolerance Interval Coverage:     90%</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Coverage Type:                   content</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Tolerance Interval Method:       Exact</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Tolerance Interval Type:         two-sided</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Confidence Level:                95%</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Tolerance Interval:              LTL = 0.237457</span></span>
-<span class="r-in">  <span class="co">#                                 UTL = 3.665369</span></span>
-<span class="r-in"></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="co"># The exact two-sided interval that contains 90% of this distribution </span></span>
-<span class="r-in">  <span class="co"># is given by: [0.193, 5.18].  </span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="fu"><a href="https://rdrr.io/r/stats/Lognormal.html" class="external-link">qlnorm</a></span><span class="op">(</span>p <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">0.05</span>, <span class="fl">0.95</span><span class="op">)</span><span class="op">)</span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="co">#Results of Distribution Parameter Estimation</span></span></span>
+<span class="r-in"><span>  <span class="co">#--------------------------------------------</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Assumed Distribution:            Lognormal</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Estimated Parameter(s):          meanlog = -0.06941976</span></span></span>
+<span class="r-in"><span>  <span class="co">#                                 sdlog   =  0.59011300</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Estimation Method:               mvue</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Data:                            dat</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Sample Size:                     20</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Tolerance Interval Coverage:     90%</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Coverage Type:                   content</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Tolerance Interval Method:       Exact</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Tolerance Interval Type:         two-sided</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Confidence Level:                95%</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Tolerance Interval:              LTL = 0.237457</span></span></span>
+<span class="r-in"><span>  <span class="co">#                                 UTL = 3.665369</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="co"># The exact two-sided interval that contains 90% of this distribution </span></span></span>
+<span class="r-in"><span>  <span class="co"># is given by: [0.193, 5.18].  </span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/r/stats/Lognormal.html" class="external-link">qlnorm</a></span><span class="op">(</span>p <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">0.05</span>, <span class="fl">0.95</span><span class="op">)</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] 0.1930408 5.1802516</span>
-<span class="r-in">  <span class="co">#[1] 0.1930408 5.1802516</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="co"># Clean up</span></span>
-<span class="r-in">  <span class="fu"><a href="https://rdrr.io/r/base/rm.html" class="external-link">rm</a></span><span class="op">(</span><span class="va">dat</span><span class="op">)</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="co">#==========</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="co"># Example 17-3 of USEPA (2009, p. 17-17) shows how to construct a </span></span>
-<span class="r-in">  <span class="co"># beta-content upper tolerance limit with 95% coverage and 95% </span></span>
-<span class="r-in">  <span class="co"># confidence  using chrysene data and assuming a lognormal distribution.  </span></span>
-<span class="r-in">  <span class="co"># The data for this example are stored in EPA.09.Ex.17.3.chrysene.df, </span></span>
-<span class="r-in">  <span class="co"># which contains chrysene concentration data (ppb) found in water </span></span>
-<span class="r-in">  <span class="co"># samples obtained from two background wells (Wells 1 and 2) and </span></span>
-<span class="r-in">  <span class="co"># three compliance wells (Wells 3, 4, and 5).  The tolerance limit </span></span>
-<span class="r-in">  <span class="co"># is based on the data from the background wells.</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">EPA.09.Ex.17.3.chrysene.df</span><span class="op">)</span></span>
+<span class="r-in"><span>  <span class="co">#[1] 0.1930408 5.1802516</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="co"># Clean up</span></span></span>
+<span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/r/base/rm.html" class="external-link">rm</a></span><span class="op">(</span><span class="va">dat</span><span class="op">)</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="co">#==========</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="co"># Example 17-3 of USEPA (2009, p. 17-17) shows how to construct a </span></span></span>
+<span class="r-in"><span>  <span class="co"># beta-content upper tolerance limit with 95% coverage and 95% </span></span></span>
+<span class="r-in"><span>  <span class="co"># confidence  using chrysene data and assuming a lognormal distribution.  </span></span></span>
+<span class="r-in"><span>  <span class="co"># The data for this example are stored in EPA.09.Ex.17.3.chrysene.df, </span></span></span>
+<span class="r-in"><span>  <span class="co"># which contains chrysene concentration data (ppb) found in water </span></span></span>
+<span class="r-in"><span>  <span class="co"># samples obtained from two background wells (Wells 1 and 2) and </span></span></span>
+<span class="r-in"><span>  <span class="co"># three compliance wells (Wells 3, 4, and 5).  The tolerance limit </span></span></span>
+<span class="r-in"><span>  <span class="co"># is based on the data from the background wells.</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">EPA.09.Ex.17.3.chrysene.df</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   Month   Well  Well.type Chrysene.ppb</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 1     1 Well.1 Background         19.7</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 2     2 Well.1 Background         39.2</span>
@@ -326,29 +340,29 @@
 <span class="r-out co"><span class="r-pr">#&gt;</span> 4     4 Well.1 Background         12.8</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 5     1 Well.2 Background         10.2</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 6     2 Well.2 Background          7.2</span>
-<span class="r-in">  <span class="co">#  Month   Well  Well.type Chrysene.ppb</span></span>
-<span class="r-in">  <span class="co">#1     1 Well.1 Background         19.7</span></span>
-<span class="r-in">  <span class="co">#2     2 Well.1 Background         39.2</span></span>
-<span class="r-in">  <span class="co">#3     3 Well.1 Background          7.8</span></span>
-<span class="r-in">  <span class="co">#4     4 Well.1 Background         12.8</span></span>
-<span class="r-in">  <span class="co">#5     1 Well.2 Background         10.2</span></span>
-<span class="r-in">  <span class="co">#6     2 Well.2 Background          7.2</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="fu"><a href="longToWide.html">longToWide</a></span><span class="op">(</span><span class="va">EPA.09.Ex.17.3.chrysene.df</span>, <span class="st">"Chrysene.ppb"</span>, <span class="st">"Month"</span>, <span class="st">"Well"</span><span class="op">)</span></span>
+<span class="r-in"><span>  <span class="co">#  Month   Well  Well.type Chrysene.ppb</span></span></span>
+<span class="r-in"><span>  <span class="co">#1     1 Well.1 Background         19.7</span></span></span>
+<span class="r-in"><span>  <span class="co">#2     2 Well.1 Background         39.2</span></span></span>
+<span class="r-in"><span>  <span class="co">#3     3 Well.1 Background          7.8</span></span></span>
+<span class="r-in"><span>  <span class="co">#4     4 Well.1 Background         12.8</span></span></span>
+<span class="r-in"><span>  <span class="co">#5     1 Well.2 Background         10.2</span></span></span>
+<span class="r-in"><span>  <span class="co">#6     2 Well.2 Background          7.2</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="fu"><a href="longToWide.html">longToWide</a></span><span class="op">(</span><span class="va">EPA.09.Ex.17.3.chrysene.df</span>, <span class="st">"Chrysene.ppb"</span>, <span class="st">"Month"</span>, <span class="st">"Well"</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   Well.1 Well.2 Well.3 Well.4 Well.5</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 1   19.7   10.2   68.0   26.8   47.0</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 2   39.2    7.2   48.9   17.7   30.5</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 3    7.8   16.1   30.1   31.9   15.0</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 4   12.8    5.7   38.1   22.2   23.4</span>
-<span class="r-in">  <span class="co">#  Well.1 Well.2 Well.3 Well.4 Well.5</span></span>
-<span class="r-in">  <span class="co">#1   19.7   10.2   68.0   26.8   47.0</span></span>
-<span class="r-in">  <span class="co">#2   39.2    7.2   48.9   17.7   30.5</span></span>
-<span class="r-in">  <span class="co">#3    7.8   16.1   30.1   31.9   15.0</span></span>
-<span class="r-in">  <span class="co">#4   12.8    5.7   38.1   22.2   23.4</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="fu"><a href="https://rdrr.io/r/base/with.html" class="external-link">with</a></span><span class="op">(</span><span class="va">EPA.09.Ex.17.3.chrysene.df</span>, </span>
-<span class="r-in">    <span class="fu">tolIntLnorm</span><span class="op">(</span><span class="va">Chrysene.ppb</span><span class="op">[</span><span class="va">Well.type</span> <span class="op">==</span> <span class="st">"Background"</span><span class="op">]</span>, </span>
-<span class="r-in">    ti.type <span class="op">=</span> <span class="st">"upper"</span>, coverage <span class="op">=</span> <span class="fl">0.95</span>, conf.level <span class="op">=</span> <span class="fl">0.95</span><span class="op">)</span><span class="op">)</span></span>
+<span class="r-in"><span>  <span class="co">#  Well.1 Well.2 Well.3 Well.4 Well.5</span></span></span>
+<span class="r-in"><span>  <span class="co">#1   19.7   10.2   68.0   26.8   47.0</span></span></span>
+<span class="r-in"><span>  <span class="co">#2   39.2    7.2   48.9   17.7   30.5</span></span></span>
+<span class="r-in"><span>  <span class="co">#3    7.8   16.1   30.1   31.9   15.0</span></span></span>
+<span class="r-in"><span>  <span class="co">#4   12.8    5.7   38.1   22.2   23.4</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/r/base/with.html" class="external-link">with</a></span><span class="op">(</span><span class="va">EPA.09.Ex.17.3.chrysene.df</span>, </span></span>
+<span class="r-in"><span>    <span class="fu">tolIntLnorm</span><span class="op">(</span><span class="va">Chrysene.ppb</span><span class="op">[</span><span class="va">Well.type</span> <span class="op">==</span> <span class="st">"Background"</span><span class="op">]</span>, </span></span>
+<span class="r-in"><span>    ti.type <span class="op">=</span> <span class="st">"upper"</span>, coverage <span class="op">=</span> <span class="fl">0.95</span>, conf.level <span class="op">=</span> <span class="fl">0.95</span><span class="op">)</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> $distribution</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] "Lognormal"</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
@@ -405,43 +419,43 @@
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> attr(,"class")</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] "estimate"</span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="co">#Results of Distribution Parameter Estimation</span></span>
-<span class="r-in">  <span class="co">#--------------------------------------------</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Assumed Distribution:            Lognormal</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Estimated Parameter(s):          meanlog = 2.5085773</span></span>
-<span class="r-in">  <span class="co">#                                 sdlog   = 0.6279479</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Estimation Method:               mvue</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Data:                            Chrysene.ppb[Well.type == "Background"]</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Sample Size:                     8</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Tolerance Interval Coverage:     95%</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Coverage Type:                   content</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Tolerance Interval Method:       Exact</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Tolerance Interval Type:         upper</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Confidence Level:                95%</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Tolerance Interval:              LTL =  0.0000</span></span>
-<span class="r-in">  <span class="co">#                                 UTL = 90.9247</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="co">#----------</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="co"># Repeat the above example, but estimate the mean and </span></span>
-<span class="r-in">  <span class="co"># coefficient of variation on the original scale</span></span>
-<span class="r-in">  <span class="co">#-----------------------------------------------</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="fu"><a href="https://rdrr.io/r/base/with.html" class="external-link">with</a></span><span class="op">(</span><span class="va">EPA.09.Ex.17.3.chrysene.df</span>, </span>
-<span class="r-in">    <span class="fu">tolIntLnormAlt</span><span class="op">(</span><span class="va">Chrysene.ppb</span><span class="op">[</span><span class="va">Well.type</span> <span class="op">==</span> <span class="st">"Background"</span><span class="op">]</span>, </span>
-<span class="r-in">    ti.type <span class="op">=</span> <span class="st">"upper"</span>, coverage <span class="op">=</span> <span class="fl">0.95</span>, conf.level <span class="op">=</span> <span class="fl">0.95</span><span class="op">)</span><span class="op">)</span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="co">#Results of Distribution Parameter Estimation</span></span></span>
+<span class="r-in"><span>  <span class="co">#--------------------------------------------</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Assumed Distribution:            Lognormal</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Estimated Parameter(s):          meanlog = 2.5085773</span></span></span>
+<span class="r-in"><span>  <span class="co">#                                 sdlog   = 0.6279479</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Estimation Method:               mvue</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Data:                            Chrysene.ppb[Well.type == "Background"]</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Sample Size:                     8</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Tolerance Interval Coverage:     95%</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Coverage Type:                   content</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Tolerance Interval Method:       Exact</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Tolerance Interval Type:         upper</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Confidence Level:                95%</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Tolerance Interval:              LTL =  0.0000</span></span></span>
+<span class="r-in"><span>  <span class="co">#                                 UTL = 90.9247</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="co">#----------</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="co"># Repeat the above example, but estimate the mean and </span></span></span>
+<span class="r-in"><span>  <span class="co"># coefficient of variation on the original scale</span></span></span>
+<span class="r-in"><span>  <span class="co">#-----------------------------------------------</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/r/base/with.html" class="external-link">with</a></span><span class="op">(</span><span class="va">EPA.09.Ex.17.3.chrysene.df</span>, </span></span>
+<span class="r-in"><span>    <span class="fu">tolIntLnormAlt</span><span class="op">(</span><span class="va">Chrysene.ppb</span><span class="op">[</span><span class="va">Well.type</span> <span class="op">==</span> <span class="st">"Background"</span><span class="op">]</span>, </span></span>
+<span class="r-in"><span>    ti.type <span class="op">=</span> <span class="st">"upper"</span>, coverage <span class="op">=</span> <span class="fl">0.95</span>, conf.level <span class="op">=</span> <span class="fl">0.95</span><span class="op">)</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> $distribution</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] "Lognormal"</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
@@ -498,33 +512,33 @@
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> attr(,"class")</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] "estimate"</span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="co">#Results of Distribution Parameter Estimation</span></span>
-<span class="r-in">  <span class="co">#--------------------------------------------</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Assumed Distribution:            Lognormal</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Estimated Parameter(s):          mean = 14.5547353</span></span>
-<span class="r-in">  <span class="co">#                                 cv   =  0.6390825</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Estimation Method:               mvue</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Data:                            Chrysene.ppb[Well.type == "Background"]</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Sample Size:                     8</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Tolerance Interval Coverage:     95%</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Coverage Type:                   content</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Tolerance Interval Method:       Exact</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Tolerance Interval Type:         upper</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Confidence Level:                95%</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Tolerance Interval:              LTL =  0.0000</span></span>
-<span class="r-in">  <span class="co">#                                 UTL = 90.9247</span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="co">#Results of Distribution Parameter Estimation</span></span></span>
+<span class="r-in"><span>  <span class="co">#--------------------------------------------</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Assumed Distribution:            Lognormal</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Estimated Parameter(s):          mean = 14.5547353</span></span></span>
+<span class="r-in"><span>  <span class="co">#                                 cv   =  0.6390825</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Estimation Method:               mvue</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Data:                            Chrysene.ppb[Well.type == "Background"]</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Sample Size:                     8</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Tolerance Interval Coverage:     95%</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Coverage Type:                   content</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Tolerance Interval Method:       Exact</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Tolerance Interval Type:         upper</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Confidence Level:                95%</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Tolerance Interval:              LTL =  0.0000</span></span></span>
+<span class="r-in"><span>  <span class="co">#                                 UTL = 90.9247</span></span></span>
 </code></pre></div>
     </div>
   </div>
@@ -539,7 +553,7 @@
 </div>
 
 <div class="pkgdown">
-  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.2.</p>
+  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.6.</p>
 </div>
 
       </footer></div>

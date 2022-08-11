@@ -56,8 +56,8 @@
     </div>
 
     <div id="ref-usage">
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="fu">ppointsCensored</span><span class="op">(</span><span class="va">x</span>, <span class="va">censored</span>, censoring.side <span class="op">=</span> <span class="st">"left"</span>, 
-    prob.method <span class="op">=</span> <span class="st">"michael-schucany"</span>, plot.pos.con <span class="op">=</span> <span class="fl">0.375</span><span class="op">)</span></code></pre></div>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">ppointsCensored</span><span class="op">(</span><span class="va">x</span>, <span class="va">censored</span>, censoring.side <span class="op">=</span> <span class="st">"left"</span>, </span>
+<span>    prob.method <span class="op">=</span> <span class="st">"michael-schucany"</span>, plot.pos.con <span class="op">=</span> <span class="fl">0.375</span><span class="op">)</span></span></code></pre></div>
     </div>
 
     <div id="arguments">
@@ -65,27 +65,32 @@
     <dl><dt>x</dt>
 <dd><p>numeric vector of observations.  Missing (<code>NA</code>), undefined (<code>NaN</code>), and 
   infinite (<code>Inf</code>, <code>-Inf</code>) values are allowed but will be removed.</p></dd>
-<dt>censored</dt>
+
+  <dt>censored</dt>
 <dd><p>numeric or logical vector indicating which values of <code>x</code> are censored.  This must be the 
   same length as <code>x</code>.  If the mode of <code>censored</code> is <code>"logical"</code>, <code>TRUE</code> values 
   correspond to elements of <code>x</code> that are censored, and <code>FALSE</code> values correspond to 
   elements of <code>x</code> that are not censored.  If the mode of <code>censored</code> is <code>"numeric"</code>, 
   it must contain only <code>1</code>'s and <code>0</code>'s; <code>1</code> corresponds to <code>TRUE</code> and 
   <code>0</code> corresponds to <code>FALSE</code>.  Missing (<code>NA</code>) values are allowed but will be removed.</p></dd>
-<dt>censoring.side</dt>
+
+  <dt>censoring.side</dt>
 <dd><p>character string indicating on which side the censoring occurs.  The possible values are 
   <code>"left"</code> (the default) and <code>"right"</code>.</p></dd>
-<dt>prob.method</dt>
+
+  <dt>prob.method</dt>
 <dd><p>character string indicating what method to use to compute the plotting positions 
   (empirical probabilities).  Possible values are: <br><code>"kaplan-meier"</code> (product-limit method of Kaplan and Meier (1958)), <br><code>"modified kaplan-meier"</code> (modification of Kaplan-Meier method), <br><code>"nelson"</code> (hazard plotting method of Nelson (1972)), <br><code>"michael-schucany"</code> (generalization of the product-limit method due to Michael and Schucany (1986)), and <br><code>"hirsch-stedinger"</code> (generalization of the product-limit method due to Hirsch and Stedinger (1987)). <br></p>
 <p>The default value is <code>prob.method="michael-schucany"</code>.</p>
 <p>The <code>"nelson"</code> method is only available for <code>censoring.side="right"</code>, and 
   the <code>"modified kaplan-meier"</code> method is only available for <br><code>censoring.side="left"</code>.  See the DETAILS section for more explanation.</p></dd>
-<dt>plot.pos.con</dt>
+
+  <dt>plot.pos.con</dt>
 <dd><p>numeric scalar between 0 and 1 containing the value of the plotting position constant.  
   The default value is <code>plot.pos.con=0.375</code>.  See the DETAILS section for more information.  
   This argument is used only if <code>prob.method</code> is equal to <code>"michael-schucany"</code> or 
   <code>"hirsch-stedinger"</code>.</p></dd>
+
 </dl></div>
     <div id="details">
     <h2>Details</h2>
@@ -324,23 +329,33 @@
     </div>
     <div id="value">
     <h2>Value</h2>
-    <p><code>ppointsCensored</code> returns a list with the following components:</p>
+    <p></p>
+<p><code>ppointsCensored</code> returns a list with the following components:</p>
 <dl><dt>Order.Statistics</dt>
 <dd><p>numeric vector of the “ordered” observations.</p></dd>
-<dt>Cumulative.Probabilities</dt>
+
+  <dt>Cumulative.Probabilities</dt>
 <dd><p>numeric vector of the associated plotting positions.</p></dd>
-<dt>Censored</dt>
+
+  <dt>Censored</dt>
 <dd><p>logical vector indicating which of the ordered observations are censored.</p></dd>
-<dt>Censoring.Side</dt>
+
+  <dt>Censoring.Side</dt>
 <dd><p>character string indicating whether the data are left- or right-censored.  
     This is same value as the argument <code>censoring.side</code>.</p></dd>
-<dt>Prob.Method</dt>
+
+  <dt>Prob.Method</dt>
 <dd><p>character string indicating what method was used to compute the plotting positions.  
     This is the same value as the argument <code>prob.method</code>.</p></dd>
-</dl><p>Optional Component (only present when <code>prob.method="michael-schucany"</code> or <br><code>prob.method="hirsch-stedinger"</code>):</p>
+
+
+</dl><p>Optional Component (only present when <code>prob.method="michael-schucany"</code> or <br></p>
+<p></p>
+<p><code>prob.method="hirsch-stedinger"</code>):</p>
 <dl><dt>Plot.Pos.Con</dt>
 <dd><p>numeric scalar containing the value of the plotting position constant that was used.  
     This is the same as the argument <code>plot.pos.con</code>.</p></dd>
+
 </dl></div>
     <div id="references">
     <h2>References</h2>
@@ -408,39 +423,39 @@
 
     <div id="ref-examples">
     <h2>Examples</h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in">  <span class="co"># Generate 20 observations from a normal distribution with mean=20 and sd=5, </span></span>
-<span class="r-in">  <span class="co"># censor all observations less than 18, then compute plotting positions for </span></span>
-<span class="r-in">  <span class="co"># this data set.  Compare the plotting positions to the plotting positions </span></span>
-<span class="r-in">  <span class="co"># for the uncensored data set.  Note that the plotting positions for the </span></span>
-<span class="r-in">  <span class="co"># censored data set start at the first ordered uncensored observation and </span></span>
-<span class="r-in">  <span class="co"># that for values of x &gt; 18 the plotting positions for the two data sets are </span></span>
-<span class="r-in">  <span class="co"># exactly the same. This is because there is only one censoring level and </span></span>
-<span class="r-in">  <span class="co"># no uncensored observations fall below the censored observations. </span></span>
-<span class="r-in">  <span class="co"># (Note: the call to set.seed simply allows you to reproduce this example.)</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="fu"><a href="https://rdrr.io/r/base/Random.html" class="external-link">set.seed</a></span><span class="op">(</span><span class="fl">333</span><span class="op">)</span> </span>
-<span class="r-in">  <span class="va">x</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/Normal.html" class="external-link">rnorm</a></span><span class="op">(</span><span class="fl">20</span>, mean<span class="op">=</span><span class="fl">20</span>, sd<span class="op">=</span><span class="fl">5</span><span class="op">)</span> </span>
-<span class="r-in">  <span class="va">censored</span> <span class="op">&lt;-</span> <span class="va">x</span> <span class="op">&lt;</span> <span class="fl">18</span> </span>
-<span class="r-in">  <span class="va">censored</span> </span>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span>  <span class="co"># Generate 20 observations from a normal distribution with mean=20 and sd=5, </span></span></span>
+<span class="r-in"><span>  <span class="co"># censor all observations less than 18, then compute plotting positions for </span></span></span>
+<span class="r-in"><span>  <span class="co"># this data set.  Compare the plotting positions to the plotting positions </span></span></span>
+<span class="r-in"><span>  <span class="co"># for the uncensored data set.  Note that the plotting positions for the </span></span></span>
+<span class="r-in"><span>  <span class="co"># censored data set start at the first ordered uncensored observation and </span></span></span>
+<span class="r-in"><span>  <span class="co"># that for values of x &gt; 18 the plotting positions for the two data sets are </span></span></span>
+<span class="r-in"><span>  <span class="co"># exactly the same. This is because there is only one censoring level and </span></span></span>
+<span class="r-in"><span>  <span class="co"># no uncensored observations fall below the censored observations. </span></span></span>
+<span class="r-in"><span>  <span class="co"># (Note: the call to set.seed simply allows you to reproduce this example.)</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/r/base/Random.html" class="external-link">set.seed</a></span><span class="op">(</span><span class="fl">333</span><span class="op">)</span> </span></span>
+<span class="r-in"><span>  <span class="va">x</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/Normal.html" class="external-link">rnorm</a></span><span class="op">(</span><span class="fl">20</span>, mean<span class="op">=</span><span class="fl">20</span>, sd<span class="op">=</span><span class="fl">5</span><span class="op">)</span> </span></span>
+<span class="r-in"><span>  <span class="va">censored</span> <span class="op">&lt;-</span> <span class="va">x</span> <span class="op">&lt;</span> <span class="fl">18</span> </span></span>
+<span class="r-in"><span>  <span class="va">censored</span> </span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  [1] FALSE FALSE  TRUE FALSE  TRUE FALSE FALSE FALSE FALSE  TRUE  TRUE  TRUE</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [13] FALSE  TRUE  TRUE FALSE FALSE FALSE FALSE FALSE</span>
-<span class="r-in">  <span class="co"># [1] FALSE FALSE  TRUE FALSE  TRUE FALSE FALSE FALSE FALSE  TRUE  TRUE  TRUE</span></span>
-<span class="r-in">  <span class="co">#[13] FALSE  TRUE  TRUE FALSE FALSE FALSE FALSE FALSE</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="fu"><a href="https://rdrr.io/r/base/sum.html" class="external-link">sum</a></span><span class="op">(</span><span class="va">censored</span><span class="op">)</span> </span>
+<span class="r-in"><span>  <span class="co"># [1] FALSE FALSE  TRUE FALSE  TRUE FALSE FALSE FALSE FALSE  TRUE  TRUE  TRUE</span></span></span>
+<span class="r-in"><span>  <span class="co">#[13] FALSE  TRUE  TRUE FALSE FALSE FALSE FALSE FALSE</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/r/base/sum.html" class="external-link">sum</a></span><span class="op">(</span><span class="va">censored</span><span class="op">)</span> </span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] 7</span>
-<span class="r-in">  <span class="co">#[1] 7 </span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="va">new.x</span> <span class="op">&lt;-</span> <span class="va">x</span> </span>
-<span class="r-in">  <span class="va">new.x</span><span class="op">[</span><span class="va">censored</span><span class="op">]</span> <span class="op">&lt;-</span> <span class="fl">18</span> </span>
-<span class="r-in">  <span class="fu"><a href="https://rdrr.io/r/base/Round.html" class="external-link">round</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/sort.html" class="external-link">sort</a></span><span class="op">(</span><span class="va">new.x</span><span class="op">)</span>,<span class="fl">1</span><span class="op">)</span> </span>
+<span class="r-in"><span>  <span class="co">#[1] 7 </span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="va">new.x</span> <span class="op">&lt;-</span> <span class="va">x</span> </span></span>
+<span class="r-in"><span>  <span class="va">new.x</span><span class="op">[</span><span class="va">censored</span><span class="op">]</span> <span class="op">&lt;-</span> <span class="fl">18</span> </span></span>
+<span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/r/base/Round.html" class="external-link">round</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/sort.html" class="external-link">sort</a></span><span class="op">(</span><span class="va">new.x</span><span class="op">)</span>,<span class="fl">1</span><span class="op">)</span> </span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  [1] 18.0 18.0 18.0 18.0 18.0 18.0 18.0 18.1 18.7 19.6 20.2 20.3 20.6 21.4 21.8</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [16] 21.8 23.2 26.2 26.8 29.7</span>
-<span class="r-in">  <span class="co"># [1] 18.0 18.0 18.0 18.0 18.0 18.0 18.0 18.1 18.7 19.6 20.2 20.3 20.6 21.4</span></span>
-<span class="r-in">  <span class="co">#[15] 21.8 21.8 23.2 26.2 26.8 29.7</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="va">p.list</span> <span class="op">&lt;-</span> <span class="fu">ppointsCensored</span><span class="op">(</span><span class="va">new.x</span>, <span class="va">censored</span><span class="op">)</span> </span>
-<span class="r-in">  <span class="va">p.list</span> </span>
+<span class="r-in"><span>  <span class="co"># [1] 18.0 18.0 18.0 18.0 18.0 18.0 18.0 18.1 18.7 19.6 20.2 20.3 20.6 21.4</span></span></span>
+<span class="r-in"><span>  <span class="co">#[15] 21.8 21.8 23.2 26.2 26.8 29.7</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="va">p.list</span> <span class="op">&lt;-</span> <span class="fu">ppointsCensored</span><span class="op">(</span><span class="va">new.x</span>, <span class="va">censored</span><span class="op">)</span> </span></span>
+<span class="r-in"><span>  <span class="va">p.list</span> </span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> $Order.Statistics</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  [1] 18.00000 18.00000 18.00000 18.00000 18.00000 18.00000 18.00000 18.09771</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  [9] 18.65418 19.58594 20.21931 20.26851 20.55296 21.38869 21.76359 21.82364</span>
@@ -464,61 +479,61 @@
 <span class="r-out co"><span class="r-pr">#&gt;</span> $Plot.Pos.Con</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] 0.375</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-in">  <span class="co">#$Order.Statistics</span></span>
-<span class="r-in">  <span class="co"># [1] 18.00000 18.00000 18.00000 18.00000 18.00000 18.00000 18.00000 18.09771</span></span>
-<span class="r-in">  <span class="co"># [9] 18.65418 19.58594 20.21931 20.26851 20.55296 21.38869 21.76359 21.82364</span></span>
-<span class="r-in">  <span class="co">#[17] 23.16804 26.16527 26.84336 29.67340</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#$Cumulative.Probabilities</span></span>
-<span class="r-in">  <span class="co"># [1] 0.3765432 0.3765432 0.3765432 0.3765432 0.3765432 0.3765432 0.3765432</span></span>
-<span class="r-in">  <span class="co"># [8] 0.3765432 0.4259259 0.4753086 0.5246914 0.5740741 0.6234568 0.6728395</span></span>
-<span class="r-in">  <span class="co">#[15] 0.7222222 0.7716049 0.8209877 0.8703704 0.9197531 0.9691358</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#$Censored</span></span>
-<span class="r-in">  <span class="co"># [1]  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE FALSE FALSE FALSE FALSE FALSE</span></span>
-<span class="r-in">  <span class="co">#[13] FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#$Censoring.Side</span></span>
-<span class="r-in">  <span class="co">#[1] "left"</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#$Prob.Method</span></span>
-<span class="r-in">  <span class="co">#[1] "michael-schucany"</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#$Plot.Pos.Con</span></span>
-<span class="r-in">  <span class="co">#[1] 0.375</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="co">#----------</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="co"># Round off plotting positions to two decimal places </span></span>
-<span class="r-in">  <span class="co"># and compare to plotting positions that ignore censoring</span></span>
-<span class="r-in">  <span class="co">#--------------------------------------------------------</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="fu"><a href="https://rdrr.io/r/base/Round.html" class="external-link">round</a></span><span class="op">(</span><span class="va">p.list</span><span class="op">$</span><span class="va">Cum</span>, <span class="fl">2</span><span class="op">)</span> </span>
+<span class="r-in"><span>  <span class="co">#$Order.Statistics</span></span></span>
+<span class="r-in"><span>  <span class="co"># [1] 18.00000 18.00000 18.00000 18.00000 18.00000 18.00000 18.00000 18.09771</span></span></span>
+<span class="r-in"><span>  <span class="co"># [9] 18.65418 19.58594 20.21931 20.26851 20.55296 21.38869 21.76359 21.82364</span></span></span>
+<span class="r-in"><span>  <span class="co">#[17] 23.16804 26.16527 26.84336 29.67340</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#$Cumulative.Probabilities</span></span></span>
+<span class="r-in"><span>  <span class="co"># [1] 0.3765432 0.3765432 0.3765432 0.3765432 0.3765432 0.3765432 0.3765432</span></span></span>
+<span class="r-in"><span>  <span class="co"># [8] 0.3765432 0.4259259 0.4753086 0.5246914 0.5740741 0.6234568 0.6728395</span></span></span>
+<span class="r-in"><span>  <span class="co">#[15] 0.7222222 0.7716049 0.8209877 0.8703704 0.9197531 0.9691358</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#$Censored</span></span></span>
+<span class="r-in"><span>  <span class="co"># [1]  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE FALSE FALSE FALSE FALSE FALSE</span></span></span>
+<span class="r-in"><span>  <span class="co">#[13] FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#$Censoring.Side</span></span></span>
+<span class="r-in"><span>  <span class="co">#[1] "left"</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#$Prob.Method</span></span></span>
+<span class="r-in"><span>  <span class="co">#[1] "michael-schucany"</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#$Plot.Pos.Con</span></span></span>
+<span class="r-in"><span>  <span class="co">#[1] 0.375</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="co">#----------</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="co"># Round off plotting positions to two decimal places </span></span></span>
+<span class="r-in"><span>  <span class="co"># and compare to plotting positions that ignore censoring</span></span></span>
+<span class="r-in"><span>  <span class="co">#--------------------------------------------------------</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/r/base/Round.html" class="external-link">round</a></span><span class="op">(</span><span class="va">p.list</span><span class="op">$</span><span class="va">Cum</span>, <span class="fl">2</span><span class="op">)</span> </span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  [1] 0.38 0.38 0.38 0.38 0.38 0.38 0.38 0.38 0.43 0.48 0.52 0.57 0.62 0.67 0.72</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [16] 0.77 0.82 0.87 0.92 0.97</span>
-<span class="r-in">  <span class="co"># [1] 0.38 0.38 0.38 0.38 0.38 0.38 0.38 0.38 0.43 0.48 0.52 0.57 0.62 0.67</span></span>
-<span class="r-in">  <span class="co">#[15] 0.72 0.77 0.82 0.87 0.92 0.97</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="fu"><a href="https://rdrr.io/r/base/Round.html" class="external-link">round</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/stats/ppoints.html" class="external-link">ppoints</a></span><span class="op">(</span><span class="va">x</span>, a<span class="op">=</span><span class="fl">0.375</span><span class="op">)</span>, <span class="fl">2</span><span class="op">)</span> </span>
+<span class="r-in"><span>  <span class="co"># [1] 0.38 0.38 0.38 0.38 0.38 0.38 0.38 0.38 0.43 0.48 0.52 0.57 0.62 0.67</span></span></span>
+<span class="r-in"><span>  <span class="co">#[15] 0.72 0.77 0.82 0.87 0.92 0.97</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/r/base/Round.html" class="external-link">round</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/stats/ppoints.html" class="external-link">ppoints</a></span><span class="op">(</span><span class="va">x</span>, a<span class="op">=</span><span class="fl">0.375</span><span class="op">)</span>, <span class="fl">2</span><span class="op">)</span> </span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  [1] 0.03 0.08 0.13 0.18 0.23 0.28 0.33 0.38 0.43 0.48 0.52 0.57 0.62 0.67 0.72</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [16] 0.77 0.82 0.87 0.92 0.97</span>
-<span class="r-in">  <span class="co"># [1] 0.03 0.08 0.13 0.18 0.23 0.28 0.33 0.38 0.43 0.48 0.52 0.57 0.62 0.67</span></span>
-<span class="r-in">  <span class="co">#[15] 0.72 0.77 0.82 0.87 0.92 0.97</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="co">#----------</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="co"># Clean up</span></span>
-<span class="r-in">  <span class="co">#---------</span></span>
-<span class="r-in">  <span class="fu"><a href="https://rdrr.io/r/base/rm.html" class="external-link">rm</a></span><span class="op">(</span><span class="va">x</span>, <span class="va">censored</span>, <span class="va">new.x</span>, <span class="va">p.list</span><span class="op">)</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="co">#----------------------------------------------------------------------------</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="co"># Reproduce the example in Appendix B of Helsel and Cohn (1988).  The data </span></span>
-<span class="r-in">  <span class="co"># are stored in Helsel.Cohn.88.appb.df.  This data frame contains 18 </span></span>
-<span class="r-in">  <span class="co"># observations, of which 9 are censored below one of 2 distinct censoring </span></span>
-<span class="r-in">  <span class="co"># levels.</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="va">Helsel.Cohn.88.app.b.df</span></span>
+<span class="r-in"><span>  <span class="co"># [1] 0.03 0.08 0.13 0.18 0.23 0.28 0.33 0.38 0.43 0.48 0.52 0.57 0.62 0.67</span></span></span>
+<span class="r-in"><span>  <span class="co">#[15] 0.72 0.77 0.82 0.87 0.92 0.97</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="co">#----------</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="co"># Clean up</span></span></span>
+<span class="r-in"><span>  <span class="co">#---------</span></span></span>
+<span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/r/base/rm.html" class="external-link">rm</a></span><span class="op">(</span><span class="va">x</span>, <span class="va">censored</span>, <span class="va">new.x</span>, <span class="va">p.list</span><span class="op">)</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="co">#----------------------------------------------------------------------------</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="co"># Reproduce the example in Appendix B of Helsel and Cohn (1988).  The data </span></span></span>
+<span class="r-in"><span>  <span class="co"># are stored in Helsel.Cohn.88.appb.df.  This data frame contains 18 </span></span></span>
+<span class="r-in"><span>  <span class="co"># observations, of which 9 are censored below one of 2 distinct censoring </span></span></span>
+<span class="r-in"><span>  <span class="co"># levels.</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="va">Helsel.Cohn.88.app.b.df</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>    Conc.orig Conc Censored</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 1         &lt;1    1     TRUE</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 2         &lt;1    1     TRUE</span>
@@ -538,16 +553,16 @@
 <span class="r-out co"><span class="r-pr">#&gt;</span> 16        27   27    FALSE</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 17        33   33    FALSE</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 18        50   50    FALSE</span>
-<span class="r-in">  <span class="co">#   Conc.orig Conc Censored</span></span>
-<span class="r-in">  <span class="co">#1         &lt;1    1     TRUE</span></span>
-<span class="r-in">  <span class="co">#2         &lt;1    1     TRUE</span></span>
-<span class="r-in">  <span class="co">#...</span></span>
-<span class="r-in">  <span class="co">#17        33   33    FALSE</span></span>
-<span class="r-in">  <span class="co">#18        50   50    FALSE</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="va">p.list</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/with.html" class="external-link">with</a></span><span class="op">(</span><span class="va">Helsel.Cohn.88.app.b.df</span>, </span>
-<span class="r-in">    <span class="fu">ppointsCensored</span><span class="op">(</span><span class="va">Conc</span>, <span class="va">Censored</span>, prob.method<span class="op">=</span><span class="st">"hirsch-stedinger"</span>, plot.pos.con<span class="op">=</span><span class="fl">0</span><span class="op">)</span><span class="op">)</span> </span>
-<span class="r-in">  <span class="fu"><a href="https://rdrr.io/r/base/lapply.html" class="external-link">lapply</a></span><span class="op">(</span><span class="va">p.list</span><span class="op">[</span><span class="fl">1</span><span class="op">:</span><span class="fl">2</span><span class="op">]</span>, <span class="va">round</span>, <span class="fl">3</span><span class="op">)</span> </span>
+<span class="r-in"><span>  <span class="co">#   Conc.orig Conc Censored</span></span></span>
+<span class="r-in"><span>  <span class="co">#1         &lt;1    1     TRUE</span></span></span>
+<span class="r-in"><span>  <span class="co">#2         &lt;1    1     TRUE</span></span></span>
+<span class="r-in"><span>  <span class="co">#...</span></span></span>
+<span class="r-in"><span>  <span class="co">#17        33   33    FALSE</span></span></span>
+<span class="r-in"><span>  <span class="co">#18        50   50    FALSE</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="va">p.list</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/with.html" class="external-link">with</a></span><span class="op">(</span><span class="va">Helsel.Cohn.88.app.b.df</span>, </span></span>
+<span class="r-in"><span>    <span class="fu">ppointsCensored</span><span class="op">(</span><span class="va">Conc</span>, <span class="va">Censored</span>, prob.method<span class="op">=</span><span class="st">"hirsch-stedinger"</span>, plot.pos.con<span class="op">=</span><span class="fl">0</span><span class="op">)</span><span class="op">)</span> </span></span>
+<span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/r/base/lapply.html" class="external-link">lapply</a></span><span class="op">(</span><span class="va">p.list</span><span class="op">[</span><span class="fl">1</span><span class="op">:</span><span class="fl">2</span><span class="op">]</span>, <span class="va">round</span>, <span class="fl">3</span><span class="op">)</span> </span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> $Order.Statistics</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  [1]  1  1  1  1  1  1  3  7  9 10 10 10 12 15 20 27 33 50</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
@@ -555,26 +570,26 @@
 <span class="r-out co"><span class="r-pr">#&gt;</span>  [1] 0.063 0.127 0.190 0.254 0.317 0.381 0.500 0.556 0.611 0.167 0.333 0.500</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [13] 0.714 0.762 0.810 0.857 0.905 0.952</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-in">  <span class="co">#$Order.Statistics</span></span>
-<span class="r-in">  <span class="co"># [1]  1  1  1  1  1  1  3  7  9 10 10 10 12 15 20 27 33 50</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#$Cumulative.Probabilities</span></span>
-<span class="r-in">  <span class="co"># [1] 0.063 0.127 0.190 0.254 0.317 0.381 0.500 0.556 0.611 0.167 0.333 0.500</span></span>
-<span class="r-in">  <span class="co">#[13] 0.714 0.762 0.810 0.857 0.905 0.952</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="co"># Clean up</span></span>
-<span class="r-in">  <span class="co">#---------</span></span>
-<span class="r-in">  <span class="fu"><a href="https://rdrr.io/r/base/rm.html" class="external-link">rm</a></span><span class="op">(</span><span class="va">p.list</span><span class="op">)</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="co">#----------------------------------------------------------------------------</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="co"># Example 15-1 of USEPA (2009, page 15-10) gives an example of</span></span>
-<span class="r-in">  <span class="co"># computing plotting positions based on censored manganese </span></span>
-<span class="r-in">  <span class="co"># concentrations (ppb) in groundwater collected at 5 monitoring</span></span>
-<span class="r-in">  <span class="co"># wells.  The data for this example are stored in </span></span>
-<span class="r-in">  <span class="co"># EPA.09.Ex.15.1.manganese.df.</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="va">EPA.09.Ex.15.1.manganese.df</span></span>
+<span class="r-in"><span>  <span class="co">#$Order.Statistics</span></span></span>
+<span class="r-in"><span>  <span class="co"># [1]  1  1  1  1  1  1  3  7  9 10 10 10 12 15 20 27 33 50</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#$Cumulative.Probabilities</span></span></span>
+<span class="r-in"><span>  <span class="co"># [1] 0.063 0.127 0.190 0.254 0.317 0.381 0.500 0.556 0.611 0.167 0.333 0.500</span></span></span>
+<span class="r-in"><span>  <span class="co">#[13] 0.714 0.762 0.810 0.857 0.905 0.952</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="co"># Clean up</span></span></span>
+<span class="r-in"><span>  <span class="co">#---------</span></span></span>
+<span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/r/base/rm.html" class="external-link">rm</a></span><span class="op">(</span><span class="va">p.list</span><span class="op">)</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="co">#----------------------------------------------------------------------------</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="co"># Example 15-1 of USEPA (2009, page 15-10) gives an example of</span></span></span>
+<span class="r-in"><span>  <span class="co"># computing plotting positions based on censored manganese </span></span></span>
+<span class="r-in"><span>  <span class="co"># concentrations (ppb) in groundwater collected at 5 monitoring</span></span></span>
+<span class="r-in"><span>  <span class="co"># wells.  The data for this example are stored in </span></span></span>
+<span class="r-in"><span>  <span class="co"># EPA.09.Ex.15.1.manganese.df.</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="va">EPA.09.Ex.15.1.manganese.df</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>    Sample   Well Manganese.Orig.ppb Manganese.ppb Censored</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 1       1 Well.1                 &lt;5           5.0     TRUE</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 2       2 Well.1               12.1          12.1    FALSE</span>
@@ -601,24 +616,24 @@
 <span class="r-out co"><span class="r-pr">#&gt;</span> 23      3 Well.5                3.3           3.3    FALSE</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 24      4 Well.5                8.4           8.4    FALSE</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 25      5 Well.5                 &lt;2           2.0     TRUE</span>
-<span class="r-in">  <span class="co">#   Sample   Well Manganese.Orig.ppb Manganese.ppb Censored</span></span>
-<span class="r-in">  <span class="co">#1       1 Well.1                 &lt;5           5.0     TRUE</span></span>
-<span class="r-in">  <span class="co">#2       2 Well.1               12.1          12.1    FALSE</span></span>
-<span class="r-in">  <span class="co">#3       3 Well.1               16.9          16.9    FALSE</span></span>
-<span class="r-in">  <span class="co">#4       4 Well.1               21.6          21.6    FALSE</span></span>
-<span class="r-in">  <span class="co">#5       5 Well.1                 &lt;2           2.0     TRUE</span></span>
-<span class="r-in">  <span class="co">#...</span></span>
-<span class="r-in">  <span class="co">#21      1 Well.5               17.9          17.9    FALSE</span></span>
-<span class="r-in">  <span class="co">#22      2 Well.5               22.7          22.7    FALSE</span></span>
-<span class="r-in">  <span class="co">#23      3 Well.5                3.3           3.3    FALSE</span></span>
-<span class="r-in">  <span class="co">#24      4 Well.5                8.4           8.4    FALSE</span></span>
-<span class="r-in">  <span class="co">#25      5 Well.5                 &lt;2           2.0     TRUE</span></span>
-<span class="r-in">  </span>
-<span class="r-in">  <span class="va">p.list.EPA</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/with.html" class="external-link">with</a></span><span class="op">(</span><span class="va">EPA.09.Ex.15.1.manganese.df</span>, </span>
-<span class="r-in">    <span class="fu">ppointsCensored</span><span class="op">(</span><span class="va">Manganese.ppb</span>, <span class="va">Censored</span>, </span>
-<span class="r-in">      prob.method <span class="op">=</span> <span class="st">"kaplan-meier"</span><span class="op">)</span><span class="op">)</span></span>
-<span class="r-in">  <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html" class="external-link">data.frame</a></span><span class="op">(</span>Mn <span class="op">=</span> <span class="va">p.list.EPA</span><span class="op">$</span><span class="va">Order.Statistics</span>, Censored <span class="op">=</span> <span class="va">p.list.EPA</span><span class="op">$</span><span class="va">Censored</span>, </span>
-<span class="r-in">    CDF <span class="op">=</span> <span class="va">p.list.EPA</span><span class="op">$</span><span class="va">Cumulative.Probabilities</span><span class="op">)</span></span>
+<span class="r-in"><span>  <span class="co">#   Sample   Well Manganese.Orig.ppb Manganese.ppb Censored</span></span></span>
+<span class="r-in"><span>  <span class="co">#1       1 Well.1                 &lt;5           5.0     TRUE</span></span></span>
+<span class="r-in"><span>  <span class="co">#2       2 Well.1               12.1          12.1    FALSE</span></span></span>
+<span class="r-in"><span>  <span class="co">#3       3 Well.1               16.9          16.9    FALSE</span></span></span>
+<span class="r-in"><span>  <span class="co">#4       4 Well.1               21.6          21.6    FALSE</span></span></span>
+<span class="r-in"><span>  <span class="co">#5       5 Well.1                 &lt;2           2.0     TRUE</span></span></span>
+<span class="r-in"><span>  <span class="co">#...</span></span></span>
+<span class="r-in"><span>  <span class="co">#21      1 Well.5               17.9          17.9    FALSE</span></span></span>
+<span class="r-in"><span>  <span class="co">#22      2 Well.5               22.7          22.7    FALSE</span></span></span>
+<span class="r-in"><span>  <span class="co">#23      3 Well.5                3.3           3.3    FALSE</span></span></span>
+<span class="r-in"><span>  <span class="co">#24      4 Well.5                8.4           8.4    FALSE</span></span></span>
+<span class="r-in"><span>  <span class="co">#25      5 Well.5                 &lt;2           2.0     TRUE</span></span></span>
+<span class="r-in"><span>  </span></span>
+<span class="r-in"><span>  <span class="va">p.list.EPA</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/with.html" class="external-link">with</a></span><span class="op">(</span><span class="va">EPA.09.Ex.15.1.manganese.df</span>, </span></span>
+<span class="r-in"><span>    <span class="fu">ppointsCensored</span><span class="op">(</span><span class="va">Manganese.ppb</span>, <span class="va">Censored</span>, </span></span>
+<span class="r-in"><span>      prob.method <span class="op">=</span> <span class="st">"kaplan-meier"</span><span class="op">)</span><span class="op">)</span></span></span>
+<span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html" class="external-link">data.frame</a></span><span class="op">(</span>Mn <span class="op">=</span> <span class="va">p.list.EPA</span><span class="op">$</span><span class="va">Order.Statistics</span>, Censored <span class="op">=</span> <span class="va">p.list.EPA</span><span class="op">$</span><span class="va">Censored</span>, </span></span>
+<span class="r-in"><span>    CDF <span class="op">=</span> <span class="va">p.list.EPA</span><span class="op">$</span><span class="va">Cumulative.Probabilities</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>       Mn Censored  CDF</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 1    2.0     TRUE 0.21</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 2    2.0     TRUE 0.21</span>
@@ -645,38 +660,38 @@
 <span class="r-out co"><span class="r-pr">#&gt;</span> 23  53.6    FALSE 0.92</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 24  77.2    FALSE 0.96</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 25 106.3    FALSE 1.00</span>
-<span class="r-in">  <span class="co">#      Mn Censored  CDF</span></span>
-<span class="r-in">  <span class="co">#1    2.0     TRUE 0.21</span></span>
-<span class="r-in">  <span class="co">#2    2.0     TRUE 0.21</span></span>
-<span class="r-in">  <span class="co">#3    2.0     TRUE 0.21</span></span>
-<span class="r-in">  <span class="co">#4    3.3    FALSE 0.28</span></span>
-<span class="r-in">  <span class="co">#5    5.0     TRUE 0.28</span></span>
-<span class="r-in">  <span class="co">#6    5.0     TRUE 0.28</span></span>
-<span class="r-in">  <span class="co">#7    5.0     TRUE 0.28</span></span>
-<span class="r-in">  <span class="co">#8    5.3    FALSE 0.32</span></span>
-<span class="r-in">  <span class="co">#9    6.3    FALSE 0.36</span></span>
-<span class="r-in">  <span class="co">#10   7.7    FALSE 0.40</span></span>
-<span class="r-in">  <span class="co">#11   8.4    FALSE 0.44</span></span>
-<span class="r-in">  <span class="co">#12   9.5    FALSE 0.48</span></span>
-<span class="r-in">  <span class="co">#13  10.0    FALSE 0.52</span></span>
-<span class="r-in">  <span class="co">#14  11.9    FALSE 0.56</span></span>
-<span class="r-in">  <span class="co">#15  12.1    FALSE 0.60</span></span>
-<span class="r-in">  <span class="co">#16  12.6    FALSE 0.64</span></span>
-<span class="r-in">  <span class="co">#17  16.9    FALSE 0.68</span></span>
-<span class="r-in">  <span class="co">#18  17.9    FALSE 0.72</span></span>
-<span class="r-in">  <span class="co">#19  21.6    FALSE 0.76</span></span>
-<span class="r-in">  <span class="co">#20  22.7    FALSE 0.80</span></span>
-<span class="r-in">  <span class="co">#21  34.5    FALSE 0.84</span></span>
-<span class="r-in">  <span class="co">#22  45.9    FALSE 0.88</span></span>
-<span class="r-in">  <span class="co">#23  53.6    FALSE 0.92</span></span>
-<span class="r-in">  <span class="co">#24  77.2    FALSE 0.96</span></span>
-<span class="r-in">  <span class="co">#25 106.3    FALSE 1.00</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="co">#----------</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="co"># Clean up</span></span>
-<span class="r-in">  <span class="co">#---------</span></span>
-<span class="r-in">  <span class="fu"><a href="https://rdrr.io/r/base/rm.html" class="external-link">rm</a></span><span class="op">(</span><span class="va">p.list.EPA</span><span class="op">)</span></span>
+<span class="r-in"><span>  <span class="co">#      Mn Censored  CDF</span></span></span>
+<span class="r-in"><span>  <span class="co">#1    2.0     TRUE 0.21</span></span></span>
+<span class="r-in"><span>  <span class="co">#2    2.0     TRUE 0.21</span></span></span>
+<span class="r-in"><span>  <span class="co">#3    2.0     TRUE 0.21</span></span></span>
+<span class="r-in"><span>  <span class="co">#4    3.3    FALSE 0.28</span></span></span>
+<span class="r-in"><span>  <span class="co">#5    5.0     TRUE 0.28</span></span></span>
+<span class="r-in"><span>  <span class="co">#6    5.0     TRUE 0.28</span></span></span>
+<span class="r-in"><span>  <span class="co">#7    5.0     TRUE 0.28</span></span></span>
+<span class="r-in"><span>  <span class="co">#8    5.3    FALSE 0.32</span></span></span>
+<span class="r-in"><span>  <span class="co">#9    6.3    FALSE 0.36</span></span></span>
+<span class="r-in"><span>  <span class="co">#10   7.7    FALSE 0.40</span></span></span>
+<span class="r-in"><span>  <span class="co">#11   8.4    FALSE 0.44</span></span></span>
+<span class="r-in"><span>  <span class="co">#12   9.5    FALSE 0.48</span></span></span>
+<span class="r-in"><span>  <span class="co">#13  10.0    FALSE 0.52</span></span></span>
+<span class="r-in"><span>  <span class="co">#14  11.9    FALSE 0.56</span></span></span>
+<span class="r-in"><span>  <span class="co">#15  12.1    FALSE 0.60</span></span></span>
+<span class="r-in"><span>  <span class="co">#16  12.6    FALSE 0.64</span></span></span>
+<span class="r-in"><span>  <span class="co">#17  16.9    FALSE 0.68</span></span></span>
+<span class="r-in"><span>  <span class="co">#18  17.9    FALSE 0.72</span></span></span>
+<span class="r-in"><span>  <span class="co">#19  21.6    FALSE 0.76</span></span></span>
+<span class="r-in"><span>  <span class="co">#20  22.7    FALSE 0.80</span></span></span>
+<span class="r-in"><span>  <span class="co">#21  34.5    FALSE 0.84</span></span></span>
+<span class="r-in"><span>  <span class="co">#22  45.9    FALSE 0.88</span></span></span>
+<span class="r-in"><span>  <span class="co">#23  53.6    FALSE 0.92</span></span></span>
+<span class="r-in"><span>  <span class="co">#24  77.2    FALSE 0.96</span></span></span>
+<span class="r-in"><span>  <span class="co">#25 106.3    FALSE 1.00</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="co">#----------</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="co"># Clean up</span></span></span>
+<span class="r-in"><span>  <span class="co">#---------</span></span></span>
+<span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/r/base/rm.html" class="external-link">rm</a></span><span class="op">(</span><span class="va">p.list.EPA</span><span class="op">)</span></span></span>
 </code></pre></div>
     </div>
   </div>
@@ -691,7 +706,7 @@
 </div>
 
 <div class="pkgdown">
-  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.2.</p>
+  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.6.</p>
 </div>
 
       </footer></div>

@@ -50,8 +50,8 @@
     </div>
 
     <div id="ref-usage">
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="fu">tolIntNormHalfWidth</span><span class="op">(</span><span class="va">n</span>, sigma.hat <span class="op">=</span> <span class="fl">1</span>, coverage <span class="op">=</span> <span class="fl">0.95</span>, cov.type <span class="op">=</span> <span class="st">"content"</span>, 
-    conf.level <span class="op">=</span> <span class="fl">0.95</span>, method <span class="op">=</span> <span class="st">"wald.wolfowitz"</span><span class="op">)</span></code></pre></div>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">tolIntNormHalfWidth</span><span class="op">(</span><span class="va">n</span>, sigma.hat <span class="op">=</span> <span class="fl">1</span>, coverage <span class="op">=</span> <span class="fl">0.95</span>, cov.type <span class="op">=</span> <span class="st">"content"</span>, </span>
+<span>    conf.level <span class="op">=</span> <span class="fl">0.95</span>, method <span class="op">=</span> <span class="st">"wald.wolfowitz"</span><span class="op">)</span></span></code></pre></div>
     </div>
 
     <div id="arguments">
@@ -61,23 +61,29 @@
   which the prediction interval is based.
   Missing (<code>NA</code>), undefined (<code>NaN</code>), and infinite (<code>Inf</code>, <code>-Inf</code>) 
   values are not allowed.</p></dd>
-<dt>sigma.hat</dt>
+
+  <dt>sigma.hat</dt>
 <dd><p>numeric vector specifying the value(s) of the estimated standard deviation(s).  
   The default value is <code>sigma.hat=1</code>.</p></dd>
-<dt>coverage</dt>
+
+  <dt>coverage</dt>
 <dd><p>numeric vector of values between 0 and 1 indicating the desired coverage of the 
   tolerance interval.  The default value is <code>coverage=0.95</code>.</p></dd>
-<dt>cov.type</dt>
+
+  <dt>cov.type</dt>
 <dd><p>character string specifying the coverage type for the tolerance interval.  The 
   possible values are <code>"content"</code> (\(\beta\)-content; the default), and 
   <code>"expectation"</code> (\(\beta\)-expectation).</p></dd>
-<dt>conf.level</dt>
+
+  <dt>conf.level</dt>
 <dd><p>numeric vector of values between 0 and 1 indicating the confidence level of the 
   prediction interval.  The default value is <code>conf.level=0.95</code>.</p></dd>
-<dt>method</dt>
+
+  <dt>method</dt>
 <dd><p>character string specifying the method for constructing the tolerance interval.  
   The possible values are <code>"exact"</code> (the default) and <code>"wald.wolfowitz"</code> 
   (the Wald-Wolfowitz approximation).</p></dd>
+
 </dl></div>
     <div id="details">
     <h2>Details</h2>
@@ -101,7 +107,9 @@
     </div>
     <div id="value">
     <h2>Value</h2>
-    <p>numeric vector of half-widths.</p>
+    
+
+<p>numeric vector of half-widths.</p>
     </div>
     <div id="references">
     <h2>References</h2>
@@ -130,73 +138,73 @@
 
     <div id="ref-examples">
     <h2>Examples</h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in">  <span class="co"># Look at how the half-width of a tolerance interval increases with </span></span>
-<span class="r-in">  <span class="co"># increasing coverage:</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="fu"><a href="https://rdrr.io/r/base/seq.html" class="external-link">seq</a></span><span class="op">(</span><span class="fl">0.5</span>, <span class="fl">0.9</span>, by<span class="op">=</span><span class="fl">0.1</span><span class="op">)</span> </span>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span>  <span class="co"># Look at how the half-width of a tolerance interval increases with </span></span></span>
+<span class="r-in"><span>  <span class="co"># increasing coverage:</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/r/base/seq.html" class="external-link">seq</a></span><span class="op">(</span><span class="fl">0.5</span>, <span class="fl">0.9</span>, by<span class="op">=</span><span class="fl">0.1</span><span class="op">)</span> </span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] 0.5 0.6 0.7 0.8 0.9</span>
-<span class="r-in">  <span class="co">#[1] 0.5 0.6 0.7 0.8 0.9 </span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="fu"><a href="https://rdrr.io/r/base/Round.html" class="external-link">round</a></span><span class="op">(</span><span class="fu">tolIntNormHalfWidth</span><span class="op">(</span>n <span class="op">=</span> <span class="fl">10</span>, coverage <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/seq.html" class="external-link">seq</a></span><span class="op">(</span><span class="fl">0.5</span>, <span class="fl">0.9</span>, by <span class="op">=</span> <span class="fl">0.1</span><span class="op">)</span><span class="op">)</span>, <span class="fl">2</span><span class="op">)</span> </span>
+<span class="r-in"><span>  <span class="co">#[1] 0.5 0.6 0.7 0.8 0.9 </span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/r/base/Round.html" class="external-link">round</a></span><span class="op">(</span><span class="fu">tolIntNormHalfWidth</span><span class="op">(</span>n <span class="op">=</span> <span class="fl">10</span>, coverage <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/seq.html" class="external-link">seq</a></span><span class="op">(</span><span class="fl">0.5</span>, <span class="fl">0.9</span>, by <span class="op">=</span> <span class="fl">0.1</span><span class="op">)</span><span class="op">)</span>, <span class="fl">2</span><span class="op">)</span> </span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] 1.17 1.45 1.79 2.21 2.84</span>
-<span class="r-in">  <span class="co">#[1] 1.17 1.45 1.79 2.21 2.84</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="co">#----------</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="co"># Look at how the half-width of a tolerance interval decreases with </span></span>
-<span class="r-in">  <span class="co"># increasing sample size:</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="fl">2</span><span class="op">:</span><span class="fl">5</span> </span>
+<span class="r-in"><span>  <span class="co">#[1] 1.17 1.45 1.79 2.21 2.84</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="co">#----------</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="co"># Look at how the half-width of a tolerance interval decreases with </span></span></span>
+<span class="r-in"><span>  <span class="co"># increasing sample size:</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="fl">2</span><span class="op">:</span><span class="fl">5</span> </span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] 2 3 4 5</span>
-<span class="r-in">  <span class="co">#[1] 2 3 4 5 </span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="fu"><a href="https://rdrr.io/r/base/Round.html" class="external-link">round</a></span><span class="op">(</span><span class="fu">tolIntNormHalfWidth</span><span class="op">(</span>n <span class="op">=</span> <span class="fl">2</span><span class="op">:</span><span class="fl">5</span><span class="op">)</span>, <span class="fl">2</span><span class="op">)</span> </span>
+<span class="r-in"><span>  <span class="co">#[1] 2 3 4 5 </span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/r/base/Round.html" class="external-link">round</a></span><span class="op">(</span><span class="fu">tolIntNormHalfWidth</span><span class="op">(</span>n <span class="op">=</span> <span class="fl">2</span><span class="op">:</span><span class="fl">5</span><span class="op">)</span>, <span class="fl">2</span><span class="op">)</span> </span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] 37.67  9.92  6.37  5.08</span>
-<span class="r-in">  <span class="co">#[1] 37.67 9.92 6.37 5.08</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="co">#----------</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="co"># Look at how the half-width of a tolerance interval increases with </span></span>
-<span class="r-in">  <span class="co"># increasing estimated standard deviation for a fixed sample size:</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="fu"><a href="https://rdrr.io/r/base/seq.html" class="external-link">seq</a></span><span class="op">(</span><span class="fl">0.5</span>, <span class="fl">2</span>, by <span class="op">=</span> <span class="fl">0.5</span><span class="op">)</span> </span>
+<span class="r-in"><span>  <span class="co">#[1] 37.67 9.92 6.37 5.08</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="co">#----------</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="co"># Look at how the half-width of a tolerance interval increases with </span></span></span>
+<span class="r-in"><span>  <span class="co"># increasing estimated standard deviation for a fixed sample size:</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/r/base/seq.html" class="external-link">seq</a></span><span class="op">(</span><span class="fl">0.5</span>, <span class="fl">2</span>, by <span class="op">=</span> <span class="fl">0.5</span><span class="op">)</span> </span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] 0.5 1.0 1.5 2.0</span>
-<span class="r-in">  <span class="co">#[1] 0.5 1.0 1.5 2.0 </span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="fu"><a href="https://rdrr.io/r/base/Round.html" class="external-link">round</a></span><span class="op">(</span><span class="fu">tolIntNormHalfWidth</span><span class="op">(</span>n <span class="op">=</span> <span class="fl">10</span>, sigma.hat <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/seq.html" class="external-link">seq</a></span><span class="op">(</span><span class="fl">0.5</span>, <span class="fl">2</span>, by <span class="op">=</span> <span class="fl">0.5</span><span class="op">)</span><span class="op">)</span>, <span class="fl">2</span><span class="op">)</span> </span>
+<span class="r-in"><span>  <span class="co">#[1] 0.5 1.0 1.5 2.0 </span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/r/base/Round.html" class="external-link">round</a></span><span class="op">(</span><span class="fu">tolIntNormHalfWidth</span><span class="op">(</span>n <span class="op">=</span> <span class="fl">10</span>, sigma.hat <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/seq.html" class="external-link">seq</a></span><span class="op">(</span><span class="fl">0.5</span>, <span class="fl">2</span>, by <span class="op">=</span> <span class="fl">0.5</span><span class="op">)</span><span class="op">)</span>, <span class="fl">2</span><span class="op">)</span> </span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] 1.69 3.38 5.07 6.76</span>
-<span class="r-in">  <span class="co">#[1] 1.69 3.38 5.07 6.76</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="co">#----------</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="co"># Look at how the half-width of a tolerance interval increases with </span></span>
-<span class="r-in">  <span class="co"># increasing confidence level for a fixed sample size:</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="fu"><a href="https://rdrr.io/r/base/seq.html" class="external-link">seq</a></span><span class="op">(</span><span class="fl">0.5</span>, <span class="fl">0.9</span>, by <span class="op">=</span> <span class="fl">0.1</span><span class="op">)</span> </span>
+<span class="r-in"><span>  <span class="co">#[1] 1.69 3.38 5.07 6.76</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="co">#----------</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="co"># Look at how the half-width of a tolerance interval increases with </span></span></span>
+<span class="r-in"><span>  <span class="co"># increasing confidence level for a fixed sample size:</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/r/base/seq.html" class="external-link">seq</a></span><span class="op">(</span><span class="fl">0.5</span>, <span class="fl">0.9</span>, by <span class="op">=</span> <span class="fl">0.1</span><span class="op">)</span> </span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] 0.5 0.6 0.7 0.8 0.9</span>
-<span class="r-in">  <span class="co">#[1] 0.5 0.6 0.7 0.8 0.9 </span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="fu"><a href="https://rdrr.io/r/base/Round.html" class="external-link">round</a></span><span class="op">(</span><span class="fu">tolIntNormHalfWidth</span><span class="op">(</span>n <span class="op">=</span> <span class="fl">5</span>, conf <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/seq.html" class="external-link">seq</a></span><span class="op">(</span><span class="fl">0.5</span>, <span class="fl">0.9</span>, by <span class="op">=</span> <span class="fl">0.1</span><span class="op">)</span><span class="op">)</span>, <span class="fl">2</span><span class="op">)</span> </span>
+<span class="r-in"><span>  <span class="co">#[1] 0.5 0.6 0.7 0.8 0.9 </span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/r/base/Round.html" class="external-link">round</a></span><span class="op">(</span><span class="fu">tolIntNormHalfWidth</span><span class="op">(</span>n <span class="op">=</span> <span class="fl">5</span>, conf <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/seq.html" class="external-link">seq</a></span><span class="op">(</span><span class="fl">0.5</span>, <span class="fl">0.9</span>, by <span class="op">=</span> <span class="fl">0.1</span><span class="op">)</span><span class="op">)</span>, <span class="fl">2</span><span class="op">)</span> </span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] 2.34 2.58 2.89 3.33 4.15</span>
-<span class="r-in">  <span class="co">#[1] 2.34 2.58 2.89 3.33 4.15</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="co">#==========</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="co"># Example 17-3 of USEPA (2009, p. 17-17) shows how to construct a </span></span>
-<span class="r-in">  <span class="co"># beta-content upper tolerance limit with 95% coverage and 95% </span></span>
-<span class="r-in">  <span class="co"># confidence  using chrysene data and assuming a lognormal distribution.  </span></span>
-<span class="r-in">  <span class="co"># The data for this example are stored in EPA.09.Ex.17.3.chrysene.df, </span></span>
-<span class="r-in">  <span class="co"># which contains chrysene concentration data (ppb) found in water </span></span>
-<span class="r-in">  <span class="co"># samples obtained from two background wells (Wells 1 and 2) and </span></span>
-<span class="r-in">  <span class="co"># three compliance wells (Wells 3, 4, and 5).  The tolerance limit </span></span>
-<span class="r-in">  <span class="co"># is based on the data from the background wells.</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="co"># Here we will first take the log of the data and then estimate the </span></span>
-<span class="r-in">  <span class="co"># standard deviation based on the two background wells.  We will use this </span></span>
-<span class="r-in">  <span class="co"># estimate of standard deviation to compute the half-widths of </span></span>
-<span class="r-in">  <span class="co"># future tolerance intervals on the log-scale for various sample sizes.</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">EPA.09.Ex.17.3.chrysene.df</span><span class="op">)</span></span>
+<span class="r-in"><span>  <span class="co">#[1] 2.34 2.58 2.89 3.33 4.15</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="co">#==========</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="co"># Example 17-3 of USEPA (2009, p. 17-17) shows how to construct a </span></span></span>
+<span class="r-in"><span>  <span class="co"># beta-content upper tolerance limit with 95% coverage and 95% </span></span></span>
+<span class="r-in"><span>  <span class="co"># confidence  using chrysene data and assuming a lognormal distribution.  </span></span></span>
+<span class="r-in"><span>  <span class="co"># The data for this example are stored in EPA.09.Ex.17.3.chrysene.df, </span></span></span>
+<span class="r-in"><span>  <span class="co"># which contains chrysene concentration data (ppb) found in water </span></span></span>
+<span class="r-in"><span>  <span class="co"># samples obtained from two background wells (Wells 1 and 2) and </span></span></span>
+<span class="r-in"><span>  <span class="co"># three compliance wells (Wells 3, 4, and 5).  The tolerance limit </span></span></span>
+<span class="r-in"><span>  <span class="co"># is based on the data from the background wells.</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="co"># Here we will first take the log of the data and then estimate the </span></span></span>
+<span class="r-in"><span>  <span class="co"># standard deviation based on the two background wells.  We will use this </span></span></span>
+<span class="r-in"><span>  <span class="co"># estimate of standard deviation to compute the half-widths of </span></span></span>
+<span class="r-in"><span>  <span class="co"># future tolerance intervals on the log-scale for various sample sizes.</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">EPA.09.Ex.17.3.chrysene.df</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   Month   Well  Well.type Chrysene.ppb</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 1     1 Well.1 Background         19.7</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 2     2 Well.1 Background         39.2</span>
@@ -204,30 +212,30 @@
 <span class="r-out co"><span class="r-pr">#&gt;</span> 4     4 Well.1 Background         12.8</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 5     1 Well.2 Background         10.2</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 6     2 Well.2 Background          7.2</span>
-<span class="r-in">  <span class="co">#  Month   Well  Well.type Chrysene.ppb</span></span>
-<span class="r-in">  <span class="co">#1     1 Well.1 Background         19.7</span></span>
-<span class="r-in">  <span class="co">#2     2 Well.1 Background         39.2</span></span>
-<span class="r-in">  <span class="co">#3     3 Well.1 Background          7.8</span></span>
-<span class="r-in">  <span class="co">#4     4 Well.1 Background         12.8</span></span>
-<span class="r-in">  <span class="co">#5     1 Well.2 Background         10.2</span></span>
-<span class="r-in">  <span class="co">#6     2 Well.2 Background          7.2</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="fu"><a href="longToWide.html">longToWide</a></span><span class="op">(</span><span class="va">EPA.09.Ex.17.3.chrysene.df</span>, <span class="st">"Chrysene.ppb"</span>, <span class="st">"Month"</span>, <span class="st">"Well"</span><span class="op">)</span></span>
+<span class="r-in"><span>  <span class="co">#  Month   Well  Well.type Chrysene.ppb</span></span></span>
+<span class="r-in"><span>  <span class="co">#1     1 Well.1 Background         19.7</span></span></span>
+<span class="r-in"><span>  <span class="co">#2     2 Well.1 Background         39.2</span></span></span>
+<span class="r-in"><span>  <span class="co">#3     3 Well.1 Background          7.8</span></span></span>
+<span class="r-in"><span>  <span class="co">#4     4 Well.1 Background         12.8</span></span></span>
+<span class="r-in"><span>  <span class="co">#5     1 Well.2 Background         10.2</span></span></span>
+<span class="r-in"><span>  <span class="co">#6     2 Well.2 Background          7.2</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="fu"><a href="longToWide.html">longToWide</a></span><span class="op">(</span><span class="va">EPA.09.Ex.17.3.chrysene.df</span>, <span class="st">"Chrysene.ppb"</span>, <span class="st">"Month"</span>, <span class="st">"Well"</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   Well.1 Well.2 Well.3 Well.4 Well.5</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 1   19.7   10.2   68.0   26.8   47.0</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 2   39.2    7.2   48.9   17.7   30.5</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 3    7.8   16.1   30.1   31.9   15.0</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 4   12.8    5.7   38.1   22.2   23.4</span>
-<span class="r-in">  <span class="co">#  Well.1 Well.2 Well.3 Well.4 Well.5</span></span>
-<span class="r-in">  <span class="co">#1   19.7   10.2   68.0   26.8   47.0</span></span>
-<span class="r-in">  <span class="co">#2   39.2    7.2   48.9   17.7   30.5</span></span>
-<span class="r-in">  <span class="co">#3    7.8   16.1   30.1   31.9   15.0</span></span>
-<span class="r-in">  <span class="co">#4   12.8    5.7   38.1   22.2   23.4</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="va">summary.stats</span> <span class="op">&lt;-</span> <span class="fu"><a href="summaryStats.html">summaryStats</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/Log.html" class="external-link">log</a></span><span class="op">(</span><span class="va">Chrysene.ppb</span><span class="op">)</span> <span class="op">~</span> <span class="va">Well.type</span>, </span>
-<span class="r-in">    data <span class="op">=</span> <span class="va">EPA.09.Ex.17.3.chrysene.df</span><span class="op">)</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="va">summary.stats</span></span>
+<span class="r-in"><span>  <span class="co">#  Well.1 Well.2 Well.3 Well.4 Well.5</span></span></span>
+<span class="r-in"><span>  <span class="co">#1   19.7   10.2   68.0   26.8   47.0</span></span></span>
+<span class="r-in"><span>  <span class="co">#2   39.2    7.2   48.9   17.7   30.5</span></span></span>
+<span class="r-in"><span>  <span class="co">#3    7.8   16.1   30.1   31.9   15.0</span></span></span>
+<span class="r-in"><span>  <span class="co">#4   12.8    5.7   38.1   22.2   23.4</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="va">summary.stats</span> <span class="op">&lt;-</span> <span class="fu"><a href="summaryStats.html">summaryStats</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/Log.html" class="external-link">log</a></span><span class="op">(</span><span class="va">Chrysene.ppb</span><span class="op">)</span> <span class="op">~</span> <span class="va">Well.type</span>, </span></span>
+<span class="r-in"><span>    data <span class="op">=</span> <span class="va">EPA.09.Ex.17.3.chrysene.df</span><span class="op">)</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="va">summary.stats</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>             N   Mean     SD Median    Min    Max</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Background  8 2.5086 0.6279 2.4359 1.7405 3.6687</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Compliance 12 3.4173 0.4361 3.4111 2.7081 4.2195</span>
@@ -237,24 +245,24 @@
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] FALSE</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> attr(,"drop0trailing")</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] TRUE</span>
-<span class="r-in">  <span class="co">#            N   Mean     SD Median    Min    Max</span></span>
-<span class="r-in">  <span class="co">#Background  8 2.5086 0.6279 2.4359 1.7405 3.6687</span></span>
-<span class="r-in">  <span class="co">#Compliance 12 3.4173 0.4361 3.4111 2.7081 4.2195</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="va">sigma.hat</span> <span class="op">&lt;-</span> <span class="va">summary.stats</span><span class="op">[</span><span class="st">"Background"</span>, <span class="st">"SD"</span><span class="op">]</span></span>
-<span class="r-in">  <span class="va">sigma.hat</span></span>
+<span class="r-in"><span>  <span class="co">#            N   Mean     SD Median    Min    Max</span></span></span>
+<span class="r-in"><span>  <span class="co">#Background  8 2.5086 0.6279 2.4359 1.7405 3.6687</span></span></span>
+<span class="r-in"><span>  <span class="co">#Compliance 12 3.4173 0.4361 3.4111 2.7081 4.2195</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="va">sigma.hat</span> <span class="op">&lt;-</span> <span class="va">summary.stats</span><span class="op">[</span><span class="st">"Background"</span>, <span class="st">"SD"</span><span class="op">]</span></span></span>
+<span class="r-in"><span>  <span class="va">sigma.hat</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] 0.6279</span>
-<span class="r-in">  <span class="co">#[1] 0.6279</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="fu">tolIntNormHalfWidth</span><span class="op">(</span>n <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">4</span>, <span class="fl">8</span>, <span class="fl">16</span><span class="op">)</span>, sigma.hat <span class="op">=</span> <span class="va">sigma.hat</span><span class="op">)</span></span>
+<span class="r-in"><span>  <span class="co">#[1] 0.6279</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="fu">tolIntNormHalfWidth</span><span class="op">(</span>n <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">4</span>, <span class="fl">8</span>, <span class="fl">16</span><span class="op">)</span>, sigma.hat <span class="op">=</span> <span class="va">sigma.hat</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] 3.999681 2.343160 1.822759</span>
-<span class="r-in">  <span class="co">#[1] 3.999681 2.343160 1.822759</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="co">#==========</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="co"># Clean up</span></span>
-<span class="r-in">  <span class="co">#---------</span></span>
-<span class="r-in">  <span class="fu"><a href="https://rdrr.io/r/base/rm.html" class="external-link">rm</a></span><span class="op">(</span><span class="va">summary.stats</span>, <span class="va">sigma.hat</span><span class="op">)</span></span>
+<span class="r-in"><span>  <span class="co">#[1] 3.999681 2.343160 1.822759</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="co">#==========</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="co"># Clean up</span></span></span>
+<span class="r-in"><span>  <span class="co">#---------</span></span></span>
+<span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/r/base/rm.html" class="external-link">rm</a></span><span class="op">(</span><span class="va">summary.stats</span>, <span class="va">sigma.hat</span><span class="op">)</span></span></span>
 </code></pre></div>
     </div>
   </div>
@@ -269,7 +277,7 @@
 </div>
 
 <div class="pkgdown">
-  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.2.</p>
+  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.6.</p>
 </div>
 
       </footer></div>

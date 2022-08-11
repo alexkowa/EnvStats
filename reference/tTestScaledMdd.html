@@ -54,10 +54,10 @@
     </div>
 
     <div id="ref-usage">
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="fu">tTestScaledMdd</span><span class="op">(</span><span class="va">n.or.n1</span>, n2 <span class="op">=</span> <span class="va">n.or.n1</span>, alpha <span class="op">=</span> <span class="fl">0.05</span>, power <span class="op">=</span> <span class="fl">0.95</span>, 
-    sample.type <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/ifelse.html" class="external-link">ifelse</a></span><span class="op">(</span><span class="op">!</span><span class="fu"><a href="https://rdrr.io/r/base/missing.html" class="external-link">missing</a></span><span class="op">(</span><span class="va">n2</span><span class="op">)</span> <span class="op">&amp;&amp;</span> <span class="op">!</span><span class="fu"><a href="https://rdrr.io/r/base/NULL.html" class="external-link">is.null</a></span><span class="op">(</span><span class="va">n2</span><span class="op">)</span>, <span class="st">"two.sample"</span>, <span class="st">"one.sample"</span><span class="op">)</span>, 
-    alternative <span class="op">=</span> <span class="st">"two.sided"</span>, two.sided.direction <span class="op">=</span> <span class="st">"greater"</span>, 
-    approx <span class="op">=</span> <span class="cn">FALSE</span>, tol <span class="op">=</span> <span class="fl">1e-07</span>, maxiter <span class="op">=</span> <span class="fl">1000</span><span class="op">)</span></code></pre></div>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">tTestScaledMdd</span><span class="op">(</span><span class="va">n.or.n1</span>, n2 <span class="op">=</span> <span class="va">n.or.n1</span>, alpha <span class="op">=</span> <span class="fl">0.05</span>, power <span class="op">=</span> <span class="fl">0.95</span>, </span>
+<span>    sample.type <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/ifelse.html" class="external-link">ifelse</a></span><span class="op">(</span><span class="op">!</span><span class="fu"><a href="https://rdrr.io/r/base/missing.html" class="external-link">missing</a></span><span class="op">(</span><span class="va">n2</span><span class="op">)</span> <span class="op">&amp;&amp;</span> <span class="op">!</span><span class="fu"><a href="https://rdrr.io/r/base/NULL.html" class="external-link">is.null</a></span><span class="op">(</span><span class="va">n2</span><span class="op">)</span>, <span class="st">"two.sample"</span>, <span class="st">"one.sample"</span><span class="op">)</span>, </span>
+<span>    alternative <span class="op">=</span> <span class="st">"two.sided"</span>, two.sided.direction <span class="op">=</span> <span class="st">"greater"</span>, </span>
+<span>    approx <span class="op">=</span> <span class="cn">FALSE</span>, tol <span class="op">=</span> <span class="fl">1e-07</span>, maxiter <span class="op">=</span> <span class="fl">1000</span><span class="op">)</span></span></code></pre></div>
     </div>
 
     <div id="arguments">
@@ -68,23 +68,28 @@
   of observations from group 1.  
   Missing (<code>NA</code>), undefined (<code>NaN</code>), and infinite (<code>Inf</code>, <code>-Inf</code>) 
   values are <b><em>not</em></b> allowed.</p></dd>
-<dt>n2</dt>
+
+  <dt>n2</dt>
 <dd><p>numeric vector of sample sizes for group 2.  The default value is the value of 
   <code>n.or.n1</code>. This argument is ignored when <code>sample.type="one.sample"</code>. 
   Missing (<code>NA</code>), undefined (<code>NaN</code>), and infinite (<code>Inf</code>, <code>-Inf</code>) 
   values are <b><em>not</em></b> allowed.</p></dd>
-<dt>alpha</dt>
+
+  <dt>alpha</dt>
 <dd><p>numeric vector of numbers between 0 and 1 indicating the Type I error level 
   associated with the hypothesis test.  The default value is <code>alpha=0.05</code>.</p></dd>
-<dt>power</dt>
+
+  <dt>power</dt>
 <dd><p>numeric vector of numbers between 0 and 1 indicating the power  
   associated with the hypothesis test.  The default value is <code>power=0.95</code>.</p></dd>
-<dt>sample.type</dt>
+
+  <dt>sample.type</dt>
 <dd><p>character string indicating whether to compute power based on a one-sample or 
   two-sample hypothesis test.  When <code>sample.type="one.sample"</code>, the computed 
   power is based on a hypothesis test for a single mean.  When <br><code>sample.type="two.sample"</code>, the computed power is based on a hypothesis test 
   for the difference between two means.  The default value is <br><code>sample.type="one.sample"</code> unless the argument <code>n2</code> is supplied.</p></dd>
-<dt>alternative</dt>
+
+  <dt>alternative</dt>
 <dd><p>character string indicating the kind of alternative hypothesis.  The possible values 
   are:</p>
 <p></p><ul><li><p><code>"two.sided"</code> (the default).  \(H_a: \mu \ne \mu_0\) for the one-sample case and 
@@ -94,23 +99,28 @@
 <li><p><code>"less"</code>.  \(H_a: \mu &lt; \mu_0\) for the one-sample case and 
     \(H_a: \mu_1 &lt; \mu_2\) for the two-sample case.</p></li>
 </ul></dd>
-<dt>two.sided.direction</dt>
+
+  <dt>two.sided.direction</dt>
 <dd><p>character string indicating the direction (positive or negative) for the 
   scaled minimal detectable difference when <code>alternative="two.sided"</code>.  When <br><code>two.sided.direction="greater"</code> (the default), the scaled minimal 
   detectable difference is positive.  When <code>two.sided.direction="less"</code>, 
   the scaled minimal detectable difference is negative.  This argument 
   is ignored if <br><code>alternative="less"</code> or <code>alternative="greater"</code>.</p></dd>
-<dt>approx</dt>
+
+  <dt>approx</dt>
 <dd><p>logical scalar indicating whether to compute the power based on an approximation to 
   the non-central t-distribution.  The default value is <code>FALSE</code>.</p></dd>
-<dt>tol</dt>
+
+  <dt>tol</dt>
 <dd><p>numeric scalar indicating the tolerance argument to pass to the  
   <code><a href="https://rdrr.io/r/stats/uniroot.html" class="external-link">uniroot</a></code> function.  
   The default value is <code>tol=1e-7</code>.</p></dd>
-<dt>maxiter</dt>
+
+  <dt>maxiter</dt>
 <dd><p>positive integer indicating the maximum number of iterations 
   argument to pass to the <code><a href="https://rdrr.io/r/stats/uniroot.html" class="external-link">uniroot</a></code> function.  The default 
   value is <code>maxiter=1000</code>.</p></dd>
+
 </dl></div>
     <div id="details">
     <h2>Details</h2>
@@ -123,7 +133,9 @@
     </div>
     <div id="value">
     <h2>Value</h2>
-    <p>numeric vector of scaled minimal detectable differences.</p>
+    
+
+<p>numeric vector of scaled minimal detectable differences.</p>
     </div>
     <div id="references">
     <h2>References</h2>
@@ -147,80 +159,80 @@
 
     <div id="ref-examples">
     <h2>Examples</h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in">  <span class="co"># Look at how the scaled minimal detectable difference for the </span></span>
-<span class="r-in">  <span class="co"># one-sample t-test increases with increasing required power:</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="fu"><a href="https://rdrr.io/r/base/seq.html" class="external-link">seq</a></span><span class="op">(</span><span class="fl">0.5</span>, <span class="fl">0.9</span>, by <span class="op">=</span> <span class="fl">0.1</span><span class="op">)</span> </span>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span>  <span class="co"># Look at how the scaled minimal detectable difference for the </span></span></span>
+<span class="r-in"><span>  <span class="co"># one-sample t-test increases with increasing required power:</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/r/base/seq.html" class="external-link">seq</a></span><span class="op">(</span><span class="fl">0.5</span>, <span class="fl">0.9</span>, by <span class="op">=</span> <span class="fl">0.1</span><span class="op">)</span> </span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] 0.5 0.6 0.7 0.8 0.9</span>
-<span class="r-in">  <span class="co">#[1] 0.5 0.6 0.7 0.8 0.9 </span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="va">scaled.mdd</span> <span class="op">&lt;-</span> <span class="fu">tTestScaledMdd</span><span class="op">(</span>n.or.n1 <span class="op">=</span> <span class="fl">20</span>, power <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/seq.html" class="external-link">seq</a></span><span class="op">(</span><span class="fl">0.5</span>,<span class="fl">0.9</span>,by<span class="op">=</span><span class="fl">0.1</span><span class="op">)</span><span class="op">)</span> </span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="fu"><a href="https://rdrr.io/r/base/Round.html" class="external-link">round</a></span><span class="op">(</span><span class="va">scaled.mdd</span>, <span class="fl">2</span><span class="op">)</span> </span>
+<span class="r-in"><span>  <span class="co">#[1] 0.5 0.6 0.7 0.8 0.9 </span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="va">scaled.mdd</span> <span class="op">&lt;-</span> <span class="fu">tTestScaledMdd</span><span class="op">(</span>n.or.n1 <span class="op">=</span> <span class="fl">20</span>, power <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/seq.html" class="external-link">seq</a></span><span class="op">(</span><span class="fl">0.5</span>,<span class="fl">0.9</span>,by<span class="op">=</span><span class="fl">0.1</span><span class="op">)</span><span class="op">)</span> </span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/r/base/Round.html" class="external-link">round</a></span><span class="op">(</span><span class="va">scaled.mdd</span>, <span class="fl">2</span><span class="op">)</span> </span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] 0.46 0.52 0.59 0.66 0.76</span>
-<span class="r-in">  <span class="co">#[1] 0.46 0.52 0.59 0.66 0.76</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="co">#----------</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="co"># Repeat the last example, but compute the scaled minimal detectable </span></span>
-<span class="r-in">  <span class="co"># differences based on the approximation to the power instead of the </span></span>
-<span class="r-in">  <span class="co"># exact formula:</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="va">scaled.mdd</span> <span class="op">&lt;-</span> <span class="fu">tTestScaledMdd</span><span class="op">(</span>n.or.n1 <span class="op">=</span> <span class="fl">20</span>, power <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/seq.html" class="external-link">seq</a></span><span class="op">(</span><span class="fl">0.5</span>, <span class="fl">0.9</span>, by <span class="op">=</span> <span class="fl">0.1</span><span class="op">)</span>, </span>
-<span class="r-in">    approx <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span> </span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="fu"><a href="https://rdrr.io/r/base/Round.html" class="external-link">round</a></span><span class="op">(</span><span class="va">scaled.mdd</span>, <span class="fl">2</span><span class="op">)</span> </span>
+<span class="r-in"><span>  <span class="co">#[1] 0.46 0.52 0.59 0.66 0.76</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="co">#----------</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="co"># Repeat the last example, but compute the scaled minimal detectable </span></span></span>
+<span class="r-in"><span>  <span class="co"># differences based on the approximation to the power instead of the </span></span></span>
+<span class="r-in"><span>  <span class="co"># exact formula:</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="va">scaled.mdd</span> <span class="op">&lt;-</span> <span class="fu">tTestScaledMdd</span><span class="op">(</span>n.or.n1 <span class="op">=</span> <span class="fl">20</span>, power <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/seq.html" class="external-link">seq</a></span><span class="op">(</span><span class="fl">0.5</span>, <span class="fl">0.9</span>, by <span class="op">=</span> <span class="fl">0.1</span><span class="op">)</span>, </span></span>
+<span class="r-in"><span>    approx <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span> </span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/r/base/Round.html" class="external-link">round</a></span><span class="op">(</span><span class="va">scaled.mdd</span>, <span class="fl">2</span><span class="op">)</span> </span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] 0.47 0.53 0.59 0.66 0.76</span>
-<span class="r-in">  <span class="co">#[1] 0.47 0.53 0.59 0.66 0.76</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="co">#==========</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="co"># Look at how the scaled minimal detectable difference for the two-sample </span></span>
-<span class="r-in">  <span class="co"># t-test decreases with increasing sample size:</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="fu"><a href="https://rdrr.io/r/base/seq.html" class="external-link">seq</a></span><span class="op">(</span><span class="fl">10</span>,<span class="fl">50</span>,by<span class="op">=</span><span class="fl">10</span><span class="op">)</span> </span>
+<span class="r-in"><span>  <span class="co">#[1] 0.47 0.53 0.59 0.66 0.76</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="co">#==========</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="co"># Look at how the scaled minimal detectable difference for the two-sample </span></span></span>
+<span class="r-in"><span>  <span class="co"># t-test decreases with increasing sample size:</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/r/base/seq.html" class="external-link">seq</a></span><span class="op">(</span><span class="fl">10</span>,<span class="fl">50</span>,by<span class="op">=</span><span class="fl">10</span><span class="op">)</span> </span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] 10 20 30 40 50</span>
-<span class="r-in">  <span class="co">#[1] 10 20 30 40 50 </span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="va">scaled.mdd</span> <span class="op">&lt;-</span> <span class="fu">tTestScaledMdd</span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/seq.html" class="external-link">seq</a></span><span class="op">(</span><span class="fl">10</span>, <span class="fl">50</span>, by <span class="op">=</span> <span class="fl">10</span><span class="op">)</span>, sample.type <span class="op">=</span> <span class="st">"two"</span><span class="op">)</span> </span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="fu"><a href="https://rdrr.io/r/base/Round.html" class="external-link">round</a></span><span class="op">(</span><span class="va">scaled.mdd</span>, <span class="fl">2</span><span class="op">)</span> </span>
+<span class="r-in"><span>  <span class="co">#[1] 10 20 30 40 50 </span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="va">scaled.mdd</span> <span class="op">&lt;-</span> <span class="fu">tTestScaledMdd</span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/seq.html" class="external-link">seq</a></span><span class="op">(</span><span class="fl">10</span>, <span class="fl">50</span>, by <span class="op">=</span> <span class="fl">10</span><span class="op">)</span>, sample.type <span class="op">=</span> <span class="st">"two"</span><span class="op">)</span> </span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/r/base/Round.html" class="external-link">round</a></span><span class="op">(</span><span class="va">scaled.mdd</span>, <span class="fl">2</span><span class="op">)</span> </span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] 1.71 1.17 0.95 0.82 0.73</span>
-<span class="r-in">  <span class="co">#[1] 1.71 1.17 0.95 0.82 0.73</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="co">#----------</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="co"># Look at how the scaled minimal detectable difference for the two-sample </span></span>
-<span class="r-in">  <span class="co"># t-test decreases with increasing values of Type I error:</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="va">scaled.mdd</span> <span class="op">&lt;-</span> <span class="fu">tTestScaledMdd</span><span class="op">(</span><span class="fl">20</span>, alpha <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">0.001</span>, <span class="fl">0.01</span>, <span class="fl">0.05</span>, <span class="fl">0.1</span><span class="op">)</span>, </span>
-<span class="r-in">    sample.type<span class="op">=</span><span class="st">"two"</span><span class="op">)</span> </span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="fu"><a href="https://rdrr.io/r/base/Round.html" class="external-link">round</a></span><span class="op">(</span><span class="va">scaled.mdd</span>, <span class="fl">2</span><span class="op">)</span> </span>
+<span class="r-in"><span>  <span class="co">#[1] 1.71 1.17 0.95 0.82 0.73</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="co">#----------</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="co"># Look at how the scaled minimal detectable difference for the two-sample </span></span></span>
+<span class="r-in"><span>  <span class="co"># t-test decreases with increasing values of Type I error:</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="va">scaled.mdd</span> <span class="op">&lt;-</span> <span class="fu">tTestScaledMdd</span><span class="op">(</span><span class="fl">20</span>, alpha <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">0.001</span>, <span class="fl">0.01</span>, <span class="fl">0.05</span>, <span class="fl">0.1</span><span class="op">)</span>, </span></span>
+<span class="r-in"><span>    sample.type<span class="op">=</span><span class="st">"two"</span><span class="op">)</span> </span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/r/base/Round.html" class="external-link">round</a></span><span class="op">(</span><span class="va">scaled.mdd</span>, <span class="fl">2</span><span class="op">)</span> </span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] 1.68 1.40 1.17 1.06</span>
-<span class="r-in">  <span class="co">#[1] 1.68 1.40 1.17 1.06</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="co">#==========</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="co"># Modifying the example on pages 21-4 to 21-5 of USEPA (2009), </span></span>
-<span class="r-in">  <span class="co"># determine the minimal mean level of aldicarb at the third compliance </span></span>
-<span class="r-in">  <span class="co"># well necessary to detect a mean level of aldicarb greater than the </span></span>
-<span class="r-in">  <span class="co"># MCL of 7 ppb, assuming 90%, 95%, and 99% power.  Use a 99% significance </span></span>
-<span class="r-in">  <span class="co"># level and assume an upper one-sided alternative (third compliance well </span></span>
-<span class="r-in">  <span class="co"># mean larger than 7).  Use the estimated standard deviation from the </span></span>
-<span class="r-in">  <span class="co"># first four months of data to estimate the true population standard </span></span>
-<span class="r-in">  <span class="co"># deviation in order to determine the minimal detectable difference based </span></span>
-<span class="r-in">  <span class="co"># on the computed scaled minimal detectable difference, then use this </span></span>
-<span class="r-in">  <span class="co"># minimal detectable difference to determine the mean level of aldicarb </span></span>
-<span class="r-in">  <span class="co"># necessary to detect a difference.  (The data are stored in </span></span>
-<span class="r-in">  <span class="co"># EPA.09.Ex.21.1.aldicarb.df.) </span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co"># Note that the scaled minimal detectable difference changes from 3.4 to </span></span>
-<span class="r-in">  <span class="co"># 3.9 to 4.7 as the power changes from 90% to 95% to 99%.  Thus, the </span></span>
-<span class="r-in">  <span class="co"># minimal detectable difference changes from 7.2 to 8.1 to 9.8, and the </span></span>
-<span class="r-in">  <span class="co"># minimal mean level of aldicarb changes from 14.2 to 15.1 to 16.8.</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="va">EPA.09.Ex.21.1.aldicarb.df</span></span>
+<span class="r-in"><span>  <span class="co">#[1] 1.68 1.40 1.17 1.06</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="co">#==========</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="co"># Modifying the example on pages 21-4 to 21-5 of USEPA (2009), </span></span></span>
+<span class="r-in"><span>  <span class="co"># determine the minimal mean level of aldicarb at the third compliance </span></span></span>
+<span class="r-in"><span>  <span class="co"># well necessary to detect a mean level of aldicarb greater than the </span></span></span>
+<span class="r-in"><span>  <span class="co"># MCL of 7 ppb, assuming 90%, 95%, and 99% power.  Use a 99% significance </span></span></span>
+<span class="r-in"><span>  <span class="co"># level and assume an upper one-sided alternative (third compliance well </span></span></span>
+<span class="r-in"><span>  <span class="co"># mean larger than 7).  Use the estimated standard deviation from the </span></span></span>
+<span class="r-in"><span>  <span class="co"># first four months of data to estimate the true population standard </span></span></span>
+<span class="r-in"><span>  <span class="co"># deviation in order to determine the minimal detectable difference based </span></span></span>
+<span class="r-in"><span>  <span class="co"># on the computed scaled minimal detectable difference, then use this </span></span></span>
+<span class="r-in"><span>  <span class="co"># minimal detectable difference to determine the mean level of aldicarb </span></span></span>
+<span class="r-in"><span>  <span class="co"># necessary to detect a difference.  (The data are stored in </span></span></span>
+<span class="r-in"><span>  <span class="co"># EPA.09.Ex.21.1.aldicarb.df.) </span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co"># Note that the scaled minimal detectable difference changes from 3.4 to </span></span></span>
+<span class="r-in"><span>  <span class="co"># 3.9 to 4.7 as the power changes from 90% to 95% to 99%.  Thus, the </span></span></span>
+<span class="r-in"><span>  <span class="co"># minimal detectable difference changes from 7.2 to 8.1 to 9.8, and the </span></span></span>
+<span class="r-in"><span>  <span class="co"># minimal mean level of aldicarb changes from 14.2 to 15.1 to 16.8.</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="va">EPA.09.Ex.21.1.aldicarb.df</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>    Month   Well Aldicarb.ppb</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 1      1 Well.1         19.9</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 2      2 Well.1         29.6</span>
@@ -234,51 +246,51 @@
 <span class="r-out co"><span class="r-pr">#&gt;</span> 10     2 Well.3          3.3</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 11     3 Well.3          2.3</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 12     4 Well.3          6.9</span>
-<span class="r-in">  <span class="co">#   Month   Well Aldicarb.ppb</span></span>
-<span class="r-in">  <span class="co">#1      1 Well.1         19.9</span></span>
-<span class="r-in">  <span class="co">#2      2 Well.1         29.6</span></span>
-<span class="r-in">  <span class="co">#3      3 Well.1         18.7</span></span>
-<span class="r-in">  <span class="co">#4      4 Well.1         24.2</span></span>
-<span class="r-in">  <span class="co">#5      1 Well.2         23.7</span></span>
-<span class="r-in">  <span class="co">#6      2 Well.2         21.9</span></span>
-<span class="r-in">  <span class="co">#7      3 Well.2         26.9</span></span>
-<span class="r-in">  <span class="co">#8      4 Well.2         26.1</span></span>
-<span class="r-in">  <span class="co">#9      1 Well.3          5.6</span></span>
-<span class="r-in">  <span class="co">#10     2 Well.3          3.3</span></span>
-<span class="r-in">  <span class="co">#11     3 Well.3          2.3</span></span>
-<span class="r-in">  <span class="co">#12     4 Well.3          6.9</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="va">sigma</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/with.html" class="external-link">with</a></span><span class="op">(</span><span class="va">EPA.09.Ex.21.1.aldicarb.df</span>, </span>
-<span class="r-in">    <span class="fu"><a href="https://rdrr.io/r/stats/sd.html" class="external-link">sd</a></span><span class="op">(</span><span class="va">Aldicarb.ppb</span><span class="op">[</span><span class="va">Well</span> <span class="op">==</span> <span class="st">"Well.3"</span><span class="op">]</span><span class="op">)</span><span class="op">)</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="va">sigma</span></span>
+<span class="r-in"><span>  <span class="co">#   Month   Well Aldicarb.ppb</span></span></span>
+<span class="r-in"><span>  <span class="co">#1      1 Well.1         19.9</span></span></span>
+<span class="r-in"><span>  <span class="co">#2      2 Well.1         29.6</span></span></span>
+<span class="r-in"><span>  <span class="co">#3      3 Well.1         18.7</span></span></span>
+<span class="r-in"><span>  <span class="co">#4      4 Well.1         24.2</span></span></span>
+<span class="r-in"><span>  <span class="co">#5      1 Well.2         23.7</span></span></span>
+<span class="r-in"><span>  <span class="co">#6      2 Well.2         21.9</span></span></span>
+<span class="r-in"><span>  <span class="co">#7      3 Well.2         26.9</span></span></span>
+<span class="r-in"><span>  <span class="co">#8      4 Well.2         26.1</span></span></span>
+<span class="r-in"><span>  <span class="co">#9      1 Well.3          5.6</span></span></span>
+<span class="r-in"><span>  <span class="co">#10     2 Well.3          3.3</span></span></span>
+<span class="r-in"><span>  <span class="co">#11     3 Well.3          2.3</span></span></span>
+<span class="r-in"><span>  <span class="co">#12     4 Well.3          6.9</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="va">sigma</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/with.html" class="external-link">with</a></span><span class="op">(</span><span class="va">EPA.09.Ex.21.1.aldicarb.df</span>, </span></span>
+<span class="r-in"><span>    <span class="fu"><a href="https://rdrr.io/r/stats/sd.html" class="external-link">sd</a></span><span class="op">(</span><span class="va">Aldicarb.ppb</span><span class="op">[</span><span class="va">Well</span> <span class="op">==</span> <span class="st">"Well.3"</span><span class="op">]</span><span class="op">)</span><span class="op">)</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="va">sigma</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] 2.101388</span>
-<span class="r-in">  <span class="co">#[1] 2.101388</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="va">scaled.mdd</span> <span class="op">&lt;-</span> <span class="fu">tTestScaledMdd</span><span class="op">(</span>n.or.n1 <span class="op">=</span> <span class="fl">4</span>, alpha <span class="op">=</span> <span class="fl">0.01</span>, </span>
-<span class="r-in">    power <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">0.90</span>, <span class="fl">0.95</span>, <span class="fl">0.99</span><span class="op">)</span>, sample.type<span class="op">=</span><span class="st">"one"</span>, alternative<span class="op">=</span><span class="st">"greater"</span><span class="op">)</span> </span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="va">scaled.mdd</span> </span>
+<span class="r-in"><span>  <span class="co">#[1] 2.101388</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="va">scaled.mdd</span> <span class="op">&lt;-</span> <span class="fu">tTestScaledMdd</span><span class="op">(</span>n.or.n1 <span class="op">=</span> <span class="fl">4</span>, alpha <span class="op">=</span> <span class="fl">0.01</span>, </span></span>
+<span class="r-in"><span>    power <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">0.90</span>, <span class="fl">0.95</span>, <span class="fl">0.99</span><span class="op">)</span>, sample.type<span class="op">=</span><span class="st">"one"</span>, alternative<span class="op">=</span><span class="st">"greater"</span><span class="op">)</span> </span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="va">scaled.mdd</span> </span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] 3.431501 3.853682 4.668749</span>
-<span class="r-in">  <span class="co">#[1] 3.431501 3.853682 4.668749</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="va">mdd</span> <span class="op">&lt;-</span> <span class="va">scaled.mdd</span> <span class="op">*</span> <span class="va">sigma</span> </span>
-<span class="r-in">  <span class="va">mdd</span> </span>
+<span class="r-in"><span>  <span class="co">#[1] 3.431501 3.853682 4.668749</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="va">mdd</span> <span class="op">&lt;-</span> <span class="va">scaled.mdd</span> <span class="op">*</span> <span class="va">sigma</span> </span></span>
+<span class="r-in"><span>  <span class="va">mdd</span> </span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] 7.210917 8.098083 9.810856</span>
-<span class="r-in">  <span class="co">#[1] 7.210917 8.098083 9.810856</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="va">minimal.mean</span> <span class="op">&lt;-</span> <span class="va">mdd</span> <span class="op">+</span> <span class="fl">7</span> </span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="va">minimal.mean</span> </span>
+<span class="r-in"><span>  <span class="co">#[1] 7.210917 8.098083 9.810856</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="va">minimal.mean</span> <span class="op">&lt;-</span> <span class="va">mdd</span> <span class="op">+</span> <span class="fl">7</span> </span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="va">minimal.mean</span> </span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] 14.21092 15.09808 16.81086</span>
-<span class="r-in">  <span class="co">#[1] 14.21092 15.09808 16.81086</span></span>
-<span class="r-in"></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="co">#==========</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="co"># Clean up</span></span>
-<span class="r-in">  <span class="co">#---------</span></span>
-<span class="r-in">  <span class="fu"><a href="https://rdrr.io/r/base/rm.html" class="external-link">rm</a></span><span class="op">(</span><span class="va">scaled.mdd</span>, <span class="va">sigma</span>, <span class="va">mdd</span>, <span class="va">minimal.mean</span><span class="op">)</span></span>
+<span class="r-in"><span>  <span class="co">#[1] 14.21092 15.09808 16.81086</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="co">#==========</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="co"># Clean up</span></span></span>
+<span class="r-in"><span>  <span class="co">#---------</span></span></span>
+<span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/r/base/rm.html" class="external-link">rm</a></span><span class="op">(</span><span class="va">scaled.mdd</span>, <span class="va">sigma</span>, <span class="va">mdd</span>, <span class="va">minimal.mean</span><span class="op">)</span></span></span>
 </code></pre></div>
     </div>
   </div>
@@ -293,7 +305,7 @@
 </div>
 
 <div class="pkgdown">
-  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.2.</p>
+  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.6.</p>
 </div>
 
       </footer></div>

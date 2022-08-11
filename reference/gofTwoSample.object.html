@@ -66,44 +66,69 @@
     </div>
     <div id="value">
     <h2>Value</h2>
-    <p><strong>Required Components</strong><br>  The following components must be included in a legitimate list of 
+    <p></p>
+<p><strong>Required Components</strong></p>
+<p></p>
+<p><br></p>
+
+
+<p>The following components must be included in a legitimate list of 
   class <code>"gofTwoSample"</code>.</p>
 <dl><dt>distribution</dt>
 <dd><p>a character string with the value <code>"Equal"</code>.</p></dd>
-<dt>statistic</dt>
+
+  <dt>statistic</dt>
 <dd><p>a numeric scalar with a names attribute containing 
     the name and value of the goodness-of-fit statistic.</p></dd>
-<dt>sample.size</dt>
+
+  <dt>sample.size</dt>
 <dd><p>a numeric scalar containing the number 
     of non-missing observations in the sample used for the 
     goodness-of-fit test.</p></dd>
-<dt>parameters</dt>
+
+  <dt>parameters</dt>
 <dd><p>numeric vector with a names attribute containing 
     the name(s) and value(s) of the parameter(s) associated with the 
     test statistic given in the <code>statistic</code> component.</p></dd>
-<dt>p.value</dt>
+
+  <dt>p.value</dt>
 <dd><p>numeric scalar containing the p-value associated with 
     the goodness-of-fit statistic.</p></dd>
-<dt>alternative</dt>
+
+  <dt>alternative</dt>
 <dd><p>character string indicating the alternative hypothesis.</p></dd>
-<dt>method</dt>
+
+  <dt>method</dt>
 <dd><p>character string indicating the name of the 
     goodness-of-fit test.</p></dd>
-<dt>data</dt>
+
+  <dt>data</dt>
 <dd><p>a list of length 2 containing the numeric vectors actually used for 
     the goodness-of-fit test (i.e., the original data but with any 
     missing or infinite values removed).</p></dd>
-<dt>data.name</dt>
+
+  <dt>data.name</dt>
 <dd><p>a character vector of length 2 indicating the name of the data 
     object used for the <code>x</code> argument and the name of the data object used 
     for the <code>y</code> argument in the goodness-of-fit test.</p></dd>
-</dl><p><strong>Optional Component</strong><br>  The following component is included when the arguments <code>x</code> and/or <code>y</code>  contain missing (<code>NA</code>), undefined (<code>NaN</code>) and/or infinite 
+
+
+  </dl><p><strong>Optional Component</strong></p>
+<p></p>
+<p><br></p>
+
+
+<p>The following component is included when the arguments <code>x</code> and/or <code>y</code></p>
+
+
+<p>contain missing (<code>NA</code>), undefined (<code>NaN</code>) and/or infinite 
   (<code>Inf</code>, <code>-Inf</code>) values.</p>
 <dl><dt>bad.obs</dt>
 <dd><p>numeric vector of length 2 indicating the number of missing (<code>NA</code>), 
     undefined (<code>NaN</code>) and/or infinite (<code>Inf</code>, <code>-Inf</code>) 
     values that were removed from the data in the <code>x</code> and <code>y</code> arguments 
     prior to performing the goodness-of-fit test.</p></dd>
+
 </dl></div>
     <div id="note">
     <h2>Note</h2>
@@ -122,17 +147,17 @@
 
     <div id="ref-examples">
     <h2>Examples</h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in">  <span class="co"># Create an object of class "gofTwoSample", then print it out. </span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="co"># Generate 20 observations from a normal distribution with mean=3 and sd=2, and </span></span>
-<span class="r-in">  <span class="co"># generate 10 observaions from a normal distribution with mean=2 and sd=2 then </span></span>
-<span class="r-in">  <span class="co"># test whether these sets of observations come from the same distribution.</span></span>
-<span class="r-in">  <span class="co"># (Note: the call to set.seed simply allows you to reproduce this example.)</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="fu"><a href="https://rdrr.io/r/base/Random.html" class="external-link">set.seed</a></span><span class="op">(</span><span class="fl">300</span><span class="op">)</span> </span>
-<span class="r-in">  <span class="va">dat1</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/Normal.html" class="external-link">rnorm</a></span><span class="op">(</span><span class="fl">20</span>, mean <span class="op">=</span> <span class="fl">3</span>, sd <span class="op">=</span> <span class="fl">2</span><span class="op">)</span> </span>
-<span class="r-in">  <span class="va">dat2</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/Normal.html" class="external-link">rnorm</a></span><span class="op">(</span><span class="fl">10</span>, mean <span class="op">=</span> <span class="fl">1</span>, sd <span class="op">=</span> <span class="fl">2</span><span class="op">)</span> </span>
-<span class="r-in">  <span class="fu"><a href="gofTest.html">gofTest</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">dat1</span>, y <span class="op">=</span> <span class="va">dat2</span>, test <span class="op">=</span> <span class="st">"ks"</span><span class="op">)</span></span>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span>  <span class="co"># Create an object of class "gofTwoSample", then print it out. </span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="co"># Generate 20 observations from a normal distribution with mean=3 and sd=2, and </span></span></span>
+<span class="r-in"><span>  <span class="co"># generate 10 observaions from a normal distribution with mean=2 and sd=2 then </span></span></span>
+<span class="r-in"><span>  <span class="co"># test whether these sets of observations come from the same distribution.</span></span></span>
+<span class="r-in"><span>  <span class="co"># (Note: the call to set.seed simply allows you to reproduce this example.)</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/r/base/Random.html" class="external-link">set.seed</a></span><span class="op">(</span><span class="fl">300</span><span class="op">)</span> </span></span>
+<span class="r-in"><span>  <span class="va">dat1</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/Normal.html" class="external-link">rnorm</a></span><span class="op">(</span><span class="fl">20</span>, mean <span class="op">=</span> <span class="fl">3</span>, sd <span class="op">=</span> <span class="fl">2</span><span class="op">)</span> </span></span>
+<span class="r-in"><span>  <span class="va">dat2</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/Normal.html" class="external-link">rnorm</a></span><span class="op">(</span><span class="fl">10</span>, mean <span class="op">=</span> <span class="fl">1</span>, sd <span class="op">=</span> <span class="fl">2</span><span class="op">)</span> </span></span>
+<span class="r-in"><span>  <span class="fu"><a href="gofTest.html">gofTest</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">dat1</span>, y <span class="op">=</span> <span class="va">dat2</span>, test <span class="op">=</span> <span class="st">"ks"</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> $distribution</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] "Equal"</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
@@ -178,34 +203,34 @@
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> attr(,"class")</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] "gofTwoSample"</span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="co">#Results of Goodness-of-Fit Test</span></span>
-<span class="r-in">  <span class="co">#-------------------------------</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Test Method:                     2-Sample K-S GOF</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Hypothesized Distribution:       Equal</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Data:                            x = dat1</span></span>
-<span class="r-in">  <span class="co">#                                 y = dat2</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Sample Sizes:                    n.x = 20</span></span>
-<span class="r-in">  <span class="co">#                                 n.y = 10</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Test Statistic:                  ks = 0.7</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Test Statistic Parameters:       n = 20</span></span>
-<span class="r-in">  <span class="co">#                                 m = 10</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#P-value:                         0.001669561</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Alternative Hypothesis:          The cdf of 'dat1' does not equal</span></span>
-<span class="r-in">  <span class="co">#                                 the cdf of 'dat2'.</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="co">#----------</span></span>
-<span class="r-in">  <span class="co"># Clean up</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="fu"><a href="https://rdrr.io/r/base/rm.html" class="external-link">rm</a></span><span class="op">(</span><span class="va">dat1</span>, <span class="va">dat2</span><span class="op">)</span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="co">#Results of Goodness-of-Fit Test</span></span></span>
+<span class="r-in"><span>  <span class="co">#-------------------------------</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Test Method:                     2-Sample K-S GOF</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Hypothesized Distribution:       Equal</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Data:                            x = dat1</span></span></span>
+<span class="r-in"><span>  <span class="co">#                                 y = dat2</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Sample Sizes:                    n.x = 20</span></span></span>
+<span class="r-in"><span>  <span class="co">#                                 n.y = 10</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Test Statistic:                  ks = 0.7</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Test Statistic Parameters:       n = 20</span></span></span>
+<span class="r-in"><span>  <span class="co">#                                 m = 10</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#P-value:                         0.001669561</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Alternative Hypothesis:          The cdf of 'dat1' does not equal</span></span></span>
+<span class="r-in"><span>  <span class="co">#                                 the cdf of 'dat2'.</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="co">#----------</span></span></span>
+<span class="r-in"><span>  <span class="co"># Clean up</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/r/base/rm.html" class="external-link">rm</a></span><span class="op">(</span><span class="va">dat1</span>, <span class="va">dat2</span><span class="op">)</span></span></span>
 </code></pre></div>
     </div>
   </div>
@@ -220,7 +245,7 @@
 </div>
 
 <div class="pkgdown">
-  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.2.</p>
+  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.6.</p>
 </div>
 
       </footer></div>

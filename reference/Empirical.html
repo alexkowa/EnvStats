@@ -52,49 +52,58 @@
     </div>
 
     <div id="ref-usage">
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="fu">demp</span><span class="op">(</span><span class="va">x</span>, <span class="va">obs</span>, discrete <span class="op">=</span> <span class="cn">FALSE</span>, density.arg.list <span class="op">=</span> <span class="cn">NULL</span><span class="op">)</span>
-  <span class="fu">pemp</span><span class="op">(</span><span class="va">q</span>, <span class="va">obs</span>, discrete <span class="op">=</span> <span class="cn">FALSE</span>, 
-    prob.method <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/ifelse.html" class="external-link">ifelse</a></span><span class="op">(</span><span class="va">discrete</span>, <span class="st">"emp.probs"</span>, <span class="st">"plot.pos"</span><span class="op">)</span>, 
-    plot.pos.con <span class="op">=</span> <span class="fl">0.375</span><span class="op">)</span> 
-  <span class="fu">qemp</span><span class="op">(</span><span class="va">p</span>, <span class="va">obs</span>, discrete <span class="op">=</span> <span class="cn">FALSE</span>, 
-    prob.method <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/ifelse.html" class="external-link">ifelse</a></span><span class="op">(</span><span class="va">discrete</span>, <span class="st">"emp.probs"</span>, <span class="st">"plot.pos"</span><span class="op">)</span>, 
-    plot.pos.con <span class="op">=</span> <span class="fl">0.375</span><span class="op">)</span>
-  <span class="fu">remp</span><span class="op">(</span><span class="va">n</span>, <span class="va">obs</span><span class="op">)</span></code></pre></div>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">demp</span><span class="op">(</span><span class="va">x</span>, <span class="va">obs</span>, discrete <span class="op">=</span> <span class="cn">FALSE</span>, density.arg.list <span class="op">=</span> <span class="cn">NULL</span><span class="op">)</span></span>
+<span>  <span class="fu">pemp</span><span class="op">(</span><span class="va">q</span>, <span class="va">obs</span>, discrete <span class="op">=</span> <span class="cn">FALSE</span>, </span>
+<span>    prob.method <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/ifelse.html" class="external-link">ifelse</a></span><span class="op">(</span><span class="va">discrete</span>, <span class="st">"emp.probs"</span>, <span class="st">"plot.pos"</span><span class="op">)</span>, </span>
+<span>    plot.pos.con <span class="op">=</span> <span class="fl">0.375</span><span class="op">)</span> </span>
+<span>  <span class="fu">qemp</span><span class="op">(</span><span class="va">p</span>, <span class="va">obs</span>, discrete <span class="op">=</span> <span class="cn">FALSE</span>, </span>
+<span>    prob.method <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/ifelse.html" class="external-link">ifelse</a></span><span class="op">(</span><span class="va">discrete</span>, <span class="st">"emp.probs"</span>, <span class="st">"plot.pos"</span><span class="op">)</span>, </span>
+<span>    plot.pos.con <span class="op">=</span> <span class="fl">0.375</span><span class="op">)</span></span>
+<span>  <span class="fu">remp</span><span class="op">(</span><span class="va">n</span>, <span class="va">obs</span><span class="op">)</span></span></code></pre></div>
     </div>
 
     <div id="arguments">
     <h2>Arguments</h2>
     <dl><dt>x</dt>
 <dd><p>vector of quantiles.</p></dd>
-<dt>q</dt>
+
+  <dt>q</dt>
 <dd><p>vector of quantiles.</p></dd>
-<dt>p</dt>
+
+  <dt>p</dt>
 <dd><p>vector of probabilities between 0 and 1.</p></dd>
-<dt>n</dt>
+
+  <dt>n</dt>
 <dd><p>sample size.  If <code>length(n)</code> is larger than 1, then <code>length(n)</code> 
   random values are returned.</p></dd>
-<dt>obs</dt>
+
+  <dt>obs</dt>
 <dd><p>numeric vector of observations.  Missing (<code>NA</code>), undefined (<code>NaN</code>), and 
   infinite (<code>Inf</code>, <code>-Inf</code>) values are allowed but will be removed.</p></dd>
-<dt>discrete</dt>
+
+  <dt>discrete</dt>
 <dd><p>logical scalar indicating whether the assumed parent distribution of <code>x</code> is 
   discrete (<code>discrete=TRUE</code>) or continuous (<code>discrete=FALSE</code>).  The 
   default value is <code>FALSE</code>.</p></dd>
-<dt>density.arg.list</dt>
+
+  <dt>density.arg.list</dt>
 <dd><p>list with arguments to the <span style="R">R</span> <code><a href="https://rdrr.io/r/stats/density.html" class="external-link">density</a></code> function.  The default value is 
   <code>NULL</code>.  (See the help file for <code><a href="https://rdrr.io/r/stats/density.html" class="external-link">density</a></code> 
   for more information on the arguments to density.)  The argument 
   <code>density.arg.list</code> is ignored if <code>discrete=TRUE</code>.</p></dd>
-<dt>prob.method</dt>
+
+  <dt>prob.method</dt>
 <dd><p>character string indicating what method to use to compute the empirical 
   probabilities.  Possible values are <code>"emp.probs"</code> (empirical probabilities, 
   default if <code>discrete=TRUE</code>) and <code>"plot.pos"</code> (plotting positions, 
   default if <code>discrete=FALSE</code>).  See the DETAILS section for more explanation.</p></dd>
-<dt>plot.pos.con</dt>
+
+  <dt>plot.pos.con</dt>
 <dd><p>numeric scalar between 0 and 1 containing the value of the plotting position 
   constant.  The default value is <code>plot.pos.con=0.375</code>.  See the DETAILS 
   section for more information. This argument is ignored if 
   <code>prob.method="emp.probs"</code>.</p></dd>
+
 </dl></div>
     <div id="details">
     <h2>Details</h2>
@@ -158,7 +167,9 @@
     </div>
     <div id="value">
     <h2>Value</h2>
-    <p>density (<code>demp</code>), probability (<code>pemp</code>), quantile (<code>qemp</code>), or 
+    
+
+<p>density (<code>demp</code>), probability (<code>pemp</code>), quantile (<code>qemp</code>), or 
   random sample (<code>remp</code>) for the empirical distribution based on the data 
   contained in the vector <code>obs</code>.</p>
     </div>
@@ -208,54 +219,54 @@
 
     <div id="ref-examples">
     <h2>Examples</h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in">  <span class="co"># Create a set of 100 observations from a gamma distribution with </span></span>
-<span class="r-in">  <span class="co"># parameters shape=4 and scale=5. </span></span>
-<span class="r-in">  <span class="co"># (Note: the call to set.seed simply allows you to reproduce this example.)</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="fu"><a href="https://rdrr.io/r/base/Random.html" class="external-link">set.seed</a></span><span class="op">(</span><span class="fl">3</span><span class="op">)</span> </span>
-<span class="r-in">  <span class="va">obs</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/GammaDist.html" class="external-link">rgamma</a></span><span class="op">(</span><span class="fl">100</span>, shape<span class="op">=</span><span class="fl">4</span>, scale<span class="op">=</span><span class="fl">5</span><span class="op">)</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="co"># Now plot the empirical distribution (with a histogram) and the true distribution:</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="fu"><a href="https://rdrr.io/r/grDevices/dev.html" class="external-link">dev.new</a></span><span class="op">(</span><span class="op">)</span></span>
-<span class="r-in">  <span class="fu"><a href="https://rdrr.io/r/graphics/hist.html" class="external-link">hist</a></span><span class="op">(</span><span class="va">obs</span>, col <span class="op">=</span> <span class="st">"cyan"</span>, xlim <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">0</span>, <span class="fl">65</span><span class="op">)</span>, freq <span class="op">=</span> <span class="cn">FALSE</span>, </span>
-<span class="r-in">    ylab <span class="op">=</span> <span class="st">"Relative Frequency"</span><span class="op">)</span> </span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="fu"><a href="pdfPlot.html">pdfPlot</a></span><span class="op">(</span><span class="st">'gamma'</span>, <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>shape <span class="op">=</span> <span class="fl">4</span>, scale <span class="op">=</span> <span class="fl">5</span><span class="op">)</span>, add <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span> </span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="fu"><a href="https://rdrr.io/r/graphics/box.html" class="external-link">box</a></span><span class="op">(</span><span class="op">)</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="co"># Now plot the empirical distribution (based on demp) with the </span></span>
-<span class="r-in">  <span class="co"># true distribution:</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="va">x</span> <span class="op">&lt;-</span> <span class="fu">qemp</span><span class="op">(</span>p <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/seq.html" class="external-link">seq</a></span><span class="op">(</span><span class="fl">0</span>, <span class="fl">1</span>, len <span class="op">=</span> <span class="fl">100</span><span class="op">)</span>, obs <span class="op">=</span> <span class="va">obs</span><span class="op">)</span> </span>
-<span class="r-in">  <span class="va">y</span> <span class="op">&lt;-</span> <span class="fu">demp</span><span class="op">(</span><span class="va">x</span>, <span class="va">obs</span><span class="op">)</span> </span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="fu"><a href="https://rdrr.io/r/grDevices/dev.html" class="external-link">dev.new</a></span><span class="op">(</span><span class="op">)</span></span>
-<span class="r-in">  <span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">x</span>, <span class="va">y</span>, xlim <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">0</span>, <span class="fl">65</span><span class="op">)</span>, type <span class="op">=</span> <span class="st">"n"</span>, </span>
-<span class="r-in">    xlab <span class="op">=</span> <span class="st">"Value of Random Variable"</span>, </span>
-<span class="r-in">    ylab <span class="op">=</span> <span class="st">"Relative Frequency"</span><span class="op">)</span> </span>
-<span class="r-in">  <span class="fu"><a href="https://rdrr.io/r/graphics/lines.html" class="external-link">lines</a></span><span class="op">(</span><span class="va">x</span>, <span class="va">y</span>, lwd <span class="op">=</span> <span class="fl">2</span>, col <span class="op">=</span> <span class="st">"cyan"</span><span class="op">)</span> </span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="fu"><a href="pdfPlot.html">pdfPlot</a></span><span class="op">(</span><span class="st">'gamma'</span>, <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>shape <span class="op">=</span> <span class="fl">4</span>, scale <span class="op">=</span> <span class="fl">5</span><span class="op">)</span>, add <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="co"># Alternatively, you can create the above plot with the function </span></span>
-<span class="r-in">  <span class="co"># epdfPlot:</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="fu"><a href="https://rdrr.io/r/grDevices/dev.html" class="external-link">dev.new</a></span><span class="op">(</span><span class="op">)</span></span>
-<span class="r-in">  <span class="fu"><a href="epdfPlot.html">epdfPlot</a></span><span class="op">(</span><span class="va">obs</span>, xlim <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">0</span>, <span class="fl">65</span><span class="op">)</span>, epdf.col <span class="op">=</span> <span class="st">"cyan"</span>, </span>
-<span class="r-in">    xlab <span class="op">=</span> <span class="st">"Value of Random Variable"</span>, </span>
-<span class="r-in">    main <span class="op">=</span> <span class="st">"Empirical and Theoretical PDFs"</span><span class="op">)</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="fu"><a href="pdfPlot.html">pdfPlot</a></span><span class="op">(</span><span class="st">'gamma'</span>, <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>shape <span class="op">=</span> <span class="fl">4</span>, scale <span class="op">=</span> <span class="fl">5</span><span class="op">)</span>, add <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span>
-<span class="r-in"></span>
-<span class="r-in">  </span>
-<span class="r-in"></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="co"># Clean Up</span></span>
-<span class="r-in">  <span class="co">#---------</span></span>
-<span class="r-in">  <span class="fu"><a href="https://rdrr.io/r/base/rm.html" class="external-link">rm</a></span><span class="op">(</span><span class="va">obs</span>, <span class="va">x</span>, <span class="va">y</span><span class="op">)</span></span>
-<span class="r-in"></span>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span>  <span class="co"># Create a set of 100 observations from a gamma distribution with </span></span></span>
+<span class="r-in"><span>  <span class="co"># parameters shape=4 and scale=5. </span></span></span>
+<span class="r-in"><span>  <span class="co"># (Note: the call to set.seed simply allows you to reproduce this example.)</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/r/base/Random.html" class="external-link">set.seed</a></span><span class="op">(</span><span class="fl">3</span><span class="op">)</span> </span></span>
+<span class="r-in"><span>  <span class="va">obs</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/GammaDist.html" class="external-link">rgamma</a></span><span class="op">(</span><span class="fl">100</span>, shape<span class="op">=</span><span class="fl">4</span>, scale<span class="op">=</span><span class="fl">5</span><span class="op">)</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="co"># Now plot the empirical distribution (with a histogram) and the true distribution:</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/r/grDevices/dev.html" class="external-link">dev.new</a></span><span class="op">(</span><span class="op">)</span></span></span>
+<span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/r/graphics/hist.html" class="external-link">hist</a></span><span class="op">(</span><span class="va">obs</span>, col <span class="op">=</span> <span class="st">"cyan"</span>, xlim <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">0</span>, <span class="fl">65</span><span class="op">)</span>, freq <span class="op">=</span> <span class="cn">FALSE</span>, </span></span>
+<span class="r-in"><span>    ylab <span class="op">=</span> <span class="st">"Relative Frequency"</span><span class="op">)</span> </span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="fu"><a href="pdfPlot.html">pdfPlot</a></span><span class="op">(</span><span class="st">'gamma'</span>, <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>shape <span class="op">=</span> <span class="fl">4</span>, scale <span class="op">=</span> <span class="fl">5</span><span class="op">)</span>, add <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span> </span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/r/graphics/box.html" class="external-link">box</a></span><span class="op">(</span><span class="op">)</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="co"># Now plot the empirical distribution (based on demp) with the </span></span></span>
+<span class="r-in"><span>  <span class="co"># true distribution:</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="va">x</span> <span class="op">&lt;-</span> <span class="fu">qemp</span><span class="op">(</span>p <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/seq.html" class="external-link">seq</a></span><span class="op">(</span><span class="fl">0</span>, <span class="fl">1</span>, len <span class="op">=</span> <span class="fl">100</span><span class="op">)</span>, obs <span class="op">=</span> <span class="va">obs</span><span class="op">)</span> </span></span>
+<span class="r-in"><span>  <span class="va">y</span> <span class="op">&lt;-</span> <span class="fu">demp</span><span class="op">(</span><span class="va">x</span>, <span class="va">obs</span><span class="op">)</span> </span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/r/grDevices/dev.html" class="external-link">dev.new</a></span><span class="op">(</span><span class="op">)</span></span></span>
+<span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">x</span>, <span class="va">y</span>, xlim <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">0</span>, <span class="fl">65</span><span class="op">)</span>, type <span class="op">=</span> <span class="st">"n"</span>, </span></span>
+<span class="r-in"><span>    xlab <span class="op">=</span> <span class="st">"Value of Random Variable"</span>, </span></span>
+<span class="r-in"><span>    ylab <span class="op">=</span> <span class="st">"Relative Frequency"</span><span class="op">)</span> </span></span>
+<span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/r/graphics/lines.html" class="external-link">lines</a></span><span class="op">(</span><span class="va">x</span>, <span class="va">y</span>, lwd <span class="op">=</span> <span class="fl">2</span>, col <span class="op">=</span> <span class="st">"cyan"</span><span class="op">)</span> </span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="fu"><a href="pdfPlot.html">pdfPlot</a></span><span class="op">(</span><span class="st">'gamma'</span>, <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>shape <span class="op">=</span> <span class="fl">4</span>, scale <span class="op">=</span> <span class="fl">5</span><span class="op">)</span>, add <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="co"># Alternatively, you can create the above plot with the function </span></span></span>
+<span class="r-in"><span>  <span class="co"># epdfPlot:</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/r/grDevices/dev.html" class="external-link">dev.new</a></span><span class="op">(</span><span class="op">)</span></span></span>
+<span class="r-in"><span>  <span class="fu"><a href="epdfPlot.html">epdfPlot</a></span><span class="op">(</span><span class="va">obs</span>, xlim <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">0</span>, <span class="fl">65</span><span class="op">)</span>, epdf.col <span class="op">=</span> <span class="st">"cyan"</span>, </span></span>
+<span class="r-in"><span>    xlab <span class="op">=</span> <span class="st">"Value of Random Variable"</span>, </span></span>
+<span class="r-in"><span>    main <span class="op">=</span> <span class="st">"Empirical and Theoretical PDFs"</span><span class="op">)</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="fu"><a href="pdfPlot.html">pdfPlot</a></span><span class="op">(</span><span class="st">'gamma'</span>, <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>shape <span class="op">=</span> <span class="fl">4</span>, scale <span class="op">=</span> <span class="fl">5</span><span class="op">)</span>, add <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  </span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="co"># Clean Up</span></span></span>
+<span class="r-in"><span>  <span class="co">#---------</span></span></span>
+<span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/r/base/rm.html" class="external-link">rm</a></span><span class="op">(</span><span class="va">obs</span>, <span class="va">x</span>, <span class="va">y</span><span class="op">)</span></span></span>
+<span class="r-in"><span></span></span>
 </code></pre></div>
     </div>
   </div>
@@ -270,7 +281,7 @@
 </div>
 
 <div class="pkgdown">
-  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.2.</p>
+  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.6.</p>
 </div>
 
       </footer></div>

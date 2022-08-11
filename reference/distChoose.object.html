@@ -66,31 +66,44 @@
     </div>
     <div id="value">
     <h2>Value</h2>
-    <p><strong>Required Components</strong><br>  The following components must be included in a legitimate list of 
+    <p></p>
+<p><strong>Required Components</strong></p>
+<p></p>
+<p><br></p>
+
+
+<p>The following components must be included in a legitimate list of 
   class <code>"distChoose"</code>.</p>
 <dl><dt>choices</dt>
 <dd><p>a character vector containing the full names  
     of the candidate distributions. (see <code><a href="Distribution.df.html">Distribution.df</a></code>).</p></dd>
-<dt>method</dt>
+
+  <dt>method</dt>
 <dd><p>a character string denoting which method was used.</p></dd>
-<dt>decision</dt>
+
+  <dt>decision</dt>
 <dd><p>a character vector containing the full name of the chosen distribution.</p></dd>
-<dt>alpha</dt>
+
+  <dt>alpha</dt>
 <dd><p>a numeric scalar between 0 and 1 specifying the Type I error 
     associated with each goodness-of-fit test.</p></dd>
-<dt>distribution.parameters</dt>
+
+  <dt>distribution.parameters</dt>
 <dd><p>a numeric vector containing the estimated 
     parameters associated with the chosen distribution.</p></dd>
-<dt>estimation.method</dt>
+
+  <dt>estimation.method</dt>
 <dd><p>a character string indicating the method 
     used to compute the estimated parameters associated with the chosen 
     distribution.  The value of this component will depend on the 
     available estimation methods (see <code><a href="Distribution.df.html">Distribution.df</a></code>).</p></dd>
-<dt>sample.size</dt>
+
+  <dt>sample.size</dt>
 <dd><p>a numeric scalar containing the number 
     of non-missing observations in the sample used for the 
     goodness-of-fit tests.</p></dd>
-<dt>test.results</dt>
+
+  <dt>test.results</dt>
 <dd><p>a list with the same number of components as the number 
     of elements in the component <code>choices</code>.  The names of the list are the 
     distribution abbreviations of the candidate distributions.  
@@ -99,16 +112,32 @@
     Each component is an object of class <code><a href="gof.object.html">gof</a></code> 
     containing the results of the goodness-of-fit test for that particular 
     hypothesized distribution.</p></dd>
-<dt>data.name</dt>
+
+  <dt>data.name</dt>
 <dd><p>character string indicating the name of the data 
     object used for the goodness-of-fit tests.</p></dd>
-</dl><p><br><strong>Optional Components</strong><br>  The following component is included in the result of 
+
+  </dl><p><br></p>
+
+
+<p></p>
+<p><strong>Optional Components</strong></p>
+<p></p>
+<p><br></p>
+
+
+<p>The following component is included in the result of 
   calling <code><a href="distChoose.html">distChoose</a></code> when the argument <code>keep.data=TRUE</code>:</p>
 <dl><dt>data</dt>
 <dd><p>numeric vector containing the data actually used for 
     the goodness-of-fit tests (i.e., the original data without any 
     missing or infinite values).</p></dd>
-</dl><p><br>  The following component is included in the result of 
+
+  </dl><p><br></p>
+
+
+
+<p>The following component is included in the result of 
   calling <code><a href="distChoose.html">distChoose</a></code> when missing (<code>NA</code>), 
   undefined (<code>NaN</code>) and/or infinite (<code>Inf</code>, <code>-Inf</code>) 
   values are present:</p>
@@ -117,6 +146,7 @@
     undefined (<code>NaN</code>) and/or infinite (<code>Inf</code>, <code>-Inf</code>) 
     values that were removed from the data object prior to choosing 
     a distribution.</p></dd>
+
 </dl></div>
     <div id="note">
     <h2>Note</h2>
@@ -136,36 +166,36 @@
 
     <div id="ref-examples">
     <h2>Examples</h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in">  <span class="co"># Create an object of class "distChoose", then print it out. </span></span>
-<span class="r-in">  <span class="co"># (Note: the call to set.seed simply allows you to reproduce </span></span>
-<span class="r-in">  <span class="co"># this example.)</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="fu"><a href="https://rdrr.io/r/base/Random.html" class="external-link">set.seed</a></span><span class="op">(</span><span class="fl">47</span><span class="op">)</span></span>
-<span class="r-in">  <span class="va">dat</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/GammaDist.html" class="external-link">rgamma</a></span><span class="op">(</span><span class="fl">20</span>, shape <span class="op">=</span> <span class="fl">2</span>, scale <span class="op">=</span> <span class="fl">3</span><span class="op">)</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="va">distChoose.obj</span> <span class="op">&lt;-</span> <span class="fu"><a href="distChoose.html">distChoose</a></span><span class="op">(</span><span class="va">dat</span><span class="op">)</span> </span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="fu"><a href="https://rdrr.io/r/base/mode.html" class="external-link">mode</a></span><span class="op">(</span><span class="va">distChoose.obj</span><span class="op">)</span> </span>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span>  <span class="co"># Create an object of class "distChoose", then print it out. </span></span></span>
+<span class="r-in"><span>  <span class="co"># (Note: the call to set.seed simply allows you to reproduce </span></span></span>
+<span class="r-in"><span>  <span class="co"># this example.)</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/r/base/Random.html" class="external-link">set.seed</a></span><span class="op">(</span><span class="fl">47</span><span class="op">)</span></span></span>
+<span class="r-in"><span>  <span class="va">dat</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/GammaDist.html" class="external-link">rgamma</a></span><span class="op">(</span><span class="fl">20</span>, shape <span class="op">=</span> <span class="fl">2</span>, scale <span class="op">=</span> <span class="fl">3</span><span class="op">)</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="va">distChoose.obj</span> <span class="op">&lt;-</span> <span class="fu"><a href="distChoose.html">distChoose</a></span><span class="op">(</span><span class="va">dat</span><span class="op">)</span> </span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/r/base/mode.html" class="external-link">mode</a></span><span class="op">(</span><span class="va">distChoose.obj</span><span class="op">)</span> </span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] "list"</span>
-<span class="r-in">  <span class="co">#[1] "list" </span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="fu"><a href="https://rdrr.io/r/base/class.html" class="external-link">class</a></span><span class="op">(</span><span class="va">distChoose.obj</span><span class="op">)</span> </span>
+<span class="r-in"><span>  <span class="co">#[1] "list" </span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/r/base/class.html" class="external-link">class</a></span><span class="op">(</span><span class="va">distChoose.obj</span><span class="op">)</span> </span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] "distChoose"</span>
-<span class="r-in">  <span class="co">#[1] "distChoose" </span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="fu"><a href="https://rdrr.io/r/base/names.html" class="external-link">names</a></span><span class="op">(</span><span class="va">distChoose.obj</span><span class="op">)</span> </span>
+<span class="r-in"><span>  <span class="co">#[1] "distChoose" </span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/r/base/names.html" class="external-link">names</a></span><span class="op">(</span><span class="va">distChoose.obj</span><span class="op">)</span> </span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  [1] "choices"                 "method"                 </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  [3] "decision"                "alpha"                  </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  [5] "distribution.parameters" "estimation.method"      </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  [7] "sample.size"             "test.results"           </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  [9] "data"                    "data.name"              </span>
-<span class="r-in">  <span class="co">#[1] "choices"                 "method"                 </span></span>
-<span class="r-in">  <span class="co">#[3] "decision"                "alpha"                  </span></span>
-<span class="r-in">  <span class="co">#[5] "distribution.parameters" "estimation.method"      </span></span>
-<span class="r-in">  <span class="co">#[7] "sample.size"             "test.results"           </span></span>
-<span class="r-in">  <span class="co">#[9] "data"                    "data.name"  </span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="va">distChoose.obj</span> </span>
+<span class="r-in"><span>  <span class="co">#[1] "choices"                 "method"                 </span></span></span>
+<span class="r-in"><span>  <span class="co">#[3] "decision"                "alpha"                  </span></span></span>
+<span class="r-in"><span>  <span class="co">#[5] "distribution.parameters" "estimation.method"      </span></span></span>
+<span class="r-in"><span>  <span class="co">#[7] "sample.size"             "test.results"           </span></span></span>
+<span class="r-in"><span>  <span class="co">#[9] "data"                    "data.name"  </span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="va">distChoose.obj</span> </span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> $choices</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] "Normal"    "Gamma"     "Lognormal"</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
@@ -348,57 +378,57 @@
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> attr(,"class")</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] "distChoose"</span>
-<span class="r-in">  </span>
-<span class="r-in">  <span class="co">#Results of Choosing Distribution</span></span>
-<span class="r-in">  <span class="co">#--------------------------------</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Candidate Distributions:         Normal</span></span>
-<span class="r-in">  <span class="co">#                                 Gamma</span></span>
-<span class="r-in">  <span class="co">#                                 Lognormal</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Choice Method:                   Shapiro-Wilk</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Type I Error per Test:           0.05</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Decision:                        Gamma</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Estimated Parameter(s):          shape = 1.909462</span></span>
-<span class="r-in">  <span class="co">#                                 scale = 4.056819</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Estimation Method:               MLE</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Data:                            dat</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Sample Size:                     20</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Test Results:</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#  Normal                         </span></span>
-<span class="r-in">  <span class="co">#    Test Statistic:              W = 0.9097488</span></span>
-<span class="r-in">  <span class="co">#    P-value:                     0.06303695</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#  Gamma                          </span></span>
-<span class="r-in">  <span class="co">#    Test Statistic:              W = 0.9834958</span></span>
-<span class="r-in">  <span class="co">#    P-value:                     0.970903</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#  Lognormal                      </span></span>
-<span class="r-in">  <span class="co">#    Test Statistic:              W = 0.9185006</span></span>
-<span class="r-in">  <span class="co">#    P-value:                     0.09271768</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="co">#==========</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="co"># Extract the choices</span></span>
-<span class="r-in">  <span class="co">#--------------------</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="va">distChoose.obj</span><span class="op">$</span><span class="va">choices</span></span>
+<span class="r-in"><span>  </span></span>
+<span class="r-in"><span>  <span class="co">#Results of Choosing Distribution</span></span></span>
+<span class="r-in"><span>  <span class="co">#--------------------------------</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Candidate Distributions:         Normal</span></span></span>
+<span class="r-in"><span>  <span class="co">#                                 Gamma</span></span></span>
+<span class="r-in"><span>  <span class="co">#                                 Lognormal</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Choice Method:                   Shapiro-Wilk</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Type I Error per Test:           0.05</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Decision:                        Gamma</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Estimated Parameter(s):          shape = 1.909462</span></span></span>
+<span class="r-in"><span>  <span class="co">#                                 scale = 4.056819</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Estimation Method:               MLE</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Data:                            dat</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Sample Size:                     20</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Test Results:</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#  Normal                         </span></span></span>
+<span class="r-in"><span>  <span class="co">#    Test Statistic:              W = 0.9097488</span></span></span>
+<span class="r-in"><span>  <span class="co">#    P-value:                     0.06303695</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#  Gamma                          </span></span></span>
+<span class="r-in"><span>  <span class="co">#    Test Statistic:              W = 0.9834958</span></span></span>
+<span class="r-in"><span>  <span class="co">#    P-value:                     0.970903</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#  Lognormal                      </span></span></span>
+<span class="r-in"><span>  <span class="co">#    Test Statistic:              W = 0.9185006</span></span></span>
+<span class="r-in"><span>  <span class="co">#    P-value:                     0.09271768</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="co">#==========</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="co"># Extract the choices</span></span></span>
+<span class="r-in"><span>  <span class="co">#--------------------</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="va">distChoose.obj</span><span class="op">$</span><span class="va">choices</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] "Normal"    "Gamma"     "Lognormal"</span>
-<span class="r-in">  <span class="co">#[1] "Normal"    "Gamma"     "Lognormal"</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="co">#==========</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="co"># Clean up</span></span>
-<span class="r-in">  <span class="co">#---------</span></span>
-<span class="r-in">  <span class="fu"><a href="https://rdrr.io/r/base/rm.html" class="external-link">rm</a></span><span class="op">(</span><span class="va">dat</span>, <span class="va">distChoose.obj</span><span class="op">)</span></span>
+<span class="r-in"><span>  <span class="co">#[1] "Normal"    "Gamma"     "Lognormal"</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="co">#==========</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="co"># Clean up</span></span></span>
+<span class="r-in"><span>  <span class="co">#---------</span></span></span>
+<span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/r/base/rm.html" class="external-link">rm</a></span><span class="op">(</span><span class="va">dat</span>, <span class="va">distChoose.obj</span><span class="op">)</span></span></span>
 </code></pre></div>
     </div>
   </div>
@@ -413,7 +443,7 @@
 </div>
 
 <div class="pkgdown">
-  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.2.</p>
+  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.6.</p>
 </div>
 
       </footer></div>

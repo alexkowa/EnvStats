@@ -54,8 +54,8 @@
     </div>
 
     <div id="ref-usage">
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="fu">chenTTest</span><span class="op">(</span><span class="va">x</span>, y <span class="op">=</span> <span class="cn">NULL</span>, alternative <span class="op">=</span> <span class="st">"greater"</span>, mu <span class="op">=</span> <span class="fl">0</span>, paired <span class="op">=</span> <span class="op">!</span><span class="fu"><a href="https://rdrr.io/r/base/NULL.html" class="external-link">is.null</a></span><span class="op">(</span><span class="va">y</span><span class="op">)</span>, 
-    conf.level <span class="op">=</span> <span class="fl">0.95</span>, ci.method <span class="op">=</span> <span class="st">"z"</span><span class="op">)</span></code></pre></div>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">chenTTest</span><span class="op">(</span><span class="va">x</span>, y <span class="op">=</span> <span class="cn">NULL</span>, alternative <span class="op">=</span> <span class="st">"greater"</span>, mu <span class="op">=</span> <span class="fl">0</span>, paired <span class="op">=</span> <span class="op">!</span><span class="fu"><a href="https://rdrr.io/r/base/NULL.html" class="external-link">is.null</a></span><span class="op">(</span><span class="va">y</span><span class="op">)</span>, </span>
+<span>    conf.level <span class="op">=</span> <span class="fl">0.95</span>, ci.method <span class="op">=</span> <span class="st">"z"</span><span class="op">)</span></span></code></pre></div>
     </div>
 
     <div id="arguments">
@@ -63,33 +63,40 @@
     <dl><dt>x</dt>
 <dd><p>numeric vector of observations.  Missing (<code>NA</code>), undefined (<code>NaN</code>), and 
   infinite (<code>Inf</code>, <code>-Inf</code>) values are allowed but will be removed.</p></dd>
-<dt>y</dt>
+
+  <dt>y</dt>
 <dd><p>optional numeric vector of observations that are paired with the observations in 
   <code>x</code>.  The length of <code>y</code> must be the same as the length of <code>x</code>.  
   Missing (<code>NA</code>), undefined (<code>NaN</code>), and infinite (<code>Inf</code>, <code>-Inf</code>) 
   values are allowed but will be removed.  This argument is ignored if 
   <code>paired=FALSE</code>, and must be supplied if <code>paired=TRUE</code>.  The default value 
   is <code>y=NULL</code>.</p></dd>
-<dt>alternative</dt>
+
+  <dt>alternative</dt>
 <dd><p>character string indicating the kind of alternative hypothesis.  The possible values 
   are <code>"greater"</code> (the default) and <code>"less"</code>. The value <code>"greater"</code> 
   should be used for positively-skewed distributions, and the value <code>"less"</code> 
   should be used for negatively-skewed distributions.</p></dd>
-<dt>mu</dt>
+
+  <dt>mu</dt>
 <dd><p>numeric scalar indicating the hypothesized value of the mean.  The default value is 
   <code>mu=0</code>.</p></dd>
-<dt>paired</dt>
+
+  <dt>paired</dt>
 <dd><p>character string indicating whether to perform a paired or one-sample t-test.  The 
   possible values are <code>paired=FALSE</code> (the default; indicates a one-sample t-test) 
   and <code>paired=TRUE</code>.</p></dd>
-<dt>conf.level</dt>
+
+  <dt>conf.level</dt>
 <dd><p>numeric scalar between 0 and 1 indicating the confidence level associated with the 
   confidence interval for the population mean.  The default value is <br><code>conf.level=0.95</code>.</p></dd>
-<dt>ci.method</dt>
+
+  <dt>ci.method</dt>
 <dd><p>character string indicating which critical value to use to construct the confidence 
   interval for the mean.  The possible values are <code>"z"</code> (the default), 
   <code>"t"</code>, and <code>"Avg. of z and t"</code>.  See the DETAILS section below for more 
   information.</p></dd>
+
 </dl></div>
     <div id="details">
     <h2>Details</h2>
@@ -191,7 +198,9 @@
     </div>
     <div id="value">
     <h2>Value</h2>
-    <p>a list of class <code>"htest"</code> containing the results of the hypothesis test.  See 
+    
+
+<p>a list of class <code>"htest"</code> containing the results of the hypothesis test.  See 
   the help file for <code><a href="htest.object.html">htest.object</a></code> for details.</p>
     </div>
     <div id="references">
@@ -276,48 +285,48 @@
 
     <div id="ref-examples">
     <h2>Examples</h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in">  <span class="co"># The guidance document "Calculating Upper Confidence Limits for </span></span>
-<span class="r-in">  <span class="co"># Exposure Point Concentrations at Hazardous Waste Sites" </span></span>
-<span class="r-in">  <span class="co"># (USEPA, 2002d, Exhibit 9, p. 16) contains an example of 60 observations </span></span>
-<span class="r-in">  <span class="co"># from an exposure unit.  Here we will use Chen's modified t-test to test </span></span>
-<span class="r-in">  <span class="co"># the null hypothesis that the average concentration is less than 30 mg/L </span></span>
-<span class="r-in">  <span class="co"># versus the alternative that it is greater than 30 mg/L.</span></span>
-<span class="r-in">  <span class="co"># In EnvStats these data are stored in the vector EPA.02d.Ex.9.mg.per.L.vec.</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="fu"><a href="https://rdrr.io/r/base/sort.html" class="external-link">sort</a></span><span class="op">(</span><span class="va">EPA.02d.Ex.9.mg.per.L.vec</span><span class="op">)</span></span>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span>  <span class="co"># The guidance document "Calculating Upper Confidence Limits for </span></span></span>
+<span class="r-in"><span>  <span class="co"># Exposure Point Concentrations at Hazardous Waste Sites" </span></span></span>
+<span class="r-in"><span>  <span class="co"># (USEPA, 2002d, Exhibit 9, p. 16) contains an example of 60 observations </span></span></span>
+<span class="r-in"><span>  <span class="co"># from an exposure unit.  Here we will use Chen's modified t-test to test </span></span></span>
+<span class="r-in"><span>  <span class="co"># the null hypothesis that the average concentration is less than 30 mg/L </span></span></span>
+<span class="r-in"><span>  <span class="co"># versus the alternative that it is greater than 30 mg/L.</span></span></span>
+<span class="r-in"><span>  <span class="co"># In EnvStats these data are stored in the vector EPA.02d.Ex.9.mg.per.L.vec.</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/r/base/sort.html" class="external-link">sort</a></span><span class="op">(</span><span class="va">EPA.02d.Ex.9.mg.per.L.vec</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  [1]  16  17  17  17  18  18  20  20  20  21  21  21  21  21  21  22  22  22  23</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [20]  23  23  23  24  24  24  25  25  25  25  25  25  26  26  26  26  27  27  28</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [39]  28  28  28  29  29  30  30  31  32  32  32  33  33  35  35  97  98 105 107</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [58] 111 117 119</span>
-<span class="r-in">  <span class="co"># [1]  16  17  17  17  18  18  20  20  20  21  21  21  21  21  21  22</span></span>
-<span class="r-in">  <span class="co">#[17]  22  22  23  23  23  23  24  24  24  25  25  25  25  25  25  26</span></span>
-<span class="r-in">  <span class="co">#[33]  26  26  26  27  27  28  28  28  28  29  29  30  30  31  32  32</span></span>
-<span class="r-in">  <span class="co">#[49]  32  33  33  35  35  97  98 105 107 111 117 119</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="fu"><a href="https://rdrr.io/r/grDevices/dev.html" class="external-link">dev.new</a></span><span class="op">(</span><span class="op">)</span></span>
-<span class="r-in">  <span class="fu"><a href="https://rdrr.io/r/graphics/hist.html" class="external-link">hist</a></span><span class="op">(</span><span class="va">EPA.02d.Ex.9.mg.per.L.vec</span>, col <span class="op">=</span> <span class="st">"cyan"</span>, xlab <span class="op">=</span> <span class="st">"Concentration (mg/L)"</span><span class="op">)</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="co"># The Shapiro-Wilk goodness-of-fit test rejects the null hypothesis of a </span></span>
-<span class="r-in">  <span class="co"># normal, lognormal, and gamma distribution:</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="fu"><a href="gofTest.html">gofTest</a></span><span class="op">(</span><span class="va">EPA.02d.Ex.9.mg.per.L.vec</span><span class="op">)</span><span class="op">$</span><span class="va">p.value</span></span>
+<span class="r-in"><span>  <span class="co"># [1]  16  17  17  17  18  18  20  20  20  21  21  21  21  21  21  22</span></span></span>
+<span class="r-in"><span>  <span class="co">#[17]  22  22  23  23  23  23  24  24  24  25  25  25  25  25  25  26</span></span></span>
+<span class="r-in"><span>  <span class="co">#[33]  26  26  26  27  27  28  28  28  28  29  29  30  30  31  32  32</span></span></span>
+<span class="r-in"><span>  <span class="co">#[49]  32  33  33  35  35  97  98 105 107 111 117 119</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/r/grDevices/dev.html" class="external-link">dev.new</a></span><span class="op">(</span><span class="op">)</span></span></span>
+<span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/r/graphics/hist.html" class="external-link">hist</a></span><span class="op">(</span><span class="va">EPA.02d.Ex.9.mg.per.L.vec</span>, col <span class="op">=</span> <span class="st">"cyan"</span>, xlab <span class="op">=</span> <span class="st">"Concentration (mg/L)"</span><span class="op">)</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="co"># The Shapiro-Wilk goodness-of-fit test rejects the null hypothesis of a </span></span></span>
+<span class="r-in"><span>  <span class="co"># normal, lognormal, and gamma distribution:</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="fu"><a href="gofTest.html">gofTest</a></span><span class="op">(</span><span class="va">EPA.02d.Ex.9.mg.per.L.vec</span><span class="op">)</span><span class="op">$</span><span class="va">p.value</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] 2.496781e-12</span>
-<span class="r-in">  <span class="co">#[1] 2.496781e-12</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="fu"><a href="gofTest.html">gofTest</a></span><span class="op">(</span><span class="va">EPA.02d.Ex.9.mg.per.L.vec</span>, dist <span class="op">=</span> <span class="st">"lnorm"</span><span class="op">)</span><span class="op">$</span><span class="va">p.value</span></span>
+<span class="r-in"><span>  <span class="co">#[1] 2.496781e-12</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="fu"><a href="gofTest.html">gofTest</a></span><span class="op">(</span><span class="va">EPA.02d.Ex.9.mg.per.L.vec</span>, dist <span class="op">=</span> <span class="st">"lnorm"</span><span class="op">)</span><span class="op">$</span><span class="va">p.value</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] 3.349035e-09</span>
-<span class="r-in">  <span class="co">#[1] 3.349035e-09</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="fu"><a href="gofTest.html">gofTest</a></span><span class="op">(</span><span class="va">EPA.02d.Ex.9.mg.per.L.vec</span>, dist <span class="op">=</span> <span class="st">"gamma"</span><span class="op">)</span><span class="op">$</span><span class="va">p.value</span></span>
+<span class="r-in"><span>  <span class="co">#[1] 3.349035e-09</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="fu"><a href="gofTest.html">gofTest</a></span><span class="op">(</span><span class="va">EPA.02d.Ex.9.mg.per.L.vec</span>, dist <span class="op">=</span> <span class="st">"gamma"</span><span class="op">)</span><span class="op">$</span><span class="va">p.value</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] 1.564341e-10</span>
-<span class="r-in">  <span class="co">#[1] 1.564341e-10</span></span>
-<span class="r-in"></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="co"># Use Chen's modified t-test to test the null hypothesis that</span></span>
-<span class="r-in">  <span class="co"># the average concentration is less than 30 mg/L versus the </span></span>
-<span class="r-in">  <span class="co"># alternative that it is greater than 30 mg/L.</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="fu">chenTTest</span><span class="op">(</span><span class="va">EPA.02d.Ex.9.mg.per.L.vec</span>, mu <span class="op">=</span> <span class="fl">30</span><span class="op">)</span></span>
+<span class="r-in"><span>  <span class="co">#[1] 1.564341e-10</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="co"># Use Chen's modified t-test to test the null hypothesis that</span></span></span>
+<span class="r-in"><span>  <span class="co"># the average concentration is less than 30 mg/L versus the </span></span></span>
+<span class="r-in"><span>  <span class="co"># alternative that it is greater than 30 mg/L.</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="fu">chenTTest</span><span class="op">(</span><span class="va">EPA.02d.Ex.9.mg.per.L.vec</span>, mu <span class="op">=</span> <span class="fl">30</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> $statistic</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>        t </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 1.574075 </span>
@@ -384,50 +393,50 @@
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> attr(,"class")</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] "print.htestEnvStats"</span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="co">#Results of Hypothesis Test</span></span>
-<span class="r-in">  <span class="co">#--------------------------</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Null Hypothesis:                 mean = 30</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Alternative Hypothesis:          True mean is greater than 30</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Test Name:                       One-sample t-Test</span></span>
-<span class="r-in">  <span class="co">#                                 Modified for</span></span>
-<span class="r-in">  <span class="co">#                                 Positively-Skewed Distributions</span></span>
-<span class="r-in">  <span class="co">#                                 (Chen, 1995)</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Estimated Parameter(s):          mean = 34.566667</span></span>
-<span class="r-in">  <span class="co">#                                 sd   = 27.330598</span></span>
-<span class="r-in">  <span class="co">#                                 skew =  2.365778</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Data:                            EPA.02d.Ex.9.mg.per.L.vec</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Sample Size:                     60</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Test Statistic:                  t = 1.574075</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Test Statistic Parameter:        df = 59</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#P-values:                        z               = 0.05773508</span></span>
-<span class="r-in">  <span class="co">#                                 t               = 0.06040889</span></span>
-<span class="r-in">  <span class="co">#                                 Avg. of z and t = 0.05907199</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Confidence Interval for:         mean</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Confidence Interval Method:      Based on z</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Confidence Interval Type:        Lower</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Confidence Level:                95%</span></span>
-<span class="r-in">  <span class="co">#</span></span>
-<span class="r-in">  <span class="co">#Confidence Interval:             LCL = 29.82</span></span>
-<span class="r-in">  <span class="co">#                                 UCL =   Inf</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="co"># The estimated mean, standard deviation, and skew are 35, 27, and 2.4, </span></span>
-<span class="r-in">  <span class="co"># respectively.  The p-value is 0.06, and the lower 95% confidence interval </span></span>
-<span class="r-in">  <span class="co"># is [29.8, Inf).  Depending on what you use for your Type I error rate, you </span></span>
-<span class="r-in">  <span class="co"># may or may not want to reject the null hypothesis.</span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="co">#Results of Hypothesis Test</span></span></span>
+<span class="r-in"><span>  <span class="co">#--------------------------</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Null Hypothesis:                 mean = 30</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Alternative Hypothesis:          True mean is greater than 30</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Test Name:                       One-sample t-Test</span></span></span>
+<span class="r-in"><span>  <span class="co">#                                 Modified for</span></span></span>
+<span class="r-in"><span>  <span class="co">#                                 Positively-Skewed Distributions</span></span></span>
+<span class="r-in"><span>  <span class="co">#                                 (Chen, 1995)</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Estimated Parameter(s):          mean = 34.566667</span></span></span>
+<span class="r-in"><span>  <span class="co">#                                 sd   = 27.330598</span></span></span>
+<span class="r-in"><span>  <span class="co">#                                 skew =  2.365778</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Data:                            EPA.02d.Ex.9.mg.per.L.vec</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Sample Size:                     60</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Test Statistic:                  t = 1.574075</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Test Statistic Parameter:        df = 59</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#P-values:                        z               = 0.05773508</span></span></span>
+<span class="r-in"><span>  <span class="co">#                                 t               = 0.06040889</span></span></span>
+<span class="r-in"><span>  <span class="co">#                                 Avg. of z and t = 0.05907199</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Confidence Interval for:         mean</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Confidence Interval Method:      Based on z</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Confidence Interval Type:        Lower</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Confidence Level:                95%</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Confidence Interval:             LCL = 29.82</span></span></span>
+<span class="r-in"><span>  <span class="co">#                                 UCL =   Inf</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="co"># The estimated mean, standard deviation, and skew are 35, 27, and 2.4, </span></span></span>
+<span class="r-in"><span>  <span class="co"># respectively.  The p-value is 0.06, and the lower 95% confidence interval </span></span></span>
+<span class="r-in"><span>  <span class="co"># is [29.8, Inf).  Depending on what you use for your Type I error rate, you </span></span></span>
+<span class="r-in"><span>  <span class="co"># may or may not want to reject the null hypothesis.</span></span></span>
 </code></pre></div>
     </div>
   </div>
@@ -442,7 +451,7 @@
 </div>
 
 <div class="pkgdown">
-  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.2.</p>
+  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.6.</p>
 </div>
 
       </footer></div>
