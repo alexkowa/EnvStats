@@ -117,7 +117,7 @@ distChoose(y, ...)
 }
 }
 \details{
-  The function \code{distChoice} returns a list with information on the goodness-of-fit
+  The function \code{distChoose} returns a list with information on the goodness-of-fit
   tests for various distributions and which distribution appears to best fit the
   data based on the p-values from the goodness-of-fit tests.  This function was written in
   order to compare ProUCL's way of choosing the best-fitting distribution (USEPA, 2015) with
