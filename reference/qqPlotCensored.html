@@ -50,173 +50,173 @@
     </div>
 
     <div id="ref-usage">
-    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">qqPlotCensored</span><span class="op">(</span><span class="va">x</span>, <span class="va">censored</span>, censoring.side <span class="op">=</span> <span class="st">"left"</span>, </span>
-<span>    prob.method <span class="op">=</span> <span class="st">"michael-schucany"</span>, plot.pos.con <span class="op">=</span> <span class="cn">NULL</span>, </span>
-<span>    distribution <span class="op">=</span> <span class="st">"norm"</span>, param.list <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>mean <span class="op">=</span> <span class="fl">0</span>, sd <span class="op">=</span> <span class="fl">1</span><span class="op">)</span>, </span>
-<span>    estimate.params <span class="op">=</span> <span class="va">plot.type</span> <span class="op">==</span> <span class="st">"Tukey Mean-Difference Q-Q"</span>, </span>
-<span>    est.arg.list <span class="op">=</span> <span class="cn">NULL</span>, plot.type <span class="op">=</span> <span class="st">"Q-Q"</span>, plot.it <span class="op">=</span> <span class="cn">TRUE</span>, </span>
-<span>    equal.axes <span class="op">=</span> <span class="va">qq.line.type</span> <span class="op">==</span> <span class="st">"0-1"</span> <span class="op">||</span> <span class="va">estimate.params</span>, </span>
-<span>    add.line <span class="op">=</span> <span class="cn">FALSE</span>, qq.line.type <span class="op">=</span> <span class="st">"least squares"</span>, </span>
-<span>    duplicate.points.method <span class="op">=</span> <span class="st">"standard"</span>, points.col <span class="op">=</span> <span class="fl">1</span>, line.col <span class="op">=</span> <span class="fl">1</span>, </span>
-<span>    line.lwd <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/graphics/par.html" class="external-link">par</a></span><span class="op">(</span><span class="st">"cex"</span><span class="op">)</span>, line.lty <span class="op">=</span> <span class="fl">1</span>, digits <span class="op">=</span> <span class="va">.Options</span><span class="op">$</span><span class="va">digits</span>, </span>
-<span>    include.cen <span class="op">=</span> <span class="cn">FALSE</span>, cen.pch <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/ifelse.html" class="external-link">ifelse</a></span><span class="op">(</span><span class="va">censoring.side</span> <span class="op">==</span> <span class="st">"left"</span>, <span class="fl">6</span>, <span class="fl">2</span><span class="op">)</span>, </span>
-<span>    cen.cex <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/graphics/par.html" class="external-link">par</a></span><span class="op">(</span><span class="st">"cex"</span><span class="op">)</span>, cen.col <span class="op">=</span> <span class="fl">4</span>, <span class="va">...</span>, main <span class="op">=</span> <span class="cn">NULL</span>, xlab <span class="op">=</span> <span class="cn">NULL</span>, </span>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">qqPlotCensored</span><span class="op">(</span><span class="va">x</span>, <span class="va">censored</span>, censoring.side <span class="op">=</span> <span class="st">"left"</span>,</span>
+<span>    prob.method <span class="op">=</span> <span class="st">"michael-schucany"</span>, plot.pos.con <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>    distribution <span class="op">=</span> <span class="st">"norm"</span>, param.list <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>mean <span class="op">=</span> <span class="fl">0</span>, sd <span class="op">=</span> <span class="fl">1</span><span class="op">)</span>,</span>
+<span>    estimate.params <span class="op">=</span> <span class="va">plot.type</span> <span class="op">==</span> <span class="st">"Tukey Mean-Difference Q-Q"</span>,</span>
+<span>    est.arg.list <span class="op">=</span> <span class="cn">NULL</span>, plot.type <span class="op">=</span> <span class="st">"Q-Q"</span>, plot.it <span class="op">=</span> <span class="cn">TRUE</span>,</span>
+<span>    equal.axes <span class="op">=</span> <span class="va">qq.line.type</span> <span class="op">==</span> <span class="st">"0-1"</span> <span class="op">||</span> <span class="va">estimate.params</span>,</span>
+<span>    add.line <span class="op">=</span> <span class="cn">FALSE</span>, qq.line.type <span class="op">=</span> <span class="st">"least squares"</span>,</span>
+<span>    duplicate.points.method <span class="op">=</span> <span class="st">"standard"</span>, points.col <span class="op">=</span> <span class="fl">1</span>, line.col <span class="op">=</span> <span class="fl">1</span>,</span>
+<span>    line.lwd <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/graphics/par.html" class="external-link">par</a></span><span class="op">(</span><span class="st">"cex"</span><span class="op">)</span>, line.lty <span class="op">=</span> <span class="fl">1</span>, digits <span class="op">=</span> <span class="va">.Options</span><span class="op">$</span><span class="va">digits</span>,</span>
+<span>    include.cen <span class="op">=</span> <span class="cn">FALSE</span>, cen.pch <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/ifelse.html" class="external-link">ifelse</a></span><span class="op">(</span><span class="va">censoring.side</span> <span class="op">==</span> <span class="st">"left"</span>, <span class="fl">6</span>, <span class="fl">2</span><span class="op">)</span>,</span>
+<span>    cen.cex <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/graphics/par.html" class="external-link">par</a></span><span class="op">(</span><span class="st">"cex"</span><span class="op">)</span>, cen.col <span class="op">=</span> <span class="fl">4</span>, <span class="va">...</span>, main <span class="op">=</span> <span class="cn">NULL</span>, xlab <span class="op">=</span> <span class="cn">NULL</span>,</span>
 <span>    ylab <span class="op">=</span> <span class="cn">NULL</span>, xlim <span class="op">=</span> <span class="cn">NULL</span>, ylim <span class="op">=</span> <span class="cn">NULL</span><span class="op">)</span></span></code></pre></div>
     </div>
 
     <div id="arguments">
     <h2>Arguments</h2>
     <dl><dt>x</dt>
-<dd><p>numeric vector of observations that is assumed to represent a sample from the hypothesized 
-  distribution specifed by <code>distribution</code>.   Missing (<code>NA</code>), undefined (<code>NaN</code>), 
+<dd><p>numeric vector of observations that is assumed to represent a sample from the hypothesized
+  distribution specifed by <code>distribution</code>.   Missing (<code>NA</code>), undefined (<code>NaN</code>),
   and infinite (<code>Inf</code>, <code>-Inf</code>) values are allowed but will be removed.</p></dd>
 
   <dt>censored</dt>
-<dd><p>numeric or logical vector indicating which values of <code>x</code> are censored.  This must be the 
-  same length as <code>x</code>.  If the mode of <code>censored</code> is <code>"logical"</code>, <code>TRUE</code> values 
-  correspond to elements of <code>x</code> that are censored, and <code>FALSE</code> values correspond to 
-  elements of <code>x</code> that are not censored.  If the mode of <code>censored</code> is <code>"numeric"</code>, 
-  it must contain only <code>1</code>'s and <code>0</code>'s; <code>1</code> corresponds to <code>TRUE</code> and 
+<dd><p>numeric or logical vector indicating which values of <code>x</code> are censored.  This must be the
+  same length as <code>x</code>.  If the mode of <code>censored</code> is <code>"logical"</code>, <code>TRUE</code> values
+  correspond to elements of <code>x</code> that are censored, and <code>FALSE</code> values correspond to
+  elements of <code>x</code> that are not censored.  If the mode of <code>censored</code> is <code>"numeric"</code>,
+  it must contain only <code>1</code>'s and <code>0</code>'s; <code>1</code> corresponds to <code>TRUE</code> and
   <code>0</code> corresponds to <code>FALSE</code>.  Missing (<code>NA</code>) values are allowed but will be removed.</p></dd>
 
   <dt>censoring.side</dt>
-<dd><p>character string indicating on which side the censoring occurs.  The possible values are 
+<dd><p>character string indicating on which side the censoring occurs.  The possible values are
   <code>"left"</code> (the default) and <code>"right"</code>.</p></dd>
 
   <dt>prob.method</dt>
-<dd><p>character string indicating what method to use to compute the plotting positions 
+<dd><p>character string indicating what method to use to compute the plotting positions
   (empirical probabilities).  Possible values are: <br><code>"kaplan-meier"</code> (product-limit method of Kaplan and Meier (1958)), <br><code>"modified kaplan-meier"</code> (same as <code>"kaplan-meier"</code> except the maximum value is plotted too), <br><code>"nelson"</code> (hazard plotting method of Nelson (1972)), <br><code>"michael-schucany"</code> (generalization of the product-limit method due to Michael and Schucany (1986)), and <br><code>"hirsch-stedinger"</code> (generalization of the product-limit method due to Hirsch and Stedinger (1987)).  <br></p>
 <p>The default value is <code>prob.method="michael-schucany"</code>.</p>
-<p>The <code>"nelson"</code> method is only available for <code>censoring.side="right"</code>, and 
+<p>The <code>"nelson"</code> method is only available for <code>censoring.side="right"</code>, and
   the <code>"modified kaplan-meier"</code> method is only available for <br><code>censoring.side="left"</code>.  See the DETAILS section for more explanation.</p></dd>
 
   <dt>plot.pos.con</dt>
-<dd><p>numeric scalar between 0 and 1 containing the value of the plotting position constant.  
-  The default value is <code>plot.pos.con=0.375</code>.  See the DETAILS section for more information.  
-  This argument is used only if <code>prob.method</code> is equal to <code>"michael-schucany"</code> or 
+<dd><p>numeric scalar between 0 and 1 containing the value of the plotting position constant.
+  The default value is <code>plot.pos.con=0.375</code>.  See the DETAILS section for more information.
+  This argument is used only if <code>prob.method</code> is equal to <code>"michael-schucany"</code> or
   <code>"hirsch-stedinger"</code>.</p></dd>
 
   <dt>distribution</dt>
-<dd><p>a character string denoting the distribution abbreviation.  The default value is 
-  <code>distribution="norm"</code>.  See the help file for <code><a href="Distribution.df.html">Distribution.df</a></code> for a 
+<dd><p>a character string denoting the distribution abbreviation.  The default value is
+  <code>distribution="norm"</code>.  See the help file for <code><a href="Distribution.df.html">Distribution.df</a></code> for a
   list of possible distribution abbreviations.</p></dd>
 
   <dt>param.list</dt>
-<dd><p>a list with values for the parameters of the distribution.  The default value is 
-  <code>param.list=list(mean=0, sd=1)</code>.  See the help file for <code><a href="Distribution.df.html">Distribution.df</a></code> 
-  for the names and possible values of the parameters associated with each distribution.  
+<dd><p>a list with values for the parameters of the distribution.  The default value is
+  <code>param.list=list(mean=0, sd=1)</code>.  See the help file for <code><a href="Distribution.df.html">Distribution.df</a></code>
+  for the names and possible values of the parameters associated with each distribution.
   This argument is ignored if <code>estimate.params=TRUE</code>.</p></dd>
 
   <dt>estimate.params</dt>
-<dd><p>a logical scalar indicating whether to compute quantiles based on estimating the distribution 
-  parameters (<code>estimate.params=TRUE</code>) or using the known distribution parameters specified 
-  in param.list (<code>estimate.params=FALSE</code>, the default).  The default value of <code>estimate.params</code> 
-  is <code>FALSE</code> if <code>plot.type="Q-Q"</code> because the default configuration is a standard normal 
-  (mean=0, sd=1) Q-Q plot, which will yield roughly a straight line if the observations in 
-  <code>x</code> are from any normal distribution.  The default value of <code>estimate.params</code> 
+<dd><p>a logical scalar indicating whether to compute quantiles based on estimating the distribution
+  parameters (<code>estimate.params=TRUE</code>) or using the known distribution parameters specified
+  in param.list (<code>estimate.params=FALSE</code>, the default).  The default value of <code>estimate.params</code>
+  is <code>FALSE</code> if <code>plot.type="Q-Q"</code> because the default configuration is a standard normal
+  (mean=0, sd=1) Q-Q plot, which will yield roughly a straight line if the observations in
+  <code>x</code> are from any normal distribution.  The default value of <code>estimate.params</code>
   is <code>TRUE</code> if <code>plot.type="Tukey Mean-Difference Q-Q"</code>.</p>
-<p>You can set <code>estimate.params=TRUE</code> only when the argument <code>distribution</code> specifies a 
-  distribution that has an associated function for estimating distribution parameters in the case 
-  of Type I censored data.  Currently this includes the normal (<code>dist="norm"</code>), 
-  lognormal (<code>dist="lnorm"</code> or <code>dist="lnormAlt"</code>), and Poisson (<code>dist="pois"</code>) 
-  distributions (see the section <em>Estimating Distribution Parameters</em> 
+<p>You can set <code>estimate.params=TRUE</code> only when the argument <code>distribution</code> specifies a
+  distribution that has an associated function for estimating distribution parameters in the case
+  of Type I censored data.  Currently this includes the normal (<code>dist="norm"</code>),
+  lognormal (<code>dist="lnorm"</code> or <code>dist="lnormAlt"</code>), and Poisson (<code>dist="pois"</code>)
+  distributions (see the section <em>Estimating Distribution Parameters</em>
   in the help file <a href="FcnsByCatCensoredData.html">EnvStats Functions for Censored Data</a>).</p></dd>
 
   <dt>est.arg.list</dt>
-<dd><p>a list whose components are optional arguments associated with the function used to estimate 
-  the parameters of the assumed distribution (see the section <em>Estimating Distribution Parameters</em> 
-  in the help file <a href="FcnsByCatCensoredData.html">EnvStats Functions for Censored Data</a>).  
-  For example, the function <code><a href="enormCensored.html">enormCensored</a></code> has an optional argument called 
-  <code>method</code> that specifies the method to use to estimate the parameters.  To override the default 
-  estimation method, supply the argument <code>est.arg.list</code> with a component called <code>method</code>; 
-  for example <br><code>est.arg.list=list(method="impute.w.qq.reg")</code>.  The default value is <br><code>est.arg.list=NULL</code> so that all default values for the estimating function are used.  
+<dd><p>a list whose components are optional arguments associated with the function used to estimate
+  the parameters of the assumed distribution (see the section <em>Estimating Distribution Parameters</em>
+  in the help file <a href="FcnsByCatCensoredData.html">EnvStats Functions for Censored Data</a>).
+  For example, the function <code><a href="enormCensored.html">enormCensored</a></code> has an optional argument called
+  <code>method</code> that specifies the method to use to estimate the parameters.  To override the default
+  estimation method, supply the argument <code>est.arg.list</code> with a component called <code>method</code>;
+  for example <br><code>est.arg.list=list(method="impute.w.qq.reg")</code>.  The default value is <br><code>est.arg.list=NULL</code> so that all default values for the estimating function are used.
   This argument is ignored if <code>estimate.params=FALSE</code>.</p></dd>
 
   <dt>plot.type</dt>
-<dd><p>a character string denoting the kind of plot.  Possible values are <code>"Q-Q"</code> 
-  (Quantile-Quantile plot, the default) and <code>"Tukey Mean-Difference Q-Q"</code> 
-  (Tukey mean-difference Q-Q plot).  This argument may be abbreviated (e.g., 
+<dd><p>a character string denoting the kind of plot.  Possible values are <code>"Q-Q"</code>
+  (Quantile-Quantile plot, the default) and <code>"Tukey Mean-Difference Q-Q"</code>
+  (Tukey mean-difference Q-Q plot).  This argument may be abbreviated (e.g.,
   <code>plot.type="T"</code> to indicate a Tukey mean-difference Q-Q plot).</p></dd>
 
   <dt>plot.it</dt>
-<dd><p>a logical scalar indicating whether to create a plot on the current graphics device.   
+<dd><p>a logical scalar indicating whether to create a plot on the current graphics device.
   The default value is <code>plot.it=TRUE</code>.</p></dd>
 
   <dt>equal.axes</dt>
-<dd><p>a logical scalar indicating whether to use the same range on the \(x\)- and \(y\)-axes 
-  when <code>plot.type="Q-Q"</code>.  The default value is <code>TRUE</code> if <code>qq.line.type="0-1"</code> or 
-  <code>estimate.params=TRUE</code>, otherwise it is <code>FALSE</code>.  This argument is ignored if 
+<dd><p>a logical scalar indicating whether to use the same range on the \(x\)- and \(y\)-axes
+  when <code>plot.type="Q-Q"</code>.  The default value is <code>TRUE</code> if <code>qq.line.type="0-1"</code> or
+  <code>estimate.params=TRUE</code>, otherwise it is <code>FALSE</code>.  This argument is ignored if
   <code>plot.type="Tukey Mean-Difference Q-Q"</code>.</p></dd>
 
   <dt>add.line</dt>
-<dd><p>a logical scalar indicating whether to add a line to the plot.  If <code>add.line=TRUE</code> and 
-  <code>plot.type="Q-Q"</code>, a line determined by the value of <code>qq.line.type</code> is added to the plot.  
-  If <code>add.line=TRUE</code> and <br><code>plot.type="Tukey Mean-Difference Q-Q"</code>, a horizontal line at 
+<dd><p>a logical scalar indicating whether to add a line to the plot.  If <code>add.line=TRUE</code> and
+  <code>plot.type="Q-Q"</code>, a line determined by the value of <code>qq.line.type</code> is added to the plot.
+  If <code>add.line=TRUE</code> and <br><code>plot.type="Tukey Mean-Difference Q-Q"</code>, a horizontal line at
   \(y=0\) is added to the plot.  The default value is <code>add.line=FALSE</code>.</p></dd>
 
   <dt>qq.line.type</dt>
-<dd><p>character string determining what kind of line to add to the Q-Q plot.  Possible values are 
-  <code>"least squares"</code> (the default), <code>"0-1"</code> and <code>"robust"</code>.  For the value 
-  <code>"least squares"</code>, a least squares line is fit and added.  For the value <code>"0-1"</code>, 
-  a line with intercept 0 and slope 1 is added.  For the value <code>"robust"</code>, a line is fit through 
-  the first and third quartiles of the <code>x</code> and <code>y</code> data.  This argument is ignored if 
+<dd><p>character string determining what kind of line to add to the Q-Q plot.  Possible values are
+  <code>"least squares"</code> (the default), <code>"0-1"</code> and <code>"robust"</code>.  For the value
+  <code>"least squares"</code>, a least squares line is fit and added.  For the value <code>"0-1"</code>,
+  a line with intercept 0 and slope 1 is added.  For the value <code>"robust"</code>, a line is fit through
+  the first and third quartiles of the <code>x</code> and <code>y</code> data.  This argument is ignored if
   <code>add.line=FALSE</code> or <code>plot.type="Tukey Mean-Difference Q-Q"</code>.</p></dd>
 
   <dt>duplicate.points.method</dt>
-<dd><p>a character string denoting how to plot points with duplicate \((x,y)\) values.  Possible values 
-  are <code>"standard"</code> (the default), <code>"jitter"</code>, and <code>"number"</code>.  For the value 
-  <code>"standard"</code>, a single plotting symbol is plotted (this is the default behavior of <span style="R">R</span>).  
-  For the value <code>"jitter"</code>, a separate plotting symbol is plotted for each duplicate point, where 
-  the plotting symbols cluster around the true value of \(x\) and \(y\).  For the value 
-  <code>"number"</code>, a single number is plotted at \((x,y)\) that represents how many duplicate points 
+<dd><p>a character string denoting how to plot points with duplicate \((x,y)\) values.  Possible values
+  are <code>"standard"</code> (the default), <code>"jitter"</code>, and <code>"number"</code>.  For the value
+  <code>"standard"</code>, a single plotting symbol is plotted (this is the default behavior of <span style="R">R</span>).
+  For the value <code>"jitter"</code>, a separate plotting symbol is plotted for each duplicate point, where
+  the plotting symbols cluster around the true value of \(x\) and \(y\).  For the value
+  <code>"number"</code>, a single number is plotted at \((x,y)\) that represents how many duplicate points
   are at that \((x,y)\) coordinate.</p></dd>
 
   <dt>points.col</dt>
-<dd><p>a numeric scalar or character string determining the color of the points in the plot.  
-  The default value is <code>points.col=1</code>.  See the entry for <code>col</code> in the help file for 
+<dd><p>a numeric scalar or character string determining the color of the points in the plot.
+  The default value is <code>points.col=1</code>.  See the entry for <code>col</code> in the help file for
   <code><a href="https://rdrr.io/r/graphics/par.html" class="external-link">par</a></code> for more information.</p></dd>
 
   <dt>line.col</dt>
-<dd><p>a numeric scalar or character string determining the color of the line in the plot.  
-  The default value is <code>points.col=1</code>.  See the entry for <code>col</code> in the help file for 
+<dd><p>a numeric scalar or character string determining the color of the line in the plot.
+  The default value is <code>points.col=1</code>.  See the entry for <code>col</code> in the help file for
   <code><a href="https://rdrr.io/r/graphics/par.html" class="external-link">par</a></code> for more information.  This argument is ignored if <code>add.line=FALSE</code>.</p></dd>
 
   <dt>line.lwd</dt>
-<dd><p>a numeric scalar determining the width of the line in the plot.  The default value is 
-  <code>line.lwd=par("cex")</code>.  See the entry for <code>lwd</code> in the help file for <code><a href="https://rdrr.io/r/graphics/par.html" class="external-link">par</a></code> 
+<dd><p>a numeric scalar determining the width of the line in the plot.  The default value is
+  <code>line.lwd=par("cex")</code>.  See the entry for <code>lwd</code> in the help file for <code><a href="https://rdrr.io/r/graphics/par.html" class="external-link">par</a></code>
   for more information.  This argument is ignored if <code>add.line=FALSE</code>.</p></dd>
 
   <dt>line.lty</dt>
-<dd><p>a numeric scalar determining the line type of the line in the plot.  The default value is 
-  <code>line.lty=1</code>.  See the entry for <code>lty</code> in the help file for <code><a href="https://rdrr.io/r/graphics/par.html" class="external-link">par</a></code> 
+<dd><p>a numeric scalar determining the line type of the line in the plot.  The default value is
+  <code>line.lty=1</code>.  See the entry for <code>lty</code> in the help file for <code><a href="https://rdrr.io/r/graphics/par.html" class="external-link">par</a></code>
   for more information.  This argument is ignored if <code>add.line=FALSE</code>.</p></dd>
 
   <dt>digits</dt>
-<dd><p>a scalar indicating how many significant digits to print for the distribution parameters.  
+<dd><p>a scalar indicating how many significant digits to print for the distribution parameters.
   The default value is <code>digits=.Options$digits</code>.</p></dd>
 
   <dt>include.cen</dt>
-<dd><p>logical scalar indicating whether to include censored values in the plot.  The default value is 
-  <code>include.cen=FALSE</code>.  If <code>include.cen=TRUE</code>, censored values are plotted using the 
+<dd><p>logical scalar indicating whether to include censored values in the plot.  The default value is
+  <code>include.cen=FALSE</code>.  If <code>include.cen=TRUE</code>, censored values are plotted using the
   plotting character indicated by the argument <code>cen.pch</code> (see below).</p></dd>
 
   <dt>cen.pch</dt>
-<dd><p>numeric scalar or character string indicating the plotting character to use to plot censored values.  
-  The default value is <code>cen.pch=2</code> (hollow triangle pointing up) when <code>censoring.side="right"</code>, 
-  and <code>cen.pch=6</code> (hollow triangle pointing down) when <code>censoring.side="left"</code>.  
-  See the help file for <code><a href="https://rdrr.io/r/graphics/points.html" class="external-link">points</a></code> for a list of other possible plotting characters.  
+<dd><p>numeric scalar or character string indicating the plotting character to use to plot censored values.
+  The default value is <code>cen.pch=2</code> (hollow triangle pointing up) when <code>censoring.side="right"</code>,
+  and <code>cen.pch=6</code> (hollow triangle pointing down) when <code>censoring.side="left"</code>.
+  See the help file for <code><a href="https://rdrr.io/r/graphics/points.html" class="external-link">points</a></code> for a list of other possible plotting characters.
   This argument is ignored if <br><code>include.cen=FALSE</code>.</p></dd>
 
   <dt>cen.cex</dt>
-<dd><p>numeric scalar that determines the size of the plotting character used to plot censored values.  
-  The default value is the current value of the cex graphics parameter.  See the entry for <code>cex</code> 
-  in the help file for <code><a href="https://rdrr.io/r/graphics/par.html" class="external-link">par</a></code> for more information.  This argument is ignored if 
+<dd><p>numeric scalar that determines the size of the plotting character used to plot censored values.
+  The default value is the current value of the cex graphics parameter.  See the entry for <code>cex</code>
+  in the help file for <code><a href="https://rdrr.io/r/graphics/par.html" class="external-link">par</a></code> for more information.  This argument is ignored if
   <code>include.cen=FALSE</code>.</p></dd>
 
   <dt>cen.col</dt>
-<dd><p>numeric scalar or character string that determines the color of the plotting character used to 
-  plot censored values.  The default value is <code>cen.col=4</code>.  See the entry for <code>col</code> in 
-  the help file for <code><a href="https://rdrr.io/r/graphics/par.html" class="external-link">par</a></code> for more information.  This argument is ignored if 
+<dd><p>numeric scalar or character string that determines the color of the plotting character used to
+  plot censored values.  The default value is <code>cen.col=4</code>.  See the entry for <code>col</code> in
+  the help file for <code><a href="https://rdrr.io/r/graphics/par.html" class="external-link">par</a></code> for more information.  This argument is ignored if
   <code>include.cen=FALSE</code>.</p></dd>
 
   <dt>main, xlab, ylab, xlim, ylim, ...</dt>
@@ -225,24 +225,24 @@
 </dl></div>
     <div id="details">
     <h2>Details</h2>
-    <p>The function <code>qqPlotCensored</code> does exactly the same thing as <code><a href="qqPlot.html">qqPlot</a></code> 
-  (when the argument <code>y</code> is not supplied to <code><a href="qqPlot.html">qqPlot</a></code>), except 
-  <code>qqPlotCensored</code> calls the function <code><a href="ppointsCensored.html">ppointsCensored</a></code> to compute the 
+    <p>The function <code>qqPlotCensored</code> does exactly the same thing as <code><a href="qqPlot.html">qqPlot</a></code>
+  (when the argument <code>y</code> is not supplied to <code><a href="qqPlot.html">qqPlot</a></code>), except
+  <code>qqPlotCensored</code> calls the function <code><a href="ppointsCensored.html">ppointsCensored</a></code> to compute the
   plotting positions (estimated cumulative probabilities).</p>
-<p>The vector <code>x</code> is assumed to be a sample from the probability distribution specified 
-  by the argument <code>distribution</code> (and <code>param.list</code> if <code>estimate.params=FALSE</code>).  
-  When <code>plot.type="Q-Q"</code>, the quantiles of <code>x</code> are plotted on the \(y\)-axis against 
+<p>The vector <code>x</code> is assumed to be a sample from the probability distribution specified
+  by the argument <code>distribution</code> (and <code>param.list</code> if <code>estimate.params=FALSE</code>).
+  When <code>plot.type="Q-Q"</code>, the quantiles of <code>x</code> are plotted on the \(y\)-axis against
   the quantiles of the assumed distribution on the \(x\)-axis.</p>
-<p>When <code>plot.type="Tukey Mean-Difference Q-Q"</code>, the difference of the quantiles is plotted on 
+<p>When <code>plot.type="Tukey Mean-Difference Q-Q"</code>, the difference of the quantiles is plotted on
   the \(y\)-axis against the mean of the quantiles on the \(x\)-axis.</p>
-<p>When <code>prob.method="kaplan-meier"</code> and <code>censoring.side="left"</code> and the assumed 
-  distribution has a maximum support of infinity (<code>Inf</code>; e.g., the normal or lognormal 
-  distribution), the point invovling the largest 
-  value of <code>x</code> is not plotted because it corresponds to an estimated cumulative probability 
+<p>When <code>prob.method="kaplan-meier"</code> and <code>censoring.side="left"</code> and the assumed
+  distribution has a maximum support of infinity (<code>Inf</code>; e.g., the normal or lognormal
+  distribution), the point invovling the largest
+  value of <code>x</code> is not plotted because it corresponds to an estimated cumulative probability
   of 1 which corresponds to an infinite plotting position.</p>
-<p>When <code>prob.method="modified kaplan-meier"</code> and <code>censoring.side="left"</code>, the 
-  estimated cumulative probability associated with the maximum value is modified from 1 
-  to be \((N - .375)/(N + .25)\) where \(N\) denotes the sample size (i.e., the Blom 
+<p>When <code>prob.method="modified kaplan-meier"</code> and <code>censoring.side="left"</code>, the
+  estimated cumulative probability associated with the maximum value is modified from 1
+  to be \((N - .375)/(N + .25)\) where \(N\) denotes the sample size (i.e., the Blom
   plotting position) so that the point associated with the maximum value can be displayed.</p>
     </div>
     <div id="value">
@@ -250,32 +250,32 @@
     <p></p>
 <p><code>qqPlotCensored</code> returns a list with the following components:</p>
 <dl><dt>x</dt>
-<dd><p>numeric vector of \(x\)-coordinates for the plot.  When <code>plot.type="Q-Q"</code> 
-    these are the quantiles from the theoretical distribution.  When <br><code>plot.type="Tukey Mean-Difference Q-Q"</code> these are the averages of the observed and 
+<dd><p>numeric vector of \(x\)-coordinates for the plot.  When <code>plot.type="Q-Q"</code>
+    these are the quantiles from the theoretical distribution.  When <br><code>plot.type="Tukey Mean-Difference Q-Q"</code> these are the averages of the observed and
     theoretical quantiles.</p></dd>
 
   <dt>y</dt>
-<dd><p>numeric vector of \(y\)-coordinates for the plot.  When <code>plot.type="Q-Q"</code> 
-    these are the observed quantiles (order statistics).  When <br><code>plot.type="Tukey Mean-Difference Q-Q"</code> these are the differences between the 
+<dd><p>numeric vector of \(y\)-coordinates for the plot.  When <code>plot.type="Q-Q"</code>
+    these are the observed quantiles (order statistics).  When <br><code>plot.type="Tukey Mean-Difference Q-Q"</code> these are the differences between the
     observed quantiles (order statistics) and the theoretical quantiles.</p></dd>
 
   <dt>Order.Statistics</dt>
-<dd><p>numeric vector of the “ordered” observations.  
+<dd><p>numeric vector of the “ordered” observations.
     When <code>plot.type="Q-Q"</code> this component is exactly the same as the component <code>y</code>.</p></dd>
 
   <dt>Cumulative.Probabilities</dt>
-<dd><p>numeric vector of the plotting positions associated with the 
+<dd><p>numeric vector of the plotting positions associated with the
     order statistics.</p></dd>
 
   <dt>Censored</dt>
 <dd><p>logical vector indicating which of the ordered observations are censored.</p></dd>
 
   <dt>Censoring.Side</dt>
-<dd><p>character string indicating whether the data are left- or right-censored.  
+<dd><p>character string indicating whether the data are left- or right-censored.
     This is same value as the argument <code>censoring.side</code>.</p></dd>
 
   <dt>Prob.Method</dt>
-<dd><p>character string indicating what method was used to compute the plotting positions.  
+<dd><p>character string indicating what method was used to compute the plotting positions.
     This is the same value as the argument <code>prob.method</code>.</p></dd>
 
 
@@ -283,39 +283,39 @@
 <p></p>
 <p><code>prob.method="hirsch-stedinger"</code>):</p>
 <dl><dt>Plot.Pos.Con</dt>
-<dd><p>numeric scalar containing the value of the plotting position constant that was used.  
+<dd><p>numeric scalar containing the value of the plotting position constant that was used.
     This is the same as the argument <code>plot.pos.con</code>.</p></dd>
 
 </dl></div>
     <div id="references">
     <h2>References</h2>
-    <p>Chambers, J.M., W.S. Cleveland, B. Kleiner, and P.A. Tukey. (1983). 
+    <p>Chambers, J.M., W.S. Cleveland, B. Kleiner, and P.A. Tukey. (1983).
   <em>Graphical Methods for Data Analysis</em>. Duxbury Press, Boston, MA, pp.11-16.</p>
 <p>Cleveland, W.S. (1993). <em>Visualizing Data</em>. Hobart Press, Summit, New Jersey, 360pp.</p>
-<p>D'Agostino, R.B. (1986a). Graphical Analysis. 
-  In: D'Agostino, R.B., and M.A. Stephens, eds. <em>Goodness-of Fit Techniques</em>. 
+<p>D'Agostino, R.B. (1986a). Graphical Analysis.
+  In: D'Agostino, R.B., and M.A. Stephens, eds. <em>Goodness-of Fit Techniques</em>.
   Marcel Dekker, New York, Chapter 2, pp.7-62.</p>
-<p>Gillespie, B.W., Q. Chen, H. Reichert, A. Franzblau, E. Hedgeman, J. Lepkowski, 
-  P. Adriaens, A. Demond, W. Luksemburg, and D.H. Garabrant. (2010).  Estimating Population 
-  Distributions When Some Data Are Below a Limit of Detection by Using a Reverse 
+<p>Gillespie, B.W., Q. Chen, H. Reichert, A. Franzblau, E. Hedgeman, J. Lepkowski,
+  P. Adriaens, A. Demond, W. Luksemburg, and D.H. Garabrant. (2010).  Estimating Population
+  Distributions When Some Data Are Below a Limit of Detection by Using a Reverse
   Kaplan-Meier Estimator.  <em>Epidemiology</em> <b>21</b>(4), S64--S70.</p>
-<p>Helsel, D.R. (2012). <em>Statistics for Censored Environmental Data Using Minitab and R, 
-  Second Edition</em>.  John Wiley \&amp; Sons, Hoboken, New Jersey.</p>
-<p>Helsel, D.R., and T.A. Cohn. (1988). Estimation of Descriptive Statistics for Multiply Censored 
+<p>Helsel, D.R. (2012). <em>Statistics for Censored Environmental Data Using Minitab and R,
+  Second Edition</em>.  John Wiley &amp; Sons, Hoboken, New Jersey.</p>
+<p>Helsel, D.R., and T.A. Cohn. (1988). Estimation of Descriptive Statistics for Multiply Censored
   Water Quality Data. <em>Water Resources Research</em> <b>24</b>(12), 1997-2004.</p>
-<p>Hirsch, R.M., and J.R. Stedinger. (1987). Plotting Positions for Historical Floods and Their Precision.  
+<p>Hirsch, R.M., and J.R. Stedinger. (1987). Plotting Positions for Historical Floods and Their Precision.
   <em>Water Resources Research</em> <b>23</b>(4), 715-727.</p>
-<p>Kaplan, E.L., and P. Meier. (1958). Nonparametric Estimation From Incomplete Observations.  
+<p>Kaplan, E.L., and P. Meier. (1958). Nonparametric Estimation From Incomplete Observations.
   <em>Journal of the American Statistical Association</em> <b>53</b>, 457-481.</p>
-<p>Lee, E.T., and J. Wang. (2003). <em>Statistical Methods for Survival Data Analysis, 
+<p>Lee, E.T., and J. Wang. (2003). <em>Statistical Methods for Survival Data Analysis,
   Third Edition</em>.  John Wiley and Sons, New York.</p>
-<p>Michael, J.R., and W.R. Schucany. (1986). Analysis of Data from Censored Samples. 
-  In D'Agostino, R.B., and M.A. Stephens, eds. <em>Goodness-of Fit Techniques</em>.  
+<p>Michael, J.R., and W.R. Schucany. (1986). Analysis of Data from Censored Samples.
+  In D'Agostino, R.B., and M.A. Stephens, eds. <em>Goodness-of Fit Techniques</em>.
   Marcel Dekker, New York, 560pp, Chapter 11, 461-496.</p>
-<p>Nelson, W. (1972). Theory and Applications of Hazard Plotting for Censored Failure Data. 
+<p>Nelson, W. (1972). Theory and Applications of Hazard Plotting for Censored Failure Data.
   <em>Technometrics</em> <b>14</b>, 945-966.</p>
 <p>USEPA. (2009).  <em>Statistical Analysis of Groundwater Monitoring Data at RCRA Facilities, Unified Guidance</em>.
-  EPA 530/R-09-007, March 2009.  Office of Resource Conservation and Recovery Program Implementation and Information Division.  
+  EPA 530/R-09-007, March 2009.  Office of Resource Conservation and Recovery Program Implementation and Information Division.
   U.S. Environmental Protection Agency, Washington, D.C. Chapter 15.</p>
 <p>USEPA. (2010).  <em>Errata Sheet - March 2009 Unified Guidance</em>.
   EPA 530/R-09-007a, August 9, 2010.  Office of Resource Conservation and Recovery, Program Information and Implementation Division.
@@ -327,72 +327,72 @@
     </div>
     <div id="note">
     <h2>Note</h2>
-    <p>A <em>quantile-quantile (Q-Q) plot</em>, also called a <em>probability plot</em>, is a plot of the observed 
-  order statistics from a random sample (the empirical quantiles) against their (estimated) 
-  mean or median values based on an assumed distribution, or against the empirical quantiles 
-  of another set of data (Wilk and Gnanadesikan, 1968).  Q-Q plots are used to assess whether 
-  data come from a particular distribution, or whether two datasets have the same parent 
-  distribution.  If the distributions have the same shape (but not necessarily the same 
-  location or scale parameters), then the plot will fall roughly on a straight line.  If the 
+    <p>A <em>quantile-quantile (Q-Q) plot</em>, also called a <em>probability plot</em>, is a plot of the observed
+  order statistics from a random sample (the empirical quantiles) against their (estimated)
+  mean or median values based on an assumed distribution, or against the empirical quantiles
+  of another set of data (Wilk and Gnanadesikan, 1968).  Q-Q plots are used to assess whether
+  data come from a particular distribution, or whether two datasets have the same parent
+  distribution.  If the distributions have the same shape (but not necessarily the same
+  location or scale parameters), then the plot will fall roughly on a straight line.  If the
   distributions are exactly the same, then the plot will fall roughly on the straight line \(y=x\).</p>
-<p>A <em>Tukey mean-difference Q-Q plot</em>, also called an <em>m-d plot</em>, is a modification of a 
-  Q-Q plot. Rather than plotting observed quantiles vs. theoretical quantiles or observed 
-  \(y\)-quantiles vs. observed \(x\)-quantiles, a Tukey mean-difference Q-Q plot plots 
-  the difference between the quantiles on the \(y\)-axis vs. the average of the quantiles on 
-  the \(x\)-axis (Cleveland, 1993, pp.22-23).  If the two sets of quantiles come from the same 
-  parent distribution, then the points in this plot should fall roughly along the horizontal line 
-  \(y=0\).  If one set of quantiles come from the same distribution with a shift in median, then 
-  the points in this plot should fall along a horizontal line above or below the line \(y=0\).  
-  A Tukey mean-difference Q-Q plot enhances our perception of how the points in the Q-Q plot deviate 
-  from a straight line, because it is easier to judge deviations from a horizontal line than from a 
+<p>A <em>Tukey mean-difference Q-Q plot</em>, also called an <em>m-d plot</em>, is a modification of a
+  Q-Q plot. Rather than plotting observed quantiles vs. theoretical quantiles or observed
+  \(y\)-quantiles vs. observed \(x\)-quantiles, a Tukey mean-difference Q-Q plot plots
+  the difference between the quantiles on the \(y\)-axis vs. the average of the quantiles on
+  the \(x\)-axis (Cleveland, 1993, pp.22-23).  If the two sets of quantiles come from the same
+  parent distribution, then the points in this plot should fall roughly along the horizontal line
+  \(y=0\).  If one set of quantiles come from the same distribution with a shift in median, then
+  the points in this plot should fall along a horizontal line above or below the line \(y=0\).
+  A Tukey mean-difference Q-Q plot enhances our perception of how the points in the Q-Q plot deviate
+  from a straight line, because it is easier to judge deviations from a horizontal line than from a
   line with a non-zero slope.</p>
-<p>In a Q-Q plot, the extreme points have more variability than points toward the center.  A U-shaped 
-  Q-Q plot indicates that the underlying distribution for the observations on the \(y\)-axis is 
-  skewed to the right relative to the underlying distribution for the observations on the \(x\)-axis.  
-  An upside-down-U-shaped Q-Q plot indicates the \(y\)-axis distribution is skewed left relative to 
-  the \(x\)-axis distribution.  An S-shaped Q-Q plot indicates the \(y\)-axis distribution has 
-  shorter tails than the \(x\)-axis distribution.  Conversely, a plot that is bent down on the 
-  left and bent up on the right indicates that the \(y\)-axis distribution has longer tails than 
+<p>In a Q-Q plot, the extreme points have more variability than points toward the center.  A U-shaped
+  Q-Q plot indicates that the underlying distribution for the observations on the \(y\)-axis is
+  skewed to the right relative to the underlying distribution for the observations on the \(x\)-axis.
+  An upside-down-U-shaped Q-Q plot indicates the \(y\)-axis distribution is skewed left relative to
+  the \(x\)-axis distribution.  An S-shaped Q-Q plot indicates the \(y\)-axis distribution has
+  shorter tails than the \(x\)-axis distribution.  Conversely, a plot that is bent down on the
+  left and bent up on the right indicates that the \(y\)-axis distribution has longer tails than
   the \(x\)-axis distribution.</p>
-<p>Censored observations complicate the procedures used to graphically explore data.  Techniques from 
-  survival analysis and life testing have been developed to generalize the procedures for 
-  constructing plotting positions, empirical cdf plots, and Q-Q plots to data sets with censored 
+<p>Censored observations complicate the procedures used to graphically explore data.  Techniques from
+  survival analysis and life testing have been developed to generalize the procedures for
+  constructing plotting positions, empirical cdf plots, and Q-Q plots to data sets with censored
   observations (see <code><a href="ppointsCensored.html">ppointsCensored</a></code>).</p>
     </div>
     <div id="see-also">
     <h2>See also</h2>
-    <div class="dont-index"><p><code><a href="ppointsCensored.html">ppointsCensored</a></code>, <a href="FcnsByCatCensoredData.html">EnvStats Functions for Censored Data</a>, 
+    <div class="dont-index"><p><code><a href="ppointsCensored.html">ppointsCensored</a></code>, <a href="FcnsByCatCensoredData.html">EnvStats Functions for Censored Data</a>,
   <code><a href="qqPlot.html">qqPlot</a></code>, <code><a href="ecdfPlotCensored.html">ecdfPlotCensored</a></code>, <br><code><a href="qqPlotGestalt.html">qqPlotGestalt</a></code>.</p></div>
     </div>
 
     <div id="ref-examples">
     <h2>Examples</h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span>  <span class="co"># Generate 20 observations from a normal distribution with mean=20 and sd=5, </span></span></span>
-<span class="r-in"><span>  <span class="co"># censor all observations less than 18, then generate a Q-Q plot assuming </span></span></span>
-<span class="r-in"><span>  <span class="co"># a normal distribution for the complete data set and the censored data set.  </span></span></span>
-<span class="r-in"><span>  <span class="co"># Note that the Q-Q plot for the censored data set starts at the first ordered </span></span></span>
-<span class="r-in"><span>  <span class="co"># uncensored observation, and that for values of x &gt; 18 the two Q-Q plots are </span></span></span>
-<span class="r-in"><span>  <span class="co"># exactly the same.  This is because there is only one censoring level and </span></span></span>
-<span class="r-in"><span>  <span class="co"># no uncensored observations fall below the censored observations. </span></span></span>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span>  <span class="co"># Generate 20 observations from a normal distribution with mean=20 and sd=5,</span></span></span>
+<span class="r-in"><span>  <span class="co"># censor all observations less than 18, then generate a Q-Q plot assuming</span></span></span>
+<span class="r-in"><span>  <span class="co"># a normal distribution for the complete data set and the censored data set.</span></span></span>
+<span class="r-in"><span>  <span class="co"># Note that the Q-Q plot for the censored data set starts at the first ordered</span></span></span>
+<span class="r-in"><span>  <span class="co"># uncensored observation, and that for values of x &gt; 18 the two Q-Q plots are</span></span></span>
+<span class="r-in"><span>  <span class="co"># exactly the same.  This is because there is only one censoring level and</span></span></span>
+<span class="r-in"><span>  <span class="co"># no uncensored observations fall below the censored observations.</span></span></span>
 <span class="r-in"><span>  <span class="co"># (Note: the call to set.seed simply allows you to reproduce this example.)</span></span></span>
 <span class="r-in"><span></span></span>
-<span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/r/base/Random.html" class="external-link">set.seed</a></span><span class="op">(</span><span class="fl">333</span><span class="op">)</span> </span></span>
-<span class="r-in"><span>  <span class="va">x</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/Normal.html" class="external-link">rnorm</a></span><span class="op">(</span><span class="fl">20</span>, mean<span class="op">=</span><span class="fl">20</span>, sd<span class="op">=</span><span class="fl">5</span><span class="op">)</span> </span></span>
+<span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/r/base/Random.html" class="external-link">set.seed</a></span><span class="op">(</span><span class="fl">333</span><span class="op">)</span></span></span>
+<span class="r-in"><span>  <span class="va">x</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/Normal.html" class="external-link">rnorm</a></span><span class="op">(</span><span class="fl">20</span>, mean<span class="op">=</span><span class="fl">20</span>, sd<span class="op">=</span><span class="fl">5</span><span class="op">)</span></span></span>
 <span class="r-in"><span>  <span class="va">censored</span> <span class="op">&lt;-</span> <span class="va">x</span> <span class="op">&lt;</span> <span class="fl">18</span></span></span>
 <span class="r-in"><span></span></span>
-<span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/r/base/sum.html" class="external-link">sum</a></span><span class="op">(</span><span class="va">censored</span><span class="op">)</span> </span></span>
+<span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/r/base/sum.html" class="external-link">sum</a></span><span class="op">(</span><span class="va">censored</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] 7</span>
-<span class="r-in"><span>  <span class="co">#[1] 7 </span></span></span>
+<span class="r-in"><span>  <span class="co">#[1] 7</span></span></span>
 <span class="r-in"><span></span></span>
-<span class="r-in"><span>  <span class="va">new.x</span> <span class="op">&lt;-</span> <span class="va">x</span> </span></span>
+<span class="r-in"><span>  <span class="va">new.x</span> <span class="op">&lt;-</span> <span class="va">x</span></span></span>
 <span class="r-in"><span>  <span class="va">new.x</span><span class="op">[</span><span class="va">censored</span><span class="op">]</span> <span class="op">&lt;-</span> <span class="fl">18</span></span></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/r/grDevices/dev.html" class="external-link">dev.new</a></span><span class="op">(</span><span class="op">)</span></span></span>
-<span class="r-in"><span>  <span class="fu"><a href="qqPlot.html">qqPlot</a></span><span class="op">(</span><span class="va">x</span>, ylim <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/range.html" class="external-link">range</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/pretty.html" class="external-link">pretty</a></span><span class="op">(</span><span class="va">x</span><span class="op">)</span><span class="op">)</span>, </span></span>
-<span class="r-in"><span>    main <span class="op">=</span> <span class="st">"Q-Q Plot for\nComplete Data Set"</span><span class="op">)</span> </span></span>
+<span class="r-in"><span>  <span class="fu"><a href="qqPlot.html">qqPlot</a></span><span class="op">(</span><span class="va">x</span>, ylim <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/range.html" class="external-link">range</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/pretty.html" class="external-link">pretty</a></span><span class="op">(</span><span class="va">x</span><span class="op">)</span><span class="op">)</span>,</span></span>
+<span class="r-in"><span>    main <span class="op">=</span> <span class="st">"Q-Q Plot for\nComplete Data Set"</span><span class="op">)</span></span></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/r/grDevices/dev.html" class="external-link">dev.new</a></span><span class="op">(</span><span class="op">)</span></span></span>
-<span class="r-in"><span>  <span class="fu">qqPlotCensored</span><span class="op">(</span><span class="va">new.x</span>, <span class="va">censored</span>, ylim <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/range.html" class="external-link">range</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/pretty.html" class="external-link">pretty</a></span><span class="op">(</span><span class="va">x</span><span class="op">)</span><span class="op">)</span>, </span></span>
+<span class="r-in"><span>  <span class="fu">qqPlotCensored</span><span class="op">(</span><span class="va">new.x</span>, <span class="va">censored</span>, ylim <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/range.html" class="external-link">range</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/pretty.html" class="external-link">pretty</a></span><span class="op">(</span><span class="va">x</span><span class="op">)</span><span class="op">)</span>,</span></span>
 <span class="r-in"><span>    main<span class="op">=</span><span class="st">"Q-Q Plot for\nCensored Data Set"</span><span class="op">)</span></span></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span>  <span class="co"># Clean up</span></span></span>
@@ -402,12 +402,12 @@
 <span class="r-in"><span>  <span class="co">#------------------------------------------------------------------------------------</span></span></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span>  <span class="co"># Example 15-1 of USEPA (2009, page 15-10) gives an example of</span></span></span>
-<span class="r-in"><span>  <span class="co"># computing plotting positions based on censored manganese </span></span></span>
+<span class="r-in"><span>  <span class="co"># computing plotting positions based on censored manganese</span></span></span>
 <span class="r-in"><span>  <span class="co"># concentrations (ppb) in groundwater collected at 5 monitoring</span></span></span>
-<span class="r-in"><span>  <span class="co"># wells.  The data for this example are stored in </span></span></span>
+<span class="r-in"><span>  <span class="co"># wells.  The data for this example are stored in</span></span></span>
 <span class="r-in"><span>  <span class="co"># EPA.09.Ex.15.1.manganese.df.  Here we will create a Q-Q</span></span></span>
-<span class="r-in"><span>  <span class="co"># plot based on the Kaplan-Meier method.  First we'll assume </span></span></span>
-<span class="r-in"><span>  <span class="co"># a normal distribution, then a lognormal distribution, then a </span></span></span>
+<span class="r-in"><span>  <span class="co"># plot based on the Kaplan-Meier method.  First we'll assume</span></span></span>
+<span class="r-in"><span>  <span class="co"># a normal distribution, then a lognormal distribution, then a</span></span></span>
 <span class="r-in"><span>  <span class="co"># gamma distribution.</span></span></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span>  <span class="va">EPA.09.Ex.15.1.manganese.df</span></span></span>
@@ -454,69 +454,69 @@
 <span class="r-in"><span>  <span class="co">#---------------------------</span></span></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/r/grDevices/dev.html" class="external-link">dev.new</a></span><span class="op">(</span><span class="op">)</span></span></span>
-<span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/r/base/with.html" class="external-link">with</a></span><span class="op">(</span><span class="va">EPA.09.Ex.15.1.manganese.df</span>, </span></span>
-<span class="r-in"><span>    <span class="fu">qqPlotCensored</span><span class="op">(</span><span class="va">Manganese.ppb</span>, <span class="va">Censored</span>, </span></span>
+<span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/r/base/with.html" class="external-link">with</a></span><span class="op">(</span><span class="va">EPA.09.Ex.15.1.manganese.df</span>,</span></span>
+<span class="r-in"><span>    <span class="fu">qqPlotCensored</span><span class="op">(</span><span class="va">Manganese.ppb</span>, <span class="va">Censored</span>,</span></span>
 <span class="r-in"><span>      prob.method <span class="op">=</span> <span class="st">"kaplan-meier"</span>, points.col <span class="op">=</span> <span class="st">"blue"</span>, add.line <span class="op">=</span> <span class="cn">TRUE</span>,</span></span>
-<span class="r-in"><span>      main <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/paste.html" class="external-link">paste</a></span><span class="op">(</span><span class="st">"Normal Q-Q Plot of Manganese Data"</span>, </span></span>
+<span class="r-in"><span>      main <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/paste.html" class="external-link">paste</a></span><span class="op">(</span><span class="st">"Normal Q-Q Plot of Manganese Data"</span>,</span></span>
 <span class="r-in"><span>          <span class="st">"Based on Kaplan-Meier Plotting Positions"</span>, sep <span class="op">=</span> <span class="st">"\n"</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></span></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span>  <span class="co"># Include max value in the plot</span></span></span>
 <span class="r-in"><span>  <span class="co">#------------------------------</span></span></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/r/grDevices/dev.html" class="external-link">dev.new</a></span><span class="op">(</span><span class="op">)</span></span></span>
-<span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/r/base/with.html" class="external-link">with</a></span><span class="op">(</span><span class="va">EPA.09.Ex.15.1.manganese.df</span>, </span></span>
-<span class="r-in"><span>    <span class="fu">qqPlotCensored</span><span class="op">(</span><span class="va">Manganese.ppb</span>, <span class="va">Censored</span>, </span></span>
-<span class="r-in"><span>      prob.method <span class="op">=</span> <span class="st">"modified kaplan-meier"</span>, points.col <span class="op">=</span> <span class="st">"blue"</span>, </span></span>
+<span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/r/base/with.html" class="external-link">with</a></span><span class="op">(</span><span class="va">EPA.09.Ex.15.1.manganese.df</span>,</span></span>
+<span class="r-in"><span>    <span class="fu">qqPlotCensored</span><span class="op">(</span><span class="va">Manganese.ppb</span>, <span class="va">Censored</span>,</span></span>
+<span class="r-in"><span>      prob.method <span class="op">=</span> <span class="st">"modified kaplan-meier"</span>, points.col <span class="op">=</span> <span class="st">"blue"</span>,</span></span>
 <span class="r-in"><span>      add.line <span class="op">=</span> <span class="cn">TRUE</span>,</span></span>
-<span class="r-in"><span>      main <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/paste.html" class="external-link">paste</a></span><span class="op">(</span><span class="st">"Normal Q-Q Plot of Manganese Data"</span>, </span></span>
+<span class="r-in"><span>      main <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/paste.html" class="external-link">paste</a></span><span class="op">(</span><span class="st">"Normal Q-Q Plot of Manganese Data"</span>,</span></span>
 <span class="r-in"><span>          <span class="st">"Based on Kaplan-Meier Plotting Positions"</span>,</span></span>
 <span class="r-in"><span>          <span class="st">"(Max Included)"</span>, sep <span class="op">=</span> <span class="st">"\n"</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></span></span>
-<span class="r-in"><span>  </span></span>
+<span class="r-in"><span></span></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span>  <span class="co"># Assume lognormal distribution</span></span></span>
 <span class="r-in"><span>  <span class="co">#------------------------------</span></span></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/r/grDevices/dev.html" class="external-link">dev.new</a></span><span class="op">(</span><span class="op">)</span></span></span>
-<span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/r/base/with.html" class="external-link">with</a></span><span class="op">(</span><span class="va">EPA.09.Ex.15.1.manganese.df</span>, </span></span>
-<span class="r-in"><span>    <span class="fu">qqPlotCensored</span><span class="op">(</span><span class="va">Manganese.ppb</span>, <span class="va">Censored</span>, dist <span class="op">=</span> <span class="st">"lnorm"</span>, </span></span>
+<span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/r/base/with.html" class="external-link">with</a></span><span class="op">(</span><span class="va">EPA.09.Ex.15.1.manganese.df</span>,</span></span>
+<span class="r-in"><span>    <span class="fu">qqPlotCensored</span><span class="op">(</span><span class="va">Manganese.ppb</span>, <span class="va">Censored</span>, dist <span class="op">=</span> <span class="st">"lnorm"</span>,</span></span>
 <span class="r-in"><span>      prob.method <span class="op">=</span> <span class="st">"kaplan-meier"</span>, points.col <span class="op">=</span> <span class="st">"blue"</span>, add.line <span class="op">=</span> <span class="cn">TRUE</span>,</span></span>
-<span class="r-in"><span>      main <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/paste.html" class="external-link">paste</a></span><span class="op">(</span><span class="st">"Lognormal Q-Q Plot of Manganese Data"</span>, </span></span>
+<span class="r-in"><span>      main <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/paste.html" class="external-link">paste</a></span><span class="op">(</span><span class="st">"Lognormal Q-Q Plot of Manganese Data"</span>,</span></span>
 <span class="r-in"><span>          <span class="st">"Based on Kaplan-Meier Plotting Positions"</span>, sep <span class="op">=</span> <span class="st">"\n"</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></span></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span>  <span class="co"># Include max value in the plot</span></span></span>
 <span class="r-in"><span>  <span class="co">#------------------------------</span></span></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/r/grDevices/dev.html" class="external-link">dev.new</a></span><span class="op">(</span><span class="op">)</span></span></span>
-<span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/r/base/with.html" class="external-link">with</a></span><span class="op">(</span><span class="va">EPA.09.Ex.15.1.manganese.df</span>, </span></span>
-<span class="r-in"><span>    <span class="fu">qqPlotCensored</span><span class="op">(</span><span class="va">Manganese.ppb</span>, <span class="va">Censored</span>, dist <span class="op">=</span> <span class="st">"lnorm"</span>, </span></span>
-<span class="r-in"><span>      prob.method <span class="op">=</span> <span class="st">"modified kaplan-meier"</span>, points.col <span class="op">=</span> <span class="st">"blue"</span>, </span></span>
+<span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/r/base/with.html" class="external-link">with</a></span><span class="op">(</span><span class="va">EPA.09.Ex.15.1.manganese.df</span>,</span></span>
+<span class="r-in"><span>    <span class="fu">qqPlotCensored</span><span class="op">(</span><span class="va">Manganese.ppb</span>, <span class="va">Censored</span>, dist <span class="op">=</span> <span class="st">"lnorm"</span>,</span></span>
+<span class="r-in"><span>      prob.method <span class="op">=</span> <span class="st">"modified kaplan-meier"</span>, points.col <span class="op">=</span> <span class="st">"blue"</span>,</span></span>
 <span class="r-in"><span>      add.line <span class="op">=</span> <span class="cn">TRUE</span>,</span></span>
-<span class="r-in"><span>      main <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/paste.html" class="external-link">paste</a></span><span class="op">(</span><span class="st">"Lognormal Q-Q Plot of Manganese Data"</span>, </span></span>
+<span class="r-in"><span>      main <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/paste.html" class="external-link">paste</a></span><span class="op">(</span><span class="st">"Lognormal Q-Q Plot of Manganese Data"</span>,</span></span>
 <span class="r-in"><span>          <span class="st">"Based on Kaplan-Meier Plotting Positions"</span>,</span></span>
 <span class="r-in"><span>          <span class="st">"(Max Included)"</span>, sep <span class="op">=</span> <span class="st">"\n"</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></span></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span>  <span class="co"># The lognormal distribution appears to be a better fit.</span></span></span>
-<span class="r-in"><span>  <span class="co"># Now create a Q-Q plot assuming a gamma distribution.  Here we'll </span></span></span>
+<span class="r-in"><span>  <span class="co"># Now create a Q-Q plot assuming a gamma distribution.  Here we'll</span></span></span>
 <span class="r-in"><span>  <span class="co"># need to set estimate.params=TRUE.</span></span></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/r/grDevices/dev.html" class="external-link">dev.new</a></span><span class="op">(</span><span class="op">)</span></span></span>
-<span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/r/base/with.html" class="external-link">with</a></span><span class="op">(</span><span class="va">EPA.09.Ex.15.1.manganese.df</span>, </span></span>
-<span class="r-in"><span>    <span class="fu">qqPlotCensored</span><span class="op">(</span><span class="va">Manganese.ppb</span>, <span class="va">Censored</span>, dist <span class="op">=</span> <span class="st">"gamma"</span>, </span></span>
-<span class="r-in"><span>      estimate.params <span class="op">=</span> <span class="cn">TRUE</span>, prob.method <span class="op">=</span> <span class="st">"kaplan-meier"</span>, </span></span>
+<span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/r/base/with.html" class="external-link">with</a></span><span class="op">(</span><span class="va">EPA.09.Ex.15.1.manganese.df</span>,</span></span>
+<span class="r-in"><span>    <span class="fu">qqPlotCensored</span><span class="op">(</span><span class="va">Manganese.ppb</span>, <span class="va">Censored</span>, dist <span class="op">=</span> <span class="st">"gamma"</span>,</span></span>
+<span class="r-in"><span>      estimate.params <span class="op">=</span> <span class="cn">TRUE</span>, prob.method <span class="op">=</span> <span class="st">"kaplan-meier"</span>,</span></span>
 <span class="r-in"><span>      points.col <span class="op">=</span> <span class="st">"blue"</span>, add.line <span class="op">=</span> <span class="cn">TRUE</span>,</span></span>
-<span class="r-in"><span>      main <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/paste.html" class="external-link">paste</a></span><span class="op">(</span><span class="st">"Gamma Q-Q Plot of Manganese Data"</span>, </span></span>
+<span class="r-in"><span>      main <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/paste.html" class="external-link">paste</a></span><span class="op">(</span><span class="st">"Gamma Q-Q Plot of Manganese Data"</span>,</span></span>
 <span class="r-in"><span>          <span class="st">"Based on Kaplan-Meier Plotting Positions"</span>, sep <span class="op">=</span> <span class="st">"\n"</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></span></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span>  <span class="co"># Include max value in the plot</span></span></span>
 <span class="r-in"><span>  <span class="co">#------------------------------</span></span></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/r/grDevices/dev.html" class="external-link">dev.new</a></span><span class="op">(</span><span class="op">)</span></span></span>
-<span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/r/base/with.html" class="external-link">with</a></span><span class="op">(</span><span class="va">EPA.09.Ex.15.1.manganese.df</span>, </span></span>
-<span class="r-in"><span>    <span class="fu">qqPlotCensored</span><span class="op">(</span><span class="va">Manganese.ppb</span>, <span class="va">Censored</span>, dist <span class="op">=</span> <span class="st">"gamma"</span>, </span></span>
-<span class="r-in"><span>      estimate.params <span class="op">=</span> <span class="cn">TRUE</span>, prob.method <span class="op">=</span> <span class="st">"modified kaplan-meier"</span>, </span></span>
+<span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/r/base/with.html" class="external-link">with</a></span><span class="op">(</span><span class="va">EPA.09.Ex.15.1.manganese.df</span>,</span></span>
+<span class="r-in"><span>    <span class="fu">qqPlotCensored</span><span class="op">(</span><span class="va">Manganese.ppb</span>, <span class="va">Censored</span>, dist <span class="op">=</span> <span class="st">"gamma"</span>,</span></span>
+<span class="r-in"><span>      estimate.params <span class="op">=</span> <span class="cn">TRUE</span>, prob.method <span class="op">=</span> <span class="st">"modified kaplan-meier"</span>,</span></span>
 <span class="r-in"><span>      points.col <span class="op">=</span> <span class="st">"blue"</span>, add.line <span class="op">=</span> <span class="cn">TRUE</span>,</span></span>
-<span class="r-in"><span>      main <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/paste.html" class="external-link">paste</a></span><span class="op">(</span><span class="st">"Gamma Q-Q Plot of Manganese Data"</span>, </span></span>
+<span class="r-in"><span>      main <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/paste.html" class="external-link">paste</a></span><span class="op">(</span><span class="st">"Gamma Q-Q Plot of Manganese Data"</span>,</span></span>
 <span class="r-in"><span>          <span class="st">"Based on Kaplan-Meier Plotting Positions"</span>,</span></span>
 <span class="r-in"><span>          <span class="st">"(Max Included)"</span>, sep <span class="op">=</span> <span class="st">"\n"</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></span></span>
 <span class="r-in"><span></span></span>

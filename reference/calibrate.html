@@ -50,128 +50,128 @@
     </div>
 
     <div id="ref-usage">
-    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">calibrate</span><span class="op">(</span><span class="va">formula</span>, <span class="va">data</span>, test.higher.orders <span class="op">=</span> <span class="cn">TRUE</span>, max.order <span class="op">=</span> <span class="fl">4</span>, p.crit <span class="op">=</span> <span class="fl">0.05</span>, </span>
-<span>    F.test <span class="op">=</span> <span class="st">"partial"</span>, <span class="va">weights</span>, <span class="va">subset</span>, <span class="va">na.action</span>, method <span class="op">=</span> <span class="st">"qr"</span>, model <span class="op">=</span> <span class="cn">FALSE</span>, </span>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">calibrate</span><span class="op">(</span><span class="va">formula</span>, <span class="va">data</span>, test.higher.orders <span class="op">=</span> <span class="cn">TRUE</span>, max.order <span class="op">=</span> <span class="fl">4</span>, p.crit <span class="op">=</span> <span class="fl">0.05</span>,</span>
+<span>    F.test <span class="op">=</span> <span class="st">"partial"</span>, <span class="va">weights</span>, <span class="va">subset</span>, <span class="va">na.action</span>, method <span class="op">=</span> <span class="st">"qr"</span>, model <span class="op">=</span> <span class="cn">FALSE</span>,</span>
 <span>    x <span class="op">=</span> <span class="cn">FALSE</span>, y <span class="op">=</span> <span class="cn">FALSE</span>, contrasts <span class="op">=</span> <span class="cn">NULL</span>, warn <span class="op">=</span> <span class="cn">TRUE</span>, <span class="va">...</span><span class="op">)</span></span></code></pre></div>
     </div>
 
     <div id="arguments">
     <h2>Arguments</h2>
     <dl><dt>formula</dt>
-<dd><p>a <code><a href="https://rdrr.io/r/stats/formula.html" class="external-link">formula</a></code> object, with the response on the left of a <code>~</code> operator, and 
+<dd><p>a <code><a href="https://rdrr.io/r/stats/formula.html" class="external-link">formula</a></code> object, with the response on the left of a <code>~</code> operator, and
   the single predictor variable on the right.  For example, <code>Cadmium ~ Spike</code>.</p></dd>
 
   <dt>data</dt>
-<dd><p>an optional data frame, list or environment (or object coercible by <br><code><a href="https://rdrr.io/r/base/as.data.frame.html" class="external-link">as.data.frame</a></code> to a data frame) containing the variables in 
-  the model.  If not found in <code>data</code>, the variables are taken from 
-  <code>environment(formula)</code>, typically the environment from which 
+<dd><p>an optional data frame, list or environment (or object coercible by <br><code><a href="https://rdrr.io/r/base/as.data.frame.html" class="external-link">as.data.frame</a></code> to a data frame) containing the variables in
+  the model.  If not found in <code>data</code>, the variables are taken from
+  <code>environment(formula)</code>, typically the environment from which
   <code>calibrate</code> is called.</p></dd>
 
   <dt>test.higher.orders</dt>
-<dd><p>logical scalar indicating whether to start with a model that contains a single predictor 
-  variable and test the fit of higher order polynomials to consider for the calibration 
-  curve (<code>test.higher.orders=TRUE</code>; the default), or to simply use the model suppled 
-  and add the model matrix to the fit if it was not already indicated by the argument 
+<dd><p>logical scalar indicating whether to start with a model that contains a single predictor
+  variable and test the fit of higher order polynomials to consider for the calibration
+  curve (<code>test.higher.orders=TRUE</code>; the default), or to simply use the model suppled
+  and add the model matrix to the fit if it was not already indicated by the argument
   <code>x=TRUE</code> in the call to <code>calibrate</code>.</p></dd>
 
   <dt>max.order</dt>
-<dd><p>integer indicating the maximum order of the polynomial to consider for the 
-  calibration curve.  The default value is <code>max.order=4</code>, however, the final value of 
-  <code>max.order</code> is the minimum of <code>max.order</code> and value of the number of 
-  unique predictor values minus 1.  So, for example, if there are only 4 unique values of 
-  the single predictor variable, then the final value of <code>max.order</code> is the minimum of 
-  what the user supplies and 3; thus, in this case, the highest order polynomial that will 
-  be potentially tested is a cubic.  See also the explanation below for the argument 
+<dd><p>integer indicating the maximum order of the polynomial to consider for the
+  calibration curve.  The default value is <code>max.order=4</code>, however, the final value of
+  <code>max.order</code> is the minimum of <code>max.order</code> and value of the number of
+  unique predictor values minus 1.  So, for example, if there are only 4 unique values of
+  the single predictor variable, then the final value of <code>max.order</code> is the minimum of
+  what the user supplies and 3; thus, in this case, the highest order polynomial that will
+  be potentially tested is a cubic.  See also the explanation below for the argument
   <code>warn</code>.</p></dd>
 
   <dt>p.crit</dt>
-<dd><p>numeric scaler between 0 and 1 indicating the p-value to use for the stepwise regression 
+<dd><p>numeric scaler between 0 and 1 indicating the p-value to use for the stepwise regression
   when determining which polynomial model to use.  The default value is <code>p.crit=0.05</code>.</p></dd>
 
   <dt>F.test</dt>
-<dd><p>character string indicating whether to perform the stepwise regression using the 
-  standard partial F-test (<code>F.test="partial"</code>; the default) or using the 
+<dd><p>character string indicating whether to perform the stepwise regression using the
+  standard partial F-test (<code>F.test="partial"</code>; the default) or using the
   lack-of-fit F-test (<code>F.test="lof"</code>).</p></dd>
 
   <dt>weights</dt>
-<dd><p>optional vector of observation weights; if supplied, the algorithm fits to minimize the sum of the 
-  weights multiplied into the squared residuals.  The length of weights must be the same as 
-  the number of observations.  The weights must be nonnegative and it is strongly recommended 
-  that they be strictly positive, since zero weights are ambiguous, compared to use of the 
+<dd><p>optional vector of observation weights; if supplied, the algorithm fits to minimize the sum of the
+  weights multiplied into the squared residuals.  The length of weights must be the same as
+  the number of observations.  The weights must be nonnegative and it is strongly recommended
+  that they be strictly positive, since zero weights are ambiguous, compared to use of the
   <code>subset</code> argument.</p></dd>
 
   <dt>subset</dt>
-<dd><p>optional expression saying which subset of the rows of the data should be used in the fit. 
-  This can be a logical vector (which is replicated to have length equal to the number of 
-  observations), or a numeric vector indicating which observation numbers are to be included, 
-  or a character vector of the row names to be included.  All observations are included by 
+<dd><p>optional expression saying which subset of the rows of the data should be used in the fit.
+  This can be a logical vector (which is replicated to have length equal to the number of
+  observations), or a numeric vector indicating which observation numbers are to be included,
+  or a character vector of the row names to be included.  All observations are included by
   default.</p></dd>
 
   <dt>na.action</dt>
-<dd><p>optional function which indicates what should happen when the data contain <code>NAs</code>. 
-  The default is set by the <code>na.action</code> setting of <code><a href="https://rdrr.io/r/base/options.html" class="external-link">options</a></code>, and is <br><code><a href="https://rdrr.io/r/stats/na.fail.html" class="external-link">na.fail</a></code> if that is unset.  The ‘factory-fresh’ default is 
-  <code><a href="https://rdrr.io/r/stats/na.fail.html" class="external-link">na.omit</a></code>.  Another possible value is <code>NULL</code>, no action. 
+<dd><p>optional function which indicates what should happen when the data contain <code>NAs</code>.
+  The default is set by the <code>na.action</code> setting of <code><a href="https://rdrr.io/r/base/options.html" class="external-link">options</a></code>, and is <br><code><a href="https://rdrr.io/r/stats/na.fail.html" class="external-link">na.fail</a></code> if that is unset.  The ‘factory-fresh’ default is
+  <code><a href="https://rdrr.io/r/stats/na.fail.html" class="external-link">na.omit</a></code>.  Another possible value is <code>NULL</code>, no action.
   Value <code><a href="https://rdrr.io/r/stats/na.fail.html" class="external-link">na.exclude</a></code> can be useful.</p></dd>
 
   <dt>method</dt>
-<dd><p>optional method to be used; for fitting, currently only <code>method = "qr"</code> is supported; 
-  <code>method = "model.frame"</code> returns the model frame (the same as with 
+<dd><p>optional method to be used; for fitting, currently only <code>method = "qr"</code> is supported;
+  <code>method = "model.frame"</code> returns the model frame (the same as with
   <code>model = TRUE</code>, see below).</p></dd>
 
   <dt>model, x, y, qr</dt>
-<dd><p>optional logicals. If <code>TRUE</code> the corresponding components of the fit (the model frame, 
+<dd><p>optional logicals. If <code>TRUE</code> the corresponding components of the fit (the model frame,
   the model matrix, the response, the QR decomposition) are returned.</p></dd>
 
   <dt>contrasts</dt>
 <dd><p>an optional list. See the argument <code>contrasts.arg</code> of <code><a href="https://rdrr.io/r/stats/model.matrix.html" class="external-link">model.matrix</a></code>.</p></dd>
 
   <dt>warn</dt>
-<dd><p>logical scalar indicating whether to issue a warning (<code>warn=TRUE</code>; the default) when 
-  the value of <code>max.order</code> has been decreased from what the user supplied.  
+<dd><p>logical scalar indicating whether to issue a warning (<code>warn=TRUE</code>; the default) when
+  the value of <code>max.order</code> has been decreased from what the user supplied.
   See also the explanation above for the argument <code>max.order</code>.</p></dd>
 
   <dt>...</dt>
-<dd><p>additional arguments to be passed to the low level regression fitting functions 
+<dd><p>additional arguments to be passed to the low level regression fitting functions
   (see <code><a href="https://rdrr.io/r/stats/lm.html" class="external-link">lm</a></code>).</p></dd>
 
 </dl></div>
     <div id="details">
     <h2>Details</h2>
-    <p>A simple and frequently used calibration model is a straight line where the response variable 
-  <em>S</em> denotes the signal of the machine and the predictor variable <em>C</em> denotes the 
-  true concentration in the physical sample.  The error term is assumed to follow a normal distribution 
-  with mean 0.  Note that the average value of the signal for a blank (<em>C</em> = 0) is the intercept.  
-  Other possible calibration models include higher order polynomial models such as a quadratic or 
+    <p>A simple and frequently used calibration model is a straight line where the response variable
+  <em>S</em> denotes the signal of the machine and the predictor variable <em>C</em> denotes the
+  true concentration in the physical sample.  The error term is assumed to follow a normal distribution
+  with mean 0.  Note that the average value of the signal for a blank (<em>C</em> = 0) is the intercept.
+  Other possible calibration models include higher order polynomial models such as a quadratic or
   cubic model.</p>
-<p>In a typical setup, a small number of samples (e.g., n = 6) with known concentrations are measured 
-  and the signal is recorded.  A sample with no chemical in it, called a blank, is also measured.  
-  (You have to be careful to define exactly what you mean by a “blank.”  A blank could mean 
-  a container from the lab that has nothing in it but is prepared in a similar fashion to containers 
-  with actual samples in them.  Or it could mean a field blank: the container was taken out to the 
-  field and subjected to the same process that all other containers were subjected to, except a physical 
-  sample of soil or water was not placed in the container.)  Usually, replicate measures at the same 
-  known concentrations are taken.  (The term “replicate” must be well defined to distinguish 
-  between for example the same physical samples that are measured more than once vs. two different 
+<p>In a typical setup, a small number of samples (e.g., n = 6) with known concentrations are measured
+  and the signal is recorded.  A sample with no chemical in it, called a blank, is also measured.
+  (You have to be careful to define exactly what you mean by a “blank.”  A blank could mean
+  a container from the lab that has nothing in it but is prepared in a similar fashion to containers
+  with actual samples in them.  Or it could mean a field blank: the container was taken out to the
+  field and subjected to the same process that all other containers were subjected to, except a physical
+  sample of soil or water was not placed in the container.)  Usually, replicate measures at the same
+  known concentrations are taken.  (The term “replicate” must be well defined to distinguish
+  between for example the same physical samples that are measured more than once vs. two different
   physical samples of the same known concentration.)</p>
-<p>The function <code>calibrate</code> initially fits a linear calibration model.  If the argument 
-  <code>max.order</code> is greater than 1, <code>calibrate</code> then performs forward stepwise linear 
+<p>The function <code>calibrate</code> initially fits a linear calibration model.  If the argument
+  <code>max.order</code> is greater than 1, <code>calibrate</code> then performs forward stepwise linear
   regression to determine the “best” polynomial model.</p>
-<p>In the case where replicates are not availble, <code>calibrate</code> uses standard stepwise 
-  ANOVA to compare models (Draper and Smith, 1998, p.335). In this case, if the p-value 
-  for the partial F-test to compare models is greater than or equal to <code>p.crit</code>, then 
+<p>In the case where replicates are not availble, <code>calibrate</code> uses standard stepwise
+  ANOVA to compare models (Draper and Smith, 1998, p.335). In this case, if the p-value
+  for the partial F-test to compare models is greater than or equal to <code>p.crit</code>, then
   the model with fewer terms is used as the final model.</p>
-<p>In the case where replicates are available, if <code>F.test="lof"</code>, then for each model 
-  <code>calibrate</code> computes the p-value of the ANOVA for lack-of-fit vs. pure error 
-  (Draper and Smith, 1998, Chapters 2; see <code><a href="anovaPE.html">anovaPE</a></code>).  If the p-value is 
-  greater than or equal to <code>p.crit</code>, then this is the final model; otherwise the next 
-  higher-order term is added to the polynomial and the model is re-fit.  If, during the 
-  stepwise procedure, the degrees of freedom associated with the residual sums of squares 
-  of a model to be tested is less than or equal to the number of observations minus the 
-  number of unique observations, <code>calibrate</code> uses the partial F-test instead of the 
+<p>In the case where replicates are available, if <code>F.test="lof"</code>, then for each model
+  <code>calibrate</code> computes the p-value of the ANOVA for lack-of-fit vs. pure error
+  (Draper and Smith, 1998, Chapters 2; see <code><a href="anovaPE.html">anovaPE</a></code>).  If the p-value is
+  greater than or equal to <code>p.crit</code>, then this is the final model; otherwise the next
+  higher-order term is added to the polynomial and the model is re-fit.  If, during the
+  stepwise procedure, the degrees of freedom associated with the residual sums of squares
+  of a model to be tested is less than or equal to the number of observations minus the
+  number of unique observations, <code>calibrate</code> uses the partial F-test instead of the
   lack-of-fit F-test.</p>
-<p>The stepwise algorithm terminates when either the p-value is greater than or equal to 
-  <code>p.crit</code>, or the currently selected model in the algorithm is of order 
-  <code>max.order</code>.  The algorithm will terminate earlier than this if the next model to be 
+<p>The stepwise algorithm terminates when either the p-value is greater than or equal to
+  <code>p.crit</code>, or the currently selected model in the algorithm is of order
+  <code>max.order</code>.  The algorithm will terminate earlier than this if the next model to be
   fit includes singularities so that not all coefficients can be estimted.</p>
     </div>
     <div id="value">
@@ -186,19 +186,19 @@
 <p></p>
 <p><code>"<a href="https://rdrr.io/r/stats/lm.html" class="external-link">lm</a>"</code> and includes a component called</p>
 <p></p>
-<p><code>x</code> that stores the model matrix (the values of the predictor variables for the final 
+<p><code>x</code> that stores the model matrix (the values of the predictor variables for the final
   calibration model).</p>
     </div>
     <div id="references">
     <h2>References</h2>
-    <p>Draper, N., and H. Smith. (1998). <em>Applied Regression Analysis</em>. Third Edition. 
+    <p>Draper, N., and H. Smith. (1998). <em>Applied Regression Analysis</em>. Third Edition.
   John Wiley and Sons, New York, Chapter 3 and p.335.</p>
-<p>Gibbons, R.D., D.K. Bhaumik, and S. Aryal. (2009). 
-  <em>Statistical Methods for Groundwater Monitoring</em>. Second Edition.  
+<p>Gibbons, R.D., D.K. Bhaumik, and S. Aryal. (2009).
+  <em>Statistical Methods for Groundwater Monitoring</em>. Second Edition.
   John Wiley &amp; Sons, Hoboken.  Chapter 6, p. 111.</p>
-<p>Helsel, D.R. (2012). <em>Statistics for Censored Environmental Data Using Minitab and R, 
-  Second Edition</em>.  John Wiley \&amp; Sons, Hoboken, New Jersey.  Chapter 3, p. 22.</p>
-<p>Millard, S.P., and N.K. Neerchal. (2001). <em>Environmental Statistics with S-PLUS</em>. 
+<p>Helsel, D.R. (2012). <em>Statistics for Censored Environmental Data Using Minitab and R,
+  Second Edition</em>.  John Wiley &amp; Sons, Hoboken, New Jersey.  Chapter 3, p. 22.</p>
+<p>Millard, S.P., and N.K. Neerchal. (2001). <em>Environmental Statistics with S-PLUS</em>.
   CRC Press, Boca Raton, FL, pp.562-575.</p>
     </div>
     <div id="author">
@@ -207,57 +207,57 @@
     </div>
     <div id="note">
     <h2>Note</h2>
-    <p>Almost always the process of determining the concentration of a chemical in a soil, 
-  water, or air sample involves using some kind of machine that produces a signal, and 
-  this signal is related to the concentration of the chemical in the physical sample. 
-  The process of relating the machine signal to the concentration of the chemical is 
-  called <strong>calibration</strong>.  Once calibration has been performed, estimated 
-  concentrations in physical samples with unknown concentrations are computed using 
-  inverse regression (see <code><a href="inversePredictCalibrate.html">inversePredictCalibrate</a></code>).  The uncertainty 
-  in the process used to estimate the concentration may be quantified with decision, 
+    <p>Almost always the process of determining the concentration of a chemical in a soil,
+  water, or air sample involves using some kind of machine that produces a signal, and
+  this signal is related to the concentration of the chemical in the physical sample.
+  The process of relating the machine signal to the concentration of the chemical is
+  called <strong>calibration</strong>.  Once calibration has been performed, estimated
+  concentrations in physical samples with unknown concentrations are computed using
+  inverse regression (see <code><a href="inversePredictCalibrate.html">inversePredictCalibrate</a></code>).  The uncertainty
+  in the process used to estimate the concentration may be quantified with decision,
   detection, and quantitation limits.</p>
     </div>
     <div id="see-also">
     <h2>See also</h2>
-    <div class="dont-index"><p><code><a href="calibrate.object.html">calibrate.object</a></code>, <code><a href="anovaPE.html">anovaPE</a></code>, 
-  <code><a href="inversePredictCalibrate.html">inversePredictCalibrate</a></code>, 
+    <div class="dont-index"><p><code><a href="calibrate.object.html">calibrate.object</a></code>, <code><a href="anovaPE.html">anovaPE</a></code>,
+  <code><a href="inversePredictCalibrate.html">inversePredictCalibrate</a></code>,
   <code><a href="detectionLimitCalibrate.html">detectionLimitCalibrate</a></code>, <code><a href="https://rdrr.io/r/stats/lm.html" class="external-link">lm</a></code>.</p></div>
     </div>
 
     <div id="ref-examples">
     <h2>Examples</h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span>  <span class="co"># The data frame EPA.97.cadmium.111.df contains calibration data for </span></span></span>
-<span class="r-in"><span>  <span class="co"># cadmium at mass 111 (ng/L) that appeared in Gibbons et al. (1997b) </span></span></span>
-<span class="r-in"><span>  <span class="co"># and were provided to them by the U.S. EPA.  </span></span></span>
-<span class="r-in"><span>  <span class="co"># Display a plot of these data along with the fitted calibration line </span></span></span>
-<span class="r-in"><span>  <span class="co"># and 99% non-simultaneous prediction limits.  See </span></span></span>
-<span class="r-in"><span>  <span class="co"># Millard and Neerchal (2001, pp.566-569) for more details on this </span></span></span>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span>  <span class="co"># The data frame EPA.97.cadmium.111.df contains calibration data for</span></span></span>
+<span class="r-in"><span>  <span class="co"># cadmium at mass 111 (ng/L) that appeared in Gibbons et al. (1997b)</span></span></span>
+<span class="r-in"><span>  <span class="co"># and were provided to them by the U.S. EPA.</span></span></span>
+<span class="r-in"><span>  <span class="co"># Display a plot of these data along with the fitted calibration line</span></span></span>
+<span class="r-in"><span>  <span class="co"># and 99% non-simultaneous prediction limits.  See</span></span></span>
+<span class="r-in"><span>  <span class="co"># Millard and Neerchal (2001, pp.566-569) for more details on this</span></span></span>
 <span class="r-in"><span>  <span class="co"># example.</span></span></span>
 <span class="r-in"><span></span></span>
-<span class="r-in"><span>  <span class="va">Cadmium</span> <span class="op">&lt;-</span> <span class="va">EPA.97.cadmium.111.df</span><span class="op">$</span><span class="va">Cadmium</span> </span></span>
+<span class="r-in"><span>  <span class="va">Cadmium</span> <span class="op">&lt;-</span> <span class="va">EPA.97.cadmium.111.df</span><span class="op">$</span><span class="va">Cadmium</span></span></span>
 <span class="r-in"><span></span></span>
-<span class="r-in"><span>  <span class="va">Spike</span> <span class="op">&lt;-</span> <span class="va">EPA.97.cadmium.111.df</span><span class="op">$</span><span class="va">Spike</span> </span></span>
+<span class="r-in"><span>  <span class="va">Spike</span> <span class="op">&lt;-</span> <span class="va">EPA.97.cadmium.111.df</span><span class="op">$</span><span class="va">Spike</span></span></span>
 <span class="r-in"><span></span></span>
-<span class="r-in"><span>  <span class="va">calibrate.list</span> <span class="op">&lt;-</span> <span class="fu">calibrate</span><span class="op">(</span><span class="va">Cadmium</span> <span class="op">~</span> <span class="va">Spike</span>, data <span class="op">=</span> <span class="va">EPA.97.cadmium.111.df</span><span class="op">)</span> </span></span>
-<span class="r-in"><span> </span></span>
+<span class="r-in"><span>  <span class="va">calibrate.list</span> <span class="op">&lt;-</span> <span class="fu">calibrate</span><span class="op">(</span><span class="va">Cadmium</span> <span class="op">~</span> <span class="va">Spike</span>, data <span class="op">=</span> <span class="va">EPA.97.cadmium.111.df</span><span class="op">)</span></span></span>
+<span class="r-in"><span></span></span>
 <span class="r-in"><span>  <span class="va">newdata</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html" class="external-link">data.frame</a></span><span class="op">(</span>Spike <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/seq.html" class="external-link">seq</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/Extremes.html" class="external-link">min</a></span><span class="op">(</span><span class="va">Spike</span><span class="op">)</span>, <span class="fu"><a href="https://rdrr.io/r/base/Extremes.html" class="external-link">max</a></span><span class="op">(</span><span class="va">Spike</span><span class="op">)</span>, len <span class="op">=</span> <span class="fl">100</span><span class="op">)</span><span class="op">)</span></span></span>
-<span class="r-in"><span> </span></span>
-<span class="r-in"><span>  <span class="va">pred.list</span> <span class="op">&lt;-</span> <span class="fu"><a href="predict.html">predict</a></span><span class="op">(</span><span class="va">calibrate.list</span>, newdata <span class="op">=</span> <span class="va">newdata</span>, se.fit <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span> </span></span>
 <span class="r-in"><span></span></span>
-<span class="r-in"><span>  <span class="va">pointwise.list</span> <span class="op">&lt;-</span> <span class="fu"><a href="pointwise.html">pointwise</a></span><span class="op">(</span><span class="va">pred.list</span>, coverage <span class="op">=</span> <span class="fl">0.99</span>, individual <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span> </span></span>
+<span class="r-in"><span>  <span class="va">pred.list</span> <span class="op">&lt;-</span> <span class="fu"><a href="predict.html">predict</a></span><span class="op">(</span><span class="va">calibrate.list</span>, newdata <span class="op">=</span> <span class="va">newdata</span>, se.fit <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="va">pointwise.list</span> <span class="op">&lt;-</span> <span class="fu"><a href="pointwise.html">pointwise</a></span><span class="op">(</span><span class="va">pred.list</span>, coverage <span class="op">=</span> <span class="fl">0.99</span>, individual <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/r/grDevices/dev.html" class="external-link">dev.new</a></span><span class="op">(</span><span class="op">)</span></span></span>
-<span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">Spike</span>, <span class="va">Cadmium</span>, ylim <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/Extremes.html" class="external-link">min</a></span><span class="op">(</span><span class="va">pointwise.list</span><span class="op">$</span><span class="va">lower</span><span class="op">)</span>, </span></span>
-<span class="r-in"><span>    <span class="fu"><a href="https://rdrr.io/r/base/Extremes.html" class="external-link">max</a></span><span class="op">(</span><span class="va">pointwise.list</span><span class="op">$</span><span class="va">upper</span><span class="op">)</span><span class="op">)</span>, xlab <span class="op">=</span> <span class="st">"True Concentration (ng/L)"</span>, </span></span>
-<span class="r-in"><span>    ylab <span class="op">=</span> <span class="st">"Observed Concentration (ng/L)"</span><span class="op">)</span> </span></span>
+<span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">Spike</span>, <span class="va">Cadmium</span>, ylim <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/Extremes.html" class="external-link">min</a></span><span class="op">(</span><span class="va">pointwise.list</span><span class="op">$</span><span class="va">lower</span><span class="op">)</span>,</span></span>
+<span class="r-in"><span>    <span class="fu"><a href="https://rdrr.io/r/base/Extremes.html" class="external-link">max</a></span><span class="op">(</span><span class="va">pointwise.list</span><span class="op">$</span><span class="va">upper</span><span class="op">)</span><span class="op">)</span>, xlab <span class="op">=</span> <span class="st">"True Concentration (ng/L)"</span>,</span></span>
+<span class="r-in"><span>    ylab <span class="op">=</span> <span class="st">"Observed Concentration (ng/L)"</span><span class="op">)</span></span></span>
 <span class="r-in"><span></span></span>
-<span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/r/graphics/abline.html" class="external-link">abline</a></span><span class="op">(</span><span class="va">calibrate.list</span>, lwd <span class="op">=</span> <span class="fl">2</span><span class="op">)</span> </span></span>
+<span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/r/graphics/abline.html" class="external-link">abline</a></span><span class="op">(</span><span class="va">calibrate.list</span>, lwd <span class="op">=</span> <span class="fl">2</span><span class="op">)</span></span></span>
 <span class="r-in"><span></span></span>
-<span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/r/graphics/lines.html" class="external-link">lines</a></span><span class="op">(</span><span class="va">newdata</span><span class="op">$</span><span class="va">Spike</span>, <span class="va">pointwise.list</span><span class="op">$</span><span class="va">lower</span>, lty <span class="op">=</span> <span class="fl">8</span>, lwd <span class="op">=</span> <span class="fl">2</span><span class="op">)</span> </span></span>
+<span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/r/graphics/lines.html" class="external-link">lines</a></span><span class="op">(</span><span class="va">newdata</span><span class="op">$</span><span class="va">Spike</span>, <span class="va">pointwise.list</span><span class="op">$</span><span class="va">lower</span>, lty <span class="op">=</span> <span class="fl">8</span>, lwd <span class="op">=</span> <span class="fl">2</span><span class="op">)</span></span></span>
 <span class="r-in"><span></span></span>
-<span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/r/graphics/lines.html" class="external-link">lines</a></span><span class="op">(</span><span class="va">newdata</span><span class="op">$</span><span class="va">Spike</span>, <span class="va">pointwise.list</span><span class="op">$</span><span class="va">upper</span>, lty <span class="op">=</span> <span class="fl">8</span>, lwd <span class="op">=</span> <span class="fl">2</span><span class="op">)</span> </span></span>
+<span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/r/graphics/lines.html" class="external-link">lines</a></span><span class="op">(</span><span class="va">newdata</span><span class="op">$</span><span class="va">Spike</span>, <span class="va">pointwise.list</span><span class="op">$</span><span class="va">upper</span>, lty <span class="op">=</span> <span class="fl">8</span>, lwd <span class="op">=</span> <span class="fl">2</span><span class="op">)</span></span></span>
 <span class="r-in"><span></span></span>
-<span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/r/graphics/title.html" class="external-link">title</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/paste.html" class="external-link">paste</a></span><span class="op">(</span><span class="st">"Calibration Line and 99% Prediction Limits"</span>, </span></span>
+<span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/r/graphics/title.html" class="external-link">title</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/paste.html" class="external-link">paste</a></span><span class="op">(</span><span class="st">"Calibration Line and 99% Prediction Limits"</span>,</span></span>
 <span class="r-in"><span>    <span class="st">"for US EPA Cadmium 111 Data"</span>, sep <span class="op">=</span> <span class="st">"\n"</span><span class="op">)</span><span class="op">)</span></span></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span>  <span class="co">#----------</span></span></span>
