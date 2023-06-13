@@ -69,7 +69,7 @@
     <div id="methods">
     <h2>Methods</h2>
     <p>Generic functions that have methods for objects of class 
-  <code>"boxcoxLm"</code> include: <br><code><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot</a></code>, <code><a href="print.html">print</a></code>.</p>
+  <code>"boxcoxLm"</code> include: <br><code><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot</a></code>, <code><a href="https://rdrr.io/r/base/print.html" class="external-link">print</a></code>.</p>
     </div>
     <div id="value">
     <h2>Value</h2>
@@ -172,45 +172,26 @@
 <span class="r-in"><span>  <span class="co">#-----------------------------------------</span></span></span>
 <span class="r-in"><span>  <span class="va">boxcox.list</span> <span class="op">&lt;-</span> <span class="fu"><a href="boxcox.html">boxcox</a></span><span class="op">(</span><span class="va">ozone.fit</span><span class="op">)</span> </span></span>
 <span class="r-in"><span>  <span class="va">boxcox.list</span> </span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $lambda</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] -2.0 -1.5 -1.0 -0.5  0.0  0.5  1.0  1.5  2.0</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $objective</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] 0.4286781 0.4673544 0.5896132 0.8301458 0.9871519 0.9819825 0.9408694</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [8] 0.8840770 0.8213675</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Results of Box-Cox Transformation</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> ---------------------------------</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $objective.name</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "PPCC"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Objective Name:                  PPCC</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $optimize</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] FALSE</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Linear Model:                    ozone.fit</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $optimize.bounds</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> lower upper </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>    NA    NA </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Sample Size:                     116</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $eps</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] 2.220446e-16</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $lm.obj</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Call:</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> lm(formula = ozone ~ temperature, data = Environmental.df, y = TRUE, </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>     qr = TRUE)</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Coefficients:</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> (Intercept)  temperature  </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>    -146.995        2.429  </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $sample.size</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] 116</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $data.name</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "ozone.fit"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> attr(,"class")</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "boxcoxLm"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  lambda      PPCC</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    -2.0 0.4286781</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    -1.5 0.4673544</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    -1.0 0.5896132</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    -0.5 0.8301458</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>     0.0 0.9871519</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>     0.5 0.9819825</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>     1.0 0.9408694</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>     1.5 0.8840770</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>     2.0 0.8213675</span>
 <span class="r-in"><span>  <span class="co">#Results of Box-Cox Transformation</span></span></span>
 <span class="r-in"><span>  <span class="co">#---------------------------------</span></span></span>
 <span class="r-in"><span>  <span class="co">#</span></span></span>
