@@ -337,7 +337,7 @@
   John Wiley and Sons, Hoboken, NJ.
 
   Helsel, D.R. (2012). \emph{Statistics for Censored Environmental Data Using Minitab and R,
-  Second Edition}.  John Wiley \& Sons, Hoboken, New Jersey.
+  Second Edition}.  John Wiley & Sons, Hoboken, New Jersey.
 
   Johnson, N.L., S. Kotz, and N. Balakrishnan. (1994).
   \emph{Continuous Univariate Distributions, Volume 1}. Second Edition.

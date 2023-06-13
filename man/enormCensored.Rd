@@ -849,7 +849,7 @@
   1766--1774.
 
   Helsel, D.R. (2012). \emph{Statistics for Censored Environmental Data Using Minitab and R,
-  Second Edition}.  John Wiley \& Sons, Hoboken, New Jersey.
+  Second Edition}.  John Wiley & Sons, Hoboken, New Jersey.
 
   Helsel, D.R., and T.A. Cohn. (1988).  Estimation of Descriptive Statistics for
   Multiply Censored Water Quality Data.  \emph{Water Resources Research}

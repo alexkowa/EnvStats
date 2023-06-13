@@ -201,8 +201,8 @@
   Section 2550.7(e)(8) [concerning solid waste facilities].
   Barclay's Law Publishers, San Francisco, CA.
 
-  Davis, C.B. (1998a).  \emph{Ground-Water Statistics \& Regulations:  Principles,
-  Progress and Problems}.  Second Edition.  Environmetrics \& Statistics Limited,
+  Davis, C.B. (1998a).  \emph{Ground-Water Statistics & Regulations:  Principles,
+  Progress and Problems}.  Second Edition.  Environmetrics & Statistics Limited,
   Henderson, NV.
 
   Davis, C.B. (1998b). Personal Communication, September 3, 1998.

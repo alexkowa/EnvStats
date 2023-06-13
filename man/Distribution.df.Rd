@@ -427,6 +427,6 @@
 }
 \references{
   Millard, S.P. (2013). \emph{EnvStats: An R Package for Environmental Statistics}.
-  Springer, New York.  \url{https://link.springer.com/book/9781461484554}.
+  Springer, New York.  \url{https://link.springer.com/book/10.1007/978-1-4614-8456-1}.
 }
 \keyword{datasets}
