@@ -378,6 +378,9 @@ function (x, method = ifelse(paired && paired.lines, "overplot",
             ci.mat[i, c("LCL", "UCL")] <- ci.vec
             ci.mat[i, "Conf.Level"] <- conf.level
         }
+        else{
+          sd.x <- NA
+        }
         if (show.ci) {
             if (n == 2 && paired && paired.lines && i == 1) {
                 if (vertical) {
