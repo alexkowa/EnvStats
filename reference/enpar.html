@@ -74,7 +74,7 @@
   for the mean.  The possible values are
   <code>"bootstrap"</code> (based on bootstrapping; the default), and 
   <code>"normal.approx"</code> (normal approximation).  
-  See the DETAILS section for more information.
+  See the <b>DETAILS</b> section for more information.
   This argument is ignored if <code>ci=FALSE</code>.</p></dd>
 
   <dt>ci.type</dt>
@@ -99,9 +99,12 @@
   confidence interval for the mean.  This argument is ignored if <code>ci=FALSE</code>.</p></dd>
 
   <dt>seed</dt>
-<dd><p>integer supplied to the function <code><a href="https://rdrr.io/r/base/Random.html" class="external-link">set.seed</a></code> and used when <br><code>ci=TRUE</code>.  The default value is
-  <code>seed=NULL</code>, in which case the current value of <code>.Random.seed</code> is used.
-  This argument is ignored if <code>ci=FALSE</code>.</p></dd>
+<dd><p>integer supplied to the function <code><a href="https://rdrr.io/r/base/Random.html" class="external-link">set.seed</a></code> and used when <br><code>ci=TRUE</code> and <code>ci.method="bootstrap"</code>.  The default value is
+  <code>seed=NULL</code>, in which case the current value of <code>.Random.seed</code> 
+  is used.  This argument is ignored if <code>ci=FALSE</code> or 
+  <code>ci.method="normal.approx"</code>.  This argument is necessary to create 
+  reproducible results for the bootstrapped confidence intervals 
+  (see the <b>EXAMPLES</b> section).</p></dd>
 
 </dl></div>
     <div id="details">
@@ -173,7 +176,7 @@
       the bootstrap sample.</p></li>
 <li><p>Repeat Steps 1 and 2 \(B\) times, where \(B\) is some large number.
       For the function <code>enpar</code>, the number of bootstraps \(B\) is
-      determined by the argument <code>n.bootstraps</code> (see the section ARGUMENTS above).
+      determined by the argument <code>n.bootstraps</code> (see the section <b>ARGUMENTS</b> above).
       The default value of <code>n.bootstraps</code> is <code>1000</code>.</p></li>
 <li><p>Use the \(B\) estimated values of \(\mu\) to compute the empirical
       cumulative distribution function of the estimator of \(\mu\) or to compute
@@ -282,11 +285,13 @@
 <span class="r-in"><span>  <span class="co"># Compute the mean concentration for each period along with</span></span></span>
 <span class="r-in"><span>  <span class="co"># a 95% bootstrap BCa confidence interval for the mean.</span></span></span>
 <span class="r-in"><span>  <span class="co">#</span></span></span>
-<span class="r-in"><span>  <span class="co"># Before remediation: 21.6 [13.7, 28.8]</span></span></span>
-<span class="r-in"><span>  <span class="co"># After remediation:   3.6 [1.9,   6.0]</span></span></span>
+<span class="r-in"><span>  <span class="co"># NOTE: Use of the argument "seed" is necessary to reproduce this example.</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co"># Before remediation: 21.6 [14.1, 30.1]</span></span></span>
+<span class="r-in"><span>  <span class="co"># After remediation:   3.6 [1.6,   5.7]</span></span></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/r/base/with.html" class="external-link">with</a></span><span class="op">(</span><span class="va">ACE.13.TCE.df</span>,</span></span>
-<span class="r-in"><span>    <span class="fu">enpar</span><span class="op">(</span><span class="va">TCE.mg.per.L</span><span class="op">[</span><span class="va">Period</span><span class="op">==</span><span class="st">"Before"</span><span class="op">]</span>, ci <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span><span class="op">)</span></span></span>
+<span class="r-in"><span>    <span class="fu">enpar</span><span class="op">(</span><span class="va">TCE.mg.per.L</span><span class="op">[</span><span class="va">Period</span><span class="op">==</span><span class="st">"Before"</span><span class="op">]</span>, ci <span class="op">=</span> <span class="cn">TRUE</span>, seed <span class="op">=</span> <span class="fl">476</span><span class="op">)</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Results of Distribution Parameter Estimation</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> --------------------------------------------</span>
@@ -311,12 +316,12 @@
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Confidence Level:                95%</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Confidence Interval:             Pct.LCL = 14.30697</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>                                  Pct.UCL = 29.46370</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>                                  BCa.LCL = 14.64128</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>                                  BCa.UCL = 29.54393</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>                                  t.LCL   = 13.05609</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>                                  t.UCL   = 31.49877</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Confidence Interval:             Pct.LCL = 13.95560</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                                  Pct.UCL = 29.79510</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                                  BCa.LCL = 14.16080</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                                  BCa.UCL = 30.06848</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                                  t.LCL   = 12.41945</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                                  t.UCL   = 32.47306</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span>  <span class="co">#Results of Distribution Parameter Estimation</span></span></span>
@@ -344,17 +349,17 @@
 <span class="r-in"><span>  <span class="co">#</span></span></span>
 <span class="r-in"><span>  <span class="co">#Confidence Level:                95%</span></span></span>
 <span class="r-in"><span>  <span class="co">#</span></span></span>
-<span class="r-in"><span>  <span class="co">#Confidence Interval:             Pct.LCL = 14.17153</span></span></span>
-<span class="r-in"><span>  <span class="co">#                                 Pct.UCL = 29.50987</span></span></span>
-<span class="r-in"><span>  <span class="co">#                                 BCa.LCL = 13.65911</span></span></span>
-<span class="r-in"><span>  <span class="co">#                                 BCa.UCL = 28.80277</span></span></span>
-<span class="r-in"><span>  <span class="co">#                                 t.LCL   = 12.59262</span></span></span>
-<span class="r-in"><span>  <span class="co">#                                 t.UCL   = 32.25692</span></span></span>
-<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="co">#Confidence Interval:             Pct.LCL = 13.95560</span></span></span>
+<span class="r-in"><span>  <span class="co">#                                 Pct.UCL = 29.79510</span></span></span>
+<span class="r-in"><span>  <span class="co">#                                 BCa.LCL = 14.16080</span></span></span>
+<span class="r-in"><span>  <span class="co">#                                 BCa.UCL = 30.06848</span></span></span>
+<span class="r-in"><span>  <span class="co">#                                 t.LCL   = 12.41945</span></span></span>
+<span class="r-in"><span>  <span class="co">#                                 t.UCL   = 32.47306</span></span></span>
+<span class="r-in"><span>  </span></span>
 <span class="r-in"><span>  <span class="co">#----------</span></span></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/r/base/with.html" class="external-link">with</a></span><span class="op">(</span><span class="va">ACE.13.TCE.df</span>, </span></span>
-<span class="r-in"><span>    <span class="fu">enpar</span><span class="op">(</span><span class="va">TCE.mg.per.L</span><span class="op">[</span><span class="va">Period</span><span class="op">==</span><span class="st">"After"</span><span class="op">]</span>, ci <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span><span class="op">)</span></span></span>
+<span class="r-in"><span>    <span class="fu">enpar</span><span class="op">(</span><span class="va">TCE.mg.per.L</span><span class="op">[</span><span class="va">Period</span><span class="op">==</span><span class="st">"After"</span><span class="op">]</span>, ci <span class="op">=</span> <span class="cn">TRUE</span>, seed <span class="op">=</span> <span class="fl">543</span><span class="op">)</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Results of Distribution Parameter Estimation</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> --------------------------------------------</span>
@@ -379,12 +384,12 @@
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Confidence Level:                95%</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Confidence Interval:             Pct.LCL = 1.756045</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>                                  Pct.UCL = 5.781325</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>                                  BCa.LCL = 1.733096</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>                                  BCa.UCL = 5.751113</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>                                  t.LCL   = 1.700691</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>                                  t.UCL   = 8.344234</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Confidence Interval:             Pct.LCL = 1.833843</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                                  Pct.UCL = 5.830230</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                                  BCa.LCL = 1.631655</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                                  BCa.UCL = 5.677514</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                                  t.LCL   = 1.683791</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                                  t.UCL   = 8.101829</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span>  <span class="co">#Results of Distribution Parameter Estimation</span></span></span>
@@ -412,12 +417,12 @@
 <span class="r-in"><span>  <span class="co">#</span></span></span>
 <span class="r-in"><span>  <span class="co">#Confidence Level:                95%</span></span></span>
 <span class="r-in"><span>  <span class="co">#</span></span></span>
-<span class="r-in"><span>  <span class="co">#Confidence Interval:             Pct.LCL = 1.690303</span></span></span>
-<span class="r-in"><span>  <span class="co">#                                 Pct.UCL = 5.743242</span></span></span>
-<span class="r-in"><span>  <span class="co">#                                 BCa.LCL = 1.908810</span></span></span>
-<span class="r-in"><span>  <span class="co">#                                 BCa.UCL = 5.967761</span></span></span>
-<span class="r-in"><span>  <span class="co">#                                 t.LCL   = 1.724995</span></span></span>
-<span class="r-in"><span>  <span class="co">#                                 t.UCL   = 8.553593</span></span></span>
+<span class="r-in"><span>  <span class="co">#Confidence Interval:             Pct.LCL = 1.833843</span></span></span>
+<span class="r-in"><span>  <span class="co">#                                 Pct.UCL = 5.830230</span></span></span>
+<span class="r-in"><span>  <span class="co">#                                 BCa.LCL = 1.631655</span></span></span>
+<span class="r-in"><span>  <span class="co">#                                 BCa.UCL = 5.677514</span></span></span>
+<span class="r-in"><span>  <span class="co">#                                 t.LCL   = 1.683791</span></span></span>
+<span class="r-in"><span>  <span class="co">#                                 t.UCL   = 8.101829</span></span></span>
 </code></pre></div>
     </div>
   </div>
