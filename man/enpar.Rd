@@ -27,7 +27,7 @@
   for the mean.  The possible values are
   \code{"bootstrap"} (based on bootstrapping; the default), and 
   \code{"normal.approx"} (normal approximation).  
-  See the DETAILS section for more information.
+  See the \bold{DETAILS} section for more information.
   This argument is ignored if \code{ci=FALSE}.
 }
   \item{ci.type}{
@@ -53,9 +53,12 @@
 }
   \item{seed}{
   integer supplied to the function \code{\link[base]{set.seed}} and used when \cr
-  \code{ci=TRUE}.  The default value is
-  \code{seed=NULL}, in which case the current value of \code{.Random.seed} is used.
-  This argument is ignored if \code{ci=FALSE}.
+  \code{ci=TRUE} and \code{ci.method="bootstrap"}.  The default value is
+  \code{seed=NULL}, in which case the current value of \code{.Random.seed} 
+  is used.  This argument is ignored if \code{ci=FALSE} or 
+  \code{ci.method="normal.approx"}.  This argument is necessary to create 
+  reproducible results for the bootstrapped confidence intervals 
+  (see the \bold{EXAMPLES} section).
 }
 }
 \details{
@@ -136,7 +139,7 @@
 
     \item Repeat Steps 1 and 2 \eqn{B} times, where \eqn{B} is some large number.
       For the function \code{enpar}, the number of bootstraps \eqn{B} is
-      determined by the argument \code{n.bootstraps} (see the section ARGUMENTS above).
+      determined by the argument \code{n.bootstraps} (see the section \bold{ARGUMENTS} above).
       The default value of \code{n.bootstraps} is \code{1000}.
 
     \item Use the \eqn{B} estimated values of \eqn{\mu} to compute the empirical
@@ -245,11 +248,13 @@
   # Compute the mean concentration for each period along with
   # a 95% bootstrap BCa confidence interval for the mean.
   #
-  # Before remediation: 21.6 [13.7, 28.8]
-  # After remediation:   3.6 [1.9,   6.0]
+  # NOTE: Use of the argument "seed" is necessary to reproduce this example.
+  #
+  # Before remediation: 21.6 [14.1, 30.1]
+  # After remediation:   3.6 [1.6,   5.7]
 
   with(ACE.13.TCE.df,
-    enpar(TCE.mg.per.L[Period=="Before"], ci = TRUE))
+    enpar(TCE.mg.per.L[Period=="Before"], ci = TRUE, seed = 476))
 
   #Results of Distribution Parameter Estimation
   #--------------------------------------------
@@ -276,17 +281,17 @@
   #
   #Confidence Level:                95%
   #
-  #Confidence Interval:             Pct.LCL = 14.17153
-  #                                 Pct.UCL = 29.50987
-  #                                 BCa.LCL = 13.65911
-  #                                 BCa.UCL = 28.80277
-  #                                 t.LCL   = 12.59262
-  #                                 t.UCL   = 32.25692
-
+  #Confidence Interval:             Pct.LCL = 13.95560
+  #                                 Pct.UCL = 29.79510
+  #                                 BCa.LCL = 14.16080
+  #                                 BCa.UCL = 30.06848
+  #                                 t.LCL   = 12.41945
+  #                                 t.UCL   = 32.47306
+  
   #----------
 
   with(ACE.13.TCE.df, 
-    enpar(TCE.mg.per.L[Period=="After"], ci = TRUE))
+    enpar(TCE.mg.per.L[Period=="After"], ci = TRUE, seed = 543))
 
   #Results of Distribution Parameter Estimation
   #--------------------------------------------
@@ -313,12 +318,12 @@
   #
   #Confidence Level:                95%
   #
-  #Confidence Interval:             Pct.LCL = 1.690303
-  #                                 Pct.UCL = 5.743242
-  #                                 BCa.LCL = 1.908810
-  #                                 BCa.UCL = 5.967761
-  #                                 t.LCL   = 1.724995
-  #                                 t.UCL   = 8.553593
+  #Confidence Interval:             Pct.LCL = 1.833843
+  #                                 Pct.UCL = 5.830230
+  #                                 BCa.LCL = 1.631655
+  #                                 BCa.UCL = 5.677514
+  #                                 t.LCL   = 1.683791
+  #                                 t.UCL   = 8.101829
 }
 \keyword{ distribution }
 \keyword{ htest }
