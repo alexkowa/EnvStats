@@ -13,7 +13,7 @@
   enparCensored(x, censored, censoring.side = "left", correct.se = FALSE,
     left.censored.min = "DL", right.censored.max = "DL", ci = FALSE,
     ci.method = "normal.approx", ci.type = "two-sided", conf.level = 0.95,
-    pivot.statistic = "z", ci.sample.size = NULL, n.bootstraps = 1000)
+    pivot.statistic = "z", ci.sample.size = NULL, n.bootstraps = 1000, seed = NULL)
 }
 \arguments{
   \item{x}{
@@ -65,7 +65,7 @@
   for the mean.  The possible values are
   \code{"normal.approx"} (normal approximation; the default), and
   \code{"bootstrap"} (based on bootstrapping).
-  See the DETAILS section for more information.
+  See the \bold{DETAILS} section for more information.
   This argument is ignored if \code{ci=FALSE}.
 }
   \item{ci.type}{
@@ -97,8 +97,16 @@
   \item{n.bootstraps}{
   numeric scalar indicating how many bootstraps to use to construct the
   confidence interval for the mean when \code{ci.type="bootstrap"}.  This
-  argument is ignored if \code{ci=FALSE} and/or \code{ci.method} does not
-  equal \code{"bootstrap"}.
+  argument is ignored if \code{ci=FALSE} or \code{ci.method="normal.approx"}.
+}
+  \item{seed}{
+  integer supplied to the function \code{\link[base]{set.seed}} and used when 
+  \code{ci=TRUE} and \cr
+  \code{ci.method="bootstrap"}.  The default value is
+  \code{seed=NULL}, in which case the current value of \code{.Random.seed} is used.
+  This argument is ignored if \code{ci=FALSE} or \code{ci.method="normal.approx"}.  
+  The \code{seed} argument is necessary in order to create reproducible results for 
+  the bootstrapped confidence intervals (see the \bold{EXAMPLES} section).
 }
 }
 \details{
@@ -228,7 +236,7 @@
       bootstrap sample will usually differ from the original estimate based on
       \eqn{\underline{x}}.  For the bootstrap-t method (see below), this step also
       involves estimating the standard error of the estimate of the mean and
-      computing the statistic \eqn{T = (\hat{\mu}_B - \hat{mu}) / \hat{\sigma}_{\hat{\mu}_B}}
+      computing the statistic \eqn{T = (\hat{\mu}_B - \hat{\mu}) / \hat{\sigma}_{\hat{\mu}_B}}
       where \eqn{\hat{\mu}} denotes the estimate of the mean based on the original sample,
       and \eqn{\hat{\mu}_B} and \eqn{\hat{\sigma}_{\hat{\mu}_B}} denote the estimate of
       the mean and estimate of the standard error of the estimate of the mean based on
@@ -236,7 +244,8 @@
 
     \item Repeat Steps 1 and 2 \eqn{B} times, where \eqn{B} is some large number.
       For the function \code{enparCensored}, the number of bootstraps \eqn{B} is
-      determined by the argument \code{n.bootstraps} (see the section ARGUMENTS above).
+      determined by the argument \code{n.bootstraps} (see the section \bold{ARGUMENTS} 
+      above).
       The default value of \code{n.bootstraps} is \code{1000}.
 
     \item Use the \eqn{B} estimated values of \eqn{\mu} to compute the empirical
@@ -423,7 +432,7 @@
 }
 \seealso{
   \code{\link{ecdfPlotCensored}}, \code{\link{qqPlotCensored}},
-  \code{\link{estimateCensored.object}}.
+  \code{\link{estimateCensored.object}}, \code{\link{enpar}}.
 }
 \examples{
   # Example 15-1 of USEPA (2009, page 15-10) gives an example of
@@ -546,6 +555,69 @@
   #
   #Confidence Interval:             LCL = 10.67499
   #                                 UCL = 29.05901
+
+  #----------
+
+  # Now estimate the mean and standard deviation on the
+  # original scale nonparametrically using the
+  # Kaplan-Meier method, but create a bootstrap 
+  # confidence interval for the mean.
+  #
+  # NOTE: The use of the "seed" argument lets you 
+  #       reproduce this example.
+  #-----------------------------------------------------
+
+  with(EPA.09.Ex.15.1.manganese.df,
+    enparCensored(Manganese.ppb, Censored, ci = TRUE, 
+      ci.method = "bootstrap", seed = 452))
+
+  #Results of Distribution Parameter Estimation
+  #Based on Type I Censored Data
+  #--------------------------------------------
+  #
+  #Assumed Distribution:            None
+  #
+  #Censoring Side:                  left
+  #
+  #Censoring Level(s):              2 5
+  #
+  #Estimated Parameter(s):          mean    = 19.867000
+  #                                 sd      = 25.317737
+  #                                 se.mean =  4.689888
+  #
+  #Estimation Method:               Kaplan-Meier
+  #
+  #Data:                            Manganese.ppb
+  #
+  #Censoring Variable:              Censored
+  #
+  #Sample Size:                     25
+  #
+  #Percent Censored:                24%
+  #
+  #Confidence Interval for:         mean
+  #
+  #Confidence Interval Method:      Bootstrap
+  #
+  #Number of Bootstraps:            1000
+  #
+  #Number of Bootstrap Samples
+  #With No Censored Values:         2
+  #
+  #Number of Times Bootstrap
+  #Repeated Because Too Few
+  #Uncensored Observations:         0
+  #
+  #Confidence Interval Type:        two-sided
+  #
+  #Confidence Level:                95%
+  #
+  #Confidence Interval:             Pct.LCL = 10.81178
+  #                                 Pct.UCL = 31.13980
+  #                                 BCa.LCL = 10.76437
+  #                                 BCa.UCL = 30.78149
+  #                                 t.LCL   = 11.12648
+  #                                 t.UCL   = 42.23725
 }
 \keyword{ distribution }
 \keyword{ htest }
