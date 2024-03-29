@@ -2,7 +2,7 @@ enparCensored <-
 function (x, censored, censoring.side = "left", correct.se = FALSE, 
     left.censored.min = "DL", right.censored.max = "DL", ci = FALSE, 
     ci.method = "normal.approx", ci.type = "two-sided", conf.level = 0.95, 
-    pivot.statistic = "z", ci.sample.size = NULL, n.bootstraps = 1000) 
+    pivot.statistic = "z", ci.sample.size = NULL, n.bootstraps = 1000, seed = NULL) 
 {
     if (!is.vector(x, mode = "numeric")) 
         stop("'x' must be a numeric vector")
@@ -82,21 +82,25 @@ function (x, censored, censoring.side = "left", correct.se = FALSE,
     if (!ci || ci.method != "bootstrap") {
         param.ci.list <- enparCensored.km(x = x, censored = censored, 
             censoring.side = censoring.side, correct.se = correct.se, 
-            left.censored.min = left.censored.min, right.censored.max = right.censored.max, 
+            left.censored.min = left.censored.min, 
+            right.censored.max = right.censored.max, 
             ci = ci, ci.type = ci.type, conf.level = conf.level, 
             pivot.statistic = pivot.statistic, ci.sample.size = ci.sample.size)
     }
     else {
         param.ci.list <- enparCensored.km(x = x, censored = censored, 
             censoring.side = censoring.side, correct.se = correct.se, 
-            left.censored.min = left.censored.min, right.censored.max = right.censored.max, 
+            left.censored.min = left.censored.min, 
+            right.censored.max = right.censored.max, 
             ci = FALSE)
         ci.list <- enparCensored.bootstrap.ci(x = x, censored = censored, 
             censoring.side = censoring.side, correct.se = correct.se, 
-            left.censored.min = left.censored.min, right.censored.max = right.censored.max, 
+            left.censored.min = left.censored.min, 
+            right.censored.max = right.censored.max, 
             est.fcn = "enparCensored.km", ci.type = ci.type, 
             conf.level = conf.level, n.bootstraps = n.bootstraps, 
-            obs.mean = param.ci.list$parameters["mean"], obs.se.mean = param.ci.list$parameters["se.mean"])
+            obs.mean = param.ci.list$parameters["mean"], 
+            obs.se.mean = param.ci.list$parameters["se.mean"], seed = seed)
         param.ci.list <- c(param.ci.list, list(ci.obj = ci.list))
     }
     method <- "Kaplan-Meier"
