@@ -1,7 +1,7 @@
 enparCensored.bootstrap.ci <-
 function (x, censored, censoring.side, correct.se, left.censored.min,
     right.censored.max, est.fcn, ci.type, conf.level, n.bootstraps,
-    obs.mean, obs.se.mean)
+    obs.mean, obs.se.mean, seed)
 {
     N <- length(x)
     boot.vec.mean <- numeric(n.bootstraps)
@@ -9,6 +9,9 @@ function (x, censored, censoring.side, correct.se, left.censored.min,
     too.few.obs.count <- 0
     no.cen.obs.count <- 0
     x.no.cen <- x[!censored]
+    if(!is.null(seed)) {
+        set.seed(seed)
+    }
     for (i in 1:n.bootstraps) {
         index <- sample(N, replace = TRUE)
         new.x <- x[index]
@@ -28,7 +31,8 @@ function (x, censored, censoring.side, correct.se, left.censored.min,
         else {
             params <- do.call(est.fcn, list(x = new.x, censored = new.censored,
                 censoring.side = censoring.side, correct.se = correct.se,
-                left.censored.min = left.censored.min, right.censored.max = right.censored.max,
+                left.censored.min = left.censored.min, 
+                right.censored.max = right.censored.max,
                 ci = FALSE))$parameters
             mu.hat <- params["mean"]
             boot.vec.mean[i] <- mu.hat
@@ -48,7 +52,8 @@ function (x, censored, censoring.side, correct.se, left.censored.min,
         z0 <- qnorm(sum(boot.vec.mean <= obs.mean)/n.bootstraps)
         jack.vec <- enparCensored.jackknife(x = x, censored = censored,
             censoring.side = censoring.side, correct.se = correct.se,
-            left.censored.min = left.censored.min, right.censored.max = right.censored.max,
+            left.censored.min = left.censored.min, 
+            right.censored.max = right.censored.max,
             est.fcn = est.fcn)
         num <- sum(as.vector(scale(jack.vec, scale = FALSE))^3)
         denom <- 6 * (((length(jack.vec) - 1) * var(jack.vec))^(3/2))
