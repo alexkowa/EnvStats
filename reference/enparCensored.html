@@ -59,7 +59,7 @@
     <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">enparCensored</span><span class="op">(</span><span class="va">x</span>, <span class="va">censored</span>, censoring.side <span class="op">=</span> <span class="st">"left"</span>, correct.se <span class="op">=</span> <span class="cn">FALSE</span>,</span>
 <span>    left.censored.min <span class="op">=</span> <span class="st">"DL"</span>, right.censored.max <span class="op">=</span> <span class="st">"DL"</span>, ci <span class="op">=</span> <span class="cn">FALSE</span>,</span>
 <span>    ci.method <span class="op">=</span> <span class="st">"normal.approx"</span>, ci.type <span class="op">=</span> <span class="st">"two-sided"</span>, conf.level <span class="op">=</span> <span class="fl">0.95</span>,</span>
-<span>    pivot.statistic <span class="op">=</span> <span class="st">"z"</span>, ci.sample.size <span class="op">=</span> <span class="cn">NULL</span>, n.bootstraps <span class="op">=</span> <span class="fl">1000</span><span class="op">)</span></span></code></pre></div>
+<span>    pivot.statistic <span class="op">=</span> <span class="st">"z"</span>, ci.sample.size <span class="op">=</span> <span class="cn">NULL</span>, n.bootstraps <span class="op">=</span> <span class="fl">1000</span>, seed <span class="op">=</span> <span class="cn">NULL</span><span class="op">)</span></span></code></pre></div>
     </div>
 
     <div id="arguments">
@@ -111,7 +111,7 @@
   for the mean.  The possible values are
   <code>"normal.approx"</code> (normal approximation; the default), and
   <code>"bootstrap"</code> (based on bootstrapping).
-  See the DETAILS section for more information.
+  See the <b>DETAILS</b> section for more information.
   This argument is ignored if <code>ci=FALSE</code>.</p></dd>
 
   <dt>ci.type</dt>
@@ -142,8 +142,15 @@
   <dt>n.bootstraps</dt>
 <dd><p>numeric scalar indicating how many bootstraps to use to construct the
   confidence interval for the mean when <code>ci.type="bootstrap"</code>.  This
-  argument is ignored if <code>ci=FALSE</code> and/or <code>ci.method</code> does not
-  equal <code>"bootstrap"</code>.</p></dd>
+  argument is ignored if <code>ci=FALSE</code> or <code>ci.method="normal.approx"</code>.</p></dd>
+
+  <dt>seed</dt>
+<dd><p>integer supplied to the function <code><a href="https://rdrr.io/r/base/Random.html" class="external-link">set.seed</a></code> and used when 
+  <code>ci=TRUE</code> and <br><code>ci.method="bootstrap"</code>.  The default value is
+  <code>seed=NULL</code>, in which case the current value of <code>.Random.seed</code> is used.
+  This argument is ignored if <code>ci=FALSE</code> or <code>ci.method="normal.approx"</code>.  
+  The <code>seed</code> argument is necessary in order to create reproducible results for 
+  the bootstrapped confidence intervals (see the <b>EXAMPLES</b> section).</p></dd>
 
 </dl></div>
     <div id="details">
@@ -261,14 +268,15 @@
       bootstrap sample will usually differ from the original estimate based on
       \(\underline{x}\).  For the bootstrap-t method (see below), this step also
       involves estimating the standard error of the estimate of the mean and
-      computing the statistic \(T = (\hat{\mu}_B - \hat{mu}) / \hat{\sigma}_{\hat{\mu}_B}\)
+      computing the statistic \(T = (\hat{\mu}_B - \hat{\mu}) / \hat{\sigma}_{\hat{\mu}_B}\)
       where \(\hat{\mu}\) denotes the estimate of the mean based on the original sample,
       and \(\hat{\mu}_B\) and \(\hat{\sigma}_{\hat{\mu}_B}\) denote the estimate of
       the mean and estimate of the standard error of the estimate of the mean based on
       the bootstrap sample.</p></li>
 <li><p>Repeat Steps 1 and 2 \(B\) times, where \(B\) is some large number.
       For the function <code>enparCensored</code>, the number of bootstraps \(B\) is
-      determined by the argument <code>n.bootstraps</code> (see the section ARGUMENTS above).
+      determined by the argument <code>n.bootstraps</code> (see the section <b>ARGUMENTS</b> 
+      above).
       The default value of <code>n.bootstraps</code> is <code>1000</code>.</p></li>
 <li><p>Use the \(B\) estimated values of \(\mu\) to compute the empirical
       cumulative distribution function of the estimator of \(\mu\) or to compute
@@ -434,7 +442,7 @@
     <div id="see-also">
     <h2>See also</h2>
     <div class="dont-index"><p><code><a href="ecdfPlotCensored.html">ecdfPlotCensored</a></code>, <code><a href="qqPlotCensored.html">qqPlotCensored</a></code>,
-  <code><a href="estimateCensored.object.html">estimateCensored.object</a></code>.</p></div>
+  <code><a href="estimateCensored.object.html">estimateCensored.object</a></code>, <code><a href="enpar.html">enpar</a></code>.</p></div>
     </div>
 
     <div id="ref-examples">
@@ -663,6 +671,120 @@
 <span class="r-in"><span>  <span class="co">#</span></span></span>
 <span class="r-in"><span>  <span class="co">#Confidence Interval:             LCL = 10.67499</span></span></span>
 <span class="r-in"><span>  <span class="co">#                                 UCL = 29.05901</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="co">#----------</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="co"># Now estimate the mean and standard deviation on the</span></span></span>
+<span class="r-in"><span>  <span class="co"># original scale nonparametrically using the</span></span></span>
+<span class="r-in"><span>  <span class="co"># Kaplan-Meier method, but create a bootstrap </span></span></span>
+<span class="r-in"><span>  <span class="co"># confidence interval for the mean.</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co"># NOTE: The use of the "seed" argument lets you </span></span></span>
+<span class="r-in"><span>  <span class="co">#       reproduce this example.</span></span></span>
+<span class="r-in"><span>  <span class="co">#-----------------------------------------------------</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/r/base/with.html" class="external-link">with</a></span><span class="op">(</span><span class="va">EPA.09.Ex.15.1.manganese.df</span>,</span></span>
+<span class="r-in"><span>    <span class="fu">enparCensored</span><span class="op">(</span><span class="va">Manganese.ppb</span>, <span class="va">Censored</span>, ci <span class="op">=</span> <span class="cn">TRUE</span>, </span></span>
+<span class="r-in"><span>      ci.method <span class="op">=</span> <span class="st">"bootstrap"</span>, seed <span class="op">=</span> <span class="fl">452</span><span class="op">)</span><span class="op">)</span></span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Results of Distribution Parameter Estimation</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Based on Type I Censored Data</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> --------------------------------------------</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Assumed Distribution:            None</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Censoring Side:                  left</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Censoring Level(s):              2 5 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Estimated Parameter(s):          mean    = 19.867000</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                                  sd      = 25.317737</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                                  se.mean =  4.689888</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Estimation Method:               Kaplan-Meier</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Data:                            Manganese.ppb</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Censoring Variable:              Censored</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Sample Size:                     25</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Percent Censored:                24%</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Confidence Interval for:         mean</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Assumed Sample Size:             25</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Confidence Interval Method:      Bootstrap</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Number of Bootstraps:            1000</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Number of Bootstrap Samples</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> With No Censored Values:         2</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Number of Times Bootstrap</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Repeated Because Too Few</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Uncensored Observations:         0</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Confidence Interval Type:        two-sided</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Confidence Level:                95%</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Confidence Interval:             Pct.LCL = 10.81178</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                                  Pct.UCL = 31.13980</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                                  BCa.LCL = 10.76437</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                                  BCa.UCL = 30.78149</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                                  t.LCL   = 11.12648</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                                  t.UCL   = 42.23725</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="co">#Results of Distribution Parameter Estimation</span></span></span>
+<span class="r-in"><span>  <span class="co">#Based on Type I Censored Data</span></span></span>
+<span class="r-in"><span>  <span class="co">#--------------------------------------------</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Assumed Distribution:            None</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Censoring Side:                  left</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Censoring Level(s):              2 5</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Estimated Parameter(s):          mean    = 19.867000</span></span></span>
+<span class="r-in"><span>  <span class="co">#                                 sd      = 25.317737</span></span></span>
+<span class="r-in"><span>  <span class="co">#                                 se.mean =  4.689888</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Estimation Method:               Kaplan-Meier</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Data:                            Manganese.ppb</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Censoring Variable:              Censored</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Sample Size:                     25</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Percent Censored:                24%</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Confidence Interval for:         mean</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Confidence Interval Method:      Bootstrap</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Number of Bootstraps:            1000</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Number of Bootstrap Samples</span></span></span>
+<span class="r-in"><span>  <span class="co">#With No Censored Values:         2</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Number of Times Bootstrap</span></span></span>
+<span class="r-in"><span>  <span class="co">#Repeated Because Too Few</span></span></span>
+<span class="r-in"><span>  <span class="co">#Uncensored Observations:         0</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Confidence Interval Type:        two-sided</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Confidence Level:                95%</span></span></span>
+<span class="r-in"><span>  <span class="co">#</span></span></span>
+<span class="r-in"><span>  <span class="co">#Confidence Interval:             Pct.LCL = 10.81178</span></span></span>
+<span class="r-in"><span>  <span class="co">#                                 Pct.UCL = 31.13980</span></span></span>
+<span class="r-in"><span>  <span class="co">#                                 BCa.LCL = 10.76437</span></span></span>
+<span class="r-in"><span>  <span class="co">#                                 BCa.UCL = 30.78149</span></span></span>
+<span class="r-in"><span>  <span class="co">#                                 t.LCL   = 11.12648</span></span></span>
+<span class="r-in"><span>  <span class="co">#                                 t.UCL   = 42.23725</span></span></span>
 </code></pre></div>
     </div>
   </div>
