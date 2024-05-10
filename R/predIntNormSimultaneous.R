@@ -5,6 +5,13 @@ function (x, n.mean = 1, k = 1, m = 2, r = 1, rule = "k.of.m",
 {
     rule <- match.arg(rule, c("k.of.m", "CA", "Modified.CA"))
     pi.type <- match.arg(pi.type, c("upper", "lower", "two-sided"))
+    if (pi.type == "two-sided") {
+        stop(paste(
+            "Two-sided simultaneous prediction intervals are not currently available.\n",
+            "NOTE: Two-sided simultaneous prediction intervals computed using\n",
+            "Versions 2.4.0 - 2.8.1 of EnvStats are *NOT* valid."
+        ))
+    }
     switch(rule, k.of.m = {
         if (!is.vector(k, mode = "numeric") || length(k) != 1 ||
             k != trunc(k) || k < 1 || !is.vector(n.mean, mode = "numeric") ||
@@ -74,16 +81,16 @@ function (x, n.mean = 1, k = 1, m = 2, r = 1, rule = "k.of.m",
     K <- predIntNormSimultaneousK(n = n, df = df, n.mean = n.mean,
         k = k, m = m, r = r, rule = rule, delta.over.sigma = delta.over.sigma,
         pi.type = pi.type, conf.level = conf.level, K.tol = K.tol)
-    switch(pi.type, `two-sided` = {
-        LPL <- xbar - K * s
-        UPL <- xbar + K * s
-    }, lower = {
-        LPL <- xbar - K * s
-        UPL <- Inf
-    }, upper = {
-        LPL <- -Inf
-        UPL <- xbar + K * s
-    })
+    switch(pi.type, 
+        lower = {
+            LPL <- xbar - K * s
+            UPL <- Inf
+        }, 
+        upper = {
+            LPL <- -Inf
+            UPL <- xbar + K * s
+        }
+    )
     limits <- c(LPL, UPL)
     names(limits) <- c("LPL", "UPL")
     string <- ifelse(rule == "k.of.m", "", paste(" (", rule,
@@ -93,7 +100,7 @@ function (x, n.mean = 1, k = 1, m = 2, r = 1, rule = "k.of.m",
     else if (rule == "Modified.CA")
         k <- "First.or.at.least.two.of.next.three"
     pi.obj <- list(name = "Prediction", rule = rule, limits = limits,
-        type = ifelse(pi.type == "two.sided", "two-sided", pi.type),
+        type = pi.type,
         method = paste("exact", string, sep = ""), conf.level = conf.level,
         sample.size = n, dof = df, k = k, m = m, r = r,
         delta.over.sigma = delta.over.sigma,

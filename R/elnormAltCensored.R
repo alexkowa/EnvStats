@@ -48,6 +48,16 @@ function (x, censored, method = "mle", censoring.side = "left",
                 multiple <- FALSE
         }
     }
+    adj <- FALSE
+    if(ci && ci.method == "profile.likelihood") {
+        if(censoring.side == "left") {
+            mf <- 10^ceiling(log((1/max(x)), 10))
+            if(mf > 1) {
+                adj <- TRUE
+                x <- mf * x
+            }
+        }
+    }
     args.list <- list(x = x, censored = censored, method = method, 
         censoring.side = censoring.side, ci = ci, ci.method = ci.method, 
         ci.type = ci.type, conf.level = conf.level, n.bootstraps = n.bootstraps, 
@@ -57,6 +67,10 @@ function (x, censored, method = "mle", censoring.side = "left",
     }
     else {
         ret.list <- do.call("elnormAltSinglyCensored", args = args.list)
+    }
+    if(adj) {
+        ret.list$parameters <- ret.list$parameters/mf
+        ret.list$interval$limits <- ret.list$interval$limits/mf
     }
     ret.list$data.name <- data.name
     ret.list$censoring.name <- censoring.name

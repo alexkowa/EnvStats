@@ -4,6 +4,14 @@ function (n, df = n - 1, n.mean = 1, k = 1, m = 1, r = 1, delta.over.sigma = 0,
     K.tol = .Machine$double.eps^(1/2),
     integrate.args.list = NULL)
 {
+    pi.type <- match.arg(pi.type)
+    if (pi.type == "two-sided") {
+        stop(paste(
+            "Two-sided simultaneous prediction intervals are not currently available.\n",
+            "NOTE: Two-sided simultaneous prediction intervals computed using\n",
+            "Versions 2.4.0 - 2.8.1 of EnvStats are *NOT* valid."
+        ))
+    }
     if (!is.vector(n, mode = "numeric") || length(n) != 1 ||
         !is.vector(df, mode = "numeric") || length(df) != 1 ||
         !is.vector(k, mode = "numeric") || length(k) != 1 ||
@@ -33,7 +41,6 @@ function (n, df = n - 1, n.mean = 1, k = 1, m = 1, r = 1, delta.over.sigma = 0,
         stop("'delta.over.sigma' must be finite")
     if (conf.level <= 0 || conf.level >= 1)
         stop("'conf.level' must be between 0 and 1")
-    pi.type <- match.arg(pi.type)
     if (k == m & r == 1 & delta.over.sigma == 0) {
         K <- predIntNormK(n = n, df = df, n.mean = n.mean, k = m,
             method = "exact", pi.type = pi.type, conf.level = conf.level)
