@@ -6,7 +6,7 @@
 \description{
   Estimate the mean, standard deviation, and standard error of the mean
   nonparametrically given a sample of data, and optionally construct
-  a bootstrap confidence interval for the mean.
+  a confidence interval for the mean.
 }
 \usage{
   enpar(x, ci = FALSE, ci.method = "bootstrap", ci.type = "two-sided", 
@@ -45,11 +45,14 @@
   for the mean when \code{ci.method="normal.approx"}.  Possible values are
   \code{"z"} (confidence interval based on the z-statistic; the default), and
   \code{"t"} (confidence interval based on the t-statistic).
-  This argument is ignored if \code{ci=FALSE}.
+  This argument is ignored if \code{ci=FALSE} or \cr
+  \code{ci.method="bootstrap"}.
 }
   \item{n.bootstraps}{
   numeric scalar indicating how many bootstraps to use to construct the
-  confidence interval for the mean.  This argument is ignored if \code{ci=FALSE}.
+  confidence interval for the mean.  This argument is ignored if 
+  \code{ci=FALSE} or \cr
+  \code{ci.method="normal.approx"}.
 }
   \item{seed}{
   integer supplied to the function \code{\link[base]{set.seed}} and used when \cr
@@ -75,10 +78,10 @@
   the square root of the estimated variance above:
   \deqn{\hat{\sigma} = s \;\;\;\; (3)}
   It can be shown that the variance of the sample mean is given by:
-  \deqn{\sigma^2_{\hat{\mu}} = \frac{\sigma^2}{n} \;\;\;\; (4)}
+  \deqn{\sigma^2_{\hat{\mu}} = \sigma^2_{\bar{x}} = \frac{\sigma^2}{n} \;\;\;\; (4)}
   so the standard deviation of the sample mean (usually called the \emph{standard error}) 
   can be estimated by:
-  \deqn{\hat{\sigma}_{\hat{\mu}} = \frac{s}{\sqrt{n}} \;\;\;\; (5)}
+  \deqn{\hat{\sigma}_{\hat{\mu}} = \hat{\sigma}_{\bar{x}} = \frac{s}{\sqrt{n}} \;\;\;\; (5)}
   \cr
 
   \bold{Confidence Intervals} \cr
@@ -232,8 +235,8 @@
   \code{\link{enparCensored}} for censored data.  To estimate the median and 
   compute a confidence interval, use \code{\link{eqnpar}}.
 
-  The result of the call to \code{enpar} with \code{ci.method == "normal.approx"} 
-  and \code{pivot.statistic = "t"} produces the same result as the call to 
+  The result of the call to \code{enpar} with \code{ci.method="normal.approx"} 
+  and \code{pivot.statistic="t"} produces the same result as the call to 
   \code{\link{enorm}} with \code{ci.param="mean"}.
 }
 \seealso{
@@ -250,8 +253,8 @@
   #
   # NOTE: Use of the argument "seed" is necessary to reproduce this example.
   #
-  # Before remediation: 21.6 [14.1, 30.1]
-  # After remediation:   3.6 [1.6,   5.7]
+  # Before remediation: 21.6 [14.2, 30.1]
+  # After remediation:   3.6 [ 1.6,  5.7]
 
   with(ACE.13.TCE.df,
     enpar(TCE.mg.per.L[Period=="Before"], ci = TRUE, seed = 476))
@@ -327,4 +330,3 @@
 }
 \keyword{ distribution }
 \keyword{ htest }
-
