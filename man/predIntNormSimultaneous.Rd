@@ -62,8 +62,10 @@
 }
   \item{pi.type}{
   character string indicating what kind of prediction interval to compute.
-  The possible values are \code{pi.type="upper"} (the default),
-  \code{pi.type="lower"} and \code{pi.type="two-sided"}.
+  The possible values are \code{pi.type="upper"} (the default) and 
+  \code{pi.type="lower"}.  \bold{NOTE:} In Versions 2.4.0 - 2.8.1 of \emph{EnvStats}, 
+  the value \code{pi.type="two-sided"} was allowed, but these two-sided simultaneous 
+  prediction intervals were based on faulty assumptions and were \bold{NOT} valid.
 }
   \item{conf.level}{
   a scalar between 0 and 1 indicating the confidence level of the prediction interval.
@@ -133,7 +135,7 @@
   the argument \code{n.mean} corresponds to \eqn{w}.
   \cr
 
-  \emph{The Form of a Prediction Interval} \cr
+  \emph{The Form of a Prediction Interval for 1 Future Observation} \cr
   Let \eqn{\underline{x} = x_1, x_2, \ldots, x_n} denote a vector of \eqn{n}
   observations from a \link[stats:Normal]{normal distribution} with parameters
   \code{mean=}\eqn{\mu} and \code{sd=}\eqn{\sigma}.  Also, let \eqn{w} denote the
@@ -162,12 +164,19 @@
   and the form of a one-sided upper prediction interval is:
   \deqn{[-\infty, \bar{x} + Ks] \;\;\;\;\;\; (5)}
 
-  \bold{Note:}  For simultaneous prediction intervals, only lower
-  (\code{pi.type="lower"}) and upper \cr
-  (\code{pi.type="upper"}) prediction
-  intervals are available.
-
   The derivation of the constant \eqn{K} is explained in the help file for
+  \code{\link{predIntNormK}}.
+  \cr
+
+  \emph{The Form of a Simultaneous Prediction Interval} \cr
+  \bold{For \emph{simultaneous} prediction intervals, only lower 
+  (\code{pi.type="lower"}) and upper (\code{pi.type="upper"}) prediction
+  intervals are available.}  Two-sided simultaneous prediction intervals were 
+  available in Versions 2.4.0 - 2.8.1 of \emph{EnvStats}, but these prediction 
+  intervals were based on an incorrect algorithm for \eqn{K}.
+
+  Equations (4) and (5) above hold for simultaneous prediction intervals, but the 
+  derivation of the constant \eqn{K} is more difficult, and is explained in the help file for
   \code{\link{predIntNormSimultaneousK}}.
   \cr
 
@@ -370,6 +379,35 @@
 
   predIntNormSimultaneous(dat, k = 1, m = 3)
 
+  #Results of Distribution Parameter Estimation
+  #--------------------------------------------
+  #
+  #Assumed Distribution:            Normal
+  #
+  #Estimated Parameter(s):          mean = 10.269773
+  #                                 sd   =  2.210246
+  #
+  #Estimation Method:               mvue
+  #
+  #Data:                            dat
+  #
+  #Sample Size:                     8
+  #
+  #Prediction Interval Method:      exact
+  #
+  #Prediction Interval Type:        upper
+  #
+  #Confidence Level:                95%
+  #
+  #Minimum Number of
+  #Future Observations
+  #Interval Should Contain:         1
+  #
+  #Total Number of
+  #Future Observations:             3
+  #
+  #Prediction Interval:             LPL =    -Inf
+  #                                 UPL = 11.4021
 
   #----------
 
@@ -380,7 +418,52 @@
   est.list <- enorm(dat)
   est.list
 
+  #Results of Distribution Parameter Estimation
+  #--------------------------------------------
+  #
+  #Assumed Distribution:            Normal
+  #
+  #Estimated Parameter(s):          mean = 10.269773
+  #                                 sd   =  2.210246
+  #
+  #Estimation Method:               mvue
+  #
+  #Data:                            dat
+  #
+  #Sample Size:                     8
+
+
   predIntNormSimultaneous(est.list, k = 1, m = 3)
+
+  #Results of Distribution Parameter Estimation
+  #--------------------------------------------
+  #
+  #Assumed Distribution:            Normal
+  #
+  #Estimated Parameter(s):          mean = 10.269773
+  #                                 sd   =  2.210246
+  #
+  #Estimation Method:               mvue
+  #
+  #Data:                            dat
+  #
+  #Sample Size:                     8
+  #
+  #Prediction Interval Method:      exact
+  #
+  #Prediction Interval Type:        upper
+  #
+  #Confidence Level:                95%
+  #
+  #Minimum Number of
+  #Future Observations
+  #Interval Should Contain:         1
+  #
+  #Total Number of
+  #Future Observations:             3
+  #
+  #Prediction Interval:             LPL =    -Inf
+  #                                 UPL = 11.4021 
 
   #----------
 
@@ -389,11 +472,17 @@
   # bound for the Modified California rule is between the bound for the
   # 1-of-3 rule bound and the bound for the California rule.
 
-  predIntNormSimultaneous(dat, k = 1, m = 3)$interval$limits["UPL"]
+  predIntNormSimultaneous(dat, k = 1, m = 3)$interval$limits["UPL"] 
+  #    UPL 
+  #11.4021 
+ 
+  predIntNormSimultaneous(dat, m = 3, rule = "CA")$interval$limits["UPL"]  
+  #     UPL 
+  #13.03717 
 
-  predIntNormSimultaneous(dat, m = 3, rule = "CA")$interval$limits["UPL"]
-
-  predIntNormSimultaneous(dat, rule = "Modified.CA")$interval$limits["UPL"]
+  predIntNormSimultaneous(dat, rule = "Modified.CA")$interval$limits["UPL"]  
+  #     UPL 
+  #12.12201
 
   #----------
 
@@ -402,8 +491,12 @@
   # 1-of-3 rule.
 
   predIntNormSimultaneous(dat, k = 1, m = 3)$interval$limits["UPL"]
+  #    UPL 
+  #11.4021
 
   predIntNormSimultaneous(dat, k = 1, m = 3, r = 10)$interval$limits["UPL"]
+  #     UPL 
+  #13.28234
 
   #----------
 
@@ -411,9 +504,13 @@
   # based on individual observations versus based on means of order 4.
 
   predIntNormSimultaneous(dat, k = 1, m = 3)$interval$limits["UPL"]
+  #    UPL 
+  #11.4021
 
-  predIntNormSimultaneous(dat, n.mean = 4, k = 1,
+  predIntNormSimultaneous(dat, n.mean = 4, k = 1, 
     m = 3)$interval$limits["UPL"]
+  #     UPL 
+  #11.26157
 
   #==========
 
@@ -447,38 +544,121 @@
   conf.level <- (1 - SWFPR)^(1 / (nc * nw))
 
   conf.level
+  #[1] 0.9997893
 
   #----------
 
   # Look at the data:
 
   names(EPA.09.Ex.19.1.sulfate.df)
+  #[1] "Well"                 "Month"                "Day"                 
+  #[4] "Year"                 "Date"                 "Sulfate.mg.per.l"    
+  #[7] "log.Sulfate.mg.per.l"
 
-  EPA.09.Ex.19.1.sulfate.df[,
+  EPA.09.Ex.19.1.sulfate.df[, 
     c("Well", "Date", "Sulfate.mg.per.l", "log.Sulfate.mg.per.l")]
 
-  # Construct the upper simultaneous prediction limit for the
+  #    Well       Date Sulfate.mg.per.l log.Sulfate.mg.per.l
+  #1  GW-01 1999-07-08             63.0             4.143135
+  #2  GW-01 1999-09-12             51.0             3.931826
+  #3  GW-01 1999-10-16             60.0             4.094345
+  #4  GW-01 1999-11-02             86.0             4.454347
+  #5  GW-04 1999-07-09            104.0             4.644391
+  #6  GW-04 1999-09-14            102.0             4.624973
+  #7  GW-04 1999-10-12             84.0             4.430817
+  #8  GW-04 1999-11-15             72.0             4.276666
+  #9  GW-08 1997-10-12             31.0             3.433987
+  #10 GW-08 1997-11-16             84.0             4.430817
+  #11 GW-08 1998-01-28             65.0             4.174387
+  #12 GW-08 1999-04-20             41.0             3.713572
+  #13 GW-08 2002-06-04             51.8             3.947390
+  #14 GW-08 2002-09-16             57.5             4.051785
+  #15 GW-08 2002-12-02             66.8             4.201703
+  #16 GW-08 2003-03-24             87.1             4.467057
+  #17 GW-09 1997-10-16             59.0             4.077537
+  #18 GW-09 1998-01-28             85.0             4.442651
+  #19 GW-09 1998-04-12             75.0             4.317488
+  #20 GW-09 1998-07-12             99.0             4.595120
+  #21 GW-09 2000-01-30             75.8             4.328098
+  #22 GW-09 2000-04-24             82.5             4.412798
+  #23 GW-09 2000-10-24             85.5             4.448516
+  #24 GW-09 2002-12-01            188.0             5.236442
+  #25 GW-09 2003-03-24            150.0             5.010635
+
+  # Construct the upper simultaneous prediction limit for the 
   # 1-of-3 plan based on the log-transformed sulfate data
 
   log.Sulfate <- EPA.09.Ex.19.1.sulfate.df$log.Sulfate.mg.per.l
 
-  pred.int.list.log <-
-    predIntNormSimultaneous(x = log.Sulfate, k = 1, m = 3, r = 2,
+  pred.int.list.log <- 
+    predIntNormSimultaneous(x = log.Sulfate, k = 1, m = 3, r = 2, 
       rule = "k.of.m", pi.type = "upper", conf.level = conf.level)
 
   pred.int.list.log
 
+  #Results of Distribution Parameter Estimation
+  #--------------------------------------------
+  #
+  #Assumed Distribution:            Normal
+  #
+  #Estimated Parameter(s):          mean = 4.3156194
+  #                                 sd   = 0.3756697
+  #
+  #Estimation Method:               mvue
+  #
+  #Data:                            log.Sulfate
+  #
+  #Sample Size:                     25
+  #
+  #Prediction Interval Method:      exact
+  #
+  #Prediction Interval Type:        upper
+  #
+  #Confidence Level:                99.97893%
+  #
+  #Minimum Number of
+  #Future Observations
+  #Interval Should Contain
+  #(per Sampling Occasion):         1
+  #
+  #Total Number of
+  #Future Observations
+  #(per Sampling Occasion):         3
+  #
+  #Number of Future
+  #Sampling Occasions:              2
+  #
+  #Prediction Interval:             LPL =     -Inf
+  #                                 UPL = 5.072355
 
-  # Now exponentiate the prediction interval to get the limit on
+
+  # Now exponentiate the prediction interval to get the limit on 
   # the original scale
 
   exp(pred.int.list.log$interval$limits["UPL"])
+  #     UPL 
+  #159.5497 
 
   #==========
 
-  #two-sided
+  \dontrun{
+  # Try to compute a two-sided simultaneous prediction interval:
+
   predIntNormSimultaneous(x = log.Sulfate, k = 1, m = 3, r = 2,
       rule = "k.of.m", pi.type = "two-sided", conf.level = conf.level)
+  #Error in predIntNormSimultaneous(x = log.Sulfate, k = 1, m = 3, r = 2,  : 
+  #  Two-sided simultaneous prediction intervals are not currently available.
+  # NOTE: Two-sided simultaneous prediction intervals computed using
+  # Versions 2.4.0 - 2.8.1 of EnvStats are *NOT* valid.
+  }
+
+  #==========
+
+  # Cleanup
+  #--------
+
+  rm(dat, est.list, nc, nw, SWFPR, conf.level, log.Sulfate, 
+    pred.int.list.log)
 }
 \keyword{ distribution }
 \keyword{ htest }
