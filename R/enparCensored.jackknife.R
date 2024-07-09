@@ -1,6 +1,5 @@
 enparCensored.jackknife <-
-function (x, censored, censoring.side, correct.se, left.censored.min, 
-    right.censored.max, est.fcn) 
+function (x, censored, censoring.side, correct.se, est.fcn) 
 {
     N <- length(x)
     jack.vec <- numeric(N)
@@ -15,7 +14,6 @@ function (x, censored, censoring.side, correct.se, left.censored.min,
             new.x.cen <- new.x[new.censored]
             jack.vec[i] <- do.call(est.fcn, list(x = new.x, censored = new.censored, 
                 censoring.side = censoring.side, correct.se = correct.se, 
-                left.censored.min = left.censored.min, right.censored.max = right.censored.max, 
                 ci = FALSE))$parameters["mean"]
         }
     }
