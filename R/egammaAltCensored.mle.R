@@ -3,6 +3,16 @@ function (x, censored, censoring.side, ci, ci.method = "profile.likelihood",
     ci.type = "two-sided", conf.level, ci.sample.size = sum(!censored), 
     pivot.statistic = "z") 
 {
+    if(ci) {
+        adj <- FALSE
+        if(censoring.side == "left") {
+            mf <- 10^ceiling(log((1/max(x)), 10))
+            if(mf > 1) {
+                adj <- TRUE
+                x <- mf * x
+            }
+        }
+    }
     fcn <- function(theta, x, censored, censoring.side) {
         -loglikCensored(theta = theta, x = x, censored = censored, 
             censoring.side = censoring.side, distribution = "gammaAlt")
@@ -19,14 +29,13 @@ function (x, censored, censoring.side, ci, ci.method = "profile.likelihood",
         censored = censored, censoring.side = censoring.side, 
         lower = .Machine$double.eps)$par
     names(parameters) <- c("mean", "cv")
+    ret.list <- list(parameters = parameters)
     if (ci) {
         opt.list <- optim(par = parameters, fn = fcn, x = x, 
             censored = censored, censoring.side = censoring.side, 
             hessian = ci)
         parameters <- opt.list$par
-    }
-    ret.list <- list(parameters = parameters)
-    if (ci) {
+        ret.list <- list(parameters = parameters)
         ci.method <- match.arg(ci.method, c("profile.likelihood", 
             "normal.approx"))
         ci.type <- match.arg(ci.type, c("two-sided", "lower", 
@@ -49,6 +58,10 @@ function (x, censored, censoring.side, ci, ci.method = "profile.likelihood",
                 UCL.normal.approx = limits[2])
         }
         ret.list <- c(ret.list, list(ci.obj = ci.obj))
+        if(adj) {
+            ret.list$parameters <- ret.list$parameters/mf
+            ret.list$ci.obj$limits <- ret.list$ci.obj$limits/mf
+        }
     }
     ret.list
 }
