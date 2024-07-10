@@ -1,67 +1,82 @@
-egammaAltCensored.mle <-
-function (x, censored, censoring.side, ci, ci.method = "profile.likelihood", 
-    ci.type = "two-sided", conf.level, ci.sample.size = sum(!censored), 
-    pivot.statistic = "z") 
+egammaAltCensored <-
+function (x, censored, method = "mle", censoring.side = "left", 
+    ci = FALSE, ci.method = "profile.likelihood", ci.type = "two-sided", 
+    conf.level = 0.95, n.bootstraps = 1000, pivot.statistic = "z", 
+    ci.sample.size = sum(!censored)) 
 {
-    if(ci) {
-        adj <- FALSE
-        if(censoring.side == "left") {
-            mf <- 10^ceiling(log((1/max(x)), 10))
-            if(mf > 1) {
-                adj <- TRUE
-                x <- mf * x
-            }
-        }
+    if (!is.vector(x, mode = "numeric")) 
+        stop("'x' must be a numeric vector")
+    if (!is.vector(censored, mode = "numeric") && !is.vector(censored, 
+        mode = "logical")) 
+        stop("'censored' must be a logical or numeric vector")
+    if (length(censored) != length(x)) 
+        stop("'censored' must be the same length as 'x'")
+    data.name <- deparse(substitute(x))
+    censoring.name <- deparse(substitute(censored))
+    if ((bad.obs <- sum(!(ok <- is.finite(x) & is.finite(as.numeric(censored))))) > 
+        0) {
+        x <- x[ok]
+        censored <- censored[ok]
+        warning(paste(bad.obs, "observations with NA/NaN/Inf in 'x' and 'censored' removed."))
     }
-    fcn <- function(theta, x, censored, censoring.side) {
-        -loglikCensored(theta = theta, x = x, censored = censored, 
-            censoring.side = censoring.side, distribution = "gammaAlt")
+    if (is.numeric(censored)) {
+        if (!all(censored == 0 | censored == 1)) 
+            stop(paste("When 'censored' is a numeric vector, all values of", 
+                "'censored' must be 0 (not censored) or 1 (censored)."))
+        censored <- as.logical(censored)
     }
-    if (censoring.side == "left") {
-        dum.x <- x
-        dum.x[censored] <- dum.x[censored]/2
-        par.init <- egammaAlt(x = dum.x, ci = FALSE)$parameters
+    if (any(x <= 0)) 
+        stop("All values of 'x' (including censored ones) must be positive")
+    n.cen <- sum(censored)
+    if (n.cen == 0) 
+        stop("No censored values indicated by 'censored'.")
+    x.no.cen <- x[!censored]
+    if (length(unique(x.no.cen)) < 2) 
+        stop("'x' must contain at least 2 non-missing, uncensored, distinct values.")
+    N <- length(x)
+    method <- match.arg(method, c("mle"))
+    censoring.side <- match.arg(censoring.side, c("left", "right"))
+    x.cen <- x[censored]
+    c.vec <- table(x.cen)
+    cen.levels <- sort(unique(x.cen))
+    ci.method <- match.arg(ci.method, c("normal.approx", "bootstrap", 
+        "profile.likelihood"))
+    ci.type <- match.arg(ci.type, c("two-sided", "lower", "upper"))
+    if (ci && ci.method == "profile.likelihood" && method != 
+        "mle") 
+        stop("When ci.method=\"profile.likelihood\" you must set method=\"mle\"")
+    pivot.statistic <- match.arg(pivot.statistic, c("z", "t"))
+    if (conf.level <= 0 || conf.level >= 1) 
+        stop("The value of 'conf.level' must be between 0 and 1.")
+    est.fcn <- paste("egammaAltCensored", method, sep = ".")
+    args.list <- switch(method, mle = list(x = x, censored = censored, 
+        censoring.side = censoring.side, ci = ci, ci.method = ci.method, 
+        ci.type = ci.type, conf.level = conf.level, ci.sample.size = ci.sample.size, 
+        pivot.statistic = pivot.statistic))
+    if (!ci || ci.method != "bootstrap") {
+        param.ci.list <- do.call(est.fcn, args = args.list)
     }
     else {
-        par.init <- egammaAlt(x = x, ci = FALSE)$parameters
+        args.list$ci <- FALSE
+        param.ci.list <- do.call(est.fcn, args = args.list)
+        ci.list <- egammaAltCensored.bootstrap.ci(x = x, censored = censored, 
+            censoring.side = censoring.side, est.fcn = est.fcn, 
+            ci.type = ci.type, conf.level = conf.level, n.bootstraps = n.bootstraps, 
+            obs.mean = param.ci.list$parameters["mean"])
+        param.ci.list <- c(param.ci.list, list(ci.obj = ci.list))
     }
-    parameters <- nlminb(start = par.init, objective = fcn, x = x, 
-        censored = censored, censoring.side = censoring.side, 
-        lower = .Machine$double.eps)$par
-    names(parameters) <- c("mean", "cv")
-    ret.list <- list(parameters = parameters)
+    method.string <- switch(method, mle = "MLE")
+    ret.list <- list(distribution = "Gamma", sample.size = N, 
+        censoring.side = censoring.side, censoring.levels = cen.levels, 
+        percent.censored = (100 * n.cen)/N, parameters = param.ci.list$parameters, 
+        n.param.est = 2, method = method.string)
+    ret.list <- c(ret.list, list(data.name = data.name, censoring.name = censoring.name, 
+        bad.obs = bad.obs))
     if (ci) {
-        opt.list <- optim(par = parameters, fn = fcn, x = x, 
-            censored = censored, censoring.side = censoring.side, 
-            hessian = ci)
-        parameters <- opt.list$par
-        ret.list <- list(parameters = parameters)
-        ci.method <- match.arg(ci.method, c("profile.likelihood", 
-            "normal.approx"))
-        ci.type <- match.arg(ci.type, c("two-sided", "lower", 
-            "upper"))
-        sd.mean.mle <- sqrt(solve(opt.list$hessian)["mean", "mean"])
-        pivot.statistic <- match.arg(pivot.statistic, c("z", 
-            "t"))
-        ci.obj <- ci.normal.approx(theta.hat = parameters["mean"], 
-            sd.theta.hat = sd.mean.mle, n = ci.sample.size, df = ci.sample.size - 
-                1, ci.type = ci.type, alpha = 1 - conf.level, 
-            test.statistic = pivot.statistic)
-        ci.obj$parameter <- "mean"
-        if (ci.method == "profile.likelihood") {
-            limits <- ci.obj$limits
-            names(limits) <- NULL
-            ci.obj <- ci.gammaAltCensored.profile.likelihood(x = x, 
-                censored = censored, censoring.side = censoring.side, 
-                mean.mle = parameters["mean"], cv.mle = parameters["cv"], 
-                ci.type = ci.type, conf.level = conf.level, LCL.normal.approx = limits[1], 
-                UCL.normal.approx = limits[2])
-        }
-        ret.list <- c(ret.list, list(ci.obj = ci.obj))
-        if(adj) {
-            ret.list$parameters <- ret.list$parameters/mf
-            ret.list$ci.obj$limits <- ret.list$ci.obj$limits/mf
-        }
+        ret.list <- c(ret.list, list(interval = param.ci.list$ci.obj))
+        if (!is.null(param.ci.list$var.cov.params)) 
+            ret.list <- c(ret.list, list(var.cov.params = param.ci.list$var.cov.params))
     }
+    oldClass(ret.list) <- "estimateCensored"
     ret.list
 }
