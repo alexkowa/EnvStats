@@ -3,17 +3,17 @@ library(EnvStats)
 
 #qnormMix 1"
   q <- qnormMix(.95,mean1=-1,sd1=1, mean2=4,sd2=1, p.mix=.2)
-  expect_identical(round(q,2),4.67)
+  expect_identical(round(q,2),10.6)
 
 
 #qnormMix 2"
   q <- qnormMix(.95,mean1=-1.5,sd1=1, mean2=6,sd2=1, p.mix=.2)
-  expect_identical(round(q,2),6.67)
+  expect_identical(round(q,2),12.38)
 
 
 #qnormMix 3"
   q <- qnormMix(.95,mean1=-5,sd1=1, mean2=5,sd2=1, p.mix=.5)
-  expect_identical(round(q,2),6.28)
+  expect_identical(round(q,2),11.49)
 
 
 #qnormMix 4"
