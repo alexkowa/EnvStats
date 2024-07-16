@@ -31,7 +31,7 @@
   }
 }
 \details{
-  \itemize{
+  \describe{
   \item{Station}{Olympic National Park-Hoh Ranger Station (WA14)}
   \item{Location}{Jefferson County, Washington}
   \item{Latitude}{47.8597}

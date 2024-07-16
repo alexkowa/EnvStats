@@ -383,9 +383,12 @@
 
   #==========
 
-  # two-sided prediction interval
+  # NOTE: Two-sided simultaneous prediction intervals computed using
+  # Versions 2.4.0 - 2.8.1 of EnvStats are *NOT* valid.
+  \dontrun{
   predIntLnormSimultaneous(x = Sulfate, k = 1, m = 3, r = 2,
     rule = "k.of.m", pi.type = "two-sided", conf.level = conf.level)
+  }
 
 }
 \keyword{ distribution }

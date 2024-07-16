@@ -74,7 +74,7 @@
   prediction interval.  The default value is \code{conf.level=0.95}.
 }
   \item{r.shifted}{
-  positive integer between \code{1} and code{r} specifying the number of future 
+  positive integer between \code{1} and \code{r} specifying the number of future 
   sampling occasions for which the mean is shifted.  The default value is 
   \code{r.shifted=r}.
 }
