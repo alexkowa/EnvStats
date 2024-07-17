@@ -1,5 +1,5 @@
 enparCensored.bootstrap.ci <-
-function (x, censored, censoring.side, correct.se, est.fcn, 
+function (x, censored, censoring.side, correct.se, est.fcn,
   ci.type, conf.level, n.bootstraps, obs.mean, obs.se.mean, seed)
 {
     N <- length(x)
@@ -16,7 +16,7 @@ function (x, censored, censoring.side, correct.se, est.fcn,
         new.x <- x[index]
         new.censored <- censored[index]
         new.n.cen <- sum(new.censored)
-        if ((N - new.n.cen) < 2) {
+        if ((N - new.n.cen) < 4) {
             too.few.obs.count <- too.few.obs.count + 1
             i <- i - 1
             next
