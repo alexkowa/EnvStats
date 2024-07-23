@@ -1,6 +1,6 @@
 enparCensored.km <-
-function (x, censored, censoring.side, correct.se, ci, ci.type, 
-    conf.level, pivot.statistic, ci.sample.size)
+function (x, censored, censoring.side, correct.se, ci, ci.type = "two-sided", 
+    conf.level = 0.95, pivot.statistic = "t", ci.sample.size = "Total")
 {
     ppoints.list <- ppointsCensored(x = x, censored = censored, 
         censoring.side = censoring.side, prob.method = "kaplan-meier")

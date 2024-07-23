@@ -15,12 +15,13 @@ function (x, censored, censoring.side, correct.se, est.fcn,
         index <- sample(N, replace = TRUE)
         new.x <- x[index]
         new.censored <- censored[index]
-        new.n.cen <- sum(new.censored)
-        if ((N - new.n.cen) < 2) {
+        new.x.no.cen <- new.x[!new.censored]
+        if (length(unique(new.x.no.cen)) < 2) {
             too.few.obs.count <- too.few.obs.count + 1
             i <- i - 1
             next
         }
+        new.n.cen <- sum(new.censored)
         if (new.n.cen == 0) {
             mu.hat <- mean(new.x)
             boot.vec.mean[i] <- mu.hat
