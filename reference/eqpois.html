@@ -18,7 +18,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">EnvStats</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">2.8.1</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">3.0.0</span>
       </span>
     </div>
 
@@ -52,7 +52,7 @@
     </div>
 
     <div id="ref-usage">
-    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">eqpois</span><span class="op">(</span><span class="va">x</span>, p <span class="op">=</span> <span class="fl">0.5</span>, method <span class="op">=</span> <span class="st">"mle/mme/mvue"</span>, ci <span class="op">=</span> <span class="cn">FALSE</span>, ci.method <span class="op">=</span> <span class="st">"exact"</span>, </span>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">eqpois</span><span class="op">(</span><span class="va">x</span>, p <span class="op">=</span> <span class="fl">0.5</span>, method <span class="op">=</span> <span class="st">"mle/mme/mvue"</span>, ci <span class="op">=</span> <span class="cn">FALSE</span>, ci.method <span class="op">=</span> <span class="st">"exact"</span>,</span>
 <span>    ci.type <span class="op">=</span> <span class="st">"two-sided"</span>, conf.level <span class="op">=</span> <span class="fl">0.95</span>, digits <span class="op">=</span> <span class="fl">0</span><span class="op">)</span></span></code></pre></div>
     </div>
 
@@ -229,20 +229,20 @@
     </div>
     <div id="see-also">
     <h2>See also</h2>
-    <div class="dont-index"><p><code><a href="epois.html">epois</a></code>, <a href="https://rdrr.io/r/stats/Poisson.html" class="external-link">Poisson</a>, code<a href="estimate.object.html">estimate.object</a>.</p></div>
+    <div class="dont-index"><p><code><a href="epois.html">epois</a></code>, <a href="https://rdrr.io/r/stats/Poisson.html" class="external-link">Poisson</a>, <code><a href="estimate.object.html">estimate.object</a></code>.</p></div>
     </div>
 
     <div id="ref-examples">
     <h2>Examples</h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span>  <span class="co"># Generate 20 observations from a Poisson distribution with parameter </span></span></span>
-<span class="r-in"><span>  <span class="co"># lambda=2.  The true 90'th percentile of this distribution is 4 (actually, </span></span></span>
-<span class="r-in"><span>  <span class="co"># 4 is the p'th quantile for any value of p between 0.86 and 0.947).  </span></span></span>
-<span class="r-in"><span>  <span class="co"># Here we will use eqpois to estimate the 90'th percentile and construct a </span></span></span>
-<span class="r-in"><span>  <span class="co"># two-sided 95% confidence interval for this percentile. </span></span></span>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span>  <span class="co"># Generate 20 observations from a Poisson distribution with parameter</span></span></span>
+<span class="r-in"><span>  <span class="co"># lambda=2.  The true 90'th percentile of this distribution is 4 (actually,</span></span></span>
+<span class="r-in"><span>  <span class="co"># 4 is the p'th quantile for any value of p between 0.86 and 0.947).</span></span></span>
+<span class="r-in"><span>  <span class="co"># Here we will use eqpois to estimate the 90'th percentile and construct a</span></span></span>
+<span class="r-in"><span>  <span class="co"># two-sided 95% confidence interval for this percentile.</span></span></span>
 <span class="r-in"><span>  <span class="co"># (Note: the call to set.seed simply allows you to reproduce this example.)</span></span></span>
 <span class="r-in"><span></span></span>
-<span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/r/base/Random.html" class="external-link">set.seed</a></span><span class="op">(</span><span class="fl">250</span><span class="op">)</span> </span></span>
-<span class="r-in"><span>  <span class="va">dat</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/Poisson.html" class="external-link">rpois</a></span><span class="op">(</span><span class="fl">20</span>, lambda <span class="op">=</span> <span class="fl">2</span><span class="op">)</span> </span></span>
+<span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/r/base/Random.html" class="external-link">set.seed</a></span><span class="op">(</span><span class="fl">250</span><span class="op">)</span></span></span>
+<span class="r-in"><span>  <span class="va">dat</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/Poisson.html" class="external-link">rpois</a></span><span class="op">(</span><span class="fl">20</span>, lambda <span class="op">=</span> <span class="fl">2</span><span class="op">)</span></span></span>
 <span class="r-in"><span>  <span class="fu">eqpois</span><span class="op">(</span><span class="va">dat</span>, p <span class="op">=</span> <span class="fl">0.9</span>, ci <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Results of Distribution Parameter Estimation</span>
