@@ -1,22 +1,46 @@
-Two-sided simultaneous prediction intervals computed using
- Versions 2.4.0 - 2.8.1 of EnvStats are *NOT* valid.
+Changes in Version 3.0.0 2024.08.08
+-----------------------------------
+
+ - Fixed allowed values for the argument pi.type to only "upper" and "lower" in the functions predIntNormSimultaneous() and predIntNormSimultaneousK(). In Versions 2.4.0 - 2.8.1, the value pi.type="two-sided" was allowed, but these two-sided simultaneous prediction intervals were based on faulty assumptions and are *NOT* valid. 
+
+ - Starting in Version 2.4.0, the code for qnormMix() was changed.  It was not properly vectorized, and also gave wrong values for p = 0 and p = 1.  The code has been reverted back to its form in Version 2.3.1.
+
+ - The function enpar() was added as a companion function to enparCensored().
+
+ - The functions elnormAltCensored() and egammaAltCensored() were updated to fix a bug that resulted in the functions throwing an error when the observations were too "small".
+
+ - The function enparCensored() was updated to fix bugs that resulted in incorrect answers.  Also, the possible values for the arguments left.censored.min and right.censored.max changed, and the argument restricted was added.  See the help file for more information and how the results for enparCensored() compare to results from ProUCL Version 5.2.0 and the kmms() function in the STAND package.
+
+ - The following data frames from published sources were added:  Beal.2010.Pb.df, BJC.2000.df, and ProUCL.5.2.TRS.df.
+
+=================================================================================
 
 Changes in Version 2.8.1 2023.08.21
  - removed man/EnvStats-package.Rd as it was outdated and duplicating information in other help files.
+
+==================================================================================
 
 Changes in Version 2.8.0 2023.06.12
 - fix of detectionLimitCalibrate in case of negative estimated intercepts
 - remove (hidden) dplyr dependency
 
+==================================================================================
+
 Changes in Version 2.7.0 2022.03.07
  - switching results from S3 class htest to htestEnvStats to avoid conflict with the stricter check of the htest class in R >= 4.2
+
+===================================================================================
 
 Changes in Version 2.6.0 2022.03.01
 - use weights in the lm call in calibrate()
 - fixing bootstrap two.sided ci argument test #13 (James Durant)
 
+===================================================================================
+
 Changes in Version 2.4.0, 2019.01.14:
   o Justin Jent added option for two-sided confidence intervals in predIntNormSimultaneous() and predIntNormSimultaneousK()
+
+===================================================================================
 
 Changes in Version 2.3.0, 2017.10.09:
 
@@ -68,8 +92,7 @@ Changes in Version 2.3.0, 2017.10.09:
 	  --StatMedianIQRText:     Called by stat_median_iqr_text.
 	  --StatTestText:          Called by stat_test_text.
 
-
-========================
+===================================================================================
 
 Changes in Version 2.2.1, 2017.01.13:
 
@@ -99,7 +122,7 @@ Changes in Version 2.2.1, 2017.01.13:
 	  -- The default value for prob.method is prob.method="hirsch-stedinger",
 	     not "michael-schucany".
 
-========================
+===================================================================================
 
 Changes in Version 2.1.1, 2016.06.13:
 
@@ -149,7 +172,7 @@ Changes in Version 2.1.1, 2016.06.13:
 	     This method is equivalent to the already existing method
 	     Imputation Using Quantile-Quantile Regression (method ="impute.w.qq.reg").
 
-========================
+===================================================================================
 
 Changes in Version 2.1.0, 2016.04.18:
 
@@ -261,7 +284,7 @@ Changes in Version 2.1.0, 2016.04.18:
 
 	o Updated help files and fixed formatting issues in the PDF version.
 
-========================
+===================================================================================
 
 Changes in Version 2.0.2, 2015.11.17:
 
@@ -282,7 +305,7 @@ Changes in Version 2.0.2, 2015.11.17:
 
 	o Updated help files and fixed formatting issues in the PDF version.
 
-========================
+===================================================================================
 
 Changes in Version 2.0.1, 2015.05.24:
 
@@ -298,7 +321,7 @@ Changes in Version 2.0.1, 2015.05.24:
 
 	o Updated help files and fixed formatting issues in the PDF version.
 
-========================
+===================================================================================
 
 Changes in Version 2.0.0, 2015.03.09:
 
@@ -332,7 +355,7 @@ Changes in Version 2.0.0, 2015.03.09:
 
 	o Fixed formatting problems in the PDF version of the help files.
 
-========================
+===================================================================================
 
 Changes in Version 1.0.3, 2014.10.20:
 
@@ -421,7 +444,7 @@ Changes in Version 1.0.3, 2014.10.20:
 
 	o Fixed formatting problems in the PDF version of the help files.
 
-========================
+===================================================================================
 
 Changes in Version 1.0.2, 2013.10.29:
 
@@ -430,7 +453,7 @@ Changes in Version 1.0.2, 2013.10.29:
 	  ciBinomN.vec, elnorm3, enormMultiplyCensored.mle, enormSinglyCensored.mle,
 	  predIntPois
 
-========================
+===================================================================================
 
 Changes in Version 1.0.1:
 
@@ -442,7 +465,7 @@ Changes in Version 1.0.1:
 	  ppccNormSinglyCensoredGofTest, predIntPois, print.boxcox,
 	  print.boxcoxCensored
 
-========================
+===================================================================================
 
 Changes in Version 1.0.0
 
@@ -627,4 +650,3 @@ Changes in Version 1.0.0
 		var.group.test						varGroupTest
 		var.test						varTest
 		z.test.gevd.shape					zTestGevdShape
-
