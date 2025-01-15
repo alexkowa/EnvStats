@@ -116,17 +116,27 @@ StatTestText <- ggplot2::ggproto("StatTestText", ggplot2::Stat,
       else {
 # Two-sample test
         if(test == "parametric") {
+          if(paired){
+            data.pair <- as.data.frame(do.call("cbind",split(-data$y,data$x)))
+            colnames(data.pair) <- c("y1","y2")
+            test.arg.list <- modifyList(
+              list(formula = formula(Pair(y1,y2)~1), data = data.pair,
+                   alternative = "two.sided", mu = 0,
+                   var.equal = TRUE, conf.level = 0.95),
+              test.arg.list)
 
-          test.arg.list <- modifyList(
-            list(formula = formula(I(-y) ~ x), data = data,
-              alternative = "two.sided", mu = 0, paired = paired,
-              var.equal = TRUE, conf.level = 0.95),
-            test.arg.list)
-          test.arg.list$paired <- paired
+          }else{
+            test.arg.list <- modifyList(
+              list(formula = formula(I(-y) ~ x), data = data,
+                   alternative = "two.sided", mu = 0,
+                   var.equal = TRUE, conf.level = 0.95),
+              test.arg.list)
+          }
+
 
           p.val.string <- "t-test p-value"
 
-          if(test.arg.list$paired)
+          if(paired)
             p.val.string <- paste("Paired", p.val.string)
           else {
             if(!test.arg.list$var.equal)
@@ -170,17 +180,26 @@ StatTestText <- ggplot2::ggproto("StatTestText", ggplot2::Stat,
               string2, ci[1], ", ", ci[2], "]")
         }
         else {
+          if(paired){
+            data.pair <- as.data.frame(do.call("cbind",split(-data$y,data$x)))
+            colnames(data.pair) <- c("y1","y2")
+            test.arg.list <- modifyList(
+              list(formula = formula(Pair(y1,y2)~1), data = data.pair,
+                   alternative = "two.sided", mu = 0,
+                   exact = NULL, correct = TRUE, conf.int = TRUE,
+                   conf.level = 0.95),
+              test.arg.list)
 
-          test.arg.list <- modifyList(
-            list(formula = formula(I(-y) ~ x), data = data,
-              alternative = "two.sided", mu = 0, paired = paired,
-              exact = NULL, correct = TRUE, conf.int = TRUE, conf.level = 0.95),
-            test.arg.list)
-          test.arg.list$paired <- paired
+          }else{
+            test.arg.list <- modifyList(
+              list(formula = formula(I(-y) ~ x), data = data,
+                   alternative = "two.sided", mu = 0,
+                   exact = NULL, correct = TRUE, conf.int = TRUE, conf.level = 0.95),
+              test.arg.list)
+          }
 
           p.val.string <- "Wilcoxon p-value"
 
-          paired <- test.arg.list$paired
           if(paired)
             p.val.string <- paste("Paired", p.val.string)
 

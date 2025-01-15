@@ -169,7 +169,7 @@
   \item{location.params}{
   A list containing arguments to the function \code{\link[ggplot2]{stat_summary}}
   that will be used to plot the estimates of location, i.e.,
-  \code{\link[ggplot2]{stat_summary}} is called with \code{fun.y=location} and
+  \code{\link[ggplot2]{stat_summary}} is called with \code{fun=location} and
   \code{geom="point"} where \code{location} is the \code{location}
   argument to \code{geom_stripchart} described above.
   The default value is an empty list:  \code{location.params=list()}, in which case the
@@ -328,7 +328,7 @@
   dev.new()
   p + theme(legend.position = "none") +
     geom_jitter(pch = 1, width = 0.15, height = 0) +
-    stat_summary(fun.y = "mean", geom = "point",
+    stat_summary(fun = "mean", geom = "point",
       size = 2, position = position_nudge(x = 0.3)) +
     stat_summary(fun.data = "mean_cl_normal", geom = "errorbar",
       size = 0.75, width = 0.075, position = position_nudge(x = 0.3)) +
