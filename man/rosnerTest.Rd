@@ -60,7 +60,7 @@
   from successively reduced samples of size \eqn{n, n-1, \ldots, n-k+1}:
   \deqn{R_{i+1} = \frac{|x^{(i)} - \bar{x}^{(i)}|}{s^{(i)}} \;\;\;\;\;\; (4)}
   Critical values for \eqn{R_{i+1}} are denoted \eqn{\lambda_{i+1}} and are computed as:
-  \deqn{\lambda_{i+1} = \frac{t_{p, n-i-2} (n-i-1)}{\sqrt{(n-i-2 + t_{p, n-i-2}) (n-i)}} \;\;\;\;\;\; (5)}
+  \deqn{\lambda_{i+1} = \frac{t_{p, n-i-2} (n-i-1)}{\sqrt{(n-i-2 + t^{2}_{p, n-i-2}) (n-i)}} \;\;\;\;\;\; (5)}
   where \eqn{t_{p, \nu}} denotes the \eqn{p}'th quantile of 
   \link[stats:TDist]{Student's t-distribution} with 
   \eqn{\nu} degrees of freedom, and in this case
