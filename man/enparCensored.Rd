@@ -245,7 +245,9 @@
   \code{left.censored.min="Censoring Level"}). 
 
   To be consistent with ProUCL 5.2.0, by default the function \code{enparCensored} 
-  does not compute the restricted mean (i.e., \code{restricted=FALSE}).  It should 
+  does not compute the restricted mean (i.e., \code{restricted=FALSE}).  Note that there  
+  are instances where ProUCL 5.2.0 does not agree with \code{enparCensored}, and it is 
+  not clear why. It should 
   be noted that when the restricted mean is computed, the number of uncensored 
   observations increases because the smallest (left-censored) or largest 
   (right-censored) censored observation(s) is/are set to a specified value and 
