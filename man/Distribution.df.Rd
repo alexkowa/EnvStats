@@ -225,15 +225,15 @@
                     \tab                     \tab             \tab                         \cr
     \link{Logistic} \tab \code{logis}        \tab Continuous  \tab \eqn{(-\infty, \infty)} \cr
                     \tab                     \tab             \tab                         \cr
-    \link{Lognormal} \tab \code{lnorm}   \tab Continuous  \tab \eqn{[0, \infty)}           \cr
+    \link{Lognormal} \tab \code{lnorm}   \tab Continuous  \tab \eqn{(0, \infty)}           \cr
                     \tab                     \tab             \tab                         \cr
-    \link[=LognormalAlt]{Lognormal} \tab \code{lnormAlt} \tab Continuous  \tab \eqn{[0, \infty)} \cr
+    \link[=LognormalAlt]{Lognormal} \tab \code{lnormAlt} \tab Continuous  \tab \eqn{(0, \infty)} \cr
     \link[=LognormalAlt]{(Alternative)} \tab             \tab             \tab                   \cr
                     \tab                     \tab             \tab                               \cr
-    \link[=LognormalMix]{Lognormal} \tab \code{lnormMix} \tab Continuous \tab \eqn{[0, \infty)}  \cr
+    \link[=LognormalMix]{Lognormal} \tab \code{lnormMix} \tab Continuous \tab \eqn{(0, \infty)}  \cr
     \link[=LognormalMix]{Mixture}   \tab                 \tab            \tab                    \cr
                     \tab                     \tab             \tab                               \cr
-    \link[=LognormalMixAlt]{Lognormal} \tab \code{lnormMixAlt} \tab Continuous \tab \eqn{[0, \infty)} \cr
+    \link[=LognormalMixAlt]{Lognormal} \tab \code{lnormMixAlt} \tab Continuous \tab \eqn{(0, \infty)} \cr
     \link[=LognormalMixAlt]{Mixture}   \tab                    \tab            \tab                   \cr
     \link[=LognormalMixAlt]{(Alternative)} \tab                \tab            \tab                   \cr
                     \tab                     \tab             \tab                         \cr
