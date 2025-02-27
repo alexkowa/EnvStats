@@ -28,6 +28,6 @@ function (x, pwme.method = "unbiased", plot.pos.cons = c(a = 0.35,
     ret.list$method <- "Z-test of shape=0 for GEVD"
     ret.list <- c(ret.list, list(estimation.method = est.list$method,
         sample.size = n, data.name = data.name, bad.obs = bad.obs))
-    oldClass(ret.list) <- "htestEnvStats"
+    oldClass(ret.list) <- "htest"
     ret.list
 }

@@ -137,6 +137,6 @@ function (x, test = "rank.von.Neumann", alternative = "two.sided",
         ub = 1, test.statistic = "z")
     ci.obj$parameter <- "rho"
     ret.list <- c(ret.list, list(interval = ci.obj))
-    oldClass(ret.list) <- "htestEnvStats"
+    oldClass(ret.list) <- "htest"
     ret.list
 }
