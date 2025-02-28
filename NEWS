@@ -1,3 +1,32 @@
+Changes in Version 3.1.0 2025.02.27
+-----------------------------------
+
+ - Updated geom_stripchart to use the argument fun=location instead of fun.y=location when calling ggplot2::stat_summary.
+
+ - Fixed Equation (5) in the help file for rosnerTest: changed the "t" in the denominator to "t^2".  Many thanks to Andrea Gallonzelli for reporting this.
+
+ - Added the argument ci.method to the function signTest and updated the help file
+
+ - Updated functions that return objects of class "htestEnvStats" to return objects of class "htest", and added a help file for htest.object.
+
+ - Removed the function print.htestEnvStats and the associated help file 
+
+ - Added the functions print.Rd, print.default.Rd, print.htest.Rd and associated help files.
+
+ - Updated the help files FcnsByCatEstDistParams and FcnsByCatPrintPlot.
+
+ - Updated help file for enparCensored.
+
+ - Added line for the function print.htest in the help file FcnsByCatPrintPlot.
+
+ - Added line for the function enpar in the help file FcnsByCatEstDistParams.
+
+ - Updated Table 1a in the help file for Distribution.df to show the lower range for Lognormal, Lognormal (Alternative), Lognormal Mixture, and Lognormal Mixture (Alternative) is "(0" in instead of "[0". Thanks to Piotr Stokłosa.
+
+ - Fixed bug in gofTestCensored when none of the values are censored.  It was calling gofTest with x=x instead of y=x.  Many thanks to Steffen @MoREpro for reporting this bug.
+
+=================================================================================
+
 Changes in Version 3.0.0 2024.08.08
 -----------------------------------
 
