@@ -62,7 +62,7 @@
     <div id="methods">
     <h2>Methods</h2>
     <p>Generic functions that have methods for objects of class
-  <code>"gof"</code> include: <br><code><a href="https://rdrr.io/r/base/print.html" class="external-link">print</a></code>, <code><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot</a></code>.</p>
+  <code>"gof"</code> include: <br><code><a href="print.html">print</a></code>, <code><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot</a></code>.</p>
     </div>
     <div id="value">
     <h2>Value</h2>
@@ -227,31 +227,58 @@
 <span class="r-in"><span>  <span class="co">#[15] "bad.obs" </span></span></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span>  <span class="va">gof.obj</span> </span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $distribution</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "Normal"</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Results of Goodness-of-Fit Test</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> -------------------------------</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $dist.abb</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "norm"</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Test Method:                     Shapiro-Wilk GOF</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $distribution.parameters</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>     mean       sd </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 2.861160 1.180226 </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Hypothesized Distribution:       Normal</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $n.param.est</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] 2</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Estimated Parameter(s):          mean = 2.861160</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>                                  sd   = 1.180226</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $estimation.method</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "mvue"</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Estimation Method:               mvue</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $statistic</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>         W </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 0.9640724 </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Data:                            dat</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $sample.size</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] 20</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Sample Size:                     20</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $parameters</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  n </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 20 </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Test Statistic:                  W = 0.9640724</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $z.value</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] -0.326527</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Test Statistic Parameter:        n = 20</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $p.value</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] 0.6279872</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> P-value:                         0.6279872</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $alternative</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "True cdf does not equal the\n                                 Normal Distribution."</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Alternative Hypothesis:          True cdf does not equal the</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>                                  Normal Distribution.</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $method</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "Shapiro-Wilk GOF"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $data</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [1] 1.7464403 1.0844139 4.6828666 4.8756193 3.0013261 2.2660652 2.2319743</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [8] 3.0099761 1.9512939 2.6838376 4.1479000 3.9241760 2.6899056 2.7057111</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [15] 2.5716726 4.7349795 0.6042089 1.8514776 2.8984421 3.5609229</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $data.name</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "dat"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $bad.obs</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] 0</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> attr(,"class")</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "gof"</span>
 <span class="r-in"><span>  </span></span>
 <span class="r-in"><span>  <span class="co">#Results of Goodness-of-Fit Test</span></span></span>
 <span class="r-in"><span>  <span class="co">#-------------------------------</span></span></span>
