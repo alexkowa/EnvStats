@@ -168,6 +168,6 @@ function (y, x = seq(along = y), alternative = "two.sided", correct = TRUE,
         ret.list$parent.of.data <- parent.of.data
     if (!is.null(subset.expression))
         ret.list$subset.expression <- subset.expression
-    oldClass(ret.list) <- "htestEnvStats"
+    oldClass(ret.list) <- "htest"
     ret.list
 }

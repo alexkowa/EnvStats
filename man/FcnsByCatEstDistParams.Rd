@@ -27,6 +27,7 @@
   \code{\link{elnorm3}}                   \tab Estimate parameters of a \link[=Lognormal3]{Three-Parameter Lognormal} distribution \cr
   \code{\link{enbinom}}                   \tab Estimate parameter of a \link[=NegBinomial]{Negative Binomial} distribution \cr
   \code{\link{enorm}}                     \tab Estimate parameters of a \link{Normal} distribution \cr
+  \code{\link{enpar}}                     \tab Estimate Mean, Standard Deviation, and Standard Error Nonparametrically \cr
   \code{\link{epareto}}                   \tab Estimate parameters of a \link{Pareto} distribution \cr
   \code{\link{epois}}                     \tab Estimate parameter of a \link{Poisson} distribution \cr
   \code{\link{eunif}}                     \tab Estimate parameters of a \link{Uniform} distribution \cr

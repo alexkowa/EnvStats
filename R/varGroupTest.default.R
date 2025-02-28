@@ -97,7 +97,7 @@ function (object, group, test = "Levene", correct = TRUE, data.name = NULL,
             ret.list$subset.expression <- subset.expression
         ret.list <- c(ret.list, list(sample.size = sample.size.vec,
             bad.obs = bad.obs.vec))
-        oldClass(ret.list) <- "htestEnvStats"
+        oldClass(ret.list) <- "htest"
     }
     ret.list
 }

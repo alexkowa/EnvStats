@@ -11,7 +11,8 @@
 }
 \usage{
   signTest(x, y = NULL, alternative = "two.sided", mu = 0, paired = FALSE, 
-    conf.level = 0.95)
+    ci.method = "interpolate", approx.conf.level = 0.95, 
+    min.coverage = TRUE, lb = -Inf, ub = Inf)
 }
 \arguments{
   \item{x}{
@@ -40,10 +41,34 @@
   The possible values are \code{paired=FALSE} (the default; indicates a one-sample 
   sign test) and \code{paired=TRUE}.
 }
-  \item{conf.level}{
-  numeric scalar between 0 and 1 indicating the confidence level associated with the 
-  confidence interval for the population median.  The default value is \cr
-  \code{conf.level=0.95}.
+  \item{ci.method}{
+  character string indicating the method to use to construct the confidence interval.
+  The possible values are \code{"interpolate"} (the default), \code{"exact"}, and
+  \code{"normal.approx"}.  See the help file for \code{\link{eqnpar}} 
+    for more information on these methods.
+}
+  \item{approx.conf.level}{
+  a scalar between 0 and 1 indicating the desired confidence level of the 
+  confidence interval for the population median.  The default value is 
+  \code{appox.conf.level=0.95}.  The true confidence level usually will 
+  not be exactly equal to \code{approx.conf.level}.  See the help file for 
+  \code{\link{eqnpar}} for more information
+}
+  \item{min.coverage}{
+  for the case when \code{ci.method="exact"}, a logical scalar indicating whether the
+  confidence interval for the median should have a minimum coverage at least as great as the value
+  of the argument \code{approx.conf.level}. The default value is 
+  \code{min.coverage=TRUE}.  This argument is ignored if 
+  \code{ci.method} is not equal to \code{"exact"}.
+}
+  \item{lb, ub}{
+  scalars indicating lower and upper bounds on the distribution.  
+  By default, \cr
+  \code{lb=-Inf} and \code{ub=Inf}.  If you are constructing a confidence 
+  interval for the median from a distribution that you know has a lower 
+  bound other than \code{-Inf} (e.g., \code{0}), set \code{lb} to this value.  
+  Similarly, if you know the distribution has an upper bound other than 
+  \code{Inf}, set \code{ub} to this value.
 }
 }
 \details{
@@ -176,7 +201,45 @@
 
   set.seed(23) 
   dat <- rlnorm(10, meanlog = 2, sdlog = 1) 
-  signTest(dat, mu = 5) 
+  signTest(dat, mu = 5, lb = 0) 
+
+  #Results of Hypothesis Test
+  #--------------------------
+  #
+  #Null Hypothesis:                 median = 5
+  #
+  #Alternative Hypothesis:          True median is not equal to 5
+  #
+  #Test Name:                       Sign test
+  #
+  #Estimated Parameter(s):          median = 19.21717
+  #
+  #Data:                            dat
+  #
+  #Test Statistic:                  # Obs > median = 9
+  #
+  #P-value:                         0.02148438
+  #
+  #Confidence Interval for:         median
+  #
+  #Confidence Interval Method:      interpolate (Nyblom, 1992)
+  #
+  #Confidence Interval Type:        two-sided
+  #
+  #Confidence Level:                95%
+  #
+  #Confidence Limit Rank(s):        2 3 9 8 
+  #
+  #Confidence Interval:             LCL =  7.000846
+  #                                 UCL = 26.937725
+
+  #----------
+
+  # Redo the above example using an exact confidence interval
+  # and specifying min.coverage=FALSE
+  #----------------------------------------------------------
+
+  signTest(dat, mu = 5, ci.method = "exact", min.coverage = FALSE, lb = 0) 
 
   #Results of Hypothesis Test
   #--------------------------
@@ -201,12 +264,14 @@
   #
   #Confidence Interval Type:        two-sided
   #
-  #Confidence Level:                93.45703%
+  #Confidence Level:                94.43359%
   #
-  #Confidence Limit Rank(s):        3 9 
+  #Confidence Limit Rank(s):        1 8 
   #
-  #Confidence Interval:             LCL =  7.732538
-  #                                 UCL = 35.722459
+  #Confidence Interval:             LCL =  4.784196
+  #                                 UCL = 22.364849
+
+  #----------
 
   # Clean up
   #---------
@@ -222,10 +287,56 @@
   # hypothesis that the median chromium concentration is less than or equal to 
   # 100 mg/kg vs. the alternative that it is greater than 100 mg/kg.  The 
   # estimated median is 110 mg/kg.  There are 8 out of 15 observations greater 
-  # than 100 mg/kg, the p-value is equal to 0.5, and the lower 94% confidence 
-  # limit is 41 mg/kg.
+  # than 100 mg/kg, the p-value is equal to 0.5, and the lower 95% confidence 
+  # limit is 40.53 mg/kg.
+
+  summaryStats(EPA.92d.chromium.vec) 
+
+  #                      N     Mean      SD Median Min  Max
+  #EPA.92d.chromium.vec 15 175.4667 318.544    110  10 1300
+
+  #----------
 
   signTest(EPA.92d.chromium.vec, mu = 100, alternative = "greater") 
+
+  #Results of Hypothesis Test
+  #--------------------------
+  #
+  #Null Hypothesis:                 median = 100
+  #
+  #Alternative Hypothesis:          True median is greater than 100
+  #
+  #Test Name:                       Sign test
+  #
+  #Estimated Parameter(s):          median = 110
+  #
+  #Data:                            EPA.92d.chromium.vec
+  #
+  #Test Statistic:                  # Obs > median = 8
+  #
+  #P-value:                         0.5
+  #
+  #Confidence Interval for:         median
+  #
+  #Confidence Interval Method:      interpolate (Nyblom, 1992)
+  #
+  #Confidence Interval Type:        lower
+  #
+  #Confidence Level:                95%
+  #
+  #Confidence Limit Rank(s):        4 5 NA NA
+  #
+  #Confidence Interval:             LCL =  40.53074
+  #                                 UCL = Inf
+
+  #----------
+
+  # Redo the above example using the exact confidence interval and 
+  # setting min.coverage=FALSE
+  #---------------------------------------------------------------
+
+  signTest(EPA.92d.chromium.vec, mu = 100, alternative = "greater", 
+    ci.method = "exact", min.coverage = FALSE) 
 
   #Results of Hypothesis Test
   #--------------------------
@@ -255,6 +366,45 @@
   #Confidence Limit Rank(s):        5 
   #
   #Confidence Interval:             LCL =  41
+  #                                 UCL = Inf
+
+  #----------
+
+  # Redo the above example using the exact confidence interval and 
+  # setting min.coverage=TRUE
+  #---------------------------------------------------------------
+
+  signTest(EPA.92d.chromium.vec, mu = 100, alternative = "greater", 
+    ci.method = "exact") 
+
+  #Results of Hypothesis Test
+  #--------------------------
+  #
+  #Null Hypothesis:                 median = 100
+  #
+  #Alternative Hypothesis:          True median is greater than 100
+  #
+  #Test Name:                       Sign test
+  #
+  #Estimated Parameter(s):          median = 110
+  #
+  #Data:                            EPA.92d.chromium.vec
+  #
+  #Test Statistic:                  # Obs > median = 8
+  #
+  #P-value:                         0.5
+  #
+  #Confidence Interval for:         median
+  #
+  #Confidence Interval Method:      exact
+  #
+  #Confidence Interval Type:        lower
+  #
+  #Confidence Level:                98.24219%
+  #
+  #Confidence Limit Rank(s):        4 
+  #
+  #Confidence Interval:             LCL =  36
   #                                 UCL = Inf
 }
 \keyword{htest}

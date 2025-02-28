@@ -1,6 +1,7 @@
 signTest <-
 function (x, y = NULL, alternative = "two.sided", mu = 0, paired = FALSE,
-    conf.level = 0.95)
+    ci.method = "interpolate", approx.conf.level = 0.95, 
+    min.coverage = TRUE, lb = -Inf, ub = Inf)
 {
     if (!is.null(y) && !paired)
         stop(paste("Only the one-sample and paired sign test are available.",
@@ -66,13 +67,22 @@ function (x, y = NULL, alternative = "two.sided", mu = 0, paired = FALSE,
         p.value = binom.list$p.value, estimate = muhat, null.value = null.value,
         alternative = alternative, method = ifelse(paired, "Paired Sign test",
             "Sign test"), data.name = data.name)
+    ci.method <- match.arg(ci.method, c("interpolate", "exact", 
+        "normal.approx"))
     ci.type <- switch(alternative, two.sided = "two-sided", greater = "lower",
         less = "upper")
-    ci.list <- eqnpar(x = d, p = 0.5, ci = TRUE, ci.type = ci.type,
-        approx.conf.level = conf.level)
+    if (!is.numeric(approx.conf.level) || length(approx.conf.level) != 
+        1 || approx.conf.level <= 0 || approx.conf.level >= 1) 
+        stop("'approx.conf.level' must be a scalar between 0 and 1")
+    if (any(length.list(lb, ub) != 1) || lb >= ub) 
+        stop(paste("'lb' and 'ub' must be scalars,", 
+          "and 'lb' must be strictly less than 'ub'"))
+    ci.list <- eqnpar(x = d, p = 0.5, ci = TRUE, ci.method = ci.method, 
+        ci.type = ci.type, approx.conf.level = approx.conf.level, 
+        min.coverage = min.coverage, lb = lb, ub = ub)
     ci.list$interval$parameter <- ifelse(paired, "median of differences",
         "median")
     ret.list <- c(ret.list, list(interval = ci.list$interval))
-    oldClass(ret.list) <- "htestEnvStats"
+    oldClass(ret.list) <- "htest"
     ret.list
 }

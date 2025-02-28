@@ -40,7 +40,7 @@ function (x, censored, censoring.side = "left", test = "sf",
     if (n.cen == 0) {
         warning(paste("No censored values indicated by 'censored',", 
             "so the function 'gofTest' was called."))
-        ret.list <- gofTest(x = x, test = test, distribution = distribution, 
+        ret.list <- gofTest(y = x, test = test, distribution = distribution, 
             est.arg.list = est.arg.list)
         ret.list$data.name <- data.name
         ret.list$bad.obs <- bad.obs
