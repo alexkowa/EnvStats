@@ -49,6 +49,6 @@ function (x, alternative = "two.sided", conf.level = 0.95, sigma.squared = 1,
         p.value = p.value, estimate = estimate, null.value = null.value,
         alternative = alternative, method = method, data.name = data.name),
         list(conf.int = ci.interval))
-    oldClass(ret.val) <- "htest"
+    oldClass(ret.val) <- "htestEnvStats"
     return(ret.val)
 }

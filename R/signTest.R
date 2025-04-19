@@ -83,6 +83,6 @@ function (x, y = NULL, alternative = "two.sided", mu = 0, paired = FALSE,
     ci.list$interval$parameter <- ifelse(paired, "median of differences",
         "median")
     ret.list <- c(ret.list, list(interval = ci.list$interval))
-    oldClass(ret.list) <- "htest"
+    oldClass(ret.list) <- "htestEnvStats"
     ret.list
 }
