@@ -102,9 +102,9 @@ varGroupTest(object, ...)
   Thus, Levene's test is generally recommended over Bartlett's test.
 }
 \value{
-  a list of class \code{"htest"} containing the results of the group variance test.  
-  Objects of class \code{"htest"} have special printing and plotting methods.  
-  See the help file for \code{\link{htest.object}} for details.
+  a list of class \code{"htestEnvStats"} containing the results of the group variance test.  
+  Objects of class \code{"htestEnvStats"} have special printing and plotting methods.  
+  See the help file for \code{\link{htestEnvStats.object}} for details.
 }
 \references{
   Conover, W.J., M.E. Johnson, and M.M. Johnson. (1981). A Comparative Study of Tests for Homogeneity 
@@ -206,5 +206,5 @@ varGroupTest(object, ...)
   #
   #P-value:                         0.007294084
 }
-\keyword{ htest }
+\keyword{ htestEnvStats }
 \keyword{ models }

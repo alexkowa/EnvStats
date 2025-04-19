@@ -295,8 +295,8 @@ kendallTrendTest(y, ...)
   which is what the function \code{kendallTrendTest} does.
 }
 \value{
-  A list of class \code{"htest"} containing the results of the hypothesis
-  test.  See the help file for \code{\link{htest.object}} for details.
+  A list of class \code{"htestEnvStats"} containing the results of the hypothesis
+  test.  See the help file for \code{\link{htestEnvStats.object}} for details.
   In addition, the following components are part of the list returned by
   \code{kendallTrendTest}:
 
@@ -393,7 +393,7 @@ kendallTrendTest(y, ...)
   the slope.
 }
 \seealso{
-  \code{\link{cor.test}}, \code{\link{kendallSeasonalTrendTest}}, \code{\link{htest.object}}.
+  \code{\link{cor.test}}, \code{\link{kendallSeasonalTrendTest}}, \code{\link{htestEnvStats.object}}.
 }
 \examples{
   # Reproduce Example 17-6 on page 17-33 of USEPA (2009).  This example
@@ -474,6 +474,6 @@ kendallTrendTest(y, ...)
   rm(Sulfate.fit)
   graphics.off()
 }
-\keyword{htest}
+\keyword{htestEnvStats}
 \keyword{nonparametric}
 \keyword{regression}

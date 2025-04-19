@@ -160,8 +160,8 @@
   to the differences.
 }
 \value{
-  a list of class \code{"htest"} containing the results of the hypothesis test.  See 
-  the help file for \code{\link{htest.object}} for details.
+  a list of class \code{"htestEnvStats"} containing the results of the hypothesis test.  See 
+  the help file for \code{\link{htestEnvStats.object}} for details.
 }
 \references{
   Chen, L. (1995b).  Testing the Mean of Skewed Distributions.  
@@ -329,5 +329,5 @@
   # is [29.8, Inf).  Depending on what you use for your Type I error rate, you 
   # may or may not want to reject the null hypothesis.
 }
-\keyword{ htest }
+\keyword{ htestEnvStats }
 \keyword{ models }
