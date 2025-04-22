@@ -109,8 +109,8 @@
     </div>
     <div id="value">
     <h2>Value</h2>
-    <p>A list of class <code>"htest"</code> containing the results of the hypothesis test.
-  See the help file for <code><a href="htest.object.html">htest.object</a></code> for details.</p>
+    <p>A list of class <code>"htestEnvStats"</code> containing the results of the hypothesis test.
+  See the help file for <code><a href="htest.htestEnvStats.object.html">htestEnvStats.object</a></code> for details.</p>
     </div>
     <div id="references">
     <h2>References</h2>
@@ -168,7 +168,7 @@
     <div id="see-also">
     <h2>See also</h2>
     <div class="dont-index"><p><a href="GEVD.html">GEVD</a>, <code><a href="egevd.html">egevd</a></code>, <a href="EVD.html">EVD</a>, <code><a href="eevd.html">eevd</a></code>,
-  <a href="FcnsByCatGOFTests.html">Goodness-of-Fit Tests</a>, <code><a href="htest.object.html">htest.object</a></code>.</p></div>
+  <a href="FcnsByCatGOFTests.html">Goodness-of-Fit Tests</a>, <code><a href="htest.htestEnvStats.object.html">htestEnvStats.object</a></code>.</p></div>
     </div>
 
     <div id="ref-examples">
@@ -183,16 +183,42 @@
 <span class="r-in"><span>  <span class="va">dat</span> <span class="op">&lt;-</span> <span class="fu"><a href="GEVD.html">rgevd</a></span><span class="op">(</span><span class="fl">25</span>, location <span class="op">=</span> <span class="fl">2</span>, scale <span class="op">=</span> <span class="fl">1</span>, shape <span class="op">=</span> <span class="fl">1</span><span class="op">)</span> </span></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span>  <span class="fu">zTestGevdShape</span><span class="op">(</span><span class="va">dat</span><span class="op">)</span> </span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $statistic</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>        z </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 4.412206 </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 	Z-test of shape=0 for GEVD</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $p.value</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>            z </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1.023225e-05 </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> data:  dat</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> z = 4.4122, p-value = 1.023e-05</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> alternative hypothesis: true shape is not equal to 0</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> sample estimates:</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $estimate</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>     shape </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 0.6623014 </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $null.value</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> shape </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>     0 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $alternative</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "two.sided"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $method</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "Z-test of shape=0 for GEVD"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $estimation.method</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "Unbiased pwme"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $sample.size</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] 25</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $data.name</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "dat"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $bad.obs</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] 0</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> attr(,"class")</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "htestEnvStats"</span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span>  <span class="co">#Results of Hypothesis Test</span></span></span>
 <span class="r-in"><span>  <span class="co">#--------------------------</span></span></span>

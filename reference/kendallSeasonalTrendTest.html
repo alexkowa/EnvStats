@@ -403,8 +403,8 @@
     </div>
     <div id="value">
     <h2>Value</h2>
-    <p>A list of class <code>"htest"</code> containing the results of the hypothesis
-  test.  See the help file for <code><a href="htest.object.html">htest.object</a></code> for details.
+    <p>A list of class <code>"htestEnvStats"</code> containing the results of the hypothesis
+  test.  See the help file for <code><a href="htest.htestEnvStats.object.html">htestEnvStats.object</a></code> for details.
   In addition, the following components are part of the list returned by <br><code>kendallSeasonalTrendTest</code>:</p>
 <p></p>
 <dl><dt>seasonal.S</dt>
@@ -524,7 +524,7 @@
     </div>
     <div id="see-also">
     <h2>See also</h2>
-    <div class="dont-index"><p><code><a href="kendallTrendTest.html">kendallTrendTest</a></code>, <code><a href="htest.object.html">htest.object</a></code>, <code><a href="https://rdrr.io/r/stats/cor.test.html" class="external-link">cor.test</a></code>.</p></div>
+    <div class="dont-index"><p><code><a href="kendallTrendTest.html">kendallTrendTest</a></code>, <code><a href="htest.htestEnvStats.object.html">htestEnvStats.object</a></code>, <code><a href="https://rdrr.io/r/stats/cor.test.html" class="external-link">cor.test</a></code>.</p></div>
     </div>
 
     <div id="ref-examples">
@@ -599,11 +599,106 @@
 <span class="r-in"><span></span></span>
 <span class="r-in"><span>  <span class="fu">kendallSeasonalTrendTest</span><span class="op">(</span><span class="va">Unadj.Conc</span> <span class="op">~</span> <span class="va">Month</span> <span class="op">+</span> <span class="va">Year</span>,</span></span>
 <span class="r-in"><span>    data <span class="op">=</span> <span class="va">EPA.09.Ex.14.8.df</span><span class="op">)</span></span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $statistic</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Chi-Square (Het)        z (Trend) </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>        0.1071882        5.1849514 </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 	Seasonal Kendall Test for Trend (with continuity correction)</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $parameters</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> df </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 11 </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> data:  Unadj.ConcMonthYear</span>
-<span class="r-err co"><span class="r-pr">#&gt;</span> <span class="error">Error in if (startsWith(fp, "&lt;")) fp else paste("=", fp):</span> the condition has length &gt; 1</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $p.value</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Chi-Square (Het)        z (Trend) </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>     1.000000e+00     2.160712e-07 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $estimate</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>          tau        slope    intercept </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    0.9722222    0.0600000 -131.7350000 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $null.value</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> tau tau tau tau tau tau tau tau tau tau tau tau </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   0   0   0   0   0   0   0   0   0   0   0   0 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $alternative</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "The seasonal taus are not all equal\n                                 (Chi-Square Heterogeneity Test)\n                                 At least one seasonal tau != 0\n                                 and all non-zero tau's have the\n                                 same sign (z Trend Test)"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $method</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "Seasonal Kendall Test for Trend\n                                 (with continuity correction)"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $estimation.method</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "tau:        Weighted Average of\n                                             Seasonal Estimates\n                                 slope:      Hirsch et al.'s\n                                             Modification of\n                                             Thiel/Sen Estimator\n                                 intercept:  Median of\n                                             Seasonal Estimates"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $sample.size</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   January  February     March     April       May      June      July    August </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>         3         3         3         3         3         3         3         3 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> September   October  November  December     Total </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>         3         3         3         3        36 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $data.name</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>            y       season         year </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> "Unadj.Conc"      "Month"       "Year" </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $bad.obs</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] 0</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $seasonal.S</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   January  February     March     April       May      June      July    August </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>         3         2         3         3         3         3         3         3 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> September   October  November  December </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>         3         3         3         3 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $var.seasonal.S</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   January  February     March     April       May      June      July    August </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  3.666667  2.666667  3.666667  3.666667  3.666667  3.666667  3.666667  3.666667 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> September   October  November  December </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  3.666667  3.666667  3.666667  3.666667 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $seasonal.estimates</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                 tau slope intercept</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> January   1.0000000 0.080   -156.71</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> February  0.6666667 0.035    -67.34</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> March     1.0000000 0.075   -146.63</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> April     1.0000000 0.055   -106.99</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> May       1.0000000 0.065   -126.83</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> June      1.0000000 0.055   -106.94</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> July      1.0000000 0.060   -116.79</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> August    1.0000000 0.070   -136.64</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> September 1.0000000 0.060   -116.82</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> October   1.0000000 0.070   -136.75</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> November  1.0000000 0.070   -136.80</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> December  1.0000000 0.070   -136.72</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $interval</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $name</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "Confidence"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $parameter</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "slope"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $limits</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>        LCL        UCL </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 0.05786914 0.07213086 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $type</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "two-sided"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $method</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "Gilbert's Modification of\n                                 Theil/Sen Method"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $conf.level</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] 0.95</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $sample.size</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] 36</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> attr(,"class")</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "intervalEstimate"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $parent.of.data</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "EPA.09.Ex.14.8.df"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> attr(,"class")</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "htestEnvStats"</span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span>  <span class="co">#Results of Hypothesis Test</span></span></span>
 <span class="r-in"><span>  <span class="co">#--------------------------</span></span></span>

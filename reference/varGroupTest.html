@@ -149,9 +149,9 @@
     </div>
     <div id="value">
     <h2>Value</h2>
-    <p>a list of class <code>"htest"</code> containing the results of the group variance test.
-  Objects of class <code>"htest"</code> have special printing and plotting methods.
-  See the help file for <code><a href="htest.object.html">htest.object</a></code> for details.</p>
+    <p>a list of class <code>"htestEnvStats"</code> containing the results of the group variance test.
+  Objects of class <code>"htestEnvStats"</code> have special printing and plotting methods.
+  See the help file for <code><a href="htest.htestEnvStats.object.html">htestEnvStats.object</a></code> for details.</p>
     </div>
     <div id="references">
     <h2>References</h2>
@@ -227,16 +227,50 @@
 <span class="r-in"><span>  <span class="co">#Month.4    4.2   52.0    2.5    2.0   27.0    1.2</span></span></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span>  <span class="fu">varGroupTest</span><span class="op">(</span><span class="va">Arsenic.ppb</span> <span class="op">~</span> <span class="va">Well</span>, data <span class="op">=</span> <span class="va">EPA.09.Ex.11.1.arsenic.df</span><span class="op">)</span></span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $statistic</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>        F </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 4.564176 </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 	Levene's Test for Homogenity of Variance</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $parameters</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   num df denom df </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>        5       18 </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> data:  Arsenic.ppb</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> F = 4.5642, num df = 5, denom df = 18, p-value = 0.007294</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> alternative hypothesis: true Ratio of each pair of variances is  1</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> sample estimates:</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $p.value</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] 0.007294084</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $estimate</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>    Well.1    Well.2    Well.3    Well.4    Well.5    Well.6 </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  246.8158  592.6767 2831.4067  105.2967  207.4467    3.9025 </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $null.value</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Ratio of each pair of variances </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                               1 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $alternative</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "At least one variance differs"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $method</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "Levene's Test for\n                                 Homogenity of Variance"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $data.name</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "Arsenic.ppb"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $grouping.variable</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "Well"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $parent.of.data</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "EPA.09.Ex.11.1.arsenic.df"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $sample.size</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Well.1 Well.2 Well.3 Well.4 Well.5 Well.6 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>      4      4      4      4      4      4 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $bad.obs</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Well.1 Well.2 Well.3 Well.4 Well.5 Well.6 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>      0      0      0      0      0      0 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> attr(,"class")</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "htestEnvStats"</span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span>  <span class="co">#Results of Hypothesis Test</span></span></span>
 <span class="r-in"><span>  <span class="co">#--------------------------</span></span></span>
