@@ -140,9 +140,9 @@
   is more powerful than the quantile test.
 }
 \value{
-  A list of class \code{"htest"} containing the results of the hypothesis test.  
+  A list of class \code{"htestEnvStats"} containing the results of the hypothesis test.  
   See the help file for \cr
-  \code{\link{htest.object}} for details.
+  \code{\link{htestEnvStats.object}} for details.
 }
 \references{
   Carrano, A., and D. Moore. (1982).  The Rationale and Methodology for Quantifying 
@@ -199,7 +199,7 @@
 }
 \seealso{
   \code{\link{quantileTestPValue}}, \code{\link{wilcox.test}}, 
-  \code{\link{htest.object}}, \link{Hypothesis Tests}.
+  \code{\link{htestEnvStats.object}}, \link{Hypothesis Tests}.
 }
 \examples{
   # Following Example 7.5 on pages 7.23-7.24 of USEPA (1994b), perform the 
@@ -275,5 +275,5 @@
 
   rm(p.vals)
 }
-\keyword{htest}
+\keyword{htestEnvStats}
 \keyword{models}

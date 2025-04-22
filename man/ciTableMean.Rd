@@ -323,7 +323,7 @@
   # interval for the difference:
   #----------------------------------------------------------------------
 
-  t.test(Sulfate.down, Sulfate.back, var.equal = TRUE)
+  print(t.test(Sulfate.down, Sulfate.back, var.equal = TRUE))
 
   #Results of Hypothesis Test
   #--------------------------

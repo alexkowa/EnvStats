@@ -495,8 +495,8 @@ kendallSeasonalTrendTest(y, ...)
   true.
 }
 \value{
-  A list of class \code{"htest"} containing the results of the hypothesis
-  test.  See the help file for \code{\link{htest.object}} for details.
+  A list of class \code{"htestEnvStats"} containing the results of the hypothesis
+  test.  See the help file for \code{\link{htestEnvStats.object}} for details.
   In addition, the following components are part of the list returned by \cr
   \code{kendallSeasonalTrendTest}:
 
@@ -631,7 +631,7 @@ kendallSeasonalTrendTest(y, ...)
   The power of Lettenmaier's test approached that of the seasonal Kendall test for large trend magnitudes.
 }
 \seealso{
-  \code{\link{kendallTrendTest}}, \code{\link{htest.object}}, \code{\link{cor.test}}.
+  \code{\link{kendallTrendTest}}, \code{\link{htestEnvStats.object}}, \code{\link{cor.test}}.
 }
 \examples{
   # Reproduce Example 14-10 on page 14-38 of USEPA (2009).  This example
@@ -765,6 +765,6 @@ kendallSeasonalTrendTest(y, ...)
   rm(Unadj.Conc, Adj.Conc, Month, Year, Time, n, Three.Yr.Mean, at)
   graphics.off()
 }
-\keyword{htest}
+\keyword{htestEnvStats}
 \keyword{nonparametric}
 \keyword{regression}

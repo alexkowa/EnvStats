@@ -62,8 +62,8 @@
   \eqn{n = 25}.
 }
 \value{
-  A list of class \code{"htest"} containing the results of the hypothesis test.  
-  See the help file for \code{\link{htest.object}} for details.
+  A list of class \code{"htestEnvStats"} containing the results of the hypothesis test.  
+  See the help file for \code{\link{htestEnvStats.object}} for details.
 }
 \references{
   Chowdhury, J.U., J.R. Stedinger, and L. H. Lu. (1991).  Goodness-of-Fit Tests for 
@@ -126,7 +126,7 @@
 }
 \seealso{
   \link{GEVD}, \code{\link{egevd}}, \link{EVD}, \code{\link{eevd}}, 
-  \link{Goodness-of-Fit Tests}, \code{\link{htest.object}}.
+  \link{Goodness-of-Fit Tests}, \code{\link{htestEnvStats.object}}.
 }
 \examples{
   # Generate 25 observations from a generalized extreme value distribution with 
@@ -167,5 +167,5 @@
   #---------
   rm(dat)
 }
-\keyword{htest}
+\keyword{htestEnvStats}
 \keyword{models}

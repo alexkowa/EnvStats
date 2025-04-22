@@ -108,6 +108,6 @@ function (x, y, alternative = "greater", target.quantile = 0.5,
         alternative = alternative, method = method, estimation.method = NULL,
         sample.size = c(nx = nx, ny = ny), data.name = data.name,
         bad.obs = bad.obs.x + bad.obs.y)
-    oldClass(ret.list) <- "htest"
+    oldClass(ret.list) <- "htestEnvStats"
     ret.list
 }

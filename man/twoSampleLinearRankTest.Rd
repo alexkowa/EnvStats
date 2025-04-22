@@ -264,8 +264,8 @@
   observations in group 1 tend to be larger than the observations in group 2.
 }
 \value{
-  a list of class \code{"htest"} containing the results of the hypothesis test.
-  See the help file for \code{\link{htest.object}} for details.
+  a list of class \code{"htestEnvStats"} containing the results of the hypothesis test.
+  See the help file for \code{\link{htestEnvStats.object}} for details.
 }
 \references{
   Conover, W.J. (1980).  \emph{Practical Nonparametric Statistics}.  Second Edition.
@@ -326,7 +326,7 @@
 }
 \seealso{
   \code{\link{wilcox.test}}, \code{\link{twoSampleLinearRankTestCensored}},
-  \code{\link{htest.object}}.
+  \code{\link{htestEnvStats.object}}.
 }
 \examples{
   # Generate 15 observations from a normal distribution with parameters
@@ -445,6 +445,6 @@
       TcCB[Area=="Reference"], test="savage.scores"))$p.value
   #[1] 0.2884351
 }
-\keyword{htest}
+\keyword{htestEnvStats}
 \keyword{nonparametric}
 \keyword{regression}

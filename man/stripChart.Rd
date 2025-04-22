@@ -109,7 +109,13 @@ stripChart(x, ...)
   when \code{vertical=TRUE} (the default), the plots are drawn vertically rather than horizontally.
 }
   \item{group.names}{
-  group labels which will be printed alongside (or underneath) each plot.
+  Optional argument (forced to be a character string) explicitly providing the group labels 
+  that will be printed alongside (or underneath) each plot. When \code{group.names} is 
+  provided, it must have the same number of elements as the number of groups. When 
+  \code{group.names} is not provided, if the groups created based on the argument 
+  \code{x} have a \code{names} attribute, then that is used for the group names. 
+  Otherwise, the group names are set to the integers 1 to the number of groups 
+  (e.g., \code{1:3} for three groups).  
 }
   \item{group.names.cex}{
   numeric scalar indicating the amount by which the group labels should be scaled 

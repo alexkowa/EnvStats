@@ -242,8 +242,8 @@
   returned by \code{\link{arima}}.
 }
 \value{
-  A list of class \code{"htest"} containing the results of the hypothesis test.  
-  See the help file for \code{\link{htest.object}} for details.
+  A list of class \code{"htestEnvStats"} containing the results of the hypothesis test.  
+  See the help file for \code{\link{htestEnvStats.object}} for details.
 }
 \references{
   Bartels, R. (1982).  The Rank Version of von Neumann's Ratio Test for Randomness.  
@@ -347,7 +347,7 @@
 }
 }
 \seealso{
-  \code{\link{htest.object}}, \code{\link{acf}}, \code{\link{ar}}, 
+  \code{\link{htestEnvStats.object}}, \code{\link{acf}}, \code{\link{ar}}, 
   \code{\link{arima}}, \code{\link{arima.sim}}, 
   \code{\link{ts.plot}}, \code{\link{plot.ts}},  
   \code{\link{lag.plot}}, \link{Hypothesis Tests}.
@@ -605,5 +605,6 @@
   rm(lm.ozone)
 
 }
-\keyword{ univar }
-\keyword{ models }
+\keyword{htestEnvStats}
+\keyword{univar}
+\keyword{models}

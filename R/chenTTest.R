@@ -89,6 +89,6 @@ function (x, y = NULL, alternative = "greater", mu = 0,
     if (paired) 
         ci.obj$paramter <- "mean of differences"
     ret.val <- c(ret.val, list(interval = ci.obj))
-    oldClass(ret.val) <- "htest"
+    oldClass(ret.val) <- "htestEnvStats"
     return(ret.val)
 }

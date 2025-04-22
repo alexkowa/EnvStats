@@ -135,8 +135,8 @@
   can then be applied to the differences.
 }
 \value{
-  A list of class \code{"htest"} containing the results of the hypothesis test.  
-  See the help file for \code{\link{htest.object}} for details.
+  A list of class \code{"htestEnvStats"} containing the results of the hypothesis test.  
+  See the help file for \code{\link{htestEnvStats.object}} for details.
 }
 \references{
   Conover, W.J. (1980). \emph{Practical Nonparametric Statistics}.  
@@ -190,7 +190,7 @@
 }
 \seealso{
   \code{\link{wilcox.test}}, \link{Hypothesis Tests}, \code{\link{eqnpar}}, 
-  \code{\link{htest.object}}.
+  \code{\link{htestEnvStats.object}}.
 }
 \examples{
   # Generate 10 observations from a lognormal distribution with parameters 
@@ -407,5 +407,5 @@
   #Confidence Interval:             LCL =  36
   #                                 UCL = Inf
 }
-\keyword{htest}
+\keyword{htestEnvStats}
 \keyword{models}

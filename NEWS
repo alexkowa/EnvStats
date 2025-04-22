@@ -1,29 +1,25 @@
-Changes in Version 3.1.0 2025.02.27
+Changes in Version 3.1.0 2025.04.17
 -----------------------------------
 
- - Updated geom_stripchart to use the argument fun=location instead of fun.y=location when calling ggplot2::stat_summary.
+ - Fixed Equation (5) in the help file for rosnerTest: changed the "t" in the denominator to "t^2".  Thanks to Andrea Gallonzelli for reporting this.
 
- - Fixed Equation (5) in the help file for rosnerTest: changed the "t" in the denominator to "t^2".  Many thanks to Andrea Gallonzelli for reporting this.
+ - Added the argument ci.method to the function signTest and updated the help file.
 
- - Added the argument ci.method to the function signTest and updated the help file
+ - Fixed the function chenTTest so that is correctly returns an objects of class "htestEnvStats".
 
- - Updated functions that return objects of class "htestEnvStats" to return objects of class "htest", and added a help file for htest.object.
-
- - Removed the function print.htestEnvStats and the associated help file 
-
- - Added the functions print.Rd, print.default.Rd, print.htest.Rd and associated help files.
+ - Added/Updated the functions print, print.default, print.htest, print.htestEnvStats and associated help files.
+   Objects of class "htest" will now print as before (e.g., what is shown in the Springer users manual 
+   "EnvStats: An R Package for Environmental Statistics") if you explicitly call the print() function.  See the help files for 
+   print.htest and htest.object for examples.
 
  - Updated the help files FcnsByCatEstDistParams and FcnsByCatPrintPlot.
 
- - Updated help file for enparCensored.
-
- - Added line for the function print.htest in the help file FcnsByCatPrintPlot.
-
- - Added line for the function enpar in the help file FcnsByCatEstDistParams.
+ - Updated the help files for enparCensored (noted there are instances where ProUCL 5.2.0 does not agree with enparCensored) and 
+   stripChart (expanded the description of the argument group.names).
 
  - Updated Table 1a in the help file for Distribution.df to show the lower range for Lognormal, Lognormal (Alternative), Lognormal Mixture, and Lognormal Mixture (Alternative) is "(0" in instead of "[0". Thanks to Piotr Stokłosa.
 
- - Fixed bug in gofTestCensored when none of the values are censored.  It was calling gofTest with x=x instead of y=x.  Many thanks to Steffen @MoREpro for reporting this bug.
+ - 
 
 =================================================================================
 

@@ -209,6 +209,6 @@ function (y, season, year, alternative = "two.sided", correct = TRUE,
         ret.list$parent.of.data <- parent.of.data
     if (!is.null(subset.expression))
         ret.list$subset.expression <- subset.expression
-    oldClass(ret.list) <- "htest"
+    oldClass(ret.list) <- "htestEnvStats"
     ret.list
 }
