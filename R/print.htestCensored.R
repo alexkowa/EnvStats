@@ -60,6 +60,7 @@
 #' }
 #' @rawRd
 #' \keyword{print}
+#' @exportS3Method NULL
 
 print.htestCensored <-
 function (x, show.cen.levels = TRUE, ...) 

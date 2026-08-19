@@ -241,6 +241,7 @@
 #' }
 #' @rawRd
 #' \keyword{plot}
+#' @exportS3Method NULL
 
 plot.boxcoxCensored <-
 function (x, plot.type = "Objective vs. lambda", same.window = TRUE, 

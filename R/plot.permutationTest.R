@@ -166,6 +166,7 @@
 #' }
 #' @rawRd
 #' \keyword{plot}
+#' @exportS3Method NULL
 
 plot.permutationTest <-
 function (x, hist.col = "cyan", stat.col = "black", stat.lwd = 3 * 

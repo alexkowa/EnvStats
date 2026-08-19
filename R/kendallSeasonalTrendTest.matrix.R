@@ -1,3 +1,5 @@
+#' @exportS3Method NULL
+#' @noRd
 kendallSeasonalTrendTest.matrix <-
 function (y, ...) 
 {

@@ -286,6 +286,7 @@
 #' }
 #' @rawRd
 #' \keyword{plot}
+#' @exportS3Method NULL
 
 plot.gofGroup <-
 function (x, plot.type = "Summary", captions = list(QQ = NULL, 

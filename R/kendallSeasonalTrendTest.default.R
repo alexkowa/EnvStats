@@ -1,3 +1,5 @@
+#' @exportS3Method NULL
+#' @noRd
 kendallSeasonalTrendTest.default <-
 function (y, season, year, alternative = "two.sided", correct = TRUE,
     ci.slope = TRUE, conf.level = 0.95, independent.obs = TRUE,

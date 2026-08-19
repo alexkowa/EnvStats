@@ -46,6 +46,7 @@
 #' }
 #' @rawRd
 #' \keyword{print}
+#' @exportS3Method NULL
 
 print.gofTwoSample <-
 function (x, ...) 

@@ -1,3 +1,5 @@
+#' @exportS3Method NULL
+#' @noRd
 points.w.dups <-
 function (x, ..., method = c("jitter", "number", "standard"), 
     factor.x = 1, factor.y = 1, dup.cex = 0.85 * par("cex")) 

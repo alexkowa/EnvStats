@@ -1,3 +1,5 @@
+#' @exportS3Method NULL
+#' @noRd
 gofTest.default <-
 function (y, x = NULL, test = ifelse(is.null(x), "sw", "ks"), 
     distribution = "norm", est.arg.list = NULL, alternative = "two.sided", 

@@ -1,3 +1,5 @@
+#' @exportS3Method NULL
+#' @noRd
 stripChart.formula <-
 function (x, data = NULL, dlab = NULL, subset, na.action = NULL, 
     ...) 

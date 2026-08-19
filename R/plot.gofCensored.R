@@ -361,6 +361,7 @@
 #' }
 #' @rawRd
 #' \keyword{plot}
+#' @exportS3Method NULL
 
 plot.gofCensored <-
 function (x, plot.type = "Summary", captions = list(PDFs = NULL, 

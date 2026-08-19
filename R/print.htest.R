@@ -1,3 +1,5 @@
+#' @exportS3Method NULL
+#' @noRd
 print.htest <-
 function (x, ...) 
 {

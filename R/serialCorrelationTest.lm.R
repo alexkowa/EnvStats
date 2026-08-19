@@ -1,3 +1,5 @@
+#' @exportS3Method NULL
+#' @noRd
 serialCorrelationTest.lm <-
 function (x, test = "rank.von.Neumann", alternative = "two.sided", 
     conf.level = 0.95, ...) 

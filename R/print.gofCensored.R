@@ -54,6 +54,7 @@
 #' }
 #' @rawRd
 #' \keyword{print}
+#' @exportS3Method NULL
 
 print.gofCensored <-
 function (x, show.cen.levels = TRUE, pct.censored.digits = .Options$digits, 

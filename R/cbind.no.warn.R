@@ -1,3 +1,5 @@
+#' @exportS3Method NULL
+#' @noRd
 cbind.no.warn <-
 function (..., deparse.level = 1) 
 {

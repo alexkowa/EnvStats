@@ -220,6 +220,7 @@
 #' }
 #' @rawRd
 #' \keyword{plot}
+#' @exportS3Method NULL
 
 plot.boxcoxLm <-
 function (x, plot.type = "Objective vs. lambda", same.window = TRUE, 

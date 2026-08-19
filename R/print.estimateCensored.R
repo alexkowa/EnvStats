@@ -73,6 +73,7 @@
 #' }
 #' @rawRd
 #' \keyword{print}
+#' @exportS3Method NULL
 
 print.estimateCensored <-
 function (x, show.cen.levels = TRUE, pct.censored.digits = .Options$digits, 

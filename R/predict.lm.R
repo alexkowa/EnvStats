@@ -155,6 +155,7 @@
 #' \keyword{ models }
 #' @rawRd
 #' \keyword{ regression }
+#' @exportS3Method NULL
 
 predict.lm <-
 function (object, ...) 

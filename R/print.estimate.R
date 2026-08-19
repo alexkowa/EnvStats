@@ -64,6 +64,7 @@
 #' }
 #' @rawRd
 #' \keyword{print}
+#' @exportS3Method NULL
 
 print.estimate <-
 function (x, conf.cov.sig.digits = .Options$digits, limits.sig.digits = .Options$digits, 

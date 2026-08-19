@@ -1,3 +1,5 @@
+#' @exportS3Method NULL
+#' @noRd
 distChoose.default <-
 function (y, alpha = 0.05, method = "sw", choices = c("norm", 
     "gamma", "lnorm"), est.arg.list = NULL, warn = TRUE, keep.data = TRUE, 

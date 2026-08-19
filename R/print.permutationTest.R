@@ -52,6 +52,7 @@
 #' }
 #' @rawRd
 #' \keyword{print}
+#' @exportS3Method NULL
 
 print.permutationTest <-
 function (x, ...) 

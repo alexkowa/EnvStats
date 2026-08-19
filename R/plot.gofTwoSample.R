@@ -360,6 +360,7 @@
 #' }
 #' @rawRd
 #' \keyword{plot}
+#' @exportS3Method NULL
 
 plot.gofTwoSample <-
 function (x, plot.type = "Summary", captions = list(PDFs = NULL, 

@@ -1,3 +1,5 @@
+#' @exportS3Method NULL
+#' @noRd
 summaryFull.default <-
 function (object, group = NULL, combine.groups = FALSE, drop.unused.levels = TRUE,
     rm.group.na = TRUE, stats = NULL, trim = 0.1, sd.method = "sqrt.unbiased",

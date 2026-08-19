@@ -1,3 +1,5 @@
+#' @exportS3Method NULL
+#' @noRd
 kendallTrendTest.formula <-
 function (y, data = NULL, subset, na.action = na.pass, ...) 
 {

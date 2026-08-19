@@ -1,3 +1,5 @@
+#' @exportS3Method NULL
+#' @noRd
 summaryStats.factor <-
 function (object, group = NULL, drop.unused.levels = TRUE, digits = max(3,
     getOption("digits") - 3), digit.type = "round", drop0trailing = TRUE,

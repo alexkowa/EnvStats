@@ -1,3 +1,5 @@
+#' @exportS3Method NULL
+#' @noRd
 summaryStats.default <-
 function (object, group = NULL, drop.unused.levels = TRUE, se = FALSE,
     quartiles = FALSE, digits = max(3, getOption("digits") -

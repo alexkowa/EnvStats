@@ -46,6 +46,7 @@
 #' }
 #' @rawRd
 #' \keyword{print}
+#' @exportS3Method NULL
 
 print.boxcoxCensored <-
 function (x, ...) 

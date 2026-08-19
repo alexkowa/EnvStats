@@ -44,6 +44,7 @@
 #' }
 #' @rawRd
 #' \keyword{print}
+#' @exportS3Method NULL
 
 print.distChoose <-
 function (x, ...) 

@@ -56,6 +56,7 @@
 #' }
 #' @rawRd
 #' \keyword{print}
+#' @exportS3Method NULL
 
 print.distChooseCensored <-
 function (x, show.cen.levels = TRUE, pct.censored.digits = .Options$digits, 
