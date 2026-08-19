@@ -4,16 +4,21 @@ function (x, censored, N, cen.levels, K, c.vec, n.cen, censoring.side,
 {
     boot.vec <- numeric(n.bootstraps)
     too.few.obs.count <- 0
+    too.few.distinct.obs.count <- 0
     no.cen.obs.count <- 0
     x.no.cen <- x[!censored]
-    for (i in 1:n.bootstraps) {
+    i <- 1
+    while (i <= n.bootstraps) {
         index <- sample(N, replace = TRUE)
         new.x <- x[index]
         new.censored <- censored[index]
         new.n.cen <- sum(new.censored)
         if ((N - new.n.cen) < 2) {
             too.few.obs.count <- too.few.obs.count + 1
-            i <- i - 1
+            next
+        }
+        if (length(unique(new.x[!new.censored])) < 2) {
+            too.few.distinct.obs.count <- too.few.distinct.obs.count + 1
             next
         }
         if (new.n.cen == 0) {
@@ -30,6 +35,7 @@ function (x, censored, N, cen.levels, K, c.vec, n.cen, censoring.side,
                 c.vec = new.c.vec, n.cen = new.n.cen, censoring.side = censoring.side,
                 ci = FALSE, ...))$parameters[1]
         }
+        i <- i + 1
     }
     alpha <- 1 - conf.level
     if (ci.type == "two-sided")
@@ -69,7 +75,9 @@ function (x, censored, N, cen.levels, K, c.vec, n.cen, censoring.side,
     ret.obj <- list(name = "Confidence", parameter = "mean",
         limits = ci.limits, type = ci.type, method = "Bootstrap",
         conf.level = conf.level, n.bootstraps = n.bootstraps,
-        too.few.obs.count = too.few.obs.count, no.cen.obs.count = no.cen.obs.count)
+        too.few.obs.count = too.few.obs.count,
+        too.few.distinct.obs.count = too.few.distinct.obs.count,
+        no.cen.obs.count = no.cen.obs.count)
     oldClass(ret.obj) <- "intervalEstimateCensored"
     ret.obj
 }
