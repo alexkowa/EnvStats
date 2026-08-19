@@ -6721,7 +6721,7 @@ NULL
 #' @rawRd
 #' \source{
 #'   Washington State Deparment of Ecology. \cr
-#'   \url{https://ecology.wa.gov/Research-Data/Monitoring-assessment/River-stream-monitoring/Water-quality-monitoring/Using-river-stream-water-quality-data}
+#'   \url{https://ecology.wa.gov/research-data/monitoring-assessment/water-quality-monitoring}
 #' }
 #' @rawRd
 #' \keyword{datasets}
