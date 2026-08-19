@@ -50,8 +50,9 @@ These classes of objects are returned by functions that perform hypothesis tests
 }
 \section{Methods}{
   Generic functions that have methods for objects of class
-  \code{"htest"} and \code{"htestEnvStats"} include: \cr
-  \code{\link{print}}.
+  \code{"htestEnvStats"} include: \cr
+  \code{\link[base:print]{print}}. Objects of class \code{"htest"}
+  use the standard \R printing methods.
 }
 \value{
   \strong{Required Components} \cr
@@ -132,7 +133,7 @@ These classes of objects are returned by functions that perform hypothesis tests
   Steven P. Millard (\email{EnvStats@ProbStatInfo.com})
 }
 \seealso{
-  \code{\link{print.htest}}, \code{\link{print.htestEnvStats}}, \link{Hypothesis Tests}.
+  \code{\link{print.htestEnvStats}}, \link{Hypothesis Tests}.
 }
 \examples{
   # Create an object of class "htestEnvStats", then print it out.
@@ -201,63 +202,10 @@ These classes of objects are returned by functions that perform hypothesis tests
   #       t
   #1.574075
 
-  #============================================================================
-
-  # Now create an object of class "htest" and note the difference in how it is
-  # printed out depending on whether or not you explicitly use the print() command.
-  #--------------------------------------------------------------------------------
-
-  htest.obj <- t.test(EPA.02d.Ex.9.mg.per.L.vec, mu = 30, alternative = "greater")
-
-  class(htest.obj)
-  #[1] "htest"
-
-  names(htest.obj)
-  # [1] "statistic"   "parameter"   "p.value"     "conf.int"    "estimate"
-  # [6] "null.value"  "stderr"      "alternative" "method"      "data.name"
-
-  htest.obj
-
-  #        One Sample t-test
-  #
-  #data:  EPA.02d.Ex.9.mg.per.L.vec
-  #t = 1.2943, df = 59, p-value = 0.1003
-  #alternative hypothesis: true mean is greater than 30
-  #95 percent confidence interval:
-  # 28.67044      Inf
-  #sample estimates:
-  #mean of x
-  # 34.56667
-
-
-  print(htest.obj)
-
-  #Results of Hypothesis Test
-  #--------------------------
-  #
-  #Null Hypothesis:                 mean = 30
-  #
-  #Alternative Hypothesis:          True mean is greater than 30
-  #
-  #Test Name:                       One Sample t-test
-  #
-  #Estimated Parameter(s):          mean of x = 34.56667
-  #
-  #Data:                            EPA.02d.Ex.9.mg.per.L.vec
-  #
-  #Test Statistic:                  t = 1.294273
-  #
-  #Test Statistic Parameter:        df = 59
-  #
-  #P-value:                         0.1003072
-  #
-  #95% Confidence Interval:         LCL = 28.67044
-  #                                 UCL =      Inf
-
   #==========
 
   # Clean up
   #---------
-  rm(htestEnvStats.obj, htest.obj)
+  rm(htestEnvStats.obj)
 }
 \keyword{classes}

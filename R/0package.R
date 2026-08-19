@@ -9,7 +9,7 @@
 #' @rawNamespace importFrom("graphics", "Axis", "abline", "axis", "box", "hist", "lines", "mtext", "par", "plot", "points", "polygon", "rect", "segments", "text", "title", "xinch", "yinch")
 #' @rawNamespace importFrom("stats", "anova", "aov", "approx", "ar.yw", "arima", "binom.test", "cor", "dbeta", "dchisq", "dhyper", "dlnorm", "dnorm", "dpois", "formula", "integrate", "kruskal.test", "ks.test", "lm", "mad", "median", "model.frame", "na.pass", "nlminb", "optim", "pbeta", "pbinom", "pchisq", "pf", "pgamma", "phyper", "plnorm", "pnbinom", "pnorm", "ppoints", "ppois", "prop.test", "pt", "qbeta", "qbinom", "qchisq", "qexp", "qf", "qgamma", "qgeom", "qhyper", "qlnorm", "qlogis", "qnbinom", "qnorm", "qpois", "qt", "quantile", "qunif", "qweibull", "rbinom", "rchisq", "residuals", "rlnorm", "rnorm", "runif", "sd", "summary.aov", "t.test", "terms", "time", "uniroot", "update", "var")
 #' @rawNamespace importFrom("utils", "combn", "find", "modifyList")
-#' @rawNamespace export(anovaPE, aovN, aovPower, base, boxcox, boxcoxCensored, boxcoxTransform, calibrate, cdfCompare, cdfCompareCensored, cdfPlot, chenTTest, ciBinomHalfWidth, ciBinomN, ciNormHalfWidth, ciNormN, ciNparConfLevel, ciNparN, ciTableMean, ciTableProp, cv, dchi, demp, detectionLimitCalibrate, devd, dgammaAlt, dgevd, distChoose, distChooseCensored, dlnormAlt, dlnormMix, dlnormMixAlt, dlnormTrunc, dlnormTruncAlt, dlnorm3, dnormMix, dnormTrunc, dpareto, dtri, dzmlnorm, dzmlnormAlt, dzmnorm, ebeta, ebinom, ecdfPlot, ecdfPlotCensored, eevd, eexp, egamma, egammaAlt, egammaCensored, egammaAltCensored, egeom, egevd, ehyper, elnorm, elnormAlt, elnormCensored, elnormAltCensored, elnorm3, elogis, enbinom, enorm, enormCensored, enparCensored, epareto, epdfPlot, epois, epoisCensored, eqbeta, eqbinom, eqevd, eqexp, eqgamma, eqgammaAlt, eqgeom, eqgevd, eqhyper, eqlnorm, eqlnormCensored, eqlnorm3, eqlogis, eqnbinom, eqnorm, eqnormCensored, eqnpar, eqpareto, eqpois, equnif, eqweibull, eqzmlnorm, eqzmlnormAlt, eqzmnorm, errorBar, eunif, evNormOrdStats, evNormOrdStatsScalar, eweibull, ezmlnorm, ezmlnormAlt, ezmnorm, geom_stripchart, geoMean, geoSD, gofTest, gofGroupTest, gofTestCensored, gpqCiNormSinglyCensored, gpqCiNormMultiplyCensored, gpqTolIntNormSinglyCensored, gpqTolIntNormMultiplyCensored, inversePredictCalibrate, iqr, kendallTrendTest, kendallSeasonalTrendTest, kurtosis, lMoment, linearTrendTestN, linearTrendTestPower, linearTrendTestScaledMds, longToWide, newsEnvStats, oneSamplePermutationTest, pchi, pdfPlot, pemp, pevd, pgammaAlt, pgevd, plnormAlt, plnormMix, plnormMixAlt, plnormTrunc, plnormTruncAlt, plnorm3, plotAovDesign, plotCiBinomDesign, plotCiNormDesign, plotCiNparDesign, plotLinearTrendTestDesign, plotPredIntLnormAltSimultaneousTestPowerCurve, plotPredIntLnormAltTestPowerCurve, plotPredIntNormDesign, plotPredIntNormSimultaneousTestPowerCurve, plotPredIntNormTestPowerCurve, plotPredIntNparDesign, plotPredIntNparSimultaneousDesign, plotPredIntNparSimultaneousTestPowerCurve, plotPropTestDesign, plotTTestDesign, plotTTestLnormAltDesign, plotTolIntNormDesign, plotTolIntNparDesign, plot.boxcox, plot.boxcoxLm, plot.boxcoxCensored, plot.gof, plot.gofCensored, plot.gofGroup, plot.gofTwoSample, plot.permutationTest, pnormMix, pnormTrunc, pointwise, ppareto, ppointsCensored, predict, predict.default, predict.lm, predIntGamma, predIntGammaAlt, predIntGammaSimultaneous, predIntGammaAltSimultaneous, predIntLnorm, predIntLnormAlt, predIntLnormAltSimultaneousTestPower, predIntLnormAltTestPower, predIntLnormSimultaneous, predIntLnormAltSimultaneous, predIntNorm, predIntNormHalfWidth, predIntNormK, predIntNormN, predIntNormSimultaneous, predIntNormSimultaneousK, predIntNormSimultaneousTestPower, predIntNormTestPower, predIntNpar, predIntNparConfLevel, predIntNparN, predIntNparSimultaneous, predIntNparSimultaneousConfLevel, predIntNparSimultaneousN, predIntNparSimultaneousTestPower, predIntPois, print.boxcox, print.boxcoxCensored, print.boxcoxLm, print.estimate, print.estimateCensored, print.gof, print.gofCensored, print.gofGroup, print.gofOutlier, print, print.default, print.htest, print.htestEnvStats, print.htestCensored, print.permutationTest, print.summaryStats, print.gofTwoSample, propTestMdd, propTestN, propTestPower, ptri, pwMoment, pzmlnorm, pzmlnormAlt, pzmnorm, qchi, qemp, qevd, qgammaAlt, qgevd, qlnormAlt, qlnormMix, qlnormMixAlt, qlnormTrunc, qlnormTruncAlt, qlnorm3, qnormMix, qnormTrunc, qpareto, qqPlot, qqPlotCensored, qqPlotGestalt, qtri, quantileTest, quantileTestPValue, qzmlnorm, qzmlnormAlt, qzmnorm, rchi, remp, revd, rgammaAlt, rgevd, rlnormAlt, rlnormMix, rlnormMixAlt, rlnormTrunc, rlnormTruncAlt, rlnorm3, rnormMix, rnormTrunc, rosnerTest, rpareto, rtri, rzmlnorm, rzmlnormAlt, rzmnorm, serialCorrelationTest, signTest, simulateMvMatrix, simulateVector, skewness, stat_n_text, StatNText, stat_mean_sd_text, StatMeanSDText, stat_median_iqr_text, StatMedianIQRText, stat_test_text, StatTestText, stripChart, summaryFull, summaryStats, tTestAlpha, tTestN, tTestPower, tTestLnormAltN, tTestLnormAltPower, tTestLnormAltRatioOfMeans, tTestScaledMdd, tolIntGamma, tolIntGammaAlt, tolIntLnorm, tolIntLnormAlt, tolIntLnormCensored, tolIntNorm, tolIntNormHalfWidth, tolIntNormK, tolIntNormN, tolIntNormCensored, tolIntNpar, tolIntNparConfLevel, tolIntNparCoverage, tolIntNparN, tolIntPois, twoSampleLinearRankTest, twoSampleLinearRankTestCensored, twoSamplePermutationTestLocation, twoSamplePermutationTestProportion, varGroupTest, varTest, zTestGevdShape, enpar)
+#' @rawNamespace export(anovaPE, aovN, aovPower, base, boxcox, boxcoxCensored, boxcoxTransform, calibrate, cdfCompare, cdfCompareCensored, cdfPlot, chenTTest, ciBinomHalfWidth, ciBinomN, ciNormHalfWidth, ciNormN, ciNparConfLevel, ciNparN, ciTableMean, ciTableProp, cv, dchi, demp, detectionLimitCalibrate, devd, dgammaAlt, dgevd, distChoose, distChooseCensored, dlnormAlt, dlnormMix, dlnormMixAlt, dlnormTrunc, dlnormTruncAlt, dlnorm3, dnormMix, dnormTrunc, dpareto, dtri, dzmlnorm, dzmlnormAlt, dzmnorm, ebeta, ebinom, ecdfPlot, ecdfPlotCensored, eevd, eexp, egamma, egammaAlt, egammaCensored, egammaAltCensored, egeom, egevd, ehyper, elnorm, elnormAlt, elnormCensored, elnormAltCensored, elnorm3, elogis, enbinom, enorm, enormCensored, enparCensored, epareto, epdfPlot, epois, epoisCensored, eqbeta, eqbinom, eqevd, eqexp, eqgamma, eqgammaAlt, eqgeom, eqgevd, eqhyper, eqlnorm, eqlnormCensored, eqlnorm3, eqlogis, eqnbinom, eqnorm, eqnormCensored, eqnpar, eqpareto, eqpois, equnif, eqweibull, eqzmlnorm, eqzmlnormAlt, eqzmnorm, errorBar, eunif, evNormOrdStats, evNormOrdStatsScalar, eweibull, ezmlnorm, ezmlnormAlt, ezmnorm, geom_stripchart, geoMean, geoSD, gofTest, gofGroupTest, gofTestCensored, gpqCiNormSinglyCensored, gpqCiNormMultiplyCensored, gpqTolIntNormSinglyCensored, gpqTolIntNormMultiplyCensored, inversePredictCalibrate, iqr, kendallTrendTest, kendallSeasonalTrendTest, kurtosis, lMoment, linearTrendTestN, linearTrendTestPower, linearTrendTestScaledMds, longToWide, newsEnvStats, oneSamplePermutationTest, pchi, pdfPlot, pemp, pevd, pgammaAlt, pgevd, plnormAlt, plnormMix, plnormMixAlt, plnormTrunc, plnormTruncAlt, plnorm3, plotAovDesign, plotCiBinomDesign, plotCiNormDesign, plotCiNparDesign, plotLinearTrendTestDesign, plotPredIntLnormAltSimultaneousTestPowerCurve, plotPredIntLnormAltTestPowerCurve, plotPredIntNormDesign, plotPredIntNormSimultaneousTestPowerCurve, plotPredIntNormTestPowerCurve, plotPredIntNparDesign, plotPredIntNparSimultaneousDesign, plotPredIntNparSimultaneousTestPowerCurve, plotPropTestDesign, plotTTestDesign, plotTTestLnormAltDesign, plotTolIntNormDesign, plotTolIntNparDesign, plot.boxcox, plot.boxcoxLm, plot.boxcoxCensored, plot.gof, plot.gofCensored, plot.gofGroup, plot.gofTwoSample, plot.permutationTest, pnormMix, pnormTrunc, pointwise, ppareto, ppointsCensored, predict, predict.default, predict.lm, predIntGamma, predIntGammaAlt, predIntGammaSimultaneous, predIntGammaAltSimultaneous, predIntLnorm, predIntLnormAlt, predIntLnormAltSimultaneousTestPower, predIntLnormAltTestPower, predIntLnormSimultaneous, predIntLnormAltSimultaneous, predIntNorm, predIntNormHalfWidth, predIntNormK, predIntNormN, predIntNormSimultaneous, predIntNormSimultaneousK, predIntNormSimultaneousTestPower, predIntNormTestPower, predIntNpar, predIntNparConfLevel, predIntNparN, predIntNparSimultaneous, predIntNparSimultaneousConfLevel, predIntNparSimultaneousN, predIntNparSimultaneousTestPower, predIntPois, print.boxcox, print.boxcoxCensored, print.boxcoxLm, print.estimate, print.estimateCensored, print.gof, print.gofCensored, print.gofGroup, print.gofOutlier, print.htestEnvStats, print.htestCensored, print.permutationTest, print.summaryStats, print.gofTwoSample, propTestMdd, propTestN, propTestPower, ptri, pwMoment, pzmlnorm, pzmlnormAlt, pzmnorm, qchi, qemp, qevd, qgammaAlt, qgevd, qlnormAlt, qlnormMix, qlnormMixAlt, qlnormTrunc, qlnormTruncAlt, qlnorm3, qnormMix, qnormTrunc, qpareto, qqPlot, qqPlotCensored, qqPlotGestalt, qtri, quantileTest, quantileTestPValue, qzmlnorm, qzmlnormAlt, qzmnorm, rchi, remp, revd, rgammaAlt, rgevd, rlnormAlt, rlnormMix, rlnormMixAlt, rlnormTrunc, rlnormTruncAlt, rlnorm3, rnormMix, rnormTrunc, rosnerTest, rpareto, rtri, rzmlnorm, rzmlnormAlt, rzmnorm, serialCorrelationTest, signTest, simulateMvMatrix, simulateVector, skewness, stat_n_text, StatNText, stat_mean_sd_text, StatMeanSDText, stat_median_iqr_text, StatMedianIQRText, stat_test_text, StatTestText, stripChart, summaryFull, summaryStats, tTestAlpha, tTestN, tTestPower, tTestLnormAltN, tTestLnormAltPower, tTestLnormAltRatioOfMeans, tTestScaledMdd, tolIntGamma, tolIntGammaAlt, tolIntLnorm, tolIntLnormAlt, tolIntLnormCensored, tolIntNorm, tolIntNormHalfWidth, tolIntNormK, tolIntNormN, tolIntNormCensored, tolIntNpar, tolIntNparConfLevel, tolIntNparCoverage, tolIntNparN, tolIntPois, twoSampleLinearRankTest, twoSampleLinearRankTestCensored, twoSamplePermutationTestLocation, twoSamplePermutationTestProportion, varGroupTest, varTest, zTestGevdShape, enpar)
 #' @rawNamespace S3method(boxcox, default)
 #' @rawNamespace S3method(boxcox, lm)
 #' @rawNamespace S3method(distChoose, default)
@@ -37,7 +37,6 @@
 #' @rawNamespace S3method(plot, permutationTest)
 #' @rawNamespace S3method(predict, default)
 #' @rawNamespace S3method(predict, lm)
-#' @rawNamespace S3method(print, default)
 #' @rawNamespace S3method(print, boxcox)
 #' @rawNamespace S3method(print, boxcoxCensored)
 #' @rawNamespace S3method(print, boxcoxLm)
@@ -48,7 +47,6 @@
 #' @rawNamespace S3method(print, gofCensored)
 #' @rawNamespace S3method(print, gofGroup)
 #' @rawNamespace S3method(print, gofOutlier)
-#' @rawNamespace S3method(print, htest)
 #' @rawNamespace S3method(print, htestCensored)
 #' @rawNamespace S3method(print, permutationTest)
 #' @rawNamespace S3method(print, summaryStats)
@@ -4077,7 +4075,7 @@ NULL
 #'   \code{\link{print.gofTwoSample}}        \tab Print an object that inherits from class \cr
 #'                                           \tab \code{\link[=gofTwoSample.object]{"gofTwoSample"}}. \cr
 #'                                           \tab \cr
-#'   \code{\link{print.htest}}               \tab Print an object that inherits from class \code{\link[=htest.object]{"htest"}}. \cr
+#'   \code{\link{print.htestEnvStats}}       \tab Print an object that inherits from class \code{\link[=htest.htestEnvStats.object]{"htestEnvStats"}}. \cr
 #'   \code{\link{print.htestCensored}}       \tab Print an object that inherits from class \cr
 #'                                           \tab \code{\link[=htestCensored.object]{"htestCensored"}}. \cr
 #'   \code{\link{print.permutationTest}}     \tab Print an object that inherits from class \cr
@@ -10237,8 +10235,9 @@ NULL
 #' @rawRd
 #' \section{Methods}{
 #'   Generic functions that have methods for objects of class
-#'   \code{"htest"} and \code{"htestEnvStats"} include: \cr
-#'   \code{\link{print}}.
+#'   \code{"htestEnvStats"} include: \cr
+#'   \code{\link[base:print]{print}}. Objects of class \code{"htest"}
+#'   use the standard \R printing methods.
 #' }
 #' @rawRd
 #' \value{
@@ -10323,7 +10322,7 @@ NULL
 #' }
 #' @rawRd
 #' \seealso{
-#'   \code{\link{print.htest}}, \code{\link{print.htestEnvStats}}, \link{Hypothesis Tests}.
+#'   \code{\link{print.htestEnvStats}}, \link{Hypothesis Tests}.
 #' }
 #' @rawRd
 #' \examples{
@@ -10393,64 +10392,11 @@ NULL
 #'   #       t
 #'   #1.574075
 #'
-#'   #============================================================================
-#'
-#'   # Now create an object of class "htest" and note the difference in how it is
-#'   # printed out depending on whether or not you explicitly use the print() command.
-#'   #--------------------------------------------------------------------------------
-#'
-#'   htest.obj <- t.test(EPA.02d.Ex.9.mg.per.L.vec, mu = 30, alternative = "greater")
-#'
-#'   class(htest.obj)
-#'   #[1] "htest"
-#'
-#'   names(htest.obj)
-#'   # [1] "statistic"   "parameter"   "p.value"     "conf.int"    "estimate"
-#'   # [6] "null.value"  "stderr"      "alternative" "method"      "data.name"
-#'
-#'   htest.obj
-#'
-#'   #        One Sample t-test
-#'   #
-#'   #data:  EPA.02d.Ex.9.mg.per.L.vec
-#'   #t = 1.2943, df = 59, p-value = 0.1003
-#'   #alternative hypothesis: true mean is greater than 30
-#'   #95 percent confidence interval:
-#'   # 28.67044      Inf
-#'   #sample estimates:
-#'   #mean of x
-#'   # 34.56667
-#'
-#'
-#'   print(htest.obj)
-#'
-#'   #Results of Hypothesis Test
-#'   #--------------------------
-#'   #
-#'   #Null Hypothesis:                 mean = 30
-#'   #
-#'   #Alternative Hypothesis:          True mean is greater than 30
-#'   #
-#'   #Test Name:                       One Sample t-test
-#'   #
-#'   #Estimated Parameter(s):          mean of x = 34.56667
-#'   #
-#'   #Data:                            EPA.02d.Ex.9.mg.per.L.vec
-#'   #
-#'   #Test Statistic:                  t = 1.294273
-#'   #
-#'   #Test Statistic Parameter:        df = 59
-#'   #
-#'   #P-value:                         0.1003072
-#'   #
-#'   #95% Confidence Interval:         LCL = 28.67044
-#'   #                                 UCL =      Inf
-#'
 #'   #==========
 #'
 #'   # Clean up
 #'   #---------
-#'   rm(htestEnvStats.obj, htest.obj)
+#'   rm(htestEnvStats.obj)
 #' }
 #' @rawRd
 #' \keyword{classes}
@@ -10802,37 +10748,24 @@ NULL
 #' \keyword{classes}
 NULL
 
-#' Print Output of Hypothesis Tests
-#' @name print.htest.htestEnvStats
-#' @aliases print.htest print.htestEnvStats
+#' Print Output of EnvStats Hypothesis Tests
+#' @name print.htestEnvStats
+#' @aliases print.htestEnvStats
 #' @description
-#' Print objects of class \code{"htest"} or \code{"htestEnvStats"}, respectively,
-#'   by simple \code{\link{print}} methods.
+#' Print objects of class \code{"htestEnvStats"} by a simple
+#'   \code{\link[base:print]{print}} method.
 #'
-#'   The functions \code{print.htest} and \code{print.htestEnvStats} are identical, and are a
-#'   modification of the \R function \code{\link[stats:print.power.htest]{print.htest}}.
-#'
-#'   The function \code{print.htestEnvStats} formats and prints the results of performing
-#'   a hypothesis test that was performed using one of the functions listed in the help file for
-#'   \code{\link{htestEnvStats.object}}.  This method is automatically called by the
-#'   \pkg{EnvStats} generic function \code{\link{print}} when
-#'   given an object of class \code{"\link[=htestEnvStats.object]{htestEnvStats}"}.
-#'
-#'   The function \code{print.htest} formats and prints the results of performing
-#'   a hypothesis test that was performed using a function that returns an object of
-#'   class \code{"htest"}.  Because of the design of \R, the \pkg{EnvStats} method
-#'   \code{print.htest} is NOT automatically called when the user types a command at
-#'   the command prompt that returns an object of class \code{"\link[=htest.object]{htest}"}.
-#'   Instead, the \pkg{EnvStats} \code{\link{print}} function must be explicitly called to invoke
-#'   \code{print.htest}.  See the EXAMPLES section below.
+#'   The function \code{print.htestEnvStats} formats and prints the results of
+#'   performing a hypothesis test using one of the functions listed in the help
+#'   file for \code{\link{htestEnvStats.object}}. This method is automatically
+#'   called by the standard \R \code{\link[base:print]{print}} generic when given
+#'   an object of class \code{"\link[=htestEnvStats.object]{htestEnvStats}"}.
 #' @usage
-#' \method{print}{htest}(x, ...)
-#'   \method{print}{htestEnvStats}(x, ...)
+#' \method{print}{htestEnvStats}(x, ...)
 #' @rawRd
 #' \arguments{
 #'   \item{x}{
-#'   an object of class \code{"htest"} or \code{"htestEnvStats"}.
-#'   See \code{\link{htest.object}} and \cr
+#'   an object of class \code{"htestEnvStats"}. See
 #'   \code{\link{htestEnvStats.object}} for details.
 #' }
 #'   \item{\dots}{
@@ -10841,16 +10774,13 @@ NULL
 #' }
 #' @rawRd
 #' \details{
-#'   The function \code{print.htest} is the \code{"htest"} method for the \pkg{EnvStats} generic
-#'   function \code{\link{print}}, and the function \code{print.htestEnvStats} is the
-#'   \code{"htestEnvStats"} method for the \pkg{EnvStats} generic function \code{\link{print}}.
-#'   These functions print null and alternative hypotheses, name of the test, estimated population
-#'   parameter(s) involved in the null hypothesis, estimation method (if present),
-#'   data name, sample size (if present), number of missing observations removed
-#'   prior to performing the test (if present), value of the test statistic,
-#'   parameters associated with the null distribution of the test statistic,
-#'   p-value associated with the test statistic, and confidence interval for the
-#'   population parameter (if present).
+#'   This method prints null and alternative hypotheses, name of the test,
+#'   estimated population parameter(s) involved in the null hypothesis, estimation
+#'   method (if present), data name, sample size (if present), number of missing
+#'   observations removed prior to performing the test (if present), value of the
+#'   test statistic, parameters associated with the null distribution of the test
+#'   statistic, p-value associated with the test statistic, and confidence
+#'   interval for the population parameter (if present).
 #' }
 #' @rawRd
 #' \value{
@@ -10867,8 +10797,8 @@ NULL
 #' }
 #' @rawRd
 #' \seealso{
-#'   \link{Hypothesis Tests}, \code{\link{htest.object}}, \code{\link{htestEnvStats.object}},
-#'   \code{\link{print}}.
+#'   \link{Hypothesis Tests}, \code{\link{htestEnvStats.object}},
+#'   \code{\link[base:print]{print}}.
 #' }
 #' @rawRd
 #' \examples{
@@ -10889,102 +10819,18 @@ NULL
 #'
 #'   htestEnvStats.obj
 #'
-#'   #Results of Hypothesis Test
-#'   #--------------------------
-#'   #
-#'   #Null Hypothesis:                 mean = 30
-#'   #
-#'   #Alternative Hypothesis:          True mean is greater than 30
-#'   #
-#'   #Test Name:                       One-sample t-Test
-#'   #                                 Modified for
-#'   #                                 Positively-Skewed Distributions
-#'   #                                 (Chen, 1995)
-#'   #
-#'   #Estimated Parameter(s):          mean = 34.566667
-#'   #                                 sd   = 27.330598
-#'   #                                 skew =  2.365778
-#'   #
-#'   #Data:                            EPA.02d.Ex.9.mg.per.L.vec
-#'   #
-#'   #Sample Size:                     60
-#'   #
-#'   #Test Statistic:                  t = 1.574075
-#'   #
-#'   #Test Statistic Parameter:        df = 59
-#'   #
-#'   #P-values:                        z               = 0.05773508
-#'   #                                 t               = 0.06040889
-#'   #                                 Avg. of z and t = 0.05907199
-#'   #
-#'   #Confidence Interval for:         mean
-#'   #
-#'   #Confidence Interval Method:      Based on z
-#'   #
-#'   #Confidence Interval Type:        Lower
-#'   #
-#'   #Confidence Level:                95%
-#'   #
-#'   #Confidence Interval:             LCL = 29.82
-#'   #                                 UCL =   Inf
+#'   #==========
 #'
-#'   #============================================================================
+#'   # Extract the test statistic
+#'   #---------------------------
 #'
-#'   # Now create an object of class "htest" and note the difference in how it is
-#'   # printed out depending on whether or not you explicitly use the print() command.
-#'   #--------------------------------------------------------------------------------
-#'
-#'   htest.obj <- t.test(EPA.02d.Ex.9.mg.per.L.vec, mu = 30, alternative = "greater")
-#'
-#'   class(htest.obj)
-#'   #[1] "htest"
-#'
-#'   names(htest.obj)
-#'   # [1] "statistic"   "parameter"   "p.value"     "conf.int"    "estimate"
-#'   # [6] "null.value"  "stderr"      "alternative" "method"      "data.name"
-#'
-#'   htest.obj
-#'
-#'   #        One Sample t-test
-#'   #
-#'   #data:  EPA.02d.Ex.9.mg.per.L.vec
-#'   #t = 1.2943, df = 59, p-value = 0.1003
-#'   #alternative hypothesis: true mean is greater than 30
-#'   #95 percent confidence interval:
-#'   # 28.67044      Inf
-#'   #sample estimates:
-#'   #mean of x
-#'   # 34.56667
-#'
-#'   print(htest.obj)
-#'
-#'   #Results of Hypothesis Test
-#'   #--------------------------
-#'   #
-#'   #Null Hypothesis:                 mean = 30
-#'   #
-#'   #Alternative Hypothesis:          True mean is greater than 30
-#'   #
-#'   #Test Name:                       One Sample t-test
-#'   #
-#'   #Estimated Parameter(s):          mean of x = 34.56667
-#'   #
-#'   #Data:                            EPA.02d.Ex.9.mg.per.L.vec
-#'   #
-#'   #Test Statistic:                  t = 1.294273
-#'   #
-#'   #Test Statistic Parameter:        df = 59
-#'   #
-#'   #P-value:                         0.1003072
-#'   #
-#'   #95% Confidence Interval:         LCL = 28.67044
-#'   #                                 UCL =      Inf
+#'   htestEnvStats.obj$statistic
 #'
 #'   #==========
 #'
 #'   # Clean up
 #'   #---------
-#'   rm(htestEnvStats.obj, htest.obj)
+#'   rm(htestEnvStats.obj)
 #' }
 #' @rawRd
 #' \keyword{print}

@@ -27,7 +27,7 @@ The \pkg{EnvStats} functions listed below are printing and plotting methods for 
   \code{\link{print.gofTwoSample}}        \tab Print an object that inherits from class \cr
                                           \tab \code{\link[=gofTwoSample.object]{"gofTwoSample"}}. \cr
                                           \tab \cr
-  \code{\link{print.htest}}               \tab Print an object that inherits from class \code{\link[=htest.object]{"htest"}}. \cr
+  \code{\link{print.htestEnvStats}}       \tab Print an object that inherits from class \code{\link[=htest.htestEnvStats.object]{"htestEnvStats"}}. \cr
   \code{\link{print.htestCensored}}       \tab Print an object that inherits from class \cr
                                           \tab \code{\link[=htestCensored.object]{"htestCensored"}}. \cr
   \code{\link{print.permutationTest}}     \tab Print an object that inherits from class \cr
