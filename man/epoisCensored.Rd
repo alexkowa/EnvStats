@@ -128,7 +128,6 @@ and background material are available in \code{vignette("extended-function-detai
   Stryhn, H., and J. Christensen. (2003).  \emph{Confidence Intervals by the Profile
   Likelihood Method, with Applications in Veterinary Epidemiology}.  Contributed paper
   at ISVEE X (November 2003, Chile).
-  \url{https://gilvanguedes.com/wp-content/uploads/2019/05/Profile-Likelihood-CI.pdf}.
 
   Venzon, D.J., and S.H. Moolgavkar. (1988).  A Method for Computing
   Profile-Likelihood-Based Confidence Intervals.  \emph{Journal of the Royal

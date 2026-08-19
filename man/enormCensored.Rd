@@ -327,7 +327,6 @@ and background material are available in \code{vignette("extended-function-detai
   Stryhn, H., and J. Christensen. (2003).  \emph{Confidence Intervals by the Profile
   Likelihood Method, with Applications in Veterinary Epidemiology}.  Contributed paper
   at ISVEE X (November 2003, Chile).
-  \url{https://gilvanguedes.com/wp-content/uploads/2019/05/Profile-Likelihood-CI.pdf}.
 
   Travis, C.C., and M.L. Land. (1990).  Estimating the Mean of Data Sets with
   Nondetectable Values.  \emph{Environmental Science and Technology} \bold{24}, 961--962.
