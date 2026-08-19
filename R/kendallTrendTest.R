@@ -1,3 +1,295 @@
+#' Kendall's Nonparametric Test for Montonic Trend
+#' @aliases kendallTrendTest.formula kendallTrendTest.default
+#' @description
+#' Perform a nonparametric test for a monotonic trend based on Kendall's
+#'   tau statistic, and optionally compute a confidence interval for the
+#'   slope.
+#' @usage
+#' kendallTrendTest(y, ...)
+#'
+#' \method{kendallTrendTest}{formula}(y, data = NULL, subset,
+#'   na.action = na.pass, ...)
+#'
+#' \method{kendallTrendTest}{default}(y, x = seq(along = y),
+#'   alternative = "two.sided", correct = TRUE, ci.slope = TRUE,
+#'   conf.level = 0.95, warn = TRUE, data.name = NULL, data.name.x = NULL,
+#'   parent.of.data = NULL, subset.expression = NULL, ...)
+#' @rawRd
+#' \arguments{
+#'   \item{y}{
+#'   an object containing data for the trend test.  In the default method,
+#'   the argument \code{y} must be numeric vector of observations.
+#'   In the formula method, \code{y} must be a formula of the form \code{y ~ 1} or
+#'   \code{y ~ x}.  The form \code{y ~ 1} indicates use the observations in the vector
+#'   \code{y} for the test for trend and use the default value of the argument \code{x}
+#'   in the call to \code{kendallTrendTest.default}.  The form \code{y ~ x} indicates
+#'   use the observations in the vector \code{y} for the test for trend and use the
+#'   specified value of the argument \code{x} in the call to
+#'   \code{kendallTrendTest.default}.  Missing (\code{NA}), undefined (\code{NaN}),
+#'   and infinite (\code{Inf}, \code{-Inf}) values are allowed but will be
+#'   removed.
+#' }
+#'   \item{data}{
+#'   specifies an optional data frame, list or environment (or object coercible by
+#'   \code{as.data.frame} to a data frame) containing the variables in the model.
+#'   If not found in \code{data}, the variables are taken from \code{environment(formula)},
+#'   typically the environment from which \code{kendallTrendTest} is called.
+#' }
+#'   \item{subset}{
+#'   specifies an optional vector specifying a subset of observations to be used.
+#' }
+#'   \item{na.action}{
+#'   specifies a function which indicates what should happen when the data contain \code{NA}s.
+#'   The default is \code{\link{na.pass}}.
+#' }
+#'   \item{x}{
+#'   numeric vector of "predictor" values.  The length of \code{x} must equal the length of \code{y}.
+#'   Missing (\code{NA}), undefined (\code{NaN}), and infinite (\code{Inf}, \code{-Inf}) values are
+#'   allowed but will be removed.  The default value of \code{x} is the vector
+#'   of numbers \eqn{1, 2, \dots, n} where \eqn{n} is the number of elements in
+#'   \code{y}.
+#' }
+#'   \item{alternative}{
+#'   character string indicating the kind of alternative hypothesis.  The
+#'   possible values are \code{"two.sided"} (tau not equal to 0; the default),
+#'   \code{"less"} (tau less than 0), and \code{"greater"} (tau greater than 0).
+#' }
+#'   \item{correct}{
+#'   logical scalar indicating whether to use the correction for continuity in
+#'   computing the \eqn{z}-statistic that is based on the test statistic \eqn{S}.
+#'   The default value is \code{TRUE}.
+#' }
+#'   \item{ci.slope}{
+#'   logical scalar indicating whether to compute a confidence interval for the
+#'   slope.  The default value is \code{TRUE}.
+#' }
+#'   \item{conf.level}{
+#'   numeric scalar between 0 and 1 indicating the confidence level associated
+#'   with the confidence interval for the slope.  The default value is
+#'   \code{0.95}.
+#' }
+#'   \item{warn}{
+#'   logical scalar indicating whether to print a warning message when
+#'   \code{y} does not contain at least two non-missing values,
+#'   or when \code{x} does not contain at least two unique non-missing values.
+#'   The default value is \code{TRUE}.
+#' }
+#'   \item{data.name}{
+#'   character string indicating the name of the data used for the trend test.
+#'   The default value is \code{deparse(substitute(y))}.
+#' }
+#'   \item{data.name.x}{
+#'   character string indicating the name of the data used for the predictor variable x.
+#'   If \code{x} is not supplied this argument is ignored.  When \code{x} is supplied,
+#'   the default value is \code{deparse(substitute(x))}.
+#' }
+#'   \item{parent.of.data}{
+#'   character string indicating the source of the data used for the trend test.
+#' }
+#'   \item{subset.expression}{
+#'   character string indicating the expression used to subset the data.
+#' }
+#'   \item{\dots}{
+#'   additional arguments affecting the test for trend.
+#' }
+#' }
+#' @details
+#' This help page has been shortened to keep function help focused on usage,
+#' arguments, return values, and examples. Extended method details, formulas,
+#' and background material are available in \code{vignette("extended-function-details", package = "EnvStats")}, section \code{kendallTrendTest}.
+#' @rawRd
+#' \value{
+#'   A list of class \code{"htestEnvStats"} containing the results of the hypothesis
+#'   test.  See the help file for \code{\link{htestEnvStats.object}} for details.
+#'   In addition, the following components are part of the list returned by
+#'   \code{kendallTrendTest}:
+#'
+#'   \item{S}{The value of the Kendall S-statistic.}
+#'   \item{var.S}{The variance of the Kendall S-statistic.}
+#'   \item{slopes}{A numeric vector of all possible two-point slope estimates.
+#'     This component is used by the function \code{\link{kendallSeasonalTrendTest}}.}
+#' }
+#' @rawRd
+#' \references{
+#'   Bradley, J.V. (1968). \emph{Distribution-Free Statistical Tests}.
+#'   Prentice-Hall, Englewood Cliffs, NJ.
+#'
+#'   Conover, W.J. (1980). \emph{Practical Nonparametric Statistics}. Second Edition.
+#'   John Wiley and Sons, New York, pp.256-272.
+#'
+#'   Gibbons, R.D., D.K. Bhaumik, and S. Aryal. (2009).
+#'   \emph{Statistical Methods for Groundwater Monitoring}, Second Edition.
+#'   John Wiley & Sons, Hoboken.
+#'
+#'   Gilbert, R.O. (1987). \emph{Statistical Methods for Environmental Pollution Monitoring}.
+#'   Van Nostrand Reinhold, New York, NY, Chapter 16.
+#'
+#'   Helsel, D.R. and R.M. Hirsch. (1988). Discussion of Applicability of the t-test for Detecting Trends
+#'   in Water Quality Variables. \emph{Water Resources Bulletin} \bold{24}(1), 201-204.
+#'
+#'   Helsel, D.R., and R.M. Hirsch. (1992). \emph{Statistical Methods in Water Resources Research}.
+#'   Elsevier, NY.
+#'
+#'   Helsel, D.R., and R. M. Hirsch. (2002). \emph{Statistical Methods in Water Resources}.
+#'   Techniques of Water Resources Investigations, Book 4, chapter A3. U.S. Geological Survey.
+#'   Available on-line at \url{https://pubs.usgs.gov/tm/04/a03/tm4a3.pdf}.
+#'
+#'   Hirsch, R.M., J.R. Slack, and R.A. Smith. (1982). Techniques of Trend Analysis for Monthly Water Quality
+#'   Data. \emph{Water Resources Research} \bold{18}(1), 107-121.
+#'
+#'   Hirsch, R.M. and J.R. Slack. (1984). A Nonparametric Trend Test for Seasonal Data with Serial Dependence.
+#'   \emph{Water Resources Research} \bold{20}(6), 727-732.
+#'
+#'   Hirsch, R.M., R.B. Alexander, and R.A. Smith. (1991). Selection of Methods for the Detection and
+#'   Estimation of Trends in Water Quality. \emph{Water Resources Research} \bold{27}(5), 803-813.
+#'
+#'   Hollander, M., and D.A. Wolfe. (1999). \emph{Nonparametric Statistical Methods,
+#'   Second Edition}.  John Wiley and Sons, New York.
+#'
+#'   Kendall, M.G. (1938). A New Measure of Rank Correlation. \emph{Biometrika} \bold{30}, 81-93.
+#'
+#'   Kendall, M.G. (1975). \emph{Rank Correlation Methods}. Charles Griffin, London.
+#'
+#'   Mann, H.B. (1945). Nonparametric Tests Against Trend. \emph{Econometrica} \bold{13}, 245-259.
+#'
+#'   Millard, S.P., and Neerchal, N.K. (2001). \emph{Environmental Statistics with S-PLUS}.
+#'   CRC Press, Boca Raton, Florida.
+#'
+#'   Sen, P.K. (1968). Estimates of the Regression Coefficient Based on Kendall's Tau.
+#'   \emph{Journal of the American Statistical Association} \bold{63}, 1379-1389.
+#'
+#'   Theil, H. (1950). A Rank-Invariant Method of Linear and Polynomial Regression Analysis, I-III.
+#'   \emph{Proc. Kon. Ned. Akad. v. Wetensch. A.} \bold{53}, 386-392, 521-525, 1397-1412.
+#'
+#'   USEPA. (2009).  \emph{Statistical Analysis of Groundwater Monitoring Data at RCRA Facilities, Unified Guidance}.
+#'   EPA 530/R-09-007, March 2009.  Office of Resource Conservation and Recovery Program Implementation and Information Division.
+#'   U.S. Environmental Protection Agency, Washington, D.C.
+#'
+#'   USEPA. (2010).  \emph{Errata Sheet - March 2009 Unified Guidance}.
+#'   EPA 530/R-09-007a, August 9, 2010.  Office of Resource Conservation and Recovery, Program Information and Implementation Division.
+#'   U.S. Environmental Protection Agency, Washington, D.C.
+#'
+#'   van Belle, G., and J.P. Hughes. (1984). Nonparametric Tests for Trend in Water Quality.
+#'   \emph{Water Resources Research} \bold{20}(1), 127-136.
+#' }
+#' @rawRd
+#' \author{
+#'   Steven P. Millard (\email{EnvStats@ProbStatInfo.com})
+#' }
+#' @rawRd
+#' \note{
+#'   Kendall's test for independence or trend is a nonparametric test.  No
+#'   assumptions are made about the distribution of the \eqn{X} and \eqn{Y}
+#'   variables.  Hirsch et al. (1982) introduced the "seasonal Kendall test" to
+#'   test for trend within each season.  They note that Kendall's test for trend
+#'   is easy to compute, even in the presence of missing values, and can also be
+#'   used with censored values.
+#'
+#'   van Belle and Hughes (1984) note that Kendall's test for trend is slightly
+#'   less powerful than the test based on Spearman's rho, but it converges to
+#'   normality faster.  Also, Bradley (1968, p.288) shows that for the case of a
+#'   linear model with normal (Gaussian) errors, the asymptotic relative
+#'   efficiency of Kendall's test for trend versus the parametric test for a
+#'   zero slope is 0.98.
+#'
+#'   The results of the function \code{kendallTrendTest} are similar to the
+#'   results of the built-in \R function \code{\link{cor.test}} with the
+#'   argument \code{method="kendall"} except that \code{\link{cor.test}}
+#'   1) computes exact p-values when the number of pairs is less than 50 and
+#'   there are no ties, and 2) does not return a confidence interval for
+#'   the slope.
+#' }
+#' @rawRd
+#' \seealso{
+#'   \code{\link{cor.test}}, \code{\link{kendallSeasonalTrendTest}}, \code{\link{htestEnvStats.object}}.
+#' }
+#' @rawRd
+#' \examples{
+#'   # Reproduce Example 17-6 on page 17-33 of USEPA (2009).  This example
+#'   # tests for trend in sulfate concentrations (ppm) collected at various
+#'   # months between 1989 and 1996.
+#'
+#'   head(EPA.09.Ex.17.6.sulfate.df)
+#'   #  Sample.No Year Month Sampling.Date       Date Sulfate.ppm
+#'   #1         1   89     6          89.6 1989-06-01         480
+#'   #2         2   89     8          89.8 1989-08-01         450
+#'   #3         3   90     1          90.1 1990-01-01         490
+#'   #4         4   90     3          90.3 1990-03-01         520
+#'   #5         5   90     6          90.6 1990-06-01         485
+#'   #6         6   90     8          90.8 1990-08-01         510
+#'
+#'
+#'   # Plot the data
+#'   #--------------
+#'   dev.new()
+#'   with(EPA.09.Ex.17.6.sulfate.df,
+#'     plot(Sampling.Date, Sulfate.ppm, pch = 15, ylim = c(400, 900),
+#'     xlab = "Sampling Date", ylab = "Sulfate Conc (ppm)",
+#'     main = "Figure 17-6. Time Series Plot of \nSulfate Concentrations (ppm)")
+#'   )
+#'   Sulfate.fit <- lm(Sulfate.ppm ~ Sampling.Date,
+#'     data = EPA.09.Ex.17.6.sulfate.df)
+#'   abline(Sulfate.fit, lty = 2)
+#'
+#'
+#'   # Perform the Kendall test for trend
+#'   #-----------------------------------
+#'   kendallTrendTest(Sulfate.ppm ~ Sampling.Date,
+#'     data = EPA.09.Ex.17.6.sulfate.df)
+#'
+#'   #Results of Hypothesis Test
+#'   #--------------------------
+#'   #
+#'   #Null Hypothesis:                 tau = 0
+#'   #
+#'   #Alternative Hypothesis:          True tau is not equal to 0
+#'   #
+#'   #Test Name:                       Kendall's Test for Trend
+#'   #                                 (with continuity correction)
+#'   #
+#'   #Estimated Parameter(s):          tau       =     0.7667984
+#'   #                                 slope     =    26.6666667
+#'   #                                 intercept = -1909.3333333
+#'   #
+#'   #Estimation Method:               slope:      Theil/Sen Estimator
+#'   #                                 intercept:  Conover's Estimator
+#'   #
+#'   #Data:                            y = Sulfate.ppm
+#'   #                                 x = Sampling.Date
+#'   #
+#'   #Data Source:                     EPA.09.Ex.17.6.sulfate.df
+#'   #
+#'   #Sample Size:                     23
+#'   #
+#'   #Test Statistic:                  z = 5.107322
+#'   #
+#'   #P-value:                         3.267574e-07
+#'   #
+#'   #Confidence Interval for:         slope
+#'   #
+#'   #Confidence Interval Method:      Gilbert's Modification
+#'   #                                 of Theil/Sen Method
+#'   #
+#'   #Confidence Interval Type:        two-sided
+#'   #
+#'   #Confidence Level:                95%
+#'   #
+#'   #Confidence Interval:             LCL = 20.00000
+#'   #                                 UCL = 35.71182
+#'
+#'
+#'   # Clean up
+#'   #---------
+#'   rm(Sulfate.fit)
+#'   graphics.off()
+#' }
+#' @rawRd
+#' \keyword{htestEnvStats}
+#' @rawRd
+#' \keyword{nonparametric}
+#' @rawRd
+#' \keyword{regression}
+
 kendallTrendTest <-
 function (y, ...) 
 UseMethod("kendallTrendTest")

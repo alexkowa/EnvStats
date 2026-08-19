@@ -1,3 +1,282 @@
+#' Estimate Mean and Coefficient of Variation for a Gamma Distribution Based on Type I Censored Data
+#' @description
+#' Estimate the mean and coefficient of variation of a
+#'   \link[stats:GammaDist]{gamma distribution} given a
+#'   sample of data that has been subjected to Type I censoring, and optionally
+#'   construct a confidence interval for the mean.
+#' @usage
+#' egammaAltCensored(x, censored, method = "mle", censoring.side = "left",
+#'     ci = FALSE, ci.method = "profile.likelihood", ci.type = "two-sided",
+#'     conf.level = 0.95, n.bootstraps = 1000, pivot.statistic = "z",
+#'     ci.sample.size = sum(!censored))
+#' @rawRd
+#' \arguments{
+#'   \item{x}{
+#'   numeric vector of observations.  Missing (\code{NA}), undefined (\code{NaN}), and
+#'   infinite (\code{Inf}, \code{-Inf}) values are allowed but will be removed.
+#' }
+#'   \item{censored}{
+#'   numeric or logical vector indicating which values of \code{x} are censored.
+#'   This must be the same length as \code{x}.  If the mode of \code{censored} is
+#'   \code{"logical"}, \code{TRUE} values correspond to elements of \code{x} that
+#'   are censored, and \code{FALSE} values correspond to elements of \code{x} that
+#'   are not censored.  If the mode of \code{censored} is \code{"numeric"},
+#'   it must contain only \code{1}'s and \code{0}'s; \code{1} corresponds to
+#'   \code{TRUE} and \code{0} corresponds to \code{FALSE}.  Missing (\code{NA})
+#'   values are allowed but will be removed.
+#' }
+#'   \item{method}{
+#'   character string specifying the method of estimation.  Currently, the only
+#'   available method is maximum likelihood (\code{method="mle"}).
+#' }
+#'   \item{censoring.side}{
+#'   character string indicating on which side the censoring occurs.  The possible
+#'   values are \code{"left"} (the default) and \code{"right"}.
+#' }
+#'   \item{ci}{
+#'   logical scalar indicating whether to compute a confidence interval for the
+#'   mean.  The default value is \code{ci=FALSE}.
+#' }
+#'   \item{ci.method}{
+#'   character string indicating what method to use to construct the confidence interval
+#'   for the mean.  The possible values are \code{"profile.likelihood"}
+#'   (profile likelihood; the default),
+#'   \code{"normal.approx"} (normal approximation),
+#'   and
+#'   \code{"bootstrap"} (based on bootstrapping).
+#'   See the DETAILS section for more information.
+#'   This argument is ignored if \code{ci=FALSE}.
+#' }
+#'   \item{ci.type}{
+#'   character string indicating what kind of confidence interval to compute.  The
+#'   possible values are \code{"two-sided"} (the default), \code{"lower"}, and
+#'   \code{"upper"}.  This argument is ignored if \code{ci=FALSE}.
+#' }
+#'   \item{conf.level}{
+#'   a scalar between 0 and 1 indicating the confidence level of the confidence interval.
+#'   The default value is \code{conf.level=0.95}. This argument is ignored if
+#'   \code{ci=FALSE}.
+#' }
+#'   \item{n.bootstraps}{
+#'   numeric scalar indicating how many bootstraps to use to construct the
+#'   confidence interval for the mean when \code{ci.type="bootstrap"}.  This
+#'   argument is ignored if \code{ci=FALSE} and/or \code{ci.method} does not
+#'   equal \code{"bootstrap"}.
+#' }
+#'   \item{pivot.statistic}{
+#'   character string indicating which pivot statistic to use in the construction
+#'   of the confidence interval for the mean when \code{ci.method="normal.approx"} or
+#'   \code{ci.method="normal.approx.w.cov"} (see the DETAILS section).  The possible
+#'   values are \code{pivot.statistic="z"} (the default) and \code{pivot.statistic="t"}.
+#'   When \code{pivot.statistic="t"} you may supply the argument
+#'   \code{ci.sample size} (see below).  The argument \code{pivot.statistic} is
+#'   ignored if \code{ci=FALSE}.
+#' }
+#'   \item{ci.sample.size}{
+#'   numeric scalar indicating what sample size to assume to construct the
+#'   confidence interval for the mean if \code{pivot.statistic="t"} and \cr
+#'   \code{ci.method="normal.approx"}.  The default value is the number of
+#'   uncensored observations.
+#' }
+#' }
+#' @details
+#' This help page has been shortened to keep function help focused on usage,
+#' arguments, return values, and examples. Extended method details, formulas,
+#' and background material are available in \code{vignette("extended-function-details", package = "EnvStats")}, section \code{egammaAltCensored}.
+#' @rawRd
+#' \value{
+#'   a list of class \code{"estimateCensored"} containing the estimated parameters
+#'   and other information.  See \code{\link{estimateCensored.object}} for details.
+#' }
+#' @rawRd
+#' \references{
+#'   Cohen, A.C. (1963).  Progressively Censored Samples in Life Testing.
+#'   \emph{Technometrics} \bold{5}, 327--339
+#'
+#'   Cohen, A.C. (1991).  \emph{Truncated and Censored Samples}.  Marcel Dekker,
+#'   New York, New York, 312pp.
+#'
+#'   Cox, D.R. (1970).  \emph{Analysis of Binary Data}.  Chapman & Hall, London.  142pp.
+#'
+#'   Efron, B. (1979).  Bootstrap Methods: Another Look at the Jackknife.
+#'   \emph{The Annals of Statistics} \bold{7}, 1--26.
+#'
+#'   Efron, B., and R.J. Tibshirani. (1993).  \emph{An Introduction to the Bootstrap}.
+#'   Chapman and Hall, New York, 436pp.
+#'
+#'   Forbes, C., M. Evans, N. Hastings, and B. Peacock. (2011).
+#'   \emph{Statistical Distributions, Fourth Edition}.
+#'   John Wiley and Sons, Hoboken, NJ.
+#'
+#'   Helsel, D.R. (2012). \emph{Statistics for Censored Environmental Data Using Minitab and R,
+#'   Second Edition}.  John Wiley & Sons, Hoboken, New Jersey.
+#'
+#'   Johnson, N.L., S. Kotz, and N. Balakrishnan. (1994).
+#'   \emph{Continuous Univariate Distributions, Volume 1}. Second Edition.
+#'   John Wiley and Sons, New York, Chapter 17.
+#'
+#'   Millard, S.P., P. Dixon, and N.K. Neerchal. (2014; in preparation).
+#'   \emph{Environmental Statistics with R}.  CRC Press, Boca Raton, Florida.
+#'
+#'   Nelson, W. (1982).  \emph{Applied Life Data Analysis}.
+#'   John Wiley and Sons, New York, 634pp.
+#'
+#'   Royston, P. (2007).  Profile Likelihood for Estimation and Confdence Intervals.
+#'   \emph{The Stata Journal} \bold{7}(3), pp. 376--387.
+#'
+#'   Singh, A., R. Maichle, and S. Lee. (2006).  \emph{On the Computation of a 95\%
+#'   Upper Confidence Limit of the Unknown Population Mean Based Upon Data Sets
+#'   with Below Detection Limit Observations}.  EPA/600/R-06/022, March 2006.
+#'   Office of Research and Development, U.S. Environmental Protection Agency,
+#'   Washington, D.C.
+#'
+#'   Stryhn, H., and J. Christensen. (2003).  \emph{Confidence Intervals by the Profile
+#'   Likelihood Method, with Applications in Veterinary Epidemiology}.  Contributed paper
+#'   at ISVEE X (November 2003, Chile).
+#'   \url{https://gilvanguedes.com/wp-content/uploads/2019/05/Profile-Likelihood-CI.pdf}.
+#'
+#'   Venzon, D.J., and S.H. Moolgavkar. (1988).  A Method for Computing
+#'   Profile-Likelihood-Based Confidence Intervals.  \emph{Journal of the Royal
+#'   Statistical Society, Series C (Applied Statistics)} \bold{37}(1), pp. 87--94.
+#' }
+#' @rawRd
+#' \author{
+#'     Steven P. Millard (\email{EnvStats@ProbStatInfo.com})
+#' }
+#' @rawRd
+#' \note{
+#'   A sample of data contains censored observations if some of the observations are
+#'   reported only as being below or above some censoring level.  In environmental
+#'   data analysis, Type I left-censored data sets are common, with values being
+#'   reported as \dQuote{less than the detection limit} (e.g., Helsel, 2012).  Data
+#'   sets with only one censoring level are called \emph{singly censored}; data sets with
+#'   multiple censoring levels are called \emph{multiply} or \emph{progressively censored}.
+#'
+#'   Statistical methods for dealing with censored data sets have a long history in the
+#'   field of survival analysis and life testing.  More recently, researchers in the
+#'   environmental field have proposed alternative methods of computing estimates and
+#'   confidence intervals in addition to the classical ones such as maximum likelihood
+#'   estimation.  Helsel (2012, Chapter 6) gives an excellent review of past studies
+#'   of the properties of various estimators for parameters of a normal or lognormal
+#'   distribution based on censored environmental data.
+#'
+#'   In practice, it is better to use a confidence interval for the mean or a
+#'   joint confidence region for the mean and standard deviation (or coefficient of
+#'   variation), rather than rely on a single point-estimate of the mean.
+#'   Few studies have been done to evaluate the performance of methods for constructing
+#'   confidence intervals for the mean or joint confidence regions for the mean and
+#'   coefficient of variation of a gamma distribution when data are subjected to
+#'   single or multiple censoring.
+#'   See, for example, Singh et al. (2006).
+#' }
+#' @rawRd
+#' \seealso{
+#'   \code{\link{egammaCensored}}, \link[stats]{GammaDist}, \code{\link{egamma}},
+#'   \code{\link{estimateCensored.object}}.
+#' }
+#' @rawRd
+#' \examples{
+#'   # Chapter 15 of USEPA (2009) gives several examples of estimating the mean
+#'   # and standard deviation of a lognormal distribution on the log-scale using
+#'   # manganese concentrations (ppb) in groundwater at five background wells.
+#'   # In EnvStats these data are stored in the data frame
+#'   # EPA.09.Ex.15.1.manganese.df.
+#'
+#'   # Here we will estimate the mean and coefficient of variation
+#'   # ON THE ORIGINAL SCALE using the MLE and
+#'   # assuming a gamma distribution.
+#'
+#'   # First look at the data:
+#'   #-----------------------
+#'
+#'   EPA.09.Ex.15.1.manganese.df
+#'
+#'   #   Sample   Well Manganese.Orig.ppb Manganese.ppb Censored
+#'   #1       1 Well.1                 <5           5.0     TRUE
+#'   #2       2 Well.1               12.1          12.1    FALSE
+#'   #3       3 Well.1               16.9          16.9    FALSE
+#'   #...
+#'   #23      3 Well.5                3.3           3.3    FALSE
+#'   #24      4 Well.5                8.4           8.4    FALSE
+#'   #25      5 Well.5                 <2           2.0     TRUE
+#'
+#'   longToWide(EPA.09.Ex.15.1.manganese.df,
+#'     "Manganese.Orig.ppb", "Sample", "Well",
+#'     paste.row.name = TRUE)
+#'
+#'   #         Well.1 Well.2 Well.3 Well.4 Well.5
+#'   #Sample.1     <5     <5     <5    6.3   17.9
+#'   #Sample.2   12.1    7.7    5.3   11.9   22.7
+#'   #Sample.3   16.9   53.6   12.6     10    3.3
+#'   #Sample.4   21.6    9.5  106.3     <2    8.4
+#'   #Sample.5     <2   45.9   34.5   77.2     <2
+#'
+#'
+#'   # Now estimate the mean and coefficient of variation
+#'   # using the MLE, and compute a confidence interval
+#'   # for the mean using the profile-likelihood method.
+#'   #---------------------------------------------------
+#'
+#'   with(EPA.09.Ex.15.1.manganese.df,
+#'     egammaAltCensored(Manganese.ppb, Censored, ci = TRUE))
+#'
+#'   #Results of Distribution Parameter Estimation
+#'   #Based on Type I Censored Data
+#'   #--------------------------------------------
+#'   #
+#'   #Assumed Distribution:            Gamma
+#'   #
+#'   #Censoring Side:                  left
+#'   #
+#'   #Censoring Level(s):              2 5
+#'   #
+#'   #Estimated Parameter(s):          mean = 19.664797
+#'   #                                 cv   =  1.252936
+#'   #
+#'   #Estimation Method:               MLE
+#'   #
+#'   #Data:                            Manganese.ppb
+#'   #
+#'   #Censoring Variable:              Censored
+#'   #
+#'   #Sample Size:                     25
+#'   #
+#'   #Percent Censored:                24%
+#'   #
+#'   #Confidence Interval for:         mean
+#'   #
+#'   #Confidence Interval Method:      Profile Likelihood
+#'   #
+#'   #Confidence Interval Type:        two-sided
+#'   #
+#'   #Confidence Level:                95%
+#'   #
+#'   #Confidence Interval:             LCL = 12.25151
+#'   #                                 UCL = 34.35332
+#'
+#'   #----------
+#'
+#'   # Compare the confidence interval for the mean
+#'   # based on assuming a lognormal distribution versus
+#'   # assuming a gamma distribution.
+#'
+#'   with(EPA.09.Ex.15.1.manganese.df,
+#'     elnormAltCensored(Manganese.ppb, Censored,
+#'       ci = TRUE))$interval$limits
+#'   #     LCL      UCL
+#'   #12.37629 69.87694
+#'
+#'   with(EPA.09.Ex.15.1.manganese.df,
+#'     egammaAltCensored(Manganese.ppb, Censored,
+#'       ci = TRUE))$interval$limits
+#'   #     LCL      UCL
+#'   #12.25151 34.35332
+#' }
+#' @rawRd
+#' \keyword{ distribution }
+#' @rawRd
+#' \keyword{ htest }
+
 egammaAltCensored <-
 function (x, censored, method = "mle", censoring.side = "left", 
     ci = FALSE, ci.method = "profile.likelihood", ci.type = "two-sided", 

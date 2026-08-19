@@ -1,3 +1,517 @@
+#' Estimate Mean, Standard Deviation, and Standard Error Nonparametrically Based on Censored Data
+#' @description
+#' Estimate the mean, standard deviation, and standard error of the mean
+#'   nonparametrically given a sample of data from a positive-valued distribution
+#'   that has been subjected to left- or right-censoring, and optionally construct
+#'   a confidence interval for the mean.
+#' @usage
+#' enparCensored(x, censored, censoring.side = "left", correct.se = TRUE,
+#'     restricted = FALSE, left.censored.min = "Censoring Level",
+#'     right.censored.max = "Censoring Level", ci = FALSE,
+#'     ci.method = "normal.approx", ci.type = "two-sided", conf.level = 0.95,
+#'     pivot.statistic = "t", ci.sample.size = "Total", n.bootstraps = 1000,
+#'     seed = NULL, warn = FALSE)
+#' @rawRd
+#' \arguments{
+#'   \item{x}{
+#'   numeric vector of positive-valued observations.
+#'   Missing (\code{NA}), undefined (\code{NaN}), and
+#'   infinite (\code{Inf}, \code{-Inf}) values are allowed but will be removed.
+#' }
+#'   \item{censored}{
+#'   numeric or logical vector indicating which values of \code{x} are censored.
+#'   This must be the same length as \code{x}.  If the mode of \code{censored} is
+#'   \code{"logical"}, \code{TRUE} values correspond to elements of \code{x} that
+#'   are censored, and \code{FALSE} values correspond to elements of \code{x} that
+#'   are not censored.  If the mode of \code{censored} is \code{"numeric"},
+#'   it must contain only \code{1}'s and \code{0}'s; \code{1} corresponds to
+#'   \code{TRUE} and \code{0} corresponds to \code{FALSE}.  Missing (\code{NA})
+#'   values are allowed but will be removed.
+#' }
+#'   \item{censoring.side}{
+#'   character string indicating on which side the censoring occurs.  The possible
+#'   values are \code{"left"} (the default) and \code{"right"}.
+#' }
+#'   \item{correct.se}{
+#'   logical scalar indicating whether to multiply the estimated standard error
+#'   by a factor to correct for bias.  The default value is \code{correct.se=TRUE}.
+#'   See the DETAILS section below.
+#' }
+#'   \item{restricted}{
+#'   logical scalar indicating whether to compute the restricted mean in the case when
+#'   the smallest censored value is less than or equal to the smallest uncensored value
+#'   (left-censored data) or the largest censored value is greater than or equal to the
+#'   largest uncensored value (right-censored data).  The default value is
+#'   \code{restricted=FALSE}.  See the DETAILS section for more information.
+#' }
+#'   \item{left.censored.min}{
+#'   Only relevant for the case when \code{censoring.side="left"}, the smallest
+#'   censored value is less than or equal to the smallest uncensored value, and \cr
+#'   \code{restricted=TRUE}.  In this case, \code{left.censored.min} must be the
+#'   character string \code{"Censoring Level"}, or else a numeric scalar between
+#'   0 and the smallest censored value.  The default value is
+#'   \code{left.censored.min="Censoring Level"}.
+#'   See the DETAILS section for more information.
+#' }
+#'   \item{right.censored.max}{
+#'   Only relevant for the case when \code{censoring.side="right"}, the largest
+#'   censored value is greater than or equal to the largest uncensored value, and \cr
+#'   \code{restricted=TRUE}.  In this case, \code{right.censored.max} must be the
+#'   character string \code{"Censoring Level"}, or else a numeric scalar greater
+#'   than or equal to the largest censored value. The default value is
+#'   \code{right.censored.max="Censoring Level"}.
+#'   See the DETAILS section for more information.
+#' }
+#'   \item{ci}{
+#'   logical scalar indicating whether to compute a confidence interval for the
+#'   mean or variance.  The default value is \code{ci=FALSE}.
+#' }
+#'   \item{ci.method}{
+#'   character string indicating what method to use to construct the confidence interval
+#'   for the mean.  The possible values are
+#'   \code{"normal.approx"} (normal approximation; the default), and
+#'   \code{"bootstrap"} (based on bootstrapping).
+#'   See the \bold{DETAILS} section for more information.
+#'   This argument is ignored if \code{ci=FALSE}.
+#' }
+#'   \item{ci.type}{
+#'   character string indicating what kind of confidence interval to compute.  The
+#'   possible values are \code{"two-sided"} (the default), \code{"lower"}, and
+#'   \code{"upper"}.  This argument is ignored if \code{ci=FALSE}.
+#' }
+#'   \item{conf.level}{
+#'   a scalar between 0 and 1 indicating the confidence level of the confidence interval.
+#'   The default value is \code{conf.level=0.95}. This argument is ignored if
+#'   \code{ci=FALSE}.
+#' }
+#'   \item{pivot.statistic}{
+#'   character string indicating which statistic to use for the confidence interval
+#'   for the mean when \code{ci.method="normal.approx"}.  Possible values are
+#'   \code{"t"} (confidence interval based on the t-statistic; the default), and
+#'   \code{"z"} (confidence interval based on the z-statistic).  When
+#'   \code{pivot.statistic="t"} you may supply the argument \code{ci.sample size}
+#'   (see below).  This argument is ignored if \code{ci=FALSE}.
+#' }
+#'   \item{ci.sample.size}{
+#'   character string indicating what sample size to assume when
+#'   computing the confidence interval for the mean when \code{ci.method="normal.approx"} \cr
+#'   and \code{pivot.statistic="t"}.  Possible values are \code{ci.sample.size="Total"}
+#'   (the total number of observations; the default), and \cr
+#'   \code{ci.sample.size="Uncensored"} (the number of uncensored observations).
+#'   This argument is ignored if \code{ci=FALSE}, \code{ci.method="bootstrap"},
+#'   or \code{pivot.statistic="z"}.
+#' }
+#'   \item{n.bootstraps}{
+#'   numeric scalar indicating how many bootstraps to use to construct the
+#'   confidence interval for the mean when \code{ci.type="bootstrap"}.  This
+#'   argument is ignored if \code{ci=FALSE} or \code{ci.method="normal.approx"}.
+#' }
+#'   \item{seed}{
+#'   integer supplied to the function \code{\link[base]{set.seed}} and used when
+#'   \code{ci=TRUE} and \cr
+#'   \code{ci.method="bootstrap"}.  The default value is
+#'   \code{seed=NULL}, in which case the current value of \code{.Random.seed} is used.
+#'   This argument is ignored if \code{ci=FALSE} or \code{ci.method="normal.approx"}.
+#'   The \code{seed} argument is necessary in order to create reproducible results for
+#'   the bootstrapped confidence intervals (see the \bold{EXAMPLES} section).
+#' }
+#'   \item{warn}{
+#'   logical scalar indicating whether to issue a notification in the case when a
+#'   restricted mean will be estimated, but setting the smallest censored value(s)
+#'   to an uncensored value (left-censored data) or setting the largest censored
+#'   value(s) to an uncensored value (right-censored data) results in no censored
+#'   values in the data.  In this case, the function \code{\link{enpar}}
+#'   is called.
+#' }
+#' }
+#' @details
+#' This help page has been shortened to keep function help focused on usage,
+#' arguments, return values, and examples. Extended method details, formulas,
+#' and background material are available in \code{vignette("extended-function-details", package = "EnvStats")}, section \code{enparCensored}.
+#' @rawRd
+#' \value{
+#'   a list of class \code{"estimateCensored"} containing the estimated parameters
+#'   and other information.  See \code{\link{estimateCensored.object}} for details.
+#' }
+#' @rawRd
+#' \references{
+#'   Barker, C. (2009).  The Mean, Median, and Confidence Intervals of the
+#'   Kaplan-Meier Survival Estimate -- Computations and Applications.
+#'   \emph{The American Statistician} \bold{63}(1), 78--80.
+#'
+#'   Beal, D. (2010).  \emph{A Macro for Calculating Summary Statistics on
+#'   Left Censored Environmental Data Using the Kaplan-Meier Method}.
+#'   Paper SDA-09, presented at Southeast SAS Users Group 2010, September 26-28,
+#'   Savannah, GA.  \url{https://analytics.ncsu.edu/sesug/2010/SDA09.Beal.pdf}.
+#'
+#'   Efron, B. (1979).  Bootstrap Methods: Another Look at the Jackknife.
+#'   \emph{The Annals of Statistics} \bold{7}, 1--26.
+#'
+#'   Efron, B., and R.J. Tibshirani. (1993).  \emph{An Introduction to the Bootstrap}.
+#'   Chapman and Hall, New York, 436pp.
+#'
+#'   El-Shaarawi, A.H., and D.M. Dolan. (1989).  Maximum Likelihood Estimation of
+#'   Water Quality Concentrations from Censored Data.
+#'   \emph{Canadian Journal of Fisheries and Aquatic Sciences} \bold{46}, 1033--1039.
+#'
+#'   Frome E.L., and D.P. Frome (2015). \emph{STAND: Statistical Analysis of
+#'   Non-Detects}. R package version 2.0, \url{https://CRAN.R-project.org/package=STAND}.
+#'
+#'   Gillespie, B.W., Q. Chen, H. Reichert, A. Franzblau, E. Hedgeman, J. Lepkowski,
+#'   P. Adriaens, A. Demond, W. Luksemburg, and D.H. Garabrant. (2010).  Estimating Population
+#'   Distributions When Some Data Are Below a Limit of Detection by Using a Reverse
+#'   Kaplan-Meier Estimator.  \emph{Epidemiology} \bold{21}(4), S64--S70.
+#'
+#'   Helsel, D.R. (2012). \emph{Statistics for Censored Environmental Data Using Minitab and R,
+#'   Second Edition}.  John Wiley & Sons, Hoboken, New Jersey.
+#'
+#'   Irwin, J.O. (1949).  The Standard Error of an Estimate of Expectation of Life,
+#'   with Special Reference to Expectation of Tumourless Life in Experiments with Mice.
+#'   \emph{Journal of Hygiene} \bold{47}, 188--189.
+#'
+#'   Kaplan, E.L., and P. Meier. (1958). Nonparametric Estimation From Incomplete Observations.
+#'   \emph{Journal of the American Statistical Association} \bold{53}, 457-481.
+#'
+#'   Klein, J.P., and M.L. Moeschberger. (2003).  \emph{Survival Analysis:
+#'   Techniques for Censored and Truncated Data, Second Edition}.  Springer, New York,
+#'   537pp.
+#'
+#'   Lee, E.T., and J.W. Wang. (2003).
+#'   \emph{Statistical Methods for Survival Data Analysis, Third Edition}.
+#'   John Wiley & Sons, Hoboken, New Jersey, 513pp.
+#'
+#'   Meier, P., T. Karrison, R. Chappell, and H. Xie. (2004).  The Price of Kaplan-Meier.
+#'   \emph{Journal of the American Statistical Association} \bold{99}(467), 890--896.
+#'
+#'   Miller, R.G. (1981).  \emph{Survival Analysis}. John Wiley and Sons, New York.
+#'
+#'   Nelson, W. (1982).  \emph{Applied Life Data Analysis}.
+#'   John Wiley and Sons, New York, 634pp.
+#'
+#'   Singh, A., R. Maichle, and S. Lee. (2006).  \emph{On the Computation of a 95\%
+#'   Upper Confidence Limit of the Unknown Population Mean Based Upon Data Sets
+#'   with Below Detection Limit Observations}.  EPA/600/R-06/022, March 2006.
+#'   Office of Research and Development, U.S. Environmental Protection Agency,
+#'   Washington, D.C.
+#'
+#'   Singh, A., N. Armbya, and A. Singh. (2010).
+#'   \emph{ProUCL Version 4.1.00 Technical Guide (Draft)}. EPA/600/R-07/041, May 2010.
+#'   Office of Research and Development, U.S. Environmental Protection Agency,
+#'   Washington, D.C.
+#'
+#'   USEPA. (2009).  \emph{Statistical Analysis of Groundwater Monitoring Data at
+#'   RCRA Facilities, Unified Guidance}.  EPA 530/R-09-007, March 2009.  Office of
+#'   Resource Conservation and Recovery Program Implementation and Information Division.
+#'   U.S. Environmental Protection Agency, Washington, D.C.
+#'
+#'   USEPA. (2010).  \emph{Errata Sheet - March 2009 Unified Guidance}.
+#'   EPA 530/R-09-007a, August 9, 2010.  Office of Resource Conservation and Recovery,
+#'   Program Information and Implementation Division.  U.S. Environmental
+#'   Protection Agency, Washington, D.C.
+#'
+#'   USEPA. (2022).  \emph{ProUCL Version 5.2.0 Technical Guide:
+#'   Statistical Software for Environmental Applications for Data Sets with and
+#'   without Nondetect Observations}.  Prepared by:  Neptune and Company, Inc.,
+#'   1435 Garrison Street, Suite 201, Lakewood, CO 80215.  pp. 128--129, 143.
+#'   \url{https://www.epa.gov/land-research/proucl-software}.
+#' }
+#' @rawRd
+#' \author{
+#'     Steven P. Millard (\email{EnvStats@ProbStatInfo.com})
+#' }
+#' @rawRd
+#' \note{
+#'   A sample of data contains censored observations if some of the observations are
+#'   reported only as being below or above some censoring level.  In environmental
+#'   data analysis, Type I left-censored data sets are common, with values being
+#'   reported as \dQuote{less than the detection limit} (e.g., Helsel, 2012).  Data
+#'   sets with only one censoring level are called \emph{singly censored}; data sets with
+#'   multiple censoring levels are called \emph{multiply} or \emph{progressively censored}.
+#'
+#'   Statistical methods for dealing with censored data sets have a long history in the
+#'   field of survival analysis and life testing.  More recently, researchers in the
+#'   environmental field have proposed alternative methods of computing estimates and
+#'   confidence intervals in addition to the classical ones such as maximum likelihood
+#'   estimation.
+#'
+#'   Helsel (2012, Chapter 6) gives an excellent review of past studies of the
+#'   properties of various estimators based on censored environmental data.
+#'
+#'   In practice, it is better to use a confidence interval for the mean or a
+#'   joint confidence region for the mean and standard deviation, rather than rely on a
+#'   single point-estimate of the mean.  Since confidence intervals and regions depend
+#'   on the properties of the estimators for both the mean and standard deviation, the
+#'   results of studies that simply evaluated the performance of the mean and standard
+#'   deviation separately cannot be readily extrapolated to predict the performance of
+#'   various methods of constructing confidence intervals and regions.  Furthermore,
+#'   for several of the methods that have been proposed to estimate the mean based on
+#'   type I left-censored data, standard errors of the estimates are not available,
+#'   hence it is not possible to construct confidence intervals
+#'   (El-Shaarawi and Dolan, 1989).
+#'
+#'   Few studies have been done to evaluate the performance of methods for constructing
+#'   confidence intervals for the mean or joint confidence regions for the mean and
+#'   standard deviation when data are subjected to single or multiple censoring.
+#'   See, for example, Singh et al. (2006).
+#' }
+#' @rawRd
+#' \seealso{
+#'   \code{\link{ppointsCensored}}, \code{\link{ecdfPlotCensored}},
+#'   \code{\link{qqPlotCensored}},\code{\link{estimateCensored.object}},
+#'   \code{\link{enpar}}.
+#' }
+#' @rawRd
+#' \examples{
+#'   # Using the lead concentration data from soil samples shown in
+#'   # Beal (2010), compute the Kaplan-Meier estimators of the mean,
+#'   # standard deviation, and standard error of the mean, as well as
+#'   # a 95% upper confidence limit for the mean.  Compare these
+#'   # results to those given in Beal (2010), and also to the results
+#'   # produced by ProUCL 5.2.0.
+#'
+#'   # First look at the data:
+#'   #-----------------------
+#'
+#'   head(Beal.2010.Pb.df)
+#'   #  Pb.char  Pb Censored
+#'   #1      <1 1.0     TRUE
+#'   #2      <1 1.0     TRUE
+#'   #3       2 2.0    FALSE
+#'   #4     2.5 2.5    FALSE
+#'   #5     2.8 2.8    FALSE
+#'   #6      <3 3.0     TRUE
+#'
+#'   tail(Beal.2010.Pb.df)
+#'   #   Pb.char   Pb Censored
+#'   #24     <10   10     TRUE
+#'   #25      10   10    FALSE
+#'   #26      15   15    FALSE
+#'   #27      49   49    FALSE
+#'   #28     200  200    FALSE
+#'   #29    9060 9060    FALSE
+#'
+#'   # enparCensored Results:
+#'   #-----------------------
+#'   Beal.unrestricted <- with(Beal.2010.Pb.df,
+#'     enparCensored(x = Pb, censored = Censored, ci = TRUE,
+#'       ci.type = "upper"))
+#'
+#'   Beal.unrestricted
+#'
+#'   #Results of Distribution Parameter Estimation
+#'   #Based on Type I Censored Data
+#'   #--------------------------------------------
+#'   #
+#'   #Assumed Distribution:            None
+#'   #
+#'   #Censoring Side:                  left
+#'   #
+#'   #Censoring Level(s):               1  3  4  6  9 10
+#'   #
+#'   #Estimated Parameter(s):          mean    =  325.3396
+#'   #                                 sd      = 1651.0950
+#'   #                                 se.mean =  315.0023
+#'   #
+#'   #Estimation Method:               Kaplan-Meier
+#'   #                                 (Bias-corrected se.mean)
+#'   #
+#'   #Data:                            Pb
+#'   #
+#'   #Censoring Variable:              Censored
+#'   #
+#'   #Sample Size:                     29
+#'   #
+#'   #Percent Censored:                34.48276%
+#'   #
+#'   #Confidence Interval for:         mean
+#'   #
+#'   #Assumed Sample Size:             29
+#'   #
+#'   #Confidence Interval Method:      Normal Approximation
+#'   #                                 (t Distribution)
+#'   #
+#'   #Confidence Interval Type:        upper
+#'   #
+#'   #Confidence Level:                95%
+#'   #
+#'   #Confidence Interval:             LCL =   0.0000
+#'   #                                 UCL = 861.1996
+#'
+#'   c(Beal.unrestricted$parameters, Beal.unrestricted$interval$limits)
+#'   #     mean        sd   se.mean       LCL       UCL
+#'   # 325.3396 1651.0950  315.0023    0.0000  861.1996
+#'
+#'   # Beal (2010) published results:
+#'   #-------------------------------
+#'   #   Mean   Std. Dev.  SE of Mean
+#'   # 325.34     1651.09      315.00
+#'
+#'   # ProUCL 5.2.0 results:
+#'   #----------------------
+#'   #   Mean   Std. Dev.  SE of Mean  95% UCL
+#'   # 325.2      1651         315       861.1
+#'
+#'   #----------
+#'
+#'   # Now compute the restricted mean and associated quantities,
+#'   # and compare these results with those produced by the
+#'   # kmms() function in the STAND package.
+#'   #-----------------------------------------------------------
+#'
+#'   Beal.restricted <- with(Beal.2010.Pb.df,
+#'     enparCensored(x = Pb, censored = Censored, restricted = TRUE,
+#'       ci = TRUE, ci.type = "upper"))
+#'
+#'   Beal.restricted
+#'
+#'   #Results of Distribution Parameter Estimation
+#'   #Based on Type I Censored Data
+#'   #--------------------------------------------
+#'   #
+#'   #Assumed Distribution:            None
+#'   #
+#'   #Censoring Side:                  left
+#'   #
+#'   #Censoring Level(s):               1  3  4  6  9 10
+#'   #
+#'   #Estimated Parameter(s):          mean    =  325.2011
+#'   #                                 sd      = 1651.1221
+#'   #                                 se.mean =  314.1774
+#'   #
+#'   #Estimation Method:               Kaplan-Meier (Restricted Mean)
+#'   #                                 Smallest censored value(s)
+#'   #                                   set to Censoring Level
+#'   #                                 (Bias-corrected se.mean)
+#'   #
+#'   #Data:                            Pb
+#'   #
+#'   #Censoring Variable:              Censored
+#'   #
+#'   #Sample Size:                     29
+#'   #
+#'   #Percent Censored:                34.48276%
+#'   #
+#'   #Confidence Interval for:         mean
+#'   #
+#'   #Assumed Sample Size:             29
+#'   #
+#'   #Confidence Interval Method:      Normal Approximation
+#'   #                                 (t Distribution)
+#'   #
+#'   #Confidence Interval Type:        upper
+#'   #
+#'   #Confidence Level:                95%
+#'   #
+#'   #Confidence Interval:             LCL =   0.000
+#'   #                                 UCL = 859.658
+#'
+#'   c(Beal.restricted$parameters, Beal.restricted$interval$limits)
+#'   #     mean        sd   se.mean       LCL       UCL
+#'   # 325.2011 1651.1221  314.1774    0.0000  859.6580
+#'
+#'   # kmms() results:
+#'   #----------------
+#'   #  KM.mean    KM.LCL    KM.UCL     KM.se     gamma
+#'   # 325.2011 -221.0419  871.4440  315.0075    0.9500
+#'
+#'   # NOTE: as pointed out above, the kmms() function treats the
+#'   #       smallest censored observations (<1 and <1) as NOT
+#'   #       censored when computing the mean and uncorrected
+#'   #       standard error of the mean, but assumes these
+#'   #       observations ARE censored when computing the corrected
+#'   #       standard error of the mean.
+#'   #--------------------------------------------------------------
+#'
+#'   Beal.restricted$parameters["se.mean"] * sqrt((20/21)) * sqrt((19/18))
+#'   #  se.mean
+#'   # 315.0075
+#'
+#'   #==========
+#'
+#'   # Repeat the above example, estimating the unrestricted mean and
+#'   # computing an upper confidence limit based on the bootstrap
+#'   # instead of on the normal approximation with a t pivot statistic.
+#'   # Compare results to those from ProUCL 5.2.0.
+#'   # Note:  Setting the seed argument lets you reproduce this example.
+#'   #------------------------------------------------------------------
+#'
+#'   Beal.unrestricted.boot <- with(Beal.2010.Pb.df,
+#'     enparCensored(x = Pb, censored = Censored, ci = TRUE,
+#'       ci.type = "upper", ci.method = "bootstrap", seed = 923))
+#'
+#'   Beal.unrestricted.boot
+#'
+#'   #Results of Distribution Parameter Estimation
+#'   #Based on Type I Censored Data
+#'   #--------------------------------------------
+#'   #
+#'   #Assumed Distribution:            None
+#'   #
+#'   #Censoring Side:                  left
+#'   #
+#'   #Censoring Level(s):               1  3  4  6  9 10
+#'   #
+#'   #Estimated Parameter(s):          mean    =  325.3396
+#'   #                                 sd      = 1651.0950
+#'   #                                 se.mean =  315.0023
+#'   #
+#'   #Estimation Method:               Kaplan-Meier
+#'   #                                 (Bias-corrected se.mean)
+#'   #
+#'   #Data:                            Pb
+#'   #
+#'   #Censoring Variable:              Censored
+#'   #
+#'   #Sample Size:                     29
+#'   #
+#'   #Percent Censored:                34.48276%
+#'   #
+#'   #Confidence Interval for:         mean
+#'   #
+#'   #Assumed Sample Size:             29
+#'   #
+#'   #Confidence Interval Method:      Bootstrap
+#'   #
+#'   #Number of Bootstraps:            1000
+#'   #
+#'   #Number of Bootstrap Samples
+#'   #With No Censored Values:         0
+#'   #
+#'   #Number of Times Bootstrap
+#'   #Repeated Because Too Few
+#'   #Uncensored Observations:         0
+#'   #
+#'   #Confidence Interval Type:        upper
+#'   #
+#'   #Confidence Level:                95%
+#'   #
+#'   #Confidence Interval:             Pct.LCL =     0.0000
+#'   #                                 Pct.UCL =   948.7342
+#'   #                                 BCa.LCL =     0.0000
+#'   #                                 BCa.UCL =   942.6596
+#'   #                                 t.LCL   =     0.0000
+#'   #                                 t.UCL   = 62121.8909
+#'
+#'   c(Beal.unrestricted.boot$interval$limits)
+#'   #   Pct.LCL    Pct.UCL    BCa.LCL    BCa.UCL      t.LCL      t.UCL
+#'   #    0.0000   948.7342     0.0000   942.6596     0.0000 62121.8909
+#'
+#'   # ProUCL 5.2.0 results:
+#'   #----------------------
+#'   #   Pct.LCL    Pct.UCL    BCa.LCL    BCa.UCL      t.LCL      t.UCL
+#'   #    0.0000   944.3        0.0000   947.8        0.0000 62169
+#'
+#'   #==========
+#'
+#'   # Clean up
+#'   #---------
+#'   rm(Beal.unrestricted, Beal.restricted, Beal.unrestricted.boot)
+#' }
+#' @rawRd
+#' \keyword{ distribution }
+#' @rawRd
+#' \keyword{ htest }
+
 enparCensored <-
 function (x, censored, censoring.side = "left", correct.se = TRUE, 
     restricted = FALSE, left.censored.min = "Censoring Level", 

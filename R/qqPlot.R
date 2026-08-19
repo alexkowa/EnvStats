@@ -1,3 +1,363 @@
+#' Quantile-Quantile (Q-Q) Plot
+#' @description
+#' Produces a quantile-quantile (Q-Q) plot, also called a probability plot.
+#'   The \code{qqPlot} function is a modified version of the \R functions
+#'   \code{\link{qqnorm}} and \code{\link{qqplot}}.
+#'   The \pkg{EnvStats} function \code{qqPlot} allows the user to specify a number of
+#'   different distributions in addition to the normal distribution, and to optionally
+#'   estimate the distribution parameters of the fitted distribution.
+#' @usage
+#' qqPlot(x, y = NULL, distribution = "norm", param.list = list(mean = 0, sd = 1),
+#'     estimate.params = plot.type == "Tukey Mean-Difference Q-Q",
+#'     est.arg.list = NULL, plot.type = "Q-Q", plot.pos.con = NULL, plot.it = TRUE,
+#'     equal.axes = qq.line.type == "0-1" || estimate.params, add.line = FALSE,
+#'     qq.line.type = "least squares", duplicate.points.method = "standard",
+#'     points.col = 1, line.col = 1, line.lwd = par("cex"), line.lty = 1,
+#'     digits = .Options$digits, ..., main = NULL, xlab = NULL, ylab = NULL,
+#'     xlim = NULL, ylim = NULL)
+#' @rawRd
+#' \arguments{
+#'   \item{x}{
+#'   numeric vector of observations.  When \code{y} is not supplied, \code{x} represents a sample
+#'   from the hypothesized distribution specifed by \code{distribution}.  When \code{y} is supplied,
+#'   the distribution of \code{x} is compared with the distribuiton of \code{y}.
+#'   Missing (\code{NA}), undefined (\code{NaN}), and
+#'   infinite (\code{Inf}, \code{-Inf}) values are allowed but will be removed.
+#' }
+#'   \item{y}{
+#'   optional numeric vector of observations (not necessarily the same lenght as \code{x}).
+#'   Missing (\code{NA}), undefined (\code{NaN}), and infinite (\code{Inf}, \code{-Inf})
+#'   values are allowed but will be removed.
+#' }
+#'   \item{distribution}{
+#'   when \code{y} is not supplied,
+#'   a character string denoting the distribution abbreviation.  The default value is
+#'   \code{distribution="norm"}.  See the help file for \cr
+#'   \code{\link{Distribution.df}} for a
+#'   list of possible distribution abbreviations.  This argument is ignored if \code{y}
+#'   is supplied.
+#' }
+#'   \item{param.list}{
+#'   when \code{y} is not supplied,
+#'   a list with values for the parameters of the distribution.  The default value is
+#'   \code{param.list=list(mean=0, sd=1)}.  See the help file for \code{\link{Distribution.df}}
+#'   for the names and possible values of the parameters associated with each distribution.
+#'   This argument is ignored if \code{y} is supplied or \code{estimate.params=TRUE}.
+#' }
+#'   \item{estimate.params}{
+#'   when \code{y} is not supplied,
+#'   a logical scalar indicating whether to compute quantiles based on estimating the
+#'   distribution parameters (\code{estimate.params=TRUE}) or using the known
+#'   distribution parameters specified in \code{param.list} \cr
+#'   (\code{estimate.params=FALSE}).  The default value of \code{estimate.params}
+#'   is \code{FALSE} if \code{plot.type="Q-Q"} because the default configuration is a standard normal
+#'   (mean=0, sd=1) Q-Q plot, which will yield roughly a straight line if the observations in
+#'   \code{x} are from any normal distribution.  The default value of \code{estimate.params}
+#'   is \code{TRUE} if \code{plot.type="Tukey Mean-Difference Q-Q"}.  The argument \cr
+#'   \code{estimate.params}
+#'   is ignored if \code{y} is supplied.
+#' }
+#'   \item{est.arg.list}{
+#'   when \code{y} is not supplied and \code{estimate.params=TRUE},
+#'   a list whose components are optional arguments associated with the function used to estimate
+#'   the parameters of the assumed distribution (see the help file
+#'   \link[=FcnsByCatEstDistParams]{Estimating Distribution Parameters}).
+#'   For example, all functions used to estimate distribution parameters have an optional argument
+#'   called \code{method} that specifies the method to use to estimate the parameters.
+#'   (See the help file for \code{\link{Distribution.df}} for a list of available estimation
+#'   methods for each distribution.)  To override the default estimation method, supply the argument
+#'   \code{est.arg.list} with a component called \code{method}; for example
+#'   \code{est.arg.list=list(method="mle")}.  The default value is
+#'   \code{est.arg.list=NULL} so that all default values for the estimating function are used.
+#'   This argument is ignored if \code{estimate.params=FALSE} or \code{y} is supplied.
+#' }
+#'   \item{plot.type}{
+#'   a character string denoting the kind of plot.  Possible values are \code{"Q-Q"}
+#'   (Quantile-Quantile plot, the default) and \code{"Tukey Mean-Difference Q-Q"}
+#'   (Tukey mean-difference Q-Q plot).  This argument may be abbreviated (e.g.,
+#'   \code{plot.type="T"} to indicate a Tukey mean-difference Q-Q plot).
+#' }
+#'   \item{plot.pos.con}{
+#'   numeric scalar between 0 and 1 containing the value of the plotting position constant.
+#'   The default value of \code{plot.pos.con} depends on whether the argument \code{y} is supplied,
+#'   and if not the value of the argument \code{distribution}.  When \code{y} is supplied, the default
+#'   value is \code{plot.pos.con=0.5}, corresponding to Hazen plotting positions.  When \code{y} is
+#'   not supplied, for the normal, lognormal, three-parameter lognormal, zero-modified normal, and
+#'   zero-modified lognormal distributions, the default value is \code{plot.pos.con=0.375}.
+#'   For the Type I extreme value (Gumbel) distribution (\code{distribution="evd"}),
+#'   the default value is \cr
+#'   \code{plot.pos.con=0.44}.  For all other distributions, the default value is \cr
+#'   \code{plot.pos.con=0.4}.
+#' }
+#'   \item{plot.it}{
+#'   a logical scalar indicating whether to create a plot on the current graphics device.
+#'   The default value is \code{plot.it=TRUE}.
+#' }
+#'   \item{equal.axes}{
+#'   a logical scalar indicating whether to use the same range on the \eqn{x}- and \eqn{y}-axes
+#'   when \code{plot.type="Q-Q"}.  The default value is \code{TRUE} if \code{qq.line.type="0-1"} or
+#'   \code{estimate.params=TRUE}, otherwise it is \code{FALSE}.  This argument is ignored if
+#'   \code{plot.type="Tukey Mean-Difference Q-Q"}.
+#' }
+#'   \item{add.line}{
+#'   a logical scalar indicating whether to add a line to the plot.  If \code{add.line=TRUE} and
+#'   \code{plot.type="Q-Q"}, a line determined by the value of \code{qq.line.type} is added to the plot.
+#'   If \code{add.line=TRUE} and \cr
+#'   \code{plot.type="Tukey Mean-Difference Q-Q"}, a horizontal line at
+#'   \eqn{y=0} is added to the plot.  The default value is \code{add.line=FALSE}.
+#' }
+#'   \item{qq.line.type}{
+#'   character string determining what kind of line to add to the Q-Q plot.  Possible values are
+#'   \code{"least squares"} (the default), \code{"0-1"} and \code{"robust"}.  For the value
+#'   \code{"least squares"}, a least squares line is fit and added.  For the value \code{"0-1"},
+#'   a line with intercept 0 and slope 1 is added.  For the value \code{"robust"}, a line is fit through
+#'   the first and third quartiles of the \code{x} and \code{y} data.  This argument is ignored if
+#'   \code{add.line=FALSE} or \code{plot.type="Tukey Mean-Difference Q-Q"}.
+#' }
+#'   \item{duplicate.points.method}{
+#'   a character string denoting how to plot points with duplicate \eqn{(x,y)} values.  Possible values
+#'   are \code{"standard"} (the default), \code{"jitter"}, and \code{"number"}.  For the value
+#'   \code{"standard"}, a single plotting symbol is plotted (this is the default behavior of \R).
+#'   For the value \code{"jitter"}, a separate plotting symbol is plotted for each duplicate point, where
+#'   the plotting symbols cluster around the true value of \eqn{x} and \eqn{y}.  For the value
+#'   \code{"number"}, a single number is plotted at \eqn{(x,y)} that represents how many duplicate points
+#'   are at that \eqn{(x,y)} coordinate.
+#' }
+#'   \item{points.col}{
+#'   a numeric scalar or character string determining the color of the points in the plot.
+#'   The default value is \code{points.col=1}.  See the entry for \code{col} in the help file for
+#'   \code{\link{par}} for more information.
+#' }
+#'   \item{line.col}{
+#'   a numeric scalar or character string determining the color of the line in the plot.
+#'   The default value is \code{points.col=1}.  See the entry for \code{col} in the help file for
+#'   \code{\link{par}} for more information.  This argument is ignored if \code{add.line=FALSE}.
+#' }
+#'   \item{line.lwd}{
+#'   a numeric scalar determining the width of the line in the plot.  The default value is
+#'   \code{line.lwd=par("cex")}.  See the entry for \code{lwd} in the help file for \code{\link{par}}
+#'   for more information.  This argument is ignored if \code{add.line=FALSE}.
+#' }
+#'   \item{line.lty}{
+#'   a numeric scalar determining the line type of the line in the plot.  The default value is
+#'   \code{line.lty=1}.  See the entry for \code{lty} in the help file for \code{\link{par}}
+#'   for more information.  This argument is ignored if \code{add.line=FALSE}.
+#' }
+#'   \item{digits}{
+#'   a scalar indicating how many significant digits to print for the distribution parameters.
+#'   The default value is \code{digits=.Options$digits}.
+#' }
+#'   \item{main, xlab, ylab, xlim, ylim, \dots}{
+#'   additional graphical parameters (see \code{\link{par}}).
+#' }
+#' }
+#' @details
+#' This help page has been shortened to keep function help focused on usage,
+#' arguments, return values, and examples. Extended method details, formulas,
+#' and background material are available in \code{vignette("extended-function-details", package = "EnvStats")}, section \code{qqPlot}.
+#' @rawRd
+#' \value{
+#'   \code{qqPlot} returns a list with components \code{x} and \code{y}, giving the \eqn{(x,y)}
+#'   coordinates of the points that have been or would have been plotted.  There are four cases to
+#'   consider:
+#'
+#'   1. The argument \code{y} is not supplied and \code{plot.type="Q-Q"}.
+#'
+#'   \item{x}{the quantiles from the theoretical distribution.}
+#'   \item{y}{the observed quantiles (order statistics) based on the data in the argument \code{x}.}
+#'   \cr
+#'
+#'   2. The argument \code{y} is not supplied and \code{plot.type="Tukey Mean-Difference Q-Q"}.
+#'
+#'   \item{x}{the averages of the observed and theoretical quantiles.}
+#'   \item{y}{the differences between the observed quantiles (order statistics) and the theoretical quantiles.}
+#'   \cr
+#'
+#'   3. The argument \code{y} is supplied and \code{plot.type="Q-Q"}.
+#'
+#'   \item{x}{the observed quantiles based on the data in the argument \code{x}.
+#'     Note that these are adjusted quantiles if the number of observations in the
+#'     argument \code{x} is greater then the number of observations in the argument \code{y}.}
+#'   \item{y}{the observed quantiles based on the data in the argument \code{y}.
+#'     Note that these are adjusted quantiles if the number of observations in the
+#'     argument \code{y} is greater then the number of observations in the argument \code{x}.}
+#'   \cr
+#'
+#'   4. The argument \code{y} is supplied and \code{plot.type="Tukey Mean-Difference Q-Q"}.
+#'
+#'   \item{x}{the averages of the quantiles based on the argument \code{x} and the quantiles based
+#'     on the argument \code{y}.}
+#'   \item{y}{the differences between the quantiles based on the argument \code{x} and the quantiles based
+#'     on the argument \code{y}.}
+#' }
+#' @rawRd
+#' \references{
+#'   Chambers, J.M., W.S. Cleveland, B. Kleiner, and P.A. Tukey. (1983).
+#'   \emph{Graphical Methods for Data Analysis}. Duxbury Press, Boston, MA, pp.11-16.
+#'
+#'   Cleveland, W.S. (1993). \emph{Visualizing Data}. Hobart Press, Summit, New Jersey, 360pp.
+#'
+#'   D'Agostino, R.B. (1986a). Graphical Analysis.
+#'   In: D'Agostino, R.B., and M.A. Stephens, eds. \emph{Goodness-of Fit Techniques}.
+#'   Marcel Dekker, New York, Chapter 2, pp.7-62.
+#' }
+#' @rawRd
+#' \author{
+#'     Steven P. Millard (\email{EnvStats@ProbStatInfo.com})
+#' }
+#' @rawRd
+#' \note{
+#'   A \emph{quantile-quantile (Q-Q) plot}, also called a \emph{probability plot}, is a plot of the observed
+#'   order statistics from a random sample (the empirical quantiles) against their (estimated)
+#'   mean or median values based on an assumed distribution, or against the empirical quantiles
+#'   of another set of data (Wilk and Gnanadesikan, 1968).  Q-Q plots are used to assess whether
+#'   data come from a particular distribution, or whether two datasets have the same parent
+#'   distribution.  If the distributions have the same shape (but not necessarily the same
+#'   location or scale parameters), then the plot will fall roughly on a straight line.  If the
+#'   distributions are exactly the same, then the plot will fall roughly on the straight line \eqn{y=x}.
+#'
+#'   A \emph{Tukey mean-difference Q-Q plot}, also called an \emph{m-d plot}, is a modification of a
+#'   Q-Q plot. Rather than plotting observed quantiles vs. theoretical quantiles or observed
+#'   \eqn{y}-quantiles vs. observed \eqn{x}-quantiles, a Tukey mean-difference Q-Q plot plots
+#'   the difference between the quantiles on the \eqn{y}-axis vs. the average of the quantiles on
+#'   the \eqn{x}-axis (Cleveland, 1993, pp.22-23).  If the two sets of quantiles come from the same
+#'   parent distribution, then the points in this plot should fall roughly along the horizontal line
+#'   \eqn{y=0}.  If one set of quantiles come from the same distribution with a shift in median, then
+#'   the points in this plot should fall along a horizontal line above or below the line \eqn{y=0}.
+#'   A Tukey mean-difference Q-Q plot enhances our perception of how the points in the Q-Q plot deviate
+#'   from a straight line, because it is easier to judge deviations from a horizontal line than from a
+#'   line with a non-zero slope.
+#'
+#'   In a Q-Q plot, the extreme points have more variability than points toward the center.  A U-shaped
+#'   Q-Q plot indicates that the underlying distribution for the observations on the \eqn{y}-axis is
+#'   skewed to the right relative to the underlying distribution for the observations on the \eqn{x}-axis.
+#'   An upside-down-U-shaped Q-Q plot indicates the \eqn{y}-axis distribution is skewed left relative to
+#'   the \eqn{x}-axis distribution.  An S-shaped Q-Q plot indicates the \eqn{y}-axis distribution has
+#'   shorter tails than the \eqn{x}-axis distribution.  Conversely, a plot that is bent down on the
+#'   left and bent up on the right indicates that the \eqn{y}-axis distribution has longer tails than
+#'   the \eqn{x}-axis distribution.
+#' }
+#' @rawRd
+#' \seealso{
+#'   \code{\link{ppoints}}, \code{\link{ecdfPlot}}, \code{\link{Distribution.df}},
+#'   \code{\link{qqPlotGestalt}}, \code{\link{qqPlotCensored}}, \code{\link{qqnorm}}.
+#' }
+#' @rawRd
+#' \examples{
+#'   # The guidance document USEPA (1994b, pp. 6.22--6.25)
+#'   # contains measures of 1,2,3,4-Tetrachlorobenzene (TcCB)
+#'   # concentrations (in parts per billion) from soil samples
+#'   # at a Reference area and a Cleanup area.  These data are strored
+#'   # in the data frame EPA.94b.tccb.df.
+#'   #
+#'   # Create an Q-Q plot for the reference area data first assuming a
+#'   # normal distribution, then a lognormal distribution, then a
+#'   # gamma distribution.
+#'
+#'   # Assume a normal distribution
+#'   #-----------------------------
+#'
+#'   dev.new()
+#'   with(EPA.94b.tccb.df, qqPlot(TcCB[Area == "Reference"]))
+#'
+#'   dev.new()
+#'   with(EPA.94b.tccb.df, qqPlot(TcCB[Area == "Reference"], add.line = TRUE))
+#'
+#'   dev.new()
+#'   with(EPA.94b.tccb.df, qqPlot(TcCB[Area == "Reference"],
+#'     plot.type = "Tukey", add.line = TRUE))
+#'
+#'
+#'   # The Q-Q plot based on assuming a normal distribution shows a U-shape,
+#'   # indicating the Reference area TcCB data are skewed to the right
+#'   # compared to a normal distribuiton.
+#'
+#'   # Assume a lognormal distribution
+#'   #--------------------------------
+#'
+#'   dev.new()
+#'   with(EPA.94b.tccb.df,
+#'     qqPlot(TcCB[Area == "Reference"], dist = "lnorm",
+#'       digits = 2, points.col = "blue", add.line = TRUE))
+#'
+#'   dev.new()
+#'   with(EPA.94b.tccb.df,
+#'     qqPlot(TcCB[Area == "Reference"], dist = "lnorm",
+#'       digits = 2, plot.type = "Tukey", points.col = "blue",
+#'       add.line = TRUE))
+#'
+#'   # Alternative parameterization
+#'
+#'   dev.new()
+#'   with(EPA.94b.tccb.df,
+#'     qqPlot(TcCB[Area == "Reference"], dist = "lnormAlt",
+#'       estimate.params = TRUE, digits = 2, points.col = "blue",
+#'       add.line = TRUE))
+#'
+#'   dev.new()
+#'   with(EPA.94b.tccb.df,
+#'     qqPlot(TcCB[Area == "Reference"], dist = "lnormAlt",
+#'       digits = 2, plot.type = "Tukey", points.col = "blue",
+#'       add.line = TRUE))
+#'
+#'
+#'   # The lognormal distribution appears to be an adequate fit.
+#'   # Now look at a Q-Q plot assuming a gamma distribution.
+#'   #----------------------------------------------------------
+#'
+#'   dev.new()
+#'   with(EPA.94b.tccb.df,
+#'     qqPlot(TcCB[Area == "Reference"], dist = "gamma",
+#'       estimate.params = TRUE, digits = 2, points.col = "blue",
+#'       add.line = TRUE))
+#'
+#'   dev.new()
+#'   with(EPA.94b.tccb.df,
+#'     qqPlot(TcCB[Area == "Reference"], dist = "gamma",
+#'       digits = 2, plot.type = "Tukey", points.col = "blue",
+#'       add.line = TRUE))
+#'
+#'   # Alternative Parameterization
+#'
+#'   dev.new()
+#'   with(EPA.94b.tccb.df,
+#'     qqPlot(TcCB[Area == "Reference"], dist = "gammaAlt",
+#'       estimate.params = TRUE, digits = 2, points.col = "blue",
+#'       add.line = TRUE))
+#'
+#'   dev.new()
+#'   with(EPA.94b.tccb.df,
+#'     qqPlot(TcCB[Area == "Reference"], dist = "gammaAlt",
+#'       digits = 2, plot.type = "Tukey", points.col = "blue",
+#'       add.line = TRUE))
+#'
+#'   #-------------------------------------------------------------------------------------
+#'
+#'   # Generate 20 observations from a gamma distribution with parameters
+#'   # shape=2 and scale=2, then create a normal (Gaussian) Q-Q plot for these data.
+#'   # (Note: the call to set.seed simply allows you to reproduce this example.)
+#'
+#'   set.seed(357)
+#'   dat <- rgamma(20, shape=2, scale=2)
+#'   dev.new()
+#'   qqPlot(dat, add.line = TRUE)
+#'
+#'   # Now assume a gamma distribution and estimate the parameters
+#'   #------------------------------------------------------------
+#'
+#'   dev.new()
+#'   qqPlot(dat, dist = "gamma", estimate.params = TRUE, add.line = TRUE)
+#'
+#'   # Clean up
+#'   #---------
+#'   rm(dat)
+#'   graphics.off()
+#' }
+#' @rawRd
+#' \keyword{distribution}
+#' @rawRd
+#' \keyword{hplot}
+
 qqPlot <-
 function (x, y = NULL, distribution = "norm", param.list = list(mean = 0, 
     sd = 1), estimate.params = plot.type == "Tukey Mean-Difference Q-Q", 
