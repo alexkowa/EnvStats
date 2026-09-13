@@ -135,7 +135,7 @@
 #'   x <- rnorm(15, mean = 3)
 #'   y <- rnorm(10, mean = 3.5)
 #'
-#'   wilcox.test(x, y)
+#'   print.htestEnvStats(wilcox.test(x, y))
 #'
 #'   #Results of Hypothesis Test
 #'   #--------------------------
