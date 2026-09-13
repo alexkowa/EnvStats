@@ -325,7 +325,7 @@
 #'   # interval for the difference:
 #'   #----------------------------------------------------------------------
 #'
-#'   print(t.test(Sulfate.down, Sulfate.back, var.equal = TRUE))
+#'   print.htestEnvStats(t.test(Sulfate.down, Sulfate.back, var.equal = TRUE))
 #'
 #'   #Results of Hypothesis Test
 #'   #--------------------------
