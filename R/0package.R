@@ -167,7 +167,7 @@ NULL
 #'   Beal, D. (2010).  \emph{A Macro for Calculating Summary Statistics on
 #'   Left Censored Environmental Data Using the Kaplan-Meier Method}.
 #'   Paper SDA-09, presented at Southeast SAS Users Group 2010, September 26-28,
-#'   Savannah, GA. \url{https://analytics.ncsu.edu/sesug/2010/SDA09.Beal.pdf}.
+#'   Savannah, GA.
 #' }
 #' @rawRd
 #' \keyword{datasets}
@@ -10395,23 +10395,23 @@ NULL
 #'   #==========
 #'
 #'   #============================================================================
-#' 
-#'   # Now create an object of class "htest" and note the difference in how it is 
-#'   # printed out depending on whether or not you explicitly use the 
+#'
+#'   # Now create an object of class "htest" and note the difference in how it is
+#'   # printed out depending on whether or not you explicitly use the
 #'   # print.htestEnvStats() command.
 #'   #-----------------------------------------------------------------------------
-#' 
+#'
 #'   htest.obj <- t.test(EPA.02d.Ex.9.mg.per.L.vec, mu = 30, alternative = "greater")
-#' 
-#'   class(htest.obj) 
-#'   #[1] "htest" 
-#' 
-#'   names(htest.obj) 
-#'   # [1] "statistic"   "parameter"   "p.value"     "conf.int"    "estimate"   
+#'
+#'   class(htest.obj)
+#'   #[1] "htest"
+#'
+#'   names(htest.obj)
+#'   # [1] "statistic"   "parameter"   "p.value"     "conf.int"    "estimate"
 #'   # [6] "null.value"  "stderr"      "alternative" "method"      "data.name"
-#' 
+#'
 #'   htest.obj
-#' 
+#'
 #'   #        One Sample t-test
 #'   #
 #'   #data:  EPA.02d.Ex.9.mg.per.L.vec
@@ -10420,12 +10420,12 @@ NULL
 #'   #95 percent confidence interval:
 #'   # 28.67044      Inf
 #'   #sample estimates:
-#'   #mean of x 
+#'   #mean of x
 #'   # 34.56667
-#' 
-#' 
+#'
+#'
 #'   print.htestEnvStats(htest.obj)
-#' 
+#'
 #'   #Results of Hypothesis Test
 #'   #--------------------------
 #'   #
@@ -10816,8 +10816,8 @@ NULL
 #'   file for \code{\link{htestEnvStats.object}}. This method is automatically
 #'   called by the standard \R \code{\link[base:print]{print}} generic when given
 #'   an object of class \code{"\link[=htestEnvStats.object]{htestEnvStats}"}.
-#' 
-#'   You may also explicitly call this function to print objects of class 
+#'
+#'   You may also explicitly call this function to print objects of class
 #'   \code{"\link[=htest.htestEnvStats.object]{htest}"}.
 #' @usage
 #' \method{print}{htestEnvStats}(x, ...)
@@ -10877,43 +10877,43 @@ NULL
 #'   # [9] "data.name"   "bad.obs"     "interval"
 #'
 #'   htestEnvStats.obj
-#'   
+#'
 #'   Results of Hypothesis Test
 #'   --------------------------
-#'   
+#'
 #'   Null Hypothesis:                 mean = 30
-#'   
+#'
 #'   Alternative Hypothesis:          True mean is greater than 30
-#'   
+#'
 #'   Test Name:                       One-sample t-Test
 #'                                    Modified for
 #'                                    Positively-Skewed Distributions
 #'                                    (Chen, 1995)
-#'   
+#'
 #'   Estimated Parameter(s):          mean = 34.566667
 #'                                    sd   = 27.330598
 #'                                    skew =  2.365778
-#'   
+#'
 #'   Data:                            EPA.02d.Ex.9.mg.per.L.vec
-#'   
+#'
 #'   Sample Size:                     60
-#'   
+#'
 #'   Test Statistic:                  t = 1.574075
-#'   
+#'
 #'   Test Statistic Parameter:        df = 59
-#'   
+#'
 #'   P-values:                        z               = 0.05773508
 #'                                    t               = 0.06040889
 #'                                    Avg. of z and t = 0.05907199
-#'   
+#'
 #'   Confidence Interval for:         mean
-#'   
+#'
 #'   Confidence Interval Method:      Based on z
-#'   
+#'
 #'   Confidence Interval Type:        Lower
-#'   
+#'
 #'   Confidence Level:                95%
-#'   
+#'
 #'   Confidence Interval:             LCL = 29.82
 #'                                    UCL =   Inf
 #'
@@ -10927,23 +10927,23 @@ NULL
 #'   #==========
 #'
 #'   #============================================================================
-#' 
-#'   # Now create an object of class "htest" and note the difference in how it is 
-#'   # printed out depending on whether or not you explicitly use the 
+#'
+#'   # Now create an object of class "htest" and note the difference in how it is
+#'   # printed out depending on whether or not you explicitly use the
 #'   # print.htestEnvStats() command.
 #'   #-----------------------------------------------------------------------------
-#' 
+#'
 #'   htest.obj <- t.test(EPA.02d.Ex.9.mg.per.L.vec, mu = 30, alternative = "greater")
-#' 
-#'   class(htest.obj) 
-#'   #[1] "htest" 
-#' 
-#'   names(htest.obj) 
-#'   # [1] "statistic"   "parameter"   "p.value"     "conf.int"    "estimate"   
+#'
+#'   class(htest.obj)
+#'   #[1] "htest"
+#'
+#'   names(htest.obj)
+#'   # [1] "statistic"   "parameter"   "p.value"     "conf.int"    "estimate"
 #'   # [6] "null.value"  "stderr"      "alternative" "method"      "data.name"
-#' 
+#'
 #'   htest.obj
-#' 
+#'
 #'   #        One Sample t-test
 #'   #
 #'   #data:  EPA.02d.Ex.9.mg.per.L.vec
@@ -10952,11 +10952,11 @@ NULL
 #'   #95 percent confidence interval:
 #'   # 28.67044      Inf
 #'   #sample estimates:
-#'   #mean of x 
+#'   #mean of x
 #'   # 34.56667
-#' 
+#'
 #'   print(htest.obj)
-#' 
+#'
 #'   #Results of Hypothesis Test
 #'   #--------------------------
 #'   #
@@ -10978,7 +10978,7 @@ NULL
 #'   #
 #'   #95% Confidence Interval:         LCL = 28.67044
 #'   #                                 UCL =      Inf
-#' 
+#'
 #'   #==========
 #'
 #'   # Clean up
