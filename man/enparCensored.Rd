@@ -146,7 +146,7 @@ and background material are available in \code{vignette("extended-function-detai
   Beal, D. (2010).  \emph{A Macro for Calculating Summary Statistics on
   Left Censored Environmental Data Using the Kaplan-Meier Method}.
   Paper SDA-09, presented at Southeast SAS Users Group 2010, September 26-28,
-  Savannah, GA.  \url{https://analytics.ncsu.edu/sesug/2010/SDA09.Beal.pdf}.
+  Savannah, GA.
 
   Efron, B. (1979).  Bootstrap Methods: Another Look at the Jackknife.
   \emph{The Annals of Statistics} \bold{7}, 1--26.

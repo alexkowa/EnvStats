@@ -323,7 +323,7 @@ Create a table of confidence intervals for the mean of a normal distribution
   # interval for the difference:
   #----------------------------------------------------------------------
 
-  print(t.test(Sulfate.down, Sulfate.back, var.equal = TRUE))
+  print.htestEnvStats(t.test(Sulfate.down, Sulfate.back, var.equal = TRUE))
 
   #Results of Hypothesis Test
   #--------------------------

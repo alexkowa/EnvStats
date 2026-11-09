@@ -15,6 +15,9 @@ Print objects of class \code{"htestEnvStats"} by a simple
   file for \code{\link{htestEnvStats.object}}. This method is automatically
   called by the standard \R \code{\link[base:print]{print}} generic when given
   an object of class \code{"\link[=htestEnvStats.object]{htestEnvStats}"}.
+
+  You may also explicitly call this function to print objects of class
+  \code{"\link[=htest.htestEnvStats.object]{htest}"}.
 }
 \arguments{
   \item{x}{
@@ -66,6 +69,45 @@ Print objects of class \code{"htestEnvStats"} by a simple
 
   htestEnvStats.obj
 
+  Results of Hypothesis Test
+  --------------------------
+
+  Null Hypothesis:                 mean = 30
+
+  Alternative Hypothesis:          True mean is greater than 30
+
+  Test Name:                       One-sample t-Test
+                                   Modified for
+                                   Positively-Skewed Distributions
+                                   (Chen, 1995)
+
+  Estimated Parameter(s):          mean = 34.566667
+                                   sd   = 27.330598
+                                   skew =  2.365778
+
+  Data:                            EPA.02d.Ex.9.mg.per.L.vec
+
+  Sample Size:                     60
+
+  Test Statistic:                  t = 1.574075
+
+  Test Statistic Parameter:        df = 59
+
+  P-values:                        z               = 0.05773508
+                                   t               = 0.06040889
+                                   Avg. of z and t = 0.05907199
+
+  Confidence Interval for:         mean
+
+  Confidence Interval Method:      Based on z
+
+  Confidence Interval Type:        Lower
+
+  Confidence Level:                95%
+
+  Confidence Interval:             LCL = 29.82
+                                   UCL =   Inf
+
   #==========
 
   # Extract the test statistic
@@ -75,8 +117,63 @@ Print objects of class \code{"htestEnvStats"} by a simple
 
   #==========
 
+  #============================================================================
+
+  # Now create an object of class "htest" and note the difference in how it is
+  # printed out depending on whether or not you explicitly use the
+  # print.htestEnvStats() command.
+  #-----------------------------------------------------------------------------
+
+  htest.obj <- t.test(EPA.02d.Ex.9.mg.per.L.vec, mu = 30, alternative = "greater")
+
+  class(htest.obj)
+  #[1] "htest"
+
+  names(htest.obj)
+  # [1] "statistic"   "parameter"   "p.value"     "conf.int"    "estimate"
+  # [6] "null.value"  "stderr"      "alternative" "method"      "data.name"
+
+  htest.obj
+
+  #        One Sample t-test
+  #
+  #data:  EPA.02d.Ex.9.mg.per.L.vec
+  #t = 1.2943, df = 59, p-value = 0.1003
+  #alternative hypothesis: true mean is greater than 30
+  #95 percent confidence interval:
+  # 28.67044      Inf
+  #sample estimates:
+  #mean of x
+  # 34.56667
+
+  print(htest.obj)
+
+  #Results of Hypothesis Test
+  #--------------------------
+  #
+  #Null Hypothesis:                 mean = 30
+  #
+  #Alternative Hypothesis:          True mean is greater than 30
+  #
+  #Test Name:                       One Sample t-test
+  #
+  #Estimated Parameter(s):          mean of x = 34.56667
+  #
+  #Data:                            EPA.02d.Ex.9.mg.per.L.vec
+  #
+  #Test Statistic:                  t = 1.294273
+  #
+  #Test Statistic Parameter:        df = 59
+  #
+  #P-value:                         0.1003072
+  #
+  #95% Confidence Interval:         LCL = 28.67044
+  #                                 UCL =      Inf
+
+  #==========
+
   # Clean up
   #---------
-  rm(htestEnvStats.obj)
+  rm(htestEnvStats.obj, htest.obj)
 }
 \keyword{print}

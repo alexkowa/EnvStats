@@ -25,6 +25,6 @@ Lead (Pb) concentrations (mg/kg) in 29 discrete environmental soil samples
   Beal, D. (2010).  \emph{A Macro for Calculating Summary Statistics on
   Left Censored Environmental Data Using the Kaplan-Meier Method}.
   Paper SDA-09, presented at Southeast SAS Users Group 2010, September 26-28,
-  Savannah, GA. \url{https://analytics.ncsu.edu/sesug/2010/SDA09.Beal.pdf}.
+  Savannah, GA.
 }
 \keyword{datasets}
