@@ -69,44 +69,44 @@ Print objects of class \code{"htestEnvStats"} by a simple
 
   htestEnvStats.obj
 
-  Results of Hypothesis Test
-  --------------------------
+  #Results of Hypothesis Test
+  #--------------------------
 
-  Null Hypothesis:                 mean = 30
+  #Null Hypothesis:                 mean = 30
 
-  Alternative Hypothesis:          True mean is greater than 30
+  #Alternative Hypothesis:          True mean is greater than 30
 
-  Test Name:                       One-sample t-Test
-                                   Modified for
-                                   Positively-Skewed Distributions
-                                   (Chen, 1995)
+  #Test Name:                       One-sample t-Test
+                                   #Modified for
+                                   #Positively-Skewed Distributions
+                                   #(Chen, 1995)
 
-  Estimated Parameter(s):          mean = 34.566667
-                                   sd   = 27.330598
-                                   skew =  2.365778
+  #Estimated Parameter(s):          mean = 34.566667
+                                   #sd   = 27.330598
+                                   #skew =  2.365778
 
-  Data:                            EPA.02d.Ex.9.mg.per.L.vec
+  #Data:                            EPA.02d.Ex.9.mg.per.L.vec
 
-  Sample Size:                     60
+  #Sample Size:                     60
 
-  Test Statistic:                  t = 1.574075
+  #Test Statistic:                  t = 1.574075
 
-  Test Statistic Parameter:        df = 59
+  #Test Statistic Parameter:        df = 59
 
-  P-values:                        z               = 0.05773508
-                                   t               = 0.06040889
-                                   Avg. of z and t = 0.05907199
+  #P-values:                        z               = 0.05773508
+                                   #t               = 0.06040889
+                                   #Avg. of z and t = 0.05907199
 
-  Confidence Interval for:         mean
+  #Confidence Interval for:         mean
 
-  Confidence Interval Method:      Based on z
+  #Confidence Interval Method:      Based on z
 
-  Confidence Interval Type:        Lower
+  #Confidence Interval Type:        Lower
 
-  Confidence Level:                95%
+  #Confidence Level:                95%
 
-  Confidence Interval:             LCL = 29.82
-                                   UCL =   Inf
+  #Confidence Interval:             LCL = 29.82
+                                   #UCL =   Inf
 
   #==========
 

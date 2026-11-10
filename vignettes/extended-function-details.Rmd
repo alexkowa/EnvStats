@@ -7509,7 +7509,7 @@ $$
 = G[t_{\nu}(\alpha/2), \nu, \Delta] + 1 - G[t_{\nu}(1 - \alpha/2), \nu, \Delta] \;\;\;\;\;\; (28)
 $$
 
-The power of the t-test given in Equation (28) can also be expressed in terms of the cumulative distribution function of the [non-central F-distribution](https://stat.ethz.ch/R-manual/R-devel/library/stats/html/FDist.html) as follows. Let $F_{\nu_1, \nu_2, \Delta}$ denote a [non-central F random variable](https://stat.ethz.ch/R-manual/R-devel/library/stats/html/FDist.html) with $\nu_1$ and $\nu_2$ degrees of freedom and non-centrality parameter $\Delta$, and let $H(x, \nu_1, \nu_2, \Delta)$ denote the cumulative distribution function of this random variable evaluated at $x$. Also, let $F_{\nu_1, \nu_2}(p)$ denote the $p$'th quantile of the central F-distribution with $\nu_1$ and $\nu_2$ degrees of freedom. It can be shown that
+The power of the t-test given in Equation (28) can also be expressed in terms of the cumulative distribution function of the [non-central F-distribution](https://stat.ethz.ch/R-manual/R-devel/library/stats/html/Fdist.html) as follows. Let $F_{\nu_1, \nu_2, \Delta}$ denote a [non-central F random variable](https://stat.ethz.ch/R-manual/R-devel/library/stats/html/Fdist.html) with $\nu_1$ and $\nu_2$ degrees of freedom and non-centrality parameter $\Delta$, and let $H(x, \nu_1, \nu_2, \Delta)$ denote the cumulative distribution function of this random variable evaluated at $x$. Also, let $F_{\nu_1, \nu_2}(p)$ denote the $p$'th quantile of the central F-distribution with $\nu_1$ and $\nu_2$ degrees of freedom. It can be shown that
 
 $$
 (t_{\nu, \Delta})^2 \cong F_{1, \nu, \Delta^2} \;\;\;\;\;\; (29)
@@ -8769,7 +8769,7 @@ The derivation of the constant $K$ is explained below.
 **Conditional Distribution** (`method="conditional"`)  
 Nelson (1970) derives a prediction interval for the case $k=1$ based on the conditional distribution of $Y$ given $X+Y$. He notes that the conditional distribution of $Y$ given the quantity $X+Y=w$ is [binomial](https://stat.ethz.ch/R-manual/R-devel/library/stats/html/Binomial.html) with parameters `size=`$w$ and `prob=`$[m\lambda^{*} / (m\lambda^{*} + n\lambda)]$ (Johnson et al., 1992, p.161). When $k=1$, the prediction limits are computed as those most extreme values of $Y$ that still yield a non-significant test of the hypothesis $H_0: \lambda^{*} = \lambda$, which for the conditional distribution of $Y$ is equivalent to the hypothesis $H_0$: `prob=[m /(m + n)]`.
 
-Using the relationship between the [binomial](https://stat.ethz.ch/R-manual/R-devel/library/stats/html/Binomial.html) and [F-distribution](https://stat.ethz.ch/R-manual/R-devel/library/stats/html/FDist.html) (see the explanation of exact confidence intervals in the help file for [`ebinom`](https://alexkowa.github.io/EnvStats/reference/ebinom.html)), Nelson (1982, p. 203) states that exact two-sided $(1-\alpha)100\%$ prediction limits \[LPL, UPL\] are the closest integer solutions to the following equations:
+Using the relationship between the [binomial](https://stat.ethz.ch/R-manual/R-devel/library/stats/html/Binomial.html) and [F-distribution](https://stat.ethz.ch/R-manual/R-devel/library/stats/html/Fdist.html) (see the explanation of exact confidence intervals in the help file for [`ebinom`](https://alexkowa.github.io/EnvStats/reference/ebinom.html)), Nelson (1982, p. 203) states that exact two-sided $(1-\alpha)100\%$ prediction limits \[LPL, UPL\] are the closest integer solutions to the following equations:
 
 $$
 \frac{m}{LPL + 1} = \frac{n}{X} F(2 LPL + 2, 2X, 1 - \alpha/2) \;\;\;\;\;\; (8)
@@ -8779,7 +8779,7 @@ $$
 \frac{UPL}{n} = \frac{X+1}{n} F(2X + 2, 2 UPL, 1 - \alpha/2) \;\;\;\;\;\; (9)
 $$
 
-where $F(\nu_1, \nu_2, p)$ denotes the $p$'th quantile of the [F-distribution](https://stat.ethz.ch/R-manual/R-devel/library/stats/html/FDist.html) with $\nu_1$ and $\nu_2$ degrees of freedom.
+where $F(\nu_1, \nu_2, p)$ denotes the $p$'th quantile of the [F-distribution](https://stat.ethz.ch/R-manual/R-devel/library/stats/html/Fdist.html) with $\nu_1$ and $\nu_2$ degrees of freedom.
 
 If `ci.type="lower"`, $\alpha/2$ is replaced with $\alpha$ in Equation (8) above for $LPL$, and $UPL$ is set to $\infty$.
 
@@ -12624,7 +12624,7 @@ $$
 = G[t_{\nu}(\alpha/2), \nu, \Delta] + 1 - G[t_{\nu}(1 - \alpha/2), \nu, \Delta] \;\;\;\;\;\; (16)
 $$
 
-The power of the t-test given in Equation (16) can also be expressed in terms of the cumulative distribution function of the [non-central F-distribution](https://stat.ethz.ch/R-manual/R-devel/library/stats/html/FDist.html) as follows. Let $F_{\nu_1, \nu_2, \Delta}$ denote a [non-central F random variable](https://stat.ethz.ch/R-manual/R-devel/library/stats/html/FDist.html) with $\nu_1$ and $\nu_2$ degrees of freedom and non-centrality parameter $\Delta$, and let $H(x, \nu_1, \nu_2, \Delta)$ denote the cumulative distribution function of this random variable evaluated at $x$. Also, let $F_{\nu_1, \nu_2}(p)$ denote the $p$'th quantile of the central F-distribution with $\nu_1$ and $\nu_2$ degrees of freedom. It can be shown that
+The power of the t-test given in Equation (16) can also be expressed in terms of the cumulative distribution function of the [non-central F-distribution](https://stat.ethz.ch/R-manual/R-devel/library/stats/html/Fdist.html) as follows. Let $F_{\nu_1, \nu_2, \Delta}$ denote a [non-central F random variable](https://stat.ethz.ch/R-manual/R-devel/library/stats/html/Fdist.html) with $\nu_1$ and $\nu_2$ degrees of freedom and non-centrality parameter $\Delta$, and let $H(x, \nu_1, \nu_2, \Delta)$ denote the cumulative distribution function of this random variable evaluated at $x$. Also, let $F_{\nu_1, \nu_2}(p)$ denote the $p$'th quantile of the central F-distribution with $\nu_1$ and $\nu_2$ degrees of freedom. It can be shown that
 
 $$
 (t_{\nu, \Delta})^2 \cong F_{1, \nu, \Delta^2} \;\;\;\;\;\; (17)
