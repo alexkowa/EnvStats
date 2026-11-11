@@ -16,9 +16,10 @@ Construct a nonparametric simultaneous prediction interval for the next
   prediction interval assumes the observations from from a continuous distribution.
 }
 \details{
-This help page has been shortened to keep function help focused on usage,
-arguments, return values, and examples. Extended method details, formulas,
-and background material are available in \code{vignette("extended-function-details", package = "EnvStats")}, section \code{predIntNparSimultaneous}.
+Extended methods and derivations are available in
+\href{https://alexkowa.github.io/EnvStats/articles/prediction-intervals.html#predintnparsimultaneous}{Prediction intervals for environmental monitoring: \code{predIntNparSimultaneous}}.
+Open the vignette locally with
+\code{vignette("prediction-intervals", package = "EnvStats")}.
 }
 \alias{Nonparametric Simultaneous Prediction Interval}
 \arguments{

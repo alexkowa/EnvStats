@@ -14,9 +14,10 @@ Estimate quantiles of a distribution, and optionally create confidence intervals
   for them, without making any assumptions about the form of the distribution.
 }
 \details{
-This help page has been shortened to keep function help focused on usage,
-arguments, return values, and examples. Extended method details, formulas,
-and background material are available in \code{vignette("extended-function-details", package = "EnvStats")}, section \code{eqnpar}.
+Extended methods and derivations are available in
+\href{https://alexkowa.github.io/EnvStats/articles/nonparametric-methods.html#eqnpar}{Nonparametric estimation and two-sample tests: \code{eqnpar}}.
+Open the vignette locally with
+\code{vignette("nonparametric-methods", package = "EnvStats")}.
 }
 \encoding{latin1}
 \arguments{

@@ -19,9 +19,10 @@ Compute the probability that at least one set of future observations violates th
   on assuming the true distribution of the observations is \link[stats:Normal]{normal}.
 }
 \details{
-This help page has been shortened to keep function help focused on usage,
-arguments, return values, and examples. Extended method details, formulas,
-and background material are available in \code{vignette("extended-function-details", package = "EnvStats")}, section \code{predIntNparSimultaneousTestPower}.
+Extended methods and derivations are available in
+\href{https://alexkowa.github.io/EnvStats/articles/prediction-intervals.html#predintnparsimultaneoustestpower}{Prediction intervals for environmental monitoring: \code{predIntNparSimultaneousTestPower}}.
+Open the vignette locally with
+\code{vignette("prediction-intervals", package = "EnvStats")}.
 }
 \arguments{
   \item{n}{

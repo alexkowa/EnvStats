@@ -80,9 +80,10 @@
 #' }
 #' }
 #' @details
-#' This help page has been shortened to keep function help focused on usage,
-#' arguments, return values, and examples. Extended method details, formulas,
-#' and background material are available in \code{vignette("extended-function-details", package = "EnvStats")}, section \code{egammaCensored}.
+#' Extended methods and derivations are available in
+#' \href{https://alexkowa.github.io/EnvStats/articles/censored-estimation.html#egammacensored}{Estimation with censored data: \code{egammaCensored}}.
+#' Open the vignette locally with
+#' \code{vignette("censored-estimation", package = "EnvStats")}.
 #' @rawRd
 #' \value{
 #'   a list of class \code{"estimateCensored"} containing the estimated parameters

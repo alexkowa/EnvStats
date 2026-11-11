@@ -114,9 +114,10 @@
 #' }
 #' }
 #' @details
-#' This help page has been shortened to keep function help focused on usage,
-#' arguments, return values, and examples. Extended method details, formulas,
-#' and background material are available in \code{vignette("extended-function-details", package = "EnvStats")}, section \code{gofTestCensored}.
+#' Extended methods and derivations are available in
+#' \href{https://alexkowa.github.io/EnvStats/articles/distribution-diagnostics.html#goftestcensored}{Distribution diagnostics, transformations, and probability plots: \code{gofTestCensored}}.
+#' Open the vignette locally with
+#' \code{vignette("distribution-diagnostics", package = "EnvStats")}.
 #' @rawRd
 #' \value{
 #'   a list of class \code{"gofCensored"} containing the results of the goodness-of-fit

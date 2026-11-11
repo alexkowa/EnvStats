@@ -717,9 +717,10 @@ NULL
 #'   }
 #' }
 #' @details
-#' This help page has been shortened to keep function help focused on usage,
-#' arguments, return values, and examples. Extended method details, formulas,
-#' and background material are available in \code{vignette("extended-function-details", package = "EnvStats")}, section \code{Distribution.df}.
+#' Extended methods and derivations are available in
+#' \href{https://alexkowa.github.io/EnvStats/articles/distributions-and-estimation.html#distribution-df}{Probability distributions and parameter estimation: \code{Distribution.df}}.
+#' Open the vignette locally with
+#' \code{vignette("distributions-and-estimation", package = "EnvStats")}.
 #' @rawRd
 #' \source{
 #'   The \pkg{EnvStats} package.
@@ -3673,9 +3674,10 @@ NULL
 #' @rawRd
 #' \concept{Less Than Detection Limit}
 #' @details
-#' This help page has been shortened to keep function help focused on usage,
-#' arguments, return values, and examples. Extended method details, formulas,
-#' and background material are available in \code{vignette("extended-function-details", package = "EnvStats")}, section \code{FcnsByCatCensoredData}.
+#' Extended methods and derivations are available in
+#' \href{https://alexkowa.github.io/EnvStats/articles/censored-estimation.html#fcnsbycatcensoreddata}{Estimation with censored data: \code{FcnsByCatCensoredData}}.
+#' Open the vignette locally with
+#' \code{vignette("censored-estimation", package = "EnvStats")}.
 #' @rawRd
 #' \keyword{ package }
 NULL
@@ -3991,9 +3993,10 @@ NULL
 #' @description
 #' The \pkg{EnvStats} functions listed below are useful for power and sample size calculations.
 #' @details
-#' This help page has been shortened to keep function help focused on usage,
-#' arguments, return values, and examples. Extended method details, formulas,
-#' and background material are available in \code{vignette("extended-function-details", package = "EnvStats")}, section \code{FcnsByCatPower}.
+#' Extended methods and derivations are available in
+#' \href{https://alexkowa.github.io/EnvStats/articles/power-and-study-design.html#fcnsbycatpower}{Statistical power and study design: \code{FcnsByCatPower}}.
+#' Open the vignette locally with
+#' \code{vignette("power-and-study-design", package = "EnvStats")}.
 #' @rawRd
 #' \keyword{ package }
 NULL
@@ -4805,9 +4808,10 @@ NULL
 #' @rawRd
 #' \concept{Abstract}
 #' @details
-#' This help page has been shortened to keep function help focused on usage,
-#' arguments, return values, and examples. Extended method details, formulas,
-#' and background material are available in \code{vignette("extended-function-details", package = "EnvStats")}, section \code{HoskingEtAl1985}.
+#' Extended methods and derivations are available in
+#' \href{https://alexkowa.github.io/EnvStats/articles/distributions-and-estimation.html#hoskingetal1985}{Probability distributions and parameter estimation: \code{HoskingEtAl1985}}.
+#' Open the vignette locally with
+#' \code{vignette("distributions-and-estimation", package = "EnvStats")}.
 #' @rawRd
 #' \references{
 #'   Forbes, C., M. Evans, N. Hastings, and B. Peacock. (2011).  Statistical Distributions.

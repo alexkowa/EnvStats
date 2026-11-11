@@ -32,9 +32,10 @@
 #' }
 #' }
 #' @details
-#' This help page has been shortened to keep function help focused on usage,
-#' arguments, return values, and examples. Extended method details, formulas,
-#' and background material are available in \code{vignette("extended-function-details", package = "EnvStats")}, section \code{rosnerTest}.
+#' Extended methods and derivations are available in
+#' \href{https://alexkowa.github.io/EnvStats/articles/outlier-testing.html#rosnertest}{Rosner's test for multiple outliers: \code{rosnerTest}}.
+#' Open the vignette locally with
+#' \code{vignette("outlier-testing", package = "EnvStats")}.
 #' @rawRd
 #' \value{
 #'   A list of class \code{"gofOutlier"} containing the results of the hypothesis test.

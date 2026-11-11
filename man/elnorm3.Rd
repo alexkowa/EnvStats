@@ -14,9 +14,10 @@ Estimate the mean, standard deviation, and threshold parameters for a
   construct a confidence interval for the threshold or the median of the distribution.
 }
 \details{
-This help page has been shortened to keep function help focused on usage,
-arguments, return values, and examples. Extended method details, formulas,
-and background material are available in \code{vignette("extended-function-details", package = "EnvStats")}, section \code{elnorm3}.
+Extended methods and derivations are available in
+\href{https://alexkowa.github.io/EnvStats/articles/distributions-and-estimation.html#elnorm3}{Probability distributions and parameter estimation: \code{elnorm3}}.
+Open the vignette locally with
+\code{vignette("distributions-and-estimation", package = "EnvStats")}.
 }
 \arguments{
   \item{x}{

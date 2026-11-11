@@ -1,0 +1,1293 @@
+---
+title: "Statistical power and study design"
+output:
+  rmarkdown::html_vignette:
+    toc: true
+    toc_depth: 2
+vignette: >
+  %\VignetteIndexEntry{Statistical power and study design}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+This vignette surveys the functions available for planning studies, then derives
+power calculations for t-tests and tests of a linear trend. The overview includes
+sample-size and precision tools for confidence, prediction, and tolerance
+intervals.
+
+Related vignettes:
+
+- [Prediction intervals for environmental monitoring](prediction-intervals.html)
+- [Trend tests and serial correlation](trend-and-correlation.html)
+- [Nonparametric estimation and two-sample tests](nonparametric-methods.html)
+
+For monitoring-specific power calculations, see
+[normal prediction interval power](prediction-intervals.html#predintnormsimultaneoustestpower)
+and [nonparametric prediction interval power](prediction-intervals.html#predintnparsimultaneoustestpower).
+
+## FcnsByCatPower {#fcnsbycatpower}
+
+Help topic: [`FcnsByCatPower`](https://alexkowa.github.io/EnvStats/reference/FcnsByCatPower.html).
+
+**Confidence Intervals**
+
+<table>
+<tbody>
+  <tr>
+    <td><em>Function Name</em></td>
+    <td><em>Description</em></td>
+  </tr>
+  <tr>
+    <td><a href="https://alexkowa.github.io/EnvStats/reference/ciTableProp.html"><code>ciTableProp</code></a></td>
+    <td>Confidence intervals for binomial proportion, or</td>
+  </tr>
+  <tr>
+    <td>&nbsp;</td>
+    <td>difference between two proportions, following Bacchetti (2010)</td>
+  </tr>
+  <tr>
+    <td><a href="https://alexkowa.github.io/EnvStats/reference/ciBinomHalfWidth.html"><code>ciBinomHalfWidth</code></a></td>
+    <td>Compute the half-width of a confidence interval for a</td>
+  </tr>
+  <tr>
+    <td>&nbsp;</td>
+    <td>Binomial proportion or the difference between two proportions.</td>
+  </tr>
+  <tr>
+    <td><a href="https://alexkowa.github.io/EnvStats/reference/ciBinomN.html"><code>ciBinomN</code></a></td>
+    <td>Compute the sample size necessary to achieve a specified</td>
+  </tr>
+  <tr>
+    <td>&nbsp;</td>
+    <td>half-width of a confidence interval for a Binomial proportion or</td>
+  </tr>
+  <tr>
+    <td>&nbsp;</td>
+    <td>the difference between two proportions.</td>
+  </tr>
+  <tr>
+    <td><a href="https://alexkowa.github.io/EnvStats/reference/plotCiBinomDesign.html"><code>plotCiBinomDesign</code></a></td>
+    <td>Create plots for a sampling design based on a confidence interval</td>
+  </tr>
+  <tr>
+    <td>&nbsp;</td>
+    <td>for a Binomial proportion or the difference between two proportions.</td>
+  </tr>
+  <tr>
+    <td><a href="https://alexkowa.github.io/EnvStats/reference/ciTableMean.html"><code>ciTableMean</code></a></td>
+    <td>Confidence intervals for mean of normal distribution, or</td>
+  </tr>
+  <tr>
+    <td>&nbsp;</td>
+    <td>difference between two means, following Bacchetti (2010)</td>
+  </tr>
+  <tr>
+    <td><a href="https://alexkowa.github.io/EnvStats/reference/ciNormHalfWidth.html"><code>ciNormHalfWidth</code></a></td>
+    <td>Compute the half-width of a confidence interval for the mean of a</td>
+  </tr>
+  <tr>
+    <td>&nbsp;</td>
+    <td>Normal distribution or the difference between two means.</td>
+  </tr>
+  <tr>
+    <td><a href="https://alexkowa.github.io/EnvStats/reference/ciNormN.html"><code>ciNormN</code></a></td>
+    <td>Compute the sample size necessary to achieve a specified half-width</td>
+  </tr>
+  <tr>
+    <td>&nbsp;</td>
+    <td>of a confidence interval for the mean of a Normal distribution or</td>
+  </tr>
+  <tr>
+    <td>&nbsp;</td>
+    <td>the difference between two means.</td>
+  </tr>
+  <tr>
+    <td><a href="https://alexkowa.github.io/EnvStats/reference/plotCiNormDesign.html"><code>plotCiNormDesign</code></a></td>
+    <td>Create plots for a sampling design based on a confidence interval</td>
+  </tr>
+  <tr>
+    <td>&nbsp;</td>
+    <td>for the mean of a Normal distribution or the difference between</td>
+  </tr>
+  <tr>
+    <td>&nbsp;</td>
+    <td>two means.</td>
+  </tr>
+  <tr>
+    <td><a href="https://alexkowa.github.io/EnvStats/reference/ciNparConfLevel.html"><code>ciNparConfLevel</code></a></td>
+    <td>Compute the confidence level associated with a nonparametric</td>
+  </tr>
+  <tr>
+    <td>&nbsp;</td>
+    <td>confidence interval for a percentile.</td>
+  </tr>
+  <tr>
+    <td><a href="https://alexkowa.github.io/EnvStats/reference/ciNparN.html"><code>ciNparN</code></a></td>
+    <td>Compute the sample size necessary to achieve a specified</td>
+  </tr>
+  <tr>
+    <td>&nbsp;</td>
+    <td>confidence level for a nonparametric confidence interval for</td>
+  </tr>
+  <tr>
+    <td>&nbsp;</td>
+    <td>a percentile.</td>
+  </tr>
+  <tr>
+    <td><a href="https://alexkowa.github.io/EnvStats/reference/plotCiNparDesign.html"><code>plotCiNparDesign</code></a></td>
+    <td>Create plots for a sampling design based on a nonparametric</td>
+  </tr>
+  <tr>
+    <td>&nbsp;</td>
+    <td>confidence interval for a percentile.</td>
+  </tr>
+</tbody>
+</table>
+
+**Hypothesis Tests**
+
+<table>
+<tbody>
+  <tr>
+    <td><em>Function Name</em></td>
+    <td><em>Description</em></td>
+  </tr>
+  <tr>
+    <td><a href="https://alexkowa.github.io/EnvStats/reference/aovN.html"><code>aovN</code></a></td>
+    <td>Compute the sample sizes necessary to achieve a</td>
+  </tr>
+  <tr>
+    <td>&nbsp;</td>
+    <td>specified power for a one-way fixed-effects analysis</td>
+  </tr>
+  <tr>
+    <td>&nbsp;</td>
+    <td>of variance test.</td>
+  </tr>
+  <tr>
+    <td><a href="https://alexkowa.github.io/EnvStats/reference/aovPower.html"><code>aovPower</code></a></td>
+    <td>Compute the power of a one-way fixed-effects analysis of</td>
+  </tr>
+  <tr>
+    <td>&nbsp;</td>
+    <td>variance test.</td>
+  </tr>
+  <tr>
+    <td><a href="https://alexkowa.github.io/EnvStats/reference/plotAovDesign.html"><code>plotAovDesign</code></a></td>
+    <td>Create plots for a sampling design based on a one-way</td>
+  </tr>
+  <tr>
+    <td>&nbsp;</td>
+    <td>analysis of variance.</td>
+  </tr>
+  <tr>
+    <td><a href="https://alexkowa.github.io/EnvStats/reference/propTestN.html"><code>propTestN</code></a></td>
+    <td>Compute the sample size necessary to achieve a specified</td>
+  </tr>
+  <tr>
+    <td>&nbsp;</td>
+    <td>power for a one- or two-sample proportion test.</td>
+  </tr>
+  <tr>
+    <td><a href="https://alexkowa.github.io/EnvStats/reference/propTestPower.html"><code>propTestPower</code></a></td>
+    <td>Compute the power of a one- or two-sample proportion test.</td>
+  </tr>
+  <tr>
+    <td><a href="https://alexkowa.github.io/EnvStats/reference/propTestMdd.html"><code>propTestMdd</code></a></td>
+    <td>Compute the minimal detectable difference associated with</td>
+  </tr>
+  <tr>
+    <td>&nbsp;</td>
+    <td>a one- or two-sample proportion test.</td>
+  </tr>
+  <tr>
+    <td><a href="https://alexkowa.github.io/EnvStats/reference/plotPropTestDesign.html"><code>plotPropTestDesign</code></a></td>
+    <td>Create plots involving sample size, power, difference, and</td>
+  </tr>
+  <tr>
+    <td>&nbsp;</td>
+    <td>significance level for a one- or two-sample proportion test.</td>
+  </tr>
+  <tr>
+    <td><a href="https://alexkowa.github.io/EnvStats/reference/tTestAlpha.html"><code>tTestAlpha</code></a></td>
+    <td>Compute the Type I Error associated with specified values for</td>
+  </tr>
+  <tr>
+    <td>&nbsp;</td>
+    <td>for power, sample size(s), and scaled MDD for a one- or</td>
+  </tr>
+  <tr>
+    <td>&nbsp;</td>
+    <td>two-sample t-test.</td>
+  </tr>
+  <tr>
+    <td><a href="https://alexkowa.github.io/EnvStats/reference/tTestN.html"><code>tTestN</code></a></td>
+    <td>Compute the sample size necessary to achieve a specified</td>
+  </tr>
+  <tr>
+    <td>&nbsp;</td>
+    <td>power for a one- or two-sample t-test.</td>
+  </tr>
+  <tr>
+    <td><a href="https://alexkowa.github.io/EnvStats/reference/tTestPower.html"><code>tTestPower</code></a></td>
+    <td>Compute the power of a one- or two-sample t-test.</td>
+  </tr>
+  <tr>
+    <td><a href="https://alexkowa.github.io/EnvStats/reference/tTestScaledMdd.html"><code>tTestScaledMdd</code></a></td>
+    <td>Compute the scaled minimal detectable difference</td>
+  </tr>
+  <tr>
+    <td>&nbsp;</td>
+    <td>associated with a one- or two-sample t-test.</td>
+  </tr>
+  <tr>
+    <td><a href="https://alexkowa.github.io/EnvStats/reference/plotTTestDesign.html"><code>plotTTestDesign</code></a></td>
+    <td>Create plots for a sampling design based on a one- or</td>
+  </tr>
+  <tr>
+    <td>&nbsp;</td>
+    <td>two-sample t-test.</td>
+  </tr>
+  <tr>
+    <td><a href="https://alexkowa.github.io/EnvStats/reference/tTestLnormAltN.html"><code>tTestLnormAltN</code></a></td>
+    <td>Compute the sample size necessary to achieve a specified</td>
+  </tr>
+  <tr>
+    <td>&nbsp;</td>
+    <td>power for a one- or two-sample t-test, assuming lognormal</td>
+  </tr>
+  <tr>
+    <td>&nbsp;</td>
+    <td>data.</td>
+  </tr>
+  <tr>
+    <td><a href="https://alexkowa.github.io/EnvStats/reference/tTestLnormAltPower.html"><code>tTestLnormAltPower</code></a></td>
+    <td>Compute the power of a one- or two-sample t-test, assuming</td>
+  </tr>
+  <tr>
+    <td>&nbsp;</td>
+    <td>lognormal data.</td>
+  </tr>
+  <tr>
+    <td><a href="https://alexkowa.github.io/EnvStats/reference/tTestLnormAltRatioOfMeans.html"><code>tTestLnormAltRatioOfMeans</code></a></td>
+    <td>Compute the minimal or maximal detectable ratio of means</td>
+  </tr>
+  <tr>
+    <td>&nbsp;</td>
+    <td>associated with a one- or two-sample t-test, assuming</td>
+  </tr>
+  <tr>
+    <td>&nbsp;</td>
+    <td>lognormal data.</td>
+  </tr>
+  <tr>
+    <td><a href="https://alexkowa.github.io/EnvStats/reference/plotTTestLnormAltDesign.html"><code>plotTTestLnormAltDesign</code></a></td>
+    <td>Create plots for a sampling design based on a one- or</td>
+  </tr>
+  <tr>
+    <td>&nbsp;</td>
+    <td>two-sample t-test, assuming lognormal data.</td>
+  </tr>
+  <tr>
+    <td><a href="https://alexkowa.github.io/EnvStats/reference/linearTrendTestN.html"><code>linearTrendTestN</code></a></td>
+    <td>Compute the sample size necessary to achieve a specified</td>
+  </tr>
+  <tr>
+    <td>&nbsp;</td>
+    <td>power for a t-test for linear trend.</td>
+  </tr>
+  <tr>
+    <td><a href="https://alexkowa.github.io/EnvStats/reference/linearTrendTestPower.html"><code>linearTrendTestPower</code></a></td>
+    <td>Compute the power of a t-test for linear trend.</td>
+  </tr>
+  <tr>
+    <td><a href="https://alexkowa.github.io/EnvStats/reference/linearTrendTestScaledMds.html"><code>linearTrendTestScaledMds</code></a></td>
+    <td>Compute the scaled minimal detectable slope for a t-test</td>
+  </tr>
+  <tr>
+    <td>&nbsp;</td>
+    <td>for linear trend.</td>
+  </tr>
+  <tr>
+    <td><a href="https://alexkowa.github.io/EnvStats/reference/plotLinearTrendTestDesign.html"><code>plotLinearTrendTestDesign</code></a></td>
+    <td>Create plots for a sampling design based on a t-test for</td>
+  </tr>
+  <tr>
+    <td>&nbsp;</td>
+    <td>linear trend.</td>
+  </tr>
+</tbody>
+</table>
+
+**Prediction Intervals**
+
+*Normal Distribution Prediction Intervals*
+
+<table>
+<tbody>
+  <tr>
+    <td><em>Function Name</em></td>
+    <td><em>Description</em></td>
+  </tr>
+  <tr>
+    <td><a href="https://alexkowa.github.io/EnvStats/reference/predIntNormHalfWidth.html"><code>predIntNormHalfWidth</code></a></td>
+    <td>Compute the half-width of a prediction</td>
+  </tr>
+  <tr>
+    <td>&nbsp;</td>
+    <td>interval for a normal distribution.</td>
+  </tr>
+  <tr>
+    <td><a href="https://alexkowa.github.io/EnvStats/reference/predIntNormK.html"><code>predIntNormK</code></a></td>
+    <td>Compute the required value of \(K\) for</td>
+  </tr>
+  <tr>
+    <td>&nbsp;</td>
+    <td>a prediction interval for a Normal</td>
+  </tr>
+  <tr>
+    <td>&nbsp;</td>
+    <td>distribution.</td>
+  </tr>
+  <tr>
+    <td><a href="https://alexkowa.github.io/EnvStats/reference/predIntNormN.html"><code>predIntNormN</code></a></td>
+    <td>Compute the sample size necessary to</td>
+  </tr>
+  <tr>
+    <td>&nbsp;</td>
+    <td>achieve a specified half-width for a</td>
+  </tr>
+  <tr>
+    <td>&nbsp;</td>
+    <td>prediction interval for a Normal</td>
+  </tr>
+  <tr>
+    <td>&nbsp;</td>
+    <td>distribution.</td>
+  </tr>
+  <tr>
+    <td><a href="https://alexkowa.github.io/EnvStats/reference/plotPredIntNormDesign.html"><code>plotPredIntNormDesign</code></a></td>
+    <td>Create plots for a sampling design</td>
+  </tr>
+  <tr>
+    <td>&nbsp;</td>
+    <td>based on the width of a prediction</td>
+  </tr>
+  <tr>
+    <td>&nbsp;</td>
+    <td>interval for a Normal distribution.</td>
+  </tr>
+  <tr>
+    <td><a href="https://alexkowa.github.io/EnvStats/reference/predIntNormTestPower.html"><code>predIntNormTestPower</code></a></td>
+    <td>Compute the probability that at least</td>
+  </tr>
+  <tr>
+    <td>&nbsp;</td>
+    <td>one future observation (or mean)</td>
+  </tr>
+  <tr>
+    <td>&nbsp;</td>
+    <td>falls outside a prediction interval</td>
+  </tr>
+  <tr>
+    <td>&nbsp;</td>
+    <td>for a Normal distribution.</td>
+  </tr>
+  <tr>
+    <td><a href="https://alexkowa.github.io/EnvStats/reference/plotPredIntNormTestPowerCurve.html"><code>plotPredIntNormTestPowerCurve</code></a></td>
+    <td>Create plots for a sampling</td>
+  </tr>
+  <tr>
+    <td>&nbsp;</td>
+    <td>design based on a prediction interval</td>
+  </tr>
+  <tr>
+    <td>&nbsp;</td>
+    <td>for a Normal distribution.</td>
+  </tr>
+  <tr>
+    <td><a href="https://alexkowa.github.io/EnvStats/reference/predIntNormSimultaneousTestPower.html"><code>predIntNormSimultaneousTestPower</code></a></td>
+    <td>Compute the probability that at</td>
+  </tr>
+  <tr>
+    <td>&nbsp;</td>
+    <td>least one set of future observations</td>
+  </tr>
+  <tr>
+    <td>&nbsp;</td>
+    <td>(or means) violates the given rule</td>
+  </tr>
+  <tr>
+    <td>&nbsp;</td>
+    <td>based on a simultaneous prediction</td>
+  </tr>
+  <tr>
+    <td>&nbsp;</td>
+    <td>interval for a Normal distribution.</td>
+  </tr>
+  <tr>
+    <td><a href="https://alexkowa.github.io/EnvStats/reference/plotPredIntNormSimultaneousTestPowerCurve.html"><code>plotPredIntNormSimultaneousTestPowerCurve</code></a></td>
+    <td>Create plots for a sampling design</td>
+  </tr>
+  <tr>
+    <td>&nbsp;</td>
+    <td>based on a simultaneous prediction</td>
+  </tr>
+  <tr>
+    <td>&nbsp;</td>
+    <td>interval for a Normal distribution.</td>
+  </tr>
+</tbody>
+</table>
+
+*Lognormal Distribution Prediction Intervals*
+
+<table>
+<tbody>
+  <tr>
+    <td><em>Function Name</em></td>
+    <td><em>Description</em></td>
+  </tr>
+  <tr>
+    <td><a href="https://alexkowa.github.io/EnvStats/reference/predIntLnormAltTestPower.html"><code>predIntLnormAltTestPower</code></a></td>
+    <td>Compute the probability that at least</td>
+  </tr>
+  <tr>
+    <td>&nbsp;</td>
+    <td>one future observation (or geometric</td>
+  </tr>
+  <tr>
+    <td>&nbsp;</td>
+    <td>mean) falls outside a prediction</td>
+  </tr>
+  <tr>
+    <td>&nbsp;</td>
+    <td>interval for a lognormal distribution.</td>
+  </tr>
+  <tr>
+    <td><a href="https://alexkowa.github.io/EnvStats/reference/plotPredIntLnormAltTestPowerCurve.html"><code>plotPredIntLnormAltTestPowerCurve</code></a></td>
+    <td>Create plots for a sampling design</td>
+  </tr>
+  <tr>
+    <td>&nbsp;</td>
+    <td>based on a prediction interval for a</td>
+  </tr>
+  <tr>
+    <td>&nbsp;</td>
+    <td>lognormal distribution.</td>
+  </tr>
+  <tr>
+    <td><a href="https://alexkowa.github.io/EnvStats/reference/predIntLnormAltSimultaneousTestPower.html"><code>predIntLnormAltSimultaneousTestPower</code></a></td>
+    <td>Compute the probability that at least</td>
+  </tr>
+  <tr>
+    <td>&nbsp;</td>
+    <td>one set of future observations (or</td>
+  </tr>
+  <tr>
+    <td>&nbsp;</td>
+    <td>geometric means) violates the given</td>
+  </tr>
+  <tr>
+    <td>&nbsp;</td>
+    <td>rule based on a simultaneous</td>
+  </tr>
+  <tr>
+    <td>&nbsp;</td>
+    <td>prediction interval for a lognormal</td>
+  </tr>
+  <tr>
+    <td>&nbsp;</td>
+    <td>distribution.</td>
+  </tr>
+  <tr>
+    <td><a href="https://alexkowa.github.io/EnvStats/reference/plotPredIntLnormAltSimultaneousTestPowerCurve.html"><code>plotPredIntLnormAltSimultaneousTestPowerCurve</code></a></td>
+    <td>Create plots for a sampling design</td>
+  </tr>
+  <tr>
+    <td>&nbsp;</td>
+    <td>based on a simultaneous prediction</td>
+  </tr>
+  <tr>
+    <td>&nbsp;</td>
+    <td>interval for a lognormal distribution.</td>
+  </tr>
+</tbody>
+</table>
+
+*Nonparametric Prediction Intervals*
+
+<table>
+<tbody>
+  <tr>
+    <td><em>Function Name</em></td>
+    <td><em>Description</em></td>
+  </tr>
+  <tr>
+    <td><a href="https://alexkowa.github.io/EnvStats/reference/predIntNparConfLevel.html"><code>predIntNparConfLevel</code></a></td>
+    <td>Compute the confidence level associated with</td>
+  </tr>
+  <tr>
+    <td>&nbsp;</td>
+    <td>a nonparametric prediction interval.</td>
+  </tr>
+  <tr>
+    <td><a href="https://alexkowa.github.io/EnvStats/reference/predIntNparN.html"><code>predIntNparN</code></a></td>
+    <td>Compute the required sample size to achieve</td>
+  </tr>
+  <tr>
+    <td>&nbsp;</td>
+    <td>a specified confidence level for a</td>
+  </tr>
+  <tr>
+    <td>&nbsp;</td>
+    <td>nonparametric prediction interval.</td>
+  </tr>
+  <tr>
+    <td><a href="https://alexkowa.github.io/EnvStats/reference/plotPredIntNparDesign.html"><code>plotPredIntNparDesign</code></a></td>
+    <td>Create plots for a sampling design based on</td>
+  </tr>
+  <tr>
+    <td>&nbsp;</td>
+    <td>the confidence level and sample size of a</td>
+  </tr>
+  <tr>
+    <td>&nbsp;</td>
+    <td>nonparametric prediction interval.</td>
+  </tr>
+  <tr>
+    <td><a href="https://alexkowa.github.io/EnvStats/reference/predIntNparSimultaneousConfLevel.html"><code>predIntNparSimultaneousConfLevel</code></a></td>
+    <td>Compute the confidence level associated with</td>
+  </tr>
+  <tr>
+    <td>&nbsp;</td>
+    <td>a simultaneous nonparametric prediction</td>
+  </tr>
+  <tr>
+    <td>&nbsp;</td>
+    <td>interval.</td>
+  </tr>
+  <tr>
+    <td><a href="https://alexkowa.github.io/EnvStats/reference/predIntNparSimultaneousN.html"><code>predIntNparSimultaneousN</code></a></td>
+    <td>Compute the required sample size for a</td>
+  </tr>
+  <tr>
+    <td>&nbsp;</td>
+    <td>simultaneous nonparametric prediction</td>
+  </tr>
+  <tr>
+    <td>&nbsp;</td>
+    <td>interval.</td>
+  </tr>
+  <tr>
+    <td><a href="https://alexkowa.github.io/EnvStats/reference/plotPredIntNparSimultaneousDesign.html"><code>plotPredIntNparSimultaneousDesign</code></a></td>
+    <td>Create plots for a sampling design based on</td>
+  </tr>
+  <tr>
+    <td>&nbsp;</td>
+    <td>a simultaneous nonparametric prediction</td>
+  </tr>
+  <tr>
+    <td>&nbsp;</td>
+    <td>interval.</td>
+  </tr>
+  <tr>
+    <td><a href="https://alexkowa.github.io/EnvStats/reference/predIntNparSimultaneousTestPower.html"><code>predIntNparSimultaneousTestPower</code></a></td>
+    <td>Compute the probability that at least one</td>
+  </tr>
+  <tr>
+    <td>&nbsp;</td>
+    <td>set of future observations violates the</td>
+  </tr>
+  <tr>
+    <td>&nbsp;</td>
+    <td>given rule based on a nonparametric</td>
+  </tr>
+  <tr>
+    <td>&nbsp;</td>
+    <td>simultaneous prediction interval.</td>
+  </tr>
+  <tr>
+    <td><a href="https://alexkowa.github.io/EnvStats/reference/plotPredIntNparSimultaneousTestPowerCurve.html"><code>plotPredIntNparSimultaneousTestPowerCurve</code></a></td>
+    <td>Create plots for a sampling design based on</td>
+  </tr>
+  <tr>
+    <td>&nbsp;</td>
+    <td>a simultaneous nonparametric prediction</td>
+  </tr>
+  <tr>
+    <td>&nbsp;</td>
+    <td>interval.</td>
+  </tr>
+</tbody>
+</table>
+
+**Tolerance Intervals**
+
+<table>
+<tbody>
+  <tr>
+    <td><em>Function Name</em></td>
+    <td><em>Description</em></td>
+  </tr>
+  <tr>
+    <td><a href="https://alexkowa.github.io/EnvStats/reference/tolIntNormHalfWidth.html"><code>tolIntNormHalfWidth</code></a></td>
+    <td>Compute the half-width of a tolerance</td>
+  </tr>
+  <tr>
+    <td>&nbsp;</td>
+    <td>interval for a normal distribution.</td>
+  </tr>
+  <tr>
+    <td><a href="https://alexkowa.github.io/EnvStats/reference/tolIntNormK.html"><code>tolIntNormK</code></a></td>
+    <td>Compute the required value of \(K\) for a</td>
+  </tr>
+  <tr>
+    <td>&nbsp;</td>
+    <td>tolerance interval for a Normal distribution.</td>
+  </tr>
+  <tr>
+    <td><a href="https://alexkowa.github.io/EnvStats/reference/tolIntNormN.html"><code>tolIntNormN</code></a></td>
+    <td>Compute the sample size necessary to achieve a</td>
+  </tr>
+  <tr>
+    <td>&nbsp;</td>
+    <td>specified half-width for a tolerance interval</td>
+  </tr>
+  <tr>
+    <td>&nbsp;</td>
+    <td>for a Normal distribution.</td>
+  </tr>
+  <tr>
+    <td><a href="https://alexkowa.github.io/EnvStats/reference/plotTolIntNormDesign.html"><code>plotTolIntNormDesign</code></a></td>
+    <td>Create plots for a sampling design based on a</td>
+  </tr>
+  <tr>
+    <td>&nbsp;</td>
+    <td>tolerance interval for a Normal distribution.</td>
+  </tr>
+  <tr>
+    <td><a href="https://alexkowa.github.io/EnvStats/reference/tolIntNparConfLevel.html"><code>tolIntNparConfLevel</code></a></td>
+    <td>Compute the confidence level associated with a</td>
+  </tr>
+  <tr>
+    <td>&nbsp;</td>
+    <td>nonparametric tolerance interval for a specified</td>
+  </tr>
+  <tr>
+    <td>&nbsp;</td>
+    <td>sample size and coverage.</td>
+  </tr>
+  <tr>
+    <td><a href="https://alexkowa.github.io/EnvStats/reference/tolIntNparCoverage.html"><code>tolIntNparCoverage</code></a></td>
+    <td>Compute the coverage associated with a</td>
+  </tr>
+  <tr>
+    <td>&nbsp;</td>
+    <td>nonparametric tolerance interval for a specified</td>
+  </tr>
+  <tr>
+    <td>&nbsp;</td>
+    <td>sample size and confidence level.</td>
+  </tr>
+  <tr>
+    <td><a href="https://alexkowa.github.io/EnvStats/reference/tolIntNparN.html"><code>tolIntNparN</code></a></td>
+    <td>Compute the sample size required for a nonparametric</td>
+  </tr>
+  <tr>
+    <td>&nbsp;</td>
+    <td>tolerance interval with a specified coverage and</td>
+  </tr>
+  <tr>
+    <td>&nbsp;</td>
+    <td>confidence level.</td>
+  </tr>
+  <tr>
+    <td><a href="https://alexkowa.github.io/EnvStats/reference/plotTolIntNparDesign.html"><code>plotTolIntNparDesign</code></a></td>
+    <td>Create plots for a sampling design based on a</td>
+  </tr>
+  <tr>
+    <td>&nbsp;</td>
+    <td>nonparametric tolerance interval.</td>
+  </tr>
+</tbody>
+</table>
+
+## tTestPower {#ttestpower}
+
+Help topic: [`tTestPower`](https://alexkowa.github.io/EnvStats/reference/tTestPower.html).
+
+If the arguments `n.or.n1`, `n2`, `delta.over.sigma`, and `alpha` are not all the same length, they are replicated to be the same length as the length of the longest argument.
+
+**One-Sample Case** (`sample.type="one.sample"`)  
+Let $\underline{x} = x_1, x_2, \ldots, x_n$ denote a vector of $n$ observations from a [normal distribution](https://stat.ethz.ch/R-manual/R-devel/library/stats/html/Normal.html) with mean $\mu$ and standard deviation $\sigma$, and consider the null hypothesis:
+
+$$
+H_0: \mu = \mu_0 \;\;\;\;\;\; (1)
+$$
+
+The three possible alternative hypotheses are the upper one-sided alternative (`alternative="greater"`):
+
+$$
+H_a: \mu > \mu_0 \;\;\;\;\;\; (2)
+$$
+
+the lower one-sided alternative (`alternative="less"`)
+
+$$
+H_a: \mu < \mu_0 \;\;\;\;\;\; (3)
+$$
+
+and the two-sided alternative (`alternative="two.sided"`)
+
+$$
+H_a: \mu \ne \mu_0 \;\;\;\;\;\; (4)
+$$
+
+The test of the null hypothesis (1) versus any of the three alternatives (2)-(4) is based on the [Student t-statistic](https://stat.ethz.ch/R-manual/R-devel/library/stats/html/t.test.html):
+
+$$
+t = \frac{\bar{x} - \mu_0}{s/\sqrt{n}} \;\;\;\;\;\; (5)
+$$
+
+where
+
+$$
+\bar{x} = \frac{1}{n} \sum_{i=1}^n x_i \;\;\;\;\;\; (6)
+$$
+
+$$
+s^2 = \frac{1}{n-1} \sum_{i=1}^n (x_i - \bar{x})^2 \;\;\;\;\;\; (7)
+$$
+
+Under the null hypothesis (1), the t-statistic in (5) follows a [Student's t-distribution](https://stat.ethz.ch/R-manual/R-devel/library/stats/html/TDist.html) with $n-1$ degrees of freedom (Zar, 2010, Chapter 7; Johnson et al., 1995, pp.362-363).
+
+The formula for the power of the test depends on which alternative is being tested. The two subsections below describe exact and approximate formulas for the power of the one-sample t-test. Note that none of the equations for the power of the t-test requires knowledge of the values $\delta$ (Equation (12) below) or $\sigma$ (the population standard deviation), only the ratio $\delta/\sigma$. The argument `delta.over.sigma` is this ratio, and it is referred to as the “scaled difference”.
+
+***Exact Power Calculations*** (`approx=FALSE`)  
+This subsection describes the exact formulas for the power of the one-sample t-test.
+
+*Upper one-sided alternative* (`alternative="greater"`)  
+The standard Student's t-test rejects the null hypothesis (1) in favor of the upper alternative hypothesis (2) at level-$\alpha$ if
+
+$$
+t \ge t_{\nu}(1 - \alpha) \;\;\;\;\;\; (8)
+$$
+
+where
+
+$$
+\nu = n - 1 \;\;\;\;\;\; (9)
+$$
+
+and $t_{\nu}(p)$ denotes the $p$'th quantile of Student's t-distribution with $\nu$ degrees of freedom (Zar, 2010; Berthouex and Brown, 2002). The power of this test, denoted by $1-\beta$, where $\beta$ denotes the probability of a Type II error, is given by:
+
+$$
+1 - \beta = Pr[t_{\nu, \Delta} \ge t_{\nu}(1 - \alpha)] = 1 - G[t_{\nu}(1 - \alpha), \nu, \Delta] \;\;\;\;\;\; (10)
+$$
+
+where
+
+$$
+\Delta = \sqrt{n} (\frac{\delta}{\sigma}) \;\;\;\;\;\; (11)
+$$
+
+$$
+\delta = \mu - \mu_0 \;\;\;\;\;\ (12)
+$$
+
+and $t_{\nu, \Delta}$ denotes a [non-central Student's t-random variable](https://stat.ethz.ch/R-manual/R-devel/library/stats/html/TDist.html) with $\nu$ degrees of freedom and non-centrality parameter $\Delta$, and $G(x, \nu, \Delta)$ denotes the cumulative distribution function of this random variable evaluated at $x$ (Johnson et al., 1995, pp.508-510).
+
+*Lower one-sided alternative* (`alternative="less"`)  
+The standard Student's t-test rejects the null hypothesis (1) in favor of the lower alternative hypothesis (3) at level-$\alpha$ if
+
+$$
+t \le t_{\nu}(\alpha) \;\;\;\;\;\; (13)
+$$
+
+and the power of this test is given by:
+
+$$
+1 - \beta = Pr[t_{\nu, \Delta} \le t_{\nu}(\alpha)] = G[t_{\nu}(\alpha), \nu, \Delta] \;\;\;\;\;\; (14)
+$$
+
+*Two-sided alternative* (`alternative="two.sided"`)  
+The standard Student's t-test rejects the null hypothesis (1) in favor of the two-sided alternative hypothesis (4) at level-$\alpha$ if
+
+$$
+|t| \ge t_{\nu}(1 - \alpha/2) \;\;\;\;\;\; (15)
+$$
+
+and the power of this test is given by:
+
+$$
+1 - \beta = Pr[t_{\nu, \Delta} \le t_{\nu}(\alpha/2)] + Pr[t_{\nu, \Delta} \ge t_{\nu}(1 - \alpha/2)]
+$$
+
+$$
+= G[t_{\nu}(\alpha/2), \nu, \Delta] + 1 - G[t_{\nu}(1 - \alpha/2), \nu, \Delta] \;\;\;\;\;\; (16)
+$$
+
+The power of the t-test given in Equation (16) can also be expressed in terms of the cumulative distribution function of the [non-central F-distribution](https://stat.ethz.ch/R-manual/R-devel/library/stats/html/Fdist.html) as follows. Let $F_{\nu_1, \nu_2, \Delta}$ denote a [non-central F random variable](https://stat.ethz.ch/R-manual/R-devel/library/stats/html/Fdist.html) with $\nu_1$ and $\nu_2$ degrees of freedom and non-centrality parameter $\Delta$, and let $H(x, \nu_1, \nu_2, \Delta)$ denote the cumulative distribution function of this random variable evaluated at $x$. Also, let $F_{\nu_1, \nu_2}(p)$ denote the $p$'th quantile of the central F-distribution with $\nu_1$ and $\nu_2$ degrees of freedom. It can be shown that
+
+$$
+(t_{\nu, \Delta})^2 \cong F_{1, \nu, \Delta^2} \;\;\;\;\;\; (17)
+$$
+
+where $\cong$ denotes “equal in distribution”. Thus, it follows that
+
+$$
+[t_{\nu}(1 - \alpha/2)]^2 = F_{1, \nu}(1 - \alpha) \;\;\;\;\;\; (18)
+$$
+
+so the formula for the power of the t-test given in Equation (16) can also be written as:
+
+$$
+1 - \beta = Pr\{(t_{\nu, \Delta})^2  \ge [t_{\nu}(1 - \alpha/2)]^2\}
+$$
+
+$$
+= Pr[F_{1, \nu, \Delta^2} \ge F_{1, \nu}(1 - \alpha)] = 1 - H[F_{1, \nu}(1-\alpha), 1, \nu, \Delta^2] \;\;\;\;\;\; (19)
+$$
+
+***Approximate Power Calculations*** (`approx=TRUE`)  
+Zar (2010, pp.115--118) presents an approximation to the power for the t-test given in Equations (10), (14), and (16) above. His approximation to the power can be derived by using the approximation
+
+$$
+\sqrt{n} (\frac{\delta}{s}) \approx \sqrt{n} (\frac{\delta}{\sigma}) = \Delta \;\;\;\;\;\; (20)
+$$
+
+where $\approx$ denotes “approximately equal to”. Zar's approximation can be summarized in terms of the cumulative distribution function of the non-central t-distribution as follows:
+
+$$
+G(x, \nu, \Delta) \approx G(x - \Delta, \nu, 0) = G(x - \Delta, \nu) \;\;\;\;\;\; (21)
+$$
+
+where $G(x, \nu)$ denotes the cumulative distribution function of the central Student's t-distribution with $\nu$ degrees of freedom evaluated at $x$.
+
+The following three subsections explicitly derive the approximation to the power of the t-test for each of the three alternative hypotheses.
+
+*Upper one-sided alternative* (`alternative="greater"`)  
+The power for the upper one-sided alternative (2) given in Equation (10) can be approximated as:
+
+$$
+1 - \beta = Pr[t \ge t_{\nu}(1 - \alpha)]
+$$
+
+$$
+= Pr[\frac{\bar{x} - \mu}{s/\sqrt{n}} \ge t_{\nu}(1 - \alpha) - \sqrt{n}\frac{\delta}{s}]
+$$
+
+$$
+\approx Pr[t_{\nu} \ge t_{\nu}(1 - \alpha) - \Delta]
+$$
+
+$$
+= 1 - Pr[t_{\nu} \le t_{\nu}(1 - \alpha) - \Delta]
+$$
+
+$$
+= 1 - G[t_{\nu}(1-\alpha) - \Delta, \nu] \;\;\;\;\;\; (22)
+$$
+
+where $t_{\nu}$ denotes a central Student's t-random variable with $\nu$ degrees of freedom.
+
+*Lower one-sided alternative* (`alternative="less"`)  
+The power for the lower one-sided alternative (3) given in Equation (14) can be approximated as:
+
+$$
+1 - \beta = Pr[t \le t_{\nu}(\alpha)]
+$$
+
+$$
+= Pr[\frac{\bar{x} - \mu}{s/\sqrt{n}} \le t_{\nu}(\alpha) - \sqrt{n}\frac{\delta}{s}]
+$$
+
+$$
+\approx Pr[t_{\nu} \le t_{\nu}(\alpha) - \Delta]
+$$
+
+$$
+= G[t_{\nu}(\alpha) - \Delta, \nu] \;\;\;\;\;\; (23)
+$$
+
+*Two-sided alternative* (`alternative="two.sided"`)  
+The power for the two-sided alternative (4) given in Equation (16) can be approximated as:
+
+$$
+1 - \beta = Pr[t \le t_{\nu}(\alpha/2)] + Pr[t \ge t_{\nu}(1 - \alpha/2)]
+$$
+
+$$
+= Pr[\frac{\bar{x} - \mu}{s/\sqrt{n}} \le t_{\nu}(\alpha/2) - \sqrt{n}\frac{\delta}{s}] + Pr[\frac{\bar{x} - \mu}{s/\sqrt{n}} \ge t_{\nu}(1 - \alpha) - \sqrt{n}\frac{\delta}{s}]
+$$
+
+$$
+\approx Pr[t_{\nu} \le t_{\nu}(\alpha/2) - \Delta] + Pr[t_{\nu} \ge t_{\nu}(1 - \alpha/2) - \Delta]
+$$
+
+$$
+= G[t_{\nu}(\alpha/2) - \Delta, \nu] + 1 - G[t_{\nu}(1-\alpha/2) - \Delta, \nu] \;\;\;\;\;\; (24)
+$$
+
+**Two-Sample Case** (`sample.type="two.sample"`)  
+Let $\underline{x}_1 = x_{11}, x_{12}, \ldots, x_{1n_1}$ denote a vector of $n_1$ observations from a [normal distribution](https://stat.ethz.ch/R-manual/R-devel/library/stats/html/Normal.html) with mean $\mu_1$ and standard deviation $\sigma$, and let $\underline{x}_2 = x_{21}, x_{22}, \ldots, x_{2n_2}$ denote a vector of $n_2$ observations from a normal distribution with mean $\mu_2$ and standard deviation $\sigma$, and consider the null hypothesis:
+
+$$
+H_0: \mu_1 = \mu_2 \;\;\;\;\;\; (25)
+$$
+
+The three possible alternative hypotheses are the upper one-sided alternative (`alternative="greater"`):
+
+$$
+H_a: \mu_1 > \mu_2 \;\;\;\;\;\; (26)
+$$
+
+the lower one-sided alternative (`alternative="less"`)
+
+$$
+H_a: \mu_1 < \mu_2 \;\;\;\;\;\; (27)
+$$
+
+and the two-sided alternative (`alternative="two.sided"`)
+
+$$
+H_a: \mu_1 \ne \mu_2 \;\;\;\;\;\; (28)
+$$
+
+The test of the null hypothesis (25) versus any of the three alternatives (26)-(28) is based on the [Student t-statistic](https://stat.ethz.ch/R-manual/R-devel/library/stats/html/t.test.html):
+
+$$
+t = \frac{\bar{x}_1 - \bar{x}_2}{s_p\sqrt{\frac{1}{n_1} + \frac{1}{n_2}}} \;\;\;\;\;\; (29)
+$$
+
+where
+
+$$
+\bar{x}_1 = \frac{1}{n_1} \sum_{i=1}^{n_1} x_{1i} \;\;\;\;\;\; (30)
+$$
+
+$$
+\bar{x}_2 = \frac{1}{n_2} \sum_{i=1}^{n_2} x_{2i} \;\;\;\;\;\; (31)
+$$
+
+$$
+s_p^2 = \frac{(n_1 - 1) s_1^2 + (n_2 - 1) s_2^2}{n_1 + n_2 - 2} \;\;\;\;\;\; (32)
+$$
+
+$$
+s_1^2 = \frac{1}{n_1 - 1} \sum_{i=1}^{n_1} (x_{1i} - \bar{x}_1)^2 \;\;\;\;\;\; (33)
+$$
+
+$$
+s_2^2 = \frac{1}{n_2 - 1} \sum_{i=1}^{n_2} (x_{2i} - \bar{x}_2)^2 \;\;\;\;\;\; (34)
+$$
+
+Under the null hypothesis (25), the t-statistic in (29) follows a [Student's t-distribution](https://stat.ethz.ch/R-manual/R-devel/library/stats/html/TDist.html) with $n_1 + n_2 - 2$ degrees of freedom (Zar, 2010, Chapter 8; Johnson et al., 1995, pp.508--510, Helsel and Hirsch, 1992, pp.124--128).
+
+The formulas for the power of the two-sample t-test are precisely the same as those for the one-sample case, with the following modifications:
+
+$$
+\nu = n_1 + n_2 - 2 \;\;\;\;\;\; (35)
+$$
+
+$$
+\Delta = \sqrt{\frac{n_1 n_2}{n_1 + n_2}} (\frac{\delta}{\sigma}) \;\;\;\;\;\; (36)
+$$
+
+$$
+\delta = \mu_1 - \mu_2 \;\;\;\;\;\; (37)
+$$
+
+Note that none of the equations for the power of the t-test requires knowledge of the values $\delta$ or $\sigma$ (the population standard deviation for both populations), only the ratio $\delta/\sigma$. The argument `delta.over.sigma` is this ratio, and it is referred to as the “scaled difference”.
+
+## linearTrendTestPower {#lineartrendtestpower}
+
+Help topic: [`linearTrendTestPower`](https://alexkowa.github.io/EnvStats/reference/linearTrendTestPower.html).
+
+If the argument `x` is a vector, it is converted into a list with one component. If the arguments `n`, `x`, `slope.over.sigma`, and `alpha` are not all the same length, they are replicated to be the same length as the length of the longest argument.
+
+**Basic Model**  
+Consider the simple linear regression model
+
+$$
+Y = \beta_0 + \beta_1 X + \epsilon \;\;\;\;\;\; (1)
+$$
+
+where $X$ denotes the predictor variable (observed without error), $\beta_0$ denotes the intercept, $\beta_1$ denotes the slope, and the error term $\epsilon$ is assumed to be a random variable from a normal distribution with mean 0 and standard deviation $\sigma$. Let
+
+$$
+(\underline{x}, \underline{y}) = (x_1, y_1), (x_2, y_2), \ldots, (x_n, y_n) \;\;\;\;\;\; (2)
+$$
+
+denote $n$ independent observed $(X,Y)$ pairs from the model (1).
+
+Often in environmental data analysis, we are interested in determining whether there is a trend in some indicator variable over time. In this case, the predictor variable $X$ is time (e.g., day, month, quarter, year, etc.), and the $n$ values of the response variable $Y$ represent measurements taken over time. The slope then represents the change in the average of the response variable per one unit of time.
+
+When the argument `x` is a numeric vector, it represents the $n$ values of the predictor variable. When the argument `x` is a list, each component of `x` is a numeric vector that represents a set values of the predictor variable (and the number of elements may vary by component). By default, the argument `x` is a list for which the i'th component is simply the integers from 1 to the value of the i'th element of the argument `n`, representing, for example, Day 1, Day2, ..., Day `n[i]`.
+
+In the discussion that follows, be sure not to confuse the intercept and slope coefficients $\beta_0$ and $\beta_1$ with the Type II error of the hypothesis test, which is denoted by $\beta$.
+
+**Estimation of Coefficients and Confidence Interval for Slope**  
+The standard least-squares estimators of the slope and intercept are given by:
+
+$$
+\hat{\beta}_1 = \frac{S_{xy}}{S_{xx}} \;\;\;\;\;\; (3)
+$$
+
+$$
+\hat{\beta}_0 = \bar{y} - \hat{\beta}_1 \bar{x} \;\;\;\;\;\; (4)
+$$
+
+where
+
+$$
+S_{xy} = \sum_{i=1}^n (x_i - \bar{x})(y_i - \bar{y}) \;\;\;\;\;\; (5)
+$$
+
+$$
+S_{xx} = \sum_{i=1}^n (x_i - \bar{x})^2 \;\;\;\;\;\; (6)
+$$
+
+$$
+\bar{x} = \frac{1}{n} \sum_{i=1}^n x_i \;\;\;\;\;\; (7)
+$$
+
+$$
+\bar{y} = \frac{1}{n} \sum_{i=1}^n y_i \;\;\;\;\;\; (8)
+$$
+
+(Draper and Smith, 1998, p.25; Zar, 2010, p.332-334; Berthoux and Brown, 2002, p.297; Helsel and Hirsch, p.226). The estimator of slope in Equation (3) has a normal distribution with mean equal to the true slope, and variance given by:
+
+$$
+Var(\hat{\beta}_1) = \sigma_{\hat{\beta}_1}^2 = \frac{\sigma^2}{S_{xx}} \;\;\;\;\;\; (9)
+$$
+
+(Draper and Smith, 1998, p.35; Zar, 2010, p.341; Berthoux and Brown, 2002, p.299; Helsel and Hirsch, 1992, p.227). Thus, a $(1-\alpha)100\%$ two-sided confidence interval for the slope is given by:
+
+$$
+[ \hat{\beta}_1 - t_{n-2}(1-\alpha/2) \hat{\sigma}_{\hat{\beta}_1}, \;\; \hat{\beta}_1 + t_{n-2}(1-\alpha/2) \hat{\sigma}_{\hat{\beta}_1} ] \;\;\;\;\;\; (10)
+$$
+
+where
+
+$$
+\hat{\sigma}_{\hat{\beta}_1} = \frac{\hat{\sigma}}{\sqrt{S_{xx}}} \;\;\;\;\;\; (11)
+$$
+
+$$
+\hat{\sigma}^2 = s^2 = \frac{1}{n-2} \sum_{i=1}^n (y_i - \hat{y}_i)^2 \;\;\;\;\;\; (12)
+$$
+
+$$
+\hat{y}_i = \hat{\beta}_0 + \hat{\beta}_1 x_i \;\;\;\;\;\; (13)
+$$
+
+and $t_{\nu}(p)$ denotes the $p$'th quantile of [Student's t-distribution](https://stat.ethz.ch/R-manual/R-devel/library/stats/html/TDist.html) with $\nu$ degrees of freedom (Draper and Smith, 1998, p.36; Zar, 2010, p.343; Berthoux and Brown, 2002, p.300; Helsel and Hirsch, 1992, p.240).
+
+**Testing for a Non-Zero Slope**  
+Consider the null hypothesis of a zero slope coefficient:
+
+$$
+H_0: \beta_1 = 0 \;\;\;\;\;\; (14)
+$$
+
+The three possible alternative hypotheses are the upper one-sided alternative (`alternative="greater"`):
+
+$$
+H_a: \beta_1 > 0 \;\;\;\;\;\; (15)
+$$
+
+the lower one-sided alternative (`alternative="less"`)
+
+$$
+H_a: \beta_1 < 0 \;\;\;\;\;\; (16)
+$$
+
+and the two-sided alternative (`alternative="two.sided"`)
+
+$$
+H_a: \beta_1 \ne 0 \;\;\;\;\;\; (17)
+$$
+
+The test of the null hypothesis (14) versus any of the three alternatives (15)-(17) is based on the Student t-statistic:
+
+$$
+t = \frac{\hat{\beta}_1}{\hat{\sigma}_{\hat{\beta}_1}} =  \frac{\hat{\beta}_1}{s/\sqrt{S_{xx}}} \;\;\;\;\;\; (18)
+$$
+
+Under the null hypothesis (14), the t-statistic in (18) follows a [Student's t-distribution](https://stat.ethz.ch/R-manual/R-devel/library/stats/html/TDist.html) with $n-2$ degrees of freedom (Draper and Smith, 1998, p.36; Zar, 2010, p.341; Helsel and Hirsch, 1992, pp.238-239).
+
+The formula for the power of the test of a zero slope depends on which alternative is being tested. The two subsections below describe exact and approximate formulas for the power of the test. Note that none of the equations for the power of the t-test requires knowledge of the values $\beta_1$ or $\sigma$ (the population standard deviation of the error terms), only the ratio $\beta_1/\sigma$. The argument `slope.over.sigma` is this ratio, and it is referred to as the “scaled slope”.
+
+***Exact Power Calculations*** (`approx=FALSE`)  
+This subsection describes the exact formulas for the power of the t-test for a zero slope.
+
+*Upper one-sided alternative* (`alternative="greater"`)  
+The standard Student's t-test rejects the null hypothesis (1) in favor of the upper alternative hypothesis (2) at level-$\alpha$ if
+
+$$
+t \ge t_{\nu}(1 - \alpha) \;\;\;\;\;\; (19)
+$$
+
+where
+
+$$
+\nu = n - 2 \;\;\;\;\;\; (20)
+$$
+
+and, as noted previously, $t_{\nu}(p)$ denotes the $p$'th quantile of Student's t-distribution with $\nu$ degrees of freedom. The power of this test, denoted by $1-\beta$, where $\beta$ denotes the probability of a Type II error, is given by:
+
+$$
+1 - \beta = Pr[t_{\nu, \Delta} \ge t_{\nu}(1 - \alpha)] = 1 - G[t_{\nu}(1 - \alpha), \nu, \Delta] \;\;\;\;\;\; (21)
+$$
+
+where
+
+$$
+\Delta = \sqrt{S_{xx}} \frac{\beta_1}{\sigma} \;\;\;\;\;\; (22)
+$$
+
+and $t_{\nu, \Delta}$ denotes a [non-central Student's t-random variable](https://stat.ethz.ch/R-manual/R-devel/library/stats/html/TDist.html) with $\nu$ degrees of freedom and non-centrality parameter $\Delta$, and $G(x, \nu, \Delta)$ denotes the cumulative distribution function of this random variable evaluated at $x$ (Johnson et al., 1995, pp.508-510). Note that when the predictor variable $X$ represents equally-spaced measures of time (e.g., days, months, quarters, etc.) and
+
+$$
+x_i = i, \;\; i = 1, 2, \ldots, n \;\;\;\;\;\; (23)
+$$
+
+then the non-centrality parameter in Equation (22) becomes:
+
+$$
+\Delta = \sqrt{\frac{(n-1)n(n+1)}{12}} \frac{\beta_1}{\sigma} \;\;\;\;\;\; (24)
+$$
+
+*Lower one-sided alternative* (`alternative="less"`)  
+The standard Student's t-test rejects the null hypothesis (1) in favor of the lower alternative hypothesis (3) at level-$\alpha$ if
+
+$$
+t \le t_{\nu}(\alpha) \;\;\;\;\;\; (25)
+$$
+
+and the power of this test is given by:
+
+$$
+1 - \beta = Pr[t_{\nu, \Delta} \le t_{\nu}(\alpha)] = G[t_{\nu}(\alpha), \nu, \Delta] \;\;\;\;\;\; (26)
+$$
+
+*Two-sided alternative* (`alternative="two.sided"`)  
+The standard Student's t-test rejects the null hypothesis (14) in favor of the two-sided alternative hypothesis (17) at level-$\alpha$ if
+
+$$
+|t| \ge t_{\nu}(1 - \alpha/2) \;\;\;\;\;\; (27)
+$$
+
+and the power of this test is given by:
+
+$$
+1 - \beta = Pr[t_{\nu, \Delta} \le t_{\nu}(\alpha/2)] + Pr[t_{\nu, \Delta} \ge t_{\nu}(1 - \alpha/2)]
+$$
+
+$$
+= G[t_{\nu}(\alpha/2), \nu, \Delta] + 1 - G[t_{\nu}(1 - \alpha/2), \nu, \Delta] \;\;\;\;\;\; (28)
+$$
+
+The power of the t-test given in Equation (28) can also be expressed in terms of the cumulative distribution function of the [non-central F-distribution](https://stat.ethz.ch/R-manual/R-devel/library/stats/html/Fdist.html) as follows. Let $F_{\nu_1, \nu_2, \Delta}$ denote a [non-central F random variable](https://stat.ethz.ch/R-manual/R-devel/library/stats/html/Fdist.html) with $\nu_1$ and $\nu_2$ degrees of freedom and non-centrality parameter $\Delta$, and let $H(x, \nu_1, \nu_2, \Delta)$ denote the cumulative distribution function of this random variable evaluated at $x$. Also, let $F_{\nu_1, \nu_2}(p)$ denote the $p$'th quantile of the central F-distribution with $\nu_1$ and $\nu_2$ degrees of freedom. It can be shown that
+
+$$
+(t_{\nu, \Delta})^2 \cong F_{1, \nu, \Delta^2} \;\;\;\;\;\; (29)
+$$
+
+where $\cong$ denotes “equal in distribution”. Thus, it follows that
+
+$$
+[t_{\nu}(1 - \alpha/2)]^2 = F_{1, \nu}(1 - \alpha) \;\;\;\;\;\; (30)
+$$
+
+so the formula for the power of the t-test given in Equation (28) can also be written as:
+
+$$
+1 - \beta = Pr\{(t_{\nu, \Delta})^2  \ge [t_{\nu}(1 - \alpha/2)]^2\}
+$$
+
+$$
+= Pr[F_{1, \nu, \Delta^2} \ge F_{1, \nu}(1 - \alpha)] = 1 - H[F_{1, \nu}(1-\alpha), 1, \nu, \Delta^2] \;\;\;\;\;\; (31)
+$$
+
+***Approximate Power Calculations*** (`approx=TRUE`)  
+Zar (2010, pp.115--118) presents an approximation to the power for the t-test given in Equations (21), (26), and (28) above. His approximation to the power can be derived by using the approximation
+
+$$
+\sqrt{S_{xx}} \frac{\beta_1}{s} \approx \sqrt{SS_{xx}} \frac{\beta_1}{\sigma} = \Delta \;\;\;\;\;\; (32)
+$$
+
+where $\approx$ denotes “approximately equal to”. Zar's approximation can be summarized in terms of the cumulative distribution function of the non-central t-distribution as follows:
+
+$$
+G(x, \nu, \Delta) \approx G(x - \Delta, \nu, 0) = G(x - \Delta, \nu) \;\;\;\;\;\; (33)
+$$
+
+where $G(x, \nu)$ denotes the cumulative distribution function of the central Student's t-distribution with $\nu$ degrees of freedom evaluated at $x$.
+
+The following three subsections explicitly derive the approximation to the power of the t-test for each of the three alternative hypotheses.
+
+*Upper one-sided alternative* (`alternative="greater"`)  
+The power for the upper one-sided alternative (15) given in Equation (21) can be approximated as:
+
+$$
+1 - \beta = Pr[t \ge t_{\nu}(1 - \alpha)]
+$$
+
+$$
+= Pr[\frac{\hat{\beta}_1}{s/\sqrt{S_{xx}}} \ge t_{\nu}(1 - \alpha) - \sqrt{S_{xx}}\frac{\beta_1}{s}]
+$$
+
+$$
+\approx Pr[t_{\nu} \ge t_{\nu}(1 - \alpha) - \Delta]
+$$
+
+$$
+= 1 - Pr[t_{\nu} \le t_{\nu}(1 - \alpha) - \Delta]
+$$
+
+$$
+= 1 - G[t_{\nu}(1-\alpha) - \Delta, \nu] \;\;\;\;\;\; (34)
+$$
+
+where $t_{\nu}$ denotes a central Student's t-random variable with $\nu$ degrees of freedom.
+
+*Lower one-sided alternative* (`alternative="less"`)  
+The power for the lower one-sided alternative (16) given in Equation (26) can be approximated as:
+
+$$
+1 - \beta = Pr[t \le t_{\nu}(\alpha)]
+$$
+
+$$
+= Pr[\frac{\hat{\beta}_1}{s/\sqrt{S_{xx}}} \le t_{\nu}(\alpha) - \sqrt{S_{xx}}\frac{\beta_1}{s}]
+$$
+
+$$
+\approx Pr[t_{\nu} \le t_{\nu}(\alpha) - \Delta]
+$$
+
+$$
+= G[t_{\nu}(\alpha) - \Delta, \nu] \;\;\;\;\;\; (35)
+$$
+
+*Two-sided alternative* (`alternative="two.sided"`)  
+The power for the two-sided alternative (17) given in Equation (28) can be approximated as:
+
+$$
+1 - \beta = Pr[t \le t_{\nu}(\alpha/2)] + Pr[t \ge t_{\nu}(1 - \alpha/2)]
+$$
+
+$$
+= Pr[\frac{\hat{\beta}_1}{s/\sqrt{S_{xx}}} \le t_{\nu}(\alpha/2) - \sqrt{SS_{xx}}\frac{\beta_1}{s}] + Pr[\frac{\hat{\beta}_1}{s/\sqrt{S_{xx}}} \ge t_{\nu}(1 - \alpha) - \sqrt{SS_{xx}}\frac{\beta_1}{s}]
+$$
+
+$$
+\approx Pr[t_{\nu} \le t_{\nu}(\alpha/2) - \Delta] + Pr[t_{\nu} \ge t_{\nu}(1 - \alpha/2) - \Delta]
+$$
+
+$$
+= G[t_{\nu}(\alpha/2) - \Delta, \nu] + 1 - G[t_{\nu}(1-\alpha/2) - \Delta, \nu] \;\;\;\;\;\; (36)
+$$

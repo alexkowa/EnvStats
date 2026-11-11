@@ -85,9 +85,10 @@
 #' }
 #' }
 #' @details
-#' This help page has been shortened to keep function help focused on usage,
-#' arguments, return values, and examples. Extended method details, formulas,
-#' and background material are available in \code{vignette("extended-function-details", package = "EnvStats")}, section \code{predIntNormSimultaneousTestPower}.
+#' Extended methods and derivations are available in
+#' \href{https://alexkowa.github.io/EnvStats/articles/prediction-intervals.html#predintnormsimultaneoustestpower}{Prediction intervals for environmental monitoring: \code{predIntNormSimultaneousTestPower}}.
+#' Open the vignette locally with
+#' \code{vignette("prediction-intervals", package = "EnvStats")}.
 #' @rawRd
 #' \value{
 #'   vector of values between 0 and 1 equal to the probability that

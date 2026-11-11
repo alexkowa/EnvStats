@@ -44,9 +44,10 @@
 #' }
 #' }
 #' @details
-#' This help page has been shortened to keep function help focused on usage,
-#' arguments, return values, and examples. Extended method details, formulas,
-#' and background material are available in \code{vignette("extended-function-details", package = "EnvStats")}, section \code{linearTrendTestPower}.
+#' Extended methods and derivations are available in
+#' \href{https://alexkowa.github.io/EnvStats/articles/power-and-study-design.html#lineartrendtestpower}{Statistical power and study design: \code{linearTrendTestPower}}.
+#' Open the vignette locally with
+#' \code{vignette("power-and-study-design", package = "EnvStats")}.
 #' @rawRd
 #' \value{
 #'   a numeric vector powers.
