@@ -1,67 +1,336 @@
+#' Estimate Mean of a Poisson Distribution Based on Type I Censored Data
+#' @description
+#' Estimate the mean of a \link[stats:Poisson]{Poisson distribution} given a
+#'   sample of data that has been subjected to Type I censoring, and optionally
+#'   construct a confidence interval for the mean.
+#' @usage
+#' epoisCensored(x, censored, method = "mle", censoring.side = "left",
+#'     ci = FALSE, ci.method = "profile.likelihood", ci.type = "two-sided",
+#'     conf.level = 0.95, n.bootstraps = 1000, pivot.statistic = "z",
+#'     ci.sample.size = sum(!censored))
+#' @rawRd
+#' \arguments{
+#'   \item{x}{
+#'   numeric vector of observations.  Missing (\code{NA}), undefined (\code{NaN}), and
+#'   infinite (\code{Inf}, \code{-Inf}) values are allowed but will be removed.
+#' }
+#'   \item{censored}{
+#'   numeric or logical vector indicating which values of \code{x} are censored.
+#'   This must be the same length as \code{x}.  If the mode of \code{censored} is
+#'   \code{"logical"}, \code{TRUE} values correspond to elements of \code{x} that
+#'   are censored, and \code{FALSE} values correspond to elements of \code{x} that
+#'   are not censored.  If the mode of \code{censored} is \code{"numeric"},
+#'   it must contain only \code{1}'s and \code{0}'s; \code{1} corresponds to
+#'   \code{TRUE} and \code{0} corresponds to \code{FALSE}.  Missing (\code{NA})
+#'   values are allowed but will be removed.
+#' }
+#'   \item{method}{
+#'   character string specifying the method of estimation.  The possible values are:
+#'   \code{"mle"} (maximum likelihood; the default), and
+#'   \code{"half.cen.level"} (moment estimation based on setting the censored
+#'   observations to half the censoring level).
+#' }
+#'   \item{censoring.side}{
+#'   character string indicating on which side the censoring occurs.  The possible
+#'   values are \code{"left"} (the default) and \code{"right"}.
+#' }
+#'   \item{ci}{
+#'   logical scalar indicating whether to compute a confidence interval for the
+#'   mean or variance.  The default value is \code{ci=FALSE}.
+#' }
+#'   \item{ci.method}{
+#'   character string indicating what method to use to construct the confidence interval
+#'   for the mean.  The possible values are \code{"profile.likelihood"}
+#'   (profile likelihood; the default),
+#'   \code{"normal.approx"} (normal approximation),
+#'   and
+#'   \code{"bootstrap"} (based on bootstrapping).
+#'   See the DETAILS section for more information.
+#'   This argument is ignored if \code{ci=FALSE}.
+#' }
+#'   \item{ci.type}{
+#'   character string indicating what kind of confidence interval to compute.  The
+#'   possible values are \code{"two-sided"} (the default), \code{"lower"}, and
+#'   \code{"upper"}.  This argument is ignored if \code{ci=FALSE}.
+#' }
+#'   \item{conf.level}{
+#'   a scalar between 0 and 1 indicating the confidence level of the confidence interval.
+#'   The default value is \code{conf.level=0.95}. This argument is ignored if
+#'   \code{ci=FALSE}.
+#' }
+#'   \item{n.bootstraps}{
+#'   numeric scalar indicating how many bootstraps to use to construct the
+#'   confidence interval for the mean when \code{ci.type="bootstrap"}.  This
+#'   argument is ignored if \code{ci=FALSE} and/or \code{ci.method} does not
+#'   equal \code{"bootstrap"}.
+#' }
+#'   \item{pivot.statistic}{
+#'   character string indicating which pivot statistic to use in the construction
+#'   of the confidence interval for the mean when \code{ci.method="normal.approx"}
+#'   (see the DETAILS section).  The possible
+#'   values are \code{pivot.statistic="z"} (the default) and \code{pivot.statistic="t"}.
+#'   When \code{pivot.statistic="t"} you may supply the argument
+#'   \code{ci.sample size} (see below).  The argument \code{pivot.statistic} is
+#'   ignored if \code{ci=FALSE}.
+#' }
+#'   \item{ci.sample.size}{
+#'   numeric scalar indicating what sample size to assume to construct the
+#'   confidence interval for the mean if \code{pivot.statistic="t"} and
+#'   \code{ci.method="normal.approx"}.  The default value is the number of
+#'   uncensored observations.
+#' }
+#' }
+#' @details
+#' Extended methods and derivations are available in
+#' \href{https://alexkowa.github.io/EnvStats/articles/censored-estimation.html#epoiscensored}{Estimation with censored data: \code{epoisCensored}}.
+#' Open the vignette locally with
+#' \code{vignette("censored-estimation", package = "EnvStats")}.
+#' @rawRd
+#' \value{
+#'   a list of class \code{"estimateCensored"} containing the estimated parameters
+#'   and other information.  See \code{\link{estimateCensored.object}} for details.
+#' }
+#' @rawRd
+#' \references{
+#'   Cohen, A.C. (1991).  \emph{Truncated and Censored Samples}.  Marcel Dekker,
+#'   New York, New York, 312pp.
+#'
+#'   Cox, D.R. (1970).  \emph{Analysis of Binary Data}.  Chapman & Hall, London.  142pp.
+#'
+#'   Efron, B. (1979).  Bootstrap Methods: Another Look at the Jackknife.
+#'   \emph{The Annals of Statistics} \bold{7}, 1--26.
+#'
+#'   Efron, B., and R.J. Tibshirani. (1993).  \emph{An Introduction to the Bootstrap}.
+#'   Chapman and Hall, New York, 436pp.
+#'
+#'   Forbes, C., M. Evans, N. Hastings, and B. Peacock. (2011).
+#'   \emph{Statistical Distributions, Fourth Edition}.
+#'   John Wiley and Sons, Hoboken, NJ.
+#'
+#'   Helsel, D.R. (2012). \emph{Statistics for Censored Environmental Data Using Minitab and R,
+#'   Second Edition}.  John Wiley & Sons, Hoboken, New Jersey.
+#'
+#'   Johnson, N. L., S. Kotz, and A. Kemp. (1992).  \emph{Univariate Discrete
+#'   Distributions, Second Edition}.  John Wiley and Sons, New York, Chapter 4.
+#'
+#'   Millard, S.P., P. Dixon, and N.K. Neerchal. (2014; in preparation).
+#'   \emph{Environmental Statistics with R}.  CRC Press, Boca Raton, Florida.
+#'
+#'   Nelson, W. (1982).  \emph{Applied Life Data Analysis}.
+#'   John Wiley and Sons, New York, 634pp.
+#'
+#'   Royston, P. (2007).  Profile Likelihood for Estimation and Confdence Intervals.
+#'   \emph{The Stata Journal} \bold{7}(3), pp. 376--387.
+#'
+#'   Stryhn, H., and J. Christensen. (2003).  \emph{Confidence Intervals by the Profile
+#'   Likelihood Method, with Applications in Veterinary Epidemiology}.  Contributed paper
+#'   at ISVEE X (November 2003, Chile).
+#'
+#'   Venzon, D.J., and S.H. Moolgavkar. (1988).  A Method for Computing
+#'   Profile-Likelihood-Based Confidence Intervals.  \emph{Journal of the Royal
+#'   Statistical Society, Series C (Applied Statistics)} \bold{37}(1), pp. 87--94.
+#' }
+#' @rawRd
+#' \author{
+#'     Steven P. Millard (\email{EnvStats@ProbStatInfo.com})
+#' }
+#' @rawRd
+#' \note{
+#'   A sample of data contains censored observations if some of the observations are
+#'   reported only as being below or above some censoring level.  In environmental
+#'   data analysis, Type I left-censored data sets are common, with values being
+#'   reported as \dQuote{less than the detection limit} (e.g., Helsel, 2012).  Data
+#'   sets with only one censoring level are called \emph{singly censored}; data sets with
+#'   multiple censoring levels are called \emph{multiply} or \emph{progressively censored}.
+#'
+#'   Statistical methods for dealing with censored data sets have a long history in the
+#'   field of survival analysis and life testing.  More recently, researchers in the
+#'   environmental field have proposed alternative methods of computing estimates and
+#'   confidence intervals in addition to the classical ones such as maximum likelihood
+#'   estimation.  Helsel (2012, Chapter 6) gives an excellent review of past studies
+#'   of the properties of various estimators for parameters of a normal or lognormal
+#'   distribution based on censored environmental data.
+#'
+#'   In practice, it is better to use a confidence interval for the mean or a
+#'   joint confidence region for the mean and standard deviation (or coefficient of
+#'   variation), rather than rely on a single point-estimate of the mean.
+#'   Few studies have been done to evaluate the performance of methods for constructing
+#'   confidence intervals for the mean or joint confidence regions for the mean and
+#'   coefficient of variation of a Poisson distribution when data are subjected to
+#'   single or multiple censoring.
+#' }
+#' @rawRd
+#' \seealso{
+#'   \link[stats]{Poisson}, \code{\link{epois}}, \code{\link{estimateCensored.object}}.
+#' }
+#' @rawRd
+#' \examples{
+#'   # Generate 20 observations from a Poisson distribution with
+#'   # parameter lambda=10, and censor the values less than 10.
+#'   # Then generate 20 more observations from the same distribution
+#'   # and censor the values less than 20.  Then estimate the mean
+#'   # using the maximum likelihood method.
+#'   # (Note: the call to set.seed simply allows you to reproduce this example.)
+#'
+#'   set.seed(300)
+#'   dat.1 <- rpois(20, lambda=10)
+#'   censored.1 <- dat.1 < 10
+#'   dat.1[censored.1] <- 10
+#'
+#'   dat.2 <- rpois(20, lambda=10)
+#'   censored.2 <- dat.2 < 20
+#'   dat.2[censored.2] <- 20
+#'
+#'   dat <- c(dat.1, dat.2)
+#'   censored <- c(censored.1, censored.2)
+#'
+#'   epoisCensored(dat, censored, ci = TRUE)
+#'
+#'   #Results of Distribution Parameter Estimation
+#'   #Based on Type I Censored Data
+#'   #--------------------------------------------
+#'   #
+#'   #Assumed Distribution:            Poisson
+#'   #
+#'   #Censoring Side:                  left
+#'   #
+#'   #Censoring Level(s):              10 20
+#'   #
+#'   #Estimated Parameter(s):          lambda = 11.05402
+#'   #
+#'   #Estimation Method:               MLE
+#'   #
+#'   #Data:                            dat
+#'   #
+#'   #Censoring Variable:              censored
+#'   #
+#'   #Sample Size:                     40
+#'   #
+#'   #Percent Censored:                65%
+#'   #
+#'   #Confidence Interval for:         lambda
+#'   #
+#'   #Confidence Interval Method:      Profile Likelihood
+#'   #
+#'   #Confidence Interval Type:        two-sided
+#'   #
+#'   #Confidence Level:                95%
+#'   #
+#'   #Confidence Interval:             LCL =  9.842894
+#'   #                                 UCL = 12.846484
+#'
+#'   #----------
+#'
+#'   # Clean up
+#'   #---------
+#'   rm(dat.1, censored.1, dat.2, censored.2, dat, censored)
+#' }
+#' @rawRd
+#' \keyword{ distribution }
+#' @rawRd
+#' \keyword{ htest }
+
 epoisCensored <-
-function (x, censored, method = "mle", censoring.side = "left", 
-    ci = FALSE, ci.method = "profile.likelihood", ci.type = "two-sided", 
-    conf.level = 0.95, n.bootstraps = 1000, pivot.statistic = "z", 
-    ci.sample.size = sum(!censored)) 
-{
-    if (!is.vector(x, mode = "numeric")) 
-        stop("'x' must be a numeric vector")
-    if (!is.vector(censored, mode = "numeric") && !is.vector(censored, 
-        mode = "logical")) 
-        stop("'censored' must be a logical or numeric vector")
-    if (length(censored) != length(x)) 
-        stop("'censored' must be the same length as 'x'")
-    data.name <- deparse(substitute(x))
-    censoring.name <- deparse(substitute(censored))
-    if ((bad.obs <- sum(!(ok <- is.finite(x) & is.finite(as.numeric(censored))))) > 
-        0) {
-        x <- x[ok]
-        censored <- censored[ok]
-        warning(paste(bad.obs, "observations with NA/NaN/Inf in 'x' and 'censored' removed."))
-    }
-    if (is.numeric(censored)) {
-        if (!all(censored == 0 | censored == 1)) 
-            stop(paste("When 'censored' is a numeric vector, all values of", 
-                "'censored' must be 0 (not censored) or 1 (censored)."))
-        censored <- as.logical(censored)
-    }
-    N <- length(x)
-    if (N < 1) 
-        stop("No valid values in 'x' and 'censored'")
-    n.cen <- sum(censored)
-    if (n.cen == 0) 
-        stop("No censored values indicated by 'censored'.")
-    x.no.cen <- x[!censored]
-    if ((N - n.cen) < 1 || any(x < 0) || any(x != trunc(x))) 
-        stop(paste("'x' must contain at least one non-missing,", 
-            "uncensored value, and all non-missing values of 'x'", 
-            "(including censored observations) must be non-negative integers."))
-    censoring.side <- match.arg(censoring.side, c("left", "right"))
-    ci.type <- match.arg(ci.type, c("two-sided", "lower", "upper"))
-    pivot.statistic <- match.arg(pivot.statistic, c("z", "t"))
-    multiple <- TRUE
-    T.vec <- unique(x[censored])
-    if (length(T.vec) == 1) {
-        if (censoring.side == "left") {
-            if (T.vec <= min(x.no.cen)) 
-                multiple <- FALSE
+    function(
+        x,
+        censored,
+        method = "mle",
+        censoring.side = "left",
+        ci = FALSE,
+        ci.method = "profile.likelihood",
+        ci.type = "two-sided",
+        conf.level = 0.95,
+        n.bootstraps = 1000,
+        pivot.statistic = "z",
+        ci.sample.size = sum(!censored)
+    ) {
+        if (!is.vector(x, mode = "numeric")) {
+            stop("'x' must be a numeric vector")
         }
-        else {
-            if (T.vec >= max(x.no.cen)) 
-                multiple <- FALSE
+        if (
+            !is.vector(censored, mode = "numeric") &&
+                !is.vector(censored, mode = "logical")
+        ) {
+            stop("'censored' must be a logical or numeric vector")
         }
+        if (length(censored) != length(x)) {
+            stop("'censored' must be the same length as 'x'")
+        }
+        data.name <- deparse(substitute(x))
+        censoring.name <- deparse(substitute(censored))
+        if (
+            (bad.obs <- sum(
+                !(ok <- is.finite(x) & is.finite(as.numeric(censored)))
+            )) >
+                0
+        ) {
+            x <- x[ok]
+            censored <- censored[ok]
+            warning(paste(
+                bad.obs,
+                "observations with NA/NaN/Inf in 'x' and 'censored' removed."
+            ))
+        }
+        if (is.numeric(censored)) {
+            if (!all(censored == 0 | censored == 1)) {
+                stop(paste(
+                    "When 'censored' is a numeric vector, all values of",
+                    "'censored' must be 0 (not censored) or 1 (censored)."
+                ))
+            }
+            censored <- as.logical(censored)
+        }
+        N <- length(x)
+        if (N < 1) {
+            stop("No valid values in 'x' and 'censored'")
+        }
+        n.cen <- sum(censored)
+        if (n.cen == 0) {
+            stop("No censored values indicated by 'censored'.")
+        }
+        x.no.cen <- x[!censored]
+        if ((N - n.cen) < 1 || any(x < 0) || any(x != trunc(x))) {
+            stop(paste(
+                "'x' must contain at least one non-missing,",
+                "uncensored value, and all non-missing values of 'x'",
+                "(including censored observations) must be non-negative integers."
+            ))
+        }
+        censoring.side <- match.arg(censoring.side, c("left", "right"))
+        ci.type <- match.arg(ci.type, c("two-sided", "lower", "upper"))
+        pivot.statistic <- match.arg(pivot.statistic, c("z", "t"))
+        multiple <- TRUE
+        T.vec <- unique(x[censored])
+        if (length(T.vec) == 1) {
+            if (censoring.side == "left") {
+                if (T.vec <= min(x.no.cen)) {
+                    multiple <- FALSE
+                }
+            } else {
+                if (T.vec >= max(x.no.cen)) {
+                    multiple <- FALSE
+                }
+            }
+        }
+        args.list <- list(
+            x = x,
+            censored = censored,
+            method = method,
+            censoring.side = censoring.side,
+            ci = ci,
+            ci.method = ci.method,
+            ci.type = ci.type,
+            conf.level = conf.level,
+            n.bootstraps = n.bootstraps,
+            ci.sample.size = ci.sample.size,
+            pivot.statistic = pivot.statistic
+        )
+        if (multiple) {
+            ret.list <- do.call("epoisMultiplyCensored", args = args.list)
+        } else {
+            ret.list <- do.call("epoisSinglyCensored", args = args.list)
+        }
+        ret.list$data.name <- data.name
+        ret.list$censoring.name <- censoring.name
+        ret.list
     }
-    args.list <- list(x = x, censored = censored, method = method, 
-        censoring.side = censoring.side, ci = ci, ci.method = ci.method, 
-        ci.type = ci.type, conf.level = conf.level, n.bootstraps = n.bootstraps, 
-        ci.sample.size = ci.sample.size, pivot.statistic = pivot.statistic)
-    if (multiple) {
-        ret.list <- do.call("epoisMultiplyCensored", args = args.list)
-    }
-    else {
-        ret.list <- do.call("epoisSinglyCensored", args = args.list)
-    }
-    ret.list$data.name <- data.name
-    ret.list$censoring.name <- censoring.name
-    ret.list
-}

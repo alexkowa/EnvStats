@@ -1,0 +1,1861 @@
+---
+title: "Estimation with censored data"
+output:
+  rmarkdown::html_vignette:
+    toc: true
+    toc_depth: 2
+vignette: >
+  %\VignetteIndexEntry{Estimation with censored data}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+This vignette introduces the functions available for censored data, then describes
+parametric estimation for censored normal, lognormal, gamma, and Poisson samples.
+The method notes cover parameter estimation and confidence intervals when some
+observations are known only to lie above or below a censoring level.
+
+Related vignettes:
+
+- [Distribution diagnostics, transformations, and probability plots](distribution-diagnostics.html)
+- [Nonparametric estimation and two-sample tests](nonparametric-methods.html)
+- [Prediction intervals for environmental monitoring](prediction-intervals.html)
+
+For censored-data diagnostics, see
+[plotting positions](distribution-diagnostics.html#ppointscensored) and
+[goodness-of-fit tests](distribution-diagnostics.html#goftestcensored). For
+nonparametric estimation, see
+[estimation with censored samples](nonparametric-methods.html#enparcensored).
+
+## FcnsByCatCensoredData {#fcnsbycatcensoreddata}
+
+Help topic: [`FcnsByCatCensoredData`](https://alexkowa.github.io/EnvStats/reference/FcnsByCatCensoredData.html).
+
+**Data Transformations**
+
+<table>
+<tbody>
+  <tr>
+    <td><em>Function Name</em></td>
+    <td><em>Description</em></td>
+  </tr>
+  <tr>
+    <td><a href="https://alexkowa.github.io/EnvStats/reference/boxcoxCensored.html"><code>boxcoxCensored</code></a></td>
+    <td>Compute values of an objective for Box-Cox Power</td>
+  </tr>
+  <tr>
+    <td>&nbsp;</td>
+    <td>transformations, or compute optimal transformation,</td>
+  </tr>
+  <tr>
+    <td>&nbsp;</td>
+    <td>for Type I censored data.</td>
+  </tr>
+  <tr>
+    <td><a href="https://alexkowa.github.io/EnvStats/reference/print.boxcoxCensored.html"><code>print.boxcoxCensored</code></a></td>
+    <td>Print an object of class <a href="https://alexkowa.github.io/EnvStats/reference/boxcoxCensored.object.html"><code>"boxcoxCensored"</code></a>.</td>
+  </tr>
+  <tr>
+    <td><a href="https://alexkowa.github.io/EnvStats/reference/plot.boxcoxCensored.html"><code>plot.boxcoxCensored</code></a></td>
+    <td>Plot an object of class <a href="https://alexkowa.github.io/EnvStats/reference/boxcoxCensored.object.html"><code>"boxcoxCensored"</code></a>.</td>
+  </tr>
+</tbody>
+</table>
+
+**Estimating Distribution Parameters**
+
+<table>
+<tbody>
+  <tr>
+    <td><em>Function Name</em></td>
+    <td><em>Description</em></td>
+  </tr>
+  <tr>
+    <td><a href="https://alexkowa.github.io/EnvStats/reference/egammaCensored.html"><code>egammaCensored</code></a></td>
+    <td>Estimate shape and scale parameters for a gamma distribution</td>
+  </tr>
+  <tr>
+    <td>&nbsp;</td>
+    <td>based on Type I censored data.</td>
+  </tr>
+  <tr>
+    <td><a href="https://alexkowa.github.io/EnvStats/reference/egammaAltCensored.html"><code>egammaAltCensored</code></a></td>
+    <td>Estimate mean and CV for a gamma distribution</td>
+  </tr>
+  <tr>
+    <td>&nbsp;</td>
+    <td>based on Type I censored data.</td>
+  </tr>
+  <tr>
+    <td><a href="https://alexkowa.github.io/EnvStats/reference/elnormCensored.html"><code>elnormCensored</code></a></td>
+    <td>Estimate parameters for a lognormal distribution (log-scale)</td>
+  </tr>
+  <tr>
+    <td>&nbsp;</td>
+    <td>based on Type I censored data.</td>
+  </tr>
+  <tr>
+    <td><a href="https://alexkowa.github.io/EnvStats/reference/elnormAltCensored.html"><code>elnormAltCensored</code></a></td>
+    <td>Estimate parameters for a lognormal distribution (original scale)</td>
+  </tr>
+  <tr>
+    <td>&nbsp;</td>
+    <td>based on Type I censored data.</td>
+  </tr>
+  <tr>
+    <td><a href="https://alexkowa.github.io/EnvStats/reference/enormCensored.html"><code>enormCensored</code></a></td>
+    <td>Estimate parameters for a Normal distribution based on Type I</td>
+  </tr>
+  <tr>
+    <td>&nbsp;</td>
+    <td>censored data.</td>
+  </tr>
+  <tr>
+    <td><a href="https://alexkowa.github.io/EnvStats/reference/epoisCensored.html"><code>epoisCensored</code></a></td>
+    <td>Estimate parameter for a Poisson distribution based on Type I</td>
+  </tr>
+  <tr>
+    <td>&nbsp;</td>
+    <td>censored data.</td>
+  </tr>
+  <tr>
+    <td><a href="https://alexkowa.github.io/EnvStats/reference/enparCensored.html"><code>enparCensored</code></a></td>
+    <td>Estimate the mean and standard deviation nonparametrically.</td>
+  </tr>
+  <tr>
+    <td><a href="https://alexkowa.github.io/EnvStats/reference/gpqCiNormCensored.html"><code>gpqCiNormSinglyCensored</code></a></td>
+    <td>Generate the generalized pivotal quantity used to construct a</td>
+  </tr>
+  <tr>
+    <td>&nbsp;</td>
+    <td>confidence interval for the mean of a Normal distribution based</td>
+  </tr>
+  <tr>
+    <td>&nbsp;</td>
+    <td>on Type I singly censored data.</td>
+  </tr>
+  <tr>
+    <td><a href="https://alexkowa.github.io/EnvStats/reference/gpqCiNormCensored.html"><code>gpqCiNormMultiplyCensored</code></a></td>
+    <td>Generate the generalized pivotal quantity used to construct a</td>
+  </tr>
+  <tr>
+    <td>&nbsp;</td>
+    <td>confidence interval for the mean of a Normal distribution based</td>
+  </tr>
+  <tr>
+    <td>&nbsp;</td>
+    <td>on Type I multiply censored data.</td>
+  </tr>
+  <tr>
+    <td><a href="https://alexkowa.github.io/EnvStats/reference/print.estimateCensored.html"><code>print.estimateCensored</code></a></td>
+    <td>Print an object of class <a href="https://alexkowa.github.io/EnvStats/reference/estimateCensored.object.html"><code>"estimateCensored"</code></a>.</td>
+  </tr>
+</tbody>
+</table>
+
+**Estimating Distribution Quantiles**
+
+<table>
+<tbody>
+  <tr>
+    <td><em>Function Name</em></td>
+    <td><em>Description</em></td>
+  </tr>
+  <tr>
+    <td><a href="https://alexkowa.github.io/EnvStats/reference/eqlnormCensored.html"><code>eqlnormCensored</code></a></td>
+    <td>Estimate quantiles of a <code>Lognormal</code> distribution (log-scale)</td>
+  </tr>
+  <tr>
+    <td>&nbsp;</td>
+    <td>based on Type I censored data, and optionally construct</td>
+  </tr>
+  <tr>
+    <td>&nbsp;</td>
+    <td>a confidence interval for a quantile.</td>
+  </tr>
+  <tr>
+    <td><a href="https://alexkowa.github.io/EnvStats/reference/eqnormCensored.html"><code>eqnormCensored</code></a></td>
+    <td>Estimate quantiles of a <code>Normal</code> distribution</td>
+  </tr>
+  <tr>
+    <td>&nbsp;</td>
+    <td>based on Type I censored data, and optionally construct</td>
+  </tr>
+  <tr>
+    <td>&nbsp;</td>
+    <td>a confidence interval for a quantile.</td>
+  </tr>
+</tbody>
+</table>
+
+All of the functions for computing quantiles (and associated confidence intervals) for complete (uncensored) data are listed in the help file [Estimating Distribution Quantiles](https://alexkowa.github.io/EnvStats/reference/FcnsByCatEstDistQuants.html). All of these functions, with the exception of [`eqnpar`](https://alexkowa.github.io/EnvStats/reference/eqnpar.html), will accept an object of class [`"estimateCensored"`](https://alexkowa.github.io/EnvStats/reference/estimateCensored.object.html). Thus, you may estimate quantiles (and construct *approximate* confidence intervals) for any distribution for which:
+
+1. There exists a function to estimate distribution parameters using censored data (see the section **Estimating Distribution Parameters** above).
+2. There exists a function to estimate quantiles for that distribution based on complete data (see the help file [Estimating Distribution Quantiles](https://alexkowa.github.io/EnvStats/reference/FcnsByCatEstDistQuants.html)).
+
+Nonparametric estimates of quantiles (and associated confidence intervals) can be constructed from censored data as long as the order statistics used in the results are above all left-censored observations or below all right-censored observations. See the help file for [`eqnpar`](https://alexkowa.github.io/EnvStats/reference/eqnpar.html) for more information and examples.
+
+**Goodness-of-Fit Tests**
+
+<table>
+<tbody>
+  <tr>
+    <td><em>Function Name</em></td>
+    <td><em>Description</em></td>
+  </tr>
+  <tr>
+    <td><a href="https://alexkowa.github.io/EnvStats/reference/gofTestCensored.html"><code>gofTestCensored</code></a></td>
+    <td>Perform a goodness-of-fit test based on Type I left- or</td>
+  </tr>
+  <tr>
+    <td>&nbsp;</td>
+    <td>right-censored data.</td>
+  </tr>
+  <tr>
+    <td><a href="https://alexkowa.github.io/EnvStats/reference/print.gofCensored.html"><code>print.gofCensored</code></a></td>
+    <td>Print an object of class <a href="https://alexkowa.github.io/EnvStats/reference/gofCensored.object.html"><code>"gofCensored"</code></a>.</td>
+  </tr>
+  <tr>
+    <td><a href="https://alexkowa.github.io/EnvStats/reference/plot.gofCensored.html"><code>plot.gofCensored</code></a></td>
+    <td>Plot an object of class <a href="https://alexkowa.github.io/EnvStats/reference/gofCensored.object.html"><code>"gofCensored"</code></a>.</td>
+  </tr>
+</tbody>
+</table>
+
+**Hypothesis Tests**
+
+<table>
+<tbody>
+  <tr>
+    <td><em>Function Name</em></td>
+    <td><em>Description</em></td>
+  </tr>
+  <tr>
+    <td><a href="https://alexkowa.github.io/EnvStats/reference/twoSampleLinearRankTestCensored.html"><code>twoSampleLinearRankTestCensored</code></a></td>
+    <td>Perform two-sample linear rank tests based on</td>
+  </tr>
+  <tr>
+    <td>&nbsp;</td>
+    <td>censored data.</td>
+  </tr>
+  <tr>
+    <td><a href="https://alexkowa.github.io/EnvStats/reference/print.htestCensored.html"><code>print.htestCensored</code></a></td>
+    <td>Printing method for object of class</td>
+  </tr>
+  <tr>
+    <td>&nbsp;</td>
+    <td><a href="https://alexkowa.github.io/EnvStats/reference/htestCensored.object.html"><code>"htestCensored"</code></a>.</td>
+  </tr>
+</tbody>
+</table>
+
+**Plotting Probability Distributions**
+
+<table>
+<tbody>
+  <tr>
+    <td><em>Function Name</em></td>
+    <td><em>Description</em></td>
+  </tr>
+  <tr>
+    <td><a href="https://alexkowa.github.io/EnvStats/reference/cdfCompareCensored.html"><code>cdfCompareCensored</code></a></td>
+    <td>Plot two cumulative distribution functions based on Type I</td>
+  </tr>
+  <tr>
+    <td>&nbsp;</td>
+    <td>censored data.</td>
+  </tr>
+  <tr>
+    <td><a href="https://alexkowa.github.io/EnvStats/reference/ecdfPlotCensored.html"><code>ecdfPlotCensored</code></a></td>
+    <td>Plot an empirical cumulative distribution function based on</td>
+  </tr>
+  <tr>
+    <td>&nbsp;</td>
+    <td>Type I censored data.</td>
+  </tr>
+  <tr>
+    <td><a href="https://alexkowa.github.io/EnvStats/reference/ppointsCensored.html"><code>ppointsCensored</code></a></td>
+    <td>Compute plotting positions for Type I censored data.</td>
+  </tr>
+  <tr>
+    <td><a href="https://alexkowa.github.io/EnvStats/reference/qqPlotCensored.html"><code>qqPlotCensored</code></a></td>
+    <td>Produce quantile-quantile (Q-Q) plots, also called probability</td>
+  </tr>
+  <tr>
+    <td>&nbsp;</td>
+    <td>plots, based on Type I censored data.</td>
+  </tr>
+</tbody>
+</table>
+
+**Prediction and Tolerance Intervals**
+
+<table>
+<tbody>
+  <tr>
+    <td><em>Function Name</em></td>
+    <td><em>Description</em></td>
+  </tr>
+  <tr>
+    <td><a href="https://alexkowa.github.io/EnvStats/reference/gpqTolIntNormCensored.html"><code>gpqTolIntNormSinglyCensored</code></a></td>
+    <td>Generate the generalized pivotal quantity used to construct a</td>
+  </tr>
+  <tr>
+    <td>&nbsp;</td>
+    <td>tolerance interval for a Normal distribution based</td>
+  </tr>
+  <tr>
+    <td>&nbsp;</td>
+    <td>on Type I singly censored data.</td>
+  </tr>
+  <tr>
+    <td><a href="https://alexkowa.github.io/EnvStats/reference/gpqTolIntNormCensored.html"><code>gpqTolIntNormMultiplyCensored</code></a></td>
+    <td>Generate the generalized pivotal quantity used to construct a</td>
+  </tr>
+  <tr>
+    <td>&nbsp;</td>
+    <td>tolerance interval for a Normal distribution based</td>
+  </tr>
+  <tr>
+    <td>&nbsp;</td>
+    <td>on Type I multiply censored data.</td>
+  </tr>
+  <tr>
+    <td><a href="https://alexkowa.github.io/EnvStats/reference/tolIntLnormCensored.html"><code>tolIntLnormCensored</code></a></td>
+    <td>Tolerance interval for a lognormal distribution (log-scale)</td>
+  </tr>
+  <tr>
+    <td>&nbsp;</td>
+    <td>based on Type I censored data.</td>
+  </tr>
+  <tr>
+    <td><a href="https://alexkowa.github.io/EnvStats/reference/tolIntNormCensored.html"><code>tolIntNormCensored</code></a></td>
+    <td>Tolerance interval for a Normal distribution based on Type I</td>
+  </tr>
+  <tr>
+    <td>&nbsp;</td>
+    <td>censored data.</td>
+  </tr>
+</tbody>
+</table>
+
+All of the functions for computing prediction and tolerance intervals for complete (uncensored) data are listed in the help files [Prediction Intervals](https://alexkowa.github.io/EnvStats/reference/FcnsByCatPredInts.html) and [Tolerance Intervals](https://alexkowa.github.io/EnvStats/reference/FcnsByCatTolInts.html). All of these functions, with the exceptions of [`predIntNpar`](https://alexkowa.github.io/EnvStats/reference/predIntNpar.html) and [`tolIntNpar`](https://alexkowa.github.io/EnvStats/reference/tolIntNpar.html), will accept an object of class [`"estimateCensored"`](https://alexkowa.github.io/EnvStats/reference/estimateCensored.object.html). Thus, you may construct *approximate* prediction or tolerance intervals for any distribution for which:
+
+1. There exists a function to estimate distribution parameters using censored data (see the section **Estimating Distribution Parameters** above).
+2. There exists a function to create a prediction or tolerance interval for that distribution based on complete data (see the help files [Prediction Intervals](https://alexkowa.github.io/EnvStats/reference/FcnsByCatPredInts.html) and [Tolerance Intervals](https://alexkowa.github.io/EnvStats/reference/FcnsByCatTolInts.html)).
+
+Nonparametric prediction and tolerance intervals can be constructed from censored data as long as the order statistics used in the results are above all left-censored observations or below all right-censored observations. See the help files for [`predIntNpar`](https://alexkowa.github.io/EnvStats/reference/predIntNpar.html), [`predIntNparSimultaneous`](https://alexkowa.github.io/EnvStats/reference/predIntNparSimultaneous.html), and [`tolIntNpar`](https://alexkowa.github.io/EnvStats/reference/tolIntNpar.html) for more information and examples.
+
+## enormCensored {#enormcensored}
+
+Help topic: [`enormCensored`](https://alexkowa.github.io/EnvStats/reference/enormCensored.html).
+
+If `x` or `censored` contain any missing (`NA`), undefined (`NaN`) or infinite (`Inf`, `-Inf`) values, they will be removed prior to performing the estimation.
+
+Let $\underline{x}$ denote a vector of $N$ observations from a [normal distribution](https://stat.ethz.ch/R-manual/R-devel/library/stats/html/Normal.html) with mean $\mu$ and standard deviation $\sigma$. Assume $n$ ($0 < n < N$) of these observations are known and $c$ ($c=N-n$) of these observations are all censored below (left-censored) or all censored above (right-censored) at $k$ fixed censoring levels
+
+$$
+T_1, T_2, \ldots, T_k; \; k \ge 1 \;\;\;\;\;\; (1)
+$$
+
+For the case when $k \ge 2$, the data are said to be Type I ***multiply censored***. For the case when $k=1$, set $T = T_1$. If the data are left-censored and all $n$ known observations are greater than or equal to $T$, or if the data are right-censored and all $n$ known observations are less than or equal to $T$, then the data are said to be Type I ***singly censored*** (Nelson, 1982, p.7), otherwise they are considered to be Type I multiply censored.
+
+Let $c_j$ denote the number of observations censored below or above censoring level $T_j$ for $j = 1, 2, \ldots, k$, so that
+
+$$
+\sum_{i=1}^k c_j = c \;\;\;\;\;\; (2)
+$$
+
+Let $x_{(1)}, x_{(2)}, \ldots, x_{(N)}$ denote the “ordered” observations, where now “observation” means either the actual observation (for uncensored observations) or the censoring level (for censored observations). For right-censored data, if a censored observation has the same value as an uncensored one, the uncensored observation should be placed first. For left-censored data, if a censored observation has the same value as an uncensored one, the censored observation should be placed first.
+
+Note that in this case the quantity $x_{(i)}$ does not necessarily represent the $i$'th “largest” observation from the (unknown) complete sample.
+
+Finally, let $\Omega$ (omega) denote the set of $n$ subscripts in the “ordered” sample that correspond to uncensored observations.
+
+**ESTIMATION**
+
+***Estimation Methods for Multiply and Singly Censored Data***  
+The following methods are available for multiply and singly censored data.
+
+*Maximum Likelihood Estimation* (`method="mle"`)  
+For Type I left censored data, the likelihood function is given by:
+
+$$
+L(\mu, \sigma | \underline{x}) = {N \choose c_1 c_2 \ldots c_k n} \prod_{j=1}^k [F(T_j)]^{c_j} \prod_{i \in \Omega} f[x_{(i)}] \;\;\;\;\;\; (3)
+$$
+
+where $f$ and $F$ denote the probability density function (pdf) and cumulative distribution function (cdf) of the population. That is,
+
+$$
+f(t) = \phi(\frac{t-\mu}{\sigma}) \;\;\;\;\;\; (4)
+$$
+
+$$
+F(t) = \Phi(\frac{t-\mu}{\sigma}) \;\;\;\;\;\; (5)
+$$
+
+where $\phi$ and $\Phi$ denote the pdf and cdf of the standard normal distribution, respectively (Cohen, 1963; 1991, pp.6, 50). For left singly censored data, Equation (3) simplifies to:
+
+$$
+L(\mu, \sigma | \underline{x}) = {N \choose c} [F(T)]^{c} \prod_{i = c+1}^n f[x_{(i)}] \;\;\;\;\;\; (6)
+$$
+
+Similarly, for Type I right censored data, the likelihood function is given by:
+
+$$
+L(\mu, \sigma | \underline{x}) = {N \choose c_1 c_2 \ldots c_k n} \prod_{j=1}^k [1 - F(T_j)]^{c_j} \prod_{i \in \Omega} f[x_{(i)}] \;\;\;\;\;\; (7)
+$$
+
+and for right singly censored data this simplifies to:
+
+$$
+L(\mu, \sigma | \underline{x}) = {N \choose c} [1 - F(T)]^{c} \prod_{i = 1}^n f[x_{(i)}] \;\;\;\;\;\; (8)
+$$
+
+The maximum likelihood estimators are computed by maximizing the likelihood function. For right-censored data, Cohen (1963; 1991, pp.50-51) shows that taking partial derivatives of the log-likelihood function with respect to $\mu$ and $\sigma$ and setting these to 0 produces the following two simultaneous equations:
+
+$$
+\bar{x} - \mu = -\sigma \sum_{i=1}^k (\frac{c_j}{n}) Q_j \;\;\;\;\;\; (9)
+$$
+
+$$
+s^2 + (\bar{x} - \mu)^2 = \sigma^2[1 - \sum_{j=1}^k \zeta_j (\frac{c_j}{n}) Q_j] \;\;\;\;\;\; (10)
+$$
+
+where
+
+$$
+\bar{x} = \frac{1}{n} \sum_{i \in \Omega} x_{(i)} \;\;\;\;\;\; (11)
+$$
+
+$$
+s^2 = \frac{1}{n} \sum_{i \in \Omega} (x_{(i)} - \bar{x})^2 \;\;\;\;\;\; (12)
+$$
+
+$$
+Q_j = Q(\zeta_j) \;\;\;\;\;\; (13)
+$$
+
+$$
+\zeta_j = \frac{T_j - \mu}{\sigma} \;\;\;\;\;\; (14)
+$$
+
+$$
+Q(t) = \frac{\phi(t)}{1 - \Phi(t)} \;\;\;\;\;\; (15)
+$$
+
+Note that the quantity defined in Equation (11) is simply the mean of the uncensored observations, the quantity defined in Equation (12) is simply the method of moments estimator of variance based on the uncensored observations, and the function $Q()$ defined in Equation (15) is the hazard function for the standard normal distribution.
+
+For left-censored data, Equations (9) and (10) stay the same, except $\zeta$ is replaced with $-\zeta$.
+
+The function `enormCensored` computes the maximum likelihood estimators by solving Equations (9) and (10) and uses the quantile-quantile regression estimators (see below) as initial values.
+
+*Regression on Order Statistics* (`method="ROS"`) or  
+*Quantile-Quantile Regression* (`method="qq.reg"`)  
+This method is sometimes called the *probability plot method* (Nelson, 1982, Chapter 3; Gilbert, 1987, pp.134-136; Helsel and Hirsch, 1992, p. 361), and more recently also called *parametric regression on order statistics* or *ROS* (USEPA, 2009; Helsel, 2012). In the case of no censoring, it is well known (e.g., Nelson, 1982, p.113; Cleveland, 1993, p.31) that for the standard normal (Gaussian) quantile-quantile plot (i.e., the plot of the sorted observations (empirical quantiles) versus standard normal quantiles; see [`qqPlot`](https://alexkowa.github.io/EnvStats/reference/qqPlot.html)), the intercept and slope of the fitted least-squares line estimate the mean and standard deviation, respectively. Specifically, the estimates of $\mu$ and $\sigma$ are found by computing the least-squares estimates in the following model:
+
+$$
+x_{(i)} = \mu + \sigma \Phi^{-1}(p_i) + \epsilon_i, \; i = 1, 2, \ldots, N \;\;\;\;\;\; (16)
+$$
+
+where
+
+$$
+p_i = \frac{i-a}{N - 2a + 1} \;\;\;\;\;\; (17)
+$$
+
+denotes the plotting position associated with the $i$'th largest value, $a$ is a constant such that $0 \le a \le 1$ (the plotting position constant), and $\Phi$ denotes the cumulative distribution function (cdf) of the standard normal distribution. The default value of $a$ is 0.375 (see below).
+
+This method can be adapted to the case of left (right) singly censored data as follows. Plot the $n$ uncensored observations against the $n$ largest (smallest) normal quantiles, where the normal quantiles are computed based on a sample size of $N$, fit the least-squares line to this plot, and estimate the mean and standard deviation from the intercept and slope, respectively. That is, use Equations (16) and (17), but for right singly censored data use $i = 1, 2, \ldots, n$, and for left singly censored data use $i = (c+1), (c+2), \ldots, N$.
+
+The argument `plot.pos.con` (see the `...` arguments in the [`enormCensored` help page](https://alexkowa.github.io/EnvStats/reference/enormCensored.html)) determines the value of the plotting positions computed in Equation (18). The default value is `plot.pos.con=0.375`. See the section on [`qqPlot`](distribution-diagnostics.html#qqplot) for more information.
+
+This method is discussed by Haas and Scheff (1990). In the context of lognormal data, Travis and Land (1990) suggest exponentiating the predicted 50'th percentile from this fit to estimate the geometric mean (i.e., the median of the lognormal distribution).
+
+This method is easily extended to multiply censored data. Equation (16) becomes
+
+$$
+x_{(i)} = \mu + \sigma \Phi^{-1}(p_i) + \epsilon_i, \; i \in \Omega \;\;\;\;\;\; (18)
+$$
+
+where $\Omega$ denotes the set of $n$ subscripts associated with the uncensored observations in the ordered sample. The plotting positions are computed by calling the EnvStats function [`ppointsCensored`](https://alexkowa.github.io/EnvStats/reference/ppointsCensored.html). The argument `prob.method` determines the method of computing the plotting positions (default is `prob.method="hirsch-stedinger"`), and the argument `plot.pos.con` determines the plotting position constant (default is `plot.pos.con=0.375`). (See the `...` arguments in the [`enormCensored` help page](https://alexkowa.github.io/EnvStats/reference/enormCensored.html).) Both Helsel (2012) and USEPA (2009) also use the Hirsch-Stedinger probability method but set the plotting position constant to 0.
+
+*Robust Regression on Order Statistics* (`method="rROS"`) or  
+*Imputation Using Quantile-Quantile Regression* (`method="impute.w.qq.reg"`)  
+This is the robust Regression on Order Statistics (rROS) method discussed in USEPA (2009) and Helsel (2012). It involves using the quantile-quantile regression method (`method="qq.reg"` or `method="ROS"`) to fit a regression line (and thus initially estimate the mean and standard deviation), and then imputing the values of the censored observations by predicting them from the regression equation. The final estimates of the mean and standard deviation are then computed using the usual formulas (see [`enorm`](https://alexkowa.github.io/EnvStats/reference/enorm.html)) based on the observed and imputed values.
+
+The imputed values are computed as:
+
+$$
+\hat{x}_{(i)} = \hat{\mu}_{qqreg} + \hat{\sigma}_{qqreg} \Phi^{-1}(p_i), \; i \not \in \Omega \;\;\;\;\;\; (19)
+$$
+
+See the section on [`ppointsCensored`](distribution-diagnostics.html#ppointscensored) for information on how the plotting positions for the censored observations are computed.
+
+The argument `prob.method` determines the method of computing the plotting positions (default is `prob.method="hirsch-stedinger"`), and the argument `plot.pos.con` determines the plotting position constant (default is `plot.pos.con=0.375`). (See the `...` arguments in the [`enormCensored` help page](https://alexkowa.github.io/EnvStats/reference/enormCensored.html).) Both Helsel (2012) and USEPA (2009) also use the Hirsch-Stedinger probability method but set the plotting position constant to 0.
+
+The arguments `lb.impute` and `ub.impute` determine the lower and upper bounds for the imputed values. Imputed values smaller than `lb.impute` are set to this value. Imputed values larger than `ub.impute` are set to this value. The default values are `lb.impute=-Inf` and `ub.impute=Inf`. See the `...` arguments in the [`enormCensored` help page](https://alexkowa.github.io/EnvStats/reference/enormCensored.html).
+
+For singly censored data, this is the NR method of Gilliom and Helsel (1986, p. 137). In the context of lognormal data, this method is discussed by Hashimoto and Trussell (1983), Gilliom and Helsel (1986), and El-Shaarawi (1989), and is referred to as the LR or Log-Probability Method.
+
+For multiply censored data, this method was developed in the context of lognormal data by Helsel and Cohn (1988) using the formulas for plotting positions given in Hirsch and Stedinger (1987) and Weibull plotting positions (i.e., `prob.method="hirsch-stedinger"` and `plot.pos.con=0`).
+
+*Setting Censored Observations to Half the Censoring Level* (`method="half.cen.level"`)  
+This method is applicable only to left censored data that is bounded below by 0. This method involves simply replacing all the censored observations with half their detection limit, and then computing the mean and standard deviation with the usual formulas (see [`enorm`](https://alexkowa.github.io/EnvStats/reference/enorm.html)).
+
+This method is included only to allow comparison of this method to other methods. ***Setting left-censored observations to half the censoring level is not recommended***.
+
+For singly censored data, this method is discussed by Gleit (1985), Haas and Scheff (1990), and El-Shaarawi and Esterby (1992). El-Shaarawi and Esterby (1992) show that these estimators are biased and inconsistent (i.e., the bias remains even as the sample size increases).
+
+For multiply censored data, this method was studied by Helsel and Cohn (1988).
+
+***Estimation Methods for Singly Censored Data***  
+The following methods are available only for singly censored data.
+
+*Bias-Corrected Maximum Likelihood Estimation* (`method="bcmle"`)  
+The maximum likelihood estimates of $\mu$ and $\sigma$ are biased. The bias tends to 0 as the sample size increases, but it can be considerable for small sample sizes, especially in the case of a large percentage of censored observations (Saw, 1961b). Schmee et al. (1985) note that bias and variances of the mle's are of the order $1/N$ (see for example, Bain and Engelhardt, 1991), and that for 90% censoring the bias is negligible if $N$ is at least 100. (For less intense censoring, even fewer observations are needed.)
+
+The exact bias of each estimator is extremely difficult to compute. Saw (1961b), however, derived the first-order term (i.e., the term of order $1/N$) in the bias of the mle's of $\mu$ and $\sigma$ and proposed bias-corrected mle's. His bias-corrected estimators were derived for the case of Type II singly censored data. Schneider (1986, p.110) and Haas and Scheff (1990), however, state that this bias correction should reduce the bias of the estimators in the case of Type I censoring as well.
+
+Based on the tables of bias-correction terms given in Saw (1961b), Schneider (1986, pp.107-110) performed a least-squares fit to produce the following computational formulas for right-censored data:
+
+$$
+B_{\mu} = -exp[2.692 - 5.493 \frac{n}{N+1}] \;\;\;\;\;\; (20)
+$$
+
+$$
+B_{\sigma} = -[0.312 + 0.859 \frac{n}{N+1}]^{-2} \;\;\;\;\;\; (21)
+$$
+
+$$
+\hat{\mu}_{bcmle} = \hat{\mu}_{mle} - \frac{\hat{\sigma}_{mle}}{N+1} B_{\mu} \;\;\;\;\;\; (22)
+$$
+
+$$
+\hat{\sigma}_{bcmle} = \hat{\sigma}_{mle} - \frac{\hat{\sigma}_{mle}}{N+1} B_{\sigma} \;\;\;\;\;\; (23)
+$$
+
+For left-censored data, Equation (22) becomes:
+
+$$
+\hat{\mu}_{bcmle} = \hat{\mu}_{mle} + \frac{\hat{\sigma}_{mle}}{N+1} B_{\mu} \;\;\;\;\;\; (22)
+$$
+
+*Quantile-Quantile Regression Including the Censoring Level* (`method="qq.reg.w.cen.level"`)  
+This is a modification of the quantile-quantile regression method and was proposed by El-Shaarawi (1989) in the context of lognormal data. El-Shaarawi's idea is to include the censoring level and an associated plotting position, along with the uncensored observations and their associated plotting positions, in order to include information about the value of the censoring level $T$.
+
+For left singly censored data, the modification involves adding the point $[\Phi^{-1}(p_c), T]$ to the plot before fitting the least-squares line. For right singly censored data, the point $[\Phi^{-1}(p_{n+1}), T]$ is added to the plot before fitting the least-squares line.
+
+El-Shaarawi (1989) also proposed replacing the estimated normal quantiles with the exact expected values of normal order statistics, and using the values in their variance-covariance matrix to perform a weighted least least-squared regression. These last two modifications are not incorporated here.
+
+*Imputation Using Quantile-Quantile Regression Including the Censoring Level*  
+(`method ="impute.w.qq.reg.w.cen.level"`)  
+This is exactly the same method as imputation using quantile-quantile regression  
+(`method="impute.w.qq.reg"`), except that the quantile-quantile regression including the censoring level method (`method="qq.reg.w.cen.level"`) is used to fit the regression line. In the context of lognormal data, this method is discussed by El-Shaarawi (1989), which he denotes as the Modified LR Method.
+
+*Imputation Using Maximum Likelihood* (`method ="impute.w.mle"`)  
+This is exactly the same method as imputation with quantile-quantile regression  
+(`method="impute.w.qq.reg"`), except that the maximum likelihood method (`method="mle"`) is used to compute the initial estimates of the mean and standard deviation. In the context of lognormal data, this method is discussed by El-Shaarawi (1989), which he denotes as the Modified Maximum Likelihood Method.
+
+*Iterative Imputation Using Quantile-Quantile Regression* (`method="iterative.impute.w.qq.reg"`)  
+This method is similar to the imputation with quantile-quantile regression method  
+(`method="impute.w.qq.reg"`), but iterates until the estimates of the mean and standard deviation converge. The algorithm is:
+
+1. Compute the initial estimates of $\mu$ and $\sigma$ using the `"impute.w.qq.reg"` method. (Actually, any suitable estimates will do.)
+2. Using the current values of $\mu$ and $\sigma$ and Equation (19), compute new imputed values of the censored observations.
+3. Use the new imputed values along with the uncensored observations to compute new estimates of $\mu$ and $\sigma$ based on the usual formulas (see [`enorm`](https://alexkowa.github.io/EnvStats/reference/enorm.html)).
+4. Repeat Steps 2 and 3 until the estimates converge (the convergence criterion is determined by the arguments `tol` and `convergence`; see the `...` arguments in the [`enormCensored` help page](https://alexkowa.github.io/EnvStats/reference/enormCensored.html)).
+
+This method is discussed by Gleit (1985), which he denotes as “Fill-In with Expected Values”.
+
+*M-Estimators* (`method="m.est"`)  
+This method was contributed by Leo R. Korn (Korn and Tyler, 2001). This method finds location and scale estimates that are consistent at the normal model and robust to deviations from the normal model, including both outliers on the right and outliers on the left above and below the limit of detection. The estimates are found by solving the simultaneous equations:
+
+$$
+\sum_{i=1}^c h_{\nu} (\frac{T-\mu}{\sigma}) + \sum_{i=c+1}^N \psi_{\nu} (\frac{x_i - \mu}{\sigma}) = 0 \;\;\;\;\;\; (23)
+$$
+
+$$
+\sum_{i=1}^c \lambda_{\nu} (\frac{T-\mu}{\sigma}) + \sum_{i=c+1}^N \chi_{\nu} (\frac{x_i - \mu}{\sigma}) = 0 \;\;\;\;\;\; (24)
+$$
+
+where
+
+$$
+H_{\nu}(r) = -log[F_{\nu}(r)] \;\;\;\;\;\; (25)
+$$
+
+$$
+h_{\nu}(r) = \frac{d}{dr} H_{\nu}(r) = H'_{\nu}(r) \;\;\;\;\;\; (26)
+$$
+
+$$
+\rho_{\nu}(r) = -log[f_{\nu}(r)] \;\;\;\;\;\; (27)
+$$
+
+$$
+\psi_{\nu}(r) = \frac{d}{dr} \rho_{\nu}(r) = \rho'_{\nu}(r) \;\;\;\;\;\; (28)
+$$
+
+$$
+\lambda_{\nu}(r) = r h_{\nu}(r) \;\;\;\;\;\; (29)
+$$
+
+$$
+\chi_{\nu}(r) = r \psi_{\nu}(r) - 1 \;\;\;\;\;\; (30)
+$$
+
+and $f_{\nu}$ and $F_{\nu}$ denote the probability density function (pdf) and cumulative distribution function (cdf) of [Student's t-distribution](https://stat.ethz.ch/R-manual/R-devel/library/stats/html/TDist.html) with $\nu$ degrees of freedom.
+
+This results in an M-estimating equation based on the t-density function (Korn and Tyler., 2001). Since the t-density has heavier tails than the normal density, this M-estimator will tend to down-weight values that are far away from the center of the data. When censoring is present, neither the location nor the scale estimates are consistent at the normal model. A computational correction is performed that converts the above M-estimator to another M-estimator that is consistent at the normal model, even under censoring.
+
+The degrees of freedom parameter $\nu$ is set by the argument `t.df` and may be viewed as a tuning parameter that will determine the robustness and efficiency properties. When `t.df` is large, the estimator is similar to the usual mle and the output will then be very close to that when `method="mle"`. As `t.df` decreases, the efficiency will decline and the outlier rejection property will increase in strength. Choosing `t.df=3` (the default) provides a good combination of efficiency and robustness. A reasonable strategy is to transform the data so that they are approximately symmetric (often the log transformation for environmental data is appropriate) and then apply the M-estimator using `t.df=3`.
+
+**CONFIDENCE INTERVALS**  
+This section explains how confidence intervals for the mean $\mu$ are computed.
+
+***Likelihood Profile*** (`ci.method="profile.likelihood"`)  
+This method was proposed by Cox (1970, p.88), and Venzon and Moolgavkar (1988) introduced an efficient method of computation. This method is also discussed by Stryhn and Christensen (2003) and Royston (2007). The idea behind this method is to invert the likelihood-ratio test to obtain a confidence interval for the mean $\mu$ while treating the standard deviation $\sigma$ as a nuisance parameter. Equation (3) above shows the form of the likelihood function $L(\mu, \sigma | \underline{x})$ for multiply left-censored data, and Equation (7) shows the function for multiply right-censored data.
+
+Following Stryhn and Christensen (2003), denote the maximum likelihood estimates of the mean and standard deviation by $(\mu^*, \sigma^*)$. The likelihood ratio test statistic ($G^2$) of the hypothesis $H_0: \mu = \mu_0$ (where $\mu_0$ is a fixed value) equals the drop in $2 log(L)$ between the “full” model and the reduced model with $\mu$ fixed at $\mu_0$, i.e.,
+
+$$
+G^2 = 2 \{log[L(\mu^*, \sigma^*)] - log[L(\mu_0, \sigma_0^*)]\} \;\;\;\;\;\; (30)
+$$
+
+where $\sigma_0^*$ is the maximum likelihood estimate of $\sigma$ for the reduced model (i.e., when $\mu = \mu_0$). Under the null hypothesis, the test statistic $G^2$ follows a [chi-squared distribution](https://stat.ethz.ch/R-manual/R-devel/library/stats/html/Chisquare.html) with 1 degree of freedom.
+
+Alternatively, we may express the test statistic in terms of the profile likelihood function $L_1$ for the mean $\mu$, which is obtained from the usual likelihood function by maximizing over the parameter $\sigma$, i.e.,
+
+$$
+L_1(\mu) = max_{\sigma} L(\mu, \sigma) \;\;\;\;\;\; (31)
+$$
+
+Then we have
+
+$$
+G^2 = 2 \{log[L_1(\mu^*)] - log[L_1(\mu_0)]\} \;\;\;\;\;\; (32)
+$$
+
+A two-sided $(1-\alpha)100\%$ confidence interval for the mean $\mu$ consists of all values of $\mu_0$ for which the test is not significant at level $alpha$:
+
+$$
+\mu_0: G^2 \le \chi^2_{1, {1-\alpha}} \;\;\;\;\;\; (33)
+$$
+
+where $\chi^2_{\nu, p}$ denotes the $p$'th quantile of the [chi-squared distribution](https://stat.ethz.ch/R-manual/R-devel/library/stats/html/Chisquare.html) with $\nu$ degrees of freedom. One-sided lower and one-sided upper confidence intervals are computed in a similar fashion, except that the quantity $1-\alpha$ in Equation (33) is replaced with $1-2\alpha$.
+
+***Normal Approximation*** (`ci.method="normal.approx"`)  
+This method constructs approximate $(1-\alpha)100\%$ confidence intervals for $\mu$ based on the assumption that the estimator of $\mu$ is approximately normally distributed. That is, a two-sided $(1-\alpha)100\%$ confidence interval for $\mu$ is constructed as:
+
+$$
+[\hat{\mu} - t_{1-\alpha/2, m-1}\hat{\sigma}_{\hat{\mu}}, \; \hat{\mu} + t_{1-\alpha/2, m-1}\hat{\sigma}_{\hat{\mu}}] \;\;\;\; (34)
+$$
+
+where $\hat{\mu}$ denotes the estimate of $\mu$, $\hat{\sigma}_{\hat{\mu}}$ denotes the estimated asymptotic standard deviation of the estimator of $\mu$, $m$ denotes the assumed sample size for the confidence interval, and $t_{p,\nu}$ denotes the $p$'th quantile of [Student's t-distribuiton](https://stat.ethz.ch/R-manual/R-devel/library/stats/html/TDist.html) with $\nu$ degrees of freedom. One-sided confidence intervals are computed in a similar fashion.
+
+The argument `ci.sample.size` determines the value of $m$ (see the `...` arguments in the [`enormCensored` help page](https://alexkowa.github.io/EnvStats/reference/enormCensored.html)). When `method` equals `"mle"` or `"bcmle"`, the default value is the expected number of uncensored observations, otherwise it is the observed number of uncensored observations. This is simply an ad-hoc method of constructing confidence intervals and is not based on any published theoretical results.
+
+When `pivot.statistic="z"`, the $p$'th quantile from the [standard normal distribution](https://stat.ethz.ch/R-manual/R-devel/library/stats/html/Normal.html) is used in place of the $p$'th quantile from Student's t-distribution.
+
+*Approximate Confidence Interval Based on Maximum Likelihood Estimators*  
+When `method="mle"`, the standard deviation of the mle of $\mu$ is estimated based on the inverse of the Fisher Information matrix. The estimated variance-covariance matrix for the estimates of $\mu$ and $\sigma$ are based on the observed information matrix, formulas for which are given in Cohen (1991).
+
+*Approximate Confidence Interval Based on Bias-Corrected Maximum Likelihood Estimators*  
+When `method="bcmle"` (available only for singly censored data), the same procedures are used to construct the confidence interval as for `method="mle"`. The true variance of the bias-corrected mle of $\mu$ is necessarily larger than the variance of the mle of $\mu$ (although the differences in the variances goes to 0 as the sample size gets large). Hence this method of constructing a confidence interval leads to intervals that are too short for small sample sizes, but these intervals should be better centered about the true value of $\mu$.
+
+*Approximate Confidence Interval Based on Other Estimators*  
+When method is some value other than `"mle"`, the standard deviation of the estimated mean is approximated by
+
+$$
+\hat{\sigma}_{\hat{\mu}} = \frac{\hat{\sigma}}{\sqrt{m}} \;\;\;\;\;\; (35)
+$$
+
+where, as already noted, $m$ denotes the assumed sample size. This is simply an ad-hoc method of constructing confidence intervals and is not based on any published theoretical results.
+
+***Normal Approximation Using Covariance*** (`ci.method="normal.approx.w.cov"`) This method is only available for singly censored data and only applicable when `method="mle"` or `method="bcmle"`. It was proposed by Schneider (1986, pp. 191-193) for the case of Type II censoring, but is applicable to any situation where the estimated mean and standard deviation are consistent estimators and are correlated. In particular, the mle's of $\mu$ and $\sigma$ are correlated under Type I censoring as well.
+
+Schneider's idea is to determine two positive quantities $z_1, z_2$ such that
+
+$$
+Pr(\hat{\mu} + z_1\hat{\sigma} < \mu) = \frac{\alpha}{2} \;\;\;\;\;\; (36)
+$$
+
+$$
+Pr(\hat{\mu} - z_2\hat{\sigma} > \mu) = \frac{\alpha}{2} \;\;\;\;\;\; (37)
+$$
+
+so that
+
+$$
+[\hat{\mu} - z_2\hat{\sigma}, \; \hat{\mu} + z_1\hat{\sigma}] \;\;\;\;\;\; (38)
+$$
+
+is a $(1-\alpha)100\%$ confidence interval for $\mu$.
+
+For cases where the estimators of $\mu$ and $\sigma$ are independent (e.g., complete samples), it is well known that setting
+
+$$
+z_1 = z_2 = \frac{t_{1-\alpha/2, N}}{\sqrt{N}} \;\;\;\;\;\; (39)
+$$
+
+yields an exact confidence interval and setting
+
+$$
+z_1 = z_2 = \frac{z_{1-\alpha/2}}{\sqrt{N}} \;\;\;\;\;\; (40)
+$$
+
+where $z_p$ denotes the $p$'th quantile of the standard normal distribution yields an approximate confidence interval that is asymptotically correct.
+
+For the general case, Schneider (1986) considers the random variable
+
+$$
+W(z) = \hat{\mu} + z\hat{\sigma} \;\;\;\;\;\; (41)
+$$
+
+and provides formulas for $z_1$ and $z_2$.
+
+Note that the resulting confidence interval for the mean is not symmetric about the estimated mean. Also note that the quantity $m$ is a random variable for Type I censoring, while Schneider (1986) assumed it to be fixed since he derived the result for Type II censoring (in which case $m=n$).
+
+***Bootstrap and Bias-Corrected Bootstrap Approximation*** (`ci.method="bootstrap"`)  
+The bootstrap is a nonparametric method of estimating the distribution (and associated distribution parameters and quantiles) of a sample statistic, regardless of the distribution of the population from which the sample was drawn. The bootstrap was introduced by Efron (1979) and a general reference is Efron and Tibshirani (1993).
+
+In the context of deriving an approximate $(1-\alpha)100\%$ confidence interval for the population mean $\mu$, the bootstrap can be broken down into the following steps:
+
+1. Create a bootstrap sample by taking a random sample of size $N$ from the observations in $\underline{x}$, where sampling is done with replacement. Note that because sampling is done with replacement, the same element of $\underline{x}$ can appear more than once in the bootstrap sample. Thus, the bootstrap sample will usually not look exactly like the original sample (e.g., the number of censored observations in the bootstrap sample will often differ from the number of censored observations in the original sample).
+2. Estimate $\mu$ based on the bootstrap sample created in Step 1, using the same method that was used to estimate $\mu$ using the original observations in $\underline{x}$. Because the bootstrap sample usually does not match the original sample, the estimate of $\mu$ based on the bootstrap sample will usually differ from the original estimate based on $\underline{x}$.
+3. Repeat Steps 1 and 2 $B$ times, where $B$ is some large number. For the function `enormCensored`, the number of bootstraps $B$ is determined by the argument `n.bootstraps` (see the arguments in the [`enormCensored` help page](https://alexkowa.github.io/EnvStats/reference/enormCensored.html)). The default value of `n.bootstraps` is `1000`.
+4. Use the $B$ estimated values of $\mu$ to compute the empirical cumulative distribution function of this estimator of $\mu$ (see [`ecdfPlot`](https://alexkowa.github.io/EnvStats/reference/ecdfPlot.html)), and then create a confidence interval for $\mu$ based on this estimated cdf.
+
+The two-sided percentile interval (Efron and Tibshirani, 1993, p.170) is computed as:
+
+$$
+[\hat{G}^{-1}(\frac{\alpha}{2}), \; \hat{G}^{-1}(1-\frac{\alpha}{2})] \;\;\;\;\;\; (42)
+$$
+
+where $\hat{G}(t)$ denotes the empirical cdf evaluated at $t$ and thus $\hat{G}^{-1}(p)$ denotes the $p$'th empirical quantile, that is, the $p$'th quantile associated with the empirical cdf. Similarly, a one-sided lower confidence interval is computed as:
+
+$$
+[\hat{G}^{-1}(\alpha), \; \infty] \;\;\;\;\;\; (43)
+$$
+
+and a one-sided upper confidence interval is computed as:
+
+$$
+[-\infty, \; \hat{G}^{-1}(1-\alpha)] \;\;\;\;\;\; (44)
+$$
+
+The function `enormCensored` calls the R function [`quantile`](https://stat.ethz.ch/R-manual/R-devel/library/stats/html/quantile.html) to compute the empirical quantiles used in Equations (42)-(44).
+
+The percentile method bootstrap confidence interval is only first-order accurate (Efron and Tibshirani, 1993, pp.187-188), meaning that the probability that the confidence interval will contain the true value of $\mu$ can be off by $k/\sqrt{N}$, where $k$ is some constant. Efron and Tibshirani (1993, pp.184-188) proposed a bias-corrected and accelerated interval that is second-order accurate, meaning that the probability that the confidence interval will contain the true value of $\mu$ may be off by $k/N$ instead of $k/\sqrt{N}$. The two-sided bias-corrected and accelerated confidence interval is computed as:
+
+$$
+[\hat{G}^{-1}(\alpha_1), \; \hat{G}^{-1}(\alpha_2)] \;\;\;\;\;\; (45)
+$$
+
+where
+
+$$
+\alpha_1 = \Phi[\hat{z}_0 + \frac{\hat{z}_0 + z_{\alpha/2}}{1 - \hat{a}(z_0 + z_{\alpha/2})}] \;\;\;\;\;\; (46)
+$$
+
+$$
+\alpha_2 = \Phi[\hat{z}_0 + \frac{\hat{z}_0 + z_{1-\alpha/2}}{1 - \hat{a}(z_0 + z_{1-\alpha/2})}] \;\;\;\;\;\; (47)
+$$
+
+$$
+\hat{z}_0 = \Phi^{-1}[\hat{G}(\hat{\mu})] \;\;\;\;\;\; (48)
+$$
+
+$$
+\hat{a} = \frac{\sum_{i=1}^N (\hat{\mu}_{(\cdot)} - \hat{\mu}_{(i)})^3}{6[\sum_{i=1}^N (\hat{\mu}_{(\cdot)} - \hat{\mu}_{(i)})^2]^{3/2}} \;\;\;\;\;\; (49)
+$$
+
+where the quantity $\hat{\mu}_{(i)}$ denotes the estimate of $\mu$ using all the values in $\underline{x}$ except the $i$'th one, and
+
+$$
+\hat{\mu}{(\cdot)} = \frac{1}{N} \sum_{i=1}^N \hat{\mu_{(i)}} \;\;\;\;\;\; (50)
+$$
+
+A one-sided lower confidence interval is given by:
+
+$$
+[\hat{G}^{-1}(\alpha_1), \; \infty] \;\;\;\;\;\; (51)
+$$
+
+and a one-sided upper confidence interval is given by:
+
+$$
+[-\infty, \; \hat{G}^{-1}(\alpha_2)] \;\;\;\;\;\; (52)
+$$
+
+where $\alpha_1$ and $\alpha_2$ are computed as for a two-sided confidence interval, except $\alpha/2$ is replaced with $\alpha$ in Equations (46) and (47).
+
+The constant $\hat{z}_0$ incorporates the bias correction, and the constant $\hat{a}$ is the acceleration constant. The term “acceleration” refers to the rate of change of the standard error of the estimate of $\mu$ with respect to the true value of $\mu$ (Efron and Tibshirani, 1993, p.186). For a normal (Gaussian) distribution, the standard error of the estimate of $\mu$ does not depend on the value of $\mu$, hence the acceleration constant is not really necessary.
+
+When `ci.method="bootstrap"`, the function `enormCensored` computes both the percentile method and bias-corrected and accelerated method bootstrap confidence intervals.
+
+This method of constructing confidence intervals for censored data was studied by Shumway et al. (1989).
+
+***Generalized Pivotal Quantity*** (`ci.method="gpq"`)  
+This method was introduced by Schmee et al. (1985) and is discussed by Krishnamoorthy and Mathew (2009). The idea is essentially to use a parametric bootstrap to estimate the correct pivotal quantities $z_1$ and $z_2$ in Equation (38) above. For singly censored data, these quantities are computed as follows:
+
+1. Generate a random sample of $N$ observations from a standard normal (i.e., N(0,1)) distribution and let $z_{(1)}, z_{(2)}, \ldots, z_{(N)}$ denote the ordered (sorted) observations.
+2. Set the smallest `c` observations to be censored.
+3. Compute the estimates of $\mu$ and $\sigma$ using the method specified by the `method` argument, and denote these estimates as $\hat{\mu}^*, \; \hat{\sigma}^*$.
+4. Compute the t-like pivotal quantity $\hat{t} = \hat{\mu}^*/\hat{\sigma}^*$.
+5. Repeat steps 1-4 `nmc` times to produce an empirical distribution of the t-like pivotal quantity.
+
+The function `enormCensored` calls the function [`gpqCiNormSinglyCensored`](https://alexkowa.github.io/EnvStats/reference/gpqCiNormCensored.html) to generate the distribution of pivotal quantities in the case of singly censored data. A two-sided $(1-\alpha)100\%$ confidence interval for $\mu$ is then computed as:
+
+$$
+[\hat{\mu} - \hat{t}_{1-(\alpha/2)} \hat{\sigma}, \; \hat{\mu} - \hat{t}_{\alpha/2} \hat{\sigma}] \;\;\;\;\;\; (49)
+$$
+
+where $\hat{t}_p$ denotes the $p$'th empirical quantile of the `nmc` generated $\hat{t}$ values.
+
+Schmee at al. (1985) derived this method in the context of Type II singly censored data (for which these limits are exact within Monte Carlo error), but state that according to Regal (1982) this method produces confidence intervals that are close apporximations to the correct limits for Type I censored data.
+
+For multiply censored data, this method has been extended as follows. The algorithm stays the same, except that Step 2 becomes:
+
+2. Set the $i$'th ordered generated observation to be censored or not censored according to whether the $i$'th observed observation in the original data is censored or not censored.
+
+The function `enormCensored` calls the function [`gpqCiNormMultiplyCensored`](https://alexkowa.github.io/EnvStats/reference/gpqCiNormCensored.html) to generate the distribution of pivotal quantities in the case of multiply censored data.
+
+## elnormAltCensored {#elnormaltcensored}
+
+Help topic: [`elnormAltCensored`](https://alexkowa.github.io/EnvStats/reference/elnormAltCensored.html).
+
+If `x` or `censored` contain any missing (`NA`), undefined (`NaN`) or infinite (`Inf`, `-Inf`) values, they will be removed prior to performing the estimation.
+
+Let $\underline{x}$ be a vector of $n$ observations from a [lognormal distribution](https://alexkowa.github.io/EnvStats/reference/LognormalAlt.html) with parameters `mean=`$\theta$ and `cv=`$\tau$. Let $\eta$ denote the standard deviation of this distribution, so that $\eta = \theta \tau$. Set $\underline{y} = log(\underline{x})$. Then $\underline{y}$ is a vector of observations from a normal distribution with parameters `mean=`$\mu$ and `sd=`$\sigma$. See the help file for [LognormalAlt](https://alexkowa.github.io/EnvStats/reference/LognormalAlt.html) for the relationship between $\theta, \tau, \eta, \mu$, and $\sigma$.
+
+Let $\underline{x}$ denote a vector of $N$ observations from a [lognormal distribution](https://alexkowa.github.io/EnvStats/reference/LognormalAlt.html) with parameters `mean=`$\theta$ and `cv=`$\tau$. Let $\eta$ denote the standard deviation of this distribution, so that $\eta = \theta \tau$. Set $\underline{y} = log(\underline{x})$. Then $\underline{y}$ is a vector of observations from a normal distribution with parameters `mean=`$\mu$ and `sd=`$\sigma$. See the help file for [LognormalAlt](https://alexkowa.github.io/EnvStats/reference/LognormalAlt.html) for the relationship between $\theta, \tau, \eta, \mu$, and $\sigma$.
+
+Assume $n$ ($0 < n < N$) of the $N$ observations are known and $c$ ($c=N-n$) of the observations are all censored below (left-censored) or all censored above (right-censored) at $k$ fixed censoring levels
+
+$$
+T_1, T_2, \ldots, T_k; \; k \ge 1 \;\;\;\;\;\; (1)
+$$
+
+For the case when $k \ge 2$, the data are said to be Type I ***multiply censored***. For the case when $k=1$, set $T = T_1$. If the data are left-censored and all $n$ known observations are greater than or equal to $T$, or if the data are right-censored and all $n$ known observations are less than or equal to $T$, then the data are said to be Type I ***singly censored*** (Nelson, 1982, p.7), otherwise they are considered to be Type I multiply censored.
+
+Let $c_j$ denote the number of observations censored below or above censoring level $T_j$ for $j = 1, 2, \ldots, k$, so that
+
+$$
+\sum_{i=1}^k c_j = c \;\;\;\;\;\; (2)
+$$
+
+Let $x_{(1)}, x_{(2)}, \ldots, x_{(N)}$ denote the “ordered” observations, where now “observation” means either the actual observation (for uncensored observations) or the censoring level (for censored observations). For right-censored data, if a censored observation has the same value as an uncensored one, the uncensored observation should be placed first. For left-censored data, if a censored observation has the same value as an uncensored one, the censored observation should be placed first.
+
+Note that in this case the quantity $x_{(i)}$ does not necessarily represent the $i$'th “largest” observation from the (unknown) complete sample.
+
+Finally, let $\Omega$ (omega) denote the set of $n$ subscripts in the “ordered” sample that correspond to uncensored observations.
+
+**ESTIMATION**  
+This section explains how each of the estimators of `mean=`$\theta$ and `cv=`$\tau$ are computed. The approach is to first compute estimates of $\theta$ and $\eta^2$ (the mean and variance of the lognormal distribution), say $\hat{\theta}$ and $\hat{\eta}^2$, then compute the estimate of the cv $\tau$ by $\hat{\tau} = \hat{\eta}/\hat{\theta}$.
+
+*Maximum Likelihood Estimation* (`method="mle"`)  
+The maximum likelihood estimators of $\theta$, $\tau$, and $\eta$ are computed as:
+
+$$
+\hat{\theta}_{mle} = exp(\hat{\mu}_{mle} + \frac{\hat{\sigma}^2_{mle}}{2}) \;\;\;\;\;\; (3)
+$$
+
+$$
+\hat{\tau}_{mle} = [exp(\hat{\sigma}^2_{mle})  - 1]^{1/2} \;\;\;\;\;\; (4)
+$$
+
+$$
+\hat{\eta}_{mle} = \hat{\theta}_{mle} \; \hat{\tau}_{mle} \;\;\;\;\;\; (5)
+$$
+
+where $\hat{\mu}_{mle}$ and $\hat{\sigma}_{mle}$ denote the maximum likelihood estimators of $\mu$ and $\sigma$. See the help for for [`enormCensored`](https://alexkowa.github.io/EnvStats/reference/enormCensored.html) for information on how $\hat{\mu}_{mle}$ and $\hat{\sigma}_{mle}$ are computed.
+
+*Quasi Minimum Variance Unbiased Estimation Based on the MLE's* (`method="qmvue"`)  
+The maximum likelihood estimators of $\theta$ and $\eta^2$ are biased. Even for complete (uncensored) samples these estimators are biased (see equation (12) in the section on [`elnormAlt`](distributions-and-estimation.html#elnormalt)). The bias tends to 0 as the sample size increases, but it can be considerable for small sample sizes. (Cohn et al., 1989, demonstrate the bias for complete data sets.) For the case of complete samples, the minimum variance unbiased estimators (mvue's) of $\theta$ and $\eta^2$ were derived by Finney (1941) and are discussed in Gilbert (1987, pp.164-167) and Cohn et al. (1989). These estimators are computed as:
+
+$$
+\hat{\theta}_{mvue} = e^{\bar{y}} g_{n-1}(\frac{s^2}{2}) \;\;\;\;\;\; (6)
+$$
+
+$$
+\hat{\eta}^2_{mvue} = e^{2 \bar{y}} \{g_{n-1}(2s^2) - g_{n-1}[\frac{(n-2)s^2}{n-1}]\} \;\;\;\;\;\; (7)
+$$
+
+where
+
+$$
+\bar{y} = \frac{1}{n} \sum_{i=1}^n y_i \;\;\;\;\;\; (8)
+$$
+
+$$
+s^2 = \frac{1}{n-1} \sum_{i=1}^n (y_i - \bar{y})^2 \;\;\;\;\;\; (9)
+$$
+
+$$
+g_m(z) = \sum_{i=0}^\infty \frac{m^i (m+2i)}{m(m+2) \cdots (m+2i)} (\frac{m}{m+1})^i (\frac{z^i}{i!}) \;\;\;\;\;\; (10)
+$$
+
+(see the section on [`elnormAlt`](distributions-and-estimation.html#elnormalt)).
+
+For Type I censored samples, the quasi minimum variance unbiased estimators (qmvue's) of $\theta$ and $\eta^2$ are computed using equations (6) and (7) and estimating $\mu$ and $\sigma$ with their mle's (see [`elnormCensored`](https://alexkowa.github.io/EnvStats/reference/elnormCensored.html)).
+
+For singly censored data, this is apparently the LM method of Gilliom and Helsel (1986, p.137) (it is not clear from their description on page 137 whether their LM method is the straight `method="mle"` described above or `method="qmvue"` described here). This method was also used by Newman et al. (1989, p.915, equations 10-11).
+
+For multiply censored data, this is apparently the MM method of Helsel and Cohn (1988, p.1998). (It is not clear from their description on page 1998 and the description in Gilliom and Helsel, 1986, page 137 whether Helsel and Cohn's (1988) MM method is the straight `method="mle"` described above or `method="qmvue"` described here.)
+
+*Bias-Corrected Maximum Likelihood Estimation* (`method="bcmle"`)  
+This method was derived by El-Shaarawi (1989) and can be applied to complete or censored data sets. For complete data, the exact relative bias of the mle of the mean $\theta$ is given as:
+
+$$
+B_{mle} = \frac{E[\hat{\theta}_{mle}]}{\theta} = exp[\frac{-(n-1)\sigma^2}{2n}] (1 - \frac{\sigma^2}{n})^{-(n-1)/2} \;\;\;\;\;\; (11)
+$$
+
+(see equation (12) in the section on [`elnormAlt`](distributions-and-estimation.html#elnormalt)).
+
+For the case of complete or censored data, El-Shaarawi (1989) proposed the following “bias-corrected” maximum likelihood estimator:
+
+$$
+\hat{\theta}_{bcmle} = \frac{\hat{\theta}_{mle}}{\hat{B}_{mle}} \;\;\;\;\;\; (12)
+$$
+
+where
+
+$$
+\hat{B}_{mle} = exp[\frac{1}{2}(\hat{V}_{11} + 2\hat{\sigma}_{mle} \hat{V}_{12} + \hat{\sigma}^2_{mle} \hat{V}_{22})] \;\;\;\;\;\; (13)
+$$
+
+and $V$ denotes the asymptotic variance-covariance of the mle's of $\mu$ and $\sigma$, which is based on the observed information matrix, formulas for which are given in Cohen (1991). El-Shaarawi (1989) does not propose a bias-corrected estimator of the variance $\eta^2$, so the mle of $\eta$ is computed when `method="bcmle"`.
+
+*Robust Regression on Order Statistics* (`method="rROS"`) or  
+*Imputation Using Quantile-Quantile Regression* (`method ="impute.w.qq.reg"`)  
+This is the robust Regression on Order Statistics (rROS) method discussed in USEPA (2009) and Helsel (2012). This method involves using quantile-quantile regression on the log-transformed observations to fit a regression line (and thus initially estimate the mean $\mu$ and standard deviation $\sigma$ in log-space), imputing the log-transformed values of the $c$ censored observations by predicting them from the regression equation, transforming the log-scale imputed values back to the original scale, and then computing the method of moments estimates of the mean and standard deviation based on the observed and imputed values.
+
+The steps are:
+
+1. Estimate $\mu$ and $\sigma$ by computing the least-squares estimates in the following model:
+
+   $$
+   y_{(i)} = \mu + \sigma \Phi^{-1}(p_i) + \epsilon_i, \; i \in \Omega \;\;\;\;\;\; (14)
+   $$
+
+   where $p_i$ denotes the plotting position associated with the $i$'th largest value, $a$ is a constant such that $0 \le a \le 1$ (the default value is 0.375), $\Phi$ denotes the cumulative distribution function (cdf) of the standard normal distribution and $\Omega$ denotes the set of $n$ subscripts associated with the uncensored observations in the ordered sample. The plotting positions are computed by calling the function [`ppointsCensored`](https://alexkowa.github.io/EnvStats/reference/ppointsCensored.html).
+
+2. Compute the log-scale imputed values as:
+
+   $$
+   \hat{y}_{(i)} = \hat{\mu}_{qqreg} + \hat{\sigma}_{qqreg} \Phi^{-1}(p_i), \; i \not \in \Omega \;\;\;\;\;\; (15)
+   $$
+
+3. Retransform the log-scale imputed values:
+
+   $$
+   \hat{x}_{(i)} = exp[\hat{y}_{(i)}], \; i \not \in \Omega  \;\;\;\;\;\; (16)
+   $$
+
+4. Compute the usual method of moments estimates of the mean and variance.
+
+   $$
+   \hat{\theta} = \frac{1}{N} [\sum_{i \not \in \Omega} \hat{x}_{(i)} + \sum_{i \in \Omega} x_{(i)}] \;\;\;\;\;\; (17)
+   $$
+
+   $$
+   \hat{\eta}^2 = \frac{1}{N-1} [\sum_{i \not \in \Omega} (\hat{x}_{(i)} - \hat{\theta}^2) + \sum_{i \in \Omega} (x_{(i)} - \hat{\theta}^2)] \;\;\;\;\;\; (18)
+   $$
+
+   Note that the estimate of variance is actually the usual unbiased one (not the method of moments one) in the case of complete data.
+
+For sinlgy censored data, this method is discussed by Hashimoto and Trussell (1983), Gilliom and Helsel (1986), and El-Shaarawi (1989), and is referred to as the LR (Log-Regression) or Log-Probability Method.
+
+For multiply censored data, this is the MR method of Helsel and Cohn (1988, p.1998). They used it with the probability method of Hirsch and Stedinger (1987) and Weibull plotting positions (i.e., `prob.method="hirsch-stedinger"` and `plot.pos.con=0`).
+
+The argument `plot.pos.con` (see the `...` arguments in the [`elnormAltCensored` help page](https://alexkowa.github.io/EnvStats/reference/elnormAltCensored.html)) determines the value of the plotting positions computed in equations (14) and (15) when `method` equals `"hirsch-stedinger"` or `"michael-schucany"`. The default value is `plot.pos.con=0.375`. See the section on [`ppointsCensored`](distribution-diagnostics.html#ppointscensored) for more information.
+
+The arguments `lb.impute` and `ub.impute` (see the `...` arguments in the [`elnormAltCensored` help page](https://alexkowa.github.io/EnvStats/reference/elnormAltCensored.html)) determine the lower and upper bounds for the imputed values. Imputed values smaller than `lb.impute` are set to this value. Imputed values larger than `ub.impute` are set to this value. The default values are `lb.impute=0` and `ub.impute=Inf`.
+
+*Imputation Using Quantile-Quantile Regression Including the Censoring Level*  
+(`method ="impute.w.qq.reg.w.cen.level"`)  
+**This method is only available for sinlgy censored data**. This method was proposed by El-Shaarawi (1989), which he denoted as the Modified LR Method. It is exactly the same method as imputation using quantile-quantile regression (`method="impute.w.qq.reg"`), except that the quantile-quantile regression includes the censoring level. For left singly censored data, the modification involves adding the point $[\Phi^{-1}(p_c), T]$ to the plot before fitting the least-squares line. For right singly censored data, the point $[\Phi^{-1}(p_{n+1}), T]$ is added to the plot before fitting the least-squares line.
+
+*Imputation Using Maximum Likelihood* (`method ="impute.w.mle"`)  
+**This method is only available for sinlgy censored data**. This is exactly the same method as robust Regression on Order Statistics (i.e., the same as using `method="rROS"` or  
+`method="impute.w.qq.reg"`), except that the maximum likelihood method (`method="mle"`) is used to compute the initial estimates of the mean and standard deviation. In the context of lognormal data, this method is discussed by El-Shaarawi (1989), which he denotes as the Modified Maximum Likelihood Method.
+
+*Setting Censored Observations to Half the Censoring Level* (`method="half.cen.level"`)  
+This method is applicable only to left censored data that is bounded below by 0. This method involves simply replacing all the censored observations with half their detection limit, and then computing the usual moment estimators of the mean and variance. That is, all censored observations are imputed to be half the detection limit, and then Equations (17) and (18) are used to estimate the mean and varaince.
+
+This method is included only to allow comparison of this method to other methods. ***Setting left-censored observations to half the censoring level is not recommended***. In particular, El-Shaarawi and Esterby (1992) show that these estimators are biased and inconsistent (i.e., the bias remains even as the sample size increases).
+
+**CONFIDENCE INTERVALS**  
+This section explains how confidence intervals for the mean $\theta$ are computed. f
+
+*Likelihood Profile* (`ci.method="profile.likelihood"`)  
+This method was proposed by Cox (1970, p.88), and Venzon and Moolgavkar (1988) introduced an efficient method of computation. This method is also discussed by Stryhn and Christensen (2003) and Royston (2007). The idea behind this method is to invert the likelihood-ratio test to obtain a confidence interval for the mean $\theta$ while treating the coefficient of variation $\tau$ as a nuisance parameter.
+
+For Type I left censored data, the likelihood function is given by:
+
+$$
+L(\theta, \tau | \underline{x}) = {N \choose c_1 c_2 \ldots c_k n} \prod_{j=1}^k [F(T_j)]^{c_j} \prod_{i \in \Omega} f[x_{(i)}] \;\;\;\;\;\; (19)
+$$
+
+where $f$ and $F$ denote the probability density function (pdf) and cumulative distribution function (cdf) of the population. That is,
+
+$$
+f(t) = \phi(\frac{t-\mu}{\sigma}) \;\;\;\;\;\; (20)
+$$
+
+$$
+F(t) = \Phi(\frac{t-\mu}{\sigma}) \;\;\;\;\;\; (21)
+$$
+
+where
+
+$$
+\mu = log(\frac{\theta}{\sqrt{\tau^2 + 1}}) \;\;\;\;\;\; (22)
+$$
+
+$$
+\sigma = [log(\tau^2 + 1)]^{1/2} \;\;\;\;\;\; (23)
+$$
+
+and $\phi$ and $\Phi$ denote the pdf and cdf of the standard normal distribution, respectively (Cohen, 1963; 1991, pp.6, 50). For left singly censored data, equation (3) simplifies to:
+
+$$
+L(\mu, \sigma | \underline{x}) = {N \choose c} [F(T)]^{c} \prod_{i = c+1}^n f[x_{(i)}] \;\;\;\;\;\; (24)
+$$
+
+Similarly, for Type I right censored data, the likelihood function is given by:
+
+$$
+L(\mu, \sigma | \underline{x}) = {N \choose c_1 c_2 \ldots c_k n} \prod_{j=1}^k [1 - F(T_j)]^{c_j} \prod_{i \in \Omega} f[x_{(i)}] \;\;\;\;\;\; (25)
+$$
+
+and for right singly censored data this simplifies to:
+
+$$
+L(\mu, \sigma | \underline{x}) = {N \choose c} [1 - F(T)]^{c} \prod_{i = 1}^n f[x_{(i)}] \;\;\;\;\;\; (26)
+$$
+
+Following Stryhn and Christensen (2003), denote the maximum likelihood estimates of the mean and coefficient of variation by $(\theta^*, \tau^*)$. The likelihood ratio test statistic ($G^2$) of the hypothesis $H_0: \theta = \theta_0$ (where $\theta_0$ is a fixed value) equals the drop in $2 log(L)$ between the “full” model and the reduced model with $\theta$ fixed at $\theta_0$, i.e.,
+
+$$
+G^2 = 2 \{log[L(\theta^*, \tau^*)] - log[L(\theta_0, \tau_0^*)]\} \;\;\;\;\;\; (27)
+$$
+
+where $\tau_0^*$ is the maximum likelihood estimate of $\tau$ for the reduced model (i.e., when $\theta = \theta_0$). Under the null hypothesis, the test statistic $G^2$ follows a [chi-squared distribution](https://stat.ethz.ch/R-manual/R-devel/library/stats/html/Chisquare.html) with 1 degree of freedom.
+
+Alternatively, we may express the test statistic in terms of the profile likelihood function $L_1$ for the mean $\theta$, which is obtained from the usual likelihood function by maximizing over the parameter $\tau$, i.e.,
+
+$$
+L_1(\theta) = max_{\tau} L(\theta, \tau) \;\;\;\;\;\; (28)
+$$
+
+Then we have
+
+$$
+G^2 = 2 \{log[L_1(\theta^*)] - log[L_1(\theta_0)]\} \;\;\;\;\;\; (29)
+$$
+
+A two-sided $(1-\alpha)100\%$ confidence interval for the mean $\theta$ consists of all values of $\theta_0$ for which the test is not significant at level $alpha$:
+
+$$
+\theta_0: G^2 \le \chi^2_{1, {1-\alpha}} \;\;\;\;\;\; (30)
+$$
+
+where $\chi^2_{\nu, p}$ denotes the $p$'th quantile of the [chi-squared distribution](https://stat.ethz.ch/R-manual/R-devel/library/stats/html/Chisquare.html) with $\nu$ degrees of freedom. One-sided lower and one-sided upper confidence intervals are computed in a similar fashion, except that the quantity $1-\alpha$ in Equation (30) is replaced with $1-2\alpha$.
+
+***Direct Normal Approximations*** (`ci.method="delta"` or `ci.method="normal.approx"`)  
+An approximate $(1-\alpha)100\%$ confidence interval for $\theta$ can be constructed assuming the distribution of the estimator of $\theta$ is approximately normally distributed. That is, a two-sided $(1-\alpha)100\%$ confidence interval for $\theta$ is constructed as:
+
+$$
+[\hat{\theta} - t_{1-\alpha/2, m-1}\hat{\sigma}_{\hat{\theta}}, \; \hat{\theta} + t_{1-\alpha/2, m-1}\hat{\sigma}_{\hat{\theta}}] \;\;\;\;\;\; (31)
+$$
+
+where $\hat{\theta}$ denotes the estimate of $\theta$, $\hat{\sigma}_{\hat{\theta}}$ denotes the estimated asymptotic standard deviation of the estimator of $\theta$, $m$ denotes the assumed sample size for the confidence interval, and $t_{p,\nu}$ denotes the $p$'th quantile of [Student's t-distribuiton](https://stat.ethz.ch/R-manual/R-devel/library/stats/html/TDist.html) with $\nu$ degrees of freedom. One-sided confidence intervals are computed in a similar fashion.
+
+The argument `ci.sample.size` determines the value of $m$ (see the `...` arguments in the [`elnormAltCensored` help page](https://alexkowa.github.io/EnvStats/reference/elnormAltCensored.html)). When `method` equals `"mle"`, `"qmvue"`, or `"bcmle"` and the data are singly censored, the default value is the expected number of uncensored observations, otherwise it is $n$, the observed number of uncensored observations. This is simply an ad-hoc method of constructing confidence intervals and is not based on any published theoretical results.
+
+When `pivot.statistic="z"`, the $p$'th quantile from the [standard normal distribution](https://stat.ethz.ch/R-manual/R-devel/library/stats/html/Normal.html) is used in place of the $p$'th quantile from Student's t-distribution.
+
+*Direct Normal Approximation Based on the Delta Method* (`ci.method="delta"`)  
+This method is usually applied with the maximum likelihood estimators (`method="mle"`). It should also work approximately for the quasi minimum variance unbiased estimators (`method="qmvue"`) and the bias-corrected maximum likelihood estimators (`method="bcmle"`).
+
+When `method="mle"`, the variance of the mle of $\theta$ can be estimated based on the variance-covariance matrix of the mle's of $\mu$ and $\sigma$ (denoted $V$), and the delta method:
+
+$$
+\hat{\sigma}^2_{\hat{\theta}} = (\frac{\partial \theta}{\partial \underline{\lambda}})^{'}_{\hat{\underline{\lambda}}} \hat{V} (\frac{\partial \theta}{\partial \underline{\lambda}})_{\hat{\underline{\lambda}}} \;\;\;\;\;\; (32)
+$$
+
+where
+
+$$
+\underline{\lambda}' = (\mu, \sigma) \;\;\;\;\;\; (33)
+$$
+
+$$
+\frac{\partial \theta}{\partial \mu} = exp(\mu + \frac{\sigma^2}{2}) \;\;\;\;\;\; (34)
+$$
+
+$$
+\frac{\partial \theta}{\partial \sigma} = \sigma exp(\mu + \frac{\sigma^2}{2}) \;\;\;\;\;\; (35)
+$$
+
+(Shumway et al., 1989). The variance-covariance matrix $V$ of the mle's of $\mu$ and $\sigma$ is estimated based on the inverse of the observed Fisher Information matrix, formulas for which are given in Cohen (1991).
+
+*Direct Normal Approximation Based on the Moment Estimators* (`ci.method="normal.approx"`)  
+This method is valid only for the moment estimators based on imputed values  
+(i.e., `method="impute.w.qq.reg"` or `method="half.cen.level"`). For these cases, the standard deviation of the estimated mean is assumed to be approximated by
+
+$$
+\hat{\sigma}_{\hat{\theta}} = \frac{\hat{\eta}}{\sqrt{m}} \;\;\;\;\;\; (36)
+$$
+
+where, as already noted, $m$ denotes the assumed sample size. This is simply an ad-hoc method of constructing confidence intervals and is not based on any published theoretical results.
+
+*Cox's Method* (`ci.method="cox"`)  
+This method may be applied with the maximum likelihood estimators (`method="mle"`), the quasi minimum variance unbiased estimators (`method="qmvue"`), and the bias-corrected maximum likelihood estimators (`method="bcmle"`).
+
+This method was proposed by El-Shaarawi (1989) and is an extension of the method derived by Cox and presented in Land (1972) for the case of complete data (see the explanation of `ci.method="cox"` in the section on [`elnormAlt`](distributions-and-estimation.html#elnormalt)). The idea is to construct an approximate $(1-\alpha)100\%$ confidence interval for the quantity
+
+$$
+\beta = exp(\mu + \frac{\sigma^2}{2}) \;\;\;\;\;\; (37)
+$$
+
+assuming the estimate of $\beta$
+
+$$
+\hat{\beta} = exp(\hat{\mu} + \frac{\hat{\sigma}^2}{2}) \;\;\;\;\;\; (38)
+$$
+
+is approximately normally distributed, and then exponentiate the confidence limits. That is, a two-sided $(1-\alpha)100\%$ confidence interval for $\theta$ is constructed as:
+
+$$
+[ exp(\hat{\beta} - h), \; exp(\hat{\beta} + h) ]\;\;\;\;\;\; (39)
+$$
+
+where
+
+$$
+h = t_{1-\alpha/2, m-1}\hat{\sigma}_{\hat{\beta}} \;\;\;\;\;\; (40)
+$$
+
+and $\hat{\sigma}_{\hat{\beta}}$ denotes the estimated asymptotic standard deviation of the estimator of $\beta$, $m$ denotes the assumed sample size for the confidence interval, and $t_{p,\nu}$ denotes the $p$'th quantile of [Student's t-distribuiton](https://stat.ethz.ch/R-manual/R-devel/library/stats/html/TDist.html) with $\nu$ degrees of freedom.
+
+El-Shaarawi (1989) shows that the standard deviation of the mle of $\beta$ can be estimated by:
+
+$$
+\hat{\sigma}_{\hat{\beta}} = \sqrt{ \hat{V}_{11} + 2 \hat{\sigma} \hat{V}_{12} + \hat{\sigma}^2 \hat{V}_{22} } \;\;\;\;\;\; (41)
+$$
+
+where $V$ denotes the variance-covariance matrix of the mle's of $\mu$ and $\sigma$ and is estimated based on the inverse of the Fisher Information matrix.
+
+One-sided confidence intervals are computed in a similar fashion.
+
+***Bootstrap and Bias-Corrected Bootstrap Approximation*** (`ci.method="bootstrap"`)  
+The bootstrap is a nonparametric method of estimating the distribution (and associated distribution parameters and quantiles) of a sample statistic, regardless of the distribution of the population from which the sample was drawn. The bootstrap was introduced by Efron (1979) and a general reference is Efron and Tibshirani (1993).
+
+In the context of deriving an approximate $(1-\alpha)100\%$ confidence interval for the population mean $\theta$, the bootstrap can be broken down into the following steps:
+
+1. Create a bootstrap sample by taking a random sample of size $N$ from the observations in $\underline{x}$, where sampling is done with replacement. Note that because sampling is done with replacement, the same element of $\underline{x}$ can appear more than once in the bootstrap sample. Thus, the bootstrap sample will usually not look exactly like the original sample (e.g., the number of censored observations in the bootstrap sample will often differ from the number of censored observations in the original sample).
+2. Estimate $\theta$ based on the bootstrap sample created in Step 1, using the same method that was used to estimate $\theta$ using the original observations in $\underline{x}$. Because the bootstrap sample usually does not match the original sample, the estimate of $\theta$ based on the bootstrap sample will usually differ from the original estimate based on $\underline{x}$.
+3. Repeat Steps 1 and 2 $B$ times, where $B$ is some large number. The number of bootstraps $B$ is determined by the argument `n.bootstraps` (see the arguments in the [`elnormAltCensored` help page](https://alexkowa.github.io/EnvStats/reference/elnormAltCensored.html)). The default value of `n.bootstraps` is `1000`.
+4. Use the $B$ estimated values of $\theta$ to compute the empirical cumulative distribution function of this estimator of $\theta$ (see [`ecdfPlot`](https://alexkowa.github.io/EnvStats/reference/ecdfPlot.html)), and then create a confidence interval for $\theta$ based on this estimated cdf.
+
+The two-sided percentile interval (Efron and Tibshirani, 1993, p.170) is computed as:
+
+$$
+[\hat{G}^{-1}(\frac{\alpha}{2}), \; \hat{G}^{-1}(1-\frac{\alpha}{2})] \;\;\;\;\;\; (42)
+$$
+
+where $\hat{G}(t)$ denotes the empirical cdf evaluated at $t$ and thus $\hat{G}^{-1}(p)$ denotes the $p$'th empirical quantile, that is, the $p$'th quantile associated with the empirical cdf. Similarly, a one-sided lower confidence interval is computed as:
+
+$$
+[\hat{G}^{-1}(\alpha), \; \infty] \;\;\;\;\;\; (43)
+$$
+
+and a one-sided upper confidence interval is computed as:
+
+$$
+[0, \; \hat{G}^{-1}(1-\alpha)] \;\;\;\;\;\; (44)
+$$
+
+The function `elnormAltCensored` calls the R function [`quantile`](https://stat.ethz.ch/R-manual/R-devel/library/stats/html/quantile.html) to compute the empirical quantiles used in Equations (42)-(44).
+
+The percentile method bootstrap confidence interval is only first-order accurate (Efron and Tibshirani, 1993, pp.187-188), meaning that the probability that the confidence interval will contain the true value of $\theta$ can be off by $k/\sqrt{N}$, where $k$is some constant. Efron and Tibshirani (1993, pp.184-188) proposed a bias-corrected and accelerated interval that is second-order accurate, meaning that the probability that the confidence interval will contain the true value of $\theta$ may be off by $k/N$ instead of $k/\sqrt{N}$. The two-sided bias-corrected and accelerated confidence interval is computed as:
+
+$$
+[\hat{G}^{-1}(\alpha_1), \; \hat{G}^{-1}(\alpha_2)] \;\;\;\;\;\; (45)
+$$
+
+where
+
+$$
+\alpha_1 = \Phi[\hat{z}_0 + \frac{\hat{z}_0 + z_{\alpha/2}}{1 - \hat{a}(z_0 + z_{\alpha/2})}] \;\;\;\;\;\; (46)
+$$
+
+$$
+\alpha_2 = \Phi[\hat{z}_0 + \frac{\hat{z}_0 + z_{1-\alpha/2}}{1 - \hat{a}(z_0 + z_{1-\alpha/2})}] \;\;\;\;\;\; (47)
+$$
+
+$$
+\hat{z}_0 = \Phi^{-1}[\hat{G}(\hat{\theta})] \;\;\;\;\;\; (48)
+$$
+
+$$
+\hat{a} = \frac{\sum_{i=1}^N (\hat{\theta}_{(\cdot)} - \hat{\theta}_{(i)})^3}{6[\sum_{i=1}^N (\hat{\theta}_{(\cdot)} - \hat{\theta}_{(i)})^2]^{3/2}} \;\;\;\;\;\; (49)
+$$
+
+where the quantity $\hat{\theta}_{(i)}$ denotes the estimate of $\theta$ using all the values in $\underline{x}$ except the $i$'th one, and
+
+$$
+\hat{\theta}{(\cdot)} = \frac{1}{N} \sum_{i=1}^N \hat{\theta_{(i)}} \;\;\;\;\;\; (50)
+$$
+
+A one-sided lower confidence interval is given by:
+
+$$
+[\hat{G}^{-1}(\alpha_1), \; \infty] \;\;\;\;\;\; (51)
+$$
+
+and a one-sided upper confidence interval is given by:
+
+$$
+[0, \; \hat{G}^{-1}(\alpha_2)] \;\;\;\;\;\; (52)
+$$
+
+where $\alpha_1$ and $\alpha_2$ are computed as for a two-sided confidence interval, except $\alpha/2$ is replaced with $\alpha$ in Equations (51) and (52).
+
+The constant $\hat{z}_0$ incorporates the bias correction, and the constant $\hat{a}$ is the acceleration constant. The term “acceleration” refers to the rate of change of the standard error of the estimate of $\theta$ with respect to the true value of $\theta$ (Efron and Tibshirani, 1993, p.186). For a normal (Gaussian) distribution, the standard error of the estimate of $\theta$ does not depend on the value of $\theta$, hence the acceleration constant is not really necessary.
+
+When `ci.method="bootstrap"`, the function `elnormAltCensored` computes both the percentile method and bias-corrected and accelerated method bootstrap confidence intervals.
+
+This method of constructing confidence intervals for censored data was studied by Shumway et al. (1989).
+
+## egammaCensored {#egammacensored}
+
+Help topic: [`egammaCensored`](https://alexkowa.github.io/EnvStats/reference/egammaCensored.html).
+
+If `x` or `censored` contain any missing (`NA`), undefined (`NaN`) or infinite (`Inf`, `-Inf`) values, they will be removed prior to performing the estimation.
+
+Let $\underline{x}$ denote a vector of $N$ observations from a [gamma distribution](https://stat.ethz.ch/R-manual/R-devel/library/stats/html/GammaDist.html) with parameters `shape=`$\kappa$ and `scale=`$\theta$. The relationship between these parameters and the mean $\mu$ and coefficient of variation $\tau$ of this distribution is given by:
+
+$$
+\kappa = \tau^{-2} \;\;\;\;\;\; (1)
+$$
+
+$$
+\theta = \mu/\kappa \;\;\;\;\;\; (2)
+$$
+
+$$
+\mu = \kappa \; \theta \;\;\;\;\;\; (3)
+$$
+
+$$
+\tau = \kappa^{-1/2} \;\;\;\;\;\; (4)
+$$
+
+Assume $n$ ($0 < n < N$) of these observations are known and $c$ ($c=N-n$) of these observations are all censored below (left-censored) or all censored above (right-censored) at $k$ fixed censoring levels
+
+$$
+T_1, T_2, \ldots, T_k; \; k \ge 1 \;\;\;\;\;\; (5)
+$$
+
+For the case when $k \ge 2$, the data are said to be Type I ***multiply censored***. For the case when $k=1$, set $T = T_1$. If the data are left-censored and all $n$ known observations are greater than or equal to $T$, or if the data are right-censored and all $n$ known observations are less than or equal to $T$, then the data are said to be Type I ***singly censored*** (Nelson, 1982, p.7), otherwise they are considered to be Type I multiply censored.
+
+Let $c_j$ denote the number of observations censored below or above censoring level $T_j$ for $j = 1, 2, \ldots, k$, so that
+
+$$
+\sum_{i=1}^k c_j = c \;\;\;\;\;\; (6)
+$$
+
+Let $x_{(1)}, x_{(2)}, \ldots, x_{(N)}$ denote the “ordered” observations, where now “observation” means either the actual observation (for uncensored observations) or the censoring level (for censored observations). For right-censored data, if a censored observation has the same value as an uncensored one, the uncensored observation should be placed first. For left-censored data, if a censored observation has the same value as an uncensored one, the censored observation should be placed first.
+
+Note that in this case the quantity $x_{(i)}$ does not necessarily represent the $i$'th “largest” observation from the (unknown) complete sample.
+
+Finally, let $\Omega$ (omega) denote the set of $n$ subscripts in the “ordered” sample that correspond to uncensored observations.
+
+**Estimation**
+
+*Maximum Likelihood Estimation* (`method="mle"`)  
+For Type I left censored data, the likelihood function is given by:
+
+$$
+L(\kappa, \theta | \underline{x}) = {N \choose c_1 c_2 \ldots c_k n} \prod_{j=1}^k [F(T_j)]^{c_j} \prod_{i \in \Omega} f[x_{(i)}] \;\;\;\;\;\; (7)
+$$
+
+where $f$ and $F$ denote the probability density function (pdf) and cumulative distribution function (cdf) of the population (Cohen, 1963; Cohen, 1991, pp.6, 50). That is,
+
+$$
+f(t) =  \frac{t^{\kappa-1} e^{-t/\theta}}{\theta^\kappa \Gamma(\kappa)} \;\;\;\;\;\; (8)
+$$
+
+(Johnson et al., 1994, p.343). For left singly censored data, Equation (7) simplifies to:
+
+$$
+L(\kappa, \theta | \underline{x}) = {N \choose c} [F(T)]^{c} \prod_{i = c+1}^n f[x_{(i)}] \;\;\;\;\;\; (9)
+$$
+
+Similarly, for Type I right censored data, the likelihood function is given by:
+
+$$
+L(\kappa, \theta | \underline{x}) = {N \choose c_1 c_2 \ldots c_k n} \prod_{j=1}^k [1 - F(T_j)]^{c_j} \prod_{i \in \Omega} f[x_{(i)}] \;\;\;\;\;\; (10)
+$$
+
+and for right singly censored data this simplifies to:
+
+$$
+L(\kappa, \theta | \underline{x}) = {N \choose c} [1 - F(T)]^{c} \prod_{i = 1}^n f[x_{(i)}] \;\;\;\;\;\; (11)
+$$
+
+The maximum likelihood estimators are computed by minimizing the negative log-likelihood function.
+
+**Confidence Intervals**  
+This section explains how confidence intervals for the mean $\mu$ are computed.
+
+*Likelihood Profile* (`ci.method="profile.likelihood"`)  
+This method was proposed by Cox (1970, p.88), and Venzon and Moolgavkar (1988) introduced an efficient method of computation. This method is also discussed by Stryhn and Christensen (2003) and Royston (2007). The idea behind this method is to invert the likelihood-ratio test to obtain a confidence interval for the mean $\mu$ while treating the coefficient of variation $\tau$ as a nuisance parameter. Equation (7) above shows the form of the likelihood function $L(\mu, \tau | \underline{x})$ for multiply left-censored data and Equation (10) shows the function for multiply right-censored data, where $\mu$ and $\tau$ are defined by Equations (3) and (4).
+
+Following Stryhn and Christensen (2003), denote the maximum likelihood estimates of the mean and coefficient of variation by $(\mu^*, \tau^*)$. The likelihood ratio test statistic ($G^2$) of the hypothesis $H_0: \mu = \mu_0$ (where $\mu_0$ is a fixed value) equals the drop in $2 log(L)$ between the “full” model and the reduced model with $\mu$ fixed at $\mu_0$, i.e.,
+
+$$
+G^2 = 2 \{log[L(\mu^*, \tau^*)] - log[L(\mu_0, \tau_0^*)]\} \;\;\;\;\;\; (12)
+$$
+
+where $\tau_0^*$ is the maximum likelihood estimate of $\tau$ for the reduced model (i.e., when $\mu = \mu_0$). Under the null hypothesis, the test statistic $G^2$ follows a [chi-squared distribution](https://stat.ethz.ch/R-manual/R-devel/library/stats/html/Chisquare.html) with 1 degree of freedom.
+
+Alternatively, we may express the test statistic in terms of the profile likelihood function $L_1$ for the mean $\mu$, which is obtained from the usual likelihood function by maximizing over the parameter $\tau$, i.e.,
+
+$$
+L_1(\mu) = max_{\tau} L(\mu, \tau) \;\;\;\;\;\; (13)
+$$
+
+Then we have
+
+$$
+G^2 = 2 \{log[L_1(\mu^*)] - log[L_1(\mu_0)]\} \;\;\;\;\;\; (14)
+$$
+
+A two-sided $(1-\alpha)100\%$ confidence interval for the mean $\mu$ consists of all values of $\mu_0$ for which the test is not significant at level $alpha$:
+
+$$
+\mu_0: G^2 \le \chi^2_{1, {1-\alpha}} \;\;\;\;\;\; (15)
+$$
+
+where $\chi^2_{\nu, p}$ denotes the $p$'th quantile of the [chi-squared distribution](https://stat.ethz.ch/R-manual/R-devel/library/stats/html/Chisquare.html) with $\nu$ degrees of freedom. One-sided lower and one-sided upper confidence intervals are computed in a similar fashion, except that the quantity $1-\alpha$ in Equation (15) is replaced with $1-2\alpha$.
+
+*Normal Approximation* (`ci.method="normal.approx"`)  
+This method constructs approximate $(1-\alpha)100\%$ confidence intervals for $\mu$ based on the assumption that the estimator of $\mu$ is approximately normally distributed. That is, a two-sided $(1-\alpha)100\%$ confidence interval for $\mu$ is constructed as:
+
+$$
+[\hat{\mu} - t_{1-\alpha/2, m-1}\hat{\sigma}_{\hat{\mu}}, \; \hat{\mu} + t_{1-\alpha/2, m-1}\hat{\sigma}_{\hat{\mu}}] \;\;\;\; (16)
+$$
+
+where $\hat{\mu}$ denotes the estimate of $\mu$, $\hat{\sigma}_{\hat{\mu}}$ denotes the estimated asymptotic standard deviation of the estimator of $\mu$, $m$ denotes the assumed sample size for the confidence interval, and $t_{p,\nu}$ denotes the $p$'th quantile of [Student's t-distribuiton](https://stat.ethz.ch/R-manual/R-devel/library/stats/html/TDist.html) with $\nu$ degrees of freedom. One-sided confidence intervals are computed in a similar fashion.
+
+The argument `ci.sample.size` determines the value of $m$ and by default is equal to the number of uncensored observations. This is simply an ad-hoc method of constructing confidence intervals and is not based on any published theoretical results.
+
+When `pivot.statistic="z"`, the $p$'th quantile from the [standard normal distribution](https://stat.ethz.ch/R-manual/R-devel/library/stats/html/Normal.html) is used in place of the $p$'th quantile from Student's t-distribution.
+
+The standard deviation of the mle of $\mu$ is estimated based on the inverse of the Fisher Information matrix.
+
+*Bootstrap and Bias-Corrected Bootstrap Approximation* (`ci.method="bootstrap"`)  
+The bootstrap is a nonparametric method of estimating the distribution (and associated distribution parameters and quantiles) of a sample statistic, regardless of the distribution of the population from which the sample was drawn. The bootstrap was introduced by Efron (1979) and a general reference is Efron and Tibshirani (1993).
+
+In the context of deriving an approximate $(1-\alpha)100\%$ confidence interval for the population mean $\mu$, the bootstrap can be broken down into the following steps:
+
+1. Create a bootstrap sample by taking a random sample of size $N$ from the observations in $\underline{x}$, where sampling is done with replacement. Note that because sampling is done with replacement, the same element of $\underline{x}$ can appear more than once in the bootstrap sample. Thus, the bootstrap sample will usually not look exactly like the original sample (e.g., the number of censored observations in the bootstrap sample will often differ from the number of censored observations in the original sample).
+2. Estimate $\mu$ based on the bootstrap sample created in Step 1, using the same method that was used to estimate $\mu$ using the original observations in $\underline{x}$. Because the bootstrap sample usually does not match the original sample, the estimate of $\mu$ based on the bootstrap sample will usually differ from the original estimate based on $\underline{x}$.
+3. Repeat Steps 1 and 2 $B$ times, where $B$ is some large number. For the function `egammaCensored`, the number of bootstraps $B$ is determined by the argument `n.bootstraps` (see the arguments in the [`egammaCensored` help page](https://alexkowa.github.io/EnvStats/reference/egammaCensored.html)). The default value of `n.bootstraps` is `1000`.
+4. Use the $B$ estimated values of $\mu$ to compute the empirical cumulative distribution function of this estimator of $\mu$ (see [`ecdfPlot`](https://alexkowa.github.io/EnvStats/reference/ecdfPlot.html)), and then create a confidence interval for $\mu$ based on this estimated cdf.
+
+The two-sided percentile interval (Efron and Tibshirani, 1993, p.170) is computed as:
+
+$$
+[\hat{G}^{-1}(\frac{\alpha}{2}), \; \hat{G}^{-1}(1-\frac{\alpha}{2})] \;\;\;\;\;\; (17)
+$$
+
+where $\hat{G}(t)$ denotes the empirical cdf evaluated at $t$ and thus $\hat{G}^{-1}(p)$ denotes the $p$'th empirical quantile, that is, the $p$'th quantile associated with the empirical cdf. Similarly, a one-sided lower confidence interval is computed as:
+
+$$
+[\hat{G}^{-1}(\alpha), \; \infty] \;\;\;\;\;\; (18)
+$$
+
+and a one-sided upper confidence interval is computed as:
+
+$$
+[0, \; \hat{G}^{-1}(1-\alpha)] \;\;\;\;\;\; (19)
+$$
+
+The function `egammaCensored` calls the R function [`quantile`](https://stat.ethz.ch/R-manual/R-devel/library/stats/html/quantile.html) to compute the empirical quantiles used in Equations (17)-(19).
+
+The percentile method bootstrap confidence interval is only first-order accurate (Efron and Tibshirani, 1993, pp.187-188), meaning that the probability that the confidence interval will contain the true value of $\mu$ can be off by $k/\sqrt{N}$, where $k$is some constant. Efron and Tibshirani (1993, pp.184-188) proposed a bias-corrected and accelerated interval that is second-order accurate, meaning that the probability that the confidence interval will contain the true value of $\mu$ may be off by $k/N$ instead of $k/\sqrt{N}$. The two-sided bias-corrected and accelerated confidence interval is computed as:
+
+$$
+[\hat{G}^{-1}(\alpha_1), \; \hat{G}^{-1}(\alpha_2)] \;\;\;\;\;\; (20)
+$$
+
+where
+
+$$
+\alpha_1 = \Phi[\hat{z}_0 + \frac{\hat{z}_0 + z_{\alpha/2}}{1 - \hat{a}(z_0 + z_{\alpha/2})}] \;\;\;\;\;\; (21)
+$$
+
+$$
+\alpha_2 = \Phi[\hat{z}_0 + \frac{\hat{z}_0 + z_{1-\alpha/2}}{1 - \hat{a}(z_0 + z_{1-\alpha/2})}] \;\;\;\;\;\; (22)
+$$
+
+$$
+\hat{z}_0 = \Phi^{-1}[\hat{G}(\hat{\mu})] \;\;\;\;\;\; (23)
+$$
+
+$$
+\hat{a} = \frac{\sum_{i=1}^N (\hat{\mu}_{(\cdot)} - \hat{\mu}_{(i)})^3}{6[\sum_{i=1}^N (\hat{\mu}_{(\cdot)} - \hat{\mu}_{(i)})^2]^{3/2}} \;\;\;\;\;\; (24)
+$$
+
+where the quantity $\hat{\mu}_{(i)}$ denotes the estimate of $\mu$ using all the values in $\underline{x}$ except the $i$'th one, and
+
+$$
+\hat{\mu}{(\cdot)} = \frac{1}{N} \sum_{i=1}^N \hat{\mu_{(i)}} \;\;\;\;\;\; (25)
+$$
+
+A one-sided lower confidence interval is given by:
+
+$$
+[\hat{G}^{-1}(\alpha_1), \; \infty] \;\;\;\;\;\; (26)
+$$
+
+and a one-sided upper confidence interval is given by:
+
+$$
+[0, \; \hat{G}^{-1}(\alpha_2)] \;\;\;\;\;\; (27)
+$$
+
+where $\alpha_1$ and $\alpha_2$ are computed as for a two-sided confidence interval, except $\alpha/2$ is replaced with $\alpha$ in Equations (21) and (22).
+
+The constant $\hat{z}_0$ incorporates the bias correction, and the constant $\hat{a}$ is the acceleration constant. The term “acceleration” refers to the rate of change of the standard error of the estimate of $\mu$ with respect to the true value of $\mu$ (Efron and Tibshirani, 1993, p.186). For a normal (Gaussian) distribution, the standard error of the estimate of $\mu$ does not depend on the value of $\mu$, hence the acceleration constant is not really necessary.
+
+When `ci.method="bootstrap"`, the function `egammaCensored` computes both the percentile method and bias-corrected and accelerated method bootstrap confidence intervals.
+
+## egammaAltCensored {#egammaaltcensored}
+
+Help topic: [`egammaAltCensored`](https://alexkowa.github.io/EnvStats/reference/egammaAltCensored.html).
+
+If `x` or `censored` contain any missing (`NA`), undefined (`NaN`) or infinite (`Inf`, `-Inf`) values, they will be removed prior to performing the estimation.
+
+Let $\underline{x}$ denote a vector of $N$ observations from a [gamma distribution](https://stat.ethz.ch/R-manual/R-devel/library/stats/html/GammaDist.html) with parameters `shape=`$\kappa$ and `scale=`$\theta$. The relationship between these parameters and the mean $\mu$ and coefficient of variation $\tau$ of this distribution is given by:
+
+$$
+\kappa = \tau^{-2} \;\;\;\;\;\; (1)
+$$
+
+$$
+\theta = \mu/\kappa \;\;\;\;\;\; (2)
+$$
+
+$$
+\mu = \kappa \; \theta \;\;\;\;\;\; (3)
+$$
+
+$$
+\tau = \kappa^{-1/2} \;\;\;\;\;\; (4)
+$$
+
+Assume $n$ ($0 < n < N$) of these observations are known and $c$ ($c=N-n$) of these observations are all censored below (left-censored) or all censored above (right-censored) at $k$ fixed censoring levels
+
+$$
+T_1, T_2, \ldots, T_k; \; k \ge 1 \;\;\;\;\;\; (5)
+$$
+
+For the case when $k \ge 2$, the data are said to be Type I ***multiply censored***. For the case when $k=1$, set $T = T_1$. If the data are left-censored and all $n$ known observations are greater than or equal to $T$, or if the data are right-censored and all $n$ known observations are less than or equal to $T$, then the data are said to be Type I ***singly censored*** (Nelson, 1982, p.7), otherwise they are considered to be Type I multiply censored.
+
+Let $c_j$ denote the number of observations censored below or above censoring level $T_j$ for $j = 1, 2, \ldots, k$, so that
+
+$$
+\sum_{i=1}^k c_j = c \;\;\;\;\;\; (6)
+$$
+
+Let $x_{(1)}, x_{(2)}, \ldots, x_{(N)}$ denote the “ordered” observations, where now “observation” means either the actual observation (for uncensored observations) or the censoring level (for censored observations). For right-censored data, if a censored observation has the same value as an uncensored one, the uncensored observation should be placed first. For left-censored data, if a censored observation has the same value as an uncensored one, the censored observation should be placed first.
+
+Note that in this case the quantity $x_{(i)}$ does not necessarily represent the $i$'th “largest” observation from the (unknown) complete sample.
+
+Finally, let $\Omega$ (omega) denote the set of $n$ subscripts in the “ordered” sample that correspond to uncensored observations.
+
+**Estimation**
+
+*Maximum Likelihood Estimation* (`method="mle"`)  
+For Type I left censored data, the likelihood function is given by:
+
+$$
+L(\mu, \tau | \underline{x}) = {N \choose c_1 c_2 \ldots c_k n} \prod_{j=1}^k [F(T_j)]^{c_j} \prod_{i \in \Omega} f[x_{(i)}] \;\;\;\;\;\; (7)
+$$
+
+where $f$ and $F$ denote the probability density function (pdf) and cumulative distribution function (cdf) of the population (Cohen, 1963; Cohen, 1991, pp.6, 50). That is,
+
+$$
+f(t) =  \frac{t^{\kappa-1} e^{-t/\theta}}{\theta^\kappa \Gamma(\kappa)} \;\;\;\;\;\; (8)
+$$
+
+(Johnson et al., 1994, p.343), where $\kappa$ and $\theta$ are defined in terms of $\mu$ and $\tau$ by Equations (1) and (2) above.
+
+For left singly censored data, Equation (7) simplifies to:
+
+$$
+L(\mu, \tau | \underline{x}) = {N \choose c} [F(T)]^{c} \prod_{i = c+1}^n f[x_{(i)}] \;\;\;\;\;\; (9)
+$$
+
+Similarly, for Type I right censored data, the likelihood function is given by:
+
+$$
+L(\mu, \tau | \underline{x}) = {N \choose c_1 c_2 \ldots c_k n} \prod_{j=1}^k [1 - F(T_j)]^{c_j} \prod_{i \in \Omega} f[x_{(i)}] \;\;\;\;\;\; (10)
+$$
+
+and for right singly censored data this simplifies to:
+
+$$
+L(\kappa, \theta | \underline{x}) = {N \choose c} [1 - F(T)]^{c} \prod_{i = 1}^n f[x_{(i)}] \;\;\;\;\;\; (11)
+$$
+
+The maximum likelihood estimators are computed by minimizing the negative log-likelihood function.
+
+**Confidence Intervals**  
+This section explains how confidence intervals for the mean $\mu$ are computed.
+
+*Likelihood Profile* (`ci.method="profile.likelihood"`)  
+This method was proposed by Cox (1970, p.88), and Venzon and Moolgavkar (1988) introduced an efficient method of computation. This method is also discussed by Stryhn and Christensen (2003) and Royston (2007). The idea behind this method is to invert the likelihood-ratio test to obtain a confidence interval for the mean $\mu$ while treating the coefficient of variation $\tau$ as a nuisance parameter. Equation (7) above shows the form of the likelihood function $L(\mu, \tau | \underline{x})$ for multiply left-censored data, where $\mu$ and $\tau$ are defined by Equations (3) and (4), and Equation (10) shows the function for multiply right-censored data.
+
+Following Stryhn and Christensen (2003), denote the maximum likelihood estimates of the mean and coefficient of variation by $(\mu^*, \tau^*)$. The likelihood ratio test statistic ($G^2$) of the hypothesis $H_0: \mu = \mu_0$ (where $\mu_0$ is a fixed value) equals the drop in $2 log(L)$ between the “full” model and the reduced model with $\mu$ fixed at $\mu_0$, i.e.,
+
+$$
+G^2 = 2 \{log[L(\mu^*, \tau^*)] - log[L(\mu_0, \tau_0^*)]\} \;\;\;\;\;\; (12)
+$$
+
+where $\tau_0^*$ is the maximum likelihood estimate of $\tau$ for the reduced model (i.e., when $\mu = \mu_0$). Under the null hypothesis, the test statistic $G^2$ follows a [chi-squared distribution](https://stat.ethz.ch/R-manual/R-devel/library/stats/html/Chisquare.html) with 1 degree of freedom.
+
+Alternatively, we may express the test statistic in terms of the profile likelihood function $L_1$ for the mean $\mu$, which is obtained from the usual likelihood function by maximizing over the parameter $\tau$, i.e.,
+
+$$
+L_1(\mu) = max_{\tau} L(\mu, \tau) \;\;\;\;\;\; (13)
+$$
+
+Then we have
+
+$$
+G^2 = 2 \{log[L_1(\mu^*)] - log[L_1(\mu_0)]\} \;\;\;\;\;\; (14)
+$$
+
+A two-sided $(1-\alpha)100\%$ confidence interval for the mean $\mu$ consists of all values of $\mu_0$ for which the test is not significant at level $alpha$:
+
+$$
+\mu_0: G^2 \le \chi^2_{1, {1-\alpha}} \;\;\;\;\;\; (15)
+$$
+
+where $\chi^2_{\nu, p}$ denotes the $p$'th quantile of the [chi-squared distribution](https://stat.ethz.ch/R-manual/R-devel/library/stats/html/Chisquare.html) with $\nu$ degrees of freedom. One-sided lower and one-sided upper confidence intervals are computed in a similar fashion, except that the quantity $1-\alpha$ in Equation (15) is replaced with $1-2\alpha$.
+
+*Normal Approximation* (`ci.method="normal.approx"`)  
+This method constructs approximate $(1-\alpha)100\%$ confidence intervals for $\mu$ based on the assumption that the estimator of $\mu$ is approximately normally distributed. That is, a two-sided $(1-\alpha)100\%$ confidence interval for $\mu$ is constructed as:
+
+$$
+[\hat{\mu} - t_{1-\alpha/2, m-1}\hat{\sigma}_{\hat{\mu}}, \; \hat{\mu} + t_{1-\alpha/2, m-1}\hat{\sigma}_{\hat{\mu}}] \;\;\;\; (16)
+$$
+
+where $\hat{\mu}$ denotes the estimate of $\mu$, $\hat{\sigma}_{\hat{\mu}}$ denotes the estimated asymptotic standard deviation of the estimator of $\mu$, $m$ denotes the assumed sample size for the confidence interval, and $t_{p,\nu}$ denotes the $p$'th quantile of [Student's t-distribuiton](https://stat.ethz.ch/R-manual/R-devel/library/stats/html/TDist.html) with $\nu$ degrees of freedom. One-sided confidence intervals are computed in a similar fashion.
+
+The argument `ci.sample.size` determines the value of $m$ and by default is equal to the number of uncensored observations. This is simply an ad-hoc method of constructing confidence intervals and is not based on any published theoretical results.
+
+When `pivot.statistic="z"`, the $p$'th quantile from the [standard normal distribution](https://stat.ethz.ch/R-manual/R-devel/library/stats/html/Normal.html) is used in place of the $p$'th quantile from Student's t-distribution.
+
+The standard deviation of the mle of $\mu$ is estimated based on the inverse of the Fisher Information matrix.
+
+*Bootstrap and Bias-Corrected Bootstrap Approximation* (`ci.method="bootstrap"`)  
+The bootstrap is a nonparametric method of estimating the distribution (and associated distribution parameters and quantiles) of a sample statistic, regardless of the distribution of the population from which the sample was drawn. The bootstrap was introduced by Efron (1979) and a general reference is Efron and Tibshirani (1993).
+
+In the context of deriving an approximate $(1-\alpha)100\%$ confidence interval for the population mean $\mu$, the bootstrap can be broken down into the following steps:
+
+1. Create a bootstrap sample by taking a random sample of size $N$ from the observations in $\underline{x}$, where sampling is done with replacement. Note that because sampling is done with replacement, the same element of $\underline{x}$ can appear more than once in the bootstrap sample. Thus, the bootstrap sample will usually not look exactly like the original sample (e.g., the number of censored observations in the bootstrap sample will often differ from the number of censored observations in the original sample).
+2. Estimate $\mu$ based on the bootstrap sample created in Step 1, using the same method that was used to estimate $\mu$ using the original observations in $\underline{x}$. Because the bootstrap sample usually does not match the original sample, the estimate of $\mu$ based on the bootstrap sample will usually differ from the original estimate based on $\underline{x}$.
+3. Repeat Steps 1 and 2 $B$ times, where $B$ is some large number. For the function  
+   `egammaAltCensored`, the number of bootstraps $B$ is determined by the argument `n.bootstraps` (see the arguments in the [`egammaAltCensored` help page](https://alexkowa.github.io/EnvStats/reference/egammaAltCensored.html)). The default value of `n.bootstraps` is `1000`.
+4. Use the $B$ estimated values of $\mu$ to compute the empirical cumulative distribution function of this estimator of $\mu$ (see [`ecdfPlot`](https://alexkowa.github.io/EnvStats/reference/ecdfPlot.html)), and then create a confidence interval for $\mu$ based on this estimated cdf.
+
+The two-sided percentile interval (Efron and Tibshirani, 1993, p.170) is computed as:
+
+$$
+[\hat{G}^{-1}(\frac{\alpha}{2}), \; \hat{G}^{-1}(1-\frac{\alpha}{2})] \;\;\;\;\;\; (17)
+$$
+
+where $\hat{G}(t)$ denotes the empirical cdf evaluated at $t$ and thus $\hat{G}^{-1}(p)$ denotes the $p$'th empirical quantile, that is, the $p$'th quantile associated with the empirical cdf. Similarly, a one-sided lower confidence interval is computed as:
+
+$$
+[\hat{G}^{-1}(\alpha), \; \infty] \;\;\;\;\;\; (18)
+$$
+
+and a one-sided upper confidence interval is computed as:
+
+$$
+[0, \; \hat{G}^{-1}(1-\alpha)] \;\;\;\;\;\; (19)
+$$
+
+The function `egammaAltCensored` calls the R function [`quantile`](https://stat.ethz.ch/R-manual/R-devel/library/stats/html/quantile.html) to compute the empirical quantiles used in Equations (17)-(19).
+
+The percentile method bootstrap confidence interval is only first-order accurate (Efron and Tibshirani, 1993, pp.187-188), meaning that the probability that the confidence interval will contain the true value of $\mu$ can be off by $k/\sqrt{N}$, where $k$is some constant. Efron and Tibshirani (1993, pp.184-188) proposed a bias-corrected and accelerated interval that is second-order accurate, meaning that the probability that the confidence interval will contain the true value of $\mu$ may be off by $k/N$ instead of $k/\sqrt{N}$. The two-sided bias-corrected and accelerated confidence interval is computed as:
+
+$$
+[\hat{G}^{-1}(\alpha_1), \; \hat{G}^{-1}(\alpha_2)] \;\;\;\;\;\; (20)
+$$
+
+where
+
+$$
+\alpha_1 = \Phi[\hat{z}_0 + \frac{\hat{z}_0 + z_{\alpha/2}}{1 - \hat{a}(z_0 + z_{\alpha/2})}] \;\;\;\;\;\; (21)
+$$
+
+$$
+\alpha_2 = \Phi[\hat{z}_0 + \frac{\hat{z}_0 + z_{1-\alpha/2}}{1 - \hat{a}(z_0 + z_{1-\alpha/2})}] \;\;\;\;\;\; (22)
+$$
+
+$$
+\hat{z}_0 = \Phi^{-1}[\hat{G}(\hat{\mu})] \;\;\;\;\;\; (23)
+$$
+
+$$
+\hat{a} = \frac{\sum_{i=1}^N (\hat{\mu}_{(\cdot)} - \hat{\mu}_{(i)})^3}{6[\sum_{i=1}^N (\hat{\mu}_{(\cdot)} - \hat{\mu}_{(i)})^2]^{3/2}} \;\;\;\;\;\; (24)
+$$
+
+where the quantity $\hat{\mu}_{(i)}$ denotes the estimate of $\mu$ using all the values in $\underline{x}$ except the $i$'th one, and
+
+$$
+\hat{\mu}{(\cdot)} = \frac{1}{N} \sum_{i=1}^N \hat{\mu_{(i)}} \;\;\;\;\;\; (25)
+$$
+
+A one-sided lower confidence interval is given by:
+
+$$
+[\hat{G}^{-1}(\alpha_1), \; \infty] \;\;\;\;\;\; (26)
+$$
+
+and a one-sided upper confidence interval is given by:
+
+$$
+[0, \; \hat{G}^{-1}(\alpha_2)] \;\;\;\;\;\; (27)
+$$
+
+where $\alpha_1$ and $\alpha_2$ are computed as for a two-sided confidence interval, except $\alpha/2$ is replaced with $\alpha$ in Equations (21) and (22).
+
+The constant $\hat{z}_0$ incorporates the bias correction, and the constant $\hat{a}$ is the acceleration constant. The term “acceleration” refers to the rate of change of the standard error of the estimate of $\mu$ with respect to the true value of $\mu$ (Efron and Tibshirani, 1993, p.186). For a normal (Gaussian) distribution, the standard error of the estimate of $\mu$ does not depend on the value of $\mu$, hence the acceleration constant is not really necessary.
+
+When `ci.method="bootstrap"`, the function `egammaAltCensored` computes both the percentile method and bias-corrected and accelerated method bootstrap confidence intervals.
+
+## epoisCensored {#epoiscensored}
+
+Help topic: [`epoisCensored`](https://alexkowa.github.io/EnvStats/reference/epoisCensored.html).
+
+If `x` or `censored` contain any missing (`NA`), undefined (`NaN`) or infinite (`Inf`, `-Inf`) values, they will be removed prior to performing the estimation.
+
+Let $\underline{x}$ denote a vector of $N$ observations from a [Poisson distribution](https://stat.ethz.ch/R-manual/R-devel/library/stats/html/Poisson.html) with mean `lambda=`$\lambda$.
+
+Assume $n$ ($0 < n < N$) of these observations are known and $c$ ($c=N-n$) of these observations are all censored below (left-censored) or all censored above (right-censored) at $k$ fixed censoring levels
+
+$$
+T_1, T_2, \ldots, T_k; \; k \ge 1 \;\;\;\;\;\; (1)
+$$
+
+For the case when $k \ge 2$, the data are said to be Type I ***multiply censored***. For the case when $k=1$, set $T = T_1$. If the data are left-censored and all $n$ known observations are greater than or equal to $T$, or if the data are right-censored and all $n$ known observations are less than or equal to $T$, then the data are said to be Type I ***singly censored*** (Nelson, 1982, p.7), otherwise they are considered to be Type I multiply censored.
+
+Let $c_j$ denote the number of observations censored below or above censoring level $T_j$ for $j = 1, 2, \ldots, k$, so that
+
+$$
+\sum_{i=1}^k c_j = c \;\;\;\;\;\; (2)
+$$
+
+Let $x_{(1)}, x_{(2)}, \ldots, x_{(N)}$ denote the “ordered” observations, where now “observation” means either the actual observation (for uncensored observations) or the censoring level (for censored observations). For right-censored data, if a censored observation has the same value as an uncensored one, the uncensored observation should be placed first. For left-censored data, if a censored observation has the same value as an uncensored one, the censored observation should be placed first.
+
+Note that in this case the quantity $x_{(i)}$ does not necessarily represent the $i$'th “largest” observation from the (unknown) complete sample.
+
+Finally, let $\Omega$ (omega) denote the set of $n$ subscripts in the “ordered” sample that correspond to uncensored observations.
+
+**Estimation**
+
+*Maximum Likelihood Estimation* (`method="mle"`)  
+For Type I left censored data, the likelihood function is given by:
+
+$$
+L(\lambda | \underline{x}) = {N \choose c_1 c_2 \ldots c_k n} \prod_{j=1}^k [F(T_j)]^{c_j} \prod_{i \in \Omega} f[x_{(i)}] \;\;\;\;\;\; (3)
+$$
+
+where $f$ and $F$ denote the probability density function (pdf) and cumulative distribution function (cdf) of the population (Cohen, 1963; Cohen, 1991, pp.6, 50). That is,
+
+$$
+f(t) =  \frac{e^{-\lambda} \lambda^t}{t!}, \; x = 0, 1, 2, \ldots \;\;\;\;\;\; (4)
+$$
+
+$$
+F(t) = \sum_{i=0}^t f(i) = \sum_{i=0}^t \frac{e^{-\lambda} \lambda^i}{i!} \;\;\;\;\;\; (5)
+$$
+
+(Johnson et al., 1992, p.151). For left singly censored data, equation (3) simplifies to:
+
+$$
+L(\lambda | \underline{x}) = {N \choose c} [F(T)]^{c} \prod_{i = c+1}^n f[x_{(i)}] \;\;\;\;\;\; (6)
+$$
+
+Similarly, for Type I right censored data, the likelihood function is given by:
+
+$$
+L(\lambda | \underline{x}) = {N \choose c_1 c_2 \ldots c_k n} \prod_{j=1}^k [1 - F(T_j)]^{c_j} \prod_{i \in \Omega} f[x_{(i)}] \;\;\;\;\;\; (7)
+$$
+
+and for right singly censored data this simplifies to:
+
+$$
+L(\lambda | \underline{x}) = {N \choose c} [1 - F(T)]^{c} \prod_{i = 1}^n f[x_{(i)}] \;\;\;\;\;\; (8)
+$$
+
+The maximum likelihood estimators are computed by maximizing the likelihood function. For right-censored data, taking the derivative of the log-likelihood function with respect to $\lambda$ and setting this to 0 produces the following equation:
+
+$$
+\bar{x} = \lambda \{1 - \sum_{j=1}^K \frac{c_j}{n} [\frac{f(T_j)}{1-F(T_j)}] \} \;\;\;\;\;\; (9)
+$$
+
+where
+
+$$
+\bar{x} = \frac{1}{n} \sum{i \in \Omega} x_i \;\;\;\;\;\; (10)
+$$
+
+Note that the quantity defined in equation (10) is simply the mean of the uncensored observations.
+
+For left-censored data, taking the derivative of the log-likelihood function with respect to $\lambda$ and setting this to 0 produces the following equation:
+
+$$
+\bar{x} = \lambda \{1 + \sum_{j=1}^K \frac{c_j}{n} [\frac{f(T_j - 1)}{F(T_j - 1)}] \} \;\;\;\;\;\; (11)
+$$
+
+The function `epoisCensored` computes the maximum likelihood estimator of $\lambda$ by solving Equation (9) (right-censored data) or Equation (11) (left-censored data); it uses the sample mean of the uncensored observations as the initial value.
+
+*Setting Censored Observations to Half the Censoring Level* (`method="half.cen.level"`)  
+This method is applicable only to left censored data. This method involves simply replacing all the censored observations with half their detection limit, and then computing the mean and standard deviation with the usual formulas (see [`epois`](https://alexkowa.github.io/EnvStats/reference/epois.html)).
+
+This method is included only to allow comparison of this method to other methods. ***Setting left-censored observations to half the censoring level is not recommended***.
+
+**Confidence Intervals**  
+This section explains how confidence intervals for the mean $\lambda$ are computed.
+
+*Likelihood Profile* (`ci.method="profile.likelihood"`)  
+This method was proposed by Cox (1970, p.88), and Venzon and Moolgavkar (1988) introduced an efficient method of computation. This method is also discussed by Stryhn and Christensen (2003) and Royston (2007). The idea behind this method is to invert the likelihood-ratio test to obtain a confidence interval for the mean $\lambda$. Equation (3) above shows the form of the likelihood function $L(\lambda | \underline{x})$ for multiply left-censored data, and Equation (7) shows the function for multiply right-censored data.
+
+Following Stryhn and Christensen (2003), denote the maximum likelihood estimate of the mean by $\lambda^*$. The likelihood ratio test statistic ($G^2$) of the hypothesis $H_0: \lambda = \lambda_0$ (where $\lambda_0$ is a fixed value) equals the drop in $2 log(L)$ between the “full” model and the reduced model with $\lambda$ fixed at $\mu_0$, i.e.,
+
+$$
+G^2 = 2 \{log[L(\lambda^*)] - log[L(\lambda_0)]\} \;\;\;\;\;\; (11)
+$$
+
+. Under the null hypothesis, the test statistic $G^2$ follows a [chi-squared distribution](https://stat.ethz.ch/R-manual/R-devel/library/stats/html/Chisquare.html) with 1 degree of freedom.
+
+A two-sided $(1-\alpha)100\%$ confidence interval for the mean $\lambda$ consists of all values of $\lambda_0$ for which the test is not significant at level $alpha$:
+
+$$
+\lambda_0: G^2 \le \chi^2_{1, {1-\alpha}} \;\;\;\;\;\; (12)
+$$
+
+where $\chi^2_{\nu, p}$ denotes the $p$'th quantile of the [chi-squared distribution](https://stat.ethz.ch/R-manual/R-devel/library/stats/html/Chisquare.html) with $\nu$ degrees of freedom. One-sided lower and one-sided upper confidence intervals are computed in a similar fashion, except that the quantity $1-\alpha$ in Equation (12) is replaced with $1-2\alpha$.
+
+*Normal Approximation* (`ci.method="normal.approx"`)  
+This method constructs approximate $(1-\alpha)100\%$ confidence intervals for $\lambda$ based on the assumption that the estimator of $\lambda$ is approximately normally distributed. That is, a two-sided $(1-\alpha)100\%$ confidence interval for $\lambda$ is constructed as:
+
+$$
+[\hat{\lambda} - t_{1-\alpha/2, m-1}\hat{\sigma}_{\hat{\lambda}}, \; \hat{\lambda} + t_{1-\alpha/2, m-1}\hat{\sigma}_{\hat{\lambda}}] \;\;\;\; (13)
+$$
+
+where $\hat{\lambda}$ denotes the estimate of $\lambda$, $\hat{\sigma}_{\hat{\lambda}}$ denotes the estimated asymptotic standard deviation of the estimator of $\lambda$, $m$ denotes the assumed sample size for the confidence interval, and $t_{p,\nu}$ denotes the $p$'th quantile of [Student's t-distribuiton](https://stat.ethz.ch/R-manual/R-devel/library/stats/html/TDist.html) with $\nu$ degrees of freedom. One-sided confidence intervals are computed in a similar fashion.
+
+The argument `ci.sample.size` determines the value of $m$ and by default is equal to the number of uncensored observations. This is simply an ad-hoc method of constructing confidence intervals and is not based on any published theoretical results.
+
+When `pivot.statistic="z"`, the $p$'th quantile from the [standard normal distribution](https://stat.ethz.ch/R-manual/R-devel/library/stats/html/Normal.html) is used in place of the $p$'th quantile from Student's t-distribution.
+
+When $\lambda$ is estimated with the maximum likelihood estimator (`method="mle"`), the variance of $\hat{\lambda}$ is estimated based on the inverse of the Fisher Information matrix. When $\lambda$ is estimated using the half-censoring-level method (`method="half.cen.level"`), the variance of $\hat{\lambda}$ is estimated as:
+
+$$
+\hat{\sigma}^2_{\hat{\lambda}} = \frac{\hat{\lambda}}{m} \;\;\;\;\;\; (14)
+$$
+
+where $m$ denotes the assumed sample size (see above).
+
+*Bootstrap and Bias-Corrected Bootstrap Approximation* (`ci.method="bootstrap"`)  
+The bootstrap is a nonparametric method of estimating the distribution (and associated distribution parameters and quantiles) of a sample statistic, regardless of the distribution of the population from which the sample was drawn. The bootstrap was introduced by Efron (1979) and a general reference is Efron and Tibshirani (1993).
+
+In the context of deriving an approximate $(1-\alpha)100\%$ confidence interval for the population mean $\lambda$, the bootstrap can be broken down into the following steps:
+
+1. Create a bootstrap sample by taking a random sample of size $N$ from the observations in $\underline{x}$, where sampling is done with replacement. Note that because sampling is done with replacement, the same element of $\underline{x}$ can appear more than once in the bootstrap sample. Thus, the bootstrap sample will usually not look exactly like the original sample (e.g., the number of censored observations in the bootstrap sample will often differ from the number of censored observations in the original sample).
+2. Estimate $\lambda$ based on the bootstrap sample created in Step 1, using the same method that was used to estimate $\lambda$ using the original observations in $\underline{x}$. Because the bootstrap sample usually does not match the original sample, the estimate of $\lambda$ based on the bootstrap sample will usually differ from the original estimate based on $\underline{x}$.
+3. Repeat Steps 1 and 2 $B$ times, where $B$ is some large number. For the function `epoisCensored`, the number of bootstraps $B$ is determined by the argument `n.bootstraps` (see the arguments in the [`epoisCensored` help page](https://alexkowa.github.io/EnvStats/reference/epoisCensored.html)). The default value of `n.bootstraps` is `1000`.
+4. Use the $B$ estimated values of $\lambda$ to compute the empirical cumulative distribution function of this estimator of $\lambda$ (see [`ecdfPlot`](https://alexkowa.github.io/EnvStats/reference/ecdfPlot.html)), and then create a confidence interval for $\lambda$ based on this estimated cdf.
+
+The two-sided percentile interval (Efron and Tibshirani, 1993, p.170) is computed as:
+
+$$
+[\hat{G}^{-1}(\frac{\alpha}{2}), \; \hat{G}^{-1}(1-\frac{\alpha}{2})] \;\;\;\;\;\; (15)
+$$
+
+where $\hat{G}(t)$ denotes the empirical cdf evaluated at $t$ and thus $\hat{G}^{-1}(p)$ denotes the $p$'th empirical quantile, that is, the $p$'th quantile associated with the empirical cdf. Similarly, a one-sided lower confidence interval is computed as:
+
+$$
+[\hat{G}^{-1}(\alpha), \; \infty] \;\;\;\;\;\; (16)
+$$
+
+and a one-sided upper confidence interval is computed as:
+
+$$
+[0, \; \hat{G}^{-1}(1-\alpha)] \;\;\;\;\;\; (17)
+$$
+
+The function `epoisCensored` calls the R function [`quantile`](https://stat.ethz.ch/R-manual/R-devel/library/stats/html/quantile.html) to compute the empirical quantiles used in Equations (15)-(17).
+
+The percentile method bootstrap confidence interval is only first-order accurate (Efron and Tibshirani, 1993, pp.187-188), meaning that the probability that the confidence interval will contain the true value of $\lambda$ can be off by $k/\sqrt{N}$, where $k$is some constant. Efron and Tibshirani (1993, pp.184-188) proposed a bias-corrected and accelerated interval that is second-order accurate, meaning that the probability that the confidence interval will contain the true value of $\lambda$ may be off by $k/N$ instead of $k/\sqrt{N}$. The two-sided bias-corrected and accelerated confidence interval is computed as:
+
+$$
+[\hat{G}^{-1}(\alpha_1), \; \hat{G}^{-1}(\alpha_2)] \;\;\;\;\;\; (18)
+$$
+
+where
+
+$$
+\alpha_1 = \Phi[\hat{z}_0 + \frac{\hat{z}_0 + z_{\alpha/2}}{1 - \hat{a}(z_0 + z_{\alpha/2})}] \;\;\;\;\;\; (19)
+$$
+
+$$
+\alpha_2 = \Phi[\hat{z}_0 + \frac{\hat{z}_0 + z_{1-\alpha/2}}{1 - \hat{a}(z_0 + z_{1-\alpha/2})}] \;\;\;\;\;\; (20)
+$$
+
+$$
+\hat{z}_0 = \Phi^{-1}[\hat{G}(\hat{\lambda})] \;\;\;\;\;\; (21)
+$$
+
+$$
+\hat{a} = \frac{\sum_{i=1}^N (\hat{\lambda}_{(\cdot)} - \hat{\lambda}_{(i)})^3}{6[\sum_{i=1}^N (\hat{\lambda}_{(\cdot)} - \hat{\lambda}_{(i)})^2]^{3/2}} \;\;\;\;\;\; (22)
+$$
+
+where the quantity $\hat{\lambda}_{(i)}$ denotes the estimate of $\lambda$ using all the values in $\underline{x}$ except the $i$'th one, and
+
+$$
+\hat{\lambda}{(\cdot)} = \frac{1}{N} \sum_{i=1}^N \hat{\lambda_{(i)}} \;\;\;\;\;\; (23)
+$$
+
+A one-sided lower confidence interval is given by:
+
+$$
+[\hat{G}^{-1}(\alpha_1), \; \infty] \;\;\;\;\;\; (24)
+$$
+
+and a one-sided upper confidence interval is given by:
+
+$$
+[0, \; \hat{G}^{-1}(\alpha_2)] \;\;\;\;\;\; (25)
+$$
+
+where $\alpha_1$ and $\alpha_2$ are computed as for a two-sided confidence interval, except $\alpha/2$ is replaced with $\alpha$ in Equations (19) and (20).
+
+The constant $\hat{z}_0$ incorporates the bias correction, and the constant $\hat{a}$ is the acceleration constant. The term “acceleration” refers to the rate of change of the standard error of the estimate of $\lambda$ with respect to the true value of $\lambda$ (Efron and Tibshirani, 1993, p.186). For a normal (Gaussian) distribution, the standard error of the estimate of $\lambda$ does not depend on the value of $\lambda$, hence the acceleration constant is not really necessary.
+
+When `ci.method="bootstrap"`, the function `epoisCensored` computes both the percentile method and bias-corrected and accelerated method bootstrap confidence intervals.

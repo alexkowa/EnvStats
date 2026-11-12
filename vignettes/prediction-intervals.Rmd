@@ -1,0 +1,798 @@
+---
+title: "Prediction intervals for environmental monitoring"
+output:
+  rmarkdown::html_vignette:
+    toc: true
+    toc_depth: 2
+vignette: >
+  %\VignetteIndexEntry{Prediction intervals for environmental monitoring}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+This vignette describes normal, nonparametric, and Poisson prediction intervals
+for future environmental observations. Derivations of prediction factors and
+simultaneous coverage are followed by the associated power calculations for
+normal and nonparametric monitoring procedures.
+
+Related vignettes:
+
+- [Statistical power and study design](power-and-study-design.html)
+- [Estimation with censored data](censored-estimation.html)
+- [Probability distributions and parameter estimation](distributions-and-estimation.html)
+
+## predIntNormK {#predintnormk}
+
+Help topic: [`predIntNormK`](https://alexkowa.github.io/EnvStats/reference/predIntNormK.html).
+
+A prediction interval for some population is an interval on the real line constructed so that it will contain $k$ future observations or averages from that population with some specified probability $(1-\alpha)100\%$, where $0 < \alpha < 1$ and $k$ is some pre-specified positive integer. The quantity $(1-\alpha)100\%$ is called the confidence coefficient or confidence level associated with the prediction interval.
+
+Let $\underline{x} = x_1, x_2, \ldots, x_n$ denote a vector of $n$ observations from a [normal distribution](https://stat.ethz.ch/R-manual/R-devel/library/stats/html/Normal.html) with parameters `mean=`$\mu$ and `sd=`$\sigma$. Also, let $m$ denote the sample size associated with the $k$ future averages (i.e., `n.mean=`$m$). When $m=1$, each average is really just a single observation, so in the rest of this section the term “averages” will replace the phrase “observations or averages”.
+
+For a normal distribution, the form of a two-sided $(1-\alpha)100\%$ prediction interval is:
+
+$$
+[\bar{x} - Ks, \bar{x} + Ks] \;\;\;\;\;\; (1)
+$$
+
+where $\bar{x}$ denotes the sample mean:
+
+$$
+\bar{x} = \frac{1}{n} \sum_{i=1}^n x_i \;\;\;\;\;\; (2)
+$$
+
+$s$ denotes the sample standard deviation:
+
+$$
+s^2 = \frac{1}{n-1} \sum_{i=1}^n (x_i - \bar{x})^2 \;\;\;\;\;\; (3)
+$$
+
+and $K$ denotes a constant that depends on the sample size $n$, the confidence level, the number of future averages $k$, and the sample size associated with the future averages, $m$. Do not confuse the constant $K$ (uppercase K) with the number of future averages $k$ (lowercase k). The symbol $K$ is used here to be consistent with the notation used for tolerance intervals (see [`tolIntNorm`](https://alexkowa.github.io/EnvStats/reference/tolIntNorm.html)).
+
+Similarly, the form of a one-sided lower prediction interval is:
+
+$$
+[\bar{x} - Ks, \infty] \;\;\;\;\;\; (4)
+$$
+
+and the form of a one-sided upper prediction interval is:
+
+$$
+[-\infty, \bar{x} + Ks] \;\;\;\;\;\; (5)
+$$
+
+but $K$ differs for one-sided versus two-sided prediction intervals. The derivation of the constant $K$ is explained below. The function `predIntNormK` computes the value of $K$ and is called by [`predIntNorm`](https://alexkowa.github.io/EnvStats/reference/predIntNorm.html).
+
+**The Derivation of K for One Future Observation or Average (k = 1)**  
+Let $X$ denote a random variable from a [normal distribution](https://stat.ethz.ch/R-manual/R-devel/library/stats/html/Normal.html) with parameters `mean=`$\mu$ and `sd=`$\sigma$, and let $x_p$ denote the $p$'th quantile of $X$.
+
+A true two-sided $(1-\alpha)100\%$ prediction interval for the next $k=1$ observation of $X$ is given by:
+
+$$
+[x_{\alpha/2}, x_{1-\alpha/2}] = [\mu - z_{1-\alpha/2}\sigma,  \mu + z_{1-\alpha/2}\sigma] \;\;\;\;\;\; (6)
+$$
+
+where $z_p$ denotes the $p$'th quantile of a standard normal distribution.
+
+More generally, a true two-sided $(1-\alpha)100\%$ prediction interval for the next $k=1$ average based on a sample of size $m$ is given by:
+
+$$
+[\mu - z_{1-\alpha/2}\frac{\sigma}{\sqrt{m}},  \mu + z_{1-\alpha/2}\frac{\sigma}{\sqrt{m}}] \;\;\;\;\;\; (7)
+$$
+
+Because the values of $\mu$ and $\sigma$ are unknown, they must be estimated, and a prediction interval then constructed based on the estimated values of $\mu$ and $\sigma$.
+
+For a two-sided prediction interval (`pi.type="two-sided"`), the constant $K$ for a $(1-\alpha)100\%$ prediction interval for the next $k=1$ average based on a sample size of $m$ is computed as:
+
+$$
+K = t_{n-1, 1-\alpha/2} \sqrt{\frac{1}{m} + \frac{1}{n}} \;\;\;\;\;\; (8)
+$$
+
+where $t_{\nu, p}$ denotes the $p$'th quantile of the [Student's t-distribution](https://stat.ethz.ch/R-manual/R-devel/library/stats/html/TDist.html) with $\nu$ degrees of freedom. For a one-sided prediction interval (`pi.type="lower"` or `pi.type="lower"`), the prediction interval is given by:
+
+$$
+K = t_{n-1, 1-\alpha} \sqrt{\frac{1}{m} + \frac{1}{n}} \;\;\;\;\;\; (9)
+$$
+
+.
+
+The formulas for these prediction intervals are derived as follows. Let $\bar{y}$ denote the future average based on $m$ observations. Then the quantity $\bar{y} - \bar{x}$ has a normal distribution with expectation and variance given by:
+
+$$
+E(\bar{y} - \bar{x}) = 0 \;\;\;\;\;\; (10)
+$$
+
+$$
+Var(\bar{y} - \bar{x}) = Var(\bar{y}) + Var(\bar{x}) = \frac{\sigma^2}{m} + \frac{\sigma^2}{n} = \sigma^2(\frac{1}{m} + \frac{1}{n}) \;\;\;\;\;\; (11)
+$$
+
+so the quantity
+
+$$
+t = \frac{\bar{y} - \bar{x}}{s\sqrt{\frac{1}{m} + \frac{1}{n}}} \;\;\;\;\;\; (12)
+$$
+
+has a [Student's t-distribution](https://stat.ethz.ch/R-manual/R-devel/library/stats/html/TDist.html) with $n-1$ degrees of freedom.
+
+**The Derivation of K for More than One Future Observation or Average (k \>1)**  
+When $k > 1$, the function `predIntNormK` allows for two ways to compute $K$: an exact method due to Dunnett (1955) (`method="exact"`), and an approximate (conservative) method based on the Bonferroni inequality (`method="Bonferroni"`; see Miller, 1981a, pp.8, 67-70; Gibbons et al., 2009, p.4). Each of these methods is explained below.
+
+*Exact Method Due to Dunnett (1955)* (`method="exact"`)  
+Dunnett (1955) derived the value of $K$ in the context of the multiple comparisons problem of comparing several treatment means to one control mean. The value of $K$ is computed as:
+
+$$
+K = c \sqrt{\frac{1}{m} + \frac{1}{n}} \;\;\;\;\;\; (13)
+$$
+
+where $c$ is a constant that depends on the sample size $n$, the number of future observations (averages) $k$, the sample size associated with the $k$ future averages $m$, and the confidence level $(1-\alpha)100\%$.
+
+When `pi.type="lower"` or `pi.type="upper"`, the value of $c$ is the number that satisfies the following equation (Gupta and Sobel, 1957; Hahn, 1970a):
+
+$$
+1 - \alpha = \int_{0}^{\infty} F_1(cs, k, \rho) h(s\sqrt{n-1}, n-1) \sqrt{n-1} ds \;\;\;\;\;\; (14)
+$$
+
+where
+
+$$
+F_1(x, k, \rho) = \int_{\infty}^{\infty} [\Phi(\frac{x + \rho^{1/2}y}{\sqrt{1 - \rho}})]^k \phi(y) dy \;\;\;\;\;\; (15)
+$$
+
+$$
+\rho = 1 / (\frac{n}{m} + 1) \;\;\;\;\;\; (16)
+$$
+
+$$
+h(x, \nu) = \frac{x^{\nu-1}e^{-x^2/2}}{2^{(\nu/2) - 1} \Gamma(\frac{\nu}{2})} \;\;\;\;\;\; (17)
+$$
+
+and $\Phi()$ and $\phi()$ denote the cumulative distribution function and probability density function, respectively, of the standard normal distribution. Note that the function $h(x, \nu)$ is the probability density function of a [chi random variable](https://alexkowa.github.io/EnvStats/reference/Chi.html) with $\nu$ degrees of freedom.
+
+When `pi.type="two-sided"`, the value of $c$ is the number that satisfies the following equation:
+
+$$
+1 - \alpha = \int_{0}^{\infty} F_2(cs, k, \rho) h(s\sqrt{n-1}, n-1) \sqrt{n-1} ds \;\;\;\;\;\; (18)
+$$
+
+where
+
+$$
+F_2(x, k, \rho) = \int_{\infty}^{\infty} [\Phi(\frac{x + \rho^{1/2}y}{\sqrt{1 - \rho}}) - \Phi(\frac{-x + \rho^{1/2}y}{\sqrt{1 - \rho}})]^k \phi(y) dy \;\;\;\;\;\; (19)
+$$
+
+*Approximate Method Based on the Bonferroni Inequality* (`method="Bonferroni"`)  
+As shown above, when $k=1$, the value of $K$ is given by Equation (8) or Equation (9) for two-sided or one-sided prediction intervals, respectively. When $k > 1$, a conservative way to construct a $(1-\alpha^*)100\%$ prediction interval for the next $k$ observations or averages is to use a Bonferroni correction (Miller, 1981a, p.8) and set $\alpha = \alpha^*/k$ in Equation (8) or (9) (Chew, 1968). This value of $K$ will be conservative in that the computed prediction intervals will be wider than the exact predictions intervals. Hahn (1969, 1970a) compared the exact values of $K$ with those based on the Bonferroni inequality for the case of $m=1$ and found the approximation to be quite satisfactory except when $n$ is small, $k$ is large, and $\alpha$ is large. For example, Gibbons (1987a) notes that for a 99% prediction interval (i.e., $\alpha = 0.01$) for the next $k$ observations, if $n > 4$, the bias of $K$ is never greater than 1% no matter what the value of $k$.
+
+## predIntNormSimultaneousK {#predintnormsimultaneousk}
+
+Help topic: [`predIntNormSimultaneousK`](https://alexkowa.github.io/EnvStats/reference/predIntNormSimultaneousK.html).
+
+**What is a Simultaneous Prediction Interval?**  
+A prediction interval for some population is an interval on the real line constructed so that it will contain $k$ future observations from that population with some specified probability $(1-\alpha)100\%$, where $0 < \alpha < 1$ and $k$ is some pre-specified positive integer. The quantity $(1-\alpha)100\%$ is called the confidence coefficient or confidence level associated with the prediction interval. The function [`predIntNorm`](https://alexkowa.github.io/EnvStats/reference/predIntNorm.html) computes a standard prediction interval based on a sample from a [normal distribution](https://stat.ethz.ch/R-manual/R-devel/library/stats/html/Normal.html).
+
+The function `predIntNormSimultaneous` computes a simultaneous prediction interval that will contain a certain number of future observations with probability $(1-\alpha)100\%$ for each of $r$ future sampling “occasions”, where $r$ is some pre-specified positive integer. The quantity $r$ may refer to $r$ distinct future sampling occasions in time, or it may for example refer to sampling at $r$ distinct locations on one future sampling occasion, assuming that the population standard deviation is the same at all of the $r$ distinct locations.
+
+The function [`predIntNormSimultaneous`](https://alexkowa.github.io/EnvStats/reference/predIntNormSimultaneous.html) computes a simultaneous prediction interval based on one of three possible rules:
+
+- For the $k$-of-$m$ rule (`rule="k.of.m"`), at least $k$ of the next $m$ future observations will fall in the prediction interval with probability $(1-\alpha)100\%$ on each of the $r$ future sampling occasions. If obserations are being taken sequentially, for a particular sampling occasion, up to $m$ observations may be taken, but once $k$ of the observations fall within the prediction interval, sampling can stop. Note: When $k=m$ and $r=1$, the results of `predIntNormSimultaneous` are equivalent to the results of [`predIntNorm`](https://alexkowa.github.io/EnvStats/reference/predIntNorm.html).
+- For the California rule (`rule="CA"`), with probability $(1-\alpha)100\%$, for each of the $r$ future sampling occasions, either the first observation will fall in the prediction interval, or else all of the next $m-1$ observations will fall in the prediction interval. That is, if the first observation falls in the prediction interval then sampling can stop. Otherwise, $m-1$ more observations must be taken.
+- For the Modified California rule (`rule="Modified.CA"`), with probability $(1-\alpha)100\%$, for each of the $r$ future sampling occasions, either the first observation will fall in the prediction interval, or else at least 2 out of the next 3 observations will fall in the prediction interval. That is, if the first observation falls in the prediction interval then sampling can stop. Otherwise, up to 3 more observations must be taken.
+
+Simultaneous prediction intervals can be extended to using averages (means) in place of single observations (USEPA, 2009, Chapter 19). That is, you can create a simultaneous prediction interval that will contain a specified number of averages (based on which rule you choose) on each of $r$ future sampling occassions, where each each average is based on $w$ individual observations. For the functions [`predIntNormSimultaneous`](https://alexkowa.github.io/EnvStats/reference/predIntNormSimultaneous.html) and `predIntNormSimultaneousK`, the argument `n.mean` corresponds to $w$.
+
+*The Form of a Prediction Interval for 1 Future Observation*  
+Let $\underline{x} = x_1, x_2, \ldots, x_n$ denote a vector of $n$ observations from a [normal distribution](https://stat.ethz.ch/R-manual/R-devel/library/stats/html/Normal.html) with parameters `mean=`$\mu$ and `sd=`$\sigma$. Also, let $w$ denote the sample size associated with the future averages (i.e., `n.mean=`$w$). When $w=1$, each average is really just a single observation, so in the rest of this section the term “averages” will sometimes replace the phrase “observations or averages”.
+
+For a normal distribution, the form of a two-sided $(1-\alpha)100\%$ simultaneous prediction interval is:
+
+$$
+[\bar{x} - Ks, \bar{x} + Ks] \;\;\;\;\;\; (1)
+$$
+
+where $\bar{x}$ denotes the sample mean:
+
+$$
+\bar{x} = \frac{1}{n} \sum_{i=1}^n x_i \;\;\;\;\;\; (2)
+$$
+
+$s$ denotes the sample standard deviation:
+
+$$
+s^2 = \frac{1}{n-1} \sum_{i=1}^n (x_i - \bar{x})^2 \;\;\;\;\;\; (3)
+$$
+
+and $K$ denotes a constant that depends on the sample size $n$, the confidence level, the number of future sampling occassions $r$, and the sample size associated with the future averages, $w$. Do not confuse the constant $K$ (uppercase K) with the number of future averages $k$ (lowercase k) in the $k$-of-$m$ rule. The symbol $K$ is used here to be consistent with the notation used for tolerance intervals (see [`tolIntNorm`](https://alexkowa.github.io/EnvStats/reference/tolIntNorm.html)).
+
+Similarly, the form of a one-sided lower prediction interval is:
+
+$$
+[\bar{x} - Ks, \infty] \;\;\;\;\;\; (4)
+$$
+
+and the form of a one-sided upper prediction interval is:
+
+$$
+[-\infty, \bar{x} + Ks] \;\;\;\;\;\; (5)
+$$
+
+The derivation of the constant $K$ for 1 future observation is explained in the section on [`predIntNormK`](prediction-intervals.html#predintnormk).
+
+*The Form of a Simultaneous Prediction Interval*  
+For **simultaneous** prediction intervals, only lower (`pi.type="lower"`) and upper (`pi.type="upper"`) prediction intervals are available. Two-sided simultaneous prediction intervals were available in Versions 2.4.0 - 2.8.1 of *EnvStats*, but these prediction intervals were based on an incorrect algorithm for $K$.
+
+Equations (4) and (5) above hold for simultaneous prediction intervals, but the derivation of the constant $K$ is more difficult, and is explained below.
+
+**The Derivation of K for Future Observations**  
+First we will show the derivation based on future observations (i.e., $w=1$, `n.mean=1`), and then extend the formulas to future averages.
+
+*The Derivation of K for the k-of-m Rule* (`rule="k.of.m"`)  
+For the $k$-of-$m$ rule (`rule="k.of.m"`) with $w=1$ (i.e., `n.mean=1`), at least $k$ of the next $m$ future observations will fall in the prediction interval with probability $(1-\alpha)100\%$ on each of the $r$ future sampling occasions. If observations are being taken sequentially, for a particular sampling occasion, up to $m$ observations may be taken, but once $k$ of the observations fall within the prediction interval, sampling can stop. Note: When $k=m$ and $r=1$, this kind of simultaneous prediction interval becomes the same as a standard prediction interval for the next $k$ observations (see [`predIntNorm`](https://alexkowa.github.io/EnvStats/reference/predIntNorm.html)).
+
+For the case when $r=1$ future sampling occasion, both Hall and Prairie (1973) and Fertig and Mann (1977) discuss the derivation of $K$. Davis and McNichols (1987) extend the derivation to the case where $r$ is a positive integer. They show that for a one-sided upper prediction interval (`pi.type="upper"`), the probability $p$ that at least $k$ of the next $m$ future observations will be contained in the interval given in Equation (5) above, for each of $r$ future sampling occasions, is given by:
+
+$$
+p = \int_0^1 T(\sqrt{n}K; n-1, \sqrt{n}[\Phi^{-1}(v) + \frac{\Delta}{\sigma}]) r[I(v; k, m+1-k)]^{r-1} [\frac{v^{k-1}(1-v)^{m-k}}{B(k, m+1-k)}] dv \;\;\;\;\;\; (6)
+$$
+
+where $T(x; \nu, \delta)$ denotes the cdf of the [non-central Student's t-distribution](https://stat.ethz.ch/R-manual/R-devel/library/stats/html/TDist.html) with parameters `df=`$\nu$ and `ncp=`$\delta$ evaluated at $x$; $\Phi(x)$ denotes the cdf of the standard [normal distribution](https://stat.ethz.ch/R-manual/R-devel/library/stats/html/Normal.html) evaluated at $x$; $I(x; \nu, \omega)$ denotes the cdf of the [beta distribution](https://stat.ethz.ch/R-manual/R-devel/library/stats/html/Beta.html) with parameters `shape1=`$\nu$ and `shape2=`$\omega$; and $B(\nu, \omega)$ denotes the value of the [beta function](https://stat.ethz.ch/R-manual/R-devel/library/base/html/Special.html) with parameters `a=`$\nu$ and `b=`$\omega$.
+
+The quantity $\Delta$ (upper case delta) denotes the difference between the mean of the population that was sampled to construct the prediction interval, and the mean of the population that will be sampled to produce the future observations. The quantity $\sigma$ (sigma) denotes the population standard deviation of both of these populations. Usually you assume $\Delta=0$ unless you are interested in computing the power of the rule to detect a change in means between the populations (see [`predIntNormSimultaneousTestPower`](https://alexkowa.github.io/EnvStats/reference/predIntNormSimultaneousTestPower.html)).
+
+For given values of the confidence level ($p$), sample size ($n$), minimum number of future observations to be contained in the interval per sampling occasion ($k$), number of future observations per sampling occasion ($m$), and number of future sampling occasions ($r$), Equation (6) can be solved for $K$. The function `predIntNormSimultaneousK` uses the R function `nlminb` to solve Equation (6) for $K$.
+
+When `pi.type="lower"`, the same value of $K$ is used as when `pi.type="upper"`, but Equation (4) is used to construct the prediction interval.
+
+*The Derivation of K for the California Rule* (`rule="CA"`)  
+For the California rule (`rule="CA"`), with probability $(1-\alpha)100\%$, for each of the $r$ future sampling occasions, either the first observation will fall in the prediction interval, or else all of the next $m-1$ observations will fall in the prediction interval. That is, if the first observation falls in the prediction interval then sampling can stop. Otherwise, $m-1$ more observations must be taken.
+
+The formula for $K$ is the same as for the $k$-of-$m$ rule, except that Equation (6) becomes the following (Davis, 1998b):
+
+$$
+p = \int_0^1 T(\sqrt{n}K; n-1, \sqrt{n}[\Phi^{-1}(v) + \frac{\Delta}{\sigma}]) r\{v[1+v^{m-2}(1-v)]\}^{r-1} [1+v^{m-2}(m-1-mv)] dv \;\;\;\;\;\; (7)
+$$
+
+*The Derivation of K for the Modified California Rule* (`rule="Modified.CA"`)  
+For the Modified California rule (`rule="Modified.CA"`), with probability $(1-\alpha)100\%$, for each of the $r$ future sampling occasions, either the first observation will fall in the prediction interval, or else at least 2 out of the next 3 observations will fall in the prediction interval. That is, if the first observation falls in the prediction interval then sampling can stop. Otherwise, up to 3 more observations must be taken.
+
+The formula for $K$ is the same as for the $k$-of-$m$ rule, except that Equation (6) becomes the following (Davis, 1998b):
+
+$$
+p = \int_0^1 T(\sqrt{n}K; n-1, \sqrt{n}[\Phi^{-1}(v) + \frac{\Delta}{\sigma}]) r\{v[1+v(3-v[5-2v])]\}^{r-1} \{1+v[6-v(15-8v)]\} dv \;\;\;\;\;\; (8)
+$$
+
+**The Derivation of K for Future Means**  
+For each of the above rules, if we are interested in using averages instead of single observations, with $w \ge 1$ (i.e., `n.mean`$\ge 1$), the first term in the integral in Equations (6)-(8) that involves the cdf of the [non-central Student's t-distribution](https://stat.ethz.ch/R-manual/R-devel/library/stats/html/TDist.html) becomes:
+
+$$
+T(\sqrt{n}K; n-1, \frac{\sqrt{n}}{\sqrt{w}}[\Phi^{-1}(v) + \frac{\sqrt{w}\Delta}{\sigma}]) \;\;\;\;\;\; (9)
+$$
+
+## predIntNormSimultaneousTestPower {#predintnormsimultaneoustestpower}
+
+Help topic: [`predIntNormSimultaneousTestPower`](https://alexkowa.github.io/EnvStats/reference/predIntNormSimultaneousTestPower.html).
+
+**What is a Simultaneous Prediction Interval?**  
+A prediction interval for some population is an interval on the real line constructed so that it will contain $k$ future observations from that population with some specified probability $(1-\alpha)100\%$, where $0 < \alpha < 1$ and $k$ is some pre-specified positive integer. The quantity $(1-\alpha)100\%$ is called the confidence coefficient or confidence level associated with the prediction interval. The function [`predIntNorm`](https://alexkowa.github.io/EnvStats/reference/predIntNorm.html) computes a standard prediction interval based on a sample from a [normal distribution](https://stat.ethz.ch/R-manual/R-devel/library/stats/html/Normal.html).
+
+The function [`predIntNormSimultaneous`](https://alexkowa.github.io/EnvStats/reference/predIntNormSimultaneous.html) computes a simultaneous prediction interval that will contain a certain number of future observations with probability $(1-\alpha)100\%$ for each of $r$ future sampling “occasions”, where $r$ is some pre-specified positive integer. The quantity $r$ may refer to $r$ distinct future sampling occasions in time, or it may for example refer to sampling at $r$ distinct locations on one future sampling occasion, assuming that the population standard deviation is the same at all of the $r$ distinct locations.
+
+The function [`predIntNormSimultaneous`](https://alexkowa.github.io/EnvStats/reference/predIntNormSimultaneous.html) computes a simultaneous prediction interval based on one of three possible rules:
+
+- For the $k$-of-$m$ rule (`rule="k.of.m"`), at least $k$ of the next $m$ future observations will fall in the prediction interval with probability $(1-\alpha)100\%$ on each of the $r$ future sampling occasions. If obserations are being taken sequentially, for a particular sampling occasion, up to $m$ observations may be taken, but once $k$ of the observations fall within the prediction interval, sampling can stop. Note: When $k=m$ and $r=1$, the results of [`predIntNormSimultaneous`](https://alexkowa.github.io/EnvStats/reference/predIntNormSimultaneous.html) are equivalent to the results of [`predIntNorm`](https://alexkowa.github.io/EnvStats/reference/predIntNorm.html).
+- For the California rule (`rule="CA"`), with probability $(1-\alpha)100\%$, for each of the $r$ future sampling occasions, either the first observation will fall in the prediction interval, or else all of the next $m-1$ observations will fall in the prediction interval. That is, if the first observation falls in the prediction interval then sampling can stop. Otherwise, $m-1$ more observations must be taken.
+- For the Modified California rule (`rule="Modified.CA"`), with probability $(1-\alpha)100\%$, for each of the $r$ future sampling occasions, either the first observation will fall in the prediction interval, or else at least 2 out of the next 3 observations will fall in the prediction interval. That is, if the first observation falls in the prediction interval then sampling can stop. Otherwise, up to 3 more observations must be taken.
+
+Simultaneous prediction intervals can be extended to using averages (means) in place of single observations (USEPA, 2009, Chapter 19). That is, you can create a simultaneous prediction interval that will contain a specified number of averages (based on which rule you choose) on each of $r$ future sampling occassions, where each each average is based on $w$ individual observations. For the function [`predIntNormSimultaneous`](https://alexkowa.github.io/EnvStats/reference/predIntNormSimultaneous.html), the argument `n.mean` corresponds to $w$.
+
+**The Form of a Prediction Interval**  
+Let $\underline{x} = x_1, x_2, \ldots, x_n$ denote a vector of $n$ observations from a [normal distribution](https://stat.ethz.ch/R-manual/R-devel/library/stats/html/Normal.html) with parameters `mean=`$\mu$ and `sd=`$\sigma$. Also, let $w$ denote the sample size associated with the future averages (i.e., `n.mean=`$w$). When $w=1$, each average is really just a single observation, so in the rest of this section the term “averages” will replace the phrase “observations or averages”.
+
+For a normal distribution, the form of a two-sided $(1-\alpha)100\%$ prediction interval is:
+
+$$
+[\bar{x} - Ks, \bar{x} + Ks] \;\;\;\;\;\; (1)
+$$
+
+where $\bar{x}$ denotes the sample mean:
+
+$$
+\bar{x} = \frac{1}{n} \sum_{i=1}^n x_i \;\;\;\;\;\; (2)
+$$
+
+$s$ denotes the sample standard deviation:
+
+$$
+s^2 = \frac{1}{n-1} \sum_{i=1}^n (x_i - \bar{x})^2 \;\;\;\;\;\; (3)
+$$
+
+and $K$ denotes a constant that depends on the sample size $n$, the confidence level, the number of future sampling occassions $r$, and the sample size associated with the future averages, $w$. Do not confuse the constant $K$ (uppercase K) with the number of future averages $k$ (lowercase k) in the $k$-of-$m$ rule. The symbol $K$ is used here to be consistent with the notation used for tolerance intervals (see [`tolIntNorm`](https://alexkowa.github.io/EnvStats/reference/tolIntNorm.html)).
+
+Similarly, the form of a one-sided lower prediction interval is:
+
+$$
+[\bar{x} - Ks, \infty] \;\;\;\;\;\; (4)
+$$
+
+and the form of a one-sided upper prediction interval is:
+
+$$
+[-\infty, \bar{x} + Ks] \;\;\;\;\;\; (5)
+$$
+
+**Note:** For simultaneous prediction intervals, only lower (`pi.type="lower"`) and upper  
+(`pi.type="upper"`) prediction intervals are available.
+
+The derivation of the constant $K$ is explained in the section on [`predIntNormSimultaneousK`](prediction-intervals.html#predintnormsimultaneousk).
+
+**Computing Power**  
+The "power" of the prediction interval is defined as the probability that at least one set of future observations violates the given rule based on a simultaneous prediction interval for the next $r$ future sampling occasions, where the population mean for the future observations is allowed to differ from the population mean for the observations used to construct the prediction interval.
+
+The quantity $\Delta$ (upper case delta) denotes the difference between the mean of the population that was sampled to construct the prediction interval, and the mean of the population that will be sampled to produce the future observations. The quantity $\sigma$ (sigma) denotes the population standard deviation of both of these populations. The argument `delta.over.sigma` corresponds to the quantity $\Delta/\sigma$.
+
+*Power Based on the k-of-m Rule* (`rule="k.of.m"`)  
+For the $k$-of-$m$ rule (`rule="k.of.m"`) with $w=1$ (i.e., `n.mean=1`), at least $k$ of the next $m$ future observations will fall in the prediction interval with probability $(1-\alpha)100\%$ on each of the $r$ future sampling occasions. If observations are being taken sequentially, for a particular sampling occasion, up to $m$ observations may be taken, but once $k$ of the observations fall within the prediction interval, sampling can stop. Note: When $k=m$ and $r=1$, this kind of simultaneous prediction interval becomes the same as a standard prediction interval for the next $k$ observations (see [`predIntNorm`](https://alexkowa.github.io/EnvStats/reference/predIntNorm.html)).
+
+Davis and McNichols (1987) show that for a one-sided upper prediction interval (`pi.type="upper"`), the probability $p$ that at least $k$ of the next $m$ future observations will be contained in the interval given in Equation (5) above, for each of $r$ future sampling occasions, is given by:
+
+$$
+p = \int_0^1 T(\sqrt{n}K; n-1, \sqrt{n}[\Phi^{-1}(v) + \frac{\Delta}{\sigma}]) r[I(v; k, m+1-k)]^{r-1} [\frac{v^{k-1}(1-v)^{m-k}}{B(k, m+1-k)}] dv \;\;\;\;\;\; (6)
+$$
+
+where $T(x; \nu, \delta)$ denotes the cdf of the [non-central Student's t-distribution](https://stat.ethz.ch/R-manual/R-devel/library/stats/html/TDist.html) with parameters `df=`$\nu$ and `ncp=`$\delta$ evaluated at $x$; $\Phi(x)$ denotes the cdf of the standard [normal distribution](https://stat.ethz.ch/R-manual/R-devel/library/stats/html/Normal.html) evaluated at $x$; $I(x; \nu, \omega)$ denotes the cdf of the [beta distribution](https://stat.ethz.ch/R-manual/R-devel/library/stats/html/Beta.html) with parameters `shape1=`$\nu$ and `shape2=`$\omega$; and $B(\nu, \omega)$ denotes the value of the [beta function](https://stat.ethz.ch/R-manual/R-devel/library/base/html/Special.html) with parameters `a=`$\nu$ and `b=`$\omega$.
+
+The quantity $\Delta$ (upper case delta) denotes the difference between the mean of the population that was sampled to construct the prediction interval, and the mean of the population that will be sampled to produce the future observations. The quantity $\sigma$ (sigma) denotes the population standard deviation of both of these populations. Usually you assume $\Delta=0$ unless you are interested in computing the power of the rule to detect a change in means between the populations, as we are here.
+
+If we are interested in using averages instead of single observations, with $w \ge 1$ (i.e., `n.mean`$\ge 1$), the first term in the integral in Equation (6) that involves the cdf of the [non-central Student's t-distribution](https://stat.ethz.ch/R-manual/R-devel/library/stats/html/TDist.html) becomes:
+
+$$
+T(\sqrt{n}K; n-1, \frac{\sqrt{n}}{\sqrt{w}}[\Phi^{-1}(v) + \frac{\sqrt{w}\Delta}{\sigma}]) \;\;\;\;\;\; (7)
+$$
+
+For a given confidence level $(1-\alpha)100\%$, the power of the rule to detect a change in means is simply given by:
+
+$$
+Power = 1 - p \;\;\;\;\;\; (8)
+$$
+
+where $p$ is defined in Equation (6) above using the value of $K$ that corresponds to $\Delta/\sigma = 0$. Thus, when the argument `delta.over.sigma=0`, the value of $p$ is $1-\alpha$ and the power is simply $\alpha 100\%$. As `delta.over.sigma` increases above 0, the power increases.
+
+When `pi.type="lower"`, the same value of `K` is used as when `pi.type="upper"`, but Equation (4) is used to construct the prediction interval. Thus, the power increases as `delta.over.sigma` decreases below 0.
+
+*Power Based on the California Rule* (`rule="CA"`)  
+For the California rule (`rule="CA"`), with probability $(1-\alpha)100\%$, for each of the $r$ future sampling occasions, either the first observation will fall in the prediction interval, or else all of the next $m-1$ observations will fall in the prediction interval. That is, if the first observation falls in the prediction interval then sampling can stop. Otherwise, $m-1$ more observations must be taken.
+
+The derivation of the power is the same as for the $k$-of-$m$ rule, except that Equation (6) becomes the following (Davis, 1998b):
+
+$$
+p = \int_0^1 T(\sqrt{n}K; n-1, \sqrt{n}[\Phi^{-1}(v) + \frac{\Delta}{\sigma}]) r\{v[1+v^{m-2}(1-v)]\}^{r-1} [1+v^{m-2}(m-1-mv)] dv \;\;\;\;\;\; (9)
+$$
+
+*Power Based on the Modified California Rule* (`rule="Modified.CA"`)  
+For the Modified California rule (`rule="Modified.CA"`), with probability $(1-\alpha)100\%$, for each of the $r$ future sampling occasions, either the first observation will fall in the prediction interval, or else at least 2 out of the next 3 observations will fall in the prediction interval. That is, if the first observation falls in the prediction interval then sampling can stop. Otherwise, up to 3 more observations must be taken.
+
+The derivation of the power is the same as for the $k$-of-$m$ rule, except that Equation (6) becomes the following (Davis, 1998b):
+
+$$
+p = \int_0^1 T(\sqrt{n}K; n-1, \sqrt{n}[\Phi^{-1}(v) + \frac{\Delta}{\sigma}]) r\{v[1+v(3-v[5-2v])]\}^{r-1} \{1+v[6-v(15-8v)]\} dv \;\;\;\;\;\; (10)
+$$
+
+## predIntNparSimultaneous {#predintnparsimultaneous}
+
+Help topic: [`predIntNparSimultaneous`](https://alexkowa.github.io/EnvStats/reference/predIntNparSimultaneous.html).
+
+*What is a Nonparametric Simultaneous Prediction Interval?*  
+A nonparametric prediction interval for some population is an interval on the real line constructed so that it will contain at least $k$ of $m$ future observations from that population with some specified probability $(1-\alpha)100\%$, where $0 < \alpha < 1$ and $k$ and $m$ are some pre-specified positive integers and $k \le m$. The quantity $(1-\alpha)100\%$ is called the confidence coefficient or confidence level associated with the prediction interval. The function [`predIntNpar`](https://alexkowa.github.io/EnvStats/reference/predIntNpar.html) computes a standard nonparametric prediction interval.
+
+The function `predIntNparSimultaneous` computes a nonparametric simultaneous prediction interval that will contain a certain number of future observations with probability $(1-\alpha)100\%$ for each of $r$ future sampling “occasions”, where $r$ is some pre-specified positive integer. The quantity $r$ may refer to $r$ distinct future sampling occasions in time, or it may for example refer to sampling at $r$ distinct locations on one future sampling occasion, assuming that the population standard deviation is the same at all of the $r$ distinct locations.
+
+The function `predIntNparSimultaneous` computes a nonparametric simultaneous prediction interval based on one of three possible rules:
+
+- For the $k$-of-$m$ rule (`rule="k.of.m"`), at least $k$ of the next $m$ future observations will fall in the prediction interval with probability $(1-\alpha)100\%$ on each of the $r$ future sampling occasions. If obserations are being taken sequentially, for a particular sampling occasion, up to $m$ observations may be taken, but once $k$ of the observations fall within the prediction interval, sampling can stop. Note: For this rule, when $r=1$, the results of `predIntNparSimultaneous` are equivalent to the results of [`predIntNpar`](https://alexkowa.github.io/EnvStats/reference/predIntNpar.html).
+- For the California rule (`rule="CA"`), with probability $(1-\alpha)100\%$, for each of the $r$ future sampling occasions, either the first observation will fall in the prediction interval, or else all of the next $m-1$ observations will fall in the prediction interval. That is, if the first observation falls in the prediction interval then sampling can stop. Otherwise, $m-1$ more observations must be taken.
+- For the Modified California rule (`rule="Modified.CA"`), with probability $(1-\alpha)100\%$, for each of the $r$ future sampling occasions, either the first observation will fall in the prediction interval, or else at least 2 out of the next 3 observations will fall in the prediction interval. That is, if the first observation falls in the prediction interval then sampling can stop. Otherwise, up to 3 more observations must be taken.
+
+Nonparametric simultaneous prediction intervals can be extended to using medians in place of single observations (USEPA, 2009, Chapter 19). That is, you can create a nonparametric simultaneous prediction interval that will contain a specified number of medians (based on which rule you choose) on each of $r$ future sampling occassions, where each each median is based on $b$ individual observations. For the function `predIntNparSimultaneous`, the argument `n.median` corresponds to $b$.
+
+**The Form of a Nonparametric Prediction Interval**  
+Let $\underline{x} = x_1, x_2, \ldots, x_n$ denote a vector of $n$ independent observations from some continuous distribution, and let $x_{(i)}$ denote the the $i$'th order statistics in $\underline{x}$. A two-sided nonparametric prediction interval is constructed as:
+
+$$
+[x_{(u)}, x_{(v)}] \;\;\;\;\;\; (1)
+$$
+
+where $u$ and $v$ are positive integers between 1 and $n$, and $u < v$. That is, $u$ denotes the rank of the lower prediction limit, and $v$ denotes the rank of the upper prediction limit. To make it easier to write some equations later on, we can also write the prediction interval (1) in a slightly different way as:
+
+$$
+[x_{(u)}, x_{(n + 1 - w)}] \;\;\;\;\;\; (2)
+$$
+
+where
+
+$$
+w = n + 1 - v \;\;\;\;\;\; (3)
+$$
+
+so that $w$ is a positive integer between 1 and $n-1$, and $u < n+1-w$. In terms of the arguments to the function `predIntNparSimultaneous`, the argument `lpl.rank` corresponds to $u$, and the argument `n.plus.one.minus.upl.rank` corresponds to $w$.
+
+If we allow $u=0$ and $w=0$ and define lower and upper bounds as:
+
+$$
+x_{(0)} = lb \;\;\;\;\;\; (4)
+$$
+
+$$
+x_{(n+1)} = ub \;\;\;\;\;\; (5)
+$$
+
+then Equation (2) above can also represent a one-sided lower or one-sided upper prediction interval as well. That is, a one-sided lower nonparametric prediction interval is constructed as:
+
+$$
+[x_{(u)}, x_{(n + 1)}] =  [x_{(u)}, ub] \;\;\;\;\;\; (6)
+$$
+
+and a one-sided upper nonparametric prediction interval is constructed as:
+
+$$
+[x_{(0)}, x_{(n + 1 - w)}]  = [lb, x_{(n + 1 - w)}] \;\;\;\;\;\; (7)
+$$
+
+Usually, $lb = -\infty$ or $lb = 0$ and $ub = \infty$.
+
+**Note:** For nonparametric simultaneous prediction intervals, only lower (`pi.type="lower"`) and upper (`pi.type="upper"`) prediction intervals are available.
+
+**Constructing Nonparametric Simultaneous Prediction Intervals for Future Observations**  
+First we will show how to construct a nonparametric simultaneous prediction interval based on future observations (i.e., $b=1$, `n.median=1`), and then extend the formulas to future medians.
+
+*Simultaneous Prediction Intervals for the k-of-m Rule* (`rule="k.of.m"`)  
+For the $k$-of-$m$ rule (`rule="k.of.m"`) with $w=1$ (i.e., `n.median=1`), at least $k$ of the next $m$ future observations will fall in the prediction interval with probability $(1-\alpha)100\%$ on each of the $r$ future sampling occasions. If observations are being taken sequentially, for a particular sampling occasion, up to $m$ observations may be taken, but once $k$ of the observations fall within the prediction interval, sampling can stop. Note: When $r=1$, this kind of simultaneous prediction interval becomes the same as a standard nonparametric prediction interval (see [`predIntNpar`](https://alexkowa.github.io/EnvStats/reference/predIntNpar.html)).
+
+Chou and Owen (1986) developed the theory for nonparametric simultaneous prediction limits for various rules, including the 1-of-$m$ rule. Their theory, however, does not cover the California or Modified California rules, and uses an $r$-fold summation involving a minimum of $2^r$ terms. Davis and McNichols (1994b; 1999) extended the results of Chou and Owen (1986) to include the California and Modified California rule, and developed algorithms that involve summing far fewer terms.
+
+Davis and McNichols (1999) give formulas for the probabilities associated with the one-sided upper simultaneous prediction interval shown in Equation (7). For the $k$-of-$m$ rule, the probability that at least $k$ of the next $m$ future observations will be contained in the interval given in Equation (7) for each of $r$ future sampling occasions is given by:
+
+<table>
+<tbody>
+  <tr>
+    <td>\(1 - \alpha\)</td>
+    <td>\(=\)</td>
+    <td>\(E[\sum_{i=0}^{m-k} {{k-1+i} \choose{k-1}} Y^k (1-Y)^i]^r\)</td>
+  </tr>
+  <tr>
+    <td>&nbsp;</td>
+    <td>\(=\)</td>
+    <td>\(\int_0^1 [\sum_{i=0}^{m-k} {{k-1+i} \choose{k-1}} y^k (1-y)^i]^r f(y) dy \;\;\;\;\;\; (8)\)</td>
+  </tr>
+</tbody>
+</table>
+
+where $Y$ denotes a random variable with a [beta distribution](https://stat.ethz.ch/R-manual/R-devel/library/stats/html/Beta.html) with parameters $v$ and $n+1-v$, and $f()$ denotes the pdf of this distribution. Note that $v$ denotes the rank of the order statistic used as the upper prediction limit (i.e., `n.plus.one.minus.upl.rank=`$n+1-v$), and that $v$ is usually equal to $n$.
+
+Also note that the summation term in Equation (8) corresponds to the cumulative distribution function of a [Negative Binomial distribution](https://stat.ethz.ch/R-manual/R-devel/library/stats/html/NegBinomial.html) with parameters `size=`$k$ and `prob=`$y$ evaluated at `q=`$m-k$.
+
+When `pi.type="lower"`, $Y$ denotes a random variable with a [beta distribution](https://stat.ethz.ch/R-manual/R-devel/library/stats/html/Beta.html) with parameters $n+1-u$ and $u$. Note that $u$ denotes the rank of the order statistic used as the lower prediction limit (i.e., `lpl.rank=`$u$), and that $u$ is usually equal to $1$.
+
+*Simultaneous Prediction Intervals for the California Rule* (`rule="CA"`)  
+For the California rule (`rule="CA"`), with probability $(1-\alpha)100\%$, for each of the $r$ future sampling occasions, either the first observation will fall in the prediction interval, or else all of the next $m-1$ observations will fall in the prediction interval. That is, if the first observation falls in the prediction interval then sampling can stop. Otherwise, $m-1$ more observations must be taken.
+
+In this case, the probability is given by:
+
+<table>
+<tbody>
+  <tr>
+    <td>\(1 - \alpha\)</td>
+    <td>\(=\)</td>
+    <td>\(E[\sum_{i=0}^r {r \choose i} Y^{r - i + (m-1)i} (1-Y)^i]\)</td>
+  </tr>
+  <tr>
+    <td>&nbsp;</td>
+    <td>\(=\)</td>
+    <td>\(\int_0^1 [\sum_{i=0}^r {r \choose i} y^{r - i + (m-1)i} (1-y)^i] f(y) dy \;\;\;\;\;\; (9)\)</td>
+  </tr>
+</tbody>
+</table>
+
+*Simultaneous Prediction Intervals for the Modified California Rule* (`rule="Modified.CA"`)  
+For the Modified California rule (`rule="Modified.CA"`), with probability $(1-\alpha)100\%$, for each of the $r$ future sampling occasions, either the first observation will fall in the prediction interval, or else at least 2 out of the next 3 observations will fall in the prediction interval. That is, if the first observation falls in the prediction interval then sampling can stop. Otherwise, up to 3 more observations must be taken.
+
+In this case, the probability is given by:
+
+<table>
+<tbody>
+  <tr>
+    <td>\(1 - \alpha\)</td>
+    <td>\(=\)</td>
+    <td>\(E[Y^r (1 + Q + Q^2 - 2Q^3)^r]\)</td>
+  </tr>
+  <tr>
+    <td>&nbsp;</td>
+    <td>\(=\)</td>
+    <td>\(\int_0^1 [y^r (1 + q + q^2 - 2q^3)^r] f(y) dy \;\;\;\;\;\; (10)\)</td>
+  </tr>
+</tbody>
+</table>
+
+where $Q = 1 - Y$ and $q = 1 - y$.
+
+Davis and McNichols (1999) provide algorithms for computing the probabilities based on expanding polynomials and the formula for the expected value of a beta random variable. In the discussion section of Davis and McNichols (1999), however, Vangel points out that numerical integration is adequate, and this is how these probabilities are computed in the function `predIntNparSimultaneous`.
+
+**Constructing Nonparametric Simultaneous Prediction Intervals for Future Medians**  
+USEPA (2009, Chapter 19; Cameron, 2011) extends nonparametric simultaneous prediction intervals to testing future medians for the case of the 1-of-1 and 1-of-2 plans for medians of order 3. In general, each of the rules ($k$-of-$m$, California, and Modified California) can be easily extended to the case of using medians as long as the medians are based on an odd (as opposed to even) sample size.
+
+For each of the above rules, if we are interested in using medians instead of single observations (i.e., $b \ge 1$; `n.median`$\ge 1$), and we force $b$ to be odd, then a median will be less than a prediction limit once $(b+1)/2$ observations are less than the prediction limit. Thus, Equations (8) - (10) are modified by replacing $y$ with the term:
+
+$$
+\sum_{i=0}^{b - b'} {{b' - 1 + i} \choose{b' - 1}} y^{b'} (1 - y)^i \;\;\;\;\;\; (11)
+$$
+
+where
+
+$$
+b' = \frac{b+1}{2} \;\;\;\;\;\; (12)
+$$
+
+## predIntNparSimultaneousTestPower {#predintnparsimultaneoustestpower}
+
+Help topic: [`predIntNparSimultaneousTestPower`](https://alexkowa.github.io/EnvStats/reference/predIntNparSimultaneousTestPower.html).
+
+*What is a Nonparametric Simultaneous Prediction Interval?*  
+A nonparametric prediction interval for some population is an interval on the real line constructed so that it will contain at least $k$ of $m$ future observations from that population with some specified probability $(1-\alpha)100\%$, where $0 < \alpha < 1$ and $k$ and $m$ are some pre-specified positive integers and $k \le m$. The quantity $(1-\alpha)100\%$ is called the confidence coefficient or confidence level associated with the prediction interval. The function [`predIntNpar`](https://alexkowa.github.io/EnvStats/reference/predIntNpar.html) computes a standard nonparametric prediction interval.
+
+The function [`predIntNparSimultaneous`](https://alexkowa.github.io/EnvStats/reference/predIntNparSimultaneous.html) computes a nonparametric simultaneous prediction interval that will contain a certain number of future observations with probability $(1-\alpha)100\%$ for each of $r$ future sampling “occasions”, where $r$ is some pre-specified positive integer. The quantity $r$ may refer to $r$ distinct future sampling occasions in time, or it may for example refer to sampling at $r$ distinct locations on one future sampling occasion, assuming that the population standard deviation is the same at all of the $r$ distinct locations.
+
+The function [`predIntNparSimultaneous`](https://alexkowa.github.io/EnvStats/reference/predIntNparSimultaneous.html) computes a nonparametric simultaneous prediction interval based on one of three possible rules:
+
+- For the $k$-of-$m$ rule (`rule="k.of.m"`), at least $k$ of the next $m$ future observations will fall in the prediction interval with probability $(1-\alpha)100\%$ on each of the $r$ future sampling occasions. If obserations are being taken sequentially, for a particular sampling occasion, up to $m$ observations may be taken, but once $k$ of the observations fall within the prediction interval, sampling can stop. Note: For this rule, when $r=1$, the results of [`predIntNparSimultaneous`](https://alexkowa.github.io/EnvStats/reference/predIntNparSimultaneous.html) are equivalent to the results of [`predIntNpar`](https://alexkowa.github.io/EnvStats/reference/predIntNpar.html).
+- For the California rule (`rule="CA"`), with probability $(1-\alpha)100\%$, for each of the $r$ future sampling occasions, either the first observation will fall in the prediction interval, or else all of the next $m-1$ observations will fall in the prediction interval. That is, if the first observation falls in the prediction interval then sampling can stop. Otherwise, $m-1$ more observations must be taken.
+- For the Modified California rule (`rule="Modified.CA"`), with probability $(1-\alpha)100\%$, for each of the $r$ future sampling occasions, either the first observation will fall in the prediction interval, or else at least 2 out of the next 3 observations will fall in the prediction interval. That is, if the first observation falls in the prediction interval then sampling can stop. Otherwise, up to 3 more observations must be taken.
+
+Nonparametric simultaneous prediction intervals can be extended to using medians in place of single observations (USEPA, 2009, Chapter 19). That is, you can create a nonparametric simultaneous prediction interval that will contain a specified number of medians (based on which rule you choose) on each of $r$ future sampling occassions, where each each median is based on $b$ individual observations. For the function [`predIntNparSimultaneous`](https://alexkowa.github.io/EnvStats/reference/predIntNparSimultaneous.html), the argument `n.median` corresponds to $b$.
+
+**The Form of a Nonparametric Prediction Interval**  
+Let $\underline{x} = x_1, x_2, \ldots, x_n$ denote a vector of $n$ independent observations from some continuous distribution, and let $x_{(i)}$ denote the the $i$'th order statistics in $\underline{x}$. A two-sided nonparametric prediction interval is constructed as:
+
+$$
+[x_{(u)}, x_{(v)}] \;\;\;\;\;\; (1)
+$$
+
+where $u$ and $v$ are positive integers between 1 and $n$, and $u < v$. That is, $u$ denotes the rank of the lower prediction limit, and $v$ denotes the rank of the upper prediction limit. To make it easier to write some equations later on, we can also write the prediction interval (1) in a slightly different way as:
+
+$$
+[x_{(u)}, x_{(n + 1 - w)}] \;\;\;\;\;\; (2)
+$$
+
+where
+
+$$
+w = n + 1 - v \;\;\;\;\;\; (3)
+$$
+
+so that $w$ is a positive integer between 1 and $n-1$, and $u < n+1-w$. In terms of the arguments to the function `predIntNparSimultaneous`, the argument `lpl.rank` corresponds to $u$, and the argument `n.plus.one.minus.upl.rank` corresponds to $w$.
+
+If we allow $u=0$ and $w=0$ and define lower and upper bounds as:
+
+$$
+x_{(0)} = lb \;\;\;\;\;\; (4)
+$$
+
+$$
+x_{(n+1)} = ub \;\;\;\;\;\; (5)
+$$
+
+then Equation (2) above can also represent a one-sided lower or one-sided upper prediction interval as well. That is, a one-sided lower nonparametric prediction interval is constructed as:
+
+$$
+[x_{(u)}, x_{(n + 1)}] =  [x_{(u)}, ub] \;\;\;\;\;\; (6)
+$$
+
+and a one-sided upper nonparametric prediction interval is constructed as:
+
+$$
+[x_{(0)}, x_{(n + 1 - w)}]  = [lb, x_{(n + 1 - w)}] \;\;\;\;\;\; (7)
+$$
+
+Usually, $lb = -\infty$ or $lb = 0$ and $ub = \infty$.
+
+**Note:** For nonparametric simultaneous prediction intervals, only lower (`pi.type="lower"`) and upper (`pi.type="upper"`) prediction intervals are available.
+
+**Computing Power**  
+The "power" of the prediction interval is defined as the probability that at least one set of future observations violates the given rule based on a simultaneous prediction interval for the next $r$ future sampling occasions, where the population for the future observations is allowed to differ from the population for the observations used to construct the prediction interval.
+
+For the function `predIntNparSimultaneousTestPower`, power is computed assuming both the background and future the observations come from normal distributions with the same standard deviation, but the means of the distributions are allowed to differ. The quantity $\Delta$ (upper case delta) denotes the difference between the mean of the population that was sampled to construct the prediction interval, and the mean of the population that will be sampled to produce the future observations. The quantity $\sigma$ (sigma) denotes the population standard deviation of both of these populations. The argument `delta.over.sigma` corresponds to the quantity $\Delta/\sigma$.
+
+*Approximate Power* (`method="approx"`)  
+Based on Gansecki (2009), the power of a nonparametric simultaneous prediction interval when the underlying observations come from a nomral distribution can be approximated by the power of a normal simultaneous prediction interval (see [`predIntNormSimultaneousTestPower`](https://alexkowa.github.io/EnvStats/reference/predIntNormSimultaneousTestPower.html)) where the multiplier $K$ is replaced with the expected value of the normal order statistic that corresponds to the rank of the order statistic used for the upper or lower bound of the prediction interval. Gansecki (2009) uses the approximation:
+
+$$
+K = \Phi^{-1}(\frac{i - 0.5}{n}) \;\;\;\;\;\; (8)
+$$
+
+where $\Phi$ denotes the cumulative distribution function of the standard normal distribution and $i$ denotes the rank of the order statistic used as the prediction limit. By default, the value of the argument  
+`evNormOrdStats.method="royston"`, so the function `predIntNparSimultaneousTestPower` uses the exact value of the expected value of the normal order statistic in the call to [`evNormOrdStatsScalar`](https://alexkowa.github.io/EnvStats/reference/evNormOrdStats.html). You can change the method of computing the expected value of the normal order statistic by changing the value of the argument `evNormOrdStats.method`.
+
+*Power Based on Monte Carlo Simulation* (`method="simulate"`)  
+When `method="simulate"`, the power of the nonparametric simultaneous prediction interval is estimated based on a Monte Carlo simulation. The argument `NMC` determines the number of Monte Carlo trials. If `ci=TRUE`, a confidence interval for the power is created based on the `NMC` Monte Carlo estimates of power.
+
+## predIntPois {#predintpois}
+
+Help topic: [`predIntPois`](https://alexkowa.github.io/EnvStats/reference/predIntPois.html).
+
+A prediction interval for some population is an interval on the real line constructed so that it will contain $k$ future observations or averages from that population with some specified probability $(1-\alpha)100\%$, where 0 \< $\alpha$ \< 1 and $k$ is some pre-specified positive integer. The quantity $(1-\alpha)100\%$ is call the confidence coefficient or confidence level associated with the prediction interval.
+
+In the case of a [Poisson distribution](https://stat.ethz.ch/R-manual/R-devel/library/stats/html/Poisson.html), we have modified the usual meaning of a prediction interval and instead construct an interval that will contain $k$ future observations or $k$ future *sums* with a certain confidence level.
+
+A prediction interval is a *random* interval; that is, the lower and/or upper bounds are random variables computed based on sample statistics in the baseline sample. Prior to taking one specific baseline sample, the probability that the prediction interval will contain the next $k$ averages is $(1-\alpha)100\%$. Once a specific baseline sample is taken and the prediction interval based on that sample is computed, the probability that that prediction interval will contain the next $k$ averages is not necessarily $(1-a)100\%$, but it should be close.
+
+If an experiment is repeated $N$ times, and for each experiment:
+
+1. A sample is taken and a $(1-a)100\%$ prediction interval for $k=1$ future observation is computed, and
+2. One future observation is generated and compared to the prediction interval,
+
+then the number of prediction intervals that actually contain the future observation generated in step 2 above is a binomial random variable with parameters `size=`$N$ and `prob=`$(1-\alpha)100\%$ (see `Binomial`).
+
+If, on the other hand, only one baseline sample is taken and only one prediction interval for $k=1$ future observation is computed, then the number of future observations out of a total of $N$ future observations that will be contained in that one prediction interval is a binomial random variable with parameters `size=`$N$ and `prob=`$(1-\alpha^*)100\%$, where $\alpha^*$ depends on the true population parameters and the computed bounds of the prediction interval.
+
+Because of the discrete nature of the [Poisson distribution](https://stat.ethz.ch/R-manual/R-devel/library/stats/html/Poisson.html), even if the true mean of the distribution $\lambda$ were known exactly, the actual confidence level associated with a prediction limit will usually not be exactly equal to $(1-\alpha)100\%$. For example, for the Poisson distribution with parameter `lambda=2`, the interval \[0, 4\] contains 94.7% of this distribution and the interval \[0,5\] contains 98.3% of this distribution. Thus, no interval can contain exactly 95% of this distribution, so it is impossible to construct an exact 95% prediction interval for the next $k=1$ observation for a Poisson distribution with parameter `lambda=2`.
+
+**The Form of a Poisson Prediction Interval**  
+Let $\underline{x} = x_1, x_2, \ldots, x_n$ denote a vector of $n$ observations from a [Poisson distribution](https://stat.ethz.ch/R-manual/R-devel/library/stats/html/Poisson.html) with parameter `lambda=`$\lambda$. Also, let $X$ denote the sum of these $n$ random variables, i.e.,
+
+$$
+X = \sum_{i=1}^n x_i \;\;\;\;\;\; (1)
+$$
+
+Finally, let $m$ denote the sample size associated with the $k$ future sums (i.e., `n.sum=`$m$). When $m=1$, each sum is really just a single observation, so in the rest of this section the term “sums” replaces the phrase “observations or sums”.
+
+Let $\underline{y} = y_1, y_2, \ldots, y_m$ denote a vector of $m$ future observations from a Poisson distribution with parameter `lambda=`$\lambda^{*}$, and set $Y$ equal to the sum of these $m$ random variables, i.e.,
+
+$$
+Y = \sum_{i=1}^m y_i \;\;\;\;\;\; (2)
+$$
+
+Then $Y$ has a Poisson distribution with parameter `lambda=`$m\lambda^{*}$ (Johnson et al., 1992, p.160). We are interested in constructing a prediction limit for the next value of $Y$, or else the next $k$ sums of $m$ Poisson random variables, based on the observed value of $X$ and assuming $\lambda^{*} = \lambda$.
+
+For a Poisson distribution, the form of a two-sided prediction interval is:
+
+$$
+[m\bar{x} - K, m\bar{x} + K] = [cX - K, cX + K] \;\;\;\;\;\; (3)
+$$
+
+where
+
+$$
+\bar{x} = \frac{X}{n} = \sum_{i=1}^n x_i \;\;\;\;\;\; (4)
+$$
+
+$$
+c = \frac{m}{n} \;\;\;\;\;\; (5)
+$$
+
+and $K$ is a constant that depends on the sample size $n$, the confidence level $(1-\alpha)100\%$, the number of future sums $k$, and the sample size associated with the future sums $m$. Do not confuse the constant $K$ (uppercase $K$) with the number of future sums $k$ (lowercase $k$). The symbol $K$ is used here to be consistent with the notation used for prediction intervals for the normal distribution (see [`predIntNorm`](https://alexkowa.github.io/EnvStats/reference/predIntNorm.html)).
+
+Similarly, the form of a one-sided lower prediction interval is:
+
+$$
+[m\bar{x} - K, \infty] = [cX - K, \infty] \;\;\;\;\;\; (6)
+$$
+
+and the form of a one-sided upper prediction interval is:
+
+$$
+[0, m\bar{x} + K] = [0, cX + K] \;\;\;\;\;\; (7)
+$$
+
+The derivation of the constant $K$ is explained below.
+
+**Conditional Distribution** (`method="conditional"`)  
+Nelson (1970) derives a prediction interval for the case $k=1$ based on the conditional distribution of $Y$ given $X+Y$. He notes that the conditional distribution of $Y$ given the quantity $X+Y=w$ is [binomial](https://stat.ethz.ch/R-manual/R-devel/library/stats/html/Binomial.html) with parameters `size=`$w$ and `prob=`$[m\lambda^{*} / (m\lambda^{*} + n\lambda)]$ (Johnson et al., 1992, p.161). When $k=1$, the prediction limits are computed as those most extreme values of $Y$ that still yield a non-significant test of the hypothesis $H_0: \lambda^{*} = \lambda$, which for the conditional distribution of $Y$ is equivalent to the hypothesis $H_0$: `prob=[m /(m + n)]`.
+
+Using the relationship between the [binomial](https://stat.ethz.ch/R-manual/R-devel/library/stats/html/Binomial.html) and [F-distribution](https://stat.ethz.ch/R-manual/R-devel/library/stats/html/Fdist.html) (see the explanation of exact confidence intervals in the help file for [`ebinom`](https://alexkowa.github.io/EnvStats/reference/ebinom.html)), Nelson (1982, p. 203) states that exact two-sided $(1-\alpha)100\%$ prediction limits \[LPL, UPL\] are the closest integer solutions to the following equations:
+
+$$
+\frac{m}{LPL + 1} = \frac{n}{X} F(2 LPL + 2, 2X, 1 - \alpha/2) \;\;\;\;\;\; (8)
+$$
+
+$$
+\frac{UPL}{n} = \frac{X+1}{n} F(2X + 2, 2 UPL, 1 - \alpha/2) \;\;\;\;\;\; (9)
+$$
+
+where $F(\nu_1, \nu_2, p)$ denotes the $p$'th quantile of the [F-distribution](https://stat.ethz.ch/R-manual/R-devel/library/stats/html/Fdist.html) with $\nu_1$ and $\nu_2$ degrees of freedom.
+
+If `ci.type="lower"`, $\alpha/2$ is replaced with $\alpha$ in Equation (8) above for $LPL$, and $UPL$ is set to $\infty$.
+
+If `ci.type="upper"`, $\alpha/2$ is replaced with $\alpha$ in Equation (9) above for $UPL$, and $LPL$ is set to 0.
+
+**NOTE:** This method is not extended to the case $k > 1$.
+
+**Conditional Distribution Approximation Based on Normal Distribution**  
+(`method="conditional.approx.normal"`)  
+Cox and Hinkley (1974, p.245) derive an approximate prediction interval for the case $k=1$. Like Nelson (1970), they note that the conditional distribution of $Y$ given the quantity $X+Y=w$ is [binomial](https://stat.ethz.ch/R-manual/R-devel/library/stats/html/Binomial.html) with parameters `size=`$w$ and `prob=`$[m\lambda^{*} / (m\lambda^{*} + n\lambda)]$, and that the hypothesis $H_0: \lambda^{*} = \lambda$ is equivalent to the hypothesis $H_0$: `prob=[m /(m + n)]`.
+
+Cox and Hinkley (1974, p.245) suggest using the normal approximation to the binomial distribution (in this case, without the continuity correction; see Zar, 2010, pp.534-536 for information on the continuity correction associated with the normal approximation to the binomial distribution). Under the null hypothesis $H_0: \lambda^{*} = \lambda$, the quantity
+
+$$
+z = [Y - \frac{c(X+Y)}{1+c}] / \{ [\frac{c(X+Y)}{(1+c)^2}]^{1/2} \} \;\;\;\;\;\; (10)
+$$
+
+is approximately distributed as a standard normal random variable.
+
+*The Case When k = 1*  
+When $k = 1$ and `pi.type="two-sided"`, the prediction limits are computed by solving the equation
+
+$$
+z^2 \le z_{1 - \alpha/2}^2 \;\;\;\;\;\; (11)
+$$
+
+where $z_p$ denotes the $p$'th quantile of the standard normal distribution. In this case, Gibbons (1987b) notes that the quantity $K$ in Equation (3) above is given by:
+
+$$
+K = \frac{t^2c}{2} tc[X (1 + \frac{1}{c}) + \frac{t^2}{4}]^{1/2} \;\;\;\;\;\; (12)
+$$
+
+where $t = z_{1-\alpha/2}$.
+
+When `pi.type="lower"` or `pi.type="upper"`, $K$ is computed exactly as above, except $t$ is set to $t = z_{1-\alpha}$.
+
+*The Case When k \> 1*  
+When $k > 1$, Gibbons (1987b) suggests using the Bonferroni inequality. That is, the value of $K$ is computed exactly as for the case $k=1$ described above, except that the Bonferroni value of $t$ is used in place of the usual value of $t$:
+
+When `pi.type="two-side"`, $t = z_{1 - (\alpha/k)/2}$.
+
+When `pi.type="lower"` or `pi.type="upper"`, $t = z_{1 - \alpha/k}$.
+
+**Conditional Distribution Approximation Based on Student's t-Distribution**  
+(`method="conditional.approx.t"`)  
+When `method="conditional.approx.t"`, the exact same procedure is used as when  
+`method="conditional.approx.normal"`, except that the quantity in Equation (10) is assumed to follow a Student's t-distribution with $n-1$ degrees of freedom. Thus, all occurrences of $z_p$ are replaced with $t_{n-1, p}$, where $t_{\nu, p}$ denotes the $p$'th quantile of [Student's t-distribution](https://stat.ethz.ch/R-manual/R-devel/library/stats/html/TDist.html) with $\nu$ degrees of freedom.
+
+**Normal Approximation** (`method="normal.approx"`)  
+The normal approximation for Poisson prediction limits was given by Nelson (1970; 1982, p.203) and is based on the fact that the mean and variance of a Poisson distribution are the same (Johnson et al, 1992, p.157), and for “large” values of $n$ and $m$, both $X$ and $Y$ are approximately normally distributed.
+
+*The Case When k = 1*  
+The quantity $Y - cX$ is approximately normally distributed with expectation and variance given by:
+
+$$
+E(Y - cX) = E(Y) - cE(X) = m\lambda - cn\lambda = 0 \;\;\;\;\;\; (13)
+$$
+
+$$
+Var(Y - cX) = Var(Y) + c^2 Var(X) = m\lambda + c^2 n\lambda = m\lambda (1 + \frac{m}{n}) \;\;\;\;\;\; (14)
+$$
+
+so the quantity
+
+$$
+z = \frac{Y-cX}{\sqrt{m\hat{\lambda}(1 + \frac{m}{n})}} = \frac{Y-cX}{\sqrt{m\bar{x}(1 + \frac{m}{n})}} \;\;\;\;\;\; (15)
+$$
+
+is approximately distributed as a standard normal random variable. The function `predIntPois`, however, assumes this quantity is distributed as approximately a [Student's t-distribution](https://stat.ethz.ch/R-manual/R-devel/library/stats/html/TDist.html) with $n-1$ degrees of freedom.
+
+Thus, following the idea of prediction intervals for a normal distribution (see [`predIntNorm`](https://alexkowa.github.io/EnvStats/reference/predIntNorm.html)), when `pi.type="two-sided"`, the constant $K$ for a $(1-\alpha)100\%$ prediction interval for the next $k=1$ sum of $m$ observations is computed as:
+
+$$
+K = t_{n-1, 1-\alpha/2} \sqrt{m\bar{x} (1 + \frac{m}{n})} \;\;\;\;\;\; (16)
+$$
+
+where $t_{\nu, p}$ denotes the $p$'th quantile of a [Student's t-distribution](https://stat.ethz.ch/R-manual/R-devel/library/stats/html/TDist.html) with $\nu$ degrees of freedom.
+
+Similarly, when `pi.type="lower"` or `pi.type="upper"`, the constant $K$ is computed as:
+
+$$
+K = t_{n-1, 1-\alpha} \sqrt{m\bar{x} (1 + \frac{m}{n})} \;\;\;\;\;\; (17)
+$$
+
+*The Case When k \> 1*  
+When $k > 1$, the value of $K$ is computed exactly as for the case $k = 1$ described above, except that the Bonferroni value of $t$ is used in place of the usual value of $t$:
+
+When `pi.type="two-sided"`,
+
+$$
+K = t_{n-1, 1-(\alpha/k)/2} \sqrt{m\bar{x} (1 + \frac{m}{n})} \;\;\;\;\;\; (18)
+$$
+
+When `pi.type="lower"` or `pi.type="upper"`,
+
+$$
+K = t_{n-1, 1-(\alpha/k)} \sqrt{m\bar{x} (1 + \frac{m}{n})} \;\;\;\;\;\; (19)
+$$
+
+Hahn and Nelson (1973, p.182) discuss another method of computing $K$ when $k > 1$, but this method is not implemented here.

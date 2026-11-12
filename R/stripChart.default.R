@@ -1,3 +1,5 @@
+#' @exportS3Method NULL
+#' @noRd
 stripChart.default <-
 function (x, method = ifelse(paired && paired.lines, "overplot", 
     "stack"), seed = 47, jitter = 0.1 * cex, offset = 1/2, vertical = TRUE, 

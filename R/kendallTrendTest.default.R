@@ -1,3 +1,5 @@
+#' @exportS3Method NULL
+#' @noRd
 kendallTrendTest.default <-
 function (y, x = seq(along = y), alternative = "two.sided", correct = TRUE,
     ci.slope = TRUE, conf.level = 0.95, warn = TRUE, data.name = NULL,

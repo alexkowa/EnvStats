@@ -26,44 +26,44 @@ c("Beta", "Binomial", "Cauchy", "Chi", "Chi-square", "Exponential",
 "Zero-Modified Lognormal (Delta)", "Zero-Modified Lognormal (Delta; Alternative)",
 "Zero-Modified Normal")
 .Distribution.params.default.list <-
-structure(list(beta = structure(c(1, 1, 0), .Names = c("shape1",
-"shape2", "ncp")), binom = structure(c(1, 0.5), .Names = c("size",
-"prob")), cauchy = structure(c(0, 1), .Names = c("location",
-"scale")), chi = structure(1, .Names = "df"), chisq = structure(c(1,
-0), .Names = c("df", "ncp")), exp = structure(1, .Names = "rate"),
-    evd = structure(c(0, 1), .Names = c("location", "scale")),
-    f = structure(c(1, 1, 0), .Names = c("df1", "df2", "ncp")),
-    gamma = structure(c(1, 1), .Names = c("shape", "scale")),
-    gammaAlt = structure(c(1, 1), .Names = c("mean", "cv")),
-    gevd = structure(c(0, 1, 0), .Names = c("location", "scale",
-    "shape")), geom = structure(0.5, .Names = "prob"), hyper = structure(c(10,
-    10, 5), .Names = c("m", "n", "k")), logis = structure(c(0,
-    1), .Names = c("location", "scale")), lnorm = structure(c(0,
-    1), .Names = c("meanlog", "sdlog")), lnormAlt = structure(c(1.64872127070013,
-    1.31083249443209), .Names = c("mean", "cv")), lnormMix = structure(c(0,
-    1, 0, 1, 0.5), .Names = c("meanlog1", "sdlog1", "meanlog2",
+structure(list(beta = structure(c(1, 1, 0), names = c("shape1",
+"shape2", "ncp")), binom = structure(c(1, 0.5), names = c("size",
+"prob")), cauchy = structure(c(0, 1), names = c("location",
+"scale")), chi = structure(1, names = "df"), chisq = structure(c(1,
+0), names = c("df", "ncp")), exp = structure(1, names = "rate"),
+    evd = structure(c(0, 1), names = c("location", "scale")),
+    f = structure(c(1, 1, 0), names = c("df1", "df2", "ncp")),
+    gamma = structure(c(1, 1), names = c("shape", "scale")),
+    gammaAlt = structure(c(1, 1), names = c("mean", "cv")),
+    gevd = structure(c(0, 1, 0), names = c("location", "scale",
+    "shape")), geom = structure(0.5, names = "prob"), hyper = structure(c(10,
+    10, 5), names = c("m", "n", "k")), logis = structure(c(0,
+    1), names = c("location", "scale")), lnorm = structure(c(0,
+    1), names = c("meanlog", "sdlog")), lnormAlt = structure(c(1.64872127070013,
+    1.31083249443209), names = c("mean", "cv")), lnormMix = structure(c(0,
+    1, 0, 1, 0.5), names = c("meanlog1", "sdlog1", "meanlog2",
     "sdlog2", "p.mix")), lnormMixAlt = structure(c(1.64872127070013,
     1.31083249443209, 1.64872127070013, 1.31083249443209, 0.5
-    ), .Names = c("mean1", "cv1", "mean2", "cv2", "p.mix")),
-    lnorm3 = structure(c(0, 1, 0), .Names = c("meanlog", "sdlog",
-    "threshold")), lnormTrunc = structure(c(0, 1, 0, Inf), .Names = c("meanlog",
+    ), names = c("mean1", "cv1", "mean2", "cv2", "p.mix")),
+    lnorm3 = structure(c(0, 1, 0), names = c("meanlog", "sdlog",
+    "threshold")), lnormTrunc = structure(c(0, 1, 0, Inf), names = c("meanlog",
     "sdlog", "min", "max")), lnormTruncAlt = structure(c(1.64872127070013,
-    1.31083249443209, 0, Inf), .Names = c("mean", "cv", "min",
-    "max")), nbinom = structure(c(1, 0.5), .Names = c("size",
-    "prob")), norm = structure(c(0, 1), .Names = c("mean", "sd"
-    )), normMix = structure(c(0, 1, 0, 1, 0.5), .Names = c("mean1",
+    1.31083249443209, 0, Inf), names = c("mean", "cv", "min",
+    "max")), nbinom = structure(c(1, 0.5), names = c("size",
+    "prob")), norm = structure(c(0, 1), names = c("mean", "sd"
+    )), normMix = structure(c(0, 1, 0, 1, 0.5), names = c("mean1",
     "sd1", "mean2", "sd2", "p.mix")), normTrunc = structure(c(0,
-    1, -Inf, Inf), .Names = c("mean", "sd", "min", "max")), pareto = structure(c(1,
-    1), .Names = c("location", "shape")), pois = structure(1, .Names = "lambda"),
-    t = structure(c(1, 0), .Names = c("df", "ncp")), tri = structure(c(0,
-    1, 0.5), .Names = c("min", "max", "mode")), unif = structure(c(0,
-    1), .Names = c("min", "max")), weibull = structure(c(1, 1
-    ), .Names = c("shape", "scale")), wilcox = structure(c(5,
-    5), .Names = c("m", "n")), zmlnorm = structure(c(0, 1, 0.5
-    ), .Names = c("meanlog", "sdlog", "p.zero")), zmlnormAlt = structure(c(1.64872127070013,
-    1.31083249443209, 0.5), .Names = c("mean", "cv", "p.zero"
-    )), zmnorm = structure(c(0, 1, 0.5), .Names = c("mean", "sd",
-    "p.zero"))), .Names = c("beta", "binom", "cauchy", "chi",
+    1, -Inf, Inf), names = c("mean", "sd", "min", "max")), pareto = structure(c(1,
+    1), names = c("location", "shape")), pois = structure(1, names = "lambda"),
+    t = structure(c(1, 0), names = c("df", "ncp")), tri = structure(c(0,
+    1, 0.5), names = c("min", "max", "mode")), unif = structure(c(0,
+    1), names = c("min", "max")), weibull = structure(c(1, 1
+    ), names = c("shape", "scale")), wilcox = structure(c(5,
+    5), names = c("m", "n")), zmlnorm = structure(c(0, 1, 0.5
+    ), names = c("meanlog", "sdlog", "p.zero")), zmlnormAlt = structure(c(1.64872127070013,
+    1.31083249443209, 0.5), names = c("mean", "cv", "p.zero"
+    )), zmnorm = structure(c(0, 1, 0.5), names = c("mean", "sd",
+    "p.zero"))), names = c("beta", "binom", "cauchy", "chi",
 "chisq", "exp", "evd", "f", "gamma", "gammaAlt", "gevd", "geom",
 "hyper", "logis", "lnorm", "lnormAlt", "lnormMix", "lnormMixAlt",
 "lnorm3", "lnormTrunc", "lnormTruncAlt", "nbinom", "norm", "normMix",
@@ -77,7 +77,7 @@ structure(c("Continuous", "Finite Discrete", "Continuous", "Continuous",
 "Continuous", "Continuous", "Discrete", "Continuous", "Continuous",
 "Continuous", "Continuous", "Discrete", "Continuous", "Continuous",
 "Continuous", "Continuous", "Finite Discrete", "Mixed", "Mixed",
-"Mixed"), .Names = c("beta", "binom", "cauchy", "chi", "chisq",
+"Mixed"), names = c("beta", "binom", "cauchy", "chi", "chisq",
 "exp", "evd", "f", "gamma", "gammaAlt", "gevd", "geom", "hyper",
 "logis", "lnorm", "lnormAlt", "lnormMix", "lnormMixAlt", "lnorm3",
 "lnormTrunc", "lnormTruncAlt", "nbinom", "norm", "normMix", "normTrunc",
@@ -128,7 +128,7 @@ structure(c(156, 114, 99.2, 85.9, 73.7, 66.6, 57.2, 59.7, 53,
 25.4, 21.4, 18.2, 16.1, 14.4, 13.1, 11.9, 11.2, 6.73, 4.91, 3.33,
 1.93, 1.09, 0.779, 0.507, 0.277, 32, 21.7, 16.9, 13.8, 12.1,
 10.6, 9.43, 8.61, 7.97, 7.39, 4.45, 3.23, 2.2, 1.28, 0.736, 0.528,
-0.344, 0.19), .Dim = c(18L, 6L), .Dimnames = list(c("10", "20",
+0.344, 0.19), dim = c(18L, 6L), dimnames = list(c("10", "20",
 "30", "40", "50", "60", "70", "80", "90", "100", "200", "300",
 "500", "1000", "2000", "3000", "5000", "10000"), c("0.005", "0.01",
 "0.05", "0.10", "0.25", "0.50")))
@@ -389,17 +389,17 @@ structure(c(0.109090909090909, 0.145454545454545, 0.181818181818182,
 0.999923390652557, 0.999934413580247, 0.999953152557319, 0.999959766313933,
 0.999974096119929, 0.999979607583774, 0.999985119047619, 0.999990630511463,
 0.999995039682539, 0.999996141975308, 0.999999448853615, 0.999999999999999
-), .Dim = c(305L, 3L), .Dimnames = list(NULL, c("Order.Statistics",
+), dim = c(305L, 3L), dimnames = list(NULL, c("Order.Statistics",
 "Densities", "Cumulative.Probabilities")))
 .rank.von.neumann.dist.mat.3 <-
 structure(c(1, 2.5, 0.333333333333333, 0.666666666666667, 0.333333333333333,
-1), .Dim = 2:3, .Dimnames = list(NULL, c("Order.Statistics",
+1), dim = 2:3, dimnames = list(NULL, c("Order.Statistics",
 "Densities", "Cumulative.Probabilities")))
 .rank.von.neumann.dist.mat.4 <-
 structure(c(0.6, 1.2, 1.8, 2.2, 2.8, 3.4, 0.0833333333333333,
 0.166666666666667, 0.25, 0.25, 0.166666666666667, 0.0833333333333333,
-0.0833333333333333, 0.25, 0.5, 0.75, 0.916666666666667, 1), .Dim = c(6L,
-3L), .Dimnames = list(NULL, c("Order.Statistics", "Densities",
+0.0833333333333333, 0.25, 0.5, 0.75, 0.916666666666667, 1), dim = c(6L,
+3L), dimnames = list(NULL, c("Order.Statistics", "Densities",
 "Cumulative.Probabilities")))
 .rank.von.neumann.dist.mat.5 <-
 structure(c(0.4, 0.7, 1, 1.2, 1.3, 1.5, 1.8, 1.9, 2, 2.1, 2.2,
@@ -411,7 +411,7 @@ structure(c(0.4, 0.7, 1, 1.2, 1.3, 1.5, 1.8, 1.9, 2, 2.1, 2.2,
 0.05, 0.133333333333333, 0.166666666666667, 0.2, 0.366666666666667,
 0.4, 0.466666666666667, 0.516666666666667, 0.55, 0.616666666666667,
 0.683333333333333, 0.783333333333333, 0.833333333333333, 0.866666666666667,
-0.933333333333333, 0.966666666666667, 1), .Dim = c(18L, 3L), .Dimnames = list(
+0.933333333333333, 0.966666666666667, 1), dim = c(18L, 3L), dimnames = list(
     NULL, c("Order.Statistics", "Densities", "Cumulative.Probabilities"
     )))
 .rank.von.neumann.dist.mat.6 <-
@@ -451,7 +451,7 @@ structure(c(0.285714285714286, 0.457142857142857, 0.628571428571429,
 0.844444444444444, 0.85, 0.863888888888889, 0.886111111111111,
 0.902777777777778, 0.913888888888889, 0.925, 0.930555555555556,
 0.963888888888889, 0.969444444444444, 0.980555555555556, 0.986111111111111,
-0.991666666666667, 0.997222222222222, 1), .Dim = c(49L, 3L), .Dimnames = list(
+0.991666666666667, 0.997222222222222, 1), dim = c(49L, 3L), dimnames = list(
     NULL, c("Order.Statistics", "Densities", "Cumulative.Probabilities"
     )))
 .rank.von.neumann.dist.mat.7 <-
@@ -525,8 +525,8 @@ structure(c(0.214285714285714, 0.321428571428571, 0.428571428571429,
 0.957539682539683, 0.96468253968254, 0.968253968253968, 0.974603174603175,
 0.979365079365079, 0.98015873015873, 0.983333333333333, 0.988888888888889,
 0.98968253968254, 0.991269841269841, 0.992857142857143, 0.994444444444444,
-0.996031746031746, 0.996825396825397, 0.999206349206349, 1), .Dim = c(91L,
-3L), .Dimnames = list(NULL, c("Order.Statistics", "Densities",
+0.996031746031746, 0.996825396825397, 0.999206349206349, 1), dim = c(91L,
+3L), dimnames = list(NULL, c("Order.Statistics", "Densities",
 "Cumulative.Probabilities")))
 .rank.von.neumann.dist.mat.8 <-
 structure(c(0.166666666666667, 0.238095238095238, 0.30952380952381,
@@ -647,7 +647,7 @@ structure(c(0.166666666666667, 0.238095238095238, 0.30952380952381,
 0.99484126984127, 0.995734126984127, 0.996974206349206, 0.997073412698413,
 0.998065476190476, 0.998363095238095, 0.998859126984127, 0.998958333333333,
 0.999255952380952, 0.999553571428571, 0.999652777777778, 0.999751984126984,
-0.999950396825397, 1), .Dim = c(147L, 3L), .Dimnames = list(NULL,
+0.999950396825397, 1), dim = c(147L, 3L), dimnames = list(NULL,
     c("Order.Statistics", "Densities", "Cumulative.Probabilities"
     )))
 .rank.von.neumann.dist.mat.9 <-
@@ -821,12 +821,12 @@ structure(c(0.133333333333333, 0.183333333333333, 0.233333333333333,
 0.998963844797178, 0.999063051146384, 0.999327601410935, 0.999426807760141,
 0.999603174603175, 0.999636243386243, 0.99973544973545, 0.999801587301587,
 0.999856701940035, 0.999878747795414, 0.999933862433862, 0.99998897707231,
-1), .Dim = c(215L, 3L), .Dimnames = list(NULL, c("Order.Statistics",
+1), dim = c(215L, 3L), dimnames = list(NULL, c("Order.Statistics",
 "Densities", "Cumulative.Probabilities")))
 .royston.93.array <-
 structure(c(0.164, 0.1736, 0.256, 0.1843, 0.1894, 0.248, 0.533,
 0.315, -0.00635, 1.56, 0.27, 0, 0.556, 0.622, NA, 0.371, 0.624,
-NA), .Dim = c(3L, 2L, 3L), .Dimnames = list(c("0.90", "0.95",
+NA), dim = c(3L, 2L, 3L), dimnames = list(c("0.90", "0.95",
 "0.99"), c("W", "W'"), c("A", "B", "C")))
 .title.and.axes.pars <-
 c("main", "sub", "xlab", "ylab", "line", "outer", "axes")

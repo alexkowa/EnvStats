@@ -1,3 +1,5 @@
+#' @exportS3Method NULL
+#' @noRd
 gofGroupTest.default <-
 function (object, group, test = "sw", distribution = "norm", 
     est.arg.list = NULL, n.classes = NULL, cut.points = NULL, 

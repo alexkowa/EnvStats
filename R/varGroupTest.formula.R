@@ -1,3 +1,5 @@
+#' @exportS3Method NULL
+#' @noRd
 varGroupTest.formula <-
 function (object, data = NULL, subset, na.action = na.pass, ...) 
 {

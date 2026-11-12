@@ -1,0 +1,1292 @@
+---
+title: "Nonparametric estimation and two-sample tests"
+output:
+  rmarkdown::html_vignette:
+    toc: true
+    toc_depth: 2
+vignette: >
+  %\VignetteIndexEntry{Nonparametric estimation and two-sample tests}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+This vignette describes nonparametric estimates of distribution summaries and
+quantiles, followed by rank and permutation tests for comparing two samples.
+It includes extensions for censored observations and the assumptions behind the
+estimates, confidence intervals, and tests.
+
+Related vignettes:
+
+- [Estimation with censored data](censored-estimation.html)
+- [Trend tests and serial correlation](trend-and-correlation.html)
+- [Statistical power and study design](power-and-study-design.html)
+
+## enpar {#enpar}
+
+Help topic: [`enpar`](https://alexkowa.github.io/EnvStats/reference/enpar.html).
+
+Let $\underline{x} = (x_1, x_2, \ldots, x_N)$ denote a vector of $N$ observations from some distribution with mean $\mu$ and standard deviation $\sigma$.
+
+**Estimation**  
+Unbiased and consistent estimators of the mean and variance are:
+
+$$
+\hat{\mu} = \bar{x} = \frac{1}{n} \sum_{i=1}^n x_i \;\;\;\; (1)
+$$
+
+$$
+\hat{\sigma}^2 = s^2 = \frac{1}{n-1} \sum_{i=1}^n (x_i - \bar{x})^2 \;\;\;\; (2)
+$$
+
+A consistent (but not unbiased) estimate of the standard deviation is given by the square root of the estimated variance above:
+
+$$
+\hat{\sigma} = s \;\;\;\; (3)
+$$
+
+It can be shown that the variance of the sample mean is given by:
+
+$$
+\sigma^2_{\hat{\mu}} = \sigma^2_{\bar{x}} = \frac{\sigma^2}{n} \;\;\;\; (4)
+$$
+
+so the standard deviation of the sample mean (usually called the *standard error*) can be estimated by:
+
+$$
+\hat{\sigma}_{\hat{\mu}} = \hat{\sigma}_{\bar{x}} = \frac{s}{\sqrt{n}} \;\;\;\; (5)
+$$
+
+**Confidence Intervals**  
+This section explains how confidence intervals for the mean $\mu$ are computed.
+
+*Normal Approximation* (`ci.method="normal.approx"`)  
+This method constructs approximate $(1-\alpha)100\%$ confidence intervals for $\mu$ based on the assumption that the estimator of $\mu$, i.e., the sample mean, is approximately normally distributed. That is, a two-sided $(1-\alpha)100\%$ confidence interval for $\mu$ is constructed as:
+
+$$
+[\hat{\mu} - t_{1-\alpha/2, m-1}\hat{\sigma}_{\hat{\mu}}, \; \hat{\mu} + t_{1-\alpha/2, m-1}\hat{\sigma}_{\hat{\mu}}] \;\;\;\; (6)
+$$
+
+where $\hat{\mu}$ denotes the estimate of $\mu$, $\hat{\sigma}_{\hat{\mu}}$ denotes the estimated asymptotic standard deviation of the estimator of $\mu$, $m$ denotes the assumed sample size for the confidence interval, and $t_{p,\nu}$ denotes the $p$'th quantile of [Student's t-distribuiton](https://stat.ethz.ch/R-manual/R-devel/library/stats/html/TDist.html) with $\nu$ degrees of freedom. One-sided confidence intervals are computed in a similar fashion.
+
+When `pivot.statistic="z"`, the $p$'th quantile from the [standard normal distribution](https://stat.ethz.ch/R-manual/R-devel/library/stats/html/Normal.html) is used in place of the $p$'th quantile from Student's t-distribution.
+
+*Bootstrap and Bias-Corrected Bootstrap Approximation* (`ci.method="bootstrap"`)  
+The bootstrap is a nonparametric method of estimating the distribution (and associated distribution parameters and quantiles) of a sample statistic, regardless of the distribution of the population from which the sample was drawn. The bootstrap was introduced by Efron (1979) and a general reference is Efron and Tibshirani (1993).
+
+In the context of deriving an approximate $(1-\alpha)100\%$ confidence interval for the population mean $\mu$, the bootstrap can be broken down into the following steps:
+
+1. Create a bootstrap sample by taking a random sample of size $N$ from the observations in $\underline{x}$, where sampling is done with replacement. Note that because sampling is done with replacement, the same element of $\underline{x}$ can appear more than once in the bootstrap sample. Thus, the bootstrap sample will usually not look exactly like the original sample.
+2. Estimate $\mu$ based on the bootstrap sample created in Step 1, using the same method that was used to estimate $\mu$ using the original observations in $\underline{x}$. Because the bootstrap sample usually does not match the original sample, the estimate of $\mu$ based on the bootstrap sample will usually differ from the original estimate based on $\underline{x}$. For the bootstrap-t method (see below), this step also involves estimating the standard error of the estimate of the mean and computing the statistic $T = (\hat{\mu}_B - \hat{\mu}) / \hat{\sigma}_{\hat{\mu}_B}$ where $\hat{\mu}$ denotes the estimate of the mean based on the original sample, and $\hat{\mu}_B$ and $\hat{\sigma}_{\hat{\mu}_B}$ denote the estimate of the mean and estimate of the standard error of the estimate of the mean based on the bootstrap sample.
+3. Repeat Steps 1 and 2 $B$ times, where $B$ is some large number. For the function `enpar`, the number of bootstraps $B$ is determined by the argument `n.bootstraps` (see the arguments in the [`enpar` help page](https://alexkowa.github.io/EnvStats/reference/enpar.html)). The default value of `n.bootstraps` is `1000`.
+4. Use the $B$ estimated values of $\mu$ to compute the empirical cumulative distribution function of the estimator of $\mu$ or to compute the empirical cumulative distribution function of the statistic $T$ (see [`ecdfPlot`](https://alexkowa.github.io/EnvStats/reference/ecdfPlot.html)), and then create a confidence interval for $\mu$ based on this estimated cdf.
+
+The two-sided percentile interval (Efron and Tibshirani, 1993, p.170) is computed as:
+
+$$
+[\hat{G}^{-1}(\frac{\alpha}{2}), \; \hat{G}^{-1}(1-\frac{\alpha}{2})] \;\;\;\;\;\; (7)
+$$
+
+where $\hat{G}(t)$ denotes the empirical cdf of $\hat{\mu}_B$ evaluated at $t$ and thus $\hat{G}^{-1}(p)$ denotes the $p$'th empirical quantile of the distribution of $\hat{\mu}_B$, that is, the $p$'th quantile associated with the empirical cdf. Similarly, a one-sided lower confidence interval is computed as:
+
+$$
+[\hat{G}^{-1}(\alpha), \; \infty] \;\;\;\;\;\; (8)
+$$
+
+and a one-sided upper confidence interval is computed as:
+
+$$
+[-\infty, \; \hat{G}^{-1}(1-\alpha)] \;\;\;\;\;\; (9)
+$$
+
+The function `enpar` calls the R function [`quantile`](https://stat.ethz.ch/R-manual/R-devel/library/stats/html/quantile.html) to compute the empirical quantiles used in Equations (7)-(9).
+
+The percentile method bootstrap confidence interval is only first-order accurate (Efron and Tibshirani, 1993, pp.187-188), meaning that the probability that the confidence interval will contain the true value of $\mu$ can be off by $k/\sqrt{N}$, where $k$ is some constant. Efron and Tibshirani (1993, pp.184--188) proposed a bias-corrected and accelerated interval that is second-order accurate, meaning that the probability that the confidence interval will contain the true value of $\mu$ may be off by $k/N$ instead of $k/\sqrt{N}$. The two-sided bias-corrected and accelerated confidence interval is computed as:
+
+$$
+[\hat{G}^{-1}(\alpha_1), \; \hat{G}^{-1}(\alpha_2)] \;\;\;\;\;\; (10)
+$$
+
+where
+
+$$
+\alpha_1 = \Phi[\hat{z}_0 + \frac{\hat{z}_0 + z_{\alpha/2}}{1 - \hat{a}(z_0 + z_{\alpha/2})}] \;\;\;\;\;\; (11)
+$$
+
+$$
+\alpha_2 = \Phi[\hat{z}_0 + \frac{\hat{z}_0 + z_{1-\alpha/2}}{1 - \hat{a}(z_0 + z_{1-\alpha/2})}] \;\;\;\;\;\; (12)
+$$
+
+$$
+\hat{z}_0 = \Phi^{-1}[\hat{G}(\hat{\mu})] \;\;\;\;\;\; (13)
+$$
+
+$$
+\hat{a} = \frac{\sum_{i=1}^N (\hat{\mu}_{(\cdot)} - \hat{\mu}_{(i)})^3}{6[\sum_{i=1}^N (\hat{\mu}_{(\cdot)} - \hat{\mu}_{(i)})^2]^{3/2}} \;\;\;\;\;\; (14)
+$$
+
+where the quantity $\hat{\mu}_{(i)}$ denotes the estimate of $\mu$ using all the values in $\underline{x}$ except the $i$'th one, and
+
+$$
+\hat{\mu}{(\cdot)} = \frac{1}{N} \sum_{i=1}^N \hat{\mu_{(i)}} \;\;\;\;\;\; (15)
+$$
+
+A one-sided lower confidence interval is given by:
+
+$$
+[\hat{G}^{-1}(\alpha_1), \; \infty] \;\;\;\;\;\; (16)
+$$
+
+and a one-sided upper confidence interval is given by:
+
+$$
+[-\infty, \; \hat{G}^{-1}(\alpha_2)] \;\;\;\;\;\; (17)
+$$
+
+where $\alpha_1$ and $\alpha_2$ are computed as for a two-sided confidence interval, except $\alpha/2$ is replaced with $\alpha$ in Equations (11) and (12).
+
+The constant $\hat{z}_0$ incorporates the bias correction, and the constant $\hat{a}$ is the acceleration constant. The term “acceleration” refers to the rate of change of the standard error of the estimate of $\mu$ with respect to the true value of $\mu$ (Efron and Tibshirani, 1993, p.186). For a normal (Gaussian) distribution, the standard error of the estimate of $\mu$ does not depend on the value of $\mu$, hence the acceleration constant is not really necessary.
+
+For the bootstrap-t method, the two-sided confidence interval (Efron and Tibshirani, 1993, p.160) is computed as:
+
+$$
+[\hat{\mu} - t_{1-\alpha/2}\hat{\sigma}_{\hat{\mu}}, \; \hat{\mu} - t_{\alpha/2}\hat{\sigma}_{\hat{\mu}}] \;\;\;\;\;\; (18)
+$$
+
+where $\hat{\mu}$ and $\hat{\sigma}_{\hat{\mu}}$ denote the estimate of the mean and standard error of the estimate of the mean based on the original sample, and $t_p$ denotes the $p$'th empirical quantile of the bootstrap distribution of the statistic $T$. Similarly, a one-sided lower confidence interval is computed as:
+
+$$
+[\hat{\mu} - t_{1-\alpha}\hat{\sigma}_{\hat{\mu}}, \; \infty] \;\;\;\;\;\; (19)
+$$
+
+and a one-sided upper confidence interval is computed as:
+
+$$
+[-\infty, \; \hat{\mu} - t_{\alpha}\hat{\sigma}_{\hat{\mu}}] \;\;\;\;\;\; (20)
+$$
+
+When `ci.method="bootstrap"`, the function `enpar` computes the percentile method, bias-corrected and accelerated method, and bootstrap-t bootstrap confidence intervals. The percentile method is transformation respecting, but not second-order accurate. The bootstrap-t method is second-order accurate, but not transformation respecting. The bias-corrected and accelerated method is both transformation respecting and second-order accurate (Efron and Tibshirani, 1993, p.188).
+
+## enparCensored {#enparcensored}
+
+Help topic: [`enparCensored`](https://alexkowa.github.io/EnvStats/reference/enparCensored.html).
+
+Let $\underline{x} = (x_1, x_2, \ldots, x_N)$ denote a vector of $N$ observations from some positive-valued distribution with mean $\mu$ and standard deviation $\sigma$. Assume $n$ ($0 < n < N$) of these observations are known and $c$ ($c=N-n$) of these observations are all censored below (left-censored) or all censored above (right-censored) at $k$ censoring levels
+
+$$
+T_1, T_2, \ldots, T_k; \; k \ge 1 \;\;\;\;\;\; (1)
+$$
+
+Let $y_1, y_2, \ldots, y_n$ denote the $n$ ordered uncensored observations, and let $r_1, r_2, \ldots, r_n$ denote the order of these uncensored observations within the context of all the observations (censored and uncensored). For example, if the left-censored data are {\<10, 14, 14, \<15, 20}, then $y_1 = 14, y_2 = 14, y_3 = 20$, and $r_1 = 2, r_2 = 3, r_3 = 5$.
+
+Let $y_1', y_2', \ldots, y_p'$ denote the $p$ ordered *distinct* uncensored observations, let $m_j$ denote the number of detects at $y_j'$ ($j = 1, 2, \ldots, p$), and let $r_j'$ denote the number of $x_i \le y_j'$, i.e., the number of observations (censored and uncensored) less than or equal to $y_j'$ ($j = 1, 2, \ldots, p$). For example, if the left-censored data are {\<10, 14, 14, \<15, 20}, then $y_1' = 14, y_2' = 20$, $m_1 = 2, m_2 = 1$, and $r_1' = 3, r_2' = 5$.
+
+**Estimation**  
+This section explains how the mean $\mu$, standard deviation $\sigma$, and standard error of the mean $\hat{\sigma}_{\hat{\mu}}$ are estimated, as well as the restricted mean.
+
+*Estimating the Mean*  
+It can be shown that the mean of a positive-valued distribution is equal to the area under the survival curve (Klein and Moeschberger, 2003, p.33):
+
+$$
+\mu = \int_0^\inftydt = \int_0^\infty S(t) dt \;\;\;\;\;\; (2)
+$$
+
+where $F(t)$ denotes the cumulative distribution function evaluated at $t$ and $S(t) = 1 - F(t)$ denotes the survival function evaluated at $t$. When the Kaplan-Meier estimator is used to construct the survival function, you can use the area under this curve to estimate the mean of the distribution, and the estimator can be as efficient or more efficient than parametric estimators of the mean (Meier, 2004; Helsel, 2012; Lee and Wang, 2003). Let $\hat{F}(t)$ denote the Kaplan-Meier estimator of the empirical cumulative distribution function (ecdf) evaluated at $t$, and let $\hat{S}(t) = 1 - \hat{F}(t)$ denote the estimated survival function evaluated at $t$. (See the help files for [`ecdfPlotCensored`](https://alexkowa.github.io/EnvStats/reference/ecdfPlotCensored.html) and [`qqPlotCensored`](https://alexkowa.github.io/EnvStats/reference/qqPlotCensored.html) for an explanation of how the Kaplan-Meier estimator of the ecdf is computed.)
+
+The formula for the estimated mean is given by (Lee and Wang, 2003, p. 74):
+
+$$
+\hat{\mu} = \sum_{i=1}^{n} \hat{S}(y_{i-1}) (y_{i} - y_{i-1}) \;\;\;\;\;\; (3)
+$$
+
+where $y_{0} = 0$ and $\hat{S}(y_{0}) = 1$ by definition. It can be shown that this formula is eqivalent to:
+
+$$
+\hat{\mu} = \sum_{i=1}^n y_{i} [\hat{F}(y_{i}) - \hat{F}(y_{i-1})] \;\;\;\;\;\; (4)
+$$
+
+where $\hat{F}(y_{0}) = \hat{F}(0) = 0$ by definition, and this is equivalent to:
+
+$$
+\hat{\mu} = \sum_{i=1}^p y_i' [\hat{F}(y_i') - \hat{F}(y_{i-1}')] \;\;\;\;\;\; (5)
+$$
+
+(USEPA, 2009, pp. 15--7 to 15--12; Beal, 2010; USEPA, 2022, pp. 128--129).
+
+*Estimating the Standard Deviation*  
+The formula for the estimated standard deviation is:
+
+$$
+\hat{\sigma} = \{\sum_{i=1}^n (y_{i} - \hat{\mu})^2 [\hat{F}(y_{i}) - \hat{F}(y_{i-1})]\}^{1/2} \;\;\;\;\; (6)
+$$
+
+which is equivalent to:
+
+$$
+\hat{\sigma} = \{\sum_{i=1}^p (y_i' - \hat{\mu})^2 [\hat{F}(y_i') - \hat{F}(y_{i-1}')]\}^{1/2} \;\;\;\;\; (7)
+$$
+
+(USEPA, 2009, p. 15-10; Beal, 2010).
+
+*Estimating the Standard Error of the Mean*  
+For left-censored data, the formula for the estimated standard error of the mean is:
+
+$$
+\hat{\sigma}_{\hat{\mu}} = [\sum_{i=j}^{p-1} A_j^2 \frac{m_{j+1}}{r_{j+1}'(r_{j+1}' - m_{j+1})}]^{1/2} \;\;\;\;\;\; (8)
+$$
+
+where
+
+$$
+A_j = \sum_{i=1}^{j} (y_{i+1}' - y_i') \hat{F}(y_i') \;\;\;\;\;\; (9)
+$$
+
+(Beal, 2010; USEPA, 2022, pp. 128--129).
+
+For rigth-censored data, the formula for the estimated standard error of the mean is:
+
+$$
+\hat{\sigma}_{\hat{\mu}} = [\sum_{r=1}^{n-1} \frac{A_r^2}{(N-r)(N-r+1)}]^{1/2} \;\;\;\;\;\; (10)
+$$
+
+where
+
+$$
+A_r = \sum_{i=r}^{n-1} (y_{i+1} - y_{i}) \hat{S}(y_{i}) \;\;\;\;\;\; (11)
+$$
+
+(Lee and Wang, 2003, p. 74).
+
+Kaplan and Meier suggest using a bias correction of $n/(n-1)$ for the estimated variance of the mean (Lee and Wang, 2003, p.75):
+
+$$
+\hat{\sigma}_{\hat{\mu}, BC} = \sqrt{\frac{n}{n-1}} \;\; \hat{\sigma}_{\hat{\mu}} \;\;\;\;\;\; (12)
+$$
+
+When `correct.se=TRUE` (the default), Equation (12) is used. Beal (2010), ProUCL 5.2.0 (USEPA, 2022), and the `kmms` function in the **STAND** package (Frome and Frome, 2015) all compute the bias-corrected estimate of the standard error of the mean as well.
+
+*Estimating the Restricted Mean*  
+If the smallest value for left-censored data is censored and less than or equal to the smallest uncensored value, then the estimated mean will be biased high, and if the largest value for right-censored data is censored and greater than or equal to the largest uncensored value, then the estimated mean will be biased low. One solution to this problem is to instead estimate what is called the ***restricted mean*** (Miller, 1981; Lee and Wang, 2003, p. 74; Meier, 2004; Barker, 2009).
+
+To compute the restricted mean (`restricted=TRUE`), for left-censored data, the smallest censored observation(s) are treated as observed, and set to the smallest censoring level  
+(`left.censored.min="Censoring Level"`) or some other value less than the smallest censoring level and greater than 0, and then applying the above formulas. To compute the restricted mean for right-censored data, the largest censored observation(s) are treated as observed and set to the censoring level (`right.censored.max="Censoring Level"`) or some value greater than the largest censoring level.
+
+ProUCL 5.2.0 (USEPA, 2022, pp. 128--129) and Beal (2010) do not compute the restricted mean in cases where it could be applied, whereas USEPA (2009, pp. 15--7 to 15--12) and the `kmms` function in Version 2.0 of the R package **STAND** (Frome and Frome, 2015) do compute the restricted mean and set the smallest censored observation(s) equal to the censoring level (i.e., what `enparCensored` does when `restricted=TRUE` and `left.censored.min="Censoring Level"`).
+
+To be consistent with ProUCL 5.2.0, by default the function `enparCensored` does not compute the restricted mean (i.e., `restricted=FALSE`). Note that there are instances where ProUCL 5.2.0 does not agree with `enparCensored`, and it is not clear why. It should be noted that when the restricted mean is computed, the number of uncensored observations increases because the smallest (left-censored) or largest (right-censored) censored observation(s) is/are set to a specified value and treated as uncensored. The `kmms` function in Version 2.0 of the **STAND** package (Frome and Frome, 2015) is inconsistent in how it treats the number of uncensored observations when computing estimates associated with the restricted mean. Although `kmms` sets the smallest censored observations to the observed censoring level and treats them as not censored, when it computes the bias correction factor for the standard error of the mean, it assumes those observations are still censored (see the examples in the [`enparCensored` help page](https://alexkowa.github.io/EnvStats/reference/enparCensored.html)).
+
+In the unusual case when a restricted mean will be estimated and setting the smallest censored value(s) to an uncensored value (left-censored data), or setting the largest censored value(s) to an uncensored value (right-censored data), results in no censored values in the data, the Kaplan-Meier estimate of the mean reduces to the sample mean, so the function [`enpar`](https://alexkowa.github.io/EnvStats/reference/enpar.html) is called and, if `warn=TRUE`, a warning is returned.
+
+**Confidence Intervals**  
+This section explains how confidence intervals for the mean $\mu$ are computed.
+
+*Normal Approximation* (`ci.method="normal.approx"`)  
+This method constructs approximate $(1-\alpha)100\%$ confidence intervals for $\mu$ based on the assumption that the estimator of $\mu$ is approximately normally distributed. That is, a two-sided $(1-\alpha)100\%$ confidence interval for $\mu$ is constructed as:
+
+$$
+[\hat{\mu} - t_{1-\alpha/2, v-1}\hat{\sigma}_{\hat{\mu}}, \; \hat{\mu} + t_{1-\alpha/2, v-1}\hat{\sigma}_{\hat{\mu}}] \;\;\;\; (13)
+$$
+
+where $\hat{\mu}$ denotes the estimate of $\mu$, $\hat{\sigma}_{\hat{\mu}}$ denotes the estimated asymptotic standard deviation of the estimator of $\mu$, $v$ denotes the assumed sample size for the confidence interval, and $t_{p,\nu}$ denotes the $p$'th quantile of [Student's t-distribuiton](https://stat.ethz.ch/R-manual/R-devel/library/stats/html/TDist.html) with $\nu$ degrees of freedom. One-sided confidence intervals are computed in a similar fashion.
+
+The argument `ci.sample.size` determines the value of $v$. The possible values are the total number of observations, $N$ (`ci.sample.size="Total"`), or the number of uncensored observations, $n$ (`ci.sample.size="Uncensored"`). To be consistent with ProUCL 5.2.0, in `enparCensored` the default value is the total number of observations. The `kmms` function in the **STAND** package, on the other hand, uses the number of uncensored observations.
+
+When `pivot.statistic="z"`, the $p$'th quantile from the [standard normal distribution](https://stat.ethz.ch/R-manual/R-devel/library/stats/html/Normal.html) is used in place of the $p$'th quantile from Student's t-distribution.
+
+*Bootstrap and Bias-Corrected Bootstrap Approximation* (`ci.method="bootstrap"`)  
+The bootstrap is a nonparametric method of estimating the distribution (and associated distribution parameters and quantiles) of a sample statistic, regardless of the distribution of the population from which the sample was drawn. The bootstrap was introduced by Efron (1979) and a general reference is Efron and Tibshirani (1993).
+
+In the context of deriving an approximate $(1-\alpha)100\%$ confidence interval for the population mean $\mu$, the bootstrap can be broken down into the following steps:
+
+1. Create a bootstrap sample by taking a random sample of size $N$ from the observations in $\underline{x}$, where sampling is done with replacement. Note that because sampling is done with replacement, the same element of $\underline{x}$ can appear more than once in the bootstrap sample. Thus, the bootstrap sample will usually not look exactly like the original sample (e.g., the number of censored observations in the bootstrap sample will often differ from the number of censored observations in the original sample).
+2. Estimate $\mu$ based on the bootstrap sample created in Step 1, using the same method that was used to estimate $\mu$ using the original observations in $\underline{x}$. Because the bootstrap sample usually does not match the original sample, the estimate of $\mu$ based on the bootstrap sample will usually differ from the original estimate based on $\underline{x}$. For the bootstrap-t method (see below), this step also involves estimating the standard error of the estimate of the mean and computing the statistic $T = (\hat{\mu}_B - \hat{\mu}) / \hat{\sigma}_{\hat{\mu}_B}$ where $\hat{\mu}$ denotes the estimate of the mean based on the original sample, and $\hat{\mu}_B$ and $\hat{\sigma}_{\hat{\mu}_B}$ denote the estimate of the mean and estimate of the standard error of the estimate of the mean based on the bootstrap sample.
+3. Repeat Steps 1 and 2 $B$ times, where $B$ is some large number. For the function `enparCensored`, the number of bootstraps $B$ is determined by the argument `n.bootstraps` (see the arguments in the [`enparCensored` help page](https://alexkowa.github.io/EnvStats/reference/enparCensored.html)). The default value of `n.bootstraps` is `1000`.
+4. Use the $B$ estimated values of $\mu$ to compute the empirical cumulative distribution function of the estimator of $\mu$ or to compute the empirical cumulative distribution function of the statistic $T$ (see [`ecdfPlot`](https://alexkowa.github.io/EnvStats/reference/ecdfPlot.html)), and then create a confidence interval for $\mu$ based on this estimated cdf.
+
+The two-sided percentile interval (Efron and Tibshirani, 1993, p.170) is computed as:
+
+$$
+[\hat{G}^{-1}(\frac{\alpha}{2}), \; \hat{G}^{-1}(1-\frac{\alpha}{2})] \;\;\;\;\;\; (14)
+$$
+
+where $\hat{G}(t)$ denotes the empirical cdf of $\hat{\mu}_B$ evaluated at $t$ and thus $\hat{G}^{-1}(p)$ denotes the $p$'th empirical quantile of the distribution of $\hat{\mu}_B$, that is, the $p$'th quantile associated with the empirical cdf. Similarly, a one-sided lower confidence interval is computed as:
+
+$$
+[\hat{G}^{-1}(\alpha), \; \infty] \;\;\;\;\;\; (15)
+$$
+
+and a one-sided upper confidence interval is computed as:
+
+$$
+[-\infty, \; \hat{G}^{-1}(1-\alpha)] \;\;\;\;\;\; (16)
+$$
+
+The function `enparCensored` calls the R function [`quantile`](https://stat.ethz.ch/R-manual/R-devel/library/stats/html/quantile.html) to compute the empirical quantiles used in Equations (14)-(16).
+
+The percentile method bootstrap confidence interval is only first-order accurate (Efron and Tibshirani, 1993, pp.187-188), meaning that the probability that the confidence interval will contain the true value of $\mu$ can be off by $k/\sqrt{N}$, where $k$ is some constant. Efron and Tibshirani (1993, pp.184--188) proposed a bias-corrected and accelerated interval that is second-order accurate, meaning that the probability that the confidence interval will contain the true value of $\mu$ may be off by $k/N$ instead of $k/\sqrt{N}$. The two-sided bias-corrected and accelerated confidence interval is computed as:
+
+$$
+[\hat{G}^{-1}(\alpha_1), \; \hat{G}^{-1}(\alpha_2)] \;\;\;\;\;\; (17)
+$$
+
+where
+
+$$
+\alpha_1 = \Phi[\hat{z}_0 + \frac{\hat{z}_0 + z_{\alpha/2}}{1 - \hat{a}(z_0 + z_{\alpha/2})}] \;\;\;\;\;\; (18)
+$$
+
+$$
+\alpha_2 = \Phi[\hat{z}_0 + \frac{\hat{z}_0 + z_{1-\alpha/2}}{1 - \hat{a}(z_0 + z_{1-\alpha/2})}] \;\;\;\;\;\; (19)
+$$
+
+$$
+\hat{z}_0 = \Phi^{-1}[\hat{G}(\hat{\mu})] \;\;\;\;\;\; (20)
+$$
+
+$$
+\hat{a} = \frac{\sum_{i=1}^N (\hat{\mu}_{(\cdot)} - \hat{\mu}_{(i)})^3}{6[\sum_{i=1}^N (\hat{\mu}_{(\cdot)} - \hat{\mu}_{(i)})^2]^{3/2}} \;\;\;\;\;\; (21)
+$$
+
+where the quantity $\hat{\mu}_{(i)}$ denotes the estimate of $\mu$ using all the values in $\underline{x}$ except the $i$'th one, and
+
+$$
+\hat{\mu}{(\cdot)} = \frac{1}{N} \sum_{i=1}^N \hat{\mu_{(i)}} \;\;\;\;\;\; (22)
+$$
+
+A one-sided lower confidence interval is given by:
+
+$$
+[\hat{G}^{-1}(\alpha_1), \; \infty] \;\;\;\;\;\; (23)
+$$
+
+and a one-sided upper confidence interval is given by:
+
+$$
+[-\infty, \; \hat{G}^{-1}(\alpha_2)] \;\;\;\;\;\; (24)
+$$
+
+where $\alpha_1$ and $\alpha_2$ are computed as for a two-sided confidence interval, except $\alpha/2$ is replaced with $\alpha$ in Equations (18) and (19).
+
+The constant $\hat{z}_0$ incorporates the bias correction, and the constant $\hat{a}$ is the acceleration constant. The term “acceleration” refers to the rate of change of the standard error of the estimate of $\mu$ with respect to the true value of $\mu$ (Efron and Tibshirani, 1993, p.186). For a normal (Gaussian) distribution, the standard error of the estimate of $\mu$ does not depend on the value of $\mu$, hence the acceleration constant is not really necessary.
+
+For the bootstrap-t method, the two-sided confidence interval (Efron and Tibshirani, 1993, p.160) is computed as:
+
+$$
+[\hat{\mu} - t_{1-\alpha/2}\hat{\sigma}_{\hat{\mu}}, \; \hat{\mu} - t_{\alpha/2}\hat{\sigma}_{\hat{\mu}}] \;\;\;\;\;\; (25)
+$$
+
+where $\hat{\mu}$ and $\hat{\sigma}_{\hat{\mu}}$ denote the estimate of the mean and standard error of the estimate of the mean based on the original sample, and $t_p$ denotes the $p$'th empirical quantile of the bootstrap distribution of the statistic $T$. Similarly, a one-sided lower confidence interval is computed as:
+
+$$
+[\hat{\mu} - t_{1-\alpha}\hat{\sigma}_{\hat{\mu}}, \; \infty] \;\;\;\;\;\; (26)
+$$
+
+and a one-sided upper confidence interval is computed as:
+
+$$
+[-\infty, \; \hat{\mu} - t_{\alpha}\hat{\sigma}_{\hat{\mu}}] \;\;\;\;\;\; (27)
+$$
+
+When `ci.method="bootstrap"`, the function `enparCensored` computes the percentile method, bias-corrected and accelerated method, and bootstrap-t bootstrap confidence intervals. The percentile method is transformation respecting, but not second-order accurate. The bootstrap-t method is second-order accurate, but not transformation respecting. The bias-corrected and accelerated method is both transformation respecting and second-order accurate (Efron and Tibshirani, 1993, p.188).
+
+## eqnpar {#eqnpar}
+
+Help topic: [`eqnpar`](https://alexkowa.github.io/EnvStats/reference/eqnpar.html).
+
+If `x` contains any missing (`NA`), undefined (`NaN`) or infinite (`Inf`, `-Inf`) values, they will be removed prior to performing the estimation.
+
+**Estimation**  
+The function `eqnpar` calls the R function [`quantile`](https://stat.ethz.ch/R-manual/R-devel/library/stats/html/quantile.html) to estimate quantiles.
+
+**Confidence Intervals**  
+Let $x_1, x_2, \ldots, x_n$ denote a sample of $n$ independent and identically distributed random variables from some arbitrary distribution. Furthermore, let $x_{(i)}$ denote the $i$'th order statistic for these $n$ random variables. That is,
+
+$$
+x_{(1)} \le x_{(2)} \le \ldots \le x_{(n)} \;\;\;\;\;\; (1)
+$$
+
+Finally, let $x_p$ denote the $p$'th quantile of the distribution, that is:
+
+$$
+Pr(X < x_p) \le p \;\;\;\;\;\; (2)
+$$
+
+$$
+Pr(X \le x_p) \ge p \;\;\;\;\;\; (3)
+$$
+
+It can be shown (e.g., Conover, 1980, pp. 114-116) that for the $i$'th order statistic:
+
+$$
+Pr[x_p < x_{(i)}] = F_{B(n,p)}[i-1]; \; i = 1, 2, \ldots, n \;\;\;\;\;\; (4)
+$$
+
+for a continuous distribution and
+
+$$
+Pr[x_p < x_{(i)}] \le F_{B(n,p)}[i-1]; \; i = 1, 2, \ldots, n \;\;\;\;\;\; (5)
+$$
+
+$$
+Pr[x_p \le x_{(i)}] \ge F_{B(n,p)}[i-1]; \; i = 1, 2, \ldots, n \;\;\;\;\;\; (6)
+$$
+
+for a discrete distribution, where $F_{B(n,p)}[y]$ denotes the cumulative distribution function of a [binomial random variable](https://stat.ethz.ch/R-manual/R-devel/library/stats/html/Binomial.html) with parameters `size=`$n$ and `prob=`$p$ evaluated at $y$. These facts are used to construct confidence intervals for quantiles (see below).
+
+**Two-Sided Confidence Interval** (`ci.type="two-sided"`)  
+A two-sided nonparametric confidence interval for the $p$'th quantile is constructed as:
+
+$$
+[x_{(r)}, x_{(s)}] \;\;\;\;\;\; (7)
+$$
+
+where
+
+$$
+1 \le r \le (n-1) \;\;\;\;\;\; (8)
+$$
+
+$$
+2 \le s \le n \;\;\;\;\;\; (9)
+$$
+
+$$
+r < s \;\;\;\;\;\; (10)
+$$
+
+Note that the argument `lcl.rank` corresponds to $r$, and the argument `ucl.rank` corresponds to $s$.
+
+This confidence interval has an associated confidence level that is at least as large as:
+
+$$
+F_{B(n,p)}[s-1] - F_{B(n,p)}[r-1] \;\;\;\;\;\; (11)
+$$
+
+for a discrete distribution and exactly equal to this value for a continuous distribution. This is because by Equations (4)-(6) above:
+
+$$
+Pr[x_{(r)} \le x_p \le x_{(s)}]
+$$
+
+$$
+= Pr[x_p \le x_{(s)}] - Pr[x_p < x_{(r)}]
+$$
+
+$$
+\ge F_{B(n,p)}[s-1] - F_{B(n,p)}[r-1] \;\;\;\;\;\; (12)
+$$
+
+with equality if the distribution is continuous.
+
+*Exact Method* (`ci.method="exact"`)  
+When `lcl.rank` ($r$) and `ucl.rank` ($s$) are not supplied by the user, and `ci.method="exact"`, $r$ and $s$ are initially chosen such that $r$ is the smallest integer satisfying equation (13) below, and $s$ is the largest integer satisfying equation (14) below:
+
+$$
+F_{B(n,p)}[r-1] \ge \frac{\alpha}{2} \;\;\;\;\;\; (13)
+$$
+
+$$
+F_{B(n,p)}[s-1] \le 1-\frac{\alpha}{2} \;\;\;\;\;\; (14)
+$$
+
+where $\alpha = 1 -$`approx.conf.level`. The values of $r$ and $s$ are then each varied by $\pm 2$ (with the restrictions $r \ge 1$, $s \le n$, and $r < s$), and confidence levels computed for each of these combinations. If `min.coverage=TRUE`, the combination of $r$ and $s$ is selected that provides the closest coverage to `approx.conf.level`, with coverage greater than or equal to `approx.conf.level`. If `min.coverage=FALSE`, the combination of $r$ and $s$ is selected that provides the closest coverage to `approx.conf.level`, with coverage less than or equal to `approx.conf.level + tol`.
+
+For this method, the confidence level associated with the confidence interval is exact if the underlying distribution is continuous.
+
+*Approximate Method* (`ci.method="approx"`)  
+Here the term “Approximate” simply refers to the method of initially choosing the ranks for the lower and upper bounds. As for `ci.method="exact"`, the confidence level associated with the confidence interval is exact if the underlying distribution is continuous.
+
+When `lcl.rank` ($r$) and `ucl.rank` ($s$) are not supplied by the user and `ci.method="normal.approx"`, $r$ and $s$ are initially chosen such that:
+
+$$
+r = np - h \;\;\;\;\;\; (15)
+$$
+
+$$
+s = np + h \;\;\;\;\;\; (16)
+$$
+
+where
+
+$$
+h = t_{n-1, 1-\alpha/2} \sqrt{np(1-p)} \;\;\;\;\;\; (17)
+$$
+
+and $t_{\nu,q}$ denotes the $q$'th quantile of [Student's t-distribution](https://stat.ethz.ch/R-manual/R-devel/library/stats/html/TDist.html) with $\nu$ degrees of freedom, and $\alpha = 1 -$`approx.conf.level` (Conover, 1980, p. 112). With the restictions that $r \ge 1$ and $s \le n$, $r$ is rounded down to the nearest integer $r = r^* = floor(r)$ and $s$ is rounded up to the nearest integer $s = s^* = ceiling(s)$. Again, with the restictions that $s \le n$, if the confidence level using $s = s^* + 1$ and $r = r^*$ is less than or equal to `approx.conf.level`, then $s$ is set to $s = s^* + 1$. Once this has been checked, with the restriction that $r \ge 1$, if the confidence level using the current value of $s$ and $r = r^* - 1$ is less than or equal to `approx.conf.level`, then $r$ is set to $r = r^* - 1$.
+
+*Interpolate Method* (`ci.method="interpolate"`)  
+Let $\gamma$ denote the desired confidence level associated with the confidence interval for the $p$'th quantile. Based on the work of Hettmansperger and Sheather (1986), Nyblom (1992) showed that if $[-\infty, x_{(w+1)}]$ is a one-sided upper confidence interval for the $p$'th quantile with associated confidence level $\gamma_{w+1}$, and $\gamma_{w+1} \ge \gamma \ge \gamma_{w}$, then the one-sided upper confidence interval
+
+$$
+[-\infty, (1-\lambda) x_{(w)} + \lambda x_{(w+1)}] \;\;\;\;\;\; (18)
+$$
+
+where
+
+$$
+\lambda = \lambda(\beta, p, w, n)
+$$
+
+$$
+= [ 1 + \frac{w(1-p)(\pi_{w+1}-\beta)}{(n-w)p(\beta-\pi_w)} ] ^ {-1} \;\;\;\;\;\; (19)
+$$
+
+$$
+\pi_w = F_{B(n,p)}[w-1] \;\;\;\;\;\; (20)
+$$
+
+$$
+\beta = \gamma \;\;\;\;\;\; (21)
+$$
+
+has associated confidence level approximately equal to $\gamma$ for a wide range of distributions.
+
+Thus, to construct an approximate two-sided confidence interval for the $p$'th quantile with confidence level $\gamma$, if $[x_{(r)}, x_{(s)}]$ has confidence level $\ge \gamma$ and $[x_{(r+1)}, x_{(s-1)}]$ has confidence level $\le \gamma$, then the lower bound of the two-sided confidence interval is computed as:
+
+$$
+(1-\lambda) x_{(r)} + \lambda x_{(r+1)} \;\;\;\;\;\; (21)
+$$
+
+where
+
+$$
+\beta = \alpha/2; \;\;\;\; \alpha = 1 - \gamma \;\;\;\;\;\; (22)
+$$
+
+and the upper bound of the two-sided confidence interval is computed as:
+
+$$
+(1-\lambda) x_{(s-1)} + \lambda x_{(s)} \;\;\;\;\;\; (23)
+$$
+
+where
+
+$$
+\beta = 1 - \alpha/2 \;\;\;\;\;\; (24)
+$$
+
+The values of $r$ and $s$ in Equations (21) and (23) are computed by using `ci.method="exact"` with the argument `min.coverage=TRUE`.
+
+**One-Sided Lower Confidence Interval** (`ci.type="lower"`)  
+A one-sided lower nonparametric confidence interval for the $p$'th quantile is constructed as:
+
+$$
+[x_{(r)}, ub] \;\;\;\;\;\; (25)
+$$
+
+where $ub$ denotes the value of the `ub` argument (the user-supplied upper bound).
+
+*Exact Method* (`ci.method="exact"`)  
+When `lcl.rank` ($r$) is not supplied by the user, and `ci.method="exact"`, $r$ is initially chosen such that it is the smallest integer satisfying the following equation:
+
+$$
+F_{B(n,p)}[r-1] \ge \alpha \;\;\;\;\;\; (26)
+$$
+
+where $\alpha = 1 -$`approx.conf.level`. The value of $r$ is varied by $\pm 2$ (with the restrictions $r \ge 1$ and $r \le n$), and confidence levels computed for each of these combinations. If `min.coverage=TRUE`, the value of $r$ is selected that provides the closest coverage to `approx.conf.level`, with coverage greater than or equal to `approx.conf.level`. If `min.coverage=FALSE`, the value of $r$ is selected that provides the closest coverage to `approx.conf.level`, with coverage less than or equal to `approx.conf.level + tol`.
+
+For this method, the confidence level associated with the confidence interval is exact if the underlying distribution is continuous.
+
+*Approximate Method* (`ci.method="approx"`)  
+When `lcl.rank` ($r$) is not supplied by the user and `ci.method="normal.approx"`, $r$ is initially chosen such that
+
+$$
+r = np - t_{n-1, 1-\alpha} \sqrt{np(1-p)} \;\;\;\;\;\; (27)
+$$
+
+With the restriction that $r \ge 1$ and $r \le n$, if `p` is less than 0.5 then $r$ is rounded up to the nearest integer, otherwise it is rounded down to the nearest integer. Denote this value by $r^*$. With the restriction that $r \ge 1$, if the confidence level using $r^* - 1$ is less than or equal to `approx.conf.level`, then $r$ is set to $r = r^* - 1$.
+
+*Interpolate Method* (`ci.method="interpolate"`)  
+Let $\gamma$ denote the desired confidence level associated with the confidence interval for the $p$'th quantile. To construct an approximate one-sided lower confidence interval for the $p$'th quantile with confidence level $\gamma$, if $[x_{(r)}, ub]$ has confidence level $\ge \gamma$ and $[x_{(r+1)}, ub]$ has confidence level $\le \gamma$, then the lower bound of the confidence interval is computed as:
+
+$$
+(1-\lambda) x_{(r)} + \lambda x_{(r+1)} \;\;\;\;\;\; (28)
+$$
+
+where
+
+$$
+\beta = \alpha; \;\;\;\; \alpha = 1 - \gamma \;\;\;\;\;\; (29)
+$$
+
+The value of $r$ in Equation (28) is computed by using `ci.method="exact"` with the arguments `ci.type="lower"` and `min.coverage=TRUE`.
+
+**One-Sided Upper Confidence Interval** (`ci.type="upper"`)  
+A one-sided upper nonparametric confidence interval for the $p$'th quantile is constructed as:
+
+$$
+[lb, x_{(s)}] \;\;\;\;\;\; (30)
+$$
+
+where $lb$ denotes the value of the `lb` argument (the user-supplied lower bound).
+
+*Exact Method* (`ci.method="exact"`)  
+When `ucl.rank` ($s$) is not supplied by the user, and `ci.method="exact"`, $s$ is initially chosen such that it is the largest integer satisfying the following equation:
+
+$$
+F_{B(n,p)}[s-1] \le 1-\alpha \;\;\;\;\;\; (31)
+$$
+
+where $\alpha = 1 -$`approx.conf.level`. The value of $s$ is varied by $\pm 2$ (with the restrictions $s \ge 1$ and $s \le n$), and confidence levels computed for each of these combinations. If `min.coverage=TRUE`, the value of $s$ is selected that provides the closest coverage to `approx.conf.level`, with coverage greater than or equal to `approx.conf.level`. If `min.coverage=FALSE`, the value of $s$ is selected that provides the closest coverage to `approx.conf.level`, with coverage less than or equal to `approx.conf.level + tol`.
+
+For this method, the confidence level associated with the confidence interval is exact if the underlying distribution is continuous.
+
+*Approximate Method* (`ci.method="approx"`)  
+When `ucl.rank` ($s$) is not supplied by the user and `ci.method="normal.approx"`, $s$ is initially chosen such that
+
+$$
+s = np + t_{n-1, 1-\alpha} \sqrt{np(1-p)} \;\;\;\;\;\; (31)
+$$
+
+With the restriction that $s \ge 1$ and $s \le n$, if `p` is greater than 0.5 then $s$ is rounded down to the nearest integer, otherwise it is rounded up to the nearest integer. Denote this value by $s^*$. With the restriction that $s \le n$, if the confidence level using $s^* + 1$ is less than or equal to `approx.conf.level`, then $s$ is set to $s = s^* + 1$.
+
+For this method, the confidence level associated with the confidence interval is exact if the underlying distribution is continuous.
+
+*Interpolate Method* (`ci.method="interpolate"`)  
+Let $\gamma$ denote the desired confidence level associated with the confidence interval for the $p$'th quantile. To construct an approximate one-sided upper confidence interval for the $p$'th quantile with confidence level $\gamma$, if $[lb, x_{(s)}]$ has confidence level $\ge \gamma$ and $[lb, x_{(s-1)}]$ has confidence level $\le \gamma$, then the upper bound of the confidence interval is computed as:
+
+$$
+(1-\lambda) x_{(s-1)} + \lambda x_{(s)} \;\;\;\;\;\; (32)
+$$
+
+where
+
+$$
+\beta = \gamma \;\;\;\;\;\; (33)
+$$
+
+The value of $s$ in Equation (32) is computed by using `ci.method="exact"` with the arguments `ci.type = "upper"`, and `min.coverage=TRUE`.
+
+**Note on Value of Confidence Level**  
+Because of the discrete nature of order statistics, when `ci.method="exact"` or  
+`ci.method="normal.approx"`, the value of the confidence level returned by `eqnpar` will usually differ from the desired confidence level indicated by the value of the argument `approx.conf.level`. When  
+`ci.method="interpolate"`, `eqnpar` returns for the confidence level the value of the argument `approx.conf.level`. Nyblom (1992) and Hettmasperger and Sheather (1986) have shown that the Interpolate method produces confidence intervals with confidence levels quite close to the assumed confidence level for a wide range of distributions.
+
+## twoSampleLinearRankTest {#twosamplelinearranktest}
+
+Help topic: [`twoSampleLinearRankTest`](https://alexkowa.github.io/EnvStats/reference/twoSampleLinearRankTest.html).
+
+The function `twoSampleLinearRankTest` allows you to compare two samples using a locally most powerful rank test (LMPRT) to determine whether the two samples come from the same distribution. The sections below explain the concepts of location and scale shifts, linear rank tests, and LMPRT's.
+
+**Definitions of Location and Scale Shifts**  
+Let $X$ denote a random variable representing measurements from group 1 with cumulative distribution function (cdf):
+
+$$
+F_1(t) = Pr(X \le t) \;\;\;\;\;\; (1)
+$$
+
+and let $x_1, x_2, \ldots, x_m$ denote $m$ independent observations from this distribution. Let $Y$ denote a random variable from group 2 with cdf:
+
+$$
+F_2(t) = Pr(Y \le t) \;\;\;\;\;\; (2)
+$$
+
+and let $y_1, y_2, \ldots, y_n$ denote $n$ independent observations from this distribution. Set $N = m + n$.
+
+*General Hypotheses to Test Differences Between Two Populations*  
+A very general hypothesis to test whether two distributions are the same is given by:
+
+$$
+H_0: F_1(t) = F_2(t), -\infty < t < \infty \;\;\;\;\;\; (3)
+$$
+
+versus the two-sided alternative hypothesis:
+
+$$
+H_a: F_1(t) \ne F_2(t) \;\;\;\;\;\; (4)
+$$
+
+with strict inequality for at least one value of $t$. The two possible one-sided hypotheses would be:
+
+$$
+H_0: F_1(t) \ge F_2(t) \;\;\;\;\;\; (5)
+$$
+
+versus the alternative hypothesis:
+
+$$
+H_a: F_1(t) < F_2(t) \;\;\;\;\;\; (6)
+$$
+
+and
+
+$$
+H_0: F_1(t) \le F_2(t) \;\;\;\;\;\; (7)
+$$
+
+versus the alternative hypothesis:
+
+$$
+H_a: F_1(t) > F_2(t) \;\;\;\;\;\; (8)
+$$
+
+A similar set of hypotheses to test whether the two distributions are the same are given by (Conover, 1980, p. 216):
+
+$$
+H_0: Pr(X < Y) = 1/2 \;\;\;\;\;\; (9)
+$$
+
+versus the two-sided alternative hypothesis:
+
+$$
+H_a: Pr(X < Y) \ne 1/2 \;\;\;\;\;\; (10)
+$$
+
+or
+
+$$
+H_0: Pr(X < Y) \ge 1/2 \;\;\;\;\;\; (11)
+$$
+
+versus the alternative hypothesis:
+
+$$
+H_a: Pr(X < Y) < 1/2 \;\;\;\;\;\; (12)
+$$
+
+or
+
+$$
+H_0: Pr(X < Y) \le 1/2 \;\;\;\;\;\; (13)
+$$
+
+versus the alternative hypothesis:
+
+$$
+H_a: Pr(X < Y) > 1/2 \;\;\;\;\;\; (14)
+$$
+
+Note that this second set of hypotheses (9)--(14) is **not** equivalent to the set of hypotheses (3)--(8). For example, if $X$ takes on the values 1 and 4 with probability 1/2 for each, and $Y$ only takes on values in the interval (1, 4) with strict inequality at the enpoints (e.g., $Y$ takes on the values 2 and 3 with probability 1/2 for each), then the null hypothesis (9) is true but the null hypothesis (3) is not true. However, the null hypothesis (3) implies the null hypothesis (9), (5) implies (11), and (7) implies (13).
+
+*Location Shift*  
+A special case of the alternative hypotheses (4), (6), and (8) above is the ***location shift*** alternative:
+
+$$
+H_a: F_1(t) = F_2(t - \Delta) \;\;\;\;\;\; (15)
+$$
+
+where $\Delta$ denotes the shift between the two groups. (Note: some references refer to (15) above as a shift in the median, but in fact this kind of shift represents a shift in every single quantile, not just the median.) If $\Delta$ is positive, this means that observations in group 1 tend to be larger than observations in group 2, and if $\Delta$ is negative, observations in group 1 tend to be smaller than observations in group 2.
+
+The alternative hypothesis (15) is called a ***location shift***: the only difference between the two distributions is a difference in location (e.g., the standard deviation is assumed to be the same for both distributions). A location shift is not applicable to distributions that are bounded below or above by some constant, such as a lognormal distribution. For lognormal distributions, the location shift could refer to a shift in location of the distribution of the log-transformed observations.
+
+For a location shift, the null hypotheses (3) can be generalized as:
+
+$$
+H_0: F_1(t) = F_2(t - \Delta_0), -\infty < t < \infty \;\;\;\;\;\; (16)
+$$
+
+where $\Delta_0$ denotes the null shift between the two groups. Almost always, however, the null shift is taken to be 0 and we will assume this for the rest of this section.
+
+Alternatively, the null and alternative hypotheses can be written as
+
+$$
+H_0: \Delta = 0 \;\;\;\;\;\; (17)
+$$
+
+versus the alternative hypothesis
+
+$$
+H_a: \Delta > 0 \;\;\;\;\;\; (18)
+$$
+
+The other one-sided alternative hypothesis ($\Delta < 0$) and two-sided alternative hypothesis ($\Delta \ne 0$) could be considered as well.
+
+The general hypotheses (3)-(14) are *not* location shift hypotheses (e.g., the standard deviation does not have to be the same for both distributions), but they do allow for distributions that are bounded below or above by a constant (e.g., lognormal distributions).
+
+*Scale Shift*  
+A special kind of scale shift replaces the alternative hypothesis (15) with the alternative hypothesis:
+
+$$
+H_a: F_1(t) = F_2(t/\tau) \;\;\;\;\;\; (19)
+$$
+
+where $\tau$ denotes the shift in scale between the two groups. Alternatively, the null and alternative hypotheses for this scale shift can be written as
+
+$$
+H_0: \tau = 1 \;\;\;\;\;\; (20)
+$$
+
+versus the alternative hypothesis
+
+$$
+H_a: \tau > 1 \;\;\;\;\;\; (21)
+$$
+
+The other one-sided alternative hypothesis ($t < 1$) and two-sided alternative hypothesis ($t \ne 1$) could be considered as well.
+
+This kind of scale shift often involves a shift in both location and scale. For example, suppose the underlying distribution for both groups is `exponential`, with parameter `rate=`$\lambda$. Then the mean and standard deviation of the reference group is $1/\lambda$, while the mean and standard deviation of the treatment group is $\tau/\lambda$. In this case, the alternative hypothesis (21) implies the more general alternative hypothesis (8).
+
+**Linear Rank Tests**  
+The usual nonparametric test to test the null hypothesis of the same distribution for both groups versus the location-shift alternative (18) is the `Wilcoxon Rank Sum test` (Gilbert, 1987, pp.247-250; Helsel and Hirsch, 1992, pp.118-123; Hollander and Wolfe, 1999). Note that the Mann-Whitney U test is equivalent to the Wilcoxon Rank Sum test (Hollander and Wolfe, 1999; Conover, 1980, p.215, Zar, 2010). Hereafter, this test will be abbreviated as the MWW test. The MWW test is performed by combining the $m$ $X$ observations with the $n$ $Y$ observations and ranking them from smallest to largest, and then computing the statistic
+
+$$
+W = \sum_{i=1}^m R_i \;\;\;\;\;\; (22)
+$$
+
+where $R_1, R_2, \ldots, R_m$ denote the ranks of the $X$ observations when the $X$ and $Y$ observations are combined ranked. The null hypothesis (5), (11), or (17) is rejected in favor of the alternative hypothesis (6), (12) or (18) if the value of $W$ is too large. For small sample sizes, the exact distribution of $W$ under the null hypothesis is fairly easy to compute and may be found in tables (e.g., Hollander and Wolfe, 1999; Conover, 1980, pp.448-452). For larger sample sizes, a normal approximation is usually used (Hollander and Wolfe, 1999; Conover, 1980, p.217). For the R function `wilcox.test`, an exact p-value is computed if the samples contain less than 50 finite values and there are no ties.
+
+**It is important to note that the MWW test is actually testing the more general hypotheses (9)-(14) (Conover, 1980, p.216; Divine et al., 2013), even though it is often presented as only applying to location shifts.**
+
+The MWW W-statistic in Equation (22) is an example of a ***linear rank statistic*** (Hettmansperger, 1984, p.147; Prentice, 1985), which is any statistic that can be written in the form:
+
+$$
+L = \sum_{i=1}^m a(R_i) \;\;\;\;\;\; (23)
+$$
+
+where $a()$ denotes a score function. Statistics of this form are also called ***general scores statistics*** (Hettmansperger, 1984, p.147). The MWW test uses the identity score function:
+
+$$
+a(R_i) = R_i \;\;\;\;\;\; (24)
+$$
+
+Any test based on a linear rank statistic is called a ***linear rank test***. Under the null hypothesis (3), (9), (17), or (20), the distribution of the linear rank statistic $L$ does not depend on the form of the underlying distribution of the $X$ and $Y$ observations. Hence, tests based on $L$ are nonparametric (also called distribution-free). If the null hypothesis is not true, however, the distribution of $L$ will depend not only on the distributions of the $X$ and $Y$ observations, but also upon the form the score function $a()$.
+
+**Locally Most Powerful Linear Rank Tests**  
+The decision of what scores to use may be based on considering the power of the test. A locally most powerful rank test (LMPRT) of the null hypothesis (17) versus the alternative (18) maximizes the slope of the power (as a function of $\Delta$) in the neighborhood where $\Delta=0$. A LMPRT of the null hypothesis (20) versus the alternative (21) maximizes the slope of the power (as a function of $\tau$) in the neighborhood where $\tau=1$. That is, LMPRT's are the best linear rank test you can use for detecting small shifts in location or scale.
+
+Table 1 below shows the score functions associated with the LMPRT's for various assumed underlying distributions (Hettmansperger, 1984, Chapter 3; Millard and Deverel, 1988, p.2090). A test based on the identity score function of Equation (24) is equivalent to a test based on the score shown in Table 1 associated with the logistic distribution, thus the MWW test is the LMPRT for detecting a location shift when the underlying observations follow the logistic distribution. When the underlying distribution is normal or lognormal, the LMPRT for a location shift uses the “Normal scores” shown in Table 1. When the underlying distribution is exponential, the LMPRT for detecting a scale shift is based on the “Savage scores” shown in Table 1.
+
+*Table 1. Scores of LMPRT's for Various Distributions*
+
+<table>
+<tbody>
+  <tr>
+    <td><strong>Distribution</strong></td>
+    <td><strong>Score</strong> \(a(R_i)\)</td>
+    <td><strong>Shift Type</strong></td>
+    <td><strong>Test Name</strong></td>
+  </tr>
+  <tr>
+    <td>Logistic</td>
+    <td>\([2/(N+1)]R_i - 1\)</td>
+    <td>Location</td>
+    <td>Wilcoxon Rank Sum</td>
+  </tr>
+  <tr>
+    <td>Normal or</td>
+    <td>\(\Phi^{-1}[R_i/(N+1)]\)*</td>
+    <td>Location</td>
+    <td>Van der Waerden or</td>
+  </tr>
+  <tr>
+    <td>Lognormal (log-scale)</td>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td>Normal scores</td>
+  </tr>
+  <tr>
+    <td>Double Exponential</td>
+    <td>\(sign[R_i - (N+1)/2]\)</td>
+    <td>Location</td>
+    <td>Mood's Median</td>
+  </tr>
+  <tr>
+    <td>Exponential or</td>
+    <td>\(\sum_{j=1}^{R_i} (N-j+1)^{-1}\)</td>
+    <td>Scale</td>
+    <td>Savage scores</td>
+  </tr>
+  <tr>
+    <td>Extreme Value</td>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+  </tr>
+</tbody>
+</table>
+
+\* Denotes an approximation to the true score. The symbol $\Phi$ denotes the cumulative distribution function of the standard normal distribution, and $sign$ denotes the `sign` function.
+
+A large sample normal approximation to the distribution of the linear rank statistic $L$ for arbitrary score functions is given by Hettmansperger (1984, p.148). Under the null hypothesis (17) or (20), the mean and variance of $L$ are given by:
+
+$$
+E(L) = \mu_L = \frac{m}{N} \sum_{i=1}^N a_i = m \bar{a} \;\;\;\;\;\; (24)
+$$
+
+$$
+Var(L) = \sigma_L^2 = \frac{mn}{N(N-1)} \sum_{i=1}^N (a_i - \bar{a})^2 \;\;\;\;\;\; (25)
+$$
+
+Hettmansperger (1984, Chapter 3) shows that under the null hypothesis of no difference between the two groups, the statistic
+
+$$
+z = \frac{L - \mu_L}{\sigma_L} \;\;\;\;\;\; (26)
+$$
+
+is approximately distributed as a standard normal random variable for “large” sample sizes. This statistic will tend to be large if the observations in group 1 tend to be larger than the observations in group 2.
+
+## twoSampleLinearRankTestCensored {#twosamplelinearranktestcensored}
+
+Help topic: [`twoSampleLinearRankTestCensored`](https://alexkowa.github.io/EnvStats/reference/twoSampleLinearRankTestCensored.html).
+
+The function `twoSampleLinearRankTestCensored` allows you to compare two samples containing censored observations using a linear rank test to determine whether the two samples came from the same distribution. The section on [`twoSampleLinearRankTest`](nonparametric-methods.html#twosamplelinearranktest) explains linear rank tests for complete data (i.e., no censored observations are present), and here we assume you are familiar with that material. The sections below explain how linear rank tests can be extended to the case of censored data.
+
+***Notation***  
+Several authors have proposed extensions of the MWW test to the case of censored data, mainly in the context of survival analysis (e.g., Breslow, 1970; Cox, 1972; Gehan, 1965; Mantel, 1966; Peto and Peto, 1972; Prentice, 1978). Prentice (1978) showed how all of these proposed tests are extensions of a linear rank test to the case of censored observations.
+
+Survival analysis usually deals with right-censored data, whereas environmental data is rarely right-censored but often left-censored (some observations are reported as less than some detection limit). Fortunately, all of the methods developed for right-censored data can be applied to left-censored data as well. (See the sub-section *Left-Censored Data below*.)
+
+In order to explain Prentice's (1978) generalization of linear rank tests to censored data, we will use the following notation that closely follows Prentice (1978), Prentice and Marek (1979), and Latta (1981). Let $X$ denote a random variable representing measurements from group 1 with cumulative distribution function (cdf):
+
+$$
+F_1(t) = Pr(X \le t) \;\;\;\;\;\; (1)
+$$
+
+and let $x_1, x_2, \ldots, x_m$ denote $m$ independent observations from this distribution. Let $Y$ denote a random variable from group 2 with cdf:
+
+$$
+F_2(t) = Pr(Y \le t) \;\;\;\;\;\; (2)
+$$
+
+and let $y_1, y_2, \ldots, y_n$ denote $n$ independent observations from this distribution. Set $N = m + n$, the total number of observations. Assume the data are right-censored so that some observations are only recorded as greater than some censoring level, with possibly several different censoring levels. Let $t_1, t_2, \ldots, t_k$ denote the $k$ ordered, unique, uncensored observations for the combined samples (in the context of survival data, $t$ usually stands for “time of death”). For $i = 1, 2, \ldots, k$, let $d_{1i}$ denote the number of observations from sample 1 (the $X$ observations) that are equal to $t_i$, and let $d_{2i}$ denote the observations from sample 2 (the $Y$ observations) equal to this value. Set
+
+$$
+d_i = d_{1i} + d_{2i} \;\;\;\;\;\; (3)
+$$
+
+the total number of observations equal to $t_i$. If there are no tied uncensored observations, then $t_i = 1$ for $i = 1, 2, \ldots, k$, otherwise it is greater than 1 for at least on value of $i$.
+
+For $i = 1, 2, \ldots, k$, let $e_{1i}$ denote the number of censored observations from sample 1 (the $X$ observations) with censoring levels that fall into the interval $[t_i, t_{i+1})$ where $t_{k+1} = \infty$ by definition, and let $e_{2i}$ denote the number of censored observations from sample 2 (the $Y$ observations) with censoring levels that fall into this interval. Set
+
+$$
+e_i = e_{1i} + e_{2i} \;\;\;\;\;\; (4)
+$$
+
+the total number of censoring levels that fall into this interval.
+
+Finally, set $n_{1i}$ equal to the number of observations from sample 1 (uncensored and censored) known to be greater than or equal to $t_i$, i.e., that lie in the interval $[t_i, \infty)$, set $n_{2i}$ equal to the number of observations from sample 2 (uncensored and censored) that lie in this interval, and set
+
+$$
+n_i = n_{1i} + n_{2i} \;\;\;\;\;\; (5)
+$$
+
+In survival analysis jargon, $n_{1i}$ denotes the number of people from sample 1 who are “at risk” at time $t_i$, that is, these people are known to still be alive at this time. Similarly, $n_{2i}$ denotes the number of people from sample 2 who are at risk at time $t_i$, and $n_i$ denotes the total number of people at risk at time $t_i$.
+
+***Score Statistics for Multiply Censored Data***  
+Prentice's (1978) generalization of the two-sample score (linear rank) statistic is given by:
+
+$$
+\nu = \sum_{i=1}^k (d_{1i} c_i + e_{1i} C_i) \;\;\;\;\;\; (6)
+$$
+
+where $c_i$ and $C_i$ denote the scores associated with the uncensored and censored observations, respectively. As for complete data, the form of the scores depends upon the assumed underlying distribution. Table 1 below shows scores for various assumed distributions as presented in Prentice (1978) and Latta (1981) (also see Table 5 of Millard and Deverel, 1988, p.2091). The last column shows what these tests reduce to in the case of complete data (no censored observations).
+
+*Table 1. Scores Associated with Various Censored Data Rank Tests*
+
+<table>
+<tbody>
+  <tr>
+    <td>&nbsp;</td>
+    <td><strong>Uncensored</strong></td>
+    <td><strong>Censored</strong></td>
+    <td>&nbsp;</td>
+    <td><strong>Uncensored</strong></td>
+  </tr>
+  <tr>
+    <td><strong>Distribution</strong></td>
+    <td><strong>Score</strong> (\(c_i\))</td>
+    <td><strong>Score</strong> (\(C_i\))</td>
+    <td><strong>Test Name</strong></td>
+    <td><strong>Analogue</strong></td>
+  </tr>
+  <tr>
+    <td>Logistic</td>
+    <td>\(2\hat{F}_i - 1\)</td>
+    <td>\(\hat{F}_i\)</td>
+    <td>Peto-Peto</td>
+    <td>Wilcoxon Rank Sum</td>
+  </tr>
+  <tr>
+    <td>"</td>
+    <td>\(i - n_i\)</td>
+    <td>\(i\)</td>
+    <td>Gehan or Breslow</td>
+    <td>"</td>
+  </tr>
+  <tr>
+    <td>"</td>
+    <td>\(i - \sqrt{n_i}\)</td>
+    <td>\(i\)</td>
+    <td>Tarone-Ware</td>
+    <td>"</td>
+  </tr>
+  <tr>
+    <td>Normal,</td>
+    <td>\(\Phi^{-1}(\hat{F}_i)\)</td>
+    <td>\(\phi(c_i)/\hat{S}_i\)</td>
+    <td>Normal Scores 1</td>
+    <td>Normal Scores</td>
+  </tr>
+  <tr>
+    <td>Lognormal</td>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+  </tr>
+  <tr>
+    <td>"</td>
+    <td>"</td>
+    <td>\(\frac{n_i C_{i-1} - c_i}{n_i-1}\)</td>
+    <td>Normal Scores 2</td>
+    <td>"</td>
+  </tr>
+  <tr>
+    <td>Double</td>
+    <td>\(sign(\hat{F}_i - 0.5)\)</td>
+    <td>\(\frac{\hat{F}_i}{1-\hat{F}_i}, if \hat{F_i} < 0.5\)</td>
+    <td>Generalized</td>
+    <td>Mood's Median</td>
+  </tr>
+  <tr>
+    <td>Exponential</td>
+    <td>&nbsp;</td>
+    <td>\(1, if \hat{F}_i \ge 0.5\)</td>
+    <td>Sign</td>
+    <td>&nbsp;</td>
+  </tr>
+  <tr>
+    <td>Exponential,</td>
+    <td>\(-log(\tilde{S}_i) - 1\)</td>
+    <td>\(-log(\tilde{S}_i)\)</td>
+    <td>Logrank</td>
+    <td>Savage Scores</td>
+  </tr>
+  <tr>
+    <td>Extreme Value</td>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+  </tr>
+</tbody>
+</table>
+
+In Table 1 above, $\Phi$ denotes the cumulative distribution function of the standard normal distribution, $\phi$ denotes the probability density function of the standard normal distribution, and $sign$ denotes the `sign` function. Also, the quantities $\hat{F}_i$ and $\hat{S}_i$ denote the estimates of the cumulative distribution function (cdf) and survival function, respectively, at time $t_i$ for the combined sample. The estimated cdf is related to the estimated survival function by:
+
+$$
+\hat{F}_i = 1 - \hat{S}_i \;\;\;\;\;\; (7)
+$$
+
+The quantity $\tilde{S}_i$ denotes the Altshuler (1970) estimate of the survival function at time $t_i$ for the combined sample (see below).
+
+The argument `surv.est` determines what method to use estimate the survival function. When `surv.est="prentice"` (the default), the survival function is estimated as:
+
+$$
+\hat{S}_{i,P} = \prod_{j=1}^{i} \frac{n_j - d_j + 1}{n_j + 1} \;\;\;\;\;\; (8)
+$$
+
+(Prentice, 1978). When `surv.est="kaplan-meier"`, the survival function is estimated as:
+
+$$
+\hat{S}_{i,KM} = \prod_{j=1}^{i} \frac{n_j - d_j}{n_j} \;\;\;\;\;\; (9)
+$$
+
+(Kaplan and Meier, 1958), and when `surv.est="peto-peto"`, the survival function is estimated as:
+
+$$
+\hat{S}_{i,PP} = \frac{1}{2} (\hat{S}_{i,KM} + \hat{S}_{i-1, KM}) \;\;\;\;\;\; (10)
+$$
+
+where $\hat{S}_{0,KM} = 0$ (Peto and Peto, 1972). All three of these estimators of the survival function should produce very similar results. When `surv.est="altshuler"`, the survival function is estimated as:
+
+$$
+\tilde{S}_i = exp(-\sum_{j=1}^i \frac{d_j}{n_j}) \;\;\;\;\;\; (11)
+$$
+
+(Altshuler, 1970). The scores for the logrank test use this estimator of survival.
+
+Lee and Wang (2003, p. 116) present a slightly different version of the Peto-Peto test. They use the Peto-Peto estimate of the survival function for $c_i$, but use the Kaplan-Meier estimate of the survival function for $C_i$.
+
+The scores for the “Normal Scores 1” test shown in Table 1 above are based on the approximation (30) of Prentice (1978). The scores for the “Normal Scores 2” test are based on equation (7) of Prentice and Marek (1979). For the “Normal Scores 2” test, the following rules are used to construct the scores for the censored observations: $C_0 = 0$, and $C_k = 0$ if $n_k = 1$.
+
+***The Distribution of the Score Statistic***  
+Under the null hypothesis that the two distributions are the same, the expected value of the score statistic $\nu$ in Equation (6) is 0. The variance of $\nu$ can be computed in at least three different ways. If the censoring mechanism is the same for both groups, the ***permutation variance*** is appropriate (`variance="permutation"`) and its estimate is given by:
+
+$$
+\hat{\sigma}_{\nu}^2 = \frac{mn}{N(N-1)} \sum_{i=1}^k (d_i c_i^2 + e_i C_i^2) \;\;\;\;\;\; (12)
+$$
+
+Often, however, it is not clear whether this assumption is valid, and both Prentice (1978) and Prentice and Marek (1979) caution against using the permuation variance (Prentice and Marek, 1979, state it can lead to inflated estimates of variance).
+
+If the censoring mechanisms for the two groups are not necessarily the same, a more general estimator of the variance is based on a conditional permutation approach. In this case, the statistic $\nu$ in Equation (6) is re-written as:
+
+$$
+\nu = \sum_{i=1}^k w_i [d_{1i} - d_i \frac{n_{1i}}{n_i}] \;\;\;\;\;\; (13)
+$$
+
+where
+
+$$
+w_i = c_i - C_i \;\;\;\;\;\; (14)
+$$
+
+$c_i$ and $C_i$ are given above in Table 1, and the conditional permutation or ***hypergeometric estimate*** (`variance="hypergeometric"`) is given by:
+
+$$
+\hat{\sigma}_{\nu}^2 = \sum_{i=1}^k d_i w_i^2 (\frac{n_{1i}}{n_i}) (1 - \frac{n_{1i}}{n_i}) (\frac{n_i - d_i}{n_i - 1}) \;\;\;\;\;\; (15)
+$$
+
+(Prentice and Marek, 1979; Latta, 1981; Millard and Deverel, 1988). Note that Equation (13) can be thought of as the sum of weighed values of observed minus expected observations.
+
+Prentice (1978) derived an asymptotic estimator of the variance of the score statistic $\nu$ given in Equation (6) above based on the log likelihood of the rank vector (`variance="asymptotic"`). This estimator is the same as the hypergeometric variance estimator for the logrank and Gehan tests (assuming no tied uncensored observations), but for the Peto-Peto test, this estimator is given by:
+
+$$
+\hat{\sigma}_{\nu}^2 = \sum_{i=1}^k \{ \hat{S}_i (1 - a_i) b_i - (a_i - \hat{S}_i) b_i [\hat{S}_i b_i + 2 \sum_{j=i+1}^k \hat{S}_j b_j ]\} \;\;\;\;\;\; (16)
+$$
+
+where
+
+$$
+a_i = \prod_{j=1}^i \frac{n_j + 1}{n_j + 2} \;\;\;\;\;\; (17)
+$$
+
+$$
+b_i = 2 d_{1i} + e_{1i} \;\;\;\;\;\; (18)
+$$
+
+(Prentice, 1978; Latta, 1981; Millard and Deverel, 1988). Note that equation (14) of Millard and Deverel (1988) contains a typographical error.
+
+***The Treatment of Ties***  
+If the hypergeometric estimator of variance is being used, no modifications need to be made for ties; Equations (13)-(15) already account for ties. For the case of the permutation or asymptotic variance estimators, Equations (6), (12), and (16) all assume no ties in the uncensored observations. If ties exist in the uncensored observations, Prentice (1978) suggests computing the scores shown in Table 1 above as if there were no ties, and then assigning average scores to the tied observations. (This modification also applies to the quantities $a_i$ and $\hat{S}_i$ in Equation (16) above.) For this algorithm, the statistic in Equation (6) is not in general the same as the one in Equation (13).
+
+***Computing a Test Statistic***  
+Under the null hypothesis that the two distributions are the same, the statistic
+
+$$
+z = \frac{\nu}{\hat{\sigma}_{\nu}} \;\;\;\;\;\; (19)
+$$
+
+is approximately distributed as a standard normal random variable for “large” sample sizes. **This statistic will tend to be large if the observations in group 1 (the $X$ observations) tend to be larger than the observations in group 2 (the $Y$ observations)**.
+
+***Left-Censored Data***  
+Most of the time, if censored observations occur in environmental data, they are left-censored (e.g., observations are reported as less than one or more detection limits). For the two-sample test of differences between groups, the methods that apply to right-censored data are easily adapted to left-censored data: simply multiply the observations by -1, compute the z-statistic shown in Equation (20), then reverse the sign of this statistic before computing the p-value.
+
+## twoSamplePermutationTestLocation {#twosamplepermutationtestlocation}
+
+Help topic: [`twoSamplePermutationTestLocation`](https://alexkowa.github.io/EnvStats/reference/twoSamplePermutationTestLocation.html).
+
+**Randomization Tests**  
+In 1935, R.A. Fisher introduced the idea of a ***randomization test*** (Manly, 2007, p. 107; Efron and Tibshirani, 1993, Chapter 15), which is based on trying to answer the question: “Did the observed pattern happen by chance, or does the pattern indicate the null hypothesis is not true?” A randomization test works by simply enumerating all of the possible outcomes under the null hypothesis, then seeing where the observed outcome fits in. A randomization test is also called a ***permutation test***, because it involves permuting the observations during the enumeration procedure (Manly, 2007, p. 3).
+
+In the past, randomization tests have not been used as extensively as they are now because of the “large” computing resources needed to enumerate all of the possible outcomes, especially for large sample sizes. The advent of more powerful personal computers and software has allowed randomization tests to become much easier to perform. Depending on the sample size, however, it may still be too time consuming to enumerate all possible outcomes. In this case, the randomization test can still be performed by sampling from the randomization distribution, and comparing the observed outcome to this sampled permutation distribution.
+
+*Two-Sample Randomization Test for Location* (`paired=FALSE`)  
+Let $\underline{x} = x_1, x_2, \ldots, x_{n1}$ be a vector of $n1$ independent and identically distributed (i.i.d.) observations from some distribution with location parameter (e.g., mean or median) $\theta_1$, and let $\underline{y} = y_1, y_2, \ldots, y_{n2}$ be a vector of $n2$ i.i.d. observations from the same distribution with possibly different location parameter $\theta_2$.
+
+Consider the test of the null hypothesis that the difference in the location parameters is equal to some specified value:
+
+$$
+H_0: \delta = \delta_0 \;\;\;\;\;\; (1)
+$$
+
+where
+
+$$
+\delta = \theta_1 - \theta_2 \;\;\;\;\;\; (2)
+$$
+
+and $\delta_0$ denotes the hypothesized difference in the meansures of location (usually $\delta_0 = 0$).
+
+The three possible alternative hypotheses are the upper one-sided alternative (`alternative="greater"`)
+
+$$
+H_a: \delta > \delta_0 \;\;\;\;\;\; (3)
+$$
+
+the lower one-sided alternative (`alternative="less"`)
+
+$$
+H_a: \delta < \delta_0 \;\;\;\;\;\; (4)
+$$
+
+and the two-sided alternative
+
+$$
+H_a: \delta \ne \delta_0 \;\;\;\;\;\; (5)
+$$
+
+To perform the test of the null hypothesis (1) versus any of the three alternatives (3)-(5), you can use the two-sample permutation test. The two sample permutation test is based on trying to answer the question, “Did the observed difference in means or medians happen by chance, or does the observed difference indicate that the null hypothesis is not true?” Under the null hypothesis, the underlying distributions for each group are the same, therefore it should make no difference which group an observation gets assigned to. The two-sample permutation test works by simply enumerating all possible permutations of group assignments, and for each permutation computing the difference between the measures of location for each group (Manly, 2007, p. 113; Efron and Tibshirani, 1993, p. 202). The measure of location for a group could be the mean, median, or any other measure you want to use. For example, if the observations from Group 1 are 3 and 5, and the observations from Group 2 are 4, 6, and 7, then there are 10 different ways of splitting these five observations into one group of size 2 and another group of size 3. The table below lists all of the possible group assignments, along with the differences in the group means.
+
+<table>
+<tbody>
+  <tr>
+    <td><strong>Group 1</strong></td>
+    <td><strong>Group 2</strong></td>
+    <td><strong>Mean 1 - Mean 2</strong></td>
+  </tr>
+  <tr>
+    <td>3, 4</td>
+    <td>5, 6, 7</td>
+    <td>-2.5</td>
+  </tr>
+  <tr>
+    <td>3, 5</td>
+    <td>4, 6, 7</td>
+    <td>-1.67</td>
+  </tr>
+  <tr>
+    <td>3, 6</td>
+    <td>4, 5, 7</td>
+    <td>-0.83</td>
+  </tr>
+  <tr>
+    <td>3, 7</td>
+    <td>4, 5, 6</td>
+    <td>0</td>
+  </tr>
+  <tr>
+    <td>4, 5</td>
+    <td>3, 6, 7</td>
+    <td>-0.83</td>
+  </tr>
+  <tr>
+    <td>4, 6</td>
+    <td>3, 5, 7</td>
+    <td>0</td>
+  </tr>
+  <tr>
+    <td>4, 7</td>
+    <td>3, 5, 6</td>
+    <td>0.83</td>
+  </tr>
+  <tr>
+    <td>5, 6</td>
+    <td>3, 4, 7</td>
+    <td>0.83</td>
+  </tr>
+  <tr>
+    <td>5, 7</td>
+    <td>3, 4, 6</td>
+    <td>1.67</td>
+  </tr>
+  <tr>
+    <td>6, 7</td>
+    <td>3, 4, 5</td>
+    <td>2.5</td>
+  </tr>
+</tbody>
+</table>
+
+In this example, the *observed* group assignments and difference in means are shown in the second row of the table.
+
+For a one-sided upper alternative (Equation (3)), the p-value is computed as the proportion of times that the differences of the means (or medians) in the permutation distribution are greater than or equal to the observed difference in means (or medians). For a one-sided lower alternative hypothesis (Equation (4)), the p-value is computed as the proportion of times that the differences in the means (or medians) in the permutation distribution are less than or equal to the observed difference in the means (or medians). For a two-sided alternative hypothesis (Equation (5)), the p-value is computed as the proportion of times the absolute values of the differences in the means (or medians) in the permutation distribution are greater than or equal to the absolute value of the observed difference in the means (or medians).
+
+For this simple example, the one-sided upper, one-sided lower, and two-sided p-values are 0.9, 0.2 and 0.4, respectively.
+
+**Note:** Because of the nature of machine arithmetic and how the permutation distribution is computed, a one-sided upper p-value is computed as the proportion of times that the differences of the means (or medians) in the permutation distribution are greater than or equal to \[the observed difference in means (or medians) - a small tolerance value\], where the tolerance value is determined by the argument `tol`. Similarly, a one-sided lower p-value is computed as the proportion of times that the differences in the means (or medians) in the permutation distribution are less than or equal to \[the observed difference in the means (or medians) + a small tolerance value\]. Finally, a two-sided p-value is computed as the proportion of times the absolute values of the differences in the means (or medians) in the permutation distribution are greater than or equal to \[the absolute value of the observed difference in the means (or medians) - a small tolerance value\].
+
+In this simple example, we assumed the hypothesized differences in the means under the null hypothesis was $\delta_0 = 0$. If we had hypothesized a different value for $\delta_0$, then we would have had to subtract this value from each of the observations in Group 1 before permuting the group assignments to compute the permutation distribution of the differences of the means. As in the case of the [one-sample permutation test](https://alexkowa.github.io/EnvStats/reference/oneSamplePermutationTest.html), if the sample sizes for the groups become too large to compute all possible permutations of the group assignments, the permutation test can still be performed by sampling from the permutation distribution and comparing the observed difference in locations to the sampled permutation distribution of the difference in locations.
+
+Unlike the two-sample [Student's t-test](https://stat.ethz.ch/R-manual/R-devel/library/stats/html/t.test.html), we do not have to worry about the normality assumption when we use a permutation test. The permutation test still assumes, however, that under the null hypothesis, the distributions of the observations from each group are exactly the same, and under the alternative hypothesis there is simply a shift in location (that is, the whole distribution of group 1 is shifted by some constant relative to the distribution of group 2). Mathematically, this can be written as follows:
+
+$$
+F_1(t) = F_2(t - \delta), \;\; -\infty < t < \infty \;\;\;\;\; (6)
+$$
+
+where $F_1$ and $F_2$ denote the cumulative distribution functions for group 1 and group 2, respectively. If $\delta > 0$, this implies that the observations in group 1 tend to be larger than the observations in group 2, and if $\delta < 0$, this implies that the observations in group 1 tend to be smaller than the observations in group 2. Thus, the shape and spread (variance) of the two distributions should be the same whether the null hypothesis is true or not. Therefore, the Type I error rate for a permutation test can be affected by differences in variances between the two groups.
+
+*Confidence Intervals for the Difference in Means or Medians*  
+Based on the relationship between hypothesis tests and confidence intervals, it is possible to construct a two-sided or one-sided $(1-\alpha)100\%$ confidence interval for the difference in means or medians based on the two-sample permutation test by finding the values of $\delta_0$ that correspond to obtaining a p-value of $\alpha$ (Manly, 2007, pp. 18--20, 114). A confidence interval based on the bootstrap however, will yield a similar type of confidence interval (Efron and Tibshirani, 1993, p. 214); see the help file for [`boot`](https://search.r-project.org/CRAN/refmans/boot/html/boot.html) in the R package boot.
+
+**Paired-Sample Randomization Test for Location** (`paired=TRUE`)  
+When the argument `paired=TRUE`, the arguments `x` and `y` are assumed to have the same length, and the $n1 = n2 = n$ differences $y_i = x_i - y_i$, $i = 1, 2, \ldots, n$ are assumed to be independent observations from some symmetric distribution with mean $\mu$. The [one-sample permutation test](https://alexkowa.github.io/EnvStats/reference/oneSamplePermutationTest.html) can then be applied to the differences.

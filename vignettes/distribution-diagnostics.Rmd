@@ -1,0 +1,1683 @@
+---
+title: "Distribution diagnostics, transformations, and probability plots"
+output:
+  rmarkdown::html_vignette:
+    toc: true
+    toc_depth: 2
+vignette: >
+  %\VignetteIndexEntry{Distribution diagnostics, transformations, and probability plots}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+This vignette explains probability plots, plotting positions, goodness-of-fit
+tests, and Box-Cox transformations. Complete and censored samples are treated
+together so that the assumptions and extensions of each diagnostic can be
+compared.
+
+Related vignettes:
+
+- [Probability distributions and parameter estimation](distributions-and-estimation.html)
+- [Estimation with censored data](censored-estimation.html)
+- [Rosner's test for multiple outliers](outlier-testing.html)
+
+## qqPlot {#qqplot}
+
+Help topic: [`qqPlot`](https://alexkowa.github.io/EnvStats/reference/qqPlot.html).
+
+If `y` is not supplied, the vector `x` is assumed to be a sample from the probability distribution specified by the argument `distribution` (and `param.list` if `estimate.params=FALSE`). When `plot.type="Q-Q"`, the quantiles of `x` are plotted on the $y$-axis against the quantiles of the assumed distribution on the $x$-axis.
+
+If `y` is supplied and `plot.type="Q-Q"`, the empirical quantiles of `y` are plotted against the empirical quantiles of `x`.
+
+When `plot.type="Tukey Mean-Difference Q-Q"`, the difference of the quantiles is plotted on the $y$-axis against the mean of the quantiles on the $x$-axis.
+
+**Special Distributions**  
+When `y` is not supplied and the argument `distribution` specifies one of the following distributions, the function `qqPlot` behaves in the manner described below.
+
+- **`"lnorm"`**  *Lognormal Distribution*. The log-transformed quantiles are plotted against quantiles from a Normal (Gaussian) distribution.
+
+- **`"lnormAlt"`**  *Lognormal Distribution (alternative parameterization).* The untransformed quantiles are plotted against quantiles from a Lognormal distribution.
+
+- **`"lnorm3"`**  *Three-Parameter Lognormal Distribution*. The quantiles of `log(x-threshold)` are plotted against quantiles from a Normal (Gaussian) distribution. The value of `threshold` is either specified in the argument `param.list`, or, if `estimate.params=TRUE`, then it is estimated.
+
+- **`"zmnorm"`**  *Zero-Modified Normal Distribution*. The quantiles of the non-zero values (i.e., `x[x!=0]`) are plotted against quantiles from a Normal (Gaussian) distribution.
+
+- **`"zmlnorm"`**  *Zero-Modified Lognormal Distribution*. The quantiles of the log-transformed positive values (i.e., `log(x[x>0])`) are plotted against quantiles from a Normal (Gaussian) distribution.
+
+- **`"zmlnormAlt"`**  *Lognormal Distribution (alternative parameterization).* The quantiles of the untransformed positive values (i.e., `x[x>0]`) are plotted against quantiles from a Lognormal distribution.
+
+**Explanation of Q-Q Plots**  
+A ***probability plot*** or ***quantile-quantile (Q-Q) plot*** is a graphical display invented by Wilk and Gnanadesikan (1968) to compare a data set to a particular probability distribution or to compare it to another data set. The idea is that if two population distributions are exactly the same, then they have the same quantiles (percentiles), so a plot of the quantiles for the first distribution vs. the quantiles for the second distribution will fall on the 0-1 line (i.e., the straight line $y = x$ with intercept 0 and slope 1). If the two distributions have the same shape and spread but different locations, then the plot of the quantiles will fall on the line $y = x + b$ (parallel to the 0-1 line) where $b$ denotes the difference in locations. If the distributions have different locations and differ by a multiplicative constant $m$, then the plot of the quantiles will fall on the line $y = mx + b$ (D'Agostino, 1986a, p. 25; Helsel and Hirsch, 1986, p. 42). Various kinds of differences between distributions will yield various kinds of deviations from a straight line.
+
+*Comparing Observations to a Hypothesized Distribution*  
+Let $\underline{x} = x_1, x_2, \ldots, x_n$ denote the observations in a random sample of size $n$ from some unknown distribution with cumulative distribution function $F()$, and let $x_{(1)}, x_{(2)}, \ldots, x_{(n)}$ denote the ordered observations. Depending on the particular formula used for the empirical cdf (see [`ecdfPlot`](https://alexkowa.github.io/EnvStats/reference/ecdfPlot.html)), the $i$'th order statistic is an estimate of the $i/(n+1)$'th, $(i-0.5)/n$'th, etc., quantile. For the moment, assume the $i$'th order statistic is an estimate of the $i/(n+1)$'th quantile, that is:
+
+$$
+\hat{F}[x_{(i)}] = \hat{p}_i = \frac{i}{n+1} \;\;\;\;\;\; (1)
+$$
+
+so
+
+$$
+x_{(i)} \approx F^{-1}(\hat{p}_i) \;\;\;\;\;\; (2)
+$$
+
+If we knew the form of the true cdf $F$, then the plot of $x_{(i)}$ vs. $F^{-1}(\hat{p}_i)$ would form approximately a straight line based on Equation (2) above. A probability plot is a plot of $x_{(i)}$ vs. $F_0^{-1}(\hat{p}_i)$, where $F_0$ denotes the cdf associated with the hypothesized distribution. The probability plot should fall roughly on the line $y=x$ if $F=F_0$. If $F$ and $F_0$ merely differ by a shift in location and scale, that is, if $F[(x - \mu) / \sigma] = F_0(x)$, then the plot should fall roughly on the line $y = \sigma x + \mu$.
+
+The quantity $\hat{p}_i = i/(n+1)$ in Equation (1) above is called the ***plotting position*** for the probability plot. This particular formula for the plotting position is appealing because it can be shown that for any continuous distribution
+
+$$
+E\{F[x_{(i)}]\} = \frac{i}{n+1} \;\;\;\;\;\; (3)
+$$
+
+(Nelson, 1982, pp. 299-300; Stedinger et al., 1993). That is, the $i$'th plotting position defined as in Equation (1) is the expected value of the true cdf evaluated at the $i$'th order statistic. Many authors and practitioners, however, prefer to use a plotting position that satisfies:
+
+$$
+F^{-1}(\hat{p}_i) = E[x_{(i)}] \;\;\;\;\;\; (4)
+$$
+
+or one that satisfies
+
+$$
+F^{-1}(\hat{p}_i) = M[x_{(i)}] = F^{-1}\{M[u_{(i)}]\} \;\;\;\;\;\; (5)
+$$
+
+where $M[x_{(i)}]$ denotes the median of the distribution of the $i$'th order statistic, and $u_{(i)}$ denotes the $i$'th order statistic in a random sample of $n$ [uniform (0,1)](https://stat.ethz.ch/R-manual/R-devel/library/stats/html/Uniform.html) random variates.
+
+The plotting positions in Equation (4) are often approximated since the expected value of the $i$'th order statistic is often difficult and time-consuming to compute. Note that these plotting positions will differ for different distributions.
+
+The plotting positions in Equation (5) were recommended by Filliben (1975) because they require computing or approximating only the medians of [uniform (0,1)](https://stat.ethz.ch/R-manual/R-devel/library/stats/html/Uniform.html) order statistics, no matter what the form of the assumed cdf $F_0$. Also, the median may be preferred as a measure of central tendency because the distributions of most order statistics are skewed.
+
+Most plotting positions can be written as:
+
+$$
+\hat{p}_i = \frac{i - a}{n - 2a + 1} \;\;\;\;\;\; (6)
+$$
+
+where $0 \le a \le 1$ (D'Agostino, 1986a, p.25; Stedinger et al., 1993). The quantity $a$ is sometimes called the “plotting position constant”, and is determined by the argument `plot.pos.con` in the function `qqPlot`. The table below, adapted from Stedinger et al. (1993), displays commonly used plotting positions based on equation (6) for several distributions.
+
+<table>
+<tbody>
+  <tr>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td><strong>Distribution</strong></td>
+    <td>&nbsp;</td>
+  </tr>
+  <tr>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td><strong>Often Used</strong></td>
+    <td>&nbsp;</td>
+  </tr>
+  <tr>
+    <td><strong>Name</strong></td>
+    <td><strong><em>a</em></strong></td>
+    <td><strong>With</strong></td>
+    <td><strong>References</strong></td>
+  </tr>
+  <tr>
+    <td>Weibull</td>
+    <td>0</td>
+    <td>Weibull,</td>
+    <td>Weibull (1939),</td>
+  </tr>
+  <tr>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td>Uniform</td>
+    <td>Stedinger et al. (1993)</td>
+  </tr>
+  <tr>
+    <td>Median</td>
+    <td>0.3175</td>
+    <td>Several</td>
+    <td>Filliben (1975),</td>
+  </tr>
+  <tr>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td>Vogel (1986)</td>
+  </tr>
+  <tr>
+    <td>Blom</td>
+    <td>0.375</td>
+    <td>Normal</td>
+    <td>Blom (1958),</td>
+  </tr>
+  <tr>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td>and Others</td>
+    <td>Looney and Gulledge (1985)</td>
+  </tr>
+  <tr>
+    <td>Cunnane</td>
+    <td>0.4</td>
+    <td>Several</td>
+    <td>Cunnane (1978),</td>
+  </tr>
+  <tr>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td>Chowdhury et al. (1991)</td>
+  </tr>
+  <tr>
+    <td>Gringorten</td>
+    <td>0.44</td>
+    <td>Gumbel</td>
+    <td>Gringorton (1963),</td>
+  </tr>
+  <tr>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td>Vogel (1986)</td>
+  </tr>
+  <tr>
+    <td>Hazen</td>
+    <td>0.5</td>
+    <td>Several</td>
+    <td>Hazen (1914),</td>
+  </tr>
+  <tr>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td>Chambers et al. (1983),</td>
+  </tr>
+  <tr>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td>Cleveland (1993)</td>
+  </tr>
+</tbody>
+</table>
+
+For moderate and large sample sizes, there is very little difference in visual appearance of the Q-Q plot for different choices of plotting positions.
+
+*Comparing Two Data Sets*  
+Let $\underline{x} = x_1, x_2, \ldots, x_n$ denote the observations in a random sample of size $n$ from some unknown distribution with cumulative distribution function $F()$, and let $x_{(1)}, x_{(2)}, \ldots, x_{(n)}$ denote the ordered observations. Similarly, let $\underline{y} = y_1, y_2, \ldots, y_m$ denote the observations in a random sample of size $m$ from some unknown distribution with cumulative distribution function $G()$, and let $y_{(1)}, y_{(2)}, \ldots, y_{(m)}$ denote the ordered observations. Suppose we are interested in investigating whether the shape of the distribution with cdf $F$ is the same as the shape of the distribution with cdf $G$ (e.g., $F$ and $G$ may both be normal distributions but differ in mean and standard deviation).
+
+When $n = m$, we can visually explore this question by plotting $y_{(i)}$ vs. $x_{(i)}$, for $i = 1, 2, \ldots, n$. The values in $\underline{y}$ are spread out in a certain way depending on the true distribution: they may be more or less symmetric about some value (the population mean or median) or they may be skewed to the right or left; they may be concentrated close to the mean or median (platykurtic) or there may be several observations “far away” from the mean or median on either side (leptokurtic). Similarly, the values in $\underline{x}$ are spread out in a certain way. If the values in $\underline{x}$ and $\underline{y}$ are spread out in the same way, then the plot of $y_{(i)}$ vs. $x_{(i)}$ will be approximately a straight line. If the cdf $F$ is exactly the same as the cdf $G$, then the plot of $y_{(i)}$ vs. $x_{(i)}$ will fall roughly on the straight line $y = x$. If $F$ and $G$ differ by a shift in location and scale, that is, if $F[(x-\mu)/\sigma] = G(x)$, then the plot will fall roughly on the line $y = \sigma x + \mu$.
+
+When $n > m$, a slight adjustment has to be made to produce the plot. Let $\hat{p}_1, \hat{p}_2, \ldots, \hat{p}_m$ denote the plotting positions corresponding to the $m$ empirical quantiles for the $y$'s and let $\hat{p}^*_1, \hat{p}^*_2, \ldots, \hat{p}^*_n$ denote the plotting positions corresponding the $n$ empirical quantiles for the $x$'s. Then we plot $y_{(j)}$ vs. $x^*_{(j)}$ for $j = 1, 2, \ldots, m$ where
+
+$$
+x^*_{(j)} = (1 - r) x_{(i)} + r x_{(i+1)} \;\;\;\;\;\; (7)
+$$
+
+$$
+r = \frac{\hat{p}_j - \hat{p}^*_i}{\hat{p}^*_{i+1} - \hat{p}^*_i} \;\;\;\;\;\; (8)
+$$
+
+$$
+\hat{p}^*_i \le \hat{p}_j \le \hat{p}^*_{i+1} \;\;\;\;\;\; (9)
+$$
+
+That is, the values for the $x^*_{(j)}$'s are determined by linear interpolation based on the values of the plotting positions for $\underline{x}$ and $\underline{y}$.
+
+A similar adjustment is made when $n < m$.
+
+Note that the R function `qqplot` uses a different method than the one in Equation (7) above; it uses linear interpolation based on `1:n` and `m` by calling the `approx` function.
+
+## gofTest {#goftest}
+
+Help topic: [`gofTest`](https://alexkowa.github.io/EnvStats/reference/gofTest.html).
+
+- **Shapiro-Wilk Goodness-of-Fit Test** (`test="sw"`).
+
+  The Shapiro-Wilk goodness-of-fit test (Shapiro and Wilk, 1965; Royston, 1992a) is one of the most commonly used goodness-of-fit tests for normality. You can use it to test the following hypothesized distributions: `Normal`, `Lognormal`, [Three-Parameter Lognormal](https://alexkowa.github.io/EnvStats/reference/Lognormal3.html), [Zero-Modified Normal](https://alexkowa.github.io/EnvStats/reference/ZeroModifiedNormal.html), or [Zero-Modified Lognormal (Delta)](https://alexkowa.github.io/EnvStats/reference/ZeroModifiedLognormal.html). **In addition, you can also use it to test the null hypothesis of any continuous distribution that is available** (see the section on [`Distribution.df`](distributions-and-estimation.html#distribution-df), and see explanation below).
+
+  **Shapiro-Wilk W-Statistic and P-Value for Testing Normality**  
+  Let $X$ denote a random variable with cumulative distribution function (cdf) $F$. Suppose we want to test the null hypothesis that $F$ is the cdf of a [normal (Gaussian) distribution](https://stat.ethz.ch/R-manual/R-devel/library/stats/html/Normal.html) with some arbitrary mean $\mu$ and standard deviation $\sigma$ against the alternative hypothesis that $F$ is the cdf of some other distribution. The table below shows the random variable for which $F$ is the assumed cdf, given the value of the argument `distribution`.
+
+  <table>
+  <tbody>
+    <tr>
+      <td><strong>Value of</strong></td>
+      <td>&nbsp;</td>
+      <td><strong>Random Variable for</strong></td>
+    </tr>
+    <tr>
+      <td><code>distribution</code></td>
+      <td><strong>Distribution Name</strong></td>
+      <td><strong>which</strong> \(F\) <strong>is the cdf</strong></td>
+    </tr>
+    <tr>
+      <td><code>"norm"</code></td>
+      <td>Normal</td>
+      <td>\(X\)</td>
+    </tr>
+    <tr>
+      <td><code>"lnorm"</code></td>
+      <td>Lognormal (Log-space)</td>
+      <td>\(log(X)\)</td>
+    </tr>
+    <tr>
+      <td><code>"lnormAlt"</code></td>
+      <td>Lognormal (Untransformed)</td>
+      <td>\(log(X)\)</td>
+    </tr>
+    <tr>
+      <td><code>"lnorm3"</code></td>
+      <td>Three-Parameter Lognormal</td>
+      <td>\(log(X-\gamma)\)</td>
+    </tr>
+    <tr>
+      <td><code>"zmnorm"</code></td>
+      <td>Zero-Modified Normal</td>
+      <td>\(X | X > 0\)</td>
+    </tr>
+    <tr>
+      <td><code>"zmlnorm"</code></td>
+      <td>Zero-Modified Lognormal (Log-space)</td>
+      <td>\(log(X) | X > 0\)</td>
+    </tr>
+    <tr>
+      <td><code>"zmlnormAlt"</code></td>
+      <td>Zero-Modified Lognormal (Untransformed)</td>
+      <td>\(log(X) | X > 0\)</td>
+    </tr>
+  </tbody>
+  </table>
+
+  Note that for the three-parameter lognormal distribution, the symbol $\gamma$ denotes the threshold parameter.
+
+  Let $\underline{x} = (x_1, x_2, \ldots, x_n)$ denote the vector of $n$ ***ordered*** observations assumed to come from a normal distribution.
+
+  *The Shapiro-Wilk W-Statistic*  
+  Shapiro and Wilk (1965) introduced the following statistic to test the null hypothesis that $F$ is the cdf of a normal distribution:
+
+  $$
+  W = \frac{(\sum_{i=1}^n a_i x_i)^2}{\sum_{i=1}^n (x_i - \bar{x})^2} \;\;\;\;\;\; (1)
+  $$
+
+  where the quantity $a_i$ is the $i$'th element of the vector $\underline{a}$ defined by:
+
+  $$
+  \underline{a} = \frac{\underline{m}^T V^{-1}}{[\underline{m}^T V^{-1} V^{-1} \underline{m}]^{1/2}} \;\;\;\;\;\; (2)
+  $$
+
+  where $T$ denotes the transpose operator, and $\underline{m}$ is the vector of expected values and $V$ is the variance-covariance matrix of the order statistics of a random sample of size $n$ from a standard normal distribution. That is, the values of $\underline{a}$ are the expected values of the standard normal order statistics weighted by their variance-covariance matrix, and normalized so that
+
+  $$
+  \underline{a}^T \underline{a} = 1 \;\;\;\;\;\; (3)
+  $$
+
+  It can be shown that the coefficients $\underline{a}$ are antisymmetric, that is,
+
+  $$
+  a_i = -a_{n-i+1} \;\;\;\;\;\; (4)
+  $$
+
+  and for odd $n$,
+
+  $$
+  a_{(n+1)/2} = 0 \;\;\;\;\;\; (5)
+  $$
+
+  Now because
+
+  $$
+  \bar{a} = \frac{1}{n} \sum_{i=1}^n a_i = 0 \;\;\;\;\;\ (6)
+  $$
+
+  and
+
+  $$
+  \sum_{i=1}^n (a_i - \bar{a})^2 = \sum_{i=1}^n a_i^2 = \underline{a}^T \underline{a} = 1 \;\;\;\;\;\; (7)
+  $$
+
+  the $W$-statistic in Equation (1) is the same as the square of the sample product-moment correlation between the vectors $\underline{a}$ and $\underline{x}$:
+
+  $$
+  W = r(\underline{a}, \underline{x})^2 \;\;\;\;\;\; (8)
+  $$
+
+  where
+
+  $$
+  r(\underline{x}, \underline{y}) = \frac{\sum_{i=1}^n (x_i - \bar{x})(y_i - \bar{y})}{[\sum_{i=1}^n (x_i - \bar{x})^2 \sum_{i=1}^n (y_i - \bar{y})^2]^{1/2}} \;\;\;\;\;\;\; (9)
+  $$
+
+  (see the R help file for `cor`).
+
+  The Shapiro-Wilk $W$-statistic is also simply the ratio of two estimators of variance, and can be rewritten as
+
+  $$
+  W = \frac{\hat{\sigma}_{BLUE}^2}{\hat{\sigma}_{MVUE}^2} \;\;\;\;\;\; (10)
+  $$
+
+  where the numerator is the square of the best linear unbiased estimate (BLUE) of the standard deviation, and the denominator is the minimum variance unbiased estimator (MVUE) of the variance:
+
+  $$
+  \hat{\sigma}_{BLUE} = \frac{\sum_{i=1}^n a_i x_i}{\sqrt{n-1}} \;\;\;\;\;\; (11)
+  $$
+
+  $$
+  \hat{\sigma}_{MVUE}^2 = \frac{\sum_{i=1}^n (x_i - \bar{x})^2}{n-1} \;\;\;\;\;\; (12)
+  $$
+
+  Small values of $W$ indicate the null hypothesis is probably not true. Shapiro and Wilk (1965) computed the values of the coefficients $\underline{a}$ and the percentage points for $W$ (based on smoothing the empirical null distribution of $W$) for sample sizes up to 50. Computation of the $W$-statistic for larger sample sizes can be cumbersome, since computation of the coefficients $\underline{a}$ requires storage of at least $n + [n(n+1)/2]$ reals followed by $n \times n$ matrix inversion (Royston, 1992a).
+
+  *The Shapiro-Francia W'-Statistic*  
+  Shapiro and Francia (1972) introduced a modification of the $W$-test that depends only on the expected values of the order statistics ($\underline{m}$) and not on the variance-covariance matrix ($V$):
+
+  $$
+  W' = \frac{(\sum_{i=1}^n b_i x_i)^2}{\sum_{i=1}^n (x_i - \bar{x})^2} \;\;\;\;\;\; (13)
+  $$
+
+  where the quantity $b_i$ is the $i$'th element of the vector $\underline{b}$ defined by:
+
+  $$
+  \underline{b} = \frac{\underline{m}}{[\underline{m}^T \underline{m}]^{1/2}} \;\;\;\;\;\; (14)
+  $$
+
+  Several authors, including Ryan and Joiner (1973), Filliben (1975), and Weisberg and Bingham (1975), note that the $W'$-statistic is intuitively appealing because it is the squared Pearson correlation coefficient associated with a normal probability plot. That is, it is the squared correlation between the ordered sample values $\underline{x}$ and the expected normal order statistics $\underline{m}$:
+
+  $$
+  W' = r(\underline{b}, \underline{x})^2  = r(\underline{m}, \underline{x})^2 \;\;\;\;\;\; (15)
+  $$
+
+  Shapiro and Francia (1972) present a table of empirical percentage points for $W'$ based on a Monte Carlo simulation. It can be shown that the asymptotic null distributions of $W$ and $W'$ are identical, but convergence is very slow (Verrill and Johnson, 1988).
+
+  *The Weisberg-Bingham Approximation to the W'-Statistic*  
+  Weisberg and Bingham (1975) introduced an approximation of the Shapiro-Francia $W'$-statistic that is easier to compute. They suggested using Blom scores (Blom, 1958, pp.68--75) to approximate the element of $\underline{m}$:
+
+  $$
+  \tilde{W}' = \frac{(\sum_{i=1}^n c_i x_i)^2}{\sum_{i=1}^n (x_i - \bar{x})^2} \;\;\;\;\;\; (16)
+  $$
+
+  where the quantity $c_i$ is the $i$'th element of the vector $\underline{c}$ defined by:
+
+  $$
+  \underline{c} = \frac{\underline{\tilde{m}}}{[\underline{\tilde{m}}^T \underline{\tilde{m}}]^{1/2}} \;\;\;\;\;\; (17)
+  $$
+
+  and
+
+  $$
+  \tilde{m}_i = \Phi^{-1}[\frac{i - (3/8)}{n + (1/4)}] \;\;\;\;\;\;  (18)
+  $$
+
+  and $\Phi$ denotes the standard normal cdf. That is, the values of the elements of $\underline{m}$ in Equation (14) are replaced with their estimates based on the usual plotting positions for a normal distribution.
+
+  *Royston's Approximation to the Shapiro-Wilk W-Test*  
+  Royston (1992a) presents an approximation for the coefficients $\underline{a}$ necessary to compute the Shapiro-Wilk $W$-statistic, and also a transformation of the $W$-statistic that has approximately a standard normal distribution under the null hypothesis.
+
+  Noting that, up to a constant, the components of $\underline{b}$ in Equation (14) and $\underline{c}$ in Equation (17) differ from those of $\underline{a}$ in Equation (2) mainly in the first and last two components, Royston (1992a) used the approximation $\underline{c}$ as the basis for approximating $\underline{a}$ using polynomial (quintic) regression analysis. For $4 \le n \le 1000$, the approximation gave the following equations for the last two (and hence first two) components of $\underline{a}$:
+
+  $$
+  \tilde{a}_n = c_n + 0.221157 y - 0.147981 y^2 - 2.071190 y^3 + 4.434685 y^4 - 2.706056 y^5 \;\;\;\;\;\; (19)
+  $$
+
+  $$
+  \tilde{a}_{n-1} = c_{n-1} + 0.042981 y - 0.293762 y^2 - 1.752461 y^3 + 5.682633 y^4 - 3.582633 y^5 \;\;\;\;\;\; (20)
+  $$
+
+  where
+
+  $$
+  y = \sqrt{n} \;\;\;\;\;\; (21)
+  $$
+
+  The other components are computed as:
+
+  $$
+  \tilde{a}_i = \frac{\tilde{m}_i}{\sqrt{\eta}} \;\;\;\;\;\; (22)
+  $$
+
+  for $i = 2, \ldots , n-1$ if $n \le 5$, or $i = 3, \ldots, n-2$ if $n > 5$, where
+
+  $$
+  \eta = \frac{\underline{\tilde{m}}^T \underline{\tilde{m}} - 2 \tilde{m}_n^2}{1 - 2 \tilde{a}_n^2} \;\;\;\;\;\; (23)
+  $$
+
+  if $n \le 5$, and
+
+  $$
+  \eta = \frac{\underline{\tilde{m}}^T \underline{\tilde{m}} - 2 \tilde{m}_n^2 - 2 \tilde{m}_{n-1}^2}{1 - 2 \tilde{a}_n^2 - 2 \tilde{a}_{n-1}^2} \;\;\;\;\;\; (24)
+  $$
+
+  if $n > 5$.
+
+  Royston (1992a) found his approximation to $\underline{a}$ to be accurate to at least $\pm 1$ in the third decimal place over all values of $i$ and selected values of $n$, and also found that critical percentage points of $W$ based on his approximation agreed closely with the exact critical percentage points calculated by Verrill and Johnson (1988).
+
+  *Transformation of the Null Distribution of W to Normality*  
+  In order to compute a p-value associated with a particular value of $W$, Royston (1992a) approximated the distribution of $(1-W)$ by a [three-parameter lognormal distribution](https://alexkowa.github.io/EnvStats/reference/Lognormal3.html) for $4 \le n \le 11$, and the upper half of the distribution of $(1-W)$ by a two-parameter [lognormal distribution](https://stat.ethz.ch/R-manual/R-devel/library/stats/html/Lognormal.html) for $12 \le n \le 2000$. Setting
+
+  $$
+  z = \frac{w - \mu}{\sigma} \;\;\;\;\;\; (25)
+  $$
+
+  the p-value associated with $W$ is given by:
+
+  $$
+  p = 1 - \Phi(z) \;\;\;\;\;\; (26)
+  $$
+
+  For $4 \le n \le 11$, the quantities necessary to compute $z$ are given by:
+
+  $$
+  w = -log[\gamma - log(1 - W)] \;\;\;\;\;\; (27)
+  $$
+
+  $$
+  \gamma = -2.273 + 0.459 n \;\;\;\;\;\; (28)
+  $$
+
+  $$
+  \mu = 0.5440 - 0.39978 n + 0.025054 n^2 - 0.000671 n^3 \;\;\;\;\;\; (29)
+  $$
+
+  $$
+  \sigma = exp(1.3822 - 0.77857 n + 0.062767 n^2 - 0.0020322 n^3) \;\;\;\;\;\; (30)
+  $$
+
+  For $12 \le n \le 2000$, the quantities necessary to compute $z$ are given by:
+
+  $$
+  w = log(1 - W) \;\;\;\;\;\; (31)
+  $$
+
+  $$
+  \gamma = log(n) \;\;\;\;\;\; (32)
+  $$
+
+  $$
+  \mu = -1.5861 - 0.31082 y - 0.083751 y^2 + 0.00038915 y^3 \;\;\;\;\;\; (33)
+  $$
+
+  $$
+  \sigma = exp(-0.4803 - 0.082676 y + 0.0030302 y^2) \;\;\;\;\;\; (34)
+  $$
+
+  For the last approximation when $12 \le n \le 2000$, Royston (1992a) claims this approximation is actually valid for sample sizes up to $n = 5000$.
+
+  *Modification for the Three-Parameter Lognormal Distribution*  
+  When `distribution="lnorm3"`, the function `gofTest` assumes the vector $\underline{x}$ is a random sample from a [three-parameter lognormal distribution](https://alexkowa.github.io/EnvStats/reference/Lognormal3.html). It estimates the threshold parameter via the zero-skewness method (see [`elnorm3`](https://alexkowa.github.io/EnvStats/reference/elnorm3.html)), and then performs the Shapiro-Wilk goodness-of-fit test for normality on $log(x-\hat{\gamma})$ where $\hat{\gamma}$ is the estimated threshold parmater. Because the threshold parameter has to be estimated, however, the p-value associated with the computed z-statistic will tend to be conservative (larger than it should be under the null hypothesis). Royston (1992b) proposed the following transformation of the z-statistic:
+
+  $$
+  z' = \frac{z - \mu_z}{\sigma_z} \;\;\;\;\;\; (35)
+  $$
+
+  where for $5 \le n \le 11$,
+
+  $$
+  \mu_z = -3.8267 + 2.8242 u - 0.63673 u^2 - 0.020815 v \;\;\;\;\;\; (36)
+  $$
+
+  $$
+  \sigma_z = -4.9914 + 8.6724 u - 4.27905 u^2 + 0.70350 u^3 - 0.013431 v \;\;\;\;\;\; (37)
+  $$
+
+  and for $12 \le n \le 2000$,
+
+  $$
+  \mu_z =  -3.7796 + 2.4038 u - 0.6675 u^2 - 0.082863 u^3 - 0.0037935 u^4 - 0.027027 v - 0.0019887 vu \;\;\;\;\;\; (38)
+  $$
+
+  $$
+  \sigma_z =  2.1924 - 1.0957 u + 0.33737 u^2 - 0.043201 u^3 + 0.0019974 u^4 - 0.0053312 vu   \;\;\;\;\;\; (39)
+  $$
+
+  where
+
+  $$
+  u = log(n) \;\;\;\;\;\; (40)
+  $$
+
+  $$
+  v = u (\hat{\sigma} - \hat{\sigma}^2) \;\;\;\;\;\; (41)
+  $$
+
+  $$
+  \hat{\sigma}^2 = \frac{1}{n-1} \sum_{i=1}^n (y_i - \bar{y})^2 \;\;\;\;\;\; (42)
+  $$
+
+  $$
+  y_i = log(x_i - \hat{\gamma}) \;\;\;\;\;\; (43)
+  $$
+
+  and $\gamma$ denotes the threshold parameter. The p-value associated with this test is then given by:
+
+  $$
+  p = 1 - \Phi(z') \;\;\;\;\;\; (44)
+  $$
+
+  *Testing Goodness-of-Fit for Any Continuous Distribution*  
+  The function `gofTest` extends the Shapiro-Wilk test to test for goodness-of-fit for any continuous distribution by using the idea of Chen and Balakrishnan (1995), who proposed a general purpose approximate goodness-of-fit test based on the Cramer-von Mises or Anderson-Darling goodness-of-fit tests for normality. The function `gofTest` modifies the approach of Chen and Balakrishnan (1995) by using the same first 2 steps, and then applying the Shapiro-Wilk test:
+
+  1. Let $\underline{x} = x_1, x_2, \ldots, x_n$ denote the vector of $n$ ***ordered*** observations. Compute cumulative probabilities for each $x_i$ based on the cumulative distribution function for the hypothesized distribution. That is, compute $p_i = F(x_i, \hat{\theta})$ where $F(x, \theta)$ denotes the hypothesized cumulative distribution function with parameter(s) $\theta$, and $\hat{\theta}$ denotes the estimated parameter(s).
+  2. Compute standard normal deviates based on the computed cumulative probabilities:  
+     $y_i = \Phi^{-1}(p_i)$
+  3. Perform the Shapiro-Wilk goodness-of-fit test on the $y_i$'s.
+
+- **Shapiro-Francia Goodness-of-Fit Test** (`test="sf"`).
+
+  The Shapiro-Francia goodness-of-fit test (Shapiro and Francia, 1972; Weisberg and Bingham, 1975; Royston, 1992c) is also one of the most commonly used goodness-of-fit tests for normality. You can use it to test the following hypothesized distributions: `Normal`, `Lognormal`, [Zero-Modified Normal](https://alexkowa.github.io/EnvStats/reference/ZeroModifiedNormal.html), or [Zero-Modified Lognormal (Delta)](https://alexkowa.github.io/EnvStats/reference/ZeroModifiedLognormal.html). In addition, you can also use it to test the null hypothesis of any continuous distribution that is available (see the section on [`Distribution.df`](distributions-and-estimation.html#distribution-df)). See the section *Testing Goodness-of-Fit for Any Continuous Distribution* above for an explanation of how this is done.
+
+  *Royston's Transformation of the Shapiro-Francia W'-Statistic to Normality*  
+  Equation (13) above gives the formula for the Shapiro-Francia W'-statistic, and Equation (16) above gives the formula for Weisberg-Bingham approximation to the W'-statistic (denoted $\tilde{W}'$). Royston (1992c) presents an algorithm to transform the $\tilde{W}'$-statistic so that its null distribution is approximately a standard normal. For $5 \le n \le 5000$, Royston (1992c) approximates the distribution of $(1-\tilde{W}')$ by a [lognormal distribution](https://stat.ethz.ch/R-manual/R-devel/library/stats/html/Lognormal.html). Setting
+
+  $$
+  z = \frac{w-\mu}{\sigma} \;\;\;\;\;\; (45)
+  $$
+
+  the p-value associated with $\tilde{W}'$ is given by:
+
+  $$
+  p = 1 - \Phi(z) \;\;\;\;\;\; (46)
+  $$
+
+  The quantities necessary to compute $z$ are given by:
+
+  $$
+  w = log(1 - \tilde{W}') \;\;\;\;\;\; (47)
+  $$
+
+  $$
+  \nu = log(n) \;\;\;\;\;\; (48)
+  $$
+
+  $$
+  u = log(\nu) - \nu \;\;\;\;\;\; (49)
+  $$
+
+  $$
+  \mu = -1.2725 + 1.0521 u \;\;\;\;\;\; (50)
+  $$
+
+  $$
+  v = log(\nu) + \frac{2}{\nu} \;\;\;\;\;\; (51)
+  $$
+
+  $$
+  \sigma = 1.0308 - 0.26758 v \;\;\;\;\;\; (52)
+  $$
+
+  *Testing Goodness-of-Fit for Any Continuous Distribution*  
+  The function `gofTest` extends the Shapiro-Francia test to test for goodness-of-fit for any continuous distribution by using the idea of Chen and Balakrishnan (1995), who proposed a general purpose approximate goodness-of-fit test based on the Cramer-von Mises or Anderson-Darling goodness-of-fit tests for normality. The function `gofTest` modifies the approach of Chen and Balakrishnan (1995) by using the same first 2 steps, and then applying the Shapiro-Francia test:
+
+  1. Let $\underline{x} = x_1, x_2, \ldots, x_n$ denote the vector of $n$ ***ordered*** observations. Compute cumulative probabilities for each $x_i$ based on the cumulative distribution function for the hypothesized distribution. That is, compute $p_i = F(x_i, \hat{\theta})$ where $F(x, \theta)$ denotes the hypothesized cumulative distribution function with parameter(s) $\theta$, and $\hat{\theta}$ denotes the estimated parameter(s).
+  2. Compute standard normal deviates based on the computed cumulative probabilities:  
+     $y_i = \Phi^{-1}(p_i)$
+  3. Perform the Shapiro-Francia goodness-of-fit test on the $y_i$'s.
+
+- **Probability Plot Correlation Coefficient (PPCC) Goodness-of-Fit Test** (`test="ppcc"`).
+
+  The PPPCC goodness-of-fit test (Filliben, 1975; Looney and Gulledge, 1985) can be used to test the following hypothesized distributions: `Normal`, `Lognormal`, [Zero-Modified Normal](https://alexkowa.github.io/EnvStats/reference/ZeroModifiedNormal.html), or [Zero-Modified Lognormal (Delta)](https://alexkowa.github.io/EnvStats/reference/ZeroModifiedLognormal.html). In addition, you can also use it to test the null hypothesis of any continuous distribution that is available (see the section on [`Distribution.df`](distributions-and-estimation.html#distribution-df)). The function `gofTest` computes the PPCC test statistic using Blom plotting positions.
+
+  Filliben (1975) proposed using the correlation coefficient $r$ from a [normal probability plot](https://alexkowa.github.io/EnvStats/reference/qqPlot.html) to perform a goodness-of-fit test for normality, and he provided a table of critical values for $r$ under the for samples sizes between 3 and 100. Vogel (1986) provided an additional table for sample sizes between 100 and 10,000.
+
+  Looney and Gulledge (1985) investigated the characteristics of Filliben's probability plot correlation coefficient (PPCC) test using the plotting position formulas given in Filliben (1975), as well as three other plotting position formulas: Hazen plotting positions, Weibull plotting positions, and Blom plotting positions (see the section on [`qqPlot`](distribution-diagnostics.html#qqplot) for an explanation of these plotting positions). They concluded that the PPCC test based on Blom plotting positions performs slightly better than tests based on other plotting positions, and they provide a table of empirical percentage points for the distribution of $r$ based on Blom plotting positions.
+
+  The function `gofTest` computes the PPCC test statistic $r$ using Blom plotting positions. It can be shown that the square of this statistic is equivalent to the Weisberg-Bingham Approximation to the Shapiro-Francia W'-Test (Weisberg and Bingham, 1975; Royston, 1993). Thus the PPCC goodness-of-fit test is equivalent to the Shapiro-Francia goodness-of-fit test.
+
+- **Anderson-Darling Goodness-of-Fit Test** (`test="ad"`).
+
+  The Anderson-Darling goodness-of-fit test (Stephens, 1986a; Thode, 2002) can be used to test the following hypothesized distributions: `Normal`, `Lognormal`, [Zero-Modified Normal](https://alexkowa.github.io/EnvStats/reference/ZeroModifiedNormal.html), or [Zero-Modified Lognormal (Delta)](https://alexkowa.github.io/EnvStats/reference/ZeroModifiedLognormal.html).
+
+  When `test="ad"`, the function `gofTest` calls the function [`ad.test`](https://search.r-project.org/CRAN/refmans/nortest/html/ad.test.html) in the package nortest. Documentation from that package is as follows:
+
+  The Anderson-Darling test is an EDF omnibus test for the composite hypothesis of normality. The test statistic is:
+
+  $$
+  A = -n - \frac{1}{n} \sum_{i=1}^n [2i - 1][ln(p_{(i)}) + ln(1 - p_{(n-i+1)})]
+  $$
+
+  where $p_{(i)} = \Phi([x_{(i)} - \bar{x}]/s)$. Here, $\Phi$ is the cumulative distribution function of the standard normal distribution, and $\bar{x}$ and $s$ are mean and standard deviation of the data values. The p-value is computed from the modified statistic $Z = A (1.0 + 0.75/n + 2.25/n^2)$ according to Table 4.9 in Stephens \[(1986a)\].
+
+- **Cramer-von Mises Goodness-of-Fit Test** (`test="cvm"`).
+
+  The Cramer-von Mises goodness-of-fit test (Stephens, 1986a; Thode, 2002) can be used to test the following hypothesized distributions: `Normal`, `Lognormal`, [Zero-Modified Normal](https://alexkowa.github.io/EnvStats/reference/ZeroModifiedNormal.html), or [Zero-Modified Lognormal (Delta)](https://alexkowa.github.io/EnvStats/reference/ZeroModifiedLognormal.html).
+
+  When `test="cvm"`, the function `gofTest` calls the function [`cvm.test`](https://search.r-project.org/CRAN/refmans/nortest/html/cvm.test.html) in the package nortest. Documentation from that package is as follows:
+
+  The Cramer-von Mises test is an EDF omnibus test for the composite hypothesis of normality. The test statistic is:
+
+  $$
+  W = \frac{1}{12n} + \sum_{i=1}^n \left(p_{(i)} - \frac{2i-1}{2n}\right)^2
+  $$
+
+  where $p_{(i)} = \Phi([x_{(i)} - \bar{x}]/s)$. Here, $\Phi$ is the cumulative distribution function of the standard normal distribution, and $\bar{x}$ and $s$ are mean and standard deviation of the data values. The p-value is computed from the modified statistic $Z = W (1.0 + 0.75/n)$ according to Table 4.9 in Stephens \[(1986a)\].
+
+- **Lilliefors Goodness-of-Fit Test** (`test="lillie"`).
+
+  The Lilliefors goodness-of-fit test (Stephens, 1974; Dallal and Wilkinson, 1986; Thode, 2002) can be used to test the following hypothesized distributions: `Normal`, `Lognormal`, [Zero-Modified Normal](https://alexkowa.github.io/EnvStats/reference/ZeroModifiedNormal.html), or [Zero-Modified Lognormal (Delta)](https://alexkowa.github.io/EnvStats/reference/ZeroModifiedLognormal.html).
+
+  When `test="lillie"`, the function `gofTest` calls the function [`lillie.test`](https://search.r-project.org/CRAN/refmans/nortest/html/lillie.test.html) in the package nortest. Documentation from that package is as follows:
+
+  The Lilliefors (Kolmogorov-Smirnov) test is an EDF omnibus test for the composite hypothesis of normality. The test statistic is the maximal absolute difference between empirical and hypothetical cumulative distribution function. It may be computed as $D = max\{D^+, D^-\}$ with
+
+  $$
+  D^+ = \max_{i = 1, \ldots, n} \{i/n - p_{(i)}\}, \;\; D^- = \max_{i = 1, \ldots, n} \{p_{(i)} - (i-1)/n\}
+  $$
+
+  where $p_{(i)} = \Phi([x_{(i)} - \bar{x}]/s)$. Here, $\Phi$ is the cumulative distribution function of the standard normal distribution, and $\bar{x}$ and $s$ are mean and standard deviation of the data values. The p-value is computed from the Dallal-Wilkinson (1986) formula, which is claimed to be only reliable when the p-value is smaller than 0.1. If the Dallal-Wilkinson p-value turns out to be greater than 0.1, then the p-value is computed from the distribution of the modified statistic $Z = D (\sqrt{n} - 0.01 + 0.85/\sqrt{n})$, see Stephens (1974), the actual p-value formula being obtained by a simulation and approximation process.
+
+- **Zero-Skew Goodness-of-Fit Test** (`test="skew"`).
+
+  The Zero-skew goodness-of-fit test (D'Agostino, 1970) can be used to test the following hypothesized distributions: `Normal`, `Lognormal`, [Zero-Modified Normal](https://alexkowa.github.io/EnvStats/reference/ZeroModifiedNormal.html), or [Zero-Modified Lognormal (Delta)](https://alexkowa.github.io/EnvStats/reference/ZeroModifiedLognormal.html).
+
+  When `test="skew"`, the function `gofTest` tests the null hypothesis that the skew of the distribution is 0:
+
+  $$
+  H_0: \sqrt{\beta}_1 = 0 \;\;\;\;\;\; (53)
+  $$
+
+  where
+
+  $$
+  \sqrt{\beta}_1 = \frac{\mu_3}{\mu_2^{3/2}} \;\;\;\;\;\; (54)
+  $$
+
+  and the quantity $\mu_r$ denotes the $r$'th moment about the mean (also called the $r$'th central moment). The quantity $\sqrt{\beta_1}$ is called the coefficient of skewness, and is estimated by:
+
+  $$
+  \sqrt{b}_1 = \frac{m_3}{m_2^{3/2}} \;\;\;\;\;\; (55)
+  $$
+
+  where
+
+  $$
+  m_r = \frac{1}{n} \sum_{i=1}^n (x_i - \bar{x})^r \;\;\;\;\;\; (56)
+  $$
+
+  denotes the $r$'th sample central moment.
+
+  The possible alternative hypotheses are:
+
+  $$
+  H_a: \sqrt{\beta}_1 \ne 0 \;\;\;\;\;\; (57)
+  $$
+
+  $$
+  H_a: \sqrt{\beta}_1 < 0 \;\;\;\;\;\; (58)
+  $$
+
+  $$
+  H_a: \sqrt{\beta}_1 > 0 \;\;\;\;\;\; (59)
+  $$
+
+  which correspond to `alternative="two-sided"`, `alternative="less"`, and  
+  `alternative="greater"`, respectively.
+
+  To test the null hypothesis of zero skew, D'Agostino (1970) derived an approximation to the distribution of $\sqrt{b_1}$ under the null hypothesis of zero-skew, assuming the observations comprise a random sample from a normal (Gaussian) distribution. Based on D'Agostino's approximation, the statistic $Z$ shown below is assumed to follow a standard normal distribution and is used to compute the p-value associated with the test of $H_0$:
+
+  $$
+  Z = \delta \;\; log\{ \frac{Y}{\alpha} + [(\frac{Y}{\alpha})^2 + 1]^{1/2} \} \;\;\;\;\;\; (60)
+  $$
+
+  where
+
+  $$
+  Y = \sqrt{b_1} [\frac{(n+1)(n+3)}{6(n-2)}]^{1/2} \;\;\;\;\;\; (61)
+  $$
+
+  $$
+  \beta_2 = \frac{3(n^2 + 27n - 70)(n+1)(n+3)}{(n-2)(n+5)(n+7)(n+9)} \;\;\;\;\;\; (62)
+  $$
+
+  $$
+  W^2 = -1 + \sqrt{2\beta_2 - 2} \;\;\;\;\;\; (63)
+  $$
+
+  $$
+  \delta = 1 / \sqrt{log(W)} \;\;\;\;\;\; (64)
+  $$
+
+  $$
+  \alpha = [2 / (W^2 - 1)]^{1/2} \;\;\;\;\;\; (65)
+  $$
+
+  When the sample size $n$ is at least 150, a simpler approximation may be used in which $Y$ in Equation (61) is assumed to follow a standard normal distribution and is used to compute the p-value associated with the hypothesis test.
+
+- **Kolmogorov-Smirnov Goodness-of-Fit Test** (`test="ks"`).
+
+  When `test="ks"`, the function `gofTest` calls the R function `ks.test` to compute the test statistic and p-value. Note that for the one-sample case, the distribution parameters should be pre-specified and not estimated from the data, and if the distribution parameters are estimated from the data you will receive a warning that this test is very conservative (Type I error smaller than assumed; high Type II error) in this case.
+
+- **ProUCL Kolmogorov-Smirnov Goodness-of-Fit Test for Gamma** (`test="proucl.ks.gamma"`).
+
+  When `test="proucl.ks.gamma"`, the function `gofTest` calls the R function `ks.test` to compute the Kolmogorov-Smirnov test statistic based on the maximum likelihood estimates of the shape and scale parameters (see [`egamma`](https://alexkowa.github.io/EnvStats/reference/egamma.html)). The p-value is computed based on the simulated critical values given in [`ProUCL.Crit.Vals.for.KS.Test.for.Gamma.array`](https://alexkowa.github.io/EnvStats/reference/ProUCL.Crit.Vals.for.KS.Test.for.Gamma.array.html) (USEPA, 2015). The sample size must be between 5 and 1000, and the value of the maximum likelihood estimate of the shape parameter must be between 0.025 and 50. The critical value for the test statistic is computed using the simulated critical values and linear interpolation.
+
+- **ProUCL Anderson-Darling Goodness-of-Fit Test for Gamma** (`test="proucl.ad.gamma"`).
+
+  When `test="proucl.ad.gamma"`, the function `gofTest` computes the Anderson-Darling test statistic (Stephens, 1986a, p.101) based on the maximum likelihood estimates of the shape and scale parameters (see [`egamma`](https://alexkowa.github.io/EnvStats/reference/egamma.html)). The p-value is computed based on the simulated critical values given in [`ProUCL.Crit.Vals.for.AD.Test.for.Gamma.array`](https://alexkowa.github.io/EnvStats/reference/ProUCL.Crit.Vals.for.AD.Test.for.Gamma.array.html) (USEPA, 2015). The sample size must be between 5 and 1000, and the value of the maximum likelihood estimate of the shape parameter must be between 0.025 and 50. The critical value for the test statistic is computed using the simulated critical values and linear interpolation.
+
+- **Chi-Squared Goodness-of-Fit Test** (`test="chisq"`).
+
+  The method used by `gofTest` is a modification of what is used for `chisq.test`. If the hypothesized distribution function is completely specified, the degrees of freedom are $m-1$ where $m$ denotes the number of classes. If any parameters are estimated, the degrees of freedom depend on the method of estimation. The function `gofTest` follows the convention of computing degrees of freedom as $m-1-k$, where $k$ is the number of parameters estimated. It can be shown that if the parameters are estimated by maximum likelihood, the degrees of freedom are bounded between $m-1$ and $m-1-k$. Therefore, especially when the sample size is small, it is important to compare the test statistic to the chi-squared distribution with both $m-1$ and $m-1-k$ degrees of freedom. See Kendall and Stuart (1991, Chapter 30) for a more complete discussion.
+
+  The distribution theory of chi-square statistics is a large sample theory. The expected cell counts are assumed to be at least moderately large. As a rule of thumb, each should be at least 5. Although authors have found this rule to be conservative (especially when the class probabilities are not too different from each other), the user should regard p-values with caution when expected cell counts are small.
+
+- **Wilk-Shapiro Goodness-of-Fit Test for Uniform \[0, 1\] Distribution** (`test="ws"`).
+
+  Wilk and Shapiro (1968) suggested this test in the context of jointly testing several independent samples for normality simultaneously. If $p_1, p_2, \ldots, p_n$ denote the p-values associated with the test for normality of $n$ independent samples, then under the null hypothesis that all $n$ samples come from a normal distribution, the p-values are a random sample of $n$ observations from a Uniform \[0,1\] distribution, that is a Uniform distribution with minimum 0 and maximum 1. Wilk and Shapiro (1968) suggested two different methods for testing whether the p-values come from a Uniform \[0, 1\] distribution:
+
+  - *Test Based on Normal Scores.* Under the null hypothesis, the normal scores
+
+    $$
+    \Phi^{-1}(p_1), \Phi^{-1}(p_2), \ldots, \Phi^{-1}(p_n)
+    $$
+
+    are a random sample of $n$ observations from a standard normal distribution. Wilk and Shapiro (1968) denote the $i$'th normal score by
+
+    $$
+    G_i = \Phi^{-1}(p_i) \;\;\;\;\;\; (66)
+    $$
+
+    and note that under the null hypothesis, the quantity $G$ defined as
+
+    $$
+    G = \frac{1}{\sqrt{n}} \, \sum^n_{1}{G_i} \;\;\;\;\;\; (67)
+    $$
+
+    has a standard normal distribution. Wilk and Shapiro (1968) were interested in the alternative hypothesis that some of the $n$ independent samples did not come from a normal distribution and hence would be associated with smaller p-values than expected under the null hypothesis, which translates to the alternative that the cdf for the distribution of the p-values is greater than the cdf of a Uniform \[0, 1\] distribution (`alternative="greater"`). In terms of the test statistic $G$, this alternative hypothesis would tend to make $G$ smaller than expected, so the p-value is given by $\Phi(G)$. For the one-sided lower alternative that the cdf for the distribution of p-values is less than the cdf for a Uniform \[0, 1\] distribution, the p-value is given by
+
+    $$
+    p = 1 - \Phi(G) \;\;\;\;\;\; (68)
+    $$
+
+    .
+
+  - *Test Based on Chi-Square Scores.* Under the null hypothesis, the chi-square scores
+
+    $$
+    -2 \, log(p_1), -2 \, log(p_2), \ldots, -2 \, log(p_n)
+    $$
+
+    are a random sample of $n$ observations from a chi-square distribution with 2 degrees of freedom (Fisher, 1950). Wilk and Shapiro (1968) denote the $i$'th chi-square score by
+
+    $$
+    C_i = -2 \, log(p_i) \;\;\;\;\;\; (69)
+    $$
+
+    and note that under the null hypothesis, the quantity $C$ defined as
+
+    $$
+    C = \sum^n_{1}{C_i} \;\;\;\;\;\; (70)
+    $$
+
+    has a chi-square distribution with $2n$ degrees of freedom. Wilk and Shapiro (1968) were interested in the alternative hypothesis that some of the $n$ independent samples did not come from a normal distribution and hence would be associated with smaller p-values than expected under the null hypothesis, which translates to the alternative that the cdf for the distribution of the p-values is greater than the cdf of a Uniform \[0, 1\] distribution (`alternative="greater"`). In terms of the test statistic $C$, this alternative hypothesis would tend to make $C$ larger than expected, so the p-value is given by
+
+    $$
+    p = 1 - F_{2n}(C) \;\;\;\;\;\; (71)
+    $$
+
+    where $F_2n$ denotes the cumulative distribution function of the chi-square distribution with $2n$ degrees of freedom. For the one-sided lower alternative that the cdf for the distribution of p-values is less than the cdf for a Uniform \[0, 1\] distribution, the p-value is given by
+
+    $$
+    p = F_{2n}(C) \;\;\;\;\;\; (72)
+    $$
+
+## ppointsCensored {#ppointscensored}
+
+Help topic: [`ppointsCensored`](https://alexkowa.github.io/EnvStats/reference/ppointsCensored.html).
+
+Methods for computing plotting positions for complete data sets (no censored observations) are discussed in D'Agostino, R.B. (1986a) and Cleveland (1993). For data sets with censored observations, these methods must be modified. The function `ppointsCensored` allows you to compute plotting positions based on any of the following methods:
+
+- Product-limit method of Kaplan and Meier (1958) (`prob.method="kaplan-meier"`).
+- Hazard plotting method of Nelson (1972) (`prob.method="nelson"`).
+- Generalization of the product-limit method due to Michael and Schucany (1986)  
+  (`prob.method="michael-schucany"`) (the default).
+- Generalization of the product-limit method due to Hirsch and Stedinger (1987)  
+  (`prob.method="hirsch-stedinger"`).
+
+Let $\underline{x}$ denote a random sample of $N$ observations from some distribution. Assume $n$ ($0 < n < N$) of these observations are known and $c$ ($c=N-n$) of these observations are all censored below (left-censored) or all censored above (right-censored) at $k$ fixed censoring levels
+
+$$
+T_1, T_2, \ldots, T_K; \; K \ge 1 \;\;\;\;\;\; (1)
+$$
+
+For the case when $K \ge 2$, the data are said to be Type I ***multiply censored***. For the case when $K=1$, set $T = T_1$. If the data are left-censored and all $n$ known observations are greater than or equal to $T$, or if the data are right-censored and all $n$ known observations are less than or equal to $T$, then the data are said to be Type I ***singly censored*** (Nelson, 1982, p.7), otherwise they are considered to be Type I multiply censored.
+
+Let $c_j$ denote the number of observations censored below or above censoring level $T_j$ for $j = 1, 2, \ldots, K$, so that
+
+$$
+\sum_{i=1}^K c_j = c \;\;\;\;\;\; (2)
+$$
+
+Let $x_{(1)}, x_{(2)}, \ldots, x_{(N)}$ denote the “ordered” observations, where now “observation” means either the actual observation (for uncensored observations) or the censoring level (for censored observations). For right-censored data, if a censored observation has the same value as an uncensored one, the uncensored observation should be placed first. For left-censored data, if a censored observation has the same value as an uncensored one, the censored observation should be placed first.
+
+Note that in this case the quantity $x_{(i)}$ does not necessarily represent the $i$'th “largest” observation from the (unknown) complete sample.
+
+Finally, let $\Omega$ (omega) denote the set of $n$ subscripts in the “ordered” sample that correspond to uncensored observations.
+
+**Product-Limit Method of Kaplan and Meier** (`prob.method="kaplan-meier"`)  
+For complete data sets (no censored observations), the ***empirical probabilities*** estimator of the cumulative distribution function evaluated at the $i$'th ordered observation is given by (D'Agostino, 1986a, p.8):
+
+$$
+\hat{F}[x_{(i)}] = \hat{p}_i = \frac{\#[x_j \le x_{(i)}]}{n} \;\;\;\;\;\; (3)
+$$
+
+where $\#[x_j \le x_{(i)}]$ denotes the number of observations less than or equal to $x_{(i)}$ (see the help file for [`ecdfPlot`](https://alexkowa.github.io/EnvStats/reference/ecdfPlot.html)). Kaplan and Meier (1958) extended this method of computing the empirical cdf to the case of right-censored data.
+
+*Right-Censored Data* (`censoring.side="right"`)  
+Let $S(t)$ denote the survival function evaluated at $t$, that is:
+
+$$
+S(t) = 1 - F(t) = Pr(X > t) \;\;\;\;\;\; (4)
+$$
+
+Kaplan and Meier (1958) show that a nonparametric estimate of the survival function at the $i$'th ordered observation that is not censored (i.e., $i \in \Omega$), is given by:
+
+<table>
+<tbody>
+  <tr>
+    <td>\(\hat{S}[x_{(i)}]\)</td>
+    <td>\(=\)</td>
+    <td>\(\widehat{Pr}[X > x_{(i)}]\)</td>
+  </tr>
+  <tr>
+    <td>&nbsp;</td>
+    <td>\(=\)</td>
+    <td>\(\widehat{Pr}[X > x_{(1)}]\)</td>
+  </tr>
+  <tr>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td>\(\;\; \widehat{Pr}[X > x_{(2)} | X > x_{(1)}] \;\; \cdots\)</td>
+  </tr>
+  <tr>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td>\(\;\; \widehat{Pr}[X > x_{(i)} | X > x_{(i-1)}]\)</td>
+  </tr>
+  <tr>
+    <td>&nbsp;</td>
+    <td>\(=\)</td>
+    <td>\(\prod_{j \in \Omega, j \le i} \frac{n_j - d_j}{n_j}, \;\; i \in \Omega \;\;\;\;\; (5)\)</td>
+  </tr>
+</tbody>
+</table>
+
+where $n_j$ is the number of observations (uncensored or censored) with values greater than or equal to $x_{(j)}$, and $d_j$ denotes the number of uncensored observations exactly equal to $x_{(j)}$ (if there are no tied uncensored observations then $d_j$ will equal 1 for all values of $j$). (See also Lee and Wang, 2003, pp. 64--69; Michael and Schucany, 1986). By convention, the estimate of the survival function at a censored observation is set equal to the estimated value of the survival function at the largest uncensored observation less than or equal to that censoring level. If there are no uncensored observations less than or equal to a particular censoring level, the estimate of the survival function is set to 1 for that censoring level.
+
+Thus the Kaplan-Meier plotting position at the $i$'th ordered observation that is not censored (i.e., $i \in \Omega$), is given by:
+
+$$
+\hat{p}_i = \hat{F}[x_{(i)}] = 1 - \prod_{j \in \Omega, j \le i} \frac{n_j - d_j}{n_j} \;\;\;\;\;\; (6)
+$$
+
+The plotting position for a censored observation is set equal to the plotting position associated with the largest uncensored observation less than or equal to that censoring level. If there are no uncensored observations less than or equal to a particular censoring level, the plotting position is set to 0 for that censoring level.
+
+As an example, consider the following right-censored data set:
+
+$$
+3, \ge4, \ge4, 5, 5, 6
+$$
+
+The table below shows how the plotting positions are computed.
+
+<table>
+<tbody>
+  <tr>
+    <td>\(i\)</td>
+    <td>\(x_{(i)}\)</td>
+    <td>\(n_i\)</td>
+    <td>\(d_i\)</td>
+    <td>\(\frac{n_i-d_i}{n_i}\)</td>
+    <td>Plotting Position</td>
+  </tr>
+  <tr>
+    <td>1</td>
+    <td>\(3\)</td>
+    <td>\(6\)</td>
+    <td>\(1\)</td>
+    <td>\(5/6\)</td>
+    <td>\(1 - (5/6) = 0.167\)</td>
+  </tr>
+  <tr>
+    <td>2</td>
+    <td>\(\ge4\)</td>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+  </tr>
+  <tr>
+    <td>3</td>
+    <td>\(\ge4\)</td>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+  </tr>
+  <tr>
+    <td>4</td>
+    <td>\(5\)</td>
+    <td>\(3\)</td>
+    <td>\(2\)</td>
+    <td>\(1/3\)</td>
+    <td>\(1 - (5/6)(1/3) = 0.722\)</td>
+  </tr>
+  <tr>
+    <td>5</td>
+    <td>\(5\)</td>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td>\(0.722\)</td>
+  </tr>
+  <tr>
+    <td>6</td>
+    <td>\(6\)</td>
+    <td>\(1\)</td>
+    <td>\(1\)</td>
+    <td>\(0/1\)</td>
+    <td>\(1 - (5/6)(1/3)(0/1) = 1\)</td>
+  </tr>
+</tbody>
+</table>
+
+Note that for complete data sets, Equation (6) reduces to Equation (3).
+
+*Left-Censored Data* (`censoring.side="left"`)  
+Gillespie et al. (2010) give formulas for the Kaplan-Meier estimator for the case of left-cesoring (`censoring.side="left"`). In this case, the plotting position for the $i$'th ordered observation, assuming it is not censored, is computed as:
+
+$$
+\hat{p}_i = \hat{F}[x_{(i)}] = \prod_{j \in \Omega, j > i} \frac{n_j - d_j}{n_j} \;\;\;\;\;\; (7)
+$$
+
+where $n_j$ is the number of observations (uncensored or censored) with values less than or equal to $x_{(j)}$, and $d_j$ denotes the number of uncensored observations exactly equal to $x_{(j)}$ (if there are no tied uncensored observations then $d_j$ will equal 1 for all values of $j$). The plotting position is equal to 1 for the largest uncensored order statistic.
+
+As an example, consider the following left-censored data set:
+
+$$
+3, <4, <4, 5, 5, 6
+$$
+
+The table below shows how the plotting positions are computed.
+
+<table>
+<tbody>
+  <tr>
+    <td>\(i\)</td>
+    <td>\(x_{(i)}\)</td>
+    <td>\(n_i\)</td>
+    <td>\(d_i\)</td>
+    <td>\(\frac{n_i-d_i}{n_i}\)</td>
+    <td>Plotting Position</td>
+  </tr>
+  <tr>
+    <td>1</td>
+    <td>\(3\)</td>
+    <td>\(1\)</td>
+    <td>\(1\)</td>
+    <td>\(0/1\)</td>
+    <td>\(1(5/6)(3/5) = 0.5\)</td>
+  </tr>
+  <tr>
+    <td>2</td>
+    <td>\(<4\)</td>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+  </tr>
+  <tr>
+    <td>3</td>
+    <td>\(<4\)</td>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+  </tr>
+  <tr>
+    <td>4</td>
+    <td>\(5\)</td>
+    <td>\(5\)</td>
+    <td>\(2\)</td>
+    <td>\(3/5\)</td>
+    <td>\(0.833\)</td>
+  </tr>
+  <tr>
+    <td>5</td>
+    <td>\(5\)</td>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td>\(1(5/6) = 0.833\)</td>
+  </tr>
+  <tr>
+    <td>6</td>
+    <td>\(6\)</td>
+    <td>\(6\)</td>
+    <td>\(1\)</td>
+    <td>\(5/6\)</td>
+    <td>\(1\)</td>
+  </tr>
+</tbody>
+</table>
+
+Note that for complete data sets, Equation (7) reduces to Equation (3).
+
+**Modified Kaplan-Meier Method** (`prob.method="modified kaplan-meier"`)  
+(Left-Censored Data Only.) For left-censored data, the modified Kaplan-Meier method is the same as the Kaplan-Meier method, except that for the largest uncensored order statistic, the plotting position is not set to 1 but rather is set equal to the Blom plotting position: $(N - 0.375)/(N + 0.25)$. This method is useful, for example, when creating [Quantile-Quantile plots](https://alexkowa.github.io/EnvStats/reference/qqPlotCensored.html).
+
+**Hazard Plotting Method of Nelson** (`prob.method="nelson"`)  
+(Right-Censored Data Only.) For right-censored data, Equation (5) can be re-written as:
+
+$$
+\hat{S}[x_{(i)}] = \prod_{j \in \Omega, j \le i} \frac{N-j}{N-j+1}, \;\; i \in \Omega \;\;\;\;\;\; (8)
+$$
+
+Nelson (1972) proposed the following formula for plotting positions for the uncensored observations in the context of estimating the hazard function (see Michael and Schucany,1986, p.469):
+
+$$
+\hat{p}_i = \hat{F}[x_{(i)}] = 1 - \prod_{j \in \Omega, j \le i} exp(\frac{-1}{N-j+1}) \;\;\;\;\;\; (9)
+$$
+
+See Lee and Wang (2003) for more information about the hazard function.
+
+As for the Kaplan and Meier (1958) method, the plotting position for a censored observation is set equal to the plotting position associated with the largest uncensored observation less than or equal to that censoring level. If there are no uncensored observations less than or equal to a particular censoring level, the plotting position is set to 0 for that censoring level.
+
+**Generalization of Product-Limit Method, Michael and Schucany**  
+(`prob.method="michael-schucany"`)  
+For complete data sets, the disadvantage of using Equation (3) above to define plotting positions is that it implies the largest observed value is the maximum possible value of the distribution (the $100$'th percentile). This may be satisfactory if the underlying distribution is known to be discrete, but it is usually not satisfactory if the underlying distribution is known to be continuous.
+
+A more frequently used formula for plotting positions for complete data sets is given by:
+
+$$
+\hat{F}[x_{(i)}] = \hat{p}_i = \frac{i - a}{N - 2a + 1} \;\;\;\;\;\; (10)
+$$
+
+where $0 \le a \le 1$ (Cleveland, 1993, p. 18; D'Agostino, 1986a, pp. 8,25). The value of $a$ is usually chosen so that the plotting positions are approximately unbiased (i.e., approximate the mean of their distribution) or else approximate the median value of their distribution (see the help file for [`ecdfPlot`](https://alexkowa.github.io/EnvStats/reference/ecdfPlot.html)). Michael and Schucany (1986) extended this method for both left- and right-censored data sets.
+
+*Right-Censored Data* (`censoring.side="right"`)  
+For right-censored data sets, the plotting positions for the uncensored observations are computed as:
+
+$$
+\hat{p}_i = 1 - \frac{N-a+1}{N-2a+1} \prod_{j \in \Omega, j \le i} \frac{N-j-a+1}{N-j-a+2} \;\; i \in \Omega \;\;\;\;\;\; (11)
+$$
+
+Note that the plotting positions proposed by Herd (1960) and Johnson (1964) are a special case of Equation (11) with $a=0$. Equation (11) reduces to Equation (10) in the case of complete data sets. Note that unlike the Kaplan-Meier method, plotting positions associated with tied uncensored observations are not the same (just as in the case for complete data using Equation (10)).
+
+As for the Kaplan and Meier (1958) method, for right-censored data the plotting position for a censored observation is set equal to the plotting position associated with the largest uncensored observation less than or equal to that censoring level. If there are no uncensored observations less than or equal to a particular censoring level, the plotting position is set to 0 for that censoring level.
+
+*Left-Censored Data* (`censoring.side="left"`)  
+For left-censored data sets the plotting positions are computed as:
+
+$$
+\hat{p}_i = \frac{N-a+1}{N-2a+1} \prod_{j \in \Omega, j \ge i} \frac{j-a}{j-a+1} \;\; i \in \Omega \;\;\;\;\;\; (12)
+$$
+
+Equation (12) reduces to Equation (10) in the case of complete data sets. Note that unlike the Kaplan-Meier method, plotting positions associated with tied uncensored observations are not the same (just as in the case for complete data using Equation (10)).
+
+For left-censored data, the plotting position for a censored observation is set equal to the plotting position associated with the smallest uncensored observation greater than or equal to that censoring level. If there are no uncensored observations greater than or equal to a particular censoring level, the plotting position is set to 1 for that censoring level.
+
+**Generalization of Product-Limit Method, Hirsch and Stedinger**  
+(`prob.method="hirsch-stedinger"`)  
+Hirsch and Stedinger (1987) use a slightly different approach than Kaplan and Meier (1958) and Michael and Schucany (1986) to derive a nonparametric estimate of the survival function (probability of exceedance) in the context of left-censored data. First they estimate the value of the survival function at each of the censoring levels. The value of the survival function for an uncensored observation between two adjacent censoring levels is then computed by linear interpolation (in the form of a plotting position). See also Helsel and Cohn (1988).
+
+The discussion below presents an extension of the method of Hirsch and Stedinger (1987) to the case of right-censored data, and then presents the original derivation due to Hirsch and Stedinger (1987) for left-censored data.
+
+*Right-Censored Data* (`censoring.side="right"`)  
+For right-censored data, the survival function is estimated as follows. For the $j$'th censoring level ($j = 0, 1, \ldots, K$), write the value of the survival function as:
+
+<table>
+<tbody>
+  <tr>
+    <td>\(S(T_j)\)</td>
+    <td>\(=\)</td>
+    <td>\(Pr[X > T_j]\)</td>
+  </tr>
+  <tr>
+    <td>&nbsp;</td>
+    <td>\(=\)</td>
+    <td>\(Pr[X > T_{j+1}] + Pr[T_j < X \le T_{j+1}]\)</td>
+  </tr>
+  <tr>
+    <td>&nbsp;</td>
+    <td>\(=\)</td>
+    <td>\(S(T_{j+1}) + Pr[T_j < X \le T_{j+1} | X > T_j] Pr[X > T_j]\)</td>
+  </tr>
+  <tr>
+    <td>&nbsp;</td>
+    <td>\(=\)</td>
+    <td>\(S(T_{j+1}) + Pr[T_j < X \le T_{j+1} | X > T_j] S(T_j) \;\;\;\;\;\; (13)\)</td>
+  </tr>
+</tbody>
+</table>
+
+where
+
+$$
+T_0 = -\infty, \;\;\;\;\;\; (14)
+$$
+
+$$
+T_{K+1} = \infty \;\;\;\;\;\; (15)
+$$
+
+Now set
+
+<table>
+<tbody>
+  <tr>
+    <td>\(A_j\)</td>
+    <td>\(=\)</td>
+    <td># uncensored observations in \((T_j, T_{j+1}] \;\;\;\;\;\; (16)\)</td>
+  </tr>
+  <tr>
+    <td>\(B_j\)</td>
+    <td>\(=\)</td>
+    <td># observations in \((T_{j+1}, \infty) \;\;\;\;\;\; (17)\)</td>
+  </tr>
+</tbody>
+</table>
+
+for $j = 0, 1, \ldots, K$. Then the method of moments estimator of the conditional probability in Equation (13) is given by:
+
+$$
+\widehat{Pr}[T_j < X \le T_{j+1} | X > T_j] = \frac{A_j}{A_j + B_j} \;\;\;\;\;\; (18)
+$$
+
+Hence, by equations (13) and (18) we have
+
+$$
+\hat{S}(T_j) = \hat{S}(T_{j+1}) + (\frac{A_j}{A_j + B_j}) \hat{S}(T_{j}) \;\;\;\;\;\; (19)
+$$
+
+which can be rewritten as:
+
+$$
+\hat{S}(T_{j+1}) = \hat{S}(T_j) [1 - (\frac{A_j}{A_j + B_j})] \;\;\;\;\;\; (20)
+$$
+
+Equation (20) can be solved interatively for $j = 1, 2, \ldots, K$. Note that
+
+$$
+\hat{S}(T_0) = \hat{S}(-\infty) = S(-\infty) = 1 \;\;\;\;\;\; (21)
+$$
+
+$$
+\hat{S}(T_{K+1}) = \hat{S}(\infty) = S(\infty) = 0 \;\;\;\;\;\; (22)
+$$
+
+Once the values of the survival function at the censoring levels are computed, the plotting positions for the $A_j$ uncensored observations in the interval $(T_J, T_{j+1}]$ ($j = 0, 1, \ldots, K$) are computed as
+
+$$
+\hat{p}_i = [1 - \hat{S}(T_j)] + [\hat{S}(T_j) - \hat{S}(T_{j+1})] \frac{r-a}{A_j - 2a + 1} \;\;\;\;\;\; (23)
+$$
+
+where $a$ denotes the plotting position constant, $0 \le a \le 1$, and $r$ denotes the rank of the $i$'th observation among the $A_j$ uncensored observations in the interval $(T_J, T_{j+1}]$. (Tied observations are given distinct ranks.)
+
+For the $c_j$ observations censored at censoring level $T_j$ ($j = 1, 2, \ldots, K$), the plotting positions are computed as:
+
+$$
+\hat{p}_i = 1 - [\hat{S}(T_j) \frac{r-a}{c_j - 2a + 1}]  \;\;\;\;\;\; (24)
+$$
+
+where $r$ denotes the rank of the $i$'th observation among the $c_j$ observations censored at censoring level $T_j$. Note that all the observations censored at the same censoring level are given distinct ranks, even though there is no way to distinguish between them.
+
+*Left-Censored Data* (`censoring.side="left"`)  
+For left-censored data, Hirsch and Stedinger (1987) modify the definition of the survival function as follows:
+
+$$
+S^*(t) = Pr[X \ge t] \;\;\;\;\;\; (25)
+$$
+
+For continuous distributions, the functions in Equations (4) and (25) are identical.
+
+Hirsch and Stedinger (1987) show that for the $j$'th censoring level ($j = 0, 1, \ldots, K$), the value of the survival function can be written as:
+
+<table>
+<tbody>
+  <tr>
+    <td>\(S(T_j)\)</td>
+    <td>\(=\)</td>
+    <td>\(Pr[X \ge T_j]\)</td>
+  </tr>
+  <tr>
+    <td>&nbsp;</td>
+    <td>\(=\)</td>
+    <td>\(Pr[X \ge T_{j+1}] + Pr[T_j \le X < T_{j+1}]\)</td>
+  </tr>
+  <tr>
+    <td>&nbsp;</td>
+    <td>\(=\)</td>
+    <td>\(S^*(T_{j+1}) + Pr[T_j \le X < T_{j+1} | X < T_{j+1}] Pr[X < T_{j+1}]\)</td>
+  </tr>
+  <tr>
+    <td>&nbsp;</td>
+    <td>\(=\)</td>
+    <td>\(S^*(T_{j+1}) + Pr[T_j \le X < T_{j+1} | X < T_j] [1 - S^*(T_j)] \;\;\;\;\;\; (26)\)</td>
+  </tr>
+</tbody>
+</table>
+
+where $T_0$ and $T_{K+1}$ are defined in Equations (14) and (15).
+
+Now set
+
+<table>
+<tbody>
+  <tr>
+    <td>\(A_j\)</td>
+    <td>\(=\)</td>
+    <td># uncensored observations in \([T_j, T_{j+1}) \;\;\;\;\;\; (27)\)</td>
+  </tr>
+  <tr>
+    <td>\(B_j\)</td>
+    <td>\(=\)</td>
+    <td># observations in \((-\infty, T_j) \;\;\;\;\;\; (28)\)</td>
+  </tr>
+</tbody>
+</table>
+
+for $j = 0, 1, \ldots, K$. Then the method of moments estimator of the conditional probability in Equation (26) is given by:
+
+$$
+Pr[T_j \le X < T_{j+1} | X < T_{j+1}] = \frac{A_j}{A_j + B_j} \;\;\;\;\;\; (29)
+$$
+
+Hence, by Equations (26) and (29) we have
+
+$$
+\hat{S}(T_j) = \hat{S}(T_{j+1}) + (\frac{A_j}{A_j + B_j}) \hat{S}(T_{j}) \;\;\;\;\;\; (30)
+$$
+
+which can be solved interatively for $j = 1, 2, \ldots, K$. Note that
+
+$$
+\widehat{S^*}(T_{K+1}) = \widehat{S^*}(\infty) = S^*(\infty) = 0 \;\;\;\;\;\; (31)
+$$
+
+$$
+\widehat{S^*}(T_0) = \widehat{S^*}(-\infty) = S^*(-\infty) = 1 \;\;\;\;\;\; (32)
+$$
+
+Once the values of the survival function at the censoring levels are computed, the plotting positions for the $A_j$ uncensored observations in the interval $[T_J, T_{j+1})$ ($j = 0, 1, \ldots, K$) are computed as
+
+$$
+\hat{p}_i = [1 - \widehat{S^*}(T_j)] + [\widehat{S^*}(T_j) - \widehat{S^*}(T_{j+1})] \frac{r-a}{A_j - 2a + 1} \;\;\;\;\;\; (33)
+$$
+
+where $a$ denotes the plotting position constant, $0 \le a \le 0.5$, and $r$ denotes the rank of the $i$'th observation among the $A_j$ uncensored observations in the interval $[T_J, T_{j+1})$. (Tied observations are given distinct ranks.)
+
+For the $c_j$ observations censored at censoring level $T_j$ ($j = 1, 2, \ldots, K$), the plotting positions are computed as:
+
+$$
+\hat{p}_i = [1 - \widehat{S^*}(T_j)] \frac{r-a}{c_j - 2a + 1}  \;\;\;\;\;\; (34)
+$$
+
+where $r$ denotes the rank of the $i$'th observation among the $c_j$ observations censored at censoring level $T_j$. Note that all the observations censored at the same censoring level are given distinct ranks, even though there is no way to distinguish between them.
+
+## gofTestCensored {#goftestcensored}
+
+Help topic: [`gofTestCensored`](https://alexkowa.github.io/EnvStats/reference/gofTestCensored.html).
+
+Let $\underline{x} = c(x_1, x_2, \ldots, x_N)$ denote a vector of $N$ observations from from some distribution with cdf $F$. Suppose we want to test the null hypothesis that $F$ is the cdf of a [normal (Gaussian) distribution](https://stat.ethz.ch/R-manual/R-devel/library/stats/html/Normal.html) with some arbitrary mean $\mu$ and standard deviation $\sigma$ against the alternative hypothesis that $F$ is the cdf of some other distribution. The table below shows the random variable for which $F$ is the assumed cdf, given the value of the argument `distribution`.
+
+<table>
+<tbody>
+  <tr>
+    <td><strong>Value of</strong></td>
+    <td>&nbsp;</td>
+    <td><strong>Random Variable for</strong></td>
+  </tr>
+  <tr>
+    <td><code>distribution</code></td>
+    <td><strong>Distribution Name</strong></td>
+    <td><strong>which</strong> \(F\) <strong>is the cdf</strong></td>
+  </tr>
+  <tr>
+    <td><code>"norm"</code></td>
+    <td>Normal</td>
+    <td>\(X\)</td>
+  </tr>
+  <tr>
+    <td><code>"lnorm"</code></td>
+    <td>Lognormal (Log-space)</td>
+    <td>\(log(X)\)</td>
+  </tr>
+  <tr>
+    <td><code>"lnormAlt"</code></td>
+    <td>Lognormal (Untransformed)</td>
+    <td>\(log(X)\)</td>
+  </tr>
+</tbody>
+</table>
+
+Assume $n$ ($0 < n < N$) of these observations are known and $c$ ($c=N-n$) of these observations are all censored below (left-censored) or all censored above (right-censored) at $k$ fixed censoring levels
+
+$$
+T_1, T_2, \ldots, T_k; \; k \ge 1 \;\;\;\;\;\; (1)
+$$
+
+For the case when $k \ge 2$, the data are said to be Type I ***multiply censored***. For the case when $k=1$, set $T = T_1$. If the data are left-censored and all $n$ known observations are greater than or equal to $T$, or if the data are right-censored and all $n$ known observations are less than or equal to $T$, then the data are said to be Type I ***singly censored*** (Nelson, 1982, p.7), otherwise they are considered to be Type I multiply censored.
+
+Let $c_j$ denote the number of observations censored below or above censoring level $T_j$ for $j = 1, 2, \ldots, k$, so that
+
+$$
+\sum_{i=1}^k c_j = c \;\;\;\;\;\; (2)
+$$
+
+Let $x_{(1)}, x_{(2)}, \ldots, x_{(N)}$ denote the “ordered” observations, where now “observation” means either the actual observation (for uncensored observations) or the censoring level (for censored observations). For right-censored data, if a censored observation has the same value as an uncensored one, the uncensored observation should be placed first. For left-censored data, if a censored observation has the same value as an uncensored one, the censored observation should be placed first.
+
+Note that in this case the quantity $x_{(i)}$ does not necessarily represent the $i$'th “largest” observation from the (unknown) complete sample.
+
+Note that for singly left-censored data:
+
+$$
+x_{(1)} = x_{(2)} = \cdots = x_{(c)} = T \;\;\;\;\;\; (3)
+$$
+
+and for singly right-censored data:
+
+$$
+x_{(n+1)} = x_{(n+2)} = \cdots = x_{(N)} = T \;\;\;\;\;\; (4)
+$$
+
+Finally, let $\Omega$ (omega) denote the set of $n$ subscripts in the “ordered” sample that correspond to uncensored observations.
+
+**Shapiro-Wilk Goodness-of-Fit Test for Singly Censored Data** (`test="sw"`)  
+Equation (8) in the section on [`gofTest`](distribution-diagnostics.html#goftest) shows that for the case of **complete** ordered data $\underline{x}$, the Shapiro-Wilk $W$-statistic is the same as the square of the sample product-moment correlation between the vectors $\underline{a}$ and $\underline{x}$:
+
+$$
+W = r(\underline{a}, \underline{x})^2 \;\;\;\;\;\; (5)
+$$
+
+where
+
+$$
+r(\underline{x}, \underline{y}) = \frac{\sum_{i=1}^N (x_i - \bar{x})(y_i - \bar{y})}{[\sum_{i=1}^n (x_i - \bar{x})^2 \sum_{i=1}^n (y_i - \bar{y})^2]^{1/2}} \;\;\;\;\;\;\; (6)
+$$
+
+and $\underline{a}$ is defined by:
+
+$$
+\underline{a} = \frac{\underline{m}^T V^{-1}}{[\underline{m}^T V^{-1} V^{-1} \underline{m}]^{1/2}} \;\;\;\;\;\; (7)
+$$
+
+where $^T$ denotes the transpose operator, and $\underline{m}$ is the vector of expected values and $V$ is the variance-covariance matrix of the order statistics of a random sample of size $N$ from a standard normal distribution. That is, the values of $\underline{a}$ are the expected values of the standard normal order statistics weighted by their variance-covariance matrix, and normalized so that
+
+$$
+\underline{a}^T \underline{a} = 1 \;\;\;\;\;\; (8)
+$$
+
+*Computing Shapiro-Wilk W-Statistic for Singly Censored Data*  
+For the case of singly censored data, following Smith and Bain (1976) and Verrill and Johnson (1988), Royston (1993) generalizes the Shapiro-Wilk $W$-statistic to:
+
+$$
+W = r(\underline{a}_{\Delta}, \underline{x}_{\Delta})^2 \;\;\;\;\;\; (9)
+$$
+
+where for left singly-censored data:
+
+$$
+\underline{a}_{\Delta} = (a_{c+1}, a_{c+2}, \ldots, a_{N}) \;\;\;\;\;\; (10)
+$$
+
+$$
+\underline{x}_{\Delta} = (x_{(c+1)}, x_{(c+2)}, \ldots, x_{(N)}) \;\;\;\;\;\; (11)
+$$
+
+and for right singly-censored data:
+
+$$
+\underline{a}_{\Delta} = (a_1, a_2, \ldots, a_n) \;\;\;\;\;\; (12)
+$$
+
+$$
+\underline{x}_{\Delta} = (x_{(1)}, x_{(2)}, \ldots, x_{(n)}) \;\;\;\;\;\; (13)
+$$
+
+Just like the function [`gofTest`](https://alexkowa.github.io/EnvStats/reference/gofTest.html), when `test="sw"`, the function `gofTestCensored` uses Royston's (1992a) approximation for the coefficients $\underline{a}$ (see the section on [`gofTest`](distribution-diagnostics.html#goftest)).
+
+*Computing P-Values for the Shapiro-Wilk Test*  
+Verrill and Johnson (1988) show that the asymptotic distribution of the statistic in Equation (9) above is normal, but the rate of convergence is “surprisingly slow” even for complete samples. They provide a table of empirical percentiles of the distribution for the $W$-statistic shown in Equation (9) above for several sample sizes and percentages of censoring.
+
+Based on the tables given in Verrill and Johnson (1988), Royston (1993) approximated the 90'th, 95'th, and 99'th percentiles of the distribution of the z-statistic computed from the $W$-statistic. (The distribution of this z-statistic is assumed to be normal, but not necessarily a standard normal.) Denote these percentiles by $Z_{0.90}$, $Z_{0.95}$, and $Z_{0.99}$. The true mean and standard deviation of the z-statistic are estimated by the intercept and slope, respectively, from the linear regression of $Z_{\alpha}$ on $\Phi^{-1}(\alpha)$ for $\alpha$ = 0.9, 0.95, and 0.99, where $\Phi$ denotes the cumulative distribution function of the standard normal distribution. The p-value associated with this test is then computed as:
+
+$$
+p = 1 - \Phi(\frac{z - \mu_z}{\sigma_z}) \;\;\;\;\;\; (14)
+$$
+
+Note: Verrill and Johnson (1988) produced their tables based on Type II censoring. Royston's (1993) approximation to the p-value of these tests, however, should be fairly accurate for Type I censored data as well.
+
+*Testing Goodness-of-Fit for Any Continuous Distribution*  
+The function `gofTestCensored` extends the Shapiro-Wilk test that accounts for censoring to test for goodness-of-fit for any continuous distribution by using the idea of Chen and Balakrishnan (1995), who proposed a general purpose approximate goodness-of-fit test based on the Cramer-von Mises or Anderson-Darling goodness-of-fit tests for normality. The function `gofTestCensored` modifies the approach of Chen and Balakrishnan (1995) by using the same first 2 steps, and then applying the Shapiro-Wilk test that accounts for censoring:
+
+1. Let $\underline{x} = x_1, x_2, \ldots, x_n$ denote the vector of $n$ ***ordered*** observations, ignoring censoring status. Compute cumulative probabilities for each $x_i$ based on the cumulative distribution function for the hypothesized distribution. That is, compute $p_i = F(x_i, \hat{\theta})$, where $F(x, \theta)$ denotes the hypothesized cumulative distribution function with parameter(s) $\theta$, and $\hat{\theta}$ denotes the estimated parameter(s) using an estimation method that accounts for censoring (e.g., assuming a [Gamma](https://alexkowa.github.io/EnvStats/reference/GammaAlt.html) distribution with alternative parameterization, call the function `linkegammaAltCensored`).
+2. Compute standard normal deviates based on the computed cumulative probabilities:  
+   $y_i = \Phi^{-1}(p_i)$
+3. Perform the Shapiro-Wilk goodness-of-fit test (that accounts for censoring) on the $y_i$'s.
+
+**Shapiro-Francia Goodness-of-Fit Test** (`test="sf"`)  
+Equation (15) in the section on [`gofTest`](distribution-diagnostics.html#goftest) shows that for the complete ordered data $\underline{x}$, the Shapiro-Francia $W'$-statistic is the same as the squared Pearson correlation coefficient associated with a normal probability plot.
+
+*Computing Shapiro-Francia W'-Statistic for Censored Data*  
+For the case of singly censored data, following Smith and Bain (1976) and Verrill and Johnson (1988), Royston (1993) extends the computation of the Weisberg-Bingham Approximation to the $W'$-statistic to the case of singly censored data:
+
+$$
+\tilde{W}' = r(\underline{c}_{\Delta}, \underline{x}_{\Delta})^2 \;\;\;\;\;\; (14)
+$$
+
+where for left singly-censored data:
+
+$$
+\underline{c}_{\Delta} = (c_{c+1}, c_{c+2}, \ldots, c_{N}) \;\;\;\;\;\; (15)
+$$
+
+$$
+\underline{x}_{\Delta} = (x_{(c+1)}, x_{(c+2)}, \ldots, x_{(N)}) \;\;\;\;\;\; (16)
+$$
+
+and for right singly-censored data:
+
+$$
+\underline{a}_{\Delta} = (a_1, a_2, \ldots, a_n) \;\;\;\;\;\; (17)
+$$
+
+$$
+\underline{x}_{\Delta} = (x_{(1)}, x_{(2)}, \ldots, x_{(n)}) \;\;\;\;\;\; (18)
+$$
+
+and $\underline{c}$ is defined as:
+
+$$
+\underline{c} = \frac{\underline{\tilde{m}}}{[\underline{\tilde{m}}' \underline{\tilde{m}}]^{1/2}} \;\;\;\;\;\; (19)
+$$
+
+where
+
+$$
+\tilde{m}_i = \Phi^{-1}(\frac{i - (3/8)}{n + (1/4)}) \;\;\;\;\;\;  (20)
+$$
+
+and $\Phi$ denotes the standard normal cdf. **Note:** Do not confuse the elements of the vector $\underline{c}$ with the scalar $c$ which denotes the number of censored observations. We use $\underline{c}$ here to be consistent with the notation in the section on [`gofTest`](distribution-diagnostics.html#goftest).
+
+Just like the function [`gofTest`](https://alexkowa.github.io/EnvStats/reference/gofTest.html), when `test="sf"`, the function `gofTestCensored` uses Royston's (1992a) approximation for the coefficients $\underline{c}$ (see the section on [`gofTest`](distribution-diagnostics.html#goftest)).
+
+In general, the Shapiro-Francia test statistic can be extended to multiply censored data using Equation (14) with $\underline{c}_{\Delta}$ defined as the orderd values of $c_i$ associated with uncensored observations, and $\underline{x}_{\Delta}$ defined as the ordered values of $x_i$ associated with uncensored observations:
+
+$$
+\underline{c}_{\Delta} = \cup_{i \in \Omega} \;\; c_{(i)} \;\;\;\;\;\; (21)
+$$
+
+$$
+\underline{x}_{\Delta} = \cup_{i \in \Omega} \;\; x_{(i)} \;\;\;\;\;\; (22)
+$$
+
+and where the plotting positions in Equation (20) are replaced with any of the plotting positions available in [`ppointsCensored`](https://alexkowa.github.io/EnvStats/reference/ppointsCensored.html) (see the description for the argument `prob.method`).
+
+*Computing P-Values for the Shapiro-Francia Test*  
+Verrill and Johnson (1988) show that the asymptotic distribution of the statistic in Equation (14) above is normal, but the rate of convergence is “surprisingly slow” even for complete samples. They provide a table of empirical percentiles of the distribution for the $\tilde{W}'$-statistic shown in Equation (14) above for several sample sizes and percentages of censoring.
+
+As for the Shapiro-Wilk test, based on the tables given in Verrill and Johnson (1988), Royston (1993) approximated the 90'th, 95'th, and 99'th percentiles of the distribution of the z-statistic computed from the $\tilde{W}'$-statistic. (The distribution of this z-statistic is assumed to be normal, but not necessarily a standard normal.) Denote these percentiles by $Z_{0.90}$, $Z_{0.95}$, and $Z_{0.99}$. The true mean and standard deviation of the z-statistic are estimated by the intercept and slope, respectively, from the linear regression of $Z_{\alpha}$ on $\Phi^{-1}(\alpha)$ for $\alpha$ = 0.9, 0.95, and 0.99, where $\Phi$ denotes the cumulative distribution function of the standard normal distribution. The p-value associated with this test is then computed as:
+
+$$
+p = 1 - \Phi(\frac{z - \mu_z}{\sigma_z}) \;\;\;\;\;\; (23)
+$$
+
+Note: Verrill and Johnson (1988) produced their tables based on Type II censoring. Royston's (1993) approximation to the p-value of these tests, however, should be fairly accurate for Type I censored data as well, although this is an area that requires further investigation.
+
+*Testing Goodness-of-Fit for Any Continuous Distribution*  
+The function `gofTestCensored` extends the Shapiro-Francia test that accounts for censoring to test for goodness-of-fit for any continuous distribution by using the idea of Chen and Balakrishnan (1995), who proposed a general purpose approximate goodness-of-fit test based on the Cramer-von Mises or Anderson-Darling goodness-of-fit tests for normality. The function `gofTestCensored` modifies the approach of Chen and Balakrishnan (1995) by using the same first 2 steps, and then applying the Shapiro-Francia test that accounts for censoring:
+
+1. Let $\underline{x} = x_1, x_2, \ldots, x_n$ denote the vector of $n$ ***ordered*** observations, ignoring censoring status. Compute cumulative probabilities for each $x_i$ based on the cumulative distribution function for the hypothesized distribution. That is, compute $p_i = F(x_i, \hat{\theta})$ where $F(x, \theta)$ denotes the hypothesized cumulative distribution function with parameter(s) $\theta$, and $\hat{\theta}$ denotes the estimated parameter(s) using an estimation method that accounts for censoring (e.g., assuming a [Gamma](https://alexkowa.github.io/EnvStats/reference/GammaAlt.html) distribution with alternative parameterization, call the function `linkegammaAltCensored`).
+2. Compute standard normal deviates based on the computed cumulative probabilities:  
+   $y_i = \Phi^{-1}(p_i)$
+3. Perform the Shapiro-Francia goodness-of-fit test (that accounts for censoring) on the $y_i$'s.
+
+**Probability Plot Correlation Coefficient (PPCC) Goodness-of-Fit Test** (`test="ppcc"`)  
+The function `gofTestCensored` computes the PPCC test statistic using Blom plotting positions. It can be shown that the square of this statistic is equivalent to the Weisberg-Bingham Approximation to the Shapiro-Francia $W'$-test (Weisberg and Bingham, 1975; Royston, 1993). Thus the PPCC goodness-of-fit test is equivalent to the Shapiro-Francia goodness-of-fit test.
+
+## boxcoxCensored {#boxcoxcensored}
+
+Help topic: [`boxcoxCensored`](https://alexkowa.github.io/EnvStats/reference/boxcoxCensored.html).
+
+Two common assumptions for several standard parametric hypothesis tests are:
+
+1. The observations all come from a normal distribution.
+2. The observations all come from distributions with the same variance.
+
+For example, the standard one-sample t-test assumes all the observations come from the same normal distribution, and the standard two-sample t-test assumes that all the observations come from a normal distribution with the same variance, although the mean may differ between the two groups.
+
+When the original data do not satisfy the above assumptions, data transformations are often used to attempt to satisfy these assumptions. Box and Cox (1964) presented a formalized method for deciding on a data transformation. Given a random variable $X$ from some distribution with only positive values, the Box-Cox family of power transformations is defined as:
+
+<table>
+<tbody>
+  <tr>
+    <td>\(Y\)</td>
+    <td>=</td>
+    <td>\(\frac{X^\lambda - 1}{\lambda}\)</td>
+    <td>\(\lambda \ne 0\)</td>
+  </tr>
+  <tr>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td>\(log(X)\)</td>
+    <td>\(\lambda = 0 \;\;\;\;\;\; (1)\)</td>
+  </tr>
+</tbody>
+</table>
+
+where $Y$ is assumed to come from a normal distribution. This transformation is continuous in $\lambda$. Note that this transformation also preserves ordering. See the help file for [`boxcoxTransform`](https://alexkowa.github.io/EnvStats/reference/boxcoxTransform.html) for more information on data transformations.
+
+Box and Cox (1964) proposed choosing the appropriate value of $\lambda$ based on maximizing the likelihood function. Alternatively, an appropriate value of $\lambda$ can be chosen based on another objective, such as maximizing the probability plot correlation coefficient or the Shapiro-Wilk goodness-of-fit statistic.
+
+Shumway et al. (1989) investigated extending the method of Box and Cox (1964) to the case of Type I censored data, motivated by the desire to produce estimated means and confidence intervals for air monitoring data that included censored values.
+
+In the case when `optimize=TRUE`, the function `boxcoxCensored` calls the R function `nlminb` to minimize the negative value of the objective (i.e., maximize the objective) over the range of possible values of $\lambda$ specified in the argument `lambda`. The starting value for the optimization is always $\lambda=1$ (i.e., no transformation).
+
+The next section explains assumptions and notation, and the section after that explains how the objective is computed for the various options for `objective.name`.
+
+**Assumptions and Notation**  
+Let $\underline{x}$ denote a random sample of $N$ observations from some continuous distribution. Assume $n$ ($0 < n < N$) of these observations are known and $c$ ($c=N-n$) of these observations are all censored below (left-censored) or all censored above (right-censored) at $k$ fixed censoring levels
+
+$$
+T_1, T_2, \ldots, T_K; \; K \ge 1 \;\;\;\;\;\; (2)
+$$
+
+For the case when $K \ge 2$, the data are said to be Type I ***multiply censored***. For the case when $K=1$, set $T = T_1$. If the data are left-censored and all $n$ known observations are greater than or equal to $T$, or if the data are right-censored and all $n$ known observations are less than or equal to $T$, then the data are said to be Type I ***singly censored*** (Nelson, 1982, p.7), otherwise they are considered to be Type I multiply censored.
+
+Let $c_j$ denote the number of observations censored below or above censoring level $T_j$ for $j = 1, 2, \ldots, K$, so that
+
+$$
+\sum_{i=1}^K c_j = c \;\;\;\;\;\; (3)
+$$
+
+Let $x_{(1)}, x_{(2)}, \ldots, x_{(N)}$ denote the “ordered” observations, where now “observation” means either the actual observation (for uncensored observations) or the censoring level (for censored observations). For right-censored data, if a censored observation has the same value as an uncensored one, the uncensored observation should be placed first. For left-censored data, if a censored observation has the same value as an uncensored one, the censored observation should be placed first.
+
+Note that in this case the quantity $x_{(i)}$ does not necessarily represent the $i$'th “largest” observation from the (unknown) complete sample.
+
+Finally, let $\Omega$ (omega) denote the set of $n$ subscripts in the “ordered” sample that correspond to uncensored observations, and let $\Omega_j$ denote the set of $c_j$ subscripts in the “ordered” sample that correspond to the censored observations censored at censoring level $T_j$ for $j = 1, 2, \ldots, k$.
+
+We assume that there exists some value of $\lambda$ such that the transformed observations
+
+<table>
+<tbody>
+  <tr>
+    <td>\(y_i\)</td>
+    <td>=</td>
+    <td>\(\frac{x_i^\lambda - 1}{\lambda}\)</td>
+    <td>\(\lambda \ne 0\)</td>
+  </tr>
+  <tr>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td>\(log(x_i)\)</td>
+    <td>\(\lambda = 0 \;\;\;\;\;\; (4)\)</td>
+  </tr>
+</tbody>
+</table>
+
+($i = 1, 2, \ldots, n$) form a random sample of Type I censored data from a normal distribution.
+
+Note that for the censored observations, Equation (4) becomes:
+
+<table>
+<tbody>
+  <tr>
+    <td>\(y_{(i)} = T_j^*\)</td>
+    <td>=</td>
+    <td>\(\frac{T_j^\lambda - 1}{\lambda}\)</td>
+    <td>\(\lambda \ne 0\)</td>
+  </tr>
+  <tr>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td>\(log(T_j)\)</td>
+    <td>\(\lambda = 0 \;\;\;\;\;\; (5)\)</td>
+  </tr>
+</tbody>
+</table>
+
+where $i \in \Omega_j$.
+
+**Computing the Objective**
+
+*Objective Based on Probability Plot Correlation Coefficient* (`objective.name="PPCC"`)  
+When `objective.name="PPCC"`, the objective is computed as the value of the normal probability plot correlation coefficient based on the transformed data (see the description of the Probability Plot Correlation Coefficient (PPCC) goodness-of-fit test in the section on [`gofTestCensored`](distribution-diagnostics.html#goftestcensored)). That is, the objective is the correlation coefficient for the normal [quantile-quantile plot](https://alexkowa.github.io/EnvStats/reference/qqPlotCensored.html) for the transformed data. Large values of the PPCC tend to indicate a good fit to a normal distribution.
+
+*Objective Based on Shapiro-Wilk Goodness-of-Fit Statistic* (`objective.name="Shapiro-Wilk"`)  
+When `objective.name="Shapiro-Wilk"`, the objective is computed as the value of the Shapiro-Wilk goodness-of-fit statistic based on the transformed data (see the description of the Shapiro-Wilk test in the section on [`gofTestCensored`](distribution-diagnostics.html#goftestcensored)). Large values of the Shapiro-Wilk statistic tend to indicate a good fit to a normal distribution.
+
+*Objective Based on Log-Likelihood Function* (`objective.name="Log-Likelihood"`)  
+When `objective.name="Log-Likelihood"`, the objective is computed as the value of the log-likelihood function. Assuming the transformed observations in Equation (4) above come from a normal distribution with mean $\mu$ and standard deviation $\sigma$, we can use the change of variable formula to write the log-likelihood function as follows.
+
+For Type I left censored data, the likelihood function is given by:
+
+$$
+log[L(\lambda, \mu, \sigma)] = log[{N \choose c_1 c_2 \ldots c_k n}] + \sum_{j=1}^k c_j log[F(T_j^*)] + \sum_{i \in \Omega} log\{f[y_{(i)}]\} + (\lambda - 1) \sum_{i \in \Omega} log[x_{(i)}] \;\;\;\;\;\; (6)
+$$
+
+where $f$ and $F$ denote the probability density function (pdf) and cumulative distribution function (cdf) of the population. That is,
+
+$$
+f(t) = \phi(\frac{t-\mu}{\sigma}) \;\;\;\;\;\; (7)
+$$
+
+$$
+F(t) = \Phi(\frac{t-\mu}{\sigma}) \;\;\;\;\;\; (8)
+$$
+
+where $\phi$ and $\Phi$ denote the pdf and cdf of the standard normal distribution, respectively (Shumway et al., 1989). For left singly censored data, Equation (6) simplifies to:
+
+$$
+log[L(\lambda, \mu, \sigma)] = log[{N \choose c}] + c log[F(T^*)] + \sum_{i = c+1}^N log\{f[y_{(i)}]\} + (\lambda - 1) \sum_{i = c+1}^N log[x_{(i)}] \;\;\;\;\;\; (9)
+$$
+
+Similarly, for Type I right censored data, the likelihood function is given by:
+
+$$
+log[L(\lambda, \mu, \sigma)] = log[{N \choose c_1 c_2 \ldots c_k n}] + \sum_{j=1}^k c_j log[1 - F(T_j^*)] + \sum_{i \in \Omega} log\{f[y_{(i)}]\} + (\lambda - 1) \sum_{i \in \Omega} log[x_{(i)}] \;\;\;\;\;\; (10)
+$$
+
+and for right singly censored data this simplifies to:
+
+$$
+log[L(\lambda, \mu, \sigma)] = log[{N \choose c}] + c log[1 - F(T^*)] + \sum_{i = 1}^n log\{f[y_{(i)}]\} + (\lambda - 1) \sum_{i = 1}^n log[x_{(i)}] \;\;\;\;\;\; (11)
+$$
+
+For a fixed value of $\lambda$, the log-likelihood function is maximized by replacing $\mu$ and $\sigma$ with their maximum likelihood estimators (see *Maximum Likelihood Estimation* in the section on [`enormCensored`](censored-estimation.html#enormcensored)).
+
+Thus, when `optimize=TRUE`, Equation (6) or (10) is maximized by iteratively solving for $\lambda$ using the MLEs for $\mu$ and $\sigma$. When `optimize=FALSE`, the value of the objective is computed by using Equation (6) or (10), using the values of $\lambda$ specified in the argument `lambda`, and using the MLEs of $\mu$ and $\sigma$.

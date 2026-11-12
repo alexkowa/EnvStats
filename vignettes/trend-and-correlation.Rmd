@@ -1,0 +1,1265 @@
+---
+title: "Trend tests and serial correlation"
+output:
+  rmarkdown::html_vignette:
+    toc: true
+    toc_depth: 2
+vignette: >
+  %\VignetteIndexEntry{Trend tests and serial correlation}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+This vignette describes tests for serial correlation and monotonic trends,
+including seasonal Kendall tests and adjustments for serial dependence. It
+explains the test statistics, slope estimates, and assumptions used when
+analysing observations collected over time.
+
+Related vignettes:
+
+- [Statistical power and study design](power-and-study-design.html)
+- [Nonparametric estimation and two-sample tests](nonparametric-methods.html)
+- [Distribution diagnostics, transformations, and probability plots](distribution-diagnostics.html)
+
+For planning a study to detect a linear trend, see
+[linear trend test power](power-and-study-design.html#lineartrendtestpower).
+
+## serialCorrelationTest {#serialcorrelationtest}
+
+Help topic: [`serialCorrelationTest`](https://alexkowa.github.io/EnvStats/reference/serialCorrelationTest.html).
+
+Let $\underline{x} = x_1, x_2, \ldots, x_n$ denote $n$ observations from a stationary time series sampled at equispaced points in time with normal (Gaussian) errors. The function `serialCorrelationTest` tests the null hypothesis:
+
+$$
+H_0: \rho_1 = 0 \;\;\;\;\;\; (1)
+$$
+
+where $\rho_1$ denotes the true lag-1 autocorrelation (also called the lag-1 serial correlation coefficient). Actually, the null hypothesis is that the lag-$k$ autocorrelation is 0 for all values of $k$ greater than 0 (i.e., the time series is purely random).
+
+In the case when the argument `x` is a linear model, the function `serialCorrelationTest` tests the null hypothesis (1) for the residuals.
+
+The three possible alternative hypotheses are the upper one-sided alternative (`alternative="greater"`):
+
+$$
+H_a: \rho_1 > 0 \;\;\;\;\;\; (2)
+$$
+
+the lower one-sided alternative (`alternative="less"`):
+
+$$
+H_a: \rho_1 < 0 \;\;\;\;\;\; (3)
+$$
+
+and the two-sided alternative:
+
+$$
+H_a: \rho_1 \ne 0 \;\;\;\;\;\; (4)
+$$
+
+**Testing the Null Hypothesis of No Lag-1 Autocorrelation**  
+There are several possible methods for testing the null hypothesis (1) versus any of the three alternatives (2)-(4). The function `serialCorrelationTest` allows you to use one of three possible tests:
+
+- The rank von Neuman ratio test.
+- The test based on the normal approximation for the distribution of the Yule-Walker estimate of lag-one correlation.
+- The test based on the normal approximation for the distribution of the maximum likelihood estimate (MLE) of lag-one correlation.
+
+Each of these tests is described below.
+
+*Test Based on Yule-Walker Estimate* (`test="AR1.yw"`)  
+The Yule-Walker estimate of the lag-1 autocorrelation is given by:
+
+$$
+\hat{\rho}_1 = \frac{\hat{\gamma}_1}{\hat{\gamma}_0} \;\;\;\;\;\; (5)
+$$
+
+where
+
+$$
+\hat{\gamma}_k = \frac{1}{n} \sum_{t=1}^{n-k} (x_t - \bar{x})(x_{t+k} - \bar{x}) \;\;\;\;\;\; (6)
+$$
+
+is the estimate of the lag-$k$ autocovariance. (This estimator does not allow for missing values.)
+
+Under the null hypothesis (1), the estimator of lag-1 correlation in Equation (5) is approximately distributed as a normal (Gaussian) random variable with mean 0 and variance given by:
+
+$$
+Var(\hat{\rho}_1) \approx \frac{1}{n} \;\;\;\;\;\; (7)
+$$
+
+(Box and Jenkins, 1976, pp.34-35). Thus, the null hypothesis (1) can be tested with the statistic
+
+$$
+z = \sqrt{n} \hat{\rho_1} \;\;\;\;\;\; (8)
+$$
+
+which is distributed approximately as a standard normal random variable under the null hypothesis that the lag-1 autocorrelation is 0.
+
+*Test Based on the MLE* (`test="AR1.mle"`)  
+The function `serialCorrelationTest` the R function `arima` to compute the MLE of the lag-one autocorrelation and the estimated variance of this estimator. As for the test based on the Yule-Walker estimate, the z-statistic is computed as the estimated lag-one autocorrelation divided by the square root of the estimated variance.
+
+*Test Based on Rank von Neumann Ratio* (`test="rank.von.Neumann"`)  
+The null distribution of the serial correlation coefficient may be badly affected by departures from normality in the underlying process (Cox, 1966; Bartels, 1977). It is therefore a good idea to consider using a nonparametric test for randomness if the normality of the underlying process is in doubt (Bartels, 1982).
+
+Wald and Wolfowitz (1943) introduced the rank serial correlation coefficient, which for lag-1 autocorrelation is simply the Yule-Walker estimate (Equation (5) above) with the actual observations replaced with their ranks.
+
+von Neumann et al. (1941) introduced a test for randomness in the context of testing for trend in the mean of a process. Their statistic is given by:
+
+$$
+V = \frac{\sum_{i=1}^{n-1}(x_i - x_{i+1})^2}{\sum_{i=1}^n (x_i - \bar{x})^2} \;\;\;\;\;\; (9)
+$$
+
+which is the ratio of the square of successive differences to the usual sums of squared deviations from the mean. This statistic is bounded between 0 and 4, and for a purely random process is symmetric about 2. Small values of this statistic indicate possible positive autocorrelation, and large values of this statistics indicate possible negative autocorrelation. Durbin and Watson (1950, 1951, 1971) proposed using this statistic in the context of checking the independence of residuals from a linear regression model and provided tables for the distribution of this statistic. This statistic is therefore often called the “Durbin-Watson statistic” (Draper and Smith, 1998, p.181).
+
+The rank version of the von Neumann ratio statistic is given by:
+
+$$
+V_{rank} = \frac{\sum_{i=1}^{n-1}(R_i - R_{i+1})^2}{\sum_{i=1}^n (R_i - \bar{R})^2} \;\;\;\;\;\; (10)
+$$
+
+where $R_i$ denotes the rank of the $i$'th observation (Bartels, 1982). (This test statistic does not allow for missing values.) In the absence of ties, the denominator of this test statistic is equal to
+
+$$
+\sum_{i=1}^n (R_i - \bar{R})^2 = \frac{n(n^2 - 1)}{12} \;\;\;\;\;\; (11)
+$$
+
+The range of the $V_{rank}$ test statistic is given by:
+
+$$
+[\frac{12}{(n)(n+1)} , 4 - \frac{12}{(n)(n+1)}] \;\;\;\;\;\; (12)
+$$
+
+if n is even, with a negligible adjustment if n is odd (Bartels, 1982), so asymptotically the range is from 0 to 4, just as for the $V$ test statistic in Equation (9) above.
+
+Bartels (1982) shows that asymptotically, the rank von Neumann ratio statistic is a linear transformation of the rank serial correlation coefficient, so any asymptotic results apply to both statistics.
+
+For any fixed sample size $n$, the exact distribution of the $V_{rank}$ statistic in Equation (10) above can be computed by simply computing the value of $V_{rank}$ for all possible permutations of the serial order of the ranks. Based on this exact distribution, Bartels (1982) presents a table of critical values for the numerator of the RVN statistic for sample sizes between 4 and 10.
+
+Determining the exact distribution of $V_{rank}$ becomes impractical as the sample size increases. For values of n between 10 and 100, Bartels (1982) approximated the distribution of $V_{rank}$ by a [beta distribution](https://stat.ethz.ch/R-manual/R-devel/library/stats/html/Beta.html) over the range 0 to 4 with shape parameters `shape1=`$\nu$ and `shape2=`$\omega$ and:
+
+$$
+\nu = \omega = \frac{5n(n+1)(n-1)^2}{2(n-2)(5n^2 - 2n - 9)} - \frac{1}{2} \;\;\;\;\;\; (13)
+$$
+
+Bartels (1982) checked this approximation by simulating the distribution of $V_{rank}$ for $n=25$ and $n=50$ and comparing the empirical quantiles at $0.005$, $0.01$, $0.025$, $0.05$, and $0.1$ with the approximated quantiles based on the beta distribution. He found that the quantiles agreed to 2 decimal places for eight of the 10 values, and differed by $0.01$ for the other two values.
+
+**Note**: The definition of the [beta distribution](https://stat.ethz.ch/R-manual/R-devel/library/stats/html/Beta.html) assumes the random variable ranges from 0 to 1. This definition can be generalized as follows. Suppose the random variable $Y$ has a beta distribution over the range $a \le y \le b$, with shape parameters $\nu$ and $\omega$. Then the random variable $X$ defined as:
+
+$$
+X = \frac{Y-a}{b-a} \;\;\;\;\;\; (14)
+$$
+
+has the “standard beta distribution” as described in the help file for Beta (Johnson et al., 1995, p.210).
+
+Bartels (1982) shows that asymptotically, $V_{rank}$ has normal distribution with mean 2 and variance $4/n$, but notes that a slightly better approximation is given by using a variance of $20/(5n + 7)$.
+
+To test the null hypothesis (1) when `test="rank.von.Neumann"`, the function  
+`serialCorrelationTest` does the following:
+
+- When the sample size is between 3 and 10, the exact distribution of $V_{rank}$ is used to compute the p-value.
+- When the sample size is between 11 and 100, the beta approximation to the distribution of $V_{rank}$ is used to compute the p-value.
+- When the sample size is larger than 100, the normal approximation to the distribution of $V_{rank}$ is used to compute the p-value. (This uses the variance $20/(5n + 7)$.)
+
+When ties are present in the observations and midranks are used for the tied observations, the distribution of the $V_{rank}$ statistic based on the assumption of no ties is not applicable. If the number of ties is small, however, they may not grossly affect the assumed p-value.
+
+When ties are present, the function `serialCorrelationTest` issues a warning. When the sample size is between 3 and 10, the p-value is computed based on rounding up the computed value of $V_{rank}$ to the nearest possible value that could be observed in the case of no ties.
+
+**Computing a Confidence Interval for the Lag-1 Autocorrelation**  
+The function `serialCorrelationTest` computes an approximate $100(1-\alpha)\%$ confidence interval for the lag-1 autocorrelation as follows:
+
+$$
+[\hat{\rho}_1 - z_{1-\alpha/2}\hat{\sigma}_{\hat{\rho}_1},  \hat{\rho}_1 + z_{1-\alpha/2}\hat{\sigma}_{\hat{\rho}_1}] \;\;\;\;\;\; (15)
+$$
+
+where $\hat{\sigma}_{\hat{\rho}_1}$ denotes the estimated standard deviation of the estimated of lag-1 autocorrelation and $z_p$ denotes the $p$'th quantile of the standard [normal distribution](https://stat.ethz.ch/R-manual/R-devel/library/stats/html/Normal.html).
+
+When `test="AR1.yw"` or `test="rank.von.Neumann"`, the Yule-Walker estimate of lag-1 autocorrelation is used and the variance of the estimated lag-1 autocorrelation is approximately:
+
+$$
+Var(\hat{\rho}_1) \approx \frac{1}{n} (1 - \rho_1^2) \;\;\;\;\;\; (16)
+$$
+
+(Box and Jenkins, 1976, p.34), so
+
+$$
+\hat{\sigma}_{\hat{\rho}_1} = \sqrt{\frac{1 - \hat{\rho}_1^2}{n}} \;\;\;\;\;\; (17)
+$$
+
+When `test="AR1.mle"`, the MLE of the lag-1 autocorrelation is used, and its standard deviation is estimated with the square root of the estimated variance returned by `arima`.
+
+## kendallTrendTest {#kendalltrendtest}
+
+Help topic: [`kendallTrendTest`](https://alexkowa.github.io/EnvStats/reference/kendallTrendTest.html).
+
+`kendallTrendTest` performs Kendall's nonparametric test for a monotonic trend, which is a special case of the test for independence based on Kendall's tau statistic (see `cor.test`). The slope is estimated using the method of Theil (1950) and Sen (1968). When `ci.slope=TRUE`, the confidence interval for the slope is computed using Gilbert's (1987) Modification of the Theil/Sen Method.
+
+Kendall's test for a monotonic trend is a special case of the test for independence based on Kendall's tau statistic. The first section below explains the general case of testing for independence. The second section explains the special case of testing for monotonic trend. The last section explains how a simple linear regression model is a special case of a monotonic trend and how the slope may be estimated.
+
+**The General Case of Testing for Independence**
+
+*Definition of Kendall's Tau*  
+Let $X$ and $Y$ denote two continuous random variables with some joint (bivariate) distribution. Let $(X_1, Y_1), (X_2, Y_2), \ldots, (X_n, Y_n)$ denote a set of $n$ bivariate observations from this distribution, and assume these bivariate observations are mutually independent. Kendall (1938, 1975) proposed a test for the hypothesis that the $X$ and $Y$ random variables are independent based on estimating the following quantity:
+
+$$
+\tau = \{ 2 Pr[(X_2 - X_1)(Y_2 - Y_1) > 0] \} - 1 \;\;\;\;\;\; (1)
+$$
+
+The quantity in Equation (1) is called Kendall's tau, although this term is more often applied to the estimate of $\tau$ (see Equation (2) below). If $X$ and $Y$ are independent, then $\tau=0$. Furthermore, for most distributions of interest, if $\tau=0$ then the random variables $X$ and $Y$ are independent. (It can be shown that there exist some distributions for which $\tau=0$ and the random variables $X$ and $Y$ are not independent; see Hollander and Wolfe (1999, p.364)).
+
+Note that Kendall's tau is similar to a correlation coefficient in that $-1 \le \tau \le 1$. If $X$ and $Y$ always vary in the same direction, that is if $X_1 < X_2$ always implies $Y_1 < Y_2$, then $\tau = 1$. If $X$ and $Y$ always vary in the opposite direction, that is if $X_1 < X_2$ always implies $Y_1 > Y_2$, then $\tau = -1$. If $\tau > 0$, this indicates $X$ and $Y$ are positively associated. If $\tau < 0$, this indicates $X$ and $Y$ are negatively associated.
+
+*Estimating Kendall's Tau*  
+The quantity in Equation (1) can be estimated by:
+
+$$
+\hat{\tau} = \frac{2S}{n(n-1)} \;\;\;\;\;\; (2)
+$$
+
+where
+
+$$
+S = \sum_{i=1}^{n-1} \sum_{j=i+1}^{n} sign[(X_j - X_i)(Y_j - Y_i)] \;\;\;\;\;\; (3)
+$$
+
+and $sign()$ denotes the `sign` function:
+
+<table>
+<tbody>
+  <tr>
+    <td>&nbsp;</td>
+    <td>\(-1\)</td>
+    <td>\(x < 0\)</td>
+  </tr>
+  <tr>
+    <td>\(sign(x) =\)</td>
+    <td>\(0\)</td>
+    <td>\(x = 0 \;\;\;\;\;\; (4)\)</td>
+  </tr>
+  <tr>
+    <td>&nbsp;</td>
+    <td>\(1\)</td>
+    <td>\(x > 0\)</td>
+  </tr>
+</tbody>
+</table>
+
+(Hollander and Wolfe, 1999, Chapter 8; Conover, 1980, pp.256--260; Gilbert, 1987, Chapter 16; Helsel and Hirsch, 1992, pp.212--216; Gibbons et al., 2009, Chapter 11). The quantity defined in Equation (2) is called Kendall's rank correlation coefficient or more often Kendall's tau.
+
+Note that the quantity $S$ defined in Equation (3) is equal to the number of concordant pairs minus the number of discordant pairs. Hollander and Wolfe (1999, p.364) use the notation $K$ instead of $S$, and Conover (1980, p.257) uses the notation $T$.
+
+*Testing the Null Hypothesis of Independence*  
+The null hypothesis $H_0: \tau = 0$, can be tested using the statistic $S$ defined in Equation (3) above. Tables of the distribution of $S$ for small samples are given in Hollander and Wolfe (1999), Conover (1980, pp.458--459), Gilbert (1987, p.272), Helsel and Hirsch (1992, p.469), and Gibbons (2009, p.210). The function `kendallTrendTest` uses the large sample approximation to the distribution of $S$ under the null hypothesis, which is given by:
+
+$$
+z = \frac{S - E(S)}{\sqrt{Var(S)}} \;\;\;\;\;\; (5)
+$$
+
+where
+
+$$
+E(S) = 0 \;\;\;\;\;\; (6)
+$$
+
+$$
+Var(S) = \frac{n(n-1)(2n+5)}{18} \;\;\;\;\;\; (7)
+$$
+
+Under the null hypothesis, the quantity $z$ defined in Equation (5) is approximately distributed as a standard normal random variable.
+
+Both Kendall (1975) and Mann (1945) show that the normal approximation is excellent even for samples as small as $n=10$, provided that the following continuity correction is used:
+
+$$
+z = \frac{S - sign(S)}{\sqrt{Var(S)}} \;\;\;\;\;\; (8)
+$$
+
+The function `kendallTrendTest` performs the usual one-sample z-test using the statistic computed in Equation (8) or Equation (5). The argument `correct` determines which equation is used to compute the z-statistic. By default, `correct=TRUE` so Equation (8) is used.
+
+In the case of tied observations in either the observed $X$'s and/or observed $Y$'s, the formula for the variance of $S$ given in Equation (7) must be modified as follows:
+
+<table>
+<tbody>
+  <tr>
+    <td>\(Var(S) =\)</td>
+    <td>\(\frac{n(n-1)(2n+5)}{18} -\)</td>
+  </tr>
+  <tr>
+    <td>&nbsp;</td>
+    <td>\(\frac{\sum_{i=1}^{g} t_i(t_i-1)(2t_i+5)}{18} -\)</td>
+  </tr>
+  <tr>
+    <td>&nbsp;</td>
+    <td>\(\frac{\sum_{j=1}^{h} u_j(u_j-1)(2u_j+5)}{18} +\)</td>
+  </tr>
+  <tr>
+    <td>&nbsp;</td>
+    <td>\(\frac{[\sum_{i=1}^{g} t_i(t_i-1)(t_i-2)][\sum_{j=1}^{h} u_j(u_j-1)(u_j-2)]}{9n(n-1)(n-2)} +\)</td>
+  </tr>
+  <tr>
+    <td>&nbsp;</td>
+    <td>\(\frac{[\sum_{i=1}^{g} t_i(t_i-1)][\sum_{j=1}^{h} u_j(u_j-1)]}{2n(n-1)} \;\;\;\;\;\; (9)\)</td>
+  </tr>
+</tbody>
+</table>
+
+where $g$ is the number of tied groups in the $X$ observations, $t_i$ is the size of the $i$'th tied group in the $X$ observations, $h$ is the number of tied groups in the $Y$ observations, and $u_j$ is the size of the $j$'th tied group in the $Y$ observations. In the case of no ties in either the $X$ or $Y$ observations, Equation (9) reduces to Equation (7).
+
+**The Special Case of Testing for Monotonic Trend**  
+Often in environmental sampling, observations are taken periodically over time (Hirsch et al., 1982; van Belle and Hughes, 1984; Hirsch and Slack, 1984). In this case, the random variables $Y_1, Y_2, \ldots, Y_n$ can be thought of as representing the observations, and the variables $X_1, X_2, \ldots, X_n$ are no longer random but represent the time at which the $i$'th observation was taken. If the observations are equally spaced over time, then it is useful to make the simplification $X_i = i$ for $i = 1, 2, \ldots, n$. This is in fact the default value of the argument `x` for the function `kendallTrendTest`.
+
+In the case where the $X$'s represent time and are all distinct, the test for independence between $X$ and $Y$ is equivalent to testing for a monotonic trend in $Y$, and the test statistic $S$ simplifies to:
+
+$$
+S = \sum_{i=1}^{n-1} \sum_{j=i+1}^{n} sign(Y_j - Y_i) \;\;\;\;\;\; (10)
+$$
+
+Also, the formula for the variance of $S$ in the presence of ties (under the null hypothesis $H_0: \tau = 0$) simplifies to:
+
+$$
+Var(S) = \frac{n(n-1)(2n+5)}{18} - \frac{\sum_{j=1}^{h} u_j(u_j-1)(2u_j+5)}{18} \;\;\;\;\;\; (11)
+$$
+
+A form of the test statistic $S$ in Equation (10) was introduced by Mann (1945).
+
+**The Special Case of a Simple Linear Model: Estimating the Slope**  
+Consider the simple linear regression model
+
+$$
+Y_i = \beta_0 + \beta_1 X_i + \epsilon_i \;\;\;\;\;\; (12)
+$$
+
+where $\beta_0$ denotes the intercept, $\beta_1$ denotes the slope, $i = 1, 2, \ldots, n$, and the $\epsilon$'s are assumed to be independent and identically distributed random variables from the same distribution. This is a special case of dependence between the $X$'s and the $Y$'s, and the null hypothesis of a zero slope can be tested using Kendall's test statistic $S$ (Equation (3) or (10) above) and the associated z-statistic (Equation (5) or (8) above) (Hollander and Wolfe, 1999, pp.415--420).
+
+Theil (1950) proposed the following nonparametric estimator of the slope:
+
+$$
+\hat{\beta}_1 = Median(\frac{Y_j - Y_i}{X_j - X_i}); \;\; i < j \;\;\;\;\;\; (13)
+$$
+
+Note that the computation of the estimated slope involves computing
+
+$$
+N = {n \choose 2} = \frac{n(n-1)}{2} \;\;\;\;\;\; (14)
+$$
+
+“two-point” estimated slopes (assuming no tied $X$ values), and taking the median of these N values.
+
+Sen (1968) generalized this estimator to the case where there are possibly tied observations in the $X$'s. In this case, Sen simply ignores the two-point estimated slopes where the $X$'s are tied and computes the median based on the remaining $N'$ two-point estimated slopes. That is, Sen's estimator is given by:
+
+$$
+\hat{\beta}_1 = Median(\frac{Y_j - Y_i}{X_j - X_i}); \;\; i < j, X_i \ne X_j  \;\;\;\;\;\; (15)
+$$
+
+(Hollander and Wolfe, 1999, pp.421--422).
+
+Conover (1980, p. 267) suggests the following estimator for the intercept:
+
+$$
+\hat{\beta}_0 = Y_{0.5} - \hat{\beta}_1 X_{0.5} \;\;\;\;\;\; (16)
+$$
+
+where $X_{0.5}$ and $Y_{0.5}$ denote the sample medians of the $X$'s and $Y$'s, respectively. With these estimators of slope and intercept, the estimated regression line passes through the point $(X_{0.5}, Y_{0.5})$.
+
+**NOTE:** The function `kendallTrendTest` always returns estimates of slope and intercept assuming a linear model (Equation (12)), while the p-value is based on Kendall's tau, which is testing for the broader alternative of any kind of dependence between the $X$'s and $Y$'s.
+
+*Confidence Interval for the Slope*  
+Theil (1950) and Sen (1968) proposed methods to compute a confidence interval for the true slope, assuming the linear model of Equation (12) (see Hollander and Wolfe, 1999, pp.421-422). Gilbert (1987, p.218) illustrates a simpler method than the one given by Sen (1968) that is based on a normal approximation. Gilbert's (1987) method is an extension of the one given in Hollander and Wolfe (1999, p.424) that allows for ties and/or multiple observations per time period. This method is valid for a sample size as small as $n=10$ unless there are several tied observations.
+
+Let $N'$ denote the number of defined two-point estimated slopes that are used in Equation (15) above (if there are no tied $X$ values then $N' = N$), and let $\hat{\beta}_{1_{(1)}}, \hat{\beta}_{1_{(2)}}, \ldots, \hat{\beta}_{1_{(N')}}$ denote the $N'$ ordered slopes. For Gilbert's (1987) method, a $100(1-\alpha)\%$ two-sided confidence interval for the true slope is given by:
+
+$$
+[\hat{\beta}_{1_{(M1)}}, \hat{\beta}_{1_{(M2+1)}}] \;\;\;\;\;\; (17)
+$$
+
+where
+
+$$
+M1 = \frac{N' - C_{\alpha}}{2} \;\;\;\;\;\; (18)
+$$
+
+$$
+M2 = \frac{N' + C_{\alpha}}{2} \;\;\;\;\;\; (19)
+$$
+
+$$
+C_\alpha = z_{1 - \alpha/2} \sqrt{Var(S)} \;\;\;\;\;\; (20)
+$$
+
+$Var(S)$ is defined in Equations (7), (9), or (11), and $z_p$ denotes the $p$'th quantile of the standard normal distribution. One-sided confidence intervals may computed in a similar fashion.
+
+Usually the quantities $M1$ and $M2$ will not be integers. Gilbert (1987, p.219) suggests interpolating between adjacent values in this case, which is what the function `kendallTrendTest` does.
+
+## kendallSeasonalTrendTest {#kendallseasonaltrendtest}
+
+Help topic: [`kendallSeasonalTrendTest`](https://alexkowa.github.io/EnvStats/reference/kendallSeasonalTrendTest.html).
+
+Hirsch et al. (1982) introduced a modification of Kendall's test for trend (see [`kendallTrendTest`](https://alexkowa.github.io/EnvStats/reference/kendallTrendTest.html)) that allows for seasonality in observations collected over time. They call this test the *seasonal Kendall test*. Their test is appropriate for testing for trend in each season when the trend is always in the same direction across all seasons. van Belle and Hughes (1984) introduced a heterogeneity test for trend which is appropriate for testing for trend in any direction in any season. Hirsch and Slack (1984) proposed an extension to the seasonal Kendall test that allows for serial dependence in the observations. The function [`kendallSeasonalTrendTest`](https://alexkowa.github.io/EnvStats/reference/kendallSeasonalTrendTest.html) includes all of these tests, as well as an extension of the van Belle-Hughes heterogeneity test to the case of serial dependence.
+
+**Testing for Trend Assuming Serial Independence**
+
+*The Model*  
+Assume observations are taken over two or more years, and assume a single year can be divided into two or more seasons. Let $p$ denote the number of seasons. Let $X$ and $Y$ denote two continuous random variables with some joint (bivariate) distribution (which may differ from season to season). Let $N_j$ denote the number of bivariate observations taken in the $j$'th season (over two or more years) ($j = 1, 2, \ldots, p$), so that
+
+$$
+(X_{1j}, Y_{1j}), (X_{2j}, Y_{2j}), \ldots, (X_{N_jj}, Y_{N_jj})
+$$
+
+denote the $N_j$ bivariate observations from this distribution for season $j$, assume these bivariate observations are mutually independent, and let
+
+$$
+\tau_j = \{ 2 Pr[(X_{2j} - X_{1j})(Y_{2j} - Y_{1j}) > 0] \} - 1 \;\;\;\;\;\; (1)
+$$
+
+denote the value of Kendall's tau for that season (see [`kendallTrendTest`](https://alexkowa.github.io/EnvStats/reference/kendallTrendTest.html)). Also, assume all of the $Y$ observations are independent.
+
+The function `kendallSeasonalTrendTest` assumes that the $X$ values always denote the year in which the observation was taken. Note that within any season, the $X$ values need not be unique. That is, there may be more than one observation within the same year within the same season. In this case, the argument `y` must be a numeric vector, and you must supply the additional arguments `season` and `year`.
+
+If there is only one observation per season per year (missing values allowed), it is usually easiest to supply the argument `y` as an $n \times p$ matrix or data frame, where $n$ denotes the number of years. In this case
+
+$$
+N_1 = N_2 = \cdots = N_p = n \;\;\;\;\;\; (2)
+$$
+
+and
+
+$$
+X_{ij} = i \;\;\;\;\;\; (3)
+$$
+
+for $i = 1, 2, \ldots, n$ and $j = 1, 2, \ldots, p$, so if $Y$ denotes the $n \times p$ matrix of observed $Y$'s and $X$ denotes the $n \times p$ matrix of the $X$'s, then
+
+<table>
+<tbody>
+  <tr>
+    <td>&nbsp;</td>
+    <td>\(Y_{11}\)</td>
+    <td>\(Y_{12}\)</td>
+    <td>\(\cdots\)</td>
+    <td>\(Y_{1p}\)</td>
+    <td>&nbsp;</td>
+  </tr>
+  <tr>
+    <td>&nbsp;</td>
+    <td>\(Y_{21}\)</td>
+    <td>\(Y_{22}\)</td>
+    <td>\(\cdots\)</td>
+    <td>\(Y_{2p}\)</td>
+    <td>&nbsp;</td>
+  </tr>
+  <tr>
+    <td>\(\underline{Y} =\)</td>
+    <td>.</td>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td>\(\;\;\;\;\;\; (4)\)</td>
+  </tr>
+  <tr>
+    <td>&nbsp;</td>
+    <td>.</td>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+  </tr>
+  <tr>
+    <td>&nbsp;</td>
+    <td>.</td>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+  </tr>
+  <tr>
+    <td>&nbsp;</td>
+    <td>\(Y_{n1}\)</td>
+    <td>\(Y_{n2}\)</td>
+    <td>\(\cdots\)</td>
+    <td>\(Y_{np}\)</td>
+    <td>&nbsp;</td>
+  </tr>
+</tbody>
+</table>
+
+<table>
+<tbody>
+  <tr>
+    <td>&nbsp;</td>
+    <td>\(1\)</td>
+    <td>\(1\)</td>
+    <td>\(\cdots\)</td>
+    <td>\(1\)</td>
+    <td>&nbsp;</td>
+  </tr>
+  <tr>
+    <td>&nbsp;</td>
+    <td>\(2\)</td>
+    <td>\(2\)</td>
+    <td>\(\cdots\)</td>
+    <td>\(2\)</td>
+    <td>&nbsp;</td>
+  </tr>
+  <tr>
+    <td>\(\underline{X} =\)</td>
+    <td>.</td>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td>\(\;\;\;\;\;\; (5)\)</td>
+  </tr>
+  <tr>
+    <td>&nbsp;</td>
+    <td>.</td>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+  </tr>
+  <tr>
+    <td>&nbsp;</td>
+    <td>.</td>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+  </tr>
+  <tr>
+    <td>&nbsp;</td>
+    <td>\(n\)</td>
+    <td>\(n\)</td>
+    <td>\(\cdots\)</td>
+    <td>\(n\)</td>
+    <td>&nbsp;</td>
+  </tr>
+</tbody>
+</table>
+
+The null hypothesis is that within each season the $X$ and $Y$ random variables are independent; that is, within each season there is no trend in the $Y$ observations over time. This null hypothesis can be expressed as:
+
+$$
+H_0: \tau_1 = \tau_2 = \cdots = \tau_p = 0 \;\;\;\;\;\; (6)
+$$
+
+*The Seasonal Kendall Test for Trend*  
+Hirsch et al.'s (1982) extension of Kendall's tau statistic to test the null hypothesis (6) is based on simply summing together the Kendall $S$-statistics for each season and computing the following statistic:
+
+$$
+z = \frac{S'}{\sqrt{Var(S')}} \;\;\;\;\;\; (7)
+$$
+
+or, using the correction for continuity,
+
+$$
+z = \frac{S' - sign(S')}{\sqrt{Var(S')}} \;\;\;\;\;\; (8)
+$$
+
+where
+
+$$
+S' = \sum_{j=1}^p S_j \;\;\;\;\;\; (9)
+$$
+
+$$
+S_j = \sum_{i=1}^{N_j-1} \sum_{k=i+1}^{N_j} sign[(X_{kj} - X_{ij})(Y_{kj} - Y_{ij})] \;\;\;\;\;\; (10)
+$$
+
+and $sign()$ denotes the `sign` function:
+
+<table>
+<tbody>
+  <tr>
+    <td>&nbsp;</td>
+    <td>\(-1\)</td>
+    <td>\(x < 0\)</td>
+  </tr>
+  <tr>
+    <td>\(sign(x) =\)</td>
+    <td>\(0\)</td>
+    <td>\(x = 0 \;\;\;\;\;\; (11)\)</td>
+  </tr>
+  <tr>
+    <td>&nbsp;</td>
+    <td>\(1\)</td>
+    <td>\(x > 0\)</td>
+  </tr>
+</tbody>
+</table>
+
+Note that the quantity in Equation (10) is simply the Kendall $S$-statistic for season $j$ ($j = 1, 2, \ldots, p$) (see Equation (3) in the section on [`kendallTrendTest`](trend-and-correlation.html#kendalltrendtest)).
+
+For each season, if the predictor variables (the $X$'s) are strictly increasing (e.g., Equation (3) above), then Equation (10) simplifies to
+
+$$
+S_j = \sum_{i=1}^{N_j-1} \sum_{k=i+1}^{N_j} sign[(Y_{kj} - Y_{ij})] \;\;\;\;\;\; (12)
+$$
+
+Under the null hypothesis (6), the quantity $z$ defined in Equation (7) or (8) is approximately distributed as a standard normal random variable.
+
+Note that there may be missing values in the observations, so let $n_j$ denote the number of $(X,Y)$ pairs without missing values for season $j$.
+
+The statistic $S'$ in Equation (9) has mean and variance given by:
+
+$$
+E(S') = \sum_{j = 1}^p E(S_j) \;\;\;\;\;\; (13)
+$$
+
+$$
+Var(S') = \sum_{j = 1}^p Var(S_j) + \sum_{g=1}^{p-1} \sum_{h=g+1}^{p} 2 Cov(S_g, S_h) \;\;\;\;\;\; (14)
+$$
+
+Since all the observations are assumed to be mutually independent,
+
+$$
+\sigma_{gh} = Cov(S_g, S_h) = 0, \;\; g \ne h, \;\; g,h = 1, 2, \ldots, p \;\;\;\;\;\; (15)
+$$
+
+Furthermore, under the null hypothesis (6),
+
+$$
+E(S_j) = 0, \;\; j = 1, 2, \ldots, p \;\;\;\;\;\; (16)
+$$
+
+and, in the case of no tied observations,
+
+$$
+Var(S_j) = \frac{n_j(n_j-1)(2n_j+5)}{18} \;\;\;\;\;\; (17)
+$$
+
+for $j=1,2, \ldots, p$ (see equation (7) in the section on [`kendallTrendTest`](trend-and-correlation.html#kendalltrendtest)).
+
+In the case of tied observations,
+
+<table>
+<tbody>
+  <tr>
+    <td>\(Var(S_j) =\)</td>
+    <td>\(\frac{n_j(n_j-1)(2n_j+5)}{18} -\)</td>
+  </tr>
+  <tr>
+    <td>&nbsp;</td>
+    <td>\(\frac{\sum_{i=1}^{g} t_i(t_i-1)(2t_i+5)}{18} -\)</td>
+  </tr>
+  <tr>
+    <td>&nbsp;</td>
+    <td>\(\frac{\sum_{k=1}^{h} u_k(u_k-1)(2u_k+5)}{18} +\)</td>
+  </tr>
+  <tr>
+    <td>&nbsp;</td>
+    <td>\(\frac{[\sum_{i=1}^{g} t_i(t_i-1)(t_i-2)][\sum_{k=1}^{h} u_k(u_k-1)(u_k-2)]}{9n_k(n_k-1)(n_k-2)} +\)</td>
+  </tr>
+  <tr>
+    <td>&nbsp;</td>
+    <td>\(\frac{[\sum_{i=1}^{g} t_i(t_i-1)][\sum_{k=1}^{h} u_k(u_k-1)]}{2n_k(n_k-1)} \;\;\;\;\;\; (18)\)</td>
+  </tr>
+</tbody>
+</table>
+
+where $g$ is the number of tied groups in the $X$ observations for season $j$, $t_i$ is the size of the $i$'th tied group in the $X$ observations for season $j$, $h$ is the number of tied groups in the $Y$ observations for season $j$, and $u_k$ is the size of the $k$'th tied group in the $Y$ observations for season $j$ (see Equation (9) in the section on [`kendallTrendTest`](trend-and-correlation.html#kendalltrendtest)).
+
+*Estimating $\tau$, Slope, and Intercept*  
+The function `kendall.SeasonalTrendTest` returns estimated values of Kendall's $\tau$, the slope, and the intercept for each season, as well as a single estimate for each of these three quantities combined over all seasons. The overall estimate of $\tau$ is the weighted average of the p seasonal $\tau$'s:
+
+$$
+\hat{\tau} = \frac{\sum_{j=1}^p n_j \hat{\tau}_j}{\sum_{j=1}^p n_j} \;\;\;\;\;\; (19)
+$$
+
+where
+
+$$
+\hat{\tau}_j = \frac{2S_j}{n_j(n_j-1)} \;\;\;\;\;\; (20)
+$$
+
+(see Equation (2) in the section on [`kendallTrendTest`](trend-and-correlation.html#kendalltrendtest)).
+
+We can compute the estimated slope for season $j$ as:
+
+$$
+\hat{\beta}_{1_j} = Median(\frac{Y_{kj} - Y_{ij}}{X_{kj} - X_{ij}}); \;\; i < k; \;\; X_{kj} \ne X_{ik} \;\;\;\;\;\; (21)
+$$
+
+for $j = 1, 2, \ldots, p$. The overall estimate of slope, however, is **not** the median of these $p$ estimates of slope; instead, following Hirsch et al. (1982, p.117), the overall estimate of slope is the median of all two-point slopes computed within each season:
+
+$$
+\hat{\beta}_1 = Median(\frac{Y_{kj} - Y_{ij}}{X_{kj} - X_{ij}}); \;\; i < k; \;\; X_{kj} \ne X_{ik}; \;\; j = 1, 2, \ldots, p \;\;\;\;\;\; (22)
+$$
+
+(see Equation (15) in the section on [`kendallTrendTest`](trend-and-correlation.html#kendalltrendtest)).
+
+The overall estimate of intercept is the median of the $p$ seasonal estimates of intercept:
+
+$$
+\hat{\beta}_0 = Median(\hat{\beta}_{0_1}, \hat{\beta}_{0_2}, \ldots, \hat{\beta}_{0_p}) \;\;\;\;\;\; (23)
+$$
+
+where
+
+$$
+\hat{\beta}_{0_j} = Y_{0.5_j} - \hat{\beta}_{1_j} X_{0.5_j} \;\;\;\;\;\; (24)
+$$
+
+and $X_{0.5_j}$ and $Y_{0.5_j}$ denote the sample medians of the $X$'s and $Y$'s, respectively, for season $j$ (see Equation (16) in the section on [`kendallTrendTest`](trend-and-correlation.html#kendalltrendtest)).
+
+*Confidence Interval for the Slope*  
+Gilbert (1987, p.227-228) extends his method of computing a confidence interval for the slope to the case of seasonal observations. Let $N'$ denote the number of defined two-point estimated slopes that are used in Equation (22) above and let
+
+$$
+\hat{\beta}_{1_{(1)}}, \hat{\beta}_{1_{(2)}}, \ldots, \hat{\beta}_{1_{(N')}}
+$$
+
+denote the $N'$ ordered slopes. For Gilbert's (1987) method, a $100(1-\alpha)\%$ two-sided confidence interval for the true over-all slope across all seasons is given by:
+
+$$
+[\hat{\beta}_{1_{(M1)}}, \hat{\beta}_{1_{(M2+1)}}] \;\;\;\;\;\; (25)
+$$
+
+where
+
+$$
+M1 = \frac{N' - C_{\alpha}}{2} \;\;\;\;\;\; (26)
+$$
+
+$$
+M2 = \frac{N' + C_{\alpha}}{2} \;\;\;\;\;\; (27)
+$$
+
+$$
+C_\alpha = z_{1 - \alpha/2} \sqrt{Var(S')} \;\;\;\;\;\; (28)
+$$
+
+$Var(S')$ is defined in Equation (14), and $z_p$ denotes the $p$'th quantile of the standard normal distribution. One-sided confidence intervals may computed in a similar fashion.
+
+Usually the quantities $M1$ and $M2$ will not be integers. Gilbert (1987, p.219) suggests interpolating between adjacent values in this case, which is what the function `kendallSeasonalTrendTest` does.
+
+*The Van Belle-Hughes Heterogeneity Test for Trend*  
+The seasonal Kendall test described above is appropriate for testing the null hypothesis (6) against the alternative hypothesis of a trend in at least one season. All of the trends in each season should be in the same direction.
+
+The seasonal Kendall test is not appropriate for testing for trend when there are trends in a positive direction in one or more seasons and also negative trends in one or more seasons. For example, for the following set of observations, the seasonal Kendall statistic $S'$ is 0 with an associated two-sided p-value of 1, even though there is clearly a positive trend in season 1 and a negative trend in season 2.
+
+<table>
+<tbody>
+  <tr>
+    <td><strong>Year</strong></td>
+    <td><strong>Season 1</strong></td>
+    <td><strong>Season 2</strong></td>
+  </tr>
+  <tr>
+    <td>1</td>
+    <td>5</td>
+    <td>8</td>
+  </tr>
+  <tr>
+    <td>2</td>
+    <td>6</td>
+    <td>7</td>
+  </tr>
+  <tr>
+    <td>3</td>
+    <td>7</td>
+    <td>6</td>
+  </tr>
+  <tr>
+    <td>4</td>
+    <td>8</td>
+    <td>5</td>
+  </tr>
+</tbody>
+</table>
+
+Van Belle and Hughes (1984) suggest using the following statistic to test for heterogeneity in trend prior to applying the seasonal Kendall test:
+
+$$
+\chi_{het}^2 = \sum_{j=1}^p Z_j^2 - p \bar{Z}^2 \;\;\;\;\;\; (29)
+$$
+
+where
+
+$$
+Z_j = \frac{S_j}{Var(S_j)} \;\;\;\;\;\; (30)
+$$
+
+$$
+\bar{Z} = \frac{1}{p} \sum_{j=1}^p Z_j \;\;\;\;\;\; (31)
+$$
+
+Under the null hypothesis (6), the statistic defined in Equation (29) is approximately distributed as a `chi-square random variable` with $p-1$ degrees of freedom. Note that the continuity correction is not used to compute the $Z_j$'s defined in Equation (30) since using it results in an unacceptably conservative test (van Belle and Hughes, 1984, p.132). Van Belle and Hughes (1984) actually call the statistic in (29) a homogeneous chi-square statistic. Here it is called a heterogeneous chi-square statistic after the alternative hypothesis it is meant to test.
+
+Van Belle and Hughes (1984) imply that the heterogeneity statistic defined in Equation (29) may be used to test the null hypothesis:
+
+$$
+H_0: \tau_1 = \tau_2 = \cdots = \tau_p = \tau \;\;\;\;\;\; (32)
+$$
+
+where $\tau$ is some arbitrary number between -1 and 1. For this case, however, the distribution of the test statistic in Equation (29) is unknown since it depends on the unknown value of $\tau$ (Equations (16)-(18) above assume $\tau = 0$ and are not correct if $\tau \ne 0$). The heterogeneity chi-square statistic of Equation (29) may be assumed to be approximately distributed as chi-square with $p-1$ degrees of freedom under the null hypothesis (32), but further study is needed to determine how well this approximation works.
+
+**Testing for Trend Assuming Serial Dependence**
+
+*The Model*  
+Assume the same model as for the case of serial independence, except now the observed $Y$'s are not assumed to be independent of one another, but are allowed to be serially correlated over time. Furthermore, assume one observation per season per year (Equations (2)-(5) above).
+
+*The Seasonal Kendall Test for Trend Modified for Serial Dependence*  
+Hirsch and Slack (1984) introduced a modification of the seasonal Kendall test that is robust against serial dependence (in terms of Type I error) except when the observations have a very strong long-term persistence (very large autocorrelation) or when the sample sizes are small (e.g., 5 years of monthly data). This modification is based on a multivariate test introduced by Dietz and Killeen (1981).
+
+In the case of serial dependence, Equation (15) is no longer true, so an estimate of the correct value of $\sigma_{gh}$ must be used to compute Var(S') in Equation (14). Let $R$ denote the $n \times p$ matrix of ranks for the $Y$ observations (Equation (4) above), where the $Y$'s are ranked within season:
+
+<table>
+<tbody>
+  <tr>
+    <td>&nbsp;</td>
+    <td>\(R_{11}\)</td>
+    <td>\(R_{12}\)</td>
+    <td>\(\cdots\)</td>
+    <td>\(R_{1p}\)</td>
+    <td>&nbsp;</td>
+  </tr>
+  <tr>
+    <td>&nbsp;</td>
+    <td>\(R_{21}\)</td>
+    <td>\(R_{22}\)</td>
+    <td>\(\cdots\)</td>
+    <td>\(R_{2p}\)</td>
+    <td>&nbsp;</td>
+  </tr>
+  <tr>
+    <td>\(\underline{R} =\)</td>
+    <td>.</td>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td>\(\;\;\;\;\;\; (33)\)</td>
+  </tr>
+  <tr>
+    <td>&nbsp;</td>
+    <td>.</td>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+  </tr>
+  <tr>
+    <td>&nbsp;</td>
+    <td>.</td>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+  </tr>
+  <tr>
+    <td>&nbsp;</td>
+    <td>\(R_{n1}\)</td>
+    <td>\(R_{n2}\)</td>
+    <td>\(\cdots\)</td>
+    <td>\(R_{np}\)</td>
+    <td>&nbsp;</td>
+  </tr>
+</tbody>
+</table>
+
+where
+
+$$
+R_{ij} = \frac{1}{2} [n_j + 1 \sum_{k=1}^{n_j} sign(Y_{ij} - Y_{kj})] \;\;\;\;\;\; (34)
+$$
+
+the $sign$ function is defined in Equation (11) above, and as before $n_j$ denotes the number of $(X,Y)$ pairs without missing values for season $j$. Note that by this definition, missing values are assigned the mid-rank of the non-missing values.
+
+Hirsch and Slack (1984) suggest using the following formula, given by Dietz and Killeen (1981), in the case where there are no missing values:
+
+$$
+\hat{\sigma}_{gh} = \frac{1}{3} [K_{gh} + 4 \sum_{i=1}^n R_{ig}R_{ih} - n(n+1)^2] \;\;\;\;\;\; (35)
+$$
+
+where
+
+$$
+K_{gh} = \sum_{i=1}^{n-1} \sum_{j=i+1}^n sign[(Y_{jg} - Y_{ig})(Y_{jh} - Y_{ih})] \;\;\;\;\;\; (36)
+$$
+
+Note that the quantity defined in Equation (36) is Kendall's tau for season $g$ vs. season $h$.
+
+For the case of missing values, Hirsch and Slack (1984) derive the following modification of Equation (35):
+
+$$
+\hat{\sigma}_{gh} = \frac{1}{3} [K_{gh} + 4 \sum_{i=1}^n R_{ig}R_{ih} - n(n_g + 1)(n_h + 1)] \;\;\;\;\;\; (37)
+$$
+
+Technically, the estimates in Equations (35) and (37) are not correct estimators of covariance, and Equations (17) and (18) are not correct estimators of variance, because the model Dietz and Killeen (1981) use assumes that observations within the rows of $Y$ (Equation (4) above) may be correlated, but observations between rows are independent. Serial dependence induces correlation between all of the $Y$'s. In most cases, however, the serial dependence shows an exponential decay in correlation across time and so these estimates work fairly well (see more discussion in the background discussion in the [`kendallSeasonalTrendTest` help page](https://alexkowa.github.io/EnvStats/reference/kendallSeasonalTrendTest.html)).
+
+*Estimates and Confidence Intervals*  
+The seasonal and over-all estimates of $\tau$, slope, and intercept are computed using the same methods as in the case of serial independence. Also, the method for computing the confidence interval for the slope is the same as in the case of serial independence. Note that the serial dependence is accounted for in the term $Var(S')$ in Equation (28).
+
+*The Van Belle-Hughes Heterogeneity Test for Trend Modified for Serial Dependence*  
+Like its counterpart in the case of serial independence, the seasonal Kendall test modified for serial dependence described above is appropriate for testing the null hypothesis (6) against the alternative hypothesis of a trend in at least one season. All of the trends in each season should be in the same direction.
+
+The modified seasonal Kendall test is not appropriate for testing for trend when there are trends in a positive direction in one or more seasons and also negative trends in one or more seasons. This section describes a modification of the van Belle-Hughes heterogeneity test for trend in the presence of serial dependence.
+
+Let $\underline{S}$ denote the $p \times 1$ vector of Kendall $S$-statistics for each season:
+
+<table>
+<tbody>
+  <tr>
+    <td>&nbsp;</td>
+    <td>\(S_1\)</td>
+    <td>&nbsp;</td>
+  </tr>
+  <tr>
+    <td>&nbsp;</td>
+    <td>\(S_2\)</td>
+    <td>&nbsp;</td>
+  </tr>
+  <tr>
+    <td>\(\underline{S} =\)</td>
+    <td>.</td>
+    <td>\(\;\;\;\;\;\; (38)\)</td>
+  </tr>
+  <tr>
+    <td>&nbsp;</td>
+    <td>.</td>
+    <td>&nbsp;</td>
+  </tr>
+  <tr>
+    <td>&nbsp;</td>
+    <td>.</td>
+    <td>&nbsp;</td>
+  </tr>
+  <tr>
+    <td>&nbsp;</td>
+    <td>\(S_p\)</td>
+    <td>&nbsp;</td>
+  </tr>
+</tbody>
+</table>
+
+The distribution of $\underline{S}$ is approximately multivariate normal with
+
+<table>
+<tbody>
+  <tr>
+    <td>&nbsp;</td>
+    <td>\(\mu_1\)</td>
+    <td>&nbsp;</td>
+  </tr>
+  <tr>
+    <td>&nbsp;</td>
+    <td>\(\mu_2\)</td>
+    <td>&nbsp;</td>
+  </tr>
+  <tr>
+    <td>\(E(\underline{S}) = \underline{\mu} =\)</td>
+    <td>.</td>
+    <td>\(\;\;\;\;\;\; (39)\)</td>
+  </tr>
+  <tr>
+    <td>&nbsp;</td>
+    <td>.</td>
+    <td>&nbsp;</td>
+  </tr>
+  <tr>
+    <td>&nbsp;</td>
+    <td>.</td>
+    <td>&nbsp;</td>
+  </tr>
+  <tr>
+    <td>&nbsp;</td>
+    <td>\(\mu_p\)</td>
+  </tr>
+</tbody>
+</table>
+
+<table>
+<tbody>
+  <tr>
+    <td>&nbsp;</td>
+    <td>\(\sigma_1^2\)</td>
+    <td>\(\sigma_{12}\)</td>
+    <td>\(\cdots\)</td>
+    <td>\(\sigma_{1p}\)</td>
+    <td>&nbsp;</td>
+  </tr>
+  <tr>
+    <td>&nbsp;</td>
+    <td>\(\sigma_{21}\)</td>
+    <td>\(\sigma_2^2\)</td>
+    <td>\(\cdots\)</td>
+    <td>\(\sigma_{2p}\)</td>
+    <td>&nbsp;</td>
+  </tr>
+  <tr>
+    <td>\(Var(\underline{S}) = \Sigma =\)</td>
+    <td>.</td>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td>\(\;\;\;\;\;\; (40)\)</td>
+  </tr>
+  <tr>
+    <td>&nbsp;</td>
+    <td>.</td>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+  </tr>
+  <tr>
+    <td>&nbsp;</td>
+    <td>.</td>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+  </tr>
+  <tr>
+    <td>&nbsp;</td>
+    <td>\(\sigma_{n1}\)</td>
+    <td>\(\sigma_{n2}\)</td>
+    <td>\(\cdots\)</td>
+    <td>\(\sigma_n^2\)</td>
+    <td>&nbsp;</td>
+  </tr>
+</tbody>
+</table>
+
+where
+
+$$
+\mu_j = \frac{n_j(n_j - 1)}{2} \tau_j, \;\; j = 1, 2, \ldots, p \;\;\;\;\;\; (41)
+$$
+
+Define the $p \times p$ matrix $\underline{m}$ as
+
+<table>
+<tbody>
+  <tr>
+    <td>&nbsp;</td>
+    <td>\(\frac{2}{n_1(n_1 - 1)}\)</td>
+    <td>\(0\)</td>
+    <td>\(\cdots\)</td>
+    <td>\(0\)</td>
+    <td>&nbsp;</td>
+  </tr>
+  <tr>
+    <td>&nbsp;</td>
+    <td>\(0\)</td>
+    <td>\(\frac{2}{n_2(n_2 - 1)}\)</td>
+    <td>\(\cdots\)</td>
+    <td>\(0\)</td>
+    <td>&nbsp;</td>
+  </tr>
+  <tr>
+    <td>\(\underline{m} =\)</td>
+    <td>.</td>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td>\(\;\;\;\;\;\; (42)\)</td>
+  </tr>
+  <tr>
+    <td>&nbsp;</td>
+    <td>.</td>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+  </tr>
+  <tr>
+    <td>&nbsp;</td>
+    <td>.</td>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+  </tr>
+  <tr>
+    <td>&nbsp;</td>
+    <td>\(0\)</td>
+    <td>\(0\)</td>
+    <td>\(\cdots\)</td>
+    <td>\(\frac{2}{n_p(n_p - 1)}\)</td>
+  </tr>
+</tbody>
+</table>
+
+Then the vector of the seasonal estimates of $\tau$ can be written as:
+
+<table>
+<tbody>
+  <tr>
+    <td>&nbsp;</td>
+    <td>\(\hat{\tau}_1\)</td>
+    <td>&nbsp;</td>
+    <td>\(2S_1/[n_1(n_1-1)]\)</td>
+    <td>&nbsp;</td>
+  </tr>
+  <tr>
+    <td>&nbsp;</td>
+    <td>\(\hat{\tau}_2\)</td>
+    <td>&nbsp;</td>
+    <td>\(2S_2/[n_2(n_2-1)]\)</td>
+    <td>&nbsp;</td>
+  </tr>
+  <tr>
+    <td>\(\underline{\hat{\tau}} =\)</td>
+    <td>.</td>
+    <td>\(=\)</td>
+    <td>.</td>
+    <td>\(= \underline{m} \; \underline{S} \;\;\;\;\; (43)\)</td>
+  </tr>
+  <tr>
+    <td>&nbsp;</td>
+    <td>.</td>
+    <td>&nbsp;</td>
+    <td>.</td>
+    <td>&nbsp;</td>
+  </tr>
+  <tr>
+    <td>&nbsp;</td>
+    <td>.</td>
+    <td>&nbsp;</td>
+    <td>.</td>
+    <td>&nbsp;</td>
+  </tr>
+  <tr>
+    <td>&nbsp;</td>
+    <td>\(\hat{\tau}_p\)</td>
+    <td>&nbsp;</td>
+    <td>\(2S_p/[n_p(n_p-1)]\)</td>
+    <td>&nbsp;</td>
+  </tr>
+</tbody>
+</table>
+
+so the distribution of the vector in Equation (43) is approximately multivariate normal with
+
+<table>
+<tbody>
+  <tr>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td>\(\tau_1\)</td>
+    <td>&nbsp;</td>
+  </tr>
+  <tr>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td>\(\tau_2\)</td>
+    <td>&nbsp;</td>
+  </tr>
+  <tr>
+    <td>\(E(\underline{\hat{\tau}}) =\)</td>
+    <td>\(E(\underline{m} \underline{S}) =\)</td>
+    <td>\(\underline{m} \underline{\mu} =\)</td>
+    <td>\(\underline{\tau} =\)</td>
+    <td>.</td>
+    <td>\(\;\;\;\;\;\; (44)\)</td>
+  </tr>
+  <tr>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td>.</td>
+    <td>&nbsp;</td>
+  </tr>
+  <tr>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td>.</td>
+    <td>&nbsp;</td>
+  </tr>
+  <tr>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td>\(\tau_p\)</td>
+  </tr>
+</tbody>
+</table>
+
+$$
+Var(\underline{\hat{\tau}}) = Var(\underline{m} \; \underline{S}) = \underline{m} \Sigma \underline{m}^T = \Sigma_{\hat{\tau}} \;\;\;\;\;\; (45)
+$$
+
+where $^T$ denotes the transpose operator. Let $\underline{C}$ denote the $(p-1) \times p$ contrast matrix
+
+$$
+\underline{C} = [\; \underline{1} \; | \; -I_p] \;\;\;\;\;\; (46)
+$$
+
+where $I_p$ denotes the $p \times p$ identity matrix. That is,
+
+<table>
+<tbody>
+  <tr>
+    <td>&nbsp;</td>
+    <td>\(1\)</td>
+    <td>\(-1\)</td>
+    <td>\(0\)</td>
+    <td>\(\cdots\)</td>
+    <td>\(0\)</td>
+  </tr>
+  <tr>
+    <td>&nbsp;</td>
+    <td>\(1\)</td>
+    <td>\(0\)</td>
+    <td>\(-1\)</td>
+    <td>\(\cdots\)</td>
+    <td>\(0\)</td>
+  </tr>
+  <tr>
+    <td>\(\underline{C} =\)</td>
+    <td>.</td>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td>.</td>
+  </tr>
+  <tr>
+    <td>&nbsp;</td>
+    <td>.</td>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td>.</td>
+  </tr>
+  <tr>
+    <td>&nbsp;</td>
+    <td>.</td>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td>.</td>
+  </tr>
+  <tr>
+    <td>&nbsp;</td>
+    <td>\(1\)</td>
+    <td>\(0\)</td>
+    <td>\(0\)</td>
+    <td>\(\cdots\)</td>
+    <td>\(-1\)</td>
+  </tr>
+</tbody>
+</table>
+
+Then the null hypothesis (32) is equivalent to the null hypothesis:
+
+$$
+H_0: \underline{C} \underline{\tau} = 0 \;\;\;\;\;\; (47)
+$$
+
+Based on theory for samples from a multivariate normal distribution (Johnson and Wichern, 2007), under the null hypothesis (47) the quantity
+
+$$
+\chi_{het}^2 = (\underline{C} \; \underline{\hat{\tau}})^T (\underline{C} \hat{\Sigma}_{\hat{\tau}} \underline{C}^T)^{-1} (\underline{C} \; \underline{\hat{\tau}}) \;\;\;\;\;\; (48)
+$$
+
+has approximately a chi-square distribution with $p-1$ degrees of freedom for “large” values of seasonal sample sizes, where
+
+$$
+\hat{\Sigma}_{\hat{\tau}} = \underline{m} \hat{\Sigma} \underline{m}^T \;\;\;\;\;\; (49)
+$$
+
+The estimate of $\Sigma$ in Equation (49) can be computed using the same formulas that are used for the modified seasonal Kendall test (i.e., Equation (35) or (37) for the off-diagonal elements and Equation (17) or (18) for the diagonal elements). As previously noted, the formulas for the variances are actually only valid if $t = 0$ and there is no correlation between the rows of $Y$. The same is true of the formulas for the covariances. More work is needed to determine the goodness of the chi-square approximation for the test statistic in (48). The pseudo-heterogeneity test statistic of Equation (48), however, should provide some guidance as to whether the null hypothesis (32) (or equivalently (47)) appears to be true.

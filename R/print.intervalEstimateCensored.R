@@ -1,3 +1,5 @@
+#' @exportS3Method NULL
+#' @noRd
 print.intervalEstimateCensored <-
 function (x, conf.cov.sig.digits = .Options$digits, limits.sig.digits = .Options$digits, 
     ...) 

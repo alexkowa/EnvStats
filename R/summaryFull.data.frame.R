@@ -1,3 +1,5 @@
+#' @exportS3Method NULL
+#' @noRd
 summaryFull.data.frame <-
 function (object, ...) 
 {

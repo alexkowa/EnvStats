@@ -1,3 +1,5 @@
+#' @exportS3Method NULL
+#' @noRd
 varGroupTest.default <-
 function (object, group, test = "Levene", correct = TRUE, data.name = NULL,
     group.name = NULL, parent.of.data = NULL, subset.expression = NULL,

@@ -1,0 +1,2127 @@
+---
+title: "Probability distributions and parameter estimation"
+output:
+  rmarkdown::html_vignette:
+    toc: true
+    toc_depth: 2
+vignette: >
+  %\VignetteIndexEntry{Probability distributions and parameter estimation}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+This vignette describes the probability distributions available in EnvStats and
+the methods used to estimate gamma, lognormal, and generalized extreme value
+distribution parameters. It includes likelihood, moment, and probability-weighted
+moment estimators and their statistical properties.
+
+Related vignettes:
+
+- [Estimation with censored data](censored-estimation.html)
+- [Distribution diagnostics, transformations, and probability plots](distribution-diagnostics.html)
+- [Nonparametric estimation and two-sample tests](nonparametric-methods.html)
+
+## Distribution.df {#distribution-df}
+
+Help topic: [`Distribution.df`](https://alexkowa.github.io/EnvStats/reference/Distribution.df.html).
+
+The table below summarizes the probability distributions available in R and EnvStats. For each distribution, there are four associated functions for computing density values, percentiles, quantiles, and random numbers. The form of the names of these functions are `d`*abb*, `p`*abb*, `q`*abb*, and `r`*abb*, where *abb* is the abbreviated name of the distribution (see table below). These functions are described in the help file with the name of the distribution (see the first column of the table below). For example, the help file for `Beta` describes the behavior of `dbeta`, `pbeta`, `qbeta`, and `rbeta`.
+
+For most distributions, there is also an associated function for estimating the distribution parameters, and the form of the names of these functions is `e`*abb*, where *abb* is the abbreviated name of the distribution (see table below). All of these functions are listed in the help file [Estimating Distribution Parameters](https://alexkowa.github.io/EnvStats/reference/FcnsByCatEstDistParams.html). For example, the function [`ebeta`](https://alexkowa.github.io/EnvStats/reference/ebeta.html) estimates the shape parameters of a Beta distribution based on a random sample of observations from this distribution.
+
+For some distributions, there are functions to estimate distribution parameters based on Type I censored data. The form of the names of these functions is `e`*abb*`SinglyCensored` for singly censored data and `e`*abb*`MultiplyCensored` for multiply censored data. All of these functions are listed under the heading *Estimating Distribution Parameters* in the [censored-data overview](censored-estimation.html#fcnsbycatcensoreddata).
+
+**Table 1a. Available Distributions: Name, Abbreviation, Type, and Range**
+
+<table>
+<tbody>
+  <tr>
+    <td><strong>Name</strong></td>
+    <td><strong>Abbreviation</strong></td>
+    <td><strong>Type</strong></td>
+    <td><strong>Range</strong></td>
+  </tr>
+  <tr>
+    <td><code>Beta</code></td>
+    <td><code>beta</code></td>
+    <td>Continuous</td>
+    <td>\([0, 1]\)</td>
+  </tr>
+  <tr>
+    <td><code>Binomial</code></td>
+    <td><code>binom</code></td>
+    <td>Finite</td>
+    <td>\([0, size]\)</td>
+  </tr>
+  <tr>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td>Discrete</td>
+    <td>(integer)</td>
+  </tr>
+  <tr>
+    <td><code>Cauchy</code></td>
+    <td><code>cauchy</code></td>
+    <td>Continuous</td>
+    <td>\((-\infty, \infty)\)</td>
+  </tr>
+  <tr>
+    <td><a href="https://alexkowa.github.io/EnvStats/reference/Chi.html">Chi</a></td>
+    <td><code>chi</code></td>
+    <td>Continuous</td>
+    <td>\([0, \infty)\)</td>
+  </tr>
+  <tr>
+    <td><code>Chi-square</code></td>
+    <td><code>chisq</code></td>
+    <td>Continuous</td>
+    <td>\([0, \infty)\)</td>
+  </tr>
+  <tr>
+    <td><code>Exponential</code></td>
+    <td><code>exp</code></td>
+    <td>Continuous</td>
+    <td>\([0, \infty)\)</td>
+  </tr>
+  <tr>
+    <td><a href="https://alexkowa.github.io/EnvStats/reference/EVD.html">Extreme</a></td>
+    <td><code>evd</code></td>
+    <td>Continuous</td>
+    <td>\((-\infty, \infty)\)</td>
+  </tr>
+  <tr>
+    <td><a href="https://alexkowa.github.io/EnvStats/reference/EVD.html">Value</a></td>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+  </tr>
+  <tr>
+    <td><code>F</code></td>
+    <td><code>f</code></td>
+    <td>Continuous</td>
+    <td>\([0, \infty)\)</td>
+  </tr>
+  <tr>
+    <td><code>Gamma</code></td>
+    <td><code>gamma</code></td>
+    <td>Continuous</td>
+    <td>\([0, \infty)\)</td>
+  </tr>
+  <tr>
+    <td><a href="https://alexkowa.github.io/EnvStats/reference/GammaAlt.html">Gamma</a></td>
+    <td><code>gammaAlt</code></td>
+    <td>Continuous</td>
+    <td>\([0, \infty)\)</td>
+  </tr>
+  <tr>
+    <td><a href="https://alexkowa.github.io/EnvStats/reference/GammaAlt.html">(Alternative)</a></td>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+  </tr>
+  <tr>
+    <td><a href="https://alexkowa.github.io/EnvStats/reference/GEVD.html">Generalized</a></td>
+    <td><code>gevd</code></td>
+    <td>Continuous</td>
+    <td>\((-\infty, \infty)\)</td>
+  </tr>
+  <tr>
+    <td><a href="https://alexkowa.github.io/EnvStats/reference/GEVD.html">Extreme</a></td>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td>for \(shape = 0\)</td>
+  </tr>
+  <tr>
+    <td><a href="https://alexkowa.github.io/EnvStats/reference/GEVD.html">Value</a></td>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+  </tr>
+  <tr>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td>\((-\infty, location + \frac{scale}{shape}]\)</td>
+  </tr>
+  <tr>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td>for \(shape > 0\)</td>
+  </tr>
+  <tr>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td>\([location + \frac{scale}{shape}, \infty)\)</td>
+  </tr>
+  <tr>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td>for \(shape < 0\)</td>
+  </tr>
+  <tr>
+    <td><code>Geometric</code></td>
+    <td><code>geom</code></td>
+    <td>Discrete</td>
+    <td>\([0, \infty)\)</td>
+  </tr>
+  <tr>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td>(integer)</td>
+  </tr>
+  <tr>
+    <td><code>Hypergeometric</code></td>
+    <td><code>hyper</code></td>
+    <td>Finite</td>
+    <td>\([0, min(k,m)]\)</td>
+  </tr>
+  <tr>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td>Discrete</td>
+    <td>(integer)</td>
+  </tr>
+  <tr>
+    <td><code>Logistic</code></td>
+    <td><code>logis</code></td>
+    <td>Continuous</td>
+    <td>\((-\infty, \infty)\)</td>
+  </tr>
+  <tr>
+    <td><code>Lognormal</code></td>
+    <td><code>lnorm</code></td>
+    <td>Continuous</td>
+    <td>\((0, \infty)\)</td>
+  </tr>
+  <tr>
+    <td><a href="https://alexkowa.github.io/EnvStats/reference/LognormalAlt.html">Lognormal</a></td>
+    <td><code>lnormAlt</code></td>
+    <td>Continuous</td>
+    <td>\((0, \infty)\)</td>
+  </tr>
+  <tr>
+    <td><a href="https://alexkowa.github.io/EnvStats/reference/LognormalAlt.html">(Alternative)</a></td>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+  </tr>
+  <tr>
+    <td><a href="https://alexkowa.github.io/EnvStats/reference/LognormalMix.html">Lognormal</a></td>
+    <td><code>lnormMix</code></td>
+    <td>Continuous</td>
+    <td>\((0, \infty)\)</td>
+  </tr>
+  <tr>
+    <td><a href="https://alexkowa.github.io/EnvStats/reference/LognormalMix.html">Mixture</a></td>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+  </tr>
+  <tr>
+    <td><a href="https://alexkowa.github.io/EnvStats/reference/LognormalMixAlt.html">Lognormal</a></td>
+    <td><code>lnormMixAlt</code></td>
+    <td>Continuous</td>
+    <td>\((0, \infty)\)</td>
+  </tr>
+  <tr>
+    <td><a href="https://alexkowa.github.io/EnvStats/reference/LognormalMixAlt.html">Mixture</a></td>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+  </tr>
+  <tr>
+    <td><a href="https://alexkowa.github.io/EnvStats/reference/LognormalMixAlt.html">(Alternative)</a></td>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+  </tr>
+  <tr>
+    <td><a href="https://alexkowa.github.io/EnvStats/reference/Lognormal3.html">Three-</a></td>
+    <td><code>lnorm3</code></td>
+    <td>Continuous</td>
+    <td>\([threshold, \infty)\)</td>
+  </tr>
+  <tr>
+    <td><a href="https://alexkowa.github.io/EnvStats/reference/Lognormal3.html">Parameter</a></td>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+  </tr>
+  <tr>
+    <td><a href="https://alexkowa.github.io/EnvStats/reference/Lognormal3.html">Lognormal</a></td>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+  </tr>
+  <tr>
+    <td><a href="https://alexkowa.github.io/EnvStats/reference/LognormalTrunc.html">Truncated</a></td>
+    <td><code>lnormTrunc</code></td>
+    <td>Continuous</td>
+    <td>\([min, max]\)</td>
+  </tr>
+  <tr>
+    <td><a href="https://alexkowa.github.io/EnvStats/reference/LognormalTrunc.html">Lognormal</a></td>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+  </tr>
+  <tr>
+    <td><a href="https://alexkowa.github.io/EnvStats/reference/LognormalTruncAlt.html">Truncated</a></td>
+    <td><code>lnormTruncAlt</code></td>
+    <td>Continuous</td>
+    <td>\([min, max]\)</td>
+  </tr>
+  <tr>
+    <td><a href="https://alexkowa.github.io/EnvStats/reference/LognormalTruncAlt.html">Lognormal</a></td>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+  </tr>
+  <tr>
+    <td><a href="https://alexkowa.github.io/EnvStats/reference/LognormalTruncAlt.html">(Alternative)</a></td>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+  </tr>
+  <tr>
+    <td><code>Negative</code></td>
+    <td><code>nbinom</code></td>
+    <td>Discrete</td>
+    <td>\([0, \infty)\)</td>
+  </tr>
+  <tr>
+    <td><code>Binomial</code></td>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td>(integer)</td>
+  </tr>
+  <tr>
+    <td><code>Normal</code></td>
+    <td><code>norm</code></td>
+    <td>Continuous</td>
+    <td>\((-\infty, \infty)\)</td>
+  </tr>
+  <tr>
+    <td><a href="https://alexkowa.github.io/EnvStats/reference/NormalMix.html">Normal</a></td>
+    <td><code>normMix</code></td>
+    <td>Continuous</td>
+    <td>\((-\infty, \infty)\)</td>
+  </tr>
+  <tr>
+    <td><a href="https://alexkowa.github.io/EnvStats/reference/NormalMix.html">Mixture</a></td>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+  </tr>
+  <tr>
+    <td><a href="https://alexkowa.github.io/EnvStats/reference/NormalTrunc.html">Truncated</a></td>
+    <td><code>normTrunc</code></td>
+    <td>Continuous</td>
+    <td>\([min, max]\)</td>
+  </tr>
+  <tr>
+    <td><a href="https://alexkowa.github.io/EnvStats/reference/NormalTrunc.html">Normal</a></td>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+  </tr>
+  <tr>
+    <td><a href="https://alexkowa.github.io/EnvStats/reference/Pareto.html">Pareto</a></td>
+    <td><code>pareto</code></td>
+    <td>Continuous</td>
+    <td>\([location, \infty)\)</td>
+  </tr>
+  <tr>
+    <td><code>Poisson</code></td>
+    <td><code>pois</code></td>
+    <td>Discrete</td>
+    <td>\([0, \infty)\)</td>
+  </tr>
+  <tr>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td>(integer)</td>
+  </tr>
+  <tr>
+    <td><code>Student's t</code></td>
+    <td><code>t</code></td>
+    <td>Continuous</td>
+    <td>\((-\infty, \infty)\)</td>
+  </tr>
+  <tr>
+    <td><a href="https://alexkowa.github.io/EnvStats/reference/Triangular.html">Triangular</a></td>
+    <td><code>tri</code></td>
+    <td>Continuous</td>
+    <td>\([min, max]\)</td>
+  </tr>
+  <tr>
+    <td><code>Uniform</code></td>
+    <td><code>unif</code></td>
+    <td>Continuous</td>
+    <td>\([min, max]\)</td>
+  </tr>
+  <tr>
+    <td><code>Weibull</code></td>
+    <td><code>weibull</code></td>
+    <td>Continuous</td>
+    <td>\([0, \infty)\)</td>
+  </tr>
+  <tr>
+    <td><code>Wilcoxon</code></td>
+    <td><code>wilcox</code></td>
+    <td>Finite</td>
+    <td>\([0, m n]\)</td>
+  </tr>
+  <tr>
+    <td><code>Rank Sum</code></td>
+    <td>&nbsp;</td>
+    <td>Discrete</td>
+    <td>(integer)</td>
+  </tr>
+  <tr>
+    <td><a href="https://alexkowa.github.io/EnvStats/reference/ZeroModifiedLognormal.html">Zero-Modified</a></td>
+    <td><code>zmlnorm</code></td>
+    <td>Mixed</td>
+    <td>\([0, \infty)\)</td>
+  </tr>
+  <tr>
+    <td><a href="https://alexkowa.github.io/EnvStats/reference/ZeroModifiedLognormal.html">Lognormal</a></td>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+  </tr>
+  <tr>
+    <td><a href="https://alexkowa.github.io/EnvStats/reference/ZeroModifiedLognormal.html">(Delta)</a></td>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+  </tr>
+  <tr>
+    <td><a href="https://alexkowa.github.io/EnvStats/reference/ZeroModifiedLognormalAlt.html">Zero-Modified</a></td>
+    <td><code>zmlnormAlt</code></td>
+    <td>Mixed</td>
+    <td>\([0, \infty)\)</td>
+  </tr>
+  <tr>
+    <td><a href="https://alexkowa.github.io/EnvStats/reference/ZeroModifiedLognormalAlt.html">Lognormal</a></td>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+  </tr>
+  <tr>
+    <td><a href="https://alexkowa.github.io/EnvStats/reference/ZeroModifiedLognormalAlt.html">(Delta)</a></td>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+  </tr>
+  <tr>
+    <td><a href="https://alexkowa.github.io/EnvStats/reference/ZeroModifiedLognormalAlt.html">(Alternative)</a></td>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+  </tr>
+  <tr>
+    <td><a href="https://alexkowa.github.io/EnvStats/reference/ZeroModifiedNormal.html">Zero-Modified</a></td>
+    <td><code>zmnorm</code></td>
+    <td>Mixed</td>
+    <td>\((-\infty, \infty)\)</td>
+  </tr>
+  <tr>
+    <td><a href="https://alexkowa.github.io/EnvStats/reference/ZeroModifiedNormal.html">Normal</a></td>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+  </tr>
+</tbody>
+</table>
+
+**Table 1b. Available Distributions: Name, Parameters, Parameter Default Values, Parameter Ranges, Estimation Method(s)**
+
+<table>
+<tbody>
+  <tr>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td><strong>Default</strong></td>
+    <td><strong>Parameter</strong></td>
+    <td><strong>Estimation</strong></td>
+  </tr>
+  <tr>
+    <td><strong>Name</strong></td>
+    <td><strong>Parameter(s)</strong></td>
+    <td><strong>Value(s)</strong></td>
+    <td><strong>Range(s)</strong></td>
+    <td><strong>Method(s)</strong></td>
+  </tr>
+  <tr>
+    <td><code>Beta</code></td>
+    <td><code>shape1</code></td>
+    <td>&nbsp;</td>
+    <td>\((0, \infty)\)</td>
+    <td><a href="https://alexkowa.github.io/EnvStats/reference/ebeta.html">mle, mme, mmue</a></td>
+  </tr>
+  <tr>
+    <td>&nbsp;</td>
+    <td><code>shape2</code></td>
+    <td>&nbsp;</td>
+    <td>\((0, \infty)\)</td>
+    <td>&nbsp;</td>
+  </tr>
+  <tr>
+    <td>&nbsp;</td>
+    <td><code>ncp</code></td>
+    <td><code>0</code></td>
+    <td>\((0, \infty)\)</td>
+    <td>&nbsp;</td>
+  </tr>
+  <tr>
+    <td><code>Binomial</code></td>
+    <td><code>size</code></td>
+    <td>&nbsp;</td>
+    <td>\([0, \infty)\)</td>
+    <td><a href="https://alexkowa.github.io/EnvStats/reference/ebinom.html">mle/mme/mvue</a></td>
+  </tr>
+  <tr>
+    <td>&nbsp;</td>
+    <td><code>prob</code></td>
+    <td>&nbsp;</td>
+    <td>\([0, 1]\)</td>
+    <td>&nbsp;</td>
+  </tr>
+  <tr>
+    <td><code>Cauchy</code></td>
+    <td><code>location</code></td>
+    <td><code>0</code></td>
+    <td>\((-\infty, \infty)\)</td>
+    <td>&nbsp;</td>
+  </tr>
+  <tr>
+    <td>&nbsp;</td>
+    <td><code>scale</code></td>
+    <td><code>1</code></td>
+    <td>\((0, \infty)\)</td>
+    <td>&nbsp;</td>
+  </tr>
+  <tr>
+    <td><a href="https://alexkowa.github.io/EnvStats/reference/Chi.html">Chi</a></td>
+    <td><code>df</code></td>
+    <td>&nbsp;</td>
+    <td>\((0, \infty)\)</td>
+    <td>&nbsp;</td>
+  </tr>
+  <tr>
+    <td><code>Chi-square</code></td>
+    <td><code>df</code></td>
+    <td>&nbsp;</td>
+    <td>\((0, \infty)\)</td>
+    <td>&nbsp;</td>
+  </tr>
+  <tr>
+    <td>&nbsp;</td>
+    <td><code>ncp</code></td>
+    <td><code>0</code></td>
+    <td>\((-\infty, \infty)\)</td>
+    <td>&nbsp;</td>
+  </tr>
+  <tr>
+    <td><code>Exponential</code></td>
+    <td><code>rate</code></td>
+    <td><code>1</code></td>
+    <td>\((0, \infty)\)</td>
+    <td><a href="https://alexkowa.github.io/EnvStats/reference/eexp.html">mle/mme</a></td>
+  </tr>
+  <tr>
+    <td><a href="https://alexkowa.github.io/EnvStats/reference/EVD.html">Extreme</a></td>
+    <td><code>location</code></td>
+    <td><code>0</code></td>
+    <td>\((-\infty, \infty)\)</td>
+    <td><a href="https://alexkowa.github.io/EnvStats/reference/eevd.html">mle, mme, mmue, pwme</a></td>
+  </tr>
+  <tr>
+    <td><a href="https://alexkowa.github.io/EnvStats/reference/EVD.html">Value</a></td>
+    <td><code>scale</code></td>
+    <td><code>1</code></td>
+    <td>\((0, \infty)\)</td>
+    <td>&nbsp;</td>
+  </tr>
+  <tr>
+    <td><code>F</code></td>
+    <td><code>df1</code></td>
+    <td>&nbsp;</td>
+    <td>\((0, \infty)\)</td>
+    <td>&nbsp;</td>
+  </tr>
+  <tr>
+    <td>&nbsp;</td>
+    <td><code>df2</code></td>
+    <td>&nbsp;</td>
+    <td>\((0, \infty)\)</td>
+    <td>&nbsp;</td>
+  </tr>
+  <tr>
+    <td>&nbsp;</td>
+    <td><code>ncp</code></td>
+    <td><code>0</code></td>
+    <td>\((0, \infty)\)</td>
+    <td>&nbsp;</td>
+  </tr>
+  <tr>
+    <td><code>Gamma</code></td>
+    <td><code>shape</code></td>
+    <td>&nbsp;</td>
+    <td>\((0, \infty)\)</td>
+    <td><a href="https://alexkowa.github.io/EnvStats/reference/egamma.html">mle, bcmle, mme, mmue</a></td>
+  </tr>
+  <tr>
+    <td>&nbsp;</td>
+    <td><code>scale</code></td>
+    <td><code>1</code></td>
+    <td>\((0, \infty)\)</td>
+    <td>&nbsp;</td>
+  </tr>
+  <tr>
+    <td><a href="https://alexkowa.github.io/EnvStats/reference/GammaAlt.html">Gamma</a></td>
+    <td><code>mean</code></td>
+    <td>&nbsp;</td>
+    <td>\((0, \infty)\)</td>
+    <td><a href="https://alexkowa.github.io/EnvStats/reference/egamma.html">mle, bcmle, mme, mmue</a></td>
+  </tr>
+  <tr>
+    <td><a href="https://alexkowa.github.io/EnvStats/reference/GammaAlt.html">(Alternative)</a></td>
+    <td><code>cv</code></td>
+    <td><code>1</code></td>
+    <td>\((0, \infty)\)</td>
+    <td>&nbsp;</td>
+  </tr>
+  <tr>
+    <td><a href="https://alexkowa.github.io/EnvStats/reference/GEVD.html">Generalized</a></td>
+    <td><code>location</code></td>
+    <td><code>0</code></td>
+    <td>\((-\infty, \infty)\)</td>
+    <td><a href="https://alexkowa.github.io/EnvStats/reference/egevd.html">mle, pwme, tsoe</a></td>
+  </tr>
+  <tr>
+    <td><a href="https://alexkowa.github.io/EnvStats/reference/GEVD.html">Extreme</a></td>
+    <td><code>scale</code></td>
+    <td><code>1</code></td>
+    <td>\((0, \infty)\)</td>
+    <td>&nbsp;</td>
+  </tr>
+  <tr>
+    <td><a href="https://alexkowa.github.io/EnvStats/reference/GEVD.html">Value</a></td>
+    <td><code>shape</code></td>
+    <td><code>0</code></td>
+    <td>\((-\infty, \infty)\)</td>
+    <td>&nbsp;</td>
+  </tr>
+  <tr>
+    <td><code>Geometric</code></td>
+    <td><code>prob</code></td>
+    <td>&nbsp;</td>
+    <td>\((0, 1)\)</td>
+    <td><a href="https://alexkowa.github.io/EnvStats/reference/egeom.html">mle/mme, mvue</a></td>
+  </tr>
+  <tr>
+    <td><code>Hypergeometric</code></td>
+    <td><code>m</code></td>
+    <td>&nbsp;</td>
+    <td>\([0, \infty)\)</td>
+    <td><a href="https://alexkowa.github.io/EnvStats/reference/ehyper.html">mle, mvue</a></td>
+  </tr>
+  <tr>
+    <td>&nbsp;</td>
+    <td><code>n</code></td>
+    <td>&nbsp;</td>
+    <td>\([0, \infty)\)</td>
+    <td>&nbsp;</td>
+  </tr>
+  <tr>
+    <td>&nbsp;</td>
+    <td><code>k</code></td>
+    <td>&nbsp;</td>
+    <td>\([1, m+n]\)</td>
+    <td>&nbsp;</td>
+  </tr>
+  <tr>
+    <td><code>Logistic</code></td>
+    <td><code>location</code></td>
+    <td><code>0</code></td>
+    <td>\((-\infty, \infty)\)</td>
+    <td><a href="https://alexkowa.github.io/EnvStats/reference/elogis.html">mle, mme, mmue</a></td>
+  </tr>
+  <tr>
+    <td>&nbsp;</td>
+    <td><code>scale</code></td>
+    <td><code>1</code></td>
+    <td>\((0, \infty)\)</td>
+    <td>&nbsp;</td>
+  </tr>
+  <tr>
+    <td><code>Lognormal</code></td>
+    <td><code>meanlog</code></td>
+    <td><code>0</code></td>
+    <td>\((-\infty, \infty)\)</td>
+    <td><a href="https://alexkowa.github.io/EnvStats/reference/elnorm.html">mle/mme, mvue</a></td>
+  </tr>
+  <tr>
+    <td>&nbsp;</td>
+    <td><code>sdlog</code></td>
+    <td><code>1</code></td>
+    <td>\((0, \infty)\)</td>
+    <td>&nbsp;</td>
+  </tr>
+  <tr>
+    <td><a href="https://alexkowa.github.io/EnvStats/reference/LognormalAlt.html">Lognormal</a></td>
+    <td><code>mean</code></td>
+    <td><code>exp(1/2)</code></td>
+    <td>\((0, \infty)\)</td>
+    <td><a href="https://alexkowa.github.io/EnvStats/reference/elnormAlt.html">mle, mme, mmue,</a></td>
+  </tr>
+  <tr>
+    <td><a href="https://alexkowa.github.io/EnvStats/reference/LognormalAlt.html">(Alternative)</a></td>
+    <td><code>cv</code></td>
+    <td><code>sqrt(exp(1)-1)</code></td>
+    <td>\((0, \infty)\)</td>
+    <td><a href="https://alexkowa.github.io/EnvStats/reference/elnormAlt.html">mvue, qmle</a></td>
+  </tr>
+  <tr>
+    <td><a href="https://alexkowa.github.io/EnvStats/reference/LognormalMix.html">Lognormal</a></td>
+    <td><code>meanlog1</code></td>
+    <td><code>0</code></td>
+    <td>\((-\infty, \infty)\)</td>
+    <td>&nbsp;</td>
+  </tr>
+  <tr>
+    <td><a href="https://alexkowa.github.io/EnvStats/reference/LognormalMix.html">Mixture</a></td>
+    <td><code>sdlog1</code></td>
+    <td><code>1</code></td>
+    <td>\((0, \infty)\)</td>
+    <td>&nbsp;</td>
+  </tr>
+  <tr>
+    <td>&nbsp;</td>
+    <td><code>meanlog2</code></td>
+    <td><code>0</code></td>
+    <td>\((-\infty, \infty)\)</td>
+    <td>&nbsp;</td>
+  </tr>
+  <tr>
+    <td>&nbsp;</td>
+    <td><code>sdlog2</code></td>
+    <td><code>1</code></td>
+    <td>\((0, \infty)\)</td>
+    <td>&nbsp;</td>
+  </tr>
+  <tr>
+    <td>&nbsp;</td>
+    <td><code>p.mix</code></td>
+    <td><code>0.5</code></td>
+    <td>\([0, 1]\)</td>
+    <td>&nbsp;</td>
+  </tr>
+  <tr>
+    <td><a href="https://alexkowa.github.io/EnvStats/reference/LognormalMixAlt.html">Lognormal</a></td>
+    <td><code>mean1</code></td>
+    <td><code>exp(1/2)</code></td>
+    <td>\((0, \infty)\)</td>
+    <td>&nbsp;</td>
+  </tr>
+  <tr>
+    <td><a href="https://alexkowa.github.io/EnvStats/reference/LognormalMixAlt.html">Mixture</a></td>
+    <td><code>cv1</code></td>
+    <td><code>sqrt(exp(1)-1)</code></td>
+    <td>\((0, \infty)\)</td>
+    <td>&nbsp;</td>
+  </tr>
+  <tr>
+    <td><a href="https://alexkowa.github.io/EnvStats/reference/LognormalMixAlt.html">(Alternative)</a></td>
+    <td><code>mean2</code></td>
+    <td><code>exp(1/2)</code></td>
+    <td>\((0, \infty)\)</td>
+    <td>&nbsp;</td>
+  </tr>
+  <tr>
+    <td>&nbsp;</td>
+    <td><code>cv2</code></td>
+    <td><code>sqrt(exp(1)-1)</code></td>
+    <td>\((0, \infty)\)</td>
+    <td>&nbsp;</td>
+  </tr>
+  <tr>
+    <td>&nbsp;</td>
+    <td><code>p.mix</code></td>
+    <td><code>0.5</code></td>
+    <td>\([0, 1]\)</td>
+    <td>&nbsp;</td>
+  </tr>
+  <tr>
+    <td><a href="https://alexkowa.github.io/EnvStats/reference/Lognormal3.html">Three-</a></td>
+    <td><code>meanlog</code></td>
+    <td><code>0</code></td>
+    <td>\((-\infty, \infty)\)</td>
+    <td><a href="https://alexkowa.github.io/EnvStats/reference/elnorm3.html">lmle, mme,</a></td>
+  </tr>
+  <tr>
+    <td><a href="https://alexkowa.github.io/EnvStats/reference/Lognormal3.html">Parameter</a></td>
+    <td><code>sdlog</code></td>
+    <td><code>1</code></td>
+    <td>\((0, \infty)\)</td>
+    <td><a href="https://alexkowa.github.io/EnvStats/reference/elnorm3.html">mmue, mmme,</a></td>
+  </tr>
+  <tr>
+    <td><a href="https://alexkowa.github.io/EnvStats/reference/Lognormal3.html">Lognormal</a></td>
+    <td><code>threshold</code></td>
+    <td><code>0</code></td>
+    <td>\((-\infty, \infty)\)</td>
+    <td><a href="https://alexkowa.github.io/EnvStats/reference/elnorm3.html">royston.skew,</a></td>
+  </tr>
+  <tr>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td><a href="https://alexkowa.github.io/EnvStats/reference/elnorm3.html">zero.skew</a></td>
+  </tr>
+  <tr>
+    <td><a href="https://alexkowa.github.io/EnvStats/reference/LognormalTrunc.html">Truncated</a></td>
+    <td><code>meanlog</code></td>
+    <td><code>0</code></td>
+    <td>\((-\infty, \infty)\)</td>
+    <td>&nbsp;</td>
+  </tr>
+  <tr>
+    <td><a href="https://alexkowa.github.io/EnvStats/reference/LognormalTrunc.html">Lognormal</a></td>
+    <td><code>sdlog</code></td>
+    <td><code>1</code></td>
+    <td>\((0, \infty)\)</td>
+    <td>&nbsp;</td>
+  </tr>
+  <tr>
+    <td>&nbsp;</td>
+    <td><code>min</code></td>
+    <td><code>0</code></td>
+    <td>\([0, max)\)</td>
+    <td>&nbsp;</td>
+  </tr>
+  <tr>
+    <td>&nbsp;</td>
+    <td><code>max</code></td>
+    <td><code>Inf</code></td>
+    <td>\((min, \infty)\)</td>
+    <td>&nbsp;</td>
+  </tr>
+  <tr>
+    <td><a href="https://alexkowa.github.io/EnvStats/reference/LognormalTruncAlt.html">Truncated</a></td>
+    <td><code>mean</code></td>
+    <td><code>exp(1/2)</code></td>
+    <td>\((0, \infty)\)</td>
+    <td>&nbsp;</td>
+  </tr>
+  <tr>
+    <td><a href="https://alexkowa.github.io/EnvStats/reference/LognormalTruncAlt.html">Lognormal</a></td>
+    <td><code>cv</code></td>
+    <td><code>sqrt(exp(1)-1)</code></td>
+    <td>\((0, \infty)\)</td>
+    <td>&nbsp;</td>
+  </tr>
+  <tr>
+    <td><a href="https://alexkowa.github.io/EnvStats/reference/LognormalTruncAlt.html">(Alternative)</a></td>
+    <td><code>min</code></td>
+    <td><code>0</code></td>
+    <td>\([0, max)\)</td>
+    <td>&nbsp;</td>
+  </tr>
+  <tr>
+    <td>&nbsp;</td>
+    <td><code>max</code></td>
+    <td><code>Inf</code></td>
+    <td>\((min, \infty)\)</td>
+    <td>&nbsp;</td>
+  </tr>
+  <tr>
+    <td><code>Negative</code></td>
+    <td><code>size</code></td>
+    <td>&nbsp;</td>
+    <td>\([1, \infty)\)</td>
+    <td><a href="https://alexkowa.github.io/EnvStats/reference/enbinom.html">mle/mme, mvue</a></td>
+  </tr>
+  <tr>
+    <td><code>Binomial</code></td>
+    <td><code>prob</code></td>
+    <td>&nbsp;</td>
+    <td>\((0, 1]\)</td>
+    <td>&nbsp;</td>
+  </tr>
+  <tr>
+    <td>&nbsp;</td>
+    <td><code>mu</code></td>
+    <td>&nbsp;</td>
+    <td>\((0, \infty)\)</td>
+    <td>&nbsp;</td>
+  </tr>
+  <tr>
+    <td><code>Normal</code></td>
+    <td><code>mean</code></td>
+    <td><code>0</code></td>
+    <td>\((-\infty, \infty)\)</td>
+    <td><a href="https://alexkowa.github.io/EnvStats/reference/enorm.html">mle/mme, mvue</a></td>
+  </tr>
+  <tr>
+    <td>&nbsp;</td>
+    <td><code>sd</code></td>
+    <td><code>1</code></td>
+    <td>\((0, \infty)\)</td>
+    <td>&nbsp;</td>
+  </tr>
+  <tr>
+    <td><a href="https://alexkowa.github.io/EnvStats/reference/NormalMix.html">Normal</a></td>
+    <td><code>mean1</code></td>
+    <td><code>0</code></td>
+    <td>\((-\infty, \infty)\)</td>
+    <td>&nbsp;</td>
+  </tr>
+  <tr>
+    <td><a href="https://alexkowa.github.io/EnvStats/reference/NormalMix.html">Mixture</a></td>
+    <td><code>sd1</code></td>
+    <td><code>1</code></td>
+    <td>\((0, \infty)\)</td>
+    <td>&nbsp;</td>
+  </tr>
+  <tr>
+    <td>&nbsp;</td>
+    <td><code>mean2</code></td>
+    <td><code>0</code></td>
+    <td>\((-\infty, \infty)\)</td>
+    <td>&nbsp;</td>
+  </tr>
+  <tr>
+    <td>&nbsp;</td>
+    <td><code>sd2</code></td>
+    <td><code>1</code></td>
+    <td>\((0, \infty)\)</td>
+    <td>&nbsp;</td>
+  </tr>
+  <tr>
+    <td>&nbsp;</td>
+    <td><code>p.mix</code></td>
+    <td><code>0.5</code></td>
+    <td>\([0, 1]\)</td>
+    <td>&nbsp;</td>
+  </tr>
+  <tr>
+    <td><a href="https://alexkowa.github.io/EnvStats/reference/NormalTrunc.html">Truncated</a></td>
+    <td><code>mean</code></td>
+    <td><code>0</code></td>
+    <td>\((-\infty, \infty)\)</td>
+    <td>&nbsp;</td>
+  </tr>
+  <tr>
+    <td><a href="https://alexkowa.github.io/EnvStats/reference/NormalTrunc.html">Normal</a></td>
+    <td><code>sd</code></td>
+    <td><code>1</code></td>
+    <td>\((0, \infty)\)</td>
+    <td>&nbsp;</td>
+  </tr>
+  <tr>
+    <td>&nbsp;</td>
+    <td><code>min</code></td>
+    <td><code>-Inf</code></td>
+    <td>\((-\infty, max)\)</td>
+    <td>&nbsp;</td>
+  </tr>
+  <tr>
+    <td>&nbsp;</td>
+    <td><code>max</code></td>
+    <td><code>Inf</code></td>
+    <td>\((min, \infty)\)</td>
+    <td>&nbsp;</td>
+  </tr>
+  <tr>
+    <td><a href="https://alexkowa.github.io/EnvStats/reference/Pareto.html">Pareto</a></td>
+    <td><code>location</code></td>
+    <td>&nbsp;</td>
+    <td>\((0, \infty)\)</td>
+    <td><a href="https://alexkowa.github.io/EnvStats/reference/epareto.html">lse, mle</a></td>
+  </tr>
+  <tr>
+    <td>&nbsp;</td>
+    <td><code>shape</code></td>
+    <td><code>1</code></td>
+    <td>\((0, \infty)\)</td>
+    <td>&nbsp;</td>
+  </tr>
+  <tr>
+    <td><code>Poisson</code></td>
+    <td><code>lambda</code></td>
+    <td>&nbsp;</td>
+    <td>\((0, \infty)\)</td>
+    <td><a href="https://alexkowa.github.io/EnvStats/reference/epois.html">mle/mme/mvue</a></td>
+  </tr>
+  <tr>
+    <td><code>Student's t</code></td>
+    <td><code>df</code></td>
+    <td>&nbsp;</td>
+    <td>\((0, \infty)\)</td>
+    <td>&nbsp;</td>
+  </tr>
+  <tr>
+    <td>&nbsp;</td>
+    <td><code>ncp</code></td>
+    <td><code>0</code></td>
+    <td>\((-\infty, \infty)\)</td>
+    <td>&nbsp;</td>
+  </tr>
+  <tr>
+    <td><a href="https://alexkowa.github.io/EnvStats/reference/Triangular.html">Triangular</a></td>
+    <td><code>min</code></td>
+    <td><code>0</code></td>
+    <td>\((-\infty, max)\)</td>
+    <td>&nbsp;</td>
+  </tr>
+  <tr>
+    <td>&nbsp;</td>
+    <td><code>max</code></td>
+    <td><code>1</code></td>
+    <td>\((min, \infty)\)</td>
+    <td>&nbsp;</td>
+  </tr>
+  <tr>
+    <td>&nbsp;</td>
+    <td><code>mode</code></td>
+    <td><code>0.5</code></td>
+    <td>\((min, max)\)</td>
+    <td>&nbsp;</td>
+  </tr>
+  <tr>
+    <td><code>Uniform</code></td>
+    <td><code>min</code></td>
+    <td><code>0</code></td>
+    <td>\((-\infty, max)\)</td>
+    <td><a href="https://alexkowa.github.io/EnvStats/reference/eunif.html">mle, mme, mmue</a></td>
+  </tr>
+  <tr>
+    <td>&nbsp;</td>
+    <td><code>max</code></td>
+    <td><code>1</code></td>
+    <td>\((min, \infty)\)</td>
+    <td>&nbsp;</td>
+  </tr>
+  <tr>
+    <td><code>Weibull</code></td>
+    <td><code>shape</code></td>
+    <td>&nbsp;</td>
+    <td>\((0, \infty)\)</td>
+    <td><a href="https://alexkowa.github.io/EnvStats/reference/eweibull.html">mle, mme, mmue</a></td>
+  </tr>
+  <tr>
+    <td>&nbsp;</td>
+    <td><code>scale</code></td>
+    <td><code>1</code></td>
+    <td>\((0, \infty)\)</td>
+    <td>&nbsp;</td>
+  </tr>
+  <tr>
+    <td><code>Wilcoxon</code></td>
+    <td><code>m</code></td>
+    <td>&nbsp;</td>
+    <td>\([1, \infty)\)</td>
+    <td>&nbsp;</td>
+  </tr>
+  <tr>
+    <td><code>Rank Sum</code></td>
+    <td><code>n</code></td>
+    <td>&nbsp;</td>
+    <td>\([1, \infty)\)</td>
+    <td>&nbsp;</td>
+  </tr>
+  <tr>
+    <td><a href="https://alexkowa.github.io/EnvStats/reference/ZeroModifiedLognormal.html">Zero-Modified</a></td>
+    <td><code>meanlog</code></td>
+    <td><code>0</code></td>
+    <td>\((-\infty, \infty)\)</td>
+    <td><a href="https://alexkowa.github.io/EnvStats/reference/ezmlnorm.html">mvue</a></td>
+  </tr>
+  <tr>
+    <td><a href="https://alexkowa.github.io/EnvStats/reference/ZeroModifiedLognormal.html">Lognormal</a></td>
+    <td><code>sdlog</code></td>
+    <td><code>1</code></td>
+    <td>\((0, \infty)\)</td>
+    <td>&nbsp;</td>
+  </tr>
+  <tr>
+    <td><a href="https://alexkowa.github.io/EnvStats/reference/ZeroModifiedLognormal.html">(Delta)</a></td>
+    <td><code>p.zero</code></td>
+    <td><code>0.5</code></td>
+    <td>\([0, 1]\)</td>
+    <td>&nbsp;</td>
+  </tr>
+  <tr>
+    <td><a href="https://alexkowa.github.io/EnvStats/reference/ZeroModifiedLognormalAlt.html">Zero-Modified</a></td>
+    <td><code>mean</code></td>
+    <td><code>exp(1/2)</code></td>
+    <td>\((0, \infty)\)</td>
+    <td><a href="https://alexkowa.github.io/EnvStats/reference/ezmlnorm.html">mvue</a></td>
+  </tr>
+  <tr>
+    <td><a href="https://alexkowa.github.io/EnvStats/reference/ZeroModifiedLognormalAlt.html">Lognormal</a></td>
+    <td><code>cv</code></td>
+    <td><code>sqrt(exp(1)-1)</code></td>
+    <td>\((0, \infty)\)</td>
+    <td>&nbsp;</td>
+  </tr>
+  <tr>
+    <td><a href="https://alexkowa.github.io/EnvStats/reference/ZeroModifiedLognormalAlt.html">(Delta)</a></td>
+    <td><code>p.zero</code></td>
+    <td><code>0.5</code></td>
+    <td>\([0, 1]\)</td>
+    <td>&nbsp;</td>
+  </tr>
+  <tr>
+    <td><a href="https://alexkowa.github.io/EnvStats/reference/ZeroModifiedLognormalAlt.html">(Alternative)</a></td>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+  </tr>
+  <tr>
+    <td><a href="https://alexkowa.github.io/EnvStats/reference/ZeroModifiedNormal.html">Zero-Modified</a></td>
+    <td><code>mean</code></td>
+    <td><code>0</code></td>
+    <td>\((-\infty, \infty)\)</td>
+    <td><a href="https://alexkowa.github.io/EnvStats/reference/ezmnorm.html">mvue</a></td>
+  </tr>
+  <tr>
+    <td><a href="https://alexkowa.github.io/EnvStats/reference/ZeroModifiedNormal.html">Normal</a></td>
+    <td><code>sd</code></td>
+    <td><code>1</code></td>
+    <td>\((0, \infty)\)</td>
+    <td>&nbsp;</td>
+  </tr>
+  <tr>
+    <td>&nbsp;</td>
+    <td><code>p.zero</code></td>
+    <td><code>0.5</code></td>
+    <td>\([0, 1]\)</td>
+    <td>&nbsp;</td>
+  </tr>
+</tbody>
+</table>
+
+## egamma {#egamma}
+
+Help topic: [`egamma`](https://alexkowa.github.io/EnvStats/reference/egamma.html).
+
+If `x` contains any missing (`NA`), undefined (`NaN`) or infinite (`Inf`, `-Inf`) values, they will be removed prior to performing the estimation.
+
+Let $\underline{x} = x_1, x_2, \ldots, x_n$ denote a random sample of $n$ observations from a [gamma distribution](https://stat.ethz.ch/R-manual/R-devel/library/stats/html/GammaDist.html) with parameters `shape=`$\kappa$ and `scale=`$\theta$. The relationship between these parameters and the mean (`mean=`$\mu$) and coefficient of variation (`cv=`$\tau$) of this distribution is given by:
+
+$$
+\kappa = \tau^{-2} \;\;\;\;\;\; (1)
+$$
+
+$$
+\theta = \mu/\kappa \;\;\;\;\;\; (2)
+$$
+
+$$
+\mu = \kappa \; \theta \;\;\;\;\;\; (3)
+$$
+
+$$
+\tau = \kappa^{-1/2} \;\;\;\;\;\; (4)
+$$
+
+The function `egamma` returns estimates of the shape and scale parameters. The function `egammaAlt` returns estimates of the mean ($\mu$) and coefficient of variation ($cv$) based on the estimates of the shape and scale parameters.
+
+**Estimation**
+
+*Maximum Likelihood Estimation* (`method="mle"`)  
+The maximum likelihood estimators (mle's) of the shape and scale parameters $\kappa$ and $\theta$ are solutions of the simultaneous equations:
+
+$$
+\hat{\kappa}_{mle} =  \frac{1}{n}\sum_{i=1}^n log(x_i) - log(\bar{x}) = \psi(\hat{\kappa}_{mle}) - log(\hat{\kappa}_{mle}) \ \;\;\;\;\;\; (5)
+$$
+
+$$
+\hat{\theta}_{mle} = \bar{x} / \hat{\kappa}_{mle} \;\;\;\;\;\; (6)
+$$
+
+where $\psi$ denotes the [`digamma function`](https://stat.ethz.ch/R-manual/R-devel/library/base/html/Special.html), and $\bar{x}$ denotes the sample mean:
+
+$$
+\bar{x} = \frac{1}{n}\sum_{i=1}^n x_i \;\;\;\;\;\; (7)
+$$
+
+(Forbes et al., 2011, chapter 22; Johnson et al., 1994, chapter 17).
+
+*Bias-Corrected Maximum Likelihood Estimation* (`method="bcmle"`)  
+The “bias-corrected” maximum likelihood estimator of the shape parameter is based on the suggestion of Anderson and Ray (1975; see also Johnon et al., 1994, p.366 and Singh et al., 2010b, p.48), who noted that the bias of the maximum likelihood estimator of the shape parameter can be considerable when the sample size is small. This estimator is given by:
+
+$$
+\hat{\kappa}_{bcmle} = \frac{n-3}{n}\hat{\kappa}_{mle} + \frac{2}{3n} \;\;\;\;\;\; (8)
+$$
+
+When `method="bcmle"`, Equation (6) above is modified so that the estimate of the scale paramter is based on the “bias-corrected” maximum likelihood estimator of the shape parameter:
+
+$$
+\hat{\theta}_{bcmle} = \bar{x} / \hat{\kappa}_{bcmle} \;\;\;\;\;\; (9)
+$$
+
+*Method of Moments Estimation* (`method="mme"`)  
+The method of moments estimators (mme's) of the shape and scale parameters $\kappa$ and $\theta$ are:
+
+$$
+\hat{\kappa}_{mme} = (\bar{x}/s_m)^2 \;\;\;\;\;\; (10)
+$$
+
+$$
+\hat{\theta}_{mme} = s_m^2 / \bar{x} \;\;\;\;\;\; (11)
+$$
+
+where $s_m^2$ denotes the method of moments estimator of variance:
+
+$$
+s_m^2 = \frac{1}{n} \sum_{i=1}^n (x_i - \bar{x})^2 \;\;\;\;\;\; (12)
+$$
+
+*Method of Moments Estimation Based on the Unbiased Estimator of Variance* (`method="mmue"`)  
+The method of moments estimators based on the unbiased estimator of variance are exactly the same as the method of moments estimators, except that the method of moments estimator of variance is replaced with the unbiased estimator of variance:
+
+$$
+\hat{\kappa}_{mmue} = (\bar{x}/s)^2 \;\;\;\;\;\; (13)
+$$
+
+$$
+\hat{\theta}_{mmue} = s^2 / \bar{x} \;\;\;\;\;\; (14)
+$$
+
+where $s^2$ denotes the unbiased estimator of variance:
+
+$$
+s^2 = \frac{1}{n-1} \sum_{i=1}^n (x_i - \bar{x})^2 \;\;\;\;\;\; (15)
+$$
+
+**Confidence Intervals**  
+This section discusses how confidence intervals for the mean $\mu$ are computed.
+
+*Normal Approximation* (`ci.method="normal.approx"`)  
+The normal approximation method is based on the method of Kulkarni and Powar (2010), who use a power transformation of the the original data to approximate a sample from a normal distribuiton, compute the confidence interval for the mean on the transformed scale using the usual formula for a confidence interval for the mean of a normal distribuiton, and then tranform the limits back to the original space using equations based on the expected value of a gamma random variable raised to a power.
+
+The particular power used for the normal approximation is defined by the argument  
+`normal.approx.transform`. The value `normal.approx.transform="cube.root"` uses the cube root transformation suggested by Wilson and Hilferty (1931), and the value  
+`"fourth.root"` uses the fourth root transformation suggested by Hawkins and Wixley (1986). The default value `"kulkarni.powar"` uses the “Optimum Power Normal Approximation Method” of Kulkarni and Powar (2010), who show this method performs the best in terms of maintining coverage and minimizing confidence interval width compared to eight other methods. The “optimum” power $p$ is determined by:
+
+<table>
+<tbody>
+  <tr>
+    <td>\(p = -0.0705 - 0.178\hat{\kappa} + 0.475 \sqrt{\hat{\kappa}}\)</td>
+    <td>if \(\hat{\kappa} \le 1.5\)</td>
+    <td>&nbsp;</td>
+  </tr>
+  <tr>
+    <td>\(p = 0.246\)</td>
+    <td>if \(\hat{\kappa} > 1.5\)</td>
+    <td>(16)</td>
+  </tr>
+</tbody>
+</table>
+
+where $\hat{\kappa}$ denotes the estimate of the shape parameter. Kulkarni and Powar (2010) derived this equation by determining what power transformation yields a skew closest to 0 and a kurtosis closest to 3 for a gamma random variable with a given shape parameter. Although Kulkarni and Powar (2010) use the maximum likelihood estimate of shape to determine the power to use to induce approximate normality, for the functions `egamma` and `egammaAlt` the power is based on whatever estimate of shape is used (e.g., `method="mle"`, `method="bcmle"`, etc.).
+
+*Likelihood Profile* (`ci.method="profile.likelihood"`)  
+This method was proposed by Cox (1970, p.88), and Venzon and Moolgavkar (1988) introduced an efficient method of computation. This method is also discussed by Stryhn and Christensen (2003) and Royston (2007). The idea behind this method is to invert the likelihood-ratio test to obtain a confidence interval for the mean $\mu$ while treating the coefficient of variation $\tau$ as a nuisance parameter.
+
+The likelihood function is given by:
+
+$$
+L(\mu, \tau | \underline{x}) = \prod_{i=1}^n \frac{x_i^{\kappa-1} e^{-x_i/\theta}}{\theta^\kappa \Gamma(\kappa)} \;\;\;\;\;\; (17)
+$$
+
+where $\kappa$, $\theta$, $\mu$, and $\tau$ are defined in Equations (1)-(4) above, and $\Gamma(t)$ denotes the [Gamma function](https://stat.ethz.ch/R-manual/R-devel/library/base/html/Special.html) evaluated at $t$.
+
+Following Stryhn and Christensen (2003), denote the maximum likelihood estimates of the mean and coefficient of variation by $(\mu^*, \tau^*)$. The likelihood ratio test statistic ($G^2$) of the hypothesis $H_0: \mu = \mu_0$ (where $\mu_0$ is a fixed value) equals the drop in $2 log(L)$ between the “full” model and the reduced model with $\mu$ fixed at $\mu_0$, i.e.,
+
+$$
+G^2 = 2 \{log[L(\mu^*, \tau^*)] - log[L(\mu_0, \tau_0^*)]\} \;\;\;\;\;\; (18)
+$$
+
+where $\tau_0^*$ is the maximum likelihood estimate of $\tau$ for the reduced model (i.e., when $\mu = \mu_0$). Under the null hypothesis, the test statistic $G^2$ follows a [chi-squared distribution](https://stat.ethz.ch/R-manual/R-devel/library/stats/html/Chisquare.html) with 1 degree of freedom.
+
+Alternatively, we may express the test statistic in terms of the profile likelihood function $L_1$ for the mean $\mu$, which is obtained from the usual likelihood function by maximizing over the parameter $\tau$, i.e.,
+
+$$
+L_1(\mu) = max_{\tau} L(\mu, \tau) \;\;\;\;\;\; (19)
+$$
+
+Then we have
+
+$$
+G^2 = 2 \{log[L_1(\mu^*)] - log[L_1(\mu_0)]\} \;\;\;\;\;\; (20)
+$$
+
+A two-sided $(1-\alpha)100\%$ confidence interval for the mean $\mu$ consists of all values of $\mu_0$ for which the test is not significant at level $alpha$:
+
+$$
+\mu_0: G^2 \le \chi^2_{1, {1-\alpha}} \;\;\;\;\;\; (21)
+$$
+
+where $\chi^2_{\nu, p}$ denotes the $p$'th quantile of the [chi-squared distribution](https://stat.ethz.ch/R-manual/R-devel/library/stats/html/Chisquare.html) with $\nu$ degrees of freedom. One-sided lower and one-sided upper confidence intervals are computed in a similar fashion, except that the quantity $1-\alpha$ in Equation (21) is replaced with $1-2\alpha$.
+
+*Chi-Square Approximation* (`ci.method="chisq.approx"`)  
+This method is based on the relationship between the sample mean of the gamma distribution and the chi-squared distribution (Grice and Bain, 1980):
+
+$$
+\frac{2n\bar{x}}{\theta} \sim \chi^2_{2n\kappa} \;\;\;\;\;\; (22)
+$$
+
+Therefore, an exact one-sided upper $(1-\alpha)100\%$ confidence interval for the mean $\mu$ is given by:
+
+$$
+[0, \, \frac{2n\bar{x}\kappa}{\chi^2_{2n\kappa, \alpha}}] \;\;\;\;\;\; (23)
+$$
+
+an exact one-sided lower $(1-\alpha)100\%$ confidence interval is given by:
+
+$$
+[\frac{2n\bar{x}\kappa}{\chi^2_{2n\kappa, 1-\alpha}}, \, \infty] \;\;\;\;\;\; (24)
+$$
+
+and a two-sided $(1-\alpha)100\%$ confidence interval is given by:
+
+$$
+[\frac{2n\bar{x}\kappa}{\chi^2_{2n\kappa, 1-\alpha/2}}, \, \frac{2n\bar{x}\kappa}{\chi^2_{2n\kappa, \alpha/2}}] \;\;\;\;\;\; (25)
+$$
+
+Because this method is exact only when the shape parameter $\kappa$ is known, the method used here is called the “chi-square approximation” method because the estimate of the shape parameter, $\hat{\kappa}$, is used in place of $\kappa$ in Equations (23)-(25) above. The Chi-Square Approximation method is **not** the method proposed by Grice and Bain (1980) in which the confidence interval is adjusted based on adjusting for the fact that the shape parameter $\kappa$ is estimated (see the explanation of the Chi-Square Adjusted method below). The Chi-Square Approximation method used by `egamma` and `egammaAlt` is equivalent to the “approximate gamma” method of *ProUCL* (USEPA, 2015, equation (2-34), p.62).
+
+*Chi-Square Adjusted* (`ci.method="chisq.adj"`)  
+This is the same method as the Chi-Square Approximation method discussed above, execpt that the value of $\alpha$ is adjusted to account for the fact that the shape parameter $\kappa$ is estimated rather than known. Grice and Bain (1980) performed Monte Carlo simulations to determine how to adjust $\alpha$ and the values in their Table 2 are given in the matrix [`Grice.Bain.80.mat`](https://alexkowa.github.io/EnvStats/reference/Grice.Bain.80.mat.html). This method requires that the sample size $n$ is at least 5 and the confidence level is between 75% and 99.5% (except when $n=5$, in which case the confidence level must be less than 99%). For values of the sample size $n$ and/or $\alpha$ that are not listed in the table, linear interpolation is used (when the sample size $n$ is greater than 40, linear interpolation on $1/n$ is used, as recommended by Grice and Bain (1980)). The Chi-Square Adjusted method used by `egamma` and `egammaAlt` is equivalent to the “adjusted gamma” method of *ProUCL* (USEPA, 2015, equation (2-35), p.63).
+
+## elnormAlt {#elnormalt}
+
+Help topic: [`elnormAlt`](https://alexkowa.github.io/EnvStats/reference/elnormAlt.html).
+
+If `x` contains any missing (`NA`), undefined (`NaN`) or infinite (`Inf`, `-Inf`) values, they will be removed prior to performing the estimation.
+
+Let $\underline{x}$ be a vector of $n$ observations from a [lognormal distribution](https://alexkowa.github.io/EnvStats/reference/LognormalAlt.html) with parameters `mean=`$\theta$ and `cv=`$\tau$. Let $\eta$ denote the standard deviation of this distribution, so that $\eta = \theta \tau$. Set $\underline{y} = log(\underline{x})$. Then $\underline{y}$ is a vector of observations from a normal distribution with parameters `mean=`$\mu$ and `sd=`$\sigma$. See the help file for [LognormalAlt](https://alexkowa.github.io/EnvStats/reference/LognormalAlt.html) for the relationship between $\theta, \tau, \eta, \mu$, and $\sigma$.
+
+**Estimation**  
+This section explains how each of the estimators of `mean=`$\theta$ and `cv=`$\tau$ are computed. The approach is to first compute estimates of $\theta$ and $\eta^2$ (the mean and variance of the lognormal distribution), say $\hat{\theta}$ and $\hat{\eta}^2$, then compute the estimate of the cv $\tau$ by $\hat{\tau} = \hat{\eta}/\hat{\theta}$.
+
+*Minimum Variance Unbiased Estimation* (`method="mvue"`)  
+The minimum variance unbiased estimators (mvue's) of $\theta$ and $\eta^2$ were derived by Finney (1941) and are discussed in Gilbert (1987, pp. 164-167) and Cohn et al. (1989). These estimators are computed as:
+
+$$
+\hat{\theta}_{mvue} = e^{\bar{y}} g_{n-1}(\frac{s^2}{2}) \;\;\;\; (1)
+$$
+
+$$
+\hat{\eta}^2_{mvue} = e^{2 \bar{y}} \{g_{n-1}(2s^2) - g_{n-1}[\frac{(n-2)s^2}{n-1}]\} \;\;\;\; (2)
+$$
+
+where
+
+$$
+\bar{y} = \frac{1}{n} \sum_{i=1}^n y_i \;\;\;\; (3)
+$$
+
+$$
+s^2 = \frac{1}{n-1} \sum_{i=1}^n (y_i - \bar{y})^2 \;\;\;\; (4)
+$$
+
+$$
+g_m(z) = \sum_{i=0}^\infty \frac{m^i (m+2i)}{m(m+2) \cdots (m+2i)} (\frac{m}{m+1})^i (\frac{z^i}{i!}) \;\;\;\; (5)
+$$
+
+The expected value and variance of the mvue of $\theta$ are (Bradu and Mundlak, 1970; Cohn et al., 1989):
+
+$$
+E[\hat{\theta}_{mvue}] = \theta \;\;\;\; (6)
+$$
+
+$$
+Var[\hat{\theta}_{mvue}] = e^{2\mu} \{e^{[(2+n-1)\sigma^2]/n} g_{n-1}(\frac{\sigma^4}{4n}) - e^{\sigma^2} \} \;\;\;\; (7)
+$$
+
+*Maximum Likelihood Estimation* (`method="mle"`)  
+The maximum likelihood estimators (mle's) of $\theta$ and $\eta^2$ are given by:
+
+$$
+\hat{\theta}_{mle} = exp(\bar{y} + \frac{\hat{\sigma}^2_{mle}}{2})  \;\;\;\; (8)
+$$
+
+$$
+\hat{\eta}^2_{mle} = \hat{\theta}^2_{mle} \hat{\tau}^2_{mle} \;\;\;\; (9)
+$$
+
+where
+
+$$
+\hat{\tau}^2_{mle} = exp(\hat{\sigma}^2_{mle}) - 1 \;\;\;\; (10)
+$$
+
+$$
+\hat{\sigma}^2_{mle} = \frac{n-1}{n} s^2 \;\;\;\; (11)
+$$
+
+The expected value and variance of the mle of $\theta$ are (after Cohn et al., 1989):
+
+$$
+E[\hat{\theta}_{mle}] = \theta exp[\frac{-(n-1)\sigma^2}{2n}] (1 - \frac{\sigma^2}{n})^{-(n-1)/2} \;\;\;\; (12)
+$$
+
+$$
+Var[\hat{\theta}_{mle}] = exp(2\mu + \frac{\sigma^2}{n}) \{exp(\frac{\sigma^2}{n}) [1 - \frac{2\sigma^2}{n}]^{-(n-1)/2} - [1 - \frac{\sigma^2}{n}]^{-(n-1)} \} \;\;\;\; (13)
+$$
+
+As can be seen from equation (12), the expected value of the mle of $\theta$ does not exist when $\sigma^2 > n$. In general, the $p$'th moment of the mle of $\theta$ does not exist when $\sigma^2 > n/p$.
+
+*Quasi Maximum Likelihood Estimation* (`method="qmle"`)  
+The quasi maximum likelihood estimators (qmle's; Cohn et al., 1989; Gilbert, 1987, p.167) of $\theta$ and $\eta^2$ are the same as the mle's, except the mle of $\sigma^2$ in equations (8) and (10) is replaced with the more commonly used mvue of $\sigma^2$ shown in equation (4):
+
+$$
+\hat{\theta}_{qmle} = exp(\bar{y} + \frac{s^2}{2})  \;\;\;\; (14)
+$$
+
+$$
+\hat{\eta}^2_{qmle} = \hat{\theta}^2_{qmle} \hat{\tau}^2_{qmle} \;\;\;\; (15)
+$$
+
+$$
+\hat{\tau}^2_{qmle} = exp(s^2) - 1 \;\;\;\; (16)
+$$
+
+The expected value and variance of the qmle of $\theta$ are (Cohn et al., 1989):
+
+$$
+E[\hat{\theta}_{mle}] = \theta exp[\frac{-(n-1)\sigma^2}{2n}] (1 - \frac{\sigma^2}{n-1})^{-(n-1)/2} \;\;\;\; (17)
+$$
+
+$$
+Var[\hat{\theta}_{mle}] = exp(2\mu + \frac{\sigma^2}{n}) \{exp(\frac{\sigma^2}{n}) [1 - \frac{2\sigma^2}{n-1}]^{-(n-1)/2} - [1 - \frac{\sigma^2}{n-1}]^{-(n-1)} \} \;\;\;\; (18)
+$$
+
+As can be seen from equation (17), the expected value of the qmle of $\theta$ does not exist when $\sigma^2 > (n - 1)$. In general, the $p$'th moment of the mle of $\theta$ does not exist when $\sigma^2 > (n - 1)/p$.
+
+Note that Gilbert (1987, p. 167) incorrectly presents equation (12) rather than equation (17) as the expected value of the qmle of $\theta$. For large values of $n$ relative to $\sigma^2$, however, equations (12) and (17) are virtually identical.
+
+*Method of Moments Estimation* (`method="mme"`)  
+The method of moments estimators (mme's) of $\theta$ and $\eta^2$ are found by equating the sample mean and variance with their population values:
+
+$$
+\hat{\theta}_{mme} = \bar{x} = \frac{1}{n} \sum_{i=1}^n x_i \;\;\;\; (19)
+$$
+
+$$
+\hat{\eta}_{mme} = \frac{1}{n} \sum_{i=1}^n (x_i - \bar{x})^2 \;\;\;\; (20)
+$$
+
+Note that the estimator of variance in equation (20) is biased.
+
+The expected value and variance of the mme of $\theta$ are:
+
+$$
+E[\hat{\theta}_{mme}] = \theta \;\;\;\; (21)
+$$
+
+$$
+Var[\hat{\theta}_{mme}] = \frac{\eta^2}{n} = \frac{1}{n} exp(2\mu + \sigma^2) [exp(\sigma^2)-1] \;\;\;\; (22)
+$$
+
+*Method of Moments Estimation Based on the Unbiased Estimate of Variance* (`method="mmue"`)  
+These estimators are exactly the same as the method of moments estimators described above, except that the usual unbiased estimate of variance is used:
+
+$$
+\hat{\theta}_{mmue} = \bar{x} = \frac{1}{n} \sum_{i=1}^n x_i \;\;\;\; (23)
+$$
+
+$$
+\hat{\eta}_{mmue} = \frac{1}{n-1} \sum_{i=1}^n (x_i - \bar{x})^2 \;\;\;\; (24)
+$$
+
+Since the mmue of $\theta$ is equivalent to the mme of $\theta$, so are its mean and varaince.
+
+**Confidence Intervals**  
+This section explains the different methods for constructing confidence intervals for $\theta$, the mean of the lognormal distribution.
+
+*Land's Method* (`ci.method="land"`)  
+Land (1971, 1975) derived a method for computing one-sided (lower or upper) uniformly most accurate unbiased confidence intervals for $\theta$. A two-sided confidence interval can be constructed by combining an optimal lower confidence limit with an optimal upper confidence limit. This procedure for two-sided confidence intervals is only asymptotically optimal, but for most purposes should be acceptable (Land, 1975, p.387).
+
+As shown in equation (3) in the help file for [LognormalAlt](https://alexkowa.github.io/EnvStats/reference/LognormalAlt.html), the mean $\theta$ of a lognormal random variable is related to the mean $\mu$ and standard deviation $\sigma$ of the log-transformed random variable by the following relationship:
+
+$$
+\theta = e^{\beta} \;\;\;\; (25)
+$$
+
+where
+
+$$
+\beta = \mu + \frac{\sigma^2}{2} \;\;\;\; (26)
+$$
+
+Land (1971) developed confidence bounds for the quantity $\beta$. The mvue of $\beta$ is given by:
+
+$$
+\hat{\beta}_{mvue} = \bar{y} + \frac{s^2}{2} \;\;\;\; (27)
+$$
+
+Note that $\hat{\theta}_{qmle} = exp(\hat{\beta}_{mvue})$. The $(1-\alpha)100\%$ two-sided confidence interval for $\beta$ is given by:
+
+$$
+[ \hat{\beta}_{mvue} + s \frac{C_{\alpha/2}}{\sqrt{n-1}}, \;  \hat{\beta}_{mvue} + s \frac{C_{1-\alpha/2}}{\sqrt{n-1}} ] \;\;\;\; (28)
+$$
+
+the $(1-\alpha)100\%$ one-sided upper confidence interval for $\beta$ is given by:
+
+$$
+[ -\infty, \;  \hat{\beta}_{mvue} + s \frac{C_{1-\alpha}}{\sqrt{n-1}} ] \;\;\;\; (29)
+$$
+
+and the $(1-\alpha)100\%$ one-sided lower confidence interval for $\beta$ is given by:
+
+$$
+[ \hat{\beta}_{mvue} + s \frac{C_{\alpha}}{\sqrt{n-1}}, \;  \infty ] \;\;\;\; (30)
+$$
+
+where $s$ is the estimate of $\sigma$ (see equation (4) above), and the factor $C$ is given in tables in Land (1975).
+
+Thus, by equations (25)-(30), the two-sided $(1-\alpha)100\%$ confidence interval for $\theta$ is given by:
+
+$$
+\{\hat{\theta}_{qmle} exp[s \frac{C_{\alpha/2}}{\sqrt{n-1}}], \;  \hat{\theta}_{qmle} exp[s \frac{C_{1-\alpha/2}}{\sqrt{n-1}}] \} \;\;\;\; (31)
+$$
+
+the $(1-\alpha)100\%$ one-sided upper confidence interval for $\theta$ is given by:
+
+$$
+\{ 0, \;  \hat{\theta}_{qmle} exp[s \frac{C_{1-\alpha}}{\sqrt{n-1}}] \} \;\;\;\; (32)
+$$
+
+and the $(1-\alpha)100\%$ one-sided lower confidence interval for $\theta$ is given by:
+
+$$
+\{\hat{\theta}_{qmle} exp[s \frac{C_{\alpha}}{\sqrt{n-1}} ], \;  \infty \} \;\;\;\; (33)
+$$
+
+Note that Gilbert (1987, pp. 169-171, 264-265) denotes the quantity $C$ above as $H$ and reproduces a subset of Land's (1975) tables. Some guidance documents (e.g., USEPA, 1992d) refer to this quantity as the $H$-statistic.
+
+*Zou et al.'s Method* (`ci.method="zou"`)  
+Zou et al. (2009) proposed the following approximation for the two-sided $(1-\alpha)100\%$ confidence intervals for $\theta$. The lower limit $LL$ is given by:
+
+$$
+LL = \hat{\theta}_{qmle} exp\{ -[\frac{z^2_{1-\alpha/2}s^2}{n} + (\frac{s^2}{2} - \frac{(n-1)s^2}{2\chi^2_{1-\alpha/2, n-1}})^2]^{1/2}\} \;\;\;\; (34)
+$$
+
+and the upper limit $UL$ is given by:
+
+$$
+UL = \hat{\theta}_{qmle} exp\{ [\frac{z^2_{1-\alpha/2}s^2}{n} + (\frac{(n-1)s^2}{2\chi^2_{\alpha/2, n-1}} - \frac{s^2}{2})^2]^{1/2}\} \;\;\;\; (35)
+$$
+
+where $z_p$ denotes the $p$'th quantile of the standard [normal distribuiton](https://stat.ethz.ch/R-manual/R-devel/library/stats/html/Normal.html), and $\chi_{p, \nu}$ denotes the $p$'th quantile of the [chi-square distribution](https://stat.ethz.ch/R-manual/R-devel/library/stats/html/Chisquare.html) with $\nu$ degrees of freedom. The $(1-\alpha)100\%$ one-sided lower confidence limit and one-sided upper confidence limit are given by equations (34) and (35), respectively, with $\alpha/2$ replaced by $\alpha$.
+
+*Parkin et al.'s Method* (`ci.method="parkin"`)  
+This method was developed by Parkin et al. (1990). It can be shown that the mean of a lognormal distribution corresponds to the $p$'th quantile, where
+
+$$
+p = \Phi(\frac{\sigma}{2}) \;\;\;\; (36)
+$$
+
+and $\Phi$ denotes the cumulative distribution function of the standard [normal distribution](https://stat.ethz.ch/R-manual/R-devel/library/stats/html/Normal.html). Parkin et al. (1990) suggested estimating $p$ by replacing $\sigma$ in equation (36) with the estimate $s$ as computed in equation (4). Once an estimate of $p$ is obtained, a nonparametric confidence interval can be constructed for $p$, assuming $p$ is equal to its estimated value (see [`eqnpar`](https://alexkowa.github.io/EnvStats/reference/eqnpar.html)).
+
+*Cox's Method* (`ci.method="cox"`)  
+This method was suggested by Professor D.R. Cox and is illustrated in Land (1972). El-Shaarawi (1989) adapts this method to the case of censored water quality data. Cox's idea is to construct an approximate $(1-\alpha)100\%$ confidence interval for the quantity $\beta$ defined in equation (26) above assuming the estimate of $\beta$ is approximately normally distributed, and then exponentiate the confidence limits. That is, a two-sided $(1-\alpha)100\%$ confidence interval for $\theta$ is constructed as:
+
+$$
+[exp(\hat{\beta} - t_{1-\alpha/2, n-1}\hat{\sigma}_{\hat{\beta}}), \; exp(\hat{\beta} + t_{1-\alpha/2, n-1}\hat{\sigma}_{\hat{\beta}})] \;\;\;\; (37)
+$$
+
+where $t(p, \nu)$ denotes the $p$'th quantile of [Student's t-distribution](https://stat.ethz.ch/R-manual/R-devel/library/stats/html/TDist.html) with $\nu$ degrees of freedom. Note that this method, unlike the normal approximation method discussed below, guarantees a positive value for the lower confidence limit. One-sided confidence intervals are computed in a similar fashion.
+
+Define an estimator of $\beta$ by:
+
+$$
+\hat{\beta} = \hat{\mu} + \frac{\hat{\sigma}^2}{2} \;\;\;\; (38)
+$$
+
+Then the variance of this estimator is given by:
+
+$$
+Var(\hat{\beta}) = Var(\hat{\mu}) + Cov(\hat{\mu}, \hat{\sigma}^2) + \frac{1}{4}Var(\hat{\sigma}^2) \;\;\;\; (39)
+$$
+
+The function `elnormAlt` follows Land (1972) and uses the minimum variance unbiased estimator for $\beta$ shown in equation (27) above, so the variance and estimated variance of this estimator are:
+
+$$
+Var(\hat{\beta}_{mvue}) = \frac{\sigma^2}{n} + \frac{\sigma^4}{2(n-1)} \;\;\;\; (40)
+$$
+
+$$
+\hat{\sigma}^2_{\hat{\beta}} = \frac{s^2}{n} + \frac{s^4}{2(n+1)} \;\;\;\; (41)
+$$
+
+Note that El-Shaarawi (1989, equation 5) simply replaces the value of $s^2$ in equation (41) with some estimator of $\sigma^2$ (the mle or mvue of $\sigma^2$), rather than using the mvue of the variance of $\beta$ as shown in equation (41).
+
+*Normal Approximation* (`ci.method="normal.approx"`) This method constructs approximate $(1-\alpha)100\%$ confidence intervals for $\theta$ based on the assumption that the estimator of $\theta$ is approximately normally distributed. That is, a two-sided $(1-\alpha)100\%$ confidence interval for $\theta$ is constructed as:
+
+$$
+[\hat{\theta} - t_{1-\alpha/2, n-1}\hat{\sigma}_{\hat{\theta}}, \; \hat{\theta} + t_{1-\alpha/2, n-1}\hat{\sigma}_{\hat{\theta}}] \;\;\;\; (42)
+$$
+
+One-sided confidence intervals are computed in a similar fashion.
+
+When `method="mvue"` is used to estimate $\theta$, an unbiased estimate of the variance of the estimator of $\theta$ is used in equation (42) (Bradu and Mundlak, 1970, equation 4.3; Gilbert, 1987, equation 13.5):
+
+$$
+\hat{\sigma^2}_{\hat{\theta}} = e^{2\bar{y}} \{[g_{n-1}(\frac{s^2}{2})]^2 - g_{n-1}[\frac{s^2(n-2)}{n-1}] \} \;\;\;\; (43)
+$$
+
+When `method="mle"` is used to estimate $\theta$, the estimate of the variance of the estimator of $\theta$ is computed by replacing $\mu$ and $\sigma^2$ in equation (13) with their mle's:
+
+$$
+\hat{\sigma}^2_{\hat{\theta}} = exp(2\bar{y} + \frac{\hat{\sigma}^2_{mle}}{n}) \{exp(\frac{\hat{\sigma}^2_{mle}}{n}) [1 - \frac{2\hat{\sigma}^2_{mle}}{n}]^{-(n-1)/2} - [1 - \frac{\hat{\sigma}^2_{mle}}{n}]^{-(n-1)} \} \;\;\;\; (44)
+$$
+
+When `method="qmle"` is used to estimate $\theta$, the estimate of the variance of the estimator of $\theta$ is computed by replacing $\mu$ and $\sigma^2$ in equation (18) with their mvue's:
+
+$$
+\hat{\sigma}^2_{\hat{\theta}} = exp(2\bar{y} + \frac{s^2}{n}) \{exp(\frac{s^2}{n}) [1 - \frac{2 s^2}{n-1}]^{-(n-1)/2} - [1 - \frac{s^2}{n-1}]^{-(n-1)} \} \;\;\;\; (45)
+$$
+
+Note that equation (45) is exactly the same as Gilbert's (1987, p. 167) equation 13.8a, except that Gilbert (1987) erroneously uses $n$ where he should use $n-1$ instead. For large values of $n$ relative to $s^2$, however, this makes little difference.
+
+When `method="mme"`, the estimate of the variance of the estimator of $\theta$ is computed by replacing $eta^2$ in equation (22) with the mme of $\eta^2$ defined in equation (20):
+
+$$
+\hat{\sigma}^2_{\hat{\theta}} = \frac{\hat{\eta}_{mme}^2}{n} = \frac{1}{n^2} \sum_{i=1}^n (x_i - \bar{x})^2 \;\;\;\; (46)
+$$
+
+When `method="mmue"`, the estimate of the variance of the estimator of $\theta$ is computed by replacing $eta^2$ in equation (22) with the mmue of $\eta^2$ defined in equation (24):
+
+$$
+\hat{\sigma}^2_{\hat{\theta}} = \frac{\hat{\eta}_{mmue}^2}{n} = \frac{1}{n(n-1)} \sum_{i=1}^n (x_i - \bar{x})^2 \;\;\;\; (47)
+$$
+
+## elnorm3 {#elnorm3}
+
+Help topic: [`elnorm3`](https://alexkowa.github.io/EnvStats/reference/elnorm3.html).
+
+If `x` contains any missing (`NA`), undefined (`NaN`) or infinite (`Inf`, `-Inf`) values, they will be removed prior to performing the estimation.
+
+Let $X$ denote a random variable from a [three-parameter lognormal distribution](https://alexkowa.github.io/EnvStats/reference/Lognormal3.html) with parameters `meanlog=`$\mu$, `sdlog=`$\sigma$, and `threshold=`$\gamma$. Let $\underline{x}$ denote a vector of $n$ observations from this distribution. Furthermore, let $x_{(i)}$ denote the $i$'th order statistic in the sample, so that $x_{(1)}$ denotes the smallest value and $x_{(n)}$ denote the largest value in $\underline{x}$. Finally, denote the sample mean and variance by:
+
+$$
+\bar{x} = \frac{1}{n} \sum_{i=1}^n x_i \;\;\;\; (1)
+$$
+
+$$
+s^2 = \frac{1}{n-1} \sum_{i=1}^n (x_i - \bar{x})^2 \;\;\;\; (2)
+$$
+
+Note that the sample variance is the unbiased version. Denote the method of moments estimator of variance by:
+
+$$
+s^2_m = \frac{1}{n} \sum_{i=1}^n (x_i - \bar{x})^2 \;\;\;\; (3)
+$$
+
+**Estimation**
+
+*Local Maximum Likelihood Estimation* (`method="lmle"`)  
+Hill (1963) showed that the likelihood function approaches infinity as $\gamma$ approaches $x_{(1)}$, so that the global maximum likelihood estimators of $(\mu, \sigma, \gamma)$ are $(-\infty, \infty, x_{(1)})$, which are inadmissible, since $\gamma$ must be smaller than $x_{(1)}$. Cohen (1951) suggested using local maximum likelihood estimators (lmle's), derived by equating partial derivatives of the log-likelihood function to zero. These estimators were studied by Harter and Moore (1966), Calitz (1973), Cohen and Whitten (1980), and Griffiths (1980), and appear to possess most of the desirable properties ordinarily associated with maximum likelihood estimators.
+
+Cohen (1951) showed that the lmle of $\gamma$ is given by the solution to the following equation:
+
+$$
+[\sum_{i=1}^n \frac{1}{w_i}] \, \{\sum_{i=1}^n y_i - \sum_{i=1}^n y_i^2 + \frac{1}{n}[\sum_{i=1}^n y_i]^2 \} - n \sum_{i=1}^n \frac{y_i}{w_i} = 0 \;\;\;\; (4)
+$$
+
+where
+
+$$
+w_i = x_i - \hat{\gamma} \;\;\;\; (5)
+$$
+
+$$
+y_i = log(x_i - \hat{\gamma}) = log(w_i) \;\;\;\; (6)
+$$
+
+and that the lmle's of $\mu$ and $\sigma$ then follow as:
+
+$$
+\hat{\mu} = \frac{1}{n} \sum_{i=1}^n y_i = \bar{y} \;\;\;\; (7)
+$$
+
+$$
+\hat{\sigma}^2 = \frac{1}{n} \sum_{i=1}^n (y_i - \bar{y})^2 \;\;\;\; (8)
+$$
+
+Unfortunately, while equation (4) simplifies the task of computing the lmle's, for certain data sets there still may be convergence problems (Calitz, 1973), and occasionally multiple roots of equation (4) may exist. When multiple roots to equation (4) exisit, Cohen and Whitten (1980) recommend using the one that results in closest agreement between the mle of $\mu$ (equation (7)) and the sample mean (equation (1)).
+
+On the other hand, Griffiths (1980) showed that for a given value of the threshold parameter $\gamma$, the maximized value of the log-likelihood (the “profile likelihood” for $\gamma$) is given by:
+
+$$
+log[L(\gamma)] = \frac{-n}{2} [1 + log(2\pi) + 2\hat{\mu} + log(\hat{\sigma}^2) ] \;\;\;\; (9)
+$$
+
+where the estimates of $\mu$ and $\sigma$ are defined in equations (7) and (8), so the lmle of $\gamma$ reduces to an iterative search over the values of $\gamma$. Griffiths (1980) noted that the distribution of the lmle of $\gamma$ is far from normal and that $log[L(\gamma)]$ is not quadratic near the lmle of $\gamma$. He suggested a better parameterization based on
+
+$$
+\eta = -log(x_{(1)} - \gamma) \;\;\;\; (10)
+$$
+
+Thus, once the lmle of $\eta$ is found using equations (9) and (10), the lmle of $\gamma$ is given by:
+
+$$
+\hat{\gamma} = x_{(1)} - exp(-\hat{\eta}) \;\;\;\; (11)
+$$
+
+When `method="lmle"`, the function `elnorm3` uses the function `nlminb` to search for the minimum of $-2log[L(\eta)]$, using the modified method of moments estimator (`method="mmme"`; see below) as the starting value for $\gamma$. Equation (11) is then used to solve for the lmle of $\gamma$, and equation (4) is used to “fine tune” the estimated value of $\gamma$. The lmle's of $\mu$ and $\sigma$ are then computed using equations (6)-(8).
+
+*Method of Moments Estimation* (`method="mme"`)  
+Denote the $r$'th sample central moment by:
+
+$$
+m_r = \frac{1}{n} \sum_{i=1}^n (x_i - \bar{x})^r \;\;\;\; (12)
+$$
+
+and note that
+
+$$
+s^2_m = m_2 \;\;\;\; (13)
+$$
+
+Equating the sample first moment (the sample mean) with its population value (the population mean), and equating the second and third sample central moments with their population values yields (Johnson et al., 1994, p.228):
+
+$$
+\bar{x} = \gamma + \beta \sqrt{\omega} \;\;\;\; (14)
+$$
+
+$$
+m_2 = s^2_m = \beta^2 \omega (\omega - 1) \;\;\;\; (15)
+$$
+
+$$
+m_3 = \beta^3 \omega^{3/2} (\omega - 1)^2 (\omega + 2) \;\;\;\; (16)
+$$
+
+where
+
+$$
+\beta = exp(\mu) \;\;\;\; (17)
+$$
+
+$$
+\omega = exp(\sigma^2) \;\;\;\; (18)
+$$
+
+Combining equations (15) and (16) yields:
+
+$$
+b_1 = \frac{m_3}{m_2^{3/2}} = (\omega + 2) \sqrt{\omega - 1} \;\;\;\; (19)
+$$
+
+The quantity on the left-hand side of equation (19) is the usual estimator of skewness. Solving equation (19) for $\omega$ yields:
+
+$$
+\hat{\omega} = (d + h)^{1/3} + (d - h)^{1/3} - 1 \;\;\;\; (20)
+$$
+
+where
+
+$$
+d = 1 + \frac{b_1}{2} \;\;\;\; (21)
+$$
+
+$$
+h = sqrt{d^2 - 1} \;\;\;\; (22)
+$$
+
+Using equation (18), the method of moments estimator of $\sigma$ is then computed as:
+
+$$
+\hat{\sigma}^2 = log(\hat{\omega}) \;\;\;\; (23)
+$$
+
+Combining equations (15) and (17), the method of moments estimator of $\mu$ is computed as:
+
+$$
+\hat{\mu} = \frac{1}{2} log[\frac{s^2_m}{\hat{omega}(\hat{\omega} - 1)}] \;\;\;\; (24)
+$$
+
+Finally, using equations (14), (17), and (18), the method of moments estimator of $\gamma$ is computed as:
+
+$$
+\bar{x} - exp(\hat{mu} + \frac{\hat{\sigma}^2}{2}) \;\;\;\; (25)
+$$
+
+There are two major problems with using method of moments estimators for the three-parameter lognormal distribution. First, they are subject to very large sampling error due to the use of second and third sample moments (Cohen, 1988, p.121; Johnson et al., 1994, p.228). Second, Heyde (1963) showed that the lognormal distribution is not uniquely determined by its moments.
+
+*Method of Moments Estimators Using an Unbiased Estimate of Variance* (`method="mmue"`)  
+This method of estimation is exactly the same as the method of moments (`method="mme"`), except that the unbiased estimator of variance (equation (3)) is used in place of the method of moments one (equation (4)). This modification is given in Cohen (1988, pp.119-120).
+
+*Modified Method of Moments Estimation* (`method="mmme"`)  
+This method of estimation is described by Cohen (1988, pp.125-132). It was introduced by Cohen and Whitten (1980; their MME-II with r=1) and was further investigated by Cohen et al. (1985). It is motivated by the fact that the first order statistic in the sample, $x_{(1)}$, contains more information about the threshold parameter $\gamma$ than any other observation and often more information than all of the other observations combined (Cohen, 1988, p.125).
+
+The first two sets of equations are the same as for the modified method of moments estimators (`method="mmme"`), i.e., equations (14) and (15) with the unbiased estimator of variance (equation (3)) used in place of the method of moments one (equation (4)). The third equation replaces equation (16) by equating a function of the first order statistic with its expected value:
+
+$$
+log(x_{(1)} - \gamma) = \mu + \sigma E[Z_{(1,n)}] \;\;\;\; (26)
+$$
+
+where $E[Z_{(i,n)}]$ denotes the expected value of the $i$'th order statistic in a random sample of $n$ observations from a standard normal distribution. (See the help file for [`evNormOrdStats`](https://alexkowa.github.io/EnvStats/reference/evNormOrdStats.html) for information on how $E[Z_{(i,n)}]$ is computed.) Using equations (17) and (18), equation (26) can be rewritten as:
+
+$$
+x_{(1)} = \gamma + \beta exp\{\sqrt{log(\omega)} \, E[Z_{(i,n)}] \} \;\;\;\; (27)
+$$
+
+Combining equations (14), (15), (17), (18), and (27) yields the following equation for the estimate of $\omega$:
+
+$$
+\frac{s^2}{[\bar{x} - x_{(1)}]^2} = \frac{\hat{\omega}(\hat{\omega} - 1)}{[\sqrt{\hat{\omega}} - exp\{\sqrt{log(\omega)} \, E[Z_{(i,n)}] \} ]^2} \;\;\;\; (28)
+$$
+
+After equation (28) is solved for $\hat{\omega}$, the estimate of $\sigma$ is again computed using equation (23), and the estimate of $\mu$ is computed using equation (24), where the unbiased estimate of variaince is used in place of the biased one (just as for `method="mmue"`).
+
+*Zero-Skewness Estimation* (`method="zero.skew"`)  
+This method of estimation was introduced by Griffiths (1980), and elaborated upon by Royston (1992b). The idea is that if the threshold parameter $\gamma$ were known, then the distribution of:
+
+$$
+Y = log(X - \gamma) \;\;\;\; (29)
+$$
+
+is normal, so the skew of $Y$ is 0. Thus, the threshold parameter $\gamma$ is estimated as that value that forces the sample skew (defined in equation (19)) of the observations defined in equation (6) to be 0. That is, the zero-skewness estimator of $\gamma$ is the value that satisfies the following equation:
+
+$$
+0 = \frac{\frac{1}{n} \sum_{i=1}^n (y_i - \bar{y})^3}{[\frac{1}{n} \sum_{i=1}^n (y_i - \bar{y})^2]^{3/2}} \;\;\;\; (30)
+$$
+
+where
+
+$$
+y_i = log(x_i - \hat{\gamma}) \;\;\;\; (31)
+$$
+
+Note that since the denominator in equation (30) is always positive (assuming there are at least two unique values in $\underline{x}$), only the numerator needs to be used to determine the value of $\hat{\gamma}$.
+
+Once the value of $\hat{\gamma}$ has been determined, $\mu$ and $\sigma$ are estimated using equations (7) and (8), except the unbiased estimator of variance is used in equation (8).
+
+Royston (1992b) developed a modification of the Shaprio-Wilk goodness-of-fit test for normality based on tranforming the data using equation (6) and the zero-skewness estimator of $\gamma$ (see [`gofTest`](https://alexkowa.github.io/EnvStats/reference/gofTest.html)).
+
+*Estimators Based on Royston's Index of Skewness* (`method="royston.skew"`)  
+This method of estimation is discussed by Royston (1992b), and is similar to the zero-skewness method discussed above, except a different measure of skewness is used. Royston's (1992b) index of skewness is given by:
+
+$$
+q = \frac{y_{(n)} - \tilde{y}}{\tilde{y} - y_{(1)}} \;\;\;\; (32)
+$$
+
+where $y_{(i)}$ denotes the $i$'th order statistic of $y$ and $y$ is defined in equation (31) above, and $\tilde{y}$ denotes the median of $y$. Royston (1992b) shows that the value of $\gamma$ that yields a value of $q=0$ is given by:
+
+$$
+\hat{\gamma} = \frac{y_{(1)}y_{(n)} - \tilde{y}^2}{y_{(1)} + y_{(n)} - 2\tilde{y}} \;\;\;\; (33)
+$$
+
+Again, as for the zero-skewness method, once the value of $\hat{\gamma}$ has been determined, $\mu$ and $\sigma$ are estimated using equations (7) and (8), except the unbiased estimator of variance is used in equation (8).
+
+Royston (1992b) developed this estimator as a quick way to estimate $\gamma$.
+
+**Confidence Intervals**  
+This section explains three different methods for constructing confidence intervals for the threshold parameter $\gamma$, or the median of the three-parameter lognormal distribution, which is given by:
+
+$$
+Med[X] = \gamma + exp(\mu) = \gamma + \beta \;\;\;\; (34)
+$$
+
+*Normal Approximation Based on Asymptotic Variances and Covariances* (`ci.method="avar"`)  
+Formulas for asymptotic variances and covariances for the three-parameter lognormal distribution, based on the information matrix, are given in Cohen (1951), Cohen and Whitten (1980), Cohen et al., (1985), and Cohen (1988). The relevant quantities for $\gamma$ and the median are:
+
+$$
+Var(\hat{\gamma}) = \sigma^2_{\hat{\gamma}} = \frac{\sigma^2}{n} \, (\frac{\beta^2}{\omega}) H \;\;\;\; (35)
+$$
+
+$$
+Var(\hat{\beta}) = \sigma^2_{\hat{\beta}} = \frac{\sigma^2}{n} \, \beta^2 (1 + H) \;\;\;\; (36)
+$$
+
+$$
+Cov(\hat{\gamma}, \hat{\beta}) = \sigma_{\hat{\gamma}, \hat{\beta}} = \frac{-\sigma^3}{n} \, (\frac{\beta^2}{\sqrt{\omega}}) H \;\;\;\; (37)
+$$
+
+where
+
+$$
+H = [\omega (1 + \sigma^2) - 2\sigma^2 - 1]^{-1} \;\;\;\; (38)
+$$
+
+A two-sided $(1-\alpha)100\%$ confidence interval for $\gamma$ is computed as:
+
+$$
+\hat{\gamma} - t_{n-2, 1-\alpha/2} \hat{\sigma}_{\hat{\gamma}}, \, \hat{\gamma} + t_{n-2, 1-\alpha/2} \hat{\sigma}_{\hat{\gamma}} \;\;\;\; (39)
+$$
+
+where $t_{\nu, p}$ denotes the $p$'th quantile of [Student's t-distribution](https://stat.ethz.ch/R-manual/R-devel/library/stats/html/TDist.html) with $n$ degrees of freedom, and the quantity $\hat{\sigma}_{\hat{\gamma}}$ is computed using equations (35) and (38) and substituting estimated values of $\beta$, $\omega$, and $\sigma$. One-sided confidence intervals are computed in a similar manner.
+
+A two-sided $(1-\alpha)100\%$ confidence interval for the median (see equation (34) above) is computed as:
+
+$$
+\hat{\gamma} + \hat{\beta} - t_{n-2, 1-\alpha/2} \hat{\sigma}_{\hat{\gamma} + \hat{\beta}}, \, \hat{\gamma} + \hat{\beta} + t_{n-2, 1-\alpha/2} \hat{\sigma}_{\hat{\gamma} + \hat{\beta}} \;\;\;\; (40)
+$$
+
+where
+
+$$
+\hat{\sigma}^2_{\hat{\gamma} + \hat{\beta}} = \hat{\sigma}^2_{\hat{\gamma}} + \hat{\sigma}^2_{\hat{\beta}} + \hat{\sigma}_{\hat{\gamma}, \hat{\beta}} \;\;\;\; (41)
+$$
+
+is computed using equations (35)-(38) and substituting estimated values of $\beta$, $\omega$, and $\sigma$. One-sided confidence intervals are computed in a similar manner.
+
+This method of constructing confidence intervals is analogous to using the Wald test (e.g., Silvey, 1975, pp.115-118) to test hypotheses on the parameters.
+
+Because of the regularity problems associated with the global maximum likelihood estimators, it is questionble whether the asymptotic variances and covariances shown above apply to local maximum likelihood estimators. Simulation studies, however, have shown that these estimates of variance and covariance perform reasonably well (Harter and Moore, 1966; Cohen and Whitten, 1980).
+
+Note that this method of constructing confidence intervals can be used with estimators other than the lmle's. Cohen and Whitten (1980) and Cohen et al. (1985) found that the asymptotic variances and covariances are reasonably close to corresponding simulated variances and covariances for the modified method of moments estimators (`method="mmme"`).
+
+*Likelihood Profile* (`ci.method="likelihood.profile"`)  
+Griffiths (1980) suggested constructing confidence intervals for the threshold parameter $\gamma$ based on the profile likelihood function given in equations (9) and (10). Royston (1992b) further elaborated upon this procedure. A two-sided $(1-\alpha)100\%$ confidence interval for $\eta$ is constructed as:
+
+$$
+[\eta_{LCL}, \eta_{UCL}] \;\;\;\; (42)
+$$
+
+by finding the two values of $\eta$ (one larger than the lmle of $\eta$ and one smaller than the lmle of $\eta$) that satisfy:
+
+$$
+log[L(\eta)] = log[L(\hat{\eta}_{lmle})] - \frac{1}{2} \chi^2_{1, \alpha/2} \;\;\;\; (43)
+$$
+
+where $\chi^2_{\nu, p}$ denotes the $p$'th quantile of the [chi-square distribution](https://stat.ethz.ch/R-manual/R-devel/library/stats/html/Chisquare.html) with $\nu$ degrees of freedom. Once these values are found, the two-sided confidence for $\gamma$ is computed as:
+
+$$
+[\gamma_{LCL}, \gamma_{UCL}] \;\;\;\; (44)
+$$
+
+where
+
+$$
+\gamma_{LCL} = x_{(1)} - exp(-\eta_{LCL}) \;\;\;\; (45)
+$$
+
+$$
+\gamma_{UCL} = x_{(1)} - exp(-\eta_{UCL}) \;\;\;\; (46)
+$$
+
+One-sided intervals are construced in a similar manner.
+
+This method of constructing confidence intervals is analogous to using the likelihood-ratio test (e.g., Silvey, 1975, pp.108-115) to test hypotheses on the parameters.
+
+To construct a two-sided $(1-\alpha)100\%$ confidence interval for the median (see equation (34)), Royston (1992b) suggested the following procedure:
+
+1. Construct a confidence interval for $\gamma$ using the likelihood profile procedure.
+
+2. Construct a confidence interval for $\beta$ as:
+
+   $$
+   [\beta_{LCL}, \beta_{UCL}] = [exp(\hat{\mu} - t_{n-2, 1-\alpha/2} \frac{\hat{\sigma}}{n}), \, exp(\hat{\mu} + t_{n-2, 1-\alpha/2} \frac{\hat{\sigma}}{n})] \;\;\;\; (47)
+   $$
+
+3. Construct the confidence interval for the median as:
+
+   $$
+   [\gamma_{LCL} + \beta_{LCL}, \gamma_{UCL} + \beta_{UCL}] \;\;\;\; (48)
+   $$
+
+Royston (1992b) actually suggested using the quantile from the standard normal distribution instead of Student's t-distribution in step 2 above. The function `elnorm3`, however, uses the Student's t quantile.
+
+Note that this method of constructing confidence intervals can be used with estimators other than the lmle's.
+
+*Royston's Confidence Interval Based on Significant Skewness* (`ci.method="skewness"`)  
+Royston (1992b) suggested constructing confidence intervals for the threshold parameter $\gamma$ based on the idea behind the zero-skewness estimator (`method="zero.skew"`). A two-sided $(1-\alpha)100\%$ confidence interval for $\gamma$ is constructed by finding the two values of $\gamma$ that yield a p-value of $\alpha/2$ for the test of zero-skewness on the observations $\underline{y}$ defined in equation (6) (see [`gofTest`](https://alexkowa.github.io/EnvStats/reference/gofTest.html)). One-sided confidence intervals are constructed in a similar manner.
+
+To construct $(1-\alpha)100\%$ confidence intervals for the median (see equation (34)), the exact same procedure is used as for `ci.method="likelihood.profile"`, except that the confidence interval for $\gamma$ is based on the zero-skewness method just described instead of the likelihood profile method.
+
+## HoskingEtAl1985 {#hoskingetal1985}
+
+Help topic: [`HoskingEtAl1985`](https://alexkowa.github.io/EnvStats/reference/HoskingEtAl1985.html).
+
+**Abstract**  
+Hosking et al. (1985) use the method of probability-weighted moments, introduced by Greenwood et al. (1979), to estimate the parameters of the [generalized extreme value distribution](https://alexkowa.github.io/EnvStats/reference/GEVD.html) (GEVD) with parameters `location=`$\eta$, `scale=`$\theta$, and `shape=`$\kappa$. Hosking et al. (1985) derive the asymptotic distributions of the probability-weighted moment estimators (PWME), and compare the asymptotic and small-sample statistical properties (via computer simulation) of the PWME with maximum likelihood estimators (MLE) and Jenkinson's (1969) method of sextiles estimators (JSE). They also compare the statistical properties of quantile estimators (which are based on the distribution parameter estimators). Finally, they derive a test of the null hypothesis that the shape parameter is zero, and assess its performance via computer simulation.
+
+Hosking et al. (1985) note that when $\kappa \le -1$, the moments and probability-weighted moments of the GEVD do not exist. They also note that in practice the shape parameter usually lies between -1/2 and 1/2.
+
+Hosking et al. (1985) found that the asymptotic efficiency of the PWME (the limit as the sample size approaches infinity of the ratio of the variance of the MLE divided by the variance of the PWME) tends to 0 as the shape parameter approaches 1/2 or -1/2. For values of $\kappa$ within the range $[-0.2, 0.2]$, however, the efficiency of the estimator of location is close to 100%, and the efficiency of the estimators of scale and shape are greater than 70%. With respect to estimating large quantiles, Hosking et al. (1985) found that the asymptotic efficiency of the PWME is poor for $\kappa$ outside the range $[-0.2, 0.2]$.
+
+For the small sample results, Hosking et al. (1985) considered several possible forms of the PWME (see equations (8)-(10) below). The best overall results were given by the plotting-position PWME defined by equations (9) and (10) with $a=0.35$ and $b=0$.
+
+Small sample results for estimating the parameters show that for $n \ge 50$ all three methods give almost identical results. For $n < 50$ the results for the different estimators are a bit different, but not dramatically so. The MLE tends to be slightly less biased than the other two methods. For estimating the shape parameter, the MLE has a slightly larger standard deviation, and the PWME has consistently the smallest standard deviation.
+
+Small sample results for estimating large quantiles show that for $n \ge 100$ all three methods are comparable. For $n < 100$ the PWME and JSE are comparable and in general have much smaller standard deviations than the MLE. All three methods are very inaccurate for estimating large quantiles in small samples, especially when $\kappa < 0$.
+
+Hosking et al. (1985) derive a test of the null hypothesis $H_0: \kappa=0$ based on the PWME of $\kappa$. The test is performed by computing the statistic:
+
+$$
+z = \frac{\hat{\kappa_{pwme}}}{\sqrt{0.5663/n}} \;\;\;\; (1)
+$$
+
+and comparing $z$ to a standard normal distribution (see [`zTestGevdShape`](https://alexkowa.github.io/EnvStats/reference/zTestGevdShape.html)). Based on computer simulations using the plotting-position PWME, they found that a sample size of $n \ge 25$ ensures an adequate normal approximation. They also found this test has power comparable to the modified likelihood-ratio test, which was found by Hosking (1984) to be the best overall test of $H_0: \kappa=0$ of the thirteen tests he considered.
+
+**More Details**
+
+*Probability-Weighted Moments and Parameters of the GEVD*  
+The definition of a [probability-weighted moment](https://alexkowa.github.io/EnvStats/reference/pwMoment.html), introduced by Greenwood et al. (1979), is as follows. Let $X$ denote a random variable with cdf $F$, and let $x(p)$ denote the $p$'th quantile of the distribution. Then the $ijk$'th probability-weighted moment is given by:
+
+$$
+M(i, j, k) = E[X^i F^j (1 - F)^k] = \int^1_0 [x(F)]^i F^j (1 - F)^k \, dF \;\;\;\; (2)
+$$
+
+where $i$, $j$, and $k$ are real numbers.
+
+Hosking et al. (1985) set
+
+$$
+\beta_j = M(i, j, 0) \;\;\;\; (3)
+$$
+
+and Greenwood et al. (1979) show that
+
+$$
+\beta_j = \frac{1}{j+1} E[X_{j+1:j+1}] \;\;\;\; (4)
+$$
+
+where
+
+$$
+E[X_{j+1:j+1}]
+$$
+
+denotes the expected value of the $j+1$'th order statistic (i.e., the maximum) in a sample of size $j+1$. Hosking et al. (1985) show that if $X$ has a GEVD with parameters `location=`$\eta$, `scale=`$\theta$, and `shape=`$\kappa$, where $\kappa \ne 0$, then
+
+$$
+\beta_j = \frac{1}{j+1} \{\eta + \frac{\theta [1 - (j+1)^{-\kappa} \Gamma(1+\kappa)]}{\kappa} \} \;\;\;\; (5)
+$$
+
+for $\kappa > -1$, where $\Gamma()$ denotes the [gamma function](https://stat.ethz.ch/R-manual/R-devel/library/base/html/Special.html). Thus,
+
+$$
+\beta_0 = \eta + \frac{\theta [1 - \Gamma(1+\kappa)]}{\kappa} \;\;\;\; (6)
+$$
+
+$$
+2\beta_1 - \beta_0 = \frac{\theta [\Gamma(1+\kappa)] (1 - 2^{-\kappa})}{\kappa} \;\;\;\; (7)
+$$
+
+$$
+\frac{3\beta_2 - \beta_0}{2\beta_1 - \beta_0} = \frac{1 - 3^{-\kappa}}{1 - 2^{-kappa}} \;\;\;\; (8)
+$$
+
+*Estimating Distribution Parameters*  
+Using the results of Landwehr et al. (1979), Hosking et al. (1985) show that given a random sample of $n$ values from some arbitrary distribution, an unbiased, distribution-free, and parameter-free estimator of the probability-weighted moment $\beta_j = M(i, j, 0)$ defined above is given by:
+
+$$
+b_j = \frac{1}{n} \sum^n_{i=j+1} x_{i,n} \frac{{i-1 \choose j}}{{n-1 \choose j}} \;\;\;\; (9)
+$$
+
+where the quantity $x_{i,n}$ denotes the $i$'th order statistic in the random sample of size $n$. Hosking et al. (1985) note that this estimator is closely related to U-statistics (Hoeffding, 1948; Lehmann, 1975, pp. 362-371).
+
+An alternative “plotting position” estimator is given by:
+
+$$
+\hat{\beta}_j[p_{i,n}] = \frac{1}{n} \sum^n_{i=1} p^j_{i,n} x_{i,n} \;\;\;\; (10)
+$$
+
+where
+
+$$
+p_{i,n} = \hat{F}(x_{i,n}) \;\;\;\; (11)
+$$
+
+denotes the plotting position of the $i$'th order statistic in the random sample of size $n$, that is, a distribution-free estimate of the cdf of $X$ evaluated at the $i$'th order statistic. Typically, plotting positions have the form:
+
+$$
+p_{i,n} = \frac{i-a}{n+b} \;\;\;\; (12)
+$$
+
+where $b > -a > -1$. For this form of plotting position, the plotting-position estimators in (10) are asymptotically equivalent to the U-statistic estimators in (9).
+
+Although the unbiased and plotting position estimators are asymptotically equivalent (Hosking, 1990), Hosking and Wallis (1995) recommend using the unbiased estimator for almost all applications because of its superior performance in small and moderate samples.
+
+Using equations (6)-(8) above, i.e., the three equations involving $\beta_0$, $\beta_1$, and $\beta_2$, Hosking et al. (1985) define the probability-weighted moment estimators of $\eta$, $\theta$, and $\kappa$ as the solutions to these three simultaneous equations, with the values of the probability-weighted moments replaced by their estimated values (using either the unbiased or plotting posistion estiamtors in (9) and (10) above). Hosking et al. (1985) note that the third equation (equation (8)) must be solved iteratively for the PWME of $\kappa$. Using the unbiased estimators of the PWMEs to solve for $\kappa$, the PWMEs of $\eta$ and $\theta$ are given by:
+
+$$
+\hat{\eta}_{pwme} = b_0 + \frac{\hat{\theta}_{pwme} [\Gamma(1 + \hat{\kappa}_{pwme}) - 1]}{\hat{\kappa}_{pwme}} \;\;\;\; (13)
+$$
+
+$$
+\hat{\theta}_{pwme} = \frac{(2b_1 - b_0)\hat{\kappa}_{pwme}}{\Gamma(1 + \hat{\kappa}_{pwme}) (1 - 2^{-\hat{\kappa}_{pwme}})} \;\;\;\; (14)
+$$
+
+Hosking et al. (1985) show that when the unbiased estimates of the PWMEs are used to estimate the probability-weighted moments, the estimates of $\theta$ and $\kappa$ satisfy the feasibility criteria
+
+$$
+\hat{\theta}_{pwme} > 0; \, \hat{\kappa}_{pwme} > -1
+$$
+
+almost surely.
+
+Hosking et al. (1985) show that the asymptotic distribution of the PWME is multivariate normal with mean equal to $(\eta, \theta, \kappa)$, and they derive the formula for the asymptotic variance-covariance matrix as:
+
+$$
+V_{\hat{\eta}, \hat{\theta}, \hat{\kappa}} = \frac{1}{n} G V_{\hat{\beta}_0, \hat{\beta}_1, \hat{\beta}_2} G^T \;\;\;\; (15)
+$$
+
+where
+
+$$
+V_{\hat{\beta}_0, \hat{\beta}_1, \hat{\beta}_2}
+$$
+
+denotes the variance-covariance matrix of the estimators of the probability-weighted moments defined in either equation (9) or (10) above (recall that these two estimators are asymptotically equivalent), and the matrix $G$ is defined by:
+
+$$
+G_{i1} = \frac{\partial \eta}{\partial \beta_{i-1}}, \, G_{i2} = \frac{\partial \theta}{\partial \beta_{i-1}}, \, G_{i3} = \frac{\partial \kappa}{\partial \beta_{i-1}} \;\;\;\; (16)
+$$
+
+for $i = 1, 2, 3$. Hosking et al. (1985) provide formulas for the matrix
+
+$$
+V_{\hat{\beta}_0, \hat{\beta}_1, \hat{\beta}_2}
+$$
+
+in Appendix C of their manuscript. Note that there is a typographical error in equation (C.11) (Jon Hosking, personal communication, 1996). In the second line of this equation, the quantity $-(r+s)^{-k}$ should be replaced with $-(r+s)^{-2k}$.
+
+The matrix $G$ in equation (16) is not easily computed. Its inverse, however, is easy to compute and then can be inverted numerically (Jon Hosking, 1996, personal communication). The inverse of $G$ is given by:
+
+$$
+G^{-1}_{i1} = \frac{\partial \beta_{i-1}{\partial \eta}}, \, G^{-1}_{i2} = \frac{\partial \beta_{i-1}{\partial \theta}}, \, G^{-1}_{i3} = \frac{\partial \beta_{i-1}{\partial \kappa}} \;\;\;\; (17)
+$$
+
+and by equation (5) above it can be shown that:
+
+$$
+\frac{\partial \beta_j}{\partial \eta} = \frac{1}{j+1} \;\;\;\; (18)
+$$
+
+$$
+\frac{\partial \beta_j}{\partial \theta} =\frac{1 - (j+1)^{-\kappa}\Gamma(1+\kappa)}{(j+1)\kappa} \;\;\;\; (19)
+$$
+
+$$
+\frac{\partial \beta_j}{\partial \kappa} = \frac{\theta}{j+1} \{ \frac{(j+1)^{-\kappa}[log(j+1)\Gamma(1+\kappa)-\Gamma^{'}(1+\kappa)]}{\kappa} - \frac{1 - (j+1)^{-\kappa}\Gamma(1+\kappa)}{\kappa^2} \} \;\;\;\; (20)
+$$
+
+for $i = 1, 2, 3$.
+
+*Estimating Distribution Quantiles*  
+If $X$ has a GEVD with parameters `location=`$\eta$, `scale=`$\theta$, and `shape=`$\kappa$, where $\kappa \ne 0$, then the $p$'th quantile of the distribution is given by:
+
+$$
+x(p) = \eta + \frac{\theta \{1 - [-log(p)]^{\kappa} \}}{\kappa} \;\;\;\; (21)
+$$
+
+$(0 \le p \le 1)$. Given estimated values of the location, scale, and shape parameters, the $p$'th quantile of the distribution is estimated as:
+
+$$
+\hat{x}(p) = \hat{\eta} + \frac{\hat{\theta} \{1 - [-log(p)]^{\hat{\kappa}} \}}{\hat{\kappa}} \;\;\;\; (22)
+$$

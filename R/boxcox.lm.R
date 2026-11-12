@@ -1,3 +1,5 @@
+#' @exportS3Method NULL
+#' @noRd
 boxcox.lm <-
 function (x, lambda = {
     if (optimize) 

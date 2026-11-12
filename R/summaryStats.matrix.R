@@ -1,3 +1,5 @@
+#' @exportS3Method NULL
+#' @noRd
 summaryStats.matrix <-
 function (object, ...) 
 {

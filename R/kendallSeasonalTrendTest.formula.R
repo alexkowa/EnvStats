@@ -1,3 +1,5 @@
+#' @exportS3Method NULL
+#' @noRd
 kendallSeasonalTrendTest.formula <-
 function (y, data = NULL, subset, na.action = na.pass, ...) 
 {
