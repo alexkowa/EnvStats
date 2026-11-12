@@ -6,9 +6,15 @@ Date: 2026-11-10
 Authors@R: c(
   person("Steven P.","Millard",email="EnvStats@ProbStatInfo.com",role=c("aut")),
   person("Alexander", "Kowarik", email = "alexander.kowarik@statistik.gv.at", role = c("ctb","cre"),
-    comment=c(ORCID="0000-0001-8598-4130")))
+    comment=c(ORCID="0000-0001-8598-4130")),
+  person("John H.", "Carson Jr.", role = "ctb",
+    comment = "Land's C in compiled code; corrected Finney's g"),
+  person("Neptune and Company, Inc.", role = "cph",
+    comment = paste("src/land.cpp, src/land.h, src/lands_C.cpp, R/lands.C.R,",
+      "R/finneys.g.scalar.R and their tests, contributed under GPL (>= 3)")))
 Depends: R (>= 3.5.0)
-Imports: MASS, ggplot2, nortest
+Imports: MASS, ggplot2, nortest, Rcpp
+LinkingTo: Rcpp
 Suggests:
     knitr,
     rmarkdown,
@@ -34,6 +40,6 @@ Encoding: UTF-8
 URL: https://github.com/alexkowa/EnvStats, https://alexkowa.github.io/EnvStats/
 LazyLoad: yes
 LazyData: yes
-NeedsCompilation: no
+NeedsCompilation: yes
 VignetteBuilder: knitr
 Config/roxygen2/version: 8.1.0
