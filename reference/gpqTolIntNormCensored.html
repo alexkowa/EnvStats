@@ -18,7 +18,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">EnvStats</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">3.1.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">4.0.0</span>
       </span>
     </div>
 
@@ -26,6 +26,37 @@
       <ul class="nav navbar-nav"><li>
   <a href="../reference/index.html">Reference</a>
 </li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+    Articles
+
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu"><li>
+      <a href="../articles/censored-estimation.html">Estimation with censored data</a>
+    </li>
+    <li>
+      <a href="../articles/distribution-diagnostics.html">Distribution diagnostics, transformations, and probability plots</a>
+    </li>
+    <li>
+      <a href="../articles/distributions-and-estimation.html">Probability distributions and parameter estimation</a>
+    </li>
+    <li>
+      <a href="../articles/nonparametric-methods.html">Nonparametric estimation and two-sample tests</a>
+    </li>
+    <li>
+      <a href="../articles/outlier-testing.html">Rosner's test for multiple outliers</a>
+    </li>
+    <li>
+      <a href="../articles/power-and-study-design.html">Statistical power and study design</a>
+    </li>
+    <li>
+      <a href="../articles/prediction-intervals.html">Prediction intervals for environmental monitoring</a>
+    </li>
+    <li>
+      <a href="../articles/trend-and-correlation.html">Trend tests and serial correlation</a>
+    </li>
+  </ul></li>
       </ul><ul class="nav navbar-nav navbar-right"><li>
   <a href="https://github.com/alexkowa/EnvStats/" class="external-link">
     <span class="fab fa-github fa-lg"></span>
@@ -42,7 +73,7 @@
   <div class="col-md-9 contents">
     <div class="page-header">
     <h1>Generalized Pivotal Quantity for Tolerance Interval for a Normal Distribution Based on Censored Data</h1>
-
+    <small class="dont-index">Source: <a href="https://github.com/alexkowa/EnvStats/blob/master/R/0package.R" class="external-link"><code>R/0package.R</code></a></small>
     <div class="hidden name"><code>gpqTolIntNormCensored.Rd</code></div>
     </div>
 
@@ -52,10 +83,10 @@
     </div>
 
     <div id="ref-usage">
-    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">gpqTolIntNormSinglyCensored</span><span class="op">(</span><span class="va">n</span>, <span class="va">n.cen</span>, <span class="va">p</span>, <span class="va">probs</span>, <span class="va">nmc</span>, method <span class="op">=</span> <span class="st">"mle"</span>, </span>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">gpqTolIntNormSinglyCensored</span><span class="op">(</span><span class="va">n</span>, <span class="va">n.cen</span>, <span class="va">p</span>, <span class="va">probs</span>, <span class="va">nmc</span>, method <span class="op">=</span> <span class="st">"mle"</span>,</span>
 <span>    censoring.side <span class="op">=</span> <span class="st">"left"</span>, seed <span class="op">=</span> <span class="cn">NULL</span>, names <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span>
 <span></span>
-<span>  <span class="fu">gpqTolIntNormMultiplyCensored</span><span class="op">(</span><span class="va">n</span>, <span class="va">cen.index</span>, <span class="va">p</span>, <span class="va">probs</span>, <span class="va">nmc</span>, method <span class="op">=</span> <span class="st">"mle"</span>, </span>
+<span>  <span class="fu">gpqTolIntNormMultiplyCensored</span><span class="op">(</span><span class="va">n</span>, <span class="va">cen.index</span>, <span class="va">p</span>, <span class="va">probs</span>, <span class="va">nmc</span>, method <span class="op">=</span> <span class="st">"mle"</span>,</span>
 <span>    censoring.side <span class="op">=</span> <span class="st">"left"</span>, seed <span class="op">=</span> <span class="cn">NULL</span>, names <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></code></pre></div>
     </div>
 
@@ -157,44 +188,44 @@
 
     <div id="ref-examples">
     <h2>Examples</h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span>  <span class="co"># Reproduce the entries for n=10 observations with n.cen=1 in Table 12.2 </span></span></span>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span>  <span class="co"># Reproduce the entries for n=10 observations with n.cen=1 in Table 12.2</span></span></span>
 <span class="r-in"><span>  <span class="co"># of Krishnamoorthy and Mathew (2009, p.331).</span></span></span>
 <span class="r-in"><span>  <span class="co">#</span></span></span>
-<span class="r-in"><span>  <span class="co"># (Note: passing a value for the argument "seed" simply allows you to </span></span></span>
-<span class="r-in"><span>  <span class="co"># reproduce this example.)  </span></span></span>
+<span class="r-in"><span>  <span class="co"># (Note: passing a value for the argument "seed" simply allows you to</span></span></span>
+<span class="r-in"><span>  <span class="co"># reproduce this example.)</span></span></span>
 <span class="r-in"><span>  <span class="co">#</span></span></span>
-<span class="r-in"><span>  <span class="co"># NOTE:  Here to save computing time for the sake of example, we will specify </span></span></span>
-<span class="r-in"><span>  <span class="co">#        just 100 Monte Carlos, whereas Krishnamoorthy and Mathew (2009) </span></span></span>
+<span class="r-in"><span>  <span class="co"># NOTE:  Here to save computing time for the sake of example, we will specify</span></span></span>
+<span class="r-in"><span>  <span class="co">#        just 100 Monte Carlos, whereas Krishnamoorthy and Mathew (2009)</span></span></span>
 <span class="r-in"><span>  <span class="co">#        suggest *10,000* Monte Carlos.</span></span></span>
 <span class="r-in"><span></span></span>
-<span class="r-in"><span>  <span class="fu">gpqTolIntNormSinglyCensored</span><span class="op">(</span>n <span class="op">=</span> <span class="fl">10</span>, n.cen <span class="op">=</span> <span class="fl">1</span>, p <span class="op">=</span> <span class="fl">0.05</span>, probs <span class="op">=</span> <span class="fl">0.05</span>, </span></span>
+<span class="r-in"><span>  <span class="fu">gpqTolIntNormSinglyCensored</span><span class="op">(</span>n <span class="op">=</span> <span class="fl">10</span>, n.cen <span class="op">=</span> <span class="fl">1</span>, p <span class="op">=</span> <span class="fl">0.05</span>, probs <span class="op">=</span> <span class="fl">0.05</span>,</span></span>
 <span class="r-in"><span>    nmc <span class="op">=</span> <span class="fl">100</span>, seed <span class="op">=</span> <span class="fl">529</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>        5% </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> -3.483403 </span>
-<span class="r-in"><span>  <span class="co">#       5% </span></span></span>
+<span class="r-in"><span>  <span class="co">#       5%</span></span></span>
 <span class="r-in"><span>  <span class="co">#-3.483403</span></span></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span></span></span>
-<span class="r-in"><span>  <span class="fu">gpqTolIntNormSinglyCensored</span><span class="op">(</span>n <span class="op">=</span> <span class="fl">10</span>, n.cen <span class="op">=</span> <span class="fl">1</span>, p <span class="op">=</span> <span class="fl">0.1</span>, probs <span class="op">=</span> <span class="fl">0.05</span>, </span></span>
+<span class="r-in"><span>  <span class="fu">gpqTolIntNormSinglyCensored</span><span class="op">(</span>n <span class="op">=</span> <span class="fl">10</span>, n.cen <span class="op">=</span> <span class="fl">1</span>, p <span class="op">=</span> <span class="fl">0.1</span>, probs <span class="op">=</span> <span class="fl">0.05</span>,</span></span>
 <span class="r-in"><span>    nmc <span class="op">=</span> <span class="fl">100</span>, seed <span class="op">=</span> <span class="fl">497</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>       5% </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> -2.66705 </span>
-<span class="r-in"><span>  <span class="co">#      5% </span></span></span>
+<span class="r-in"><span>  <span class="co">#      5%</span></span></span>
 <span class="r-in"><span>  <span class="co">#-2.66705</span></span></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span></span></span>
-<span class="r-in"><span>  <span class="fu">gpqTolIntNormSinglyCensored</span><span class="op">(</span>n <span class="op">=</span> <span class="fl">10</span>, n.cen <span class="op">=</span> <span class="fl">1</span>, p <span class="op">=</span> <span class="fl">0.9</span>, probs <span class="op">=</span> <span class="fl">0.95</span>, </span></span>
+<span class="r-in"><span>  <span class="fu">gpqTolIntNormSinglyCensored</span><span class="op">(</span>n <span class="op">=</span> <span class="fl">10</span>, n.cen <span class="op">=</span> <span class="fl">1</span>, p <span class="op">=</span> <span class="fl">0.9</span>, probs <span class="op">=</span> <span class="fl">0.95</span>,</span></span>
 <span class="r-in"><span>    nmc <span class="op">=</span> <span class="fl">100</span>, seed <span class="op">=</span> <span class="fl">623</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>      95% </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 2.478654 </span>
-<span class="r-in"><span>  <span class="co">#     95% </span></span></span>
+<span class="r-in"><span>  <span class="co">#     95%</span></span></span>
 <span class="r-in"><span>  <span class="co">#2.478654</span></span></span>
 <span class="r-in"><span></span></span>
-<span class="r-in"><span>  <span class="fu">gpqTolIntNormSinglyCensored</span><span class="op">(</span>n <span class="op">=</span> <span class="fl">10</span>, n.cen <span class="op">=</span> <span class="fl">1</span>, p <span class="op">=</span> <span class="fl">0.95</span>, probs <span class="op">=</span> <span class="fl">0.95</span>, </span></span>
+<span class="r-in"><span>  <span class="fu">gpqTolIntNormSinglyCensored</span><span class="op">(</span>n <span class="op">=</span> <span class="fl">10</span>, n.cen <span class="op">=</span> <span class="fl">1</span>, p <span class="op">=</span> <span class="fl">0.95</span>, probs <span class="op">=</span> <span class="fl">0.95</span>,</span></span>
 <span class="r-in"><span>    nmc <span class="op">=</span> <span class="fl">100</span>, seed <span class="op">=</span> <span class="fl">623</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>      95% </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 3.108452 </span>
-<span class="r-in"><span>  <span class="co">#     95% </span></span></span>
+<span class="r-in"><span>  <span class="co">#     95%</span></span></span>
 <span class="r-in"><span>  <span class="co">#3.108452</span></span></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span>  <span class="co">#==========</span></span></span>
@@ -206,7 +237,7 @@
 <span class="r-in"><span>  <span class="va">dat</span> <span class="op">&lt;-</span> <span class="fl">12</span><span class="op">:</span><span class="fl">16</span></span></span>
 <span class="r-in"><span>  <span class="va">censored</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="cn">TRUE</span>, <span class="cn">FALSE</span>, <span class="cn">TRUE</span>, <span class="cn">FALSE</span>, <span class="cn">FALSE</span><span class="op">)</span></span></span>
 <span class="r-in"><span></span></span>
-<span class="r-in"><span>  <span class="co"># Since the data are "ordered" we can identify the indices of the </span></span></span>
+<span class="r-in"><span>  <span class="co"># Since the data are "ordered" we can identify the indices of the</span></span></span>
 <span class="r-in"><span>  <span class="co"># censored observations in the ordered data as follow:</span></span></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span>  <span class="va">cen.index</span> <span class="op">&lt;-</span> <span class="op">(</span><span class="fl">1</span><span class="op">:</span><span class="fu"><a href="https://rdrr.io/r/base/length.html" class="external-link">length</a></span><span class="op">(</span><span class="va">dat</span><span class="op">)</span><span class="op">)</span><span class="op">[</span><span class="va">censored</span><span class="op">]</span></span></span>
@@ -215,21 +246,21 @@
 <span class="r-in"><span>  <span class="co">#[1] 1 3</span></span></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span>  <span class="co"># Now we can generate a GPQ using gpqTolIntNormMultiplyCensored.</span></span></span>
-<span class="r-in"><span>  <span class="co"># Here we'll generate a GPQ corresponding to an upper tolerance </span></span></span>
-<span class="r-in"><span>  <span class="co"># interval with coverage 90% with 95% confidence for </span></span></span>
+<span class="r-in"><span>  <span class="co"># Here we'll generate a GPQ corresponding to an upper tolerance</span></span></span>
+<span class="r-in"><span>  <span class="co"># interval with coverage 90% with 95% confidence for</span></span></span>
 <span class="r-in"><span>  <span class="co"># left-censored data.</span></span></span>
-<span class="r-in"><span>  <span class="co"># NOTE:  Here to save computing time for the sake of example, we will specify </span></span></span>
-<span class="r-in"><span>  <span class="co">#        just 100 Monte Carlos, whereas Krishnamoorthy and Mathew (2009) </span></span></span>
+<span class="r-in"><span>  <span class="co"># NOTE:  Here to save computing time for the sake of example, we will specify</span></span></span>
+<span class="r-in"><span>  <span class="co">#        just 100 Monte Carlos, whereas Krishnamoorthy and Mathew (2009)</span></span></span>
 <span class="r-in"><span>  <span class="co">#        suggest *10,000* Monte Carlos.</span></span></span>
 <span class="r-in"><span></span></span>
-<span class="r-in"><span>  <span class="fu">gpqTolIntNormMultiplyCensored</span><span class="op">(</span>n <span class="op">=</span> <span class="fl">5</span>, cen.index <span class="op">=</span> <span class="va">cen.index</span>, p <span class="op">=</span> <span class="fl">0.9</span>, </span></span>
+<span class="r-in"><span>  <span class="fu">gpqTolIntNormMultiplyCensored</span><span class="op">(</span>n <span class="op">=</span> <span class="fl">5</span>, cen.index <span class="op">=</span> <span class="va">cen.index</span>, p <span class="op">=</span> <span class="fl">0.9</span>,</span></span>
 <span class="r-in"><span>    probs <span class="op">=</span> <span class="fl">0.95</span>, nmc <span class="op">=</span> <span class="fl">100</span>, seed <span class="op">=</span> <span class="fl">237</span><span class="op">)</span></span></span>
 <span class="r-wrn co"><span class="r-pr">#&gt;</span> <span class="warning">Warning: </span>NA/NaN function evaluation</span>
 <span class="r-wrn co"><span class="r-pr">#&gt;</span> <span class="warning">Warning: </span>NA/NaN function evaluation</span>
 <span class="r-wrn co"><span class="r-pr">#&gt;</span> <span class="warning">Warning: </span>NA/NaN function evaluation</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>      95% </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 3.952052 </span>
-<span class="r-in"><span>  <span class="co">#     95% </span></span></span>
+<span class="r-in"><span>  <span class="co">#     95%</span></span></span>
 <span class="r-in"><span>  <span class="co">#3.952052</span></span></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span>  <span class="co">#==========</span></span></span>
@@ -251,7 +282,7 @@
 </div>
 
 <div class="pkgdown">
-  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.1.1.</p>
+  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.2.1.</p>
 </div>
 
       </footer></div>

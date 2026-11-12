@@ -21,7 +21,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">EnvStats</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">3.1.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">4.0.0</span>
       </span>
     </div>
 
@@ -29,6 +29,37 @@
       <ul class="nav navbar-nav"><li>
   <a href="../reference/index.html">Reference</a>
 </li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+    Articles
+
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu"><li>
+      <a href="../articles/censored-estimation.html">Estimation with censored data</a>
+    </li>
+    <li>
+      <a href="../articles/distribution-diagnostics.html">Distribution diagnostics, transformations, and probability plots</a>
+    </li>
+    <li>
+      <a href="../articles/distributions-and-estimation.html">Probability distributions and parameter estimation</a>
+    </li>
+    <li>
+      <a href="../articles/nonparametric-methods.html">Nonparametric estimation and two-sample tests</a>
+    </li>
+    <li>
+      <a href="../articles/outlier-testing.html">Rosner's test for multiple outliers</a>
+    </li>
+    <li>
+      <a href="../articles/power-and-study-design.html">Statistical power and study design</a>
+    </li>
+    <li>
+      <a href="../articles/prediction-intervals.html">Prediction intervals for environmental monitoring</a>
+    </li>
+    <li>
+      <a href="../articles/trend-and-correlation.html">Trend tests and serial correlation</a>
+    </li>
+  </ul></li>
       </ul><ul class="nav navbar-nav navbar-right"><li>
   <a href="https://github.com/alexkowa/EnvStats/" class="external-link">
     <span class="fab fa-github fa-lg"></span>
@@ -45,7 +76,7 @@
   <div class="col-md-9 contents">
     <div class="page-header">
     <h1>Compute the Value of \(K\) for a Simultaneous Prediction Interval for a Normal Distribution</h1>
-
+    <small class="dont-index">Source: <a href="https://github.com/alexkowa/EnvStats/blob/master/R/predIntNormSimultaneousK.R" class="external-link"><code>R/predIntNormSimultaneousK.R</code></a></small>
     <div class="hidden name"><code>predIntNormSimultaneousK.Rd</code></div>
     </div>
 
@@ -62,6 +93,13 @@
 <span>    K.tol <span class="op">=</span> <span class="va">.Machine</span><span class="op">$</span><span class="va">double.eps</span><span class="op">^</span><span class="fl">0.5</span>, integrate.args.list <span class="op">=</span> <span class="cn">NULL</span><span class="op">)</span></span></code></pre></div>
     </div>
 
+    <div id="details">
+    <h2>Details</h2>
+    <p>Extended methods and derivations are available in
+<a href="https://alexkowa.github.io/EnvStats/articles/prediction-intervals.html#predintnormsimultaneousk" class="external-link">Prediction intervals for environmental monitoring: <code>predIntNormSimultaneousK</code></a>.
+Open the vignette locally with
+<code><a href="../articles/prediction-intervals.html">vignette("prediction-intervals", package = "EnvStats")</a></code>.</p>
+    </div>
     <div id="arguments">
     <h2>Arguments</h2>
     <p></p>
@@ -135,170 +173,6 @@
   default values of <code><a href="https://rdrr.io/r/stats/integrate.html" class="external-link">integrate</a></code> are used.</p></dd>
 
 </dl></div>
-    <div id="details">
-    <h2>Details</h2>
-    <p><b>What is a Simultaneous Prediction Interval?</b> <br>
-  A prediction interval for some population is an interval on the real line constructed
-  so that it will contain \(k\) future observations from that population
-  with some specified probability \((1-\alpha)100\%\), where
-  \(0 &lt; \alpha &lt; 1\) and \(k\) is some pre-specified positive integer.
-  The quantity \((1-\alpha)100\%\) is called
-  the confidence coefficient or confidence level associated with the prediction
-  interval.  The function <code><a href="predIntNorm.html">predIntNorm</a></code> computes a standard prediction
-  interval based on a sample from a <a href="https://rdrr.io/r/stats/Normal.html" class="external-link">normal distribution</a>.</p>
-<p>The function <code>predIntNormSimultaneous</code> computes a simultaneous prediction
-  interval that will contain a certain number of future observations with probability
-  \((1-\alpha)100\%\) for each of \(r\) future sampling “occasions”,
-  where \(r\) is some pre-specified positive integer.  The quantity \(r\) may
-  refer to \(r\) distinct future sampling occasions in time, or it may for example
-  refer to sampling at \(r\) distinct locations on one future sampling occasion,
-  assuming that the population standard deviation is the same at all of the \(r\)
-  distinct locations.</p>
-<p>The function <code><a href="predIntNormSimultaneous.html">predIntNormSimultaneous</a></code> computes a simultaneous prediction
-  interval based on one of three possible rules:</p><ul><li><p>For the \(k\)-of-\(m\) rule (<code>rule="k.of.m"</code>), at least \(k\) of
-    the next \(m\) future observations will fall in the prediction
-    interval with probability \((1-\alpha)100\%\) on each of the \(r\) future
-    sampling occasions.  If obserations are being taken sequentially, for a particular
-    sampling occasion, up to \(m\) observations may be taken, but once
-    \(k\) of the observations fall within the prediction interval, sampling can stop.
-    Note:  When \(k=m\) and \(r=1\), the results of <code>predIntNormSimultaneous</code>
-    are equivalent to the results of <code><a href="predIntNorm.html">predIntNorm</a></code>.</p></li>
-<li><p>For the California rule (<code>rule="CA"</code>), with probability
-    \((1-\alpha)100\%\), for each of the \(r\) future sampling occasions, either
-    the first observation will fall in the prediction interval, or else all of the next
-    \(m-1\) observations will fall in the prediction interval. That is, if the first
-    observation falls in the prediction interval then sampling can stop.  Otherwise,
-    \(m-1\) more observations must be taken.</p></li>
-<li><p>For the Modified California rule (<code>rule="Modified.CA"</code>), with probability
-    \((1-\alpha)100\%\), for each of the \(r\) future sampling occasions, either the
-    first observation will fall in the prediction interval, or else at least 2 out of
-    the next 3 observations will fall in the prediction interval.  That is, if the first
-    observation falls in the prediction interval then sampling can stop.  Otherwise, up
-    to 3 more observations must be taken.</p></li>
-</ul><p>Simultaneous prediction intervals can be extended to using averages (means) in place
-  of single observations (USEPA, 2009, Chapter 19).  That is, you can create a
-  simultaneous prediction interval
-  that will contain a specified number of averages (based on which rule you choose) on
-  each of \(r\) future sampling occassions, where each each average is based on
-  \(w\) individual observations.  For the functions
-  <code><a href="predIntNormSimultaneous.html">predIntNormSimultaneous</a></code> and <code>predIntNormSimultaneousK</code>,
-  the argument <code>n.mean</code> corresponds to \(w\).
-  <br></p>
-<p><em>The Form of a Prediction Interval for 1 Future Observation</em> <br>
-  Let \(\underline{x} = x_1, x_2, \ldots, x_n\) denote a vector of \(n\)
-  observations from a <a href="https://rdrr.io/r/stats/Normal.html" class="external-link">normal distribution</a> with parameters
-  <code>mean=</code>\(\mu\) and <code>sd=</code>\(\sigma\).  Also, let \(w\) denote the
-  sample size associated with the future averages (i.e., <code>n.mean=</code>\(w\)).
-  When \(w=1\), each average is really just a single observation, so in the rest of
-  this help file the term “averages” will sometimes replace the phrase
-  “observations or averages”.</p>
-<p>For a normal distribution, the form of a two-sided \((1-\alpha)100\%\)
-  simultaneous prediction interval is:
-  $$[\bar{x} - Ks, \bar{x} + Ks] \;\;\;\;\;\; (1)$$
-  where \(\bar{x}\) denotes the sample mean:
-  $$\bar{x} = \frac{1}{n} \sum_{i=1}^n x_i \;\;\;\;\;\; (2)$$
-  \(s\) denotes the sample standard deviation:
-  $$s^2 = \frac{1}{n-1} \sum_{i=1}^n (x_i - \bar{x})^2 \;\;\;\;\;\; (3)$$
-  and \(K\) denotes a constant that depends on the sample size \(n\), the
-  confidence level, the number of future sampling occassions \(r\), and the
-  sample size associated with the future averages, \(w\).  Do not confuse the
-  constant \(K\) (uppercase K) with the number of future averages \(k\)
-  (lowercase k) in the \(k\)-of-\(m\) rule.  The symbol \(K\) is used here
-  to be consistent with the notation used for tolerance intervals
-  (see <code><a href="tolIntNorm.html">tolIntNorm</a></code>).</p>
-<p>Similarly, the form of a one-sided lower prediction interval is:
-  $$[\bar{x} - Ks, \infty] \;\;\;\;\;\; (4)$$
-  and the form of a one-sided upper prediction interval is:
-  $$[-\infty, \bar{x} + Ks] \;\;\;\;\;\; (5)$$</p>
-<p>The derivation of the constant \(K\) for 1 future observation is
-  explained in the help file for <code><a href="predIntNormK.html">predIntNormK</a></code>.
-  <br></p>
-<p><em>The Form of a Simultaneous Prediction Interval</em> <br>
-  For <b>simultaneous</b> prediction intervals, only lower
-  (<code>pi.type="lower"</code>) and upper (<code>pi.type="upper"</code>) prediction
-  intervals are available.  Two-sided simultaneous prediction intervals were
-  available in Versions 2.4.0 - 2.8.1 of <em>EnvStats</em>, but these prediction
-  intervals were based on an incorrect algorithm for \(K\).</p>
-<p>Equations (4) and (5) above hold for simultaneous prediction intervals, but the
-  derivation of the constant \(K\) is more difficult, and is explained below.
-  <br></p>
-<p><b>The Derivation of K for Future Observations</b> <br>
-  First we will show the derivation based on future observations (i.e.,
-  \(w=1\), <code>n.mean=1</code>), and then extend the formulas to future averages.</p>
-<p><em>The Derivation of K for the k-of-m Rule</em> (<code>rule="k.of.m"</code>) <br>
-  For the \(k\)-of-\(m\) rule (<code>rule="k.of.m"</code>) with \(w=1\)
-  (i.e., <code>n.mean=1</code>), at least \(k\) of the next \(m\) future
-  observations will fall in the prediction interval
-  with probability \((1-\alpha)100\%\) on each of the \(r\) future sampling
-  occasions.  If observations are being taken sequentially, for a particular
-  sampling occasion, up to \(m\) observations may be taken, but once \(k\)
-  of the observations fall within the prediction interval, sampling can stop.
-  Note: When \(k=m\) and \(r=1\), this kind of simultaneous prediction
-  interval becomes the same as a standard prediction interval for the next
-  \(k\) observations (see <code><a href="predIntNorm.html">predIntNorm</a></code>).</p>
-<p>For the case when \(r=1\) future sampling occasion, both Hall and Prairie (1973)
-  and Fertig and Mann (1977) discuss the derivation of \(K\).  Davis and McNichols
-  (1987) extend the derivation to the case where \(r\) is a positive integer.  They
-  show that for a one-sided upper prediction interval (<code>pi.type="upper"</code>), the
-  probability \(p\) that at least \(k\) of the next \(m\) future observations
-  will be contained in the interval given in Equation (5) above, for each of \(r\)
-  future sampling occasions, is given by:
-  $$p = \int_0^1 T(\sqrt{n}K; n-1, \sqrt{n}[\Phi^{-1}(v) + \frac{\Delta}{\sigma}]) r[I(v; k, m+1-k)]^{r-1} [\frac{v^{k-1}(1-v)^{m-k}}{B(k, m+1-k)}] dv \;\;\;\;\;\; (6)$$
-  where \(T(x; \nu, \delta)\) denotes the cdf of the
-  <a href="https://rdrr.io/r/stats/TDist.html" class="external-link">non-central Student's t-distribution</a> with parameters
-  <code>df=</code>\(\nu\) and <code>ncp=</code>\(\delta\) evaluated at \(x\);
-  \(\Phi(x)\) denotes the cdf of the standard <a href="https://rdrr.io/r/stats/Normal.html" class="external-link">normal distribution</a>
-  evaluated at \(x\); \(I(x; \nu, \omega)\) denotes the cdf of the
-  <a href="https://rdrr.io/r/stats/Beta.html" class="external-link">beta distribution</a> with parameters <code>shape1=</code>\(\nu\) and
-  <code>shape2=</code>\(\omega\); and \(B(\nu, \omega)\) denotes the value of the
-  <a href="https://rdrr.io/r/base/Special.html" class="external-link">beta function</a> with parameters <code>a=</code>\(\nu\) and
-  <code>b=</code>\(\omega\).</p>
-<p>The quantity \(\Delta\) (upper case delta) denotes the difference between the
-  mean of the population that was sampled to construct the prediction interval, and
-  the mean of the population that will be sampled to produce the future observations.
-  The quantity \(\sigma\) (sigma) denotes the population standard deviation of both
-  of these populations.  Usually you assume \(\Delta=0\) unless you are interested
-  in computing the power of the rule to detect a change in means between the
-  populations (see <code><a href="predIntNormSimultaneousTestPower.html">predIntNormSimultaneousTestPower</a></code>).</p>
-<p>For given values of the confidence level (\(p\)), sample size (\(n\)),
-  minimum number of future observations to be contained in the interval per
-  sampling occasion (\(k\)), number of future observations per sampling occasion
-  (\(m\)), and number of future sampling occasions (\(r\)), Equation (6) can
-  be solved for \(K\).  The function <code>predIntNormSimultaneousK</code> uses the
-  <span style="R">R</span> function <code><a href="https://rdrr.io/r/stats/nlminb.html" class="external-link">nlminb</a></code> to solve Equation (6) for \(K\).</p>
-<p>When <code>pi.type="lower"</code>, the same value of \(K\) is used as when
-  <code>pi.type="upper"</code>, but Equation (4) is used to construct the prediction
-  interval.
-  <br></p>
-<p><em>The Derivation of K for the California Rule</em> (<code>rule="CA"</code>) <br>
-  For the California rule (<code>rule="CA"</code>), with probability \((1-\alpha)100\%\),
-  for each of the \(r\) future sampling occasions, either the first observation will
-  fall in the prediction interval, or else all of the next \(m-1\) observations will
-  fall in the prediction interval.  That is, if the first observation falls in the
-  prediction interval then sampling can stop.  Otherwise, \(m-1\) more observations
-  must be taken.</p>
-<p>The formula for \(K\) is the same as for the \(k\)-of-\(m\) rule, except that
-  Equation (6) becomes the following (Davis, 1998b):
-  $$p = \int_0^1 T(\sqrt{n}K; n-1, \sqrt{n}[\Phi^{-1}(v) + \frac{\Delta}{\sigma}]) r\{v[1+v^{m-2}(1-v)]\}^{r-1} [1+v^{m-2}(m-1-mv)] dv \;\;\;\;\;\; (7)$$
-  <br></p>
-<p><em>The Derivation of K for the Modified California Rule</em> (<code>rule="Modified.CA"</code>) <br>
-  For the Modified California rule (<code>rule="Modified.CA"</code>), with probability
-  \((1-\alpha)100\%\), for each of the \(r\) future sampling occasions, either the
-  first observation will fall in the prediction interval, or else at least 2 out of
-  the next 3 observations will fall in the prediction interval.  That is, if the first
-  observation falls in the prediction interval then sampling can stop.  Otherwise, up
-  to 3 more observations must be taken.</p>
-<p>The formula for \(K\) is the same as for the \(k\)-of-\(m\) rule, except that
-  Equation (6) becomes the following (Davis, 1998b):
-  $$p = \int_0^1 T(\sqrt{n}K; n-1, \sqrt{n}[\Phi^{-1}(v) + \frac{\Delta}{\sigma}]) r\{v[1+v(3-v[5-2v])]\}^{r-1} \{1+v[6-v(15-8v)]\} dv \;\;\;\;\;\; (8)$$
-  <br></p>
-<p><b>The Derivation of K for Future Means</b> <br>
-  For each of the above rules, if we are interested in using averages instead of
-  single observations, with \(w \ge 1\) (i.e., <code>n.mean</code>\(\ge 1\)), the first
-  term in the integral in Equations (6)-(8) that involves the cdf of the
-  <a href="https://rdrr.io/r/stats/TDist.html" class="external-link">non-central Student's t-distribution</a> becomes:
-  $$T(\sqrt{n}K; n-1, \frac{\sqrt{n}}{\sqrt{w}}[\Phi^{-1}(v) + \frac{\sqrt{w}\Delta}{\sigma}]) \;\;\;\;\;\; (9)$$</p>
-    </div>
     <div id="value">
     <h2>Value</h2>
     <p>A numeric scalar equal to \(K\), the multiplier of estimated standard
@@ -444,8 +318,8 @@
 
     <div id="ref-examples">
     <h2>Examples</h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span>  <span class="co"># Compute the value of K for an upper 95% simultaneous prediction </span></span></span>
-<span class="r-in"><span>  <span class="co"># interval to contain at least 1 out of the next 3 observations </span></span></span>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span>  <span class="co"># Compute the value of K for an upper 95% simultaneous prediction</span></span></span>
+<span class="r-in"><span>  <span class="co"># interval to contain at least 1 out of the next 3 observations</span></span></span>
 <span class="r-in"><span>  <span class="co"># given a background sample size of n=8.</span></span></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span>  <span class="fu">predIntNormSimultaneousK</span><span class="op">(</span>n <span class="op">=</span> <span class="fl">8</span>, k <span class="op">=</span> <span class="fl">1</span>, m <span class="op">=</span> <span class="fl">3</span><span class="op">)</span></span></span>
@@ -454,15 +328,15 @@
 <span class="r-in"><span></span></span>
 <span class="r-in"><span>  <span class="co">#----------</span></span></span>
 <span class="r-in"><span></span></span>
-<span class="r-in"><span>  <span class="co"># Compare the value of K for a 95% 1-of-3 upper prediction interval to </span></span></span>
-<span class="r-in"><span>  <span class="co"># the value for the California and Modified California rules.  </span></span></span>
-<span class="r-in"><span>  <span class="co"># Note that the value of K for the Modified California rule is between </span></span></span>
-<span class="r-in"><span>  <span class="co"># the value of K for the 1-of-3 rule and the California rule. </span></span></span>
+<span class="r-in"><span>  <span class="co"># Compare the value of K for a 95% 1-of-3 upper prediction interval to</span></span></span>
+<span class="r-in"><span>  <span class="co"># the value for the California and Modified California rules.</span></span></span>
+<span class="r-in"><span>  <span class="co"># Note that the value of K for the Modified California rule is between</span></span></span>
+<span class="r-in"><span>  <span class="co"># the value of K for the 1-of-3 rule and the California rule.</span></span></span>
 <span class="r-in"><span></span></span>
-<span class="r-in"><span>  <span class="fu">predIntNormSimultaneousK</span><span class="op">(</span>n <span class="op">=</span> <span class="fl">8</span>, k <span class="op">=</span> <span class="fl">1</span>, m <span class="op">=</span> <span class="fl">3</span><span class="op">)</span> </span></span>
+<span class="r-in"><span>  <span class="fu">predIntNormSimultaneousK</span><span class="op">(</span>n <span class="op">=</span> <span class="fl">8</span>, k <span class="op">=</span> <span class="fl">1</span>, m <span class="op">=</span> <span class="fl">3</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] 0.5123091</span>
-<span class="r-in"><span>  <span class="co">#[1] 0.5123091 </span></span></span>
-<span class="r-in"><span> </span></span>
+<span class="r-in"><span>  <span class="co">#[1] 0.5123091</span></span></span>
+<span class="r-in"><span></span></span>
 <span class="r-in"><span>  <span class="fu">predIntNormSimultaneousK</span><span class="op">(</span>n <span class="op">=</span> <span class="fl">8</span>, m <span class="op">=</span> <span class="fl">3</span>, rule <span class="op">=</span> <span class="st">"CA"</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] 1.252077</span>
 <span class="r-in"><span>  <span class="co">#[1] 1.252077</span></span></span>
@@ -473,13 +347,13 @@
 <span class="r-in"><span></span></span>
 <span class="r-in"><span>  <span class="co">#----------</span></span></span>
 <span class="r-in"><span></span></span>
-<span class="r-in"><span>  <span class="co"># Show how the value of K for an upper 95% simultaneous prediction </span></span></span>
-<span class="r-in"><span>  <span class="co"># limit increases as the number of future sampling occasions r increases.  </span></span></span>
+<span class="r-in"><span>  <span class="co"># Show how the value of K for an upper 95% simultaneous prediction</span></span></span>
+<span class="r-in"><span>  <span class="co"># limit increases as the number of future sampling occasions r increases.</span></span></span>
 <span class="r-in"><span>  <span class="co"># Here, we'll use the 1-of-3 rule.</span></span></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span>  <span class="fu">predIntNormSimultaneousK</span><span class="op">(</span>n <span class="op">=</span> <span class="fl">8</span>, k <span class="op">=</span> <span class="fl">1</span>, m <span class="op">=</span> <span class="fl">3</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] 0.5123091</span>
-<span class="r-in"><span>  <span class="co">#[1] 0.5123091 </span></span></span>
+<span class="r-in"><span>  <span class="co">#[1] 0.5123091</span></span></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span>  <span class="fu">predIntNormSimultaneousK</span><span class="op">(</span>n <span class="op">=</span> <span class="fl">8</span>, k <span class="op">=</span> <span class="fl">1</span>, m <span class="op">=</span> <span class="fl">3</span>, r <span class="op">=</span> <span class="fl">10</span><span class="op">)</span></span></span>
@@ -488,28 +362,28 @@
 <span class="r-in"><span></span></span>
 <span class="r-in"><span>  <span class="co">#==========</span></span></span>
 <span class="r-in"><span></span></span>
-<span class="r-in"><span>  <span class="co"># Example 19-1 of USEPA (2009, p. 19-17) shows how to compute an </span></span></span>
-<span class="r-in"><span>  <span class="co"># upper simultaneous prediction limit for the 1-of-3 rule for </span></span></span>
-<span class="r-in"><span>  <span class="co"># r = 2 future sampling occasions.  The data for this example are </span></span></span>
+<span class="r-in"><span>  <span class="co"># Example 19-1 of USEPA (2009, p. 19-17) shows how to compute an</span></span></span>
+<span class="r-in"><span>  <span class="co"># upper simultaneous prediction limit for the 1-of-3 rule for</span></span></span>
+<span class="r-in"><span>  <span class="co"># r = 2 future sampling occasions.  The data for this example are</span></span></span>
 <span class="r-in"><span>  <span class="co"># stored in EPA.09.Ex.19.1.sulfate.df.</span></span></span>
 <span class="r-in"><span></span></span>
-<span class="r-in"><span>  <span class="co"># We will pool data from 4 background wells that were sampled on </span></span></span>
-<span class="r-in"><span>  <span class="co"># a number of different occasions, giving us a sample size of </span></span></span>
+<span class="r-in"><span>  <span class="co"># We will pool data from 4 background wells that were sampled on</span></span></span>
+<span class="r-in"><span>  <span class="co"># a number of different occasions, giving us a sample size of</span></span></span>
 <span class="r-in"><span>  <span class="co"># n = 25 to use to construct the prediction limit.</span></span></span>
 <span class="r-in"><span></span></span>
-<span class="r-in"><span>  <span class="co"># There are 50 compliance wells and we will monitor 10 different </span></span></span>
-<span class="r-in"><span>  <span class="co"># constituents at each well at each of the r=2 future sampling </span></span></span>
-<span class="r-in"><span>  <span class="co"># occasions.  To determine the confidence level we require for </span></span></span>
-<span class="r-in"><span>  <span class="co"># the simultaneous prediction interval, USEPA (2009) recommends </span></span></span>
-<span class="r-in"><span>  <span class="co"># setting the individual Type I Error level at each well to </span></span></span>
-<span class="r-in"><span> </span></span>
+<span class="r-in"><span>  <span class="co"># There are 50 compliance wells and we will monitor 10 different</span></span></span>
+<span class="r-in"><span>  <span class="co"># constituents at each well at each of the r=2 future sampling</span></span></span>
+<span class="r-in"><span>  <span class="co"># occasions.  To determine the confidence level we require for</span></span></span>
+<span class="r-in"><span>  <span class="co"># the simultaneous prediction interval, USEPA (2009) recommends</span></span></span>
+<span class="r-in"><span>  <span class="co"># setting the individual Type I Error level at each well to</span></span></span>
+<span class="r-in"><span></span></span>
 <span class="r-in"><span>  <span class="co"># 1 - (1 - SWFPR)^(1 / (Number of Constituents * Number of Wells))</span></span></span>
-<span class="r-in"><span>  </span></span>
-<span class="r-in"><span>  <span class="co"># which translates to setting the confidence limit to </span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="co"># which translates to setting the confidence limit to</span></span></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span>  <span class="co"># (1 - SWFPR)^(1 / (Number of Constituents * Number of Wells))</span></span></span>
 <span class="r-in"><span></span></span>
-<span class="r-in"><span>  <span class="co"># where SWFPR = site-wide false positive rate.  For this example, we </span></span></span>
+<span class="r-in"><span>  <span class="co"># where SWFPR = site-wide false positive rate.  For this example, we</span></span></span>
 <span class="r-in"><span>  <span class="co"># will set SWFPR = 0.1.  Thus, the confidence level is given by:</span></span></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span>  <span class="va">nc</span> <span class="op">&lt;-</span> <span class="fl">10</span></span></span>
@@ -523,10 +397,10 @@
 <span class="r-in"><span></span></span>
 <span class="r-in"><span>  <span class="co">#----------</span></span></span>
 <span class="r-in"><span></span></span>
-<span class="r-in"><span>  <span class="co"># Compute the value of K for the upper simultaneous prediction </span></span></span>
+<span class="r-in"><span>  <span class="co"># Compute the value of K for the upper simultaneous prediction</span></span></span>
 <span class="r-in"><span>  <span class="co"># limit for the 1-of-3 plan.</span></span></span>
 <span class="r-in"><span></span></span>
-<span class="r-in"><span>  <span class="fu">predIntNormSimultaneousK</span><span class="op">(</span>n <span class="op">=</span> <span class="fl">25</span>, k <span class="op">=</span> <span class="fl">1</span>, m <span class="op">=</span> <span class="fl">3</span>, r <span class="op">=</span> <span class="fl">2</span>, </span></span>
+<span class="r-in"><span>  <span class="fu">predIntNormSimultaneousK</span><span class="op">(</span>n <span class="op">=</span> <span class="fl">25</span>, k <span class="op">=</span> <span class="fl">1</span>, m <span class="op">=</span> <span class="fl">3</span>, r <span class="op">=</span> <span class="fl">2</span>,</span></span>
 <span class="r-in"><span>    rule <span class="op">=</span> <span class="st">"k.of.m"</span>, pi.type <span class="op">=</span> <span class="st">"upper"</span>, conf.level <span class="op">=</span> <span class="va">conf.level</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] 2.014365</span>
 <span class="r-in"><span>  <span class="co">#[1] 2.014365</span></span></span>
@@ -539,7 +413,7 @@
 <span class="r-in"><span></span></span>
 <span class="r-in"><span>  <span class="fu">predIntNormSimultaneousK</span><span class="op">(</span>n <span class="op">=</span> <span class="fl">25</span>, k <span class="op">=</span> <span class="fl">1</span>, m <span class="op">=</span> <span class="fl">3</span>, r <span class="op">=</span> <span class="fl">2</span>,</span></span>
 <span class="r-in"><span>   rule <span class="op">=</span> <span class="st">"k.of.m"</span>, pi.type <span class="op">=</span> <span class="st">"two-sided"</span>, conf.level <span class="op">=</span> <span class="va">conf.level</span><span class="op">)</span></span></span>
-<span class="r-in"><span>  <span class="co">#Error in predIntNormSimultaneousK(n = 25, k = 1, m = 3, r = 2, rule = "k.of.m",  : </span></span></span>
+<span class="r-in"><span>  <span class="co">#Error in predIntNormSimultaneousK(n = 25, k = 1, m = 3, r = 2, rule = "k.of.m",  :</span></span></span>
 <span class="r-in"><span>  <span class="co">#  Two-sided simultaneous prediction intervals are not currently available.</span></span></span>
 <span class="r-in"><span>  <span class="co"># NOTE: Two-sided simultaneous prediction intervals computed using</span></span></span>
 <span class="r-in"><span>  <span class="co"># Versions 2.4.0 - 2.8.1 of EnvStats are *NOT* valid.</span></span></span>
@@ -565,7 +439,7 @@
 </div>
 
 <div class="pkgdown">
-  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.1.1.</p>
+  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.2.1.</p>
 </div>
 
       </footer></div>

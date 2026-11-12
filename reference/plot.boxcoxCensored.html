@@ -21,7 +21,7 @@ The function plot.boxcoxCensored is automatically called by plot
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">EnvStats</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">3.1.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">4.0.0</span>
       </span>
     </div>
 
@@ -29,6 +29,37 @@ The function plot.boxcoxCensored is automatically called by plot
       <ul class="nav navbar-nav"><li>
   <a href="../reference/index.html">Reference</a>
 </li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+    Articles
+
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu"><li>
+      <a href="../articles/censored-estimation.html">Estimation with censored data</a>
+    </li>
+    <li>
+      <a href="../articles/distribution-diagnostics.html">Distribution diagnostics, transformations, and probability plots</a>
+    </li>
+    <li>
+      <a href="../articles/distributions-and-estimation.html">Probability distributions and parameter estimation</a>
+    </li>
+    <li>
+      <a href="../articles/nonparametric-methods.html">Nonparametric estimation and two-sample tests</a>
+    </li>
+    <li>
+      <a href="../articles/outlier-testing.html">Rosner's test for multiple outliers</a>
+    </li>
+    <li>
+      <a href="../articles/power-and-study-design.html">Statistical power and study design</a>
+    </li>
+    <li>
+      <a href="../articles/prediction-intervals.html">Prediction intervals for environmental monitoring</a>
+    </li>
+    <li>
+      <a href="../articles/trend-and-correlation.html">Trend tests and serial correlation</a>
+    </li>
+  </ul></li>
       </ul><ul class="nav navbar-nav navbar-right"><li>
   <a href="https://github.com/alexkowa/EnvStats/" class="external-link">
     <span class="fab fa-github fa-lg"></span>
@@ -45,7 +76,7 @@ The function plot.boxcoxCensored is automatically called by plot
   <div class="col-md-9 contents">
     <div class="page-header">
     <h1>Plot Results of Box-Cox Transformations Based on Type I Censored Data</h1>
-
+    <small class="dont-index">Source: <a href="https://github.com/alexkowa/EnvStats/blob/master/R/plot.boxcoxCensored.R" class="external-link"><code>R/plot.boxcoxCensored.R</code></a></small>
     <div class="hidden name"><code>plot.boxcoxCensored.Rd</code></div>
     </div>
 
@@ -58,15 +89,15 @@ The function plot.boxcoxCensored is automatically called by plot
 
     <div id="ref-usage">
     <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="co"># S3 method for class 'boxcoxCensored'</span></span>
-<span><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">x</span>, plot.type <span class="op">=</span> <span class="st">"Objective vs. lambda"</span>, same.window <span class="op">=</span> <span class="cn">TRUE</span>, </span>
-<span>    ask <span class="op">=</span> <span class="va">same.window</span> <span class="op">&amp;</span> <span class="va">plot.type</span> <span class="op">!=</span> <span class="st">"Ojective vs. lambda"</span>, </span>
-<span>    prob.method <span class="op">=</span> <span class="st">"michael-schucany"</span>, plot.pos.con <span class="op">=</span> <span class="fl">0.375</span>, </span>
-<span>    estimate.params <span class="op">=</span> <span class="cn">FALSE</span>, equal.axes <span class="op">=</span> <span class="va">qq.line.type</span> <span class="op">==</span> <span class="st">"0-1"</span> <span class="op">||</span> <span class="va">estimate.params</span>, </span>
-<span>    add.line <span class="op">=</span> <span class="cn">TRUE</span>, qq.line.type <span class="op">=</span> <span class="st">"least squares"</span>, </span>
-<span>    duplicate.points.method <span class="op">=</span> <span class="st">"standard"</span>, points.col <span class="op">=</span> <span class="fl">1</span>, line.col <span class="op">=</span> <span class="fl">1</span>, </span>
-<span>    line.lwd <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/graphics/par.html" class="external-link">par</a></span><span class="op">(</span><span class="st">"cex"</span><span class="op">)</span>, line.lty <span class="op">=</span> <span class="fl">1</span>, digits <span class="op">=</span> <span class="va">.Options</span><span class="op">$</span><span class="va">digits</span>, </span>
-<span>    cex.main <span class="op">=</span> <span class="fl">1.4</span> <span class="op">*</span> <span class="fu"><a href="https://rdrr.io/r/graphics/par.html" class="external-link">par</a></span><span class="op">(</span><span class="st">"cex"</span><span class="op">)</span>, cex.sub <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/graphics/par.html" class="external-link">par</a></span><span class="op">(</span><span class="st">"cex"</span><span class="op">)</span>, </span>
-<span>    main <span class="op">=</span> <span class="cn">NULL</span>, sub <span class="op">=</span> <span class="cn">NULL</span>, xlab <span class="op">=</span> <span class="cn">NULL</span>, ylab <span class="op">=</span> <span class="cn">NULL</span>, xlim <span class="op">=</span> <span class="cn">NULL</span>, </span>
+<span><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">x</span>, plot.type <span class="op">=</span> <span class="st">"Objective vs. lambda"</span>, same.window <span class="op">=</span> <span class="cn">TRUE</span>,</span>
+<span>    ask <span class="op">=</span> <span class="va">same.window</span> <span class="op">&amp;</span> <span class="va">plot.type</span> <span class="op">!=</span> <span class="st">"Ojective vs. lambda"</span>,</span>
+<span>    prob.method <span class="op">=</span> <span class="st">"michael-schucany"</span>, plot.pos.con <span class="op">=</span> <span class="fl">0.375</span>,</span>
+<span>    estimate.params <span class="op">=</span> <span class="cn">FALSE</span>, equal.axes <span class="op">=</span> <span class="va">qq.line.type</span> <span class="op">==</span> <span class="st">"0-1"</span> <span class="op">||</span> <span class="va">estimate.params</span>,</span>
+<span>    add.line <span class="op">=</span> <span class="cn">TRUE</span>, qq.line.type <span class="op">=</span> <span class="st">"least squares"</span>,</span>
+<span>    duplicate.points.method <span class="op">=</span> <span class="st">"standard"</span>, points.col <span class="op">=</span> <span class="fl">1</span>, line.col <span class="op">=</span> <span class="fl">1</span>,</span>
+<span>    line.lwd <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/graphics/par.html" class="external-link">par</a></span><span class="op">(</span><span class="st">"cex"</span><span class="op">)</span>, line.lty <span class="op">=</span> <span class="fl">1</span>, digits <span class="op">=</span> <span class="va">.Options</span><span class="op">$</span><span class="va">digits</span>,</span>
+<span>    cex.main <span class="op">=</span> <span class="fl">1.4</span> <span class="op">*</span> <span class="fu"><a href="https://rdrr.io/r/graphics/par.html" class="external-link">par</a></span><span class="op">(</span><span class="st">"cex"</span><span class="op">)</span>, cex.sub <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/graphics/par.html" class="external-link">par</a></span><span class="op">(</span><span class="st">"cex"</span><span class="op">)</span>,</span>
+<span>    main <span class="op">=</span> <span class="cn">NULL</span>, sub <span class="op">=</span> <span class="cn">NULL</span>, xlab <span class="op">=</span> <span class="cn">NULL</span>, ylab <span class="op">=</span> <span class="cn">NULL</span>, xlim <span class="op">=</span> <span class="cn">NULL</span>,</span>
 <span>    ylim <span class="op">=</span> <span class="cn">NULL</span>, <span class="va">...</span><span class="op">)</span></span></code></pre></div>
     </div>
 
@@ -236,20 +267,20 @@ The function plot.boxcoxCensored is automatically called by plot
 
     <div id="ref-examples">
     <h2>Examples</h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span>  <span class="co"># Generate 15 observations from a lognormal distribution with </span></span></span>
-<span class="r-in"><span>  <span class="co"># mean=10 and cv=2 and censor the observations less than 2.  </span></span></span>
-<span class="r-in"><span>  <span class="co"># Then generate 15 more observations from this distribution and </span></span></span>
-<span class="r-in"><span>  <span class="co"># censor the observations less than 4.  </span></span></span>
-<span class="r-in"><span>  <span class="co"># Then call the function boxcoxCensored, and then plot the results.  </span></span></span>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span>  <span class="co"># Generate 15 observations from a lognormal distribution with</span></span></span>
+<span class="r-in"><span>  <span class="co"># mean=10 and cv=2 and censor the observations less than 2.</span></span></span>
+<span class="r-in"><span>  <span class="co"># Then generate 15 more observations from this distribution and</span></span></span>
+<span class="r-in"><span>  <span class="co"># censor the observations less than 4.</span></span></span>
+<span class="r-in"><span>  <span class="co"># Then call the function boxcoxCensored, and then plot the results.</span></span></span>
 <span class="r-in"><span>  <span class="co"># (Note: the call to set.seed simply allows you to reproduce this example.)</span></span></span>
 <span class="r-in"><span></span></span>
-<span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/r/base/Random.html" class="external-link">set.seed</a></span><span class="op">(</span><span class="fl">250</span><span class="op">)</span> </span></span>
+<span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/r/base/Random.html" class="external-link">set.seed</a></span><span class="op">(</span><span class="fl">250</span><span class="op">)</span></span></span>
 <span class="r-in"><span></span></span>
-<span class="r-in"><span>  <span class="va">x.1</span> <span class="op">&lt;-</span> <span class="fu"><a href="LognormalAlt.html">rlnormAlt</a></span><span class="op">(</span><span class="fl">15</span>, mean <span class="op">=</span> <span class="fl">10</span>, cv <span class="op">=</span> <span class="fl">2</span><span class="op">)</span> </span></span>
+<span class="r-in"><span>  <span class="va">x.1</span> <span class="op">&lt;-</span> <span class="fu"><a href="LognormalAlt.html">rlnormAlt</a></span><span class="op">(</span><span class="fl">15</span>, mean <span class="op">=</span> <span class="fl">10</span>, cv <span class="op">=</span> <span class="fl">2</span><span class="op">)</span></span></span>
 <span class="r-in"><span>  <span class="va">censored.1</span> <span class="op">&lt;-</span> <span class="va">x.1</span> <span class="op">&lt;</span> <span class="fl">2</span></span></span>
 <span class="r-in"><span>  <span class="va">x.1</span><span class="op">[</span><span class="va">censored.1</span><span class="op">]</span> <span class="op">&lt;-</span> <span class="fl">2</span></span></span>
 <span class="r-in"><span></span></span>
-<span class="r-in"><span>  <span class="va">x.2</span> <span class="op">&lt;-</span> <span class="fu"><a href="LognormalAlt.html">rlnormAlt</a></span><span class="op">(</span><span class="fl">15</span>, mean <span class="op">=</span> <span class="fl">10</span>, cv <span class="op">=</span> <span class="fl">2</span><span class="op">)</span> </span></span>
+<span class="r-in"><span>  <span class="va">x.2</span> <span class="op">&lt;-</span> <span class="fu"><a href="LognormalAlt.html">rlnormAlt</a></span><span class="op">(</span><span class="fl">15</span>, mean <span class="op">=</span> <span class="fl">10</span>, cv <span class="op">=</span> <span class="fl">2</span><span class="op">)</span></span></span>
 <span class="r-in"><span>  <span class="va">censored.2</span> <span class="op">&lt;-</span> <span class="va">x.2</span> <span class="op">&lt;</span> <span class="fl">4</span></span></span>
 <span class="r-in"><span>  <span class="va">x.2</span><span class="op">[</span><span class="va">censored.2</span><span class="op">]</span> <span class="op">&lt;-</span> <span class="fl">4</span></span></span>
 <span class="r-in"><span></span></span>
@@ -264,13 +295,13 @@ The function plot.boxcoxCensored is automatically called by plot
 <span class="r-in"><span></span></span>
 <span class="r-in"><span>  <span class="co"># Look at Q-Q Plots for the candidate values of lambda</span></span></span>
 <span class="r-in"><span>  <span class="co">#-----------------------------------------------------</span></span></span>
-<span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">boxcox.list</span>, plot.type <span class="op">=</span> <span class="st">"Q-Q Plots"</span>, same.window <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span> </span></span>
+<span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">boxcox.list</span>, plot.type <span class="op">=</span> <span class="st">"Q-Q Plots"</span>, same.window <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span></span></span>
-<span class="r-in"><span>  <span class="co"># Look at Tukey Mean-Difference Q-Q Plots </span></span></span>
+<span class="r-in"><span>  <span class="co"># Look at Tukey Mean-Difference Q-Q Plots</span></span></span>
 <span class="r-in"><span>  <span class="co"># for the candidate values of lambda</span></span></span>
 <span class="r-in"><span>  <span class="co">#----------------------------------------</span></span></span>
-<span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">boxcox.list</span>, plot.type <span class="op">=</span> <span class="st">"Tukey M-D Q-Q Plots"</span>, same.window <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span> </span></span>
+<span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">boxcox.list</span>, plot.type <span class="op">=</span> <span class="st">"Tukey M-D Q-Q Plots"</span>, same.window <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span>  <span class="co">#==========</span></span></span>
 <span class="r-in"><span></span></span>
@@ -292,7 +323,7 @@ The function plot.boxcoxCensored is automatically called by plot
 </div>
 
 <div class="pkgdown">
-  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.1.1.</p>
+  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.2.1.</p>
 </div>
 
       </footer></div>

@@ -20,7 +20,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">EnvStats</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">3.1.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">4.0.0</span>
       </span>
     </div>
 
@@ -28,6 +28,37 @@
       <ul class="nav navbar-nav"><li>
   <a href="../reference/index.html">Reference</a>
 </li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+    Articles
+
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu"><li>
+      <a href="../articles/censored-estimation.html">Estimation with censored data</a>
+    </li>
+    <li>
+      <a href="../articles/distribution-diagnostics.html">Distribution diagnostics, transformations, and probability plots</a>
+    </li>
+    <li>
+      <a href="../articles/distributions-and-estimation.html">Probability distributions and parameter estimation</a>
+    </li>
+    <li>
+      <a href="../articles/nonparametric-methods.html">Nonparametric estimation and two-sample tests</a>
+    </li>
+    <li>
+      <a href="../articles/outlier-testing.html">Rosner's test for multiple outliers</a>
+    </li>
+    <li>
+      <a href="../articles/power-and-study-design.html">Statistical power and study design</a>
+    </li>
+    <li>
+      <a href="../articles/prediction-intervals.html">Prediction intervals for environmental monitoring</a>
+    </li>
+    <li>
+      <a href="../articles/trend-and-correlation.html">Trend tests and serial correlation</a>
+    </li>
+  </ul></li>
       </ul><ul class="nav navbar-nav navbar-right"><li>
   <a href="https://github.com/alexkowa/EnvStats/" class="external-link">
     <span class="fab fa-github fa-lg"></span>
@@ -44,7 +75,7 @@
   <div class="col-md-9 contents">
     <div class="page-header">
     <h1>Abstract: Hosking et al. (1985)</h1>
-
+    <small class="dont-index">Source: <a href="https://github.com/alexkowa/EnvStats/blob/master/R/0package.R" class="external-link"><code>R/0package.R</code></a></small>
     <div class="hidden name"><code>HoskingEtAl1985.Rd</code></div>
     </div>
 
@@ -58,156 +89,10 @@
 
     <div id="details">
     <h2>Details</h2>
-    <p><b>Abstract</b> <br>
-  Hosking et al. (1985) use the method of probability-weighted moments,
-  introduced by Greenwood et al. (1979), to estimate the parameters of the
-  <a href="GEVD.html">generalized extreme value distribution</a> (GEVD) with parameters
-  <code>location=</code>\(\eta\), <code>scale=</code>\(\theta\), and
-  <code>shape=</code>\(\kappa\).  Hosking et al. (1985) derive the asymptotic
-  distributions of the probability-weighted moment estimators (PWME), and compare
-  the asymptotic and small-sample statistical properties (via computer simulation)
-  of the PWME with maximum likelihood estimators (MLE) and Jenkinson's (1969)
-  method of sextiles estimators (JSE).  They also compare the statistical
-  properties of quantile estimators (which are based on the distribution parameter
-  estimators).  Finally, they derive a test of the null hypothesis that the
-  shape parameter is zero, and assess its performance via computer simulation.</p>
-<p>Hosking et al. (1985) note that when \(\kappa \le -1\), the moments and
-  probability-weighted moments of the GEVD do not exist.  They also note that in
-  practice the shape parameter usually lies between -1/2 and 1/2.</p>
-<p>Hosking et al. (1985) found that the asymptotic efficiency of the PWME
-  (the limit as the sample size approaches infinity of the ratio of the
-  variance of the MLE divided by the variance of the PWME) tends to 0 as the
-  shape parameter approaches 1/2 or -1/2.  For values of \(\kappa\) within the
-  range \([-0.2, 0.2]\), however, the efficiency of the estimator of location
-  is close to 100<!-- %, and the efficiency of the estimators of scale and shape  -->
-  are greater than 70<!-- %.  With respect to estimating large quantiles,  -->
-  Hosking et al. (1985) found that the asymptotic efficiency of the PWME is poor for
-  \(\kappa\) outside the range \([-0.2, 0.2]\).</p>
-<p>For the small sample results, Hosking et al. (1985) considered several possible
-  forms of the PWME (see equations (8)-(10) below).  The best overall results were
-  given by the plotting-position PWME defined by equations (9) and (10) with
-  \(a=0.35\) and \(b=0\).</p>
-<p>Small sample results for estimating the parameters show that for \(n \ge 50\)
-  all three methods give almost identical results.  For \(n &lt; 50\) the results
-  for the different estimators are a bit different, but not dramatically so.  The
-  MLE tends to be slightly less biased than the other two methods.  For estimating
-  the shape parameter, the MLE has a slightly larger standard deviation, and the
-  PWME has consistently the smallest standard deviation.</p>
-<p>Small sample results for estimating large quantiles show that for \(n \ge 100\)
-  all three methods are comparable.  For \(n &lt; 100\) the PWME and JSE are
-  comparable and in general have much smaller standard deviations than the MLE.
-  All three methods are very inaccurate for estimating large quantiles in small
-  samples, especially when \(\kappa &lt; 0\).</p>
-<p>Hosking et al. (1985) derive a test of the null hypothesis \(H_0: \kappa=0\)
-  based on the PWME of \(\kappa\). The test is performed by computing the
-  statistic:
-  $$z = \frac{\hat{\kappa_{pwme}}}{\sqrt{0.5663/n}} \;\;\;\; (1)$$
-  and comparing \(z\) to a standard normal distribution (see
-  <code><a href="zTestGevdShape.html">zTestGevdShape</a></code>).  Based on computer simulations using the
-  plotting-position PWME, they found that a sample size of \(n \ge 25\) ensures
-  an adequate normal approximation.  They also found this test has power comparable
-  to the modified likelihood-ratio test, which was found by Hosking (1984) to be
-  the best overall test of \(H_0: \kappa=0\) of the thirteen tests he considered.
-  <br></p>
-<p><b>More Details</b></p>
-<p><em>Probability-Weighted Moments and Parameters of the GEVD</em> <br>
-  The definition of a <a href="pwMoment.html">probability-weighted moment</a>, introduced by
-  Greenwood et al. (1979), is as follows.  Let \(X\) denote a random variable
-  with cdf \(F\), and let \(x(p)\) denote the \(p\)'th quantile of the
-  distribution.  Then the \(ijk\)'th probability-weighted moment is given by:
-  $$M(i, j, k) = E[X^i F^j (1 - F)^k] = \int^1_0 [x(F)]^i F^j (1 - F)^k \, dF \;\;\;\; (2)$$
-  where \(i\), \(j\), and \(k\) are real numbers.</p>
-<p>Hosking et al. (1985) set
-  $$\beta_j = M(i, j, 0) \;\;\;\; (3)$$
-  and Greenwood et al. (1979) show that
-  $$\beta_j = \frac{1}{j+1} E[X_{j+1:j+1}] \;\;\;\; (4)$$
-  where
-  $$E[X_{j+1:j+1}]$$
-  denotes the expected value of the \(j+1\)'th order statistic (i.e., the maximum)
-  in a sample of size \(j+1\).  Hosking et al. (1985) show that if \(X\) has a
-  GEVD with parameters <code>location=</code>\(\eta\), <code>scale=</code>\(\theta\), and
-  <code>shape=</code>\(\kappa\), where \(\kappa \ne 0\), then
-  $$\beta_j = \frac{1}{j+1} \{\eta + \frac{\theta [1 - (j+1)^{-\kappa} \Gamma(1+\kappa)]}{\kappa} \} \;\;\;\; (5)$$
-  for \(\kappa &gt; -1\), where \(\Gamma()\) denotes the
-  <a href="https://rdrr.io/r/base/Special.html" class="external-link">gamma function</a>.  Thus,
-  $$\beta_0 = \eta + \frac{\theta [1 - \Gamma(1+\kappa)]}{\kappa} \;\;\;\; (6)$$
-  $$2\beta_1 - \beta_0 = \frac{\theta [\Gamma(1+\kappa)] (1 - 2^{-\kappa})}{\kappa} \;\;\;\; (7)$$
-  $$\frac{3\beta_2 - \beta_0}{2\beta_1 - \beta_0} = \frac{1 - 3^{-\kappa}}{1 - 2^{-kappa}} \;\;\;\; (8)$$</p>
-<p><em>Estimating Distribution Parameters</em> <br>
-  Using the results of Landwehr et al. (1979), Hosking et al. (1985) show that
-  given a random sample of \(n\) values from some arbitrary distribution, an
-  unbiased, distribution-free, and parameter-free estimator of the
-  probability-weighted moment \(\beta_j = M(i, j, 0)\) defined above is given by:
-  $$b_j = \frac{1}{n} \sum^n_{i=j+1} x_{i,n} \frac{{i-1 \choose j}}{{n-1 \choose j}} \;\;\;\; (9)$$
-  where the quantity \(x_{i,n}\) denotes the \(i\)'th order statistic in the
-  random sample of size \(n\).  Hosking et al. (1985) note that this estimator is
-  closely related to U-statistics (Hoeffding, 1948; Lehmann, 1975, pp. 362-371).</p>
-<p>An alternative “plotting position” estimator is given by:
-  $$\hat{\beta}_j[p_{i,n}] = \frac{1}{n} \sum^n_{i=1} p^j_{i,n} x_{i,n} \;\;\;\; (10)$$
-  where
-  $$p_{i,n} = \hat{F}(x_{i,n}) \;\;\;\; (11)$$
-  denotes the plotting position of the \(i\)'th order statistic in the random
-  sample of size \(n\), that is, a distribution-free estimate of the cdf of
-  \(X\) evaluated at the \(i\)'th order statistic.  Typically, plotting
-  positions have the form:
-  $$p_{i,n} = \frac{i-a}{n+b} \;\;\;\; (12)$$
-  where \(b &gt; -a &gt; -1\).  For this form of plotting position, the
-  plotting-position estimators in (10) are asymptotically equivalent to the
-  U-statistic estimators in (9).</p>
-<p>Although the unbiased and plotting position estimators are asymptotically
-  equivalent (Hosking, 1990), Hosking and Wallis (1995) recommend using the
-  unbiased estimator for almost all applications because of its superior
-  performance in small and moderate samples.</p>
-<p>Using equations (6)-(8) above, i.e., the three equations involving
-  \(\beta_0\), \(\beta_1\), and \(\beta_2\), Hosking et al. (1985) define
-  the probability-weighted moment estimators of
-  \(\eta\), \(\theta\), and \(\kappa\) as the solutions to these three
-  simultaneous equations, with the values of the probability-weighted moments
-  replaced by their estimated values (using either the unbiased or plotting posistion
-  estiamtors in (9) and (10) above).  Hosking et al. (1985) note that the third
-  equation (equation (8)) must be solved iteratively for the PWME of \(\kappa\).
-  Using the unbiased estimators of the PWMEs to solve for \(\kappa\), the PWMEs
-  of \(\eta\) and \(\theta\) are given by:
-  $$\hat{\eta}_{pwme} = b_0 + \frac{\hat{\theta}_{pwme} [\Gamma(1 + \hat{\kappa}_{pwme}) - 1]}{\hat{\kappa}_{pwme}} \;\;\;\; (13)$$
-  $$\hat{\theta}_{pwme} = \frac{(2b_1 - b_0)\hat{\kappa}_{pwme}}{\Gamma(1 + \hat{\kappa}_{pwme}) (1 - 2^{-\hat{\kappa}_{pwme}})} \;\;\;\; (14)$$
-  Hosking et al. (1985) show that when the unbiased estimates of the PWMEs are used
-  to estimate the probability-weighted moments, the estimates of \(\theta\) and
-  \(\kappa\) satisfy the feasibility criteria
-  $$\hat{\theta}_{pwme} &gt; 0; \, \hat{\kappa}_{pwme} &gt; -1$$
-  almost surely.</p>
-<p>Hosking et al. (1985) show that the asymptotic distribution of the PWME is
-  multivariate normal with mean equal to \((\eta, \theta, \kappa)\), and they
-  derive the formula for the asymptotic variance-covariance matrix as:
-  $$V_{\hat{\eta}, \hat{\theta}, \hat{\kappa}} = \frac{1}{n} G V_{\hat{\beta}_0, \hat{\beta}_1, \hat{\beta}_2} G^T \;\;\;\; (15)$$
-  where
-  $$V_{\hat{\beta}_0, \hat{\beta}_1, \hat{\beta}_2}$$
-  denotes the variance-covariance matrix of the estimators of the probability-weighted
-  moments defined in either equation (9) or (10) above (recall that these two
-  estimators are asymptotically equivalent), and the matrix \(G\) is defined by:
-  $$G_{i1} = \frac{\partial \eta}{\partial \beta_{i-1}}, \, G_{i2} = \frac{\partial \theta}{\partial \beta_{i-1}}, \, G_{i3} = \frac{\partial \kappa}{\partial \beta_{i-1}} \;\;\;\; (16)$$
-  for \(i = 1, 2, 3\).  Hosking et al. (1985) provide formulas for the matrix
-  $$V_{\hat{\beta}_0, \hat{\beta}_1, \hat{\beta}_2}$$
-  in Appendix C of their manuscript.  Note that there is a typographical error in
-  equation (C.11) (Jon Hosking, personal communication, 1996).  In the second line
-  of this equation, the quantity \(-(r+s)^{-k}\) should be replaced with
-  \(-(r+s)^{-2k}\).</p>
-<p>The matrix \(G\) in equation (16) is not easily computed.  Its inverse, however,
-  is easy to compute and then can be inverted numerically (Jon Hosking, 1996,
-  personal communication). The inverse of \(G\) is given by:
-  $$G^{-1}_{i1} = \frac{\partial \beta_{i-1}{\partial \eta}}, \, G^{-1}_{i2} = \frac{\partial \beta_{i-1}{\partial \theta}}, \, G^{-1}_{i3} = \frac{\partial \beta_{i-1}{\partial \kappa}} \;\;\;\; (17)$$
-  and by equation (5) above it can be shown that:
-  $$\frac{\partial \beta_j}{\partial \eta} = \frac{1}{j+1} \;\;\;\; (18)$$
-  $$\frac{\partial \beta_j}{\partial \theta} =\frac{1 - (j+1)^{-\kappa}\Gamma(1+\kappa)}{(j+1)\kappa} \;\;\;\; (19)$$
-  $$\frac{\partial \beta_j}{\partial \kappa} = \frac{\theta}{j+1} \{ \frac{(j+1)^{-\kappa}[log(j+1)\Gamma(1+\kappa)-\Gamma^{'}(1+\kappa)]}{\kappa} - \frac{1 - (j+1)^{-\kappa}\Gamma(1+\kappa)}{\kappa^2} \} \;\;\;\; (20)$$
-  for \(i = 1, 2, 3\).</p>
-<p><em>Estimating Distribution Quantiles</em> <br>
-  If \(X\) has a GEVD with parameters <code>location=</code>\(\eta\),
-  <code>scale=</code>\(\theta\), and <code>shape=</code>\(\kappa\), where \(\kappa \ne 0\),
-  then the \(p\)'th quantile of the distribution is given by:
-  $$x(p) = \eta + \frac{\theta \{1 - [-log(p)]^{\kappa} \}}{\kappa} \;\;\;\; (21)$$
-  \((0 \le p \le 1)\).  Given estimated values of the location, scale, and shape
-  parameters, the \(p\)'th quantile of the distribution is estimated as:
-  $$\hat{x}(p) = \hat{\eta} + \frac{\hat{\theta} \{1 - [-log(p)]^{\hat{\kappa}} \}}{\hat{\kappa}} \;\;\;\; (22)$$</p>
+    <p>Extended methods and derivations are available in
+<a href="https://alexkowa.github.io/EnvStats/articles/distributions-and-estimation.html#hoskingetal1985" class="external-link">Probability distributions and parameter estimation: <code>HoskingEtAl1985</code></a>.
+Open the vignette locally with
+<code><a href="../articles/distributions-and-estimation.html">vignette("distributions-and-estimation", package = "EnvStats")</a></code>.</p>
     </div>
     <div id="references">
     <h2>References</h2>
@@ -260,7 +145,7 @@
 </div>
 
 <div class="pkgdown">
-  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.1.1.</p>
+  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.2.1.</p>
 </div>
 
       </footer></div>

@@ -18,7 +18,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">EnvStats</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">3.1.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">4.0.0</span>
       </span>
     </div>
 
@@ -26,6 +26,37 @@
       <ul class="nav navbar-nav"><li>
   <a href="../reference/index.html">Reference</a>
 </li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+    Articles
+
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu"><li>
+      <a href="../articles/censored-estimation.html">Estimation with censored data</a>
+    </li>
+    <li>
+      <a href="../articles/distribution-diagnostics.html">Distribution diagnostics, transformations, and probability plots</a>
+    </li>
+    <li>
+      <a href="../articles/distributions-and-estimation.html">Probability distributions and parameter estimation</a>
+    </li>
+    <li>
+      <a href="../articles/nonparametric-methods.html">Nonparametric estimation and two-sample tests</a>
+    </li>
+    <li>
+      <a href="../articles/outlier-testing.html">Rosner's test for multiple outliers</a>
+    </li>
+    <li>
+      <a href="../articles/power-and-study-design.html">Statistical power and study design</a>
+    </li>
+    <li>
+      <a href="../articles/prediction-intervals.html">Prediction intervals for environmental monitoring</a>
+    </li>
+    <li>
+      <a href="../articles/trend-and-correlation.html">Trend tests and serial correlation</a>
+    </li>
+  </ul></li>
       </ul><ul class="nav navbar-nav navbar-right"><li>
   <a href="https://github.com/alexkowa/EnvStats/" class="external-link">
     <span class="fab fa-github fa-lg"></span>
@@ -42,7 +73,7 @@
   <div class="col-md-9 contents">
     <div class="page-header">
     <h1>Sample Size for Nonparametric Confidence Interval for a Quantile</h1>
-
+    <small class="dont-index">Source: <a href="https://github.com/alexkowa/EnvStats/blob/master/R/ciNparN.R" class="external-link"><code>R/ciNparN.R</code></a></small>
     <div class="hidden name"><code>ciNparN.Rd</code></div>
     </div>
 
@@ -52,8 +83,8 @@
     </div>
 
     <div id="ref-usage">
-    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">ciNparN</span><span class="op">(</span>p <span class="op">=</span> <span class="fl">0.5</span>, lcl.rank <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/ifelse.html" class="external-link">ifelse</a></span><span class="op">(</span><span class="va">ci.type</span> <span class="op">==</span> <span class="st">"upper"</span>, <span class="fl">0</span>, <span class="fl">1</span><span class="op">)</span>, </span>
-<span>    n.plus.one.minus.ucl.rank <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/ifelse.html" class="external-link">ifelse</a></span><span class="op">(</span><span class="va">ci.type</span> <span class="op">==</span> <span class="st">"lower"</span>, <span class="fl">0</span>, <span class="fl">1</span><span class="op">)</span>, </span>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">ciNparN</span><span class="op">(</span>p <span class="op">=</span> <span class="fl">0.5</span>, lcl.rank <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/ifelse.html" class="external-link">ifelse</a></span><span class="op">(</span><span class="va">ci.type</span> <span class="op">==</span> <span class="st">"upper"</span>, <span class="fl">0</span>, <span class="fl">1</span><span class="op">)</span>,</span>
+<span>    n.plus.one.minus.ucl.rank <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/ifelse.html" class="external-link">ifelse</a></span><span class="op">(</span><span class="va">ci.type</span> <span class="op">==</span> <span class="st">"lower"</span>, <span class="fl">0</span>, <span class="fl">1</span><span class="op">)</span>,</span>
 <span>    ci.type <span class="op">=</span> <span class="st">"two.sided"</span>, conf.level <span class="op">=</span> <span class="fl">0.95</span><span class="op">)</span></span></code></pre></div>
     </div>
 
@@ -131,23 +162,23 @@
 
     <div id="ref-examples">
     <h2>Examples</h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span>  <span class="co"># Look at how the required sample size for a confidence interval </span></span></span>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span>  <span class="co"># Look at how the required sample size for a confidence interval</span></span></span>
 <span class="r-in"><span>  <span class="co"># increases with increasing confidence level for a fixed quantile:</span></span></span>
 <span class="r-in"><span></span></span>
-<span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/r/base/seq.html" class="external-link">seq</a></span><span class="op">(</span><span class="fl">0.5</span>, <span class="fl">0.9</span>, by <span class="op">=</span> <span class="fl">0.1</span><span class="op">)</span> </span></span>
+<span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/r/base/seq.html" class="external-link">seq</a></span><span class="op">(</span><span class="fl">0.5</span>, <span class="fl">0.9</span>, by <span class="op">=</span> <span class="fl">0.1</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] 0.5 0.6 0.7 0.8 0.9</span>
-<span class="r-in"><span>  <span class="co">#[1] 0.5 0.6 0.7 0.8 0.9 </span></span></span>
+<span class="r-in"><span>  <span class="co">#[1] 0.5 0.6 0.7 0.8 0.9</span></span></span>
 <span class="r-in"><span></span></span>
-<span class="r-in"><span>  <span class="fu">ciNparN</span><span class="op">(</span>p <span class="op">=</span> <span class="fl">0.9</span>, conf.level<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/seq.html" class="external-link">seq</a></span><span class="op">(</span><span class="fl">0.5</span>, <span class="fl">0.9</span>, by <span class="op">=</span> <span class="fl">0.1</span><span class="op">)</span><span class="op">)</span> </span></span>
+<span class="r-in"><span>  <span class="fu">ciNparN</span><span class="op">(</span>p <span class="op">=</span> <span class="fl">0.9</span>, conf.level<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/seq.html" class="external-link">seq</a></span><span class="op">(</span><span class="fl">0.5</span>, <span class="fl">0.9</span>, by <span class="op">=</span> <span class="fl">0.1</span><span class="op">)</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1]  7  9 12 16 22</span>
 <span class="r-in"><span>  <span class="co">#[1]  7  9 12 16 22</span></span></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span>  <span class="co">#----------</span></span></span>
 <span class="r-in"><span></span></span>
-<span class="r-in"><span>  <span class="co"># Look at how the required sample size for a confidence interval increases </span></span></span>
+<span class="r-in"><span>  <span class="co"># Look at how the required sample size for a confidence interval increases</span></span></span>
 <span class="r-in"><span>  <span class="co"># as the quantile moves away from 0.5:</span></span></span>
 <span class="r-in"><span></span></span>
-<span class="r-in"><span>  <span class="fu">ciNparN</span><span class="op">(</span>p <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/seq.html" class="external-link">seq</a></span><span class="op">(</span><span class="fl">0.5</span>, <span class="fl">0.9</span>, by <span class="op">=</span> <span class="fl">0.1</span><span class="op">)</span><span class="op">)</span> </span></span>
+<span class="r-in"><span>  <span class="fu">ciNparN</span><span class="op">(</span>p <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/seq.html" class="external-link">seq</a></span><span class="op">(</span><span class="fl">0.5</span>, <span class="fl">0.9</span>, by <span class="op">=</span> <span class="fl">0.1</span><span class="op">)</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1]  6  7  9 14 29</span>
 <span class="r-in"><span>  <span class="co">#[1]  6  7  9 14 29</span></span></span>
 </code></pre></div>
@@ -164,7 +195,7 @@
 </div>
 
 <div class="pkgdown">
-  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.1.1.</p>
+  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.2.1.</p>
 </div>
 
       </footer></div>

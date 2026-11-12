@@ -19,7 +19,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">EnvStats</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">3.1.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">4.0.0</span>
       </span>
     </div>
 
@@ -27,6 +27,37 @@
       <ul class="nav navbar-nav"><li>
   <a href="../reference/index.html">Reference</a>
 </li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+    Articles
+
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu"><li>
+      <a href="../articles/censored-estimation.html">Estimation with censored data</a>
+    </li>
+    <li>
+      <a href="../articles/distribution-diagnostics.html">Distribution diagnostics, transformations, and probability plots</a>
+    </li>
+    <li>
+      <a href="../articles/distributions-and-estimation.html">Probability distributions and parameter estimation</a>
+    </li>
+    <li>
+      <a href="../articles/nonparametric-methods.html">Nonparametric estimation and two-sample tests</a>
+    </li>
+    <li>
+      <a href="../articles/outlier-testing.html">Rosner's test for multiple outliers</a>
+    </li>
+    <li>
+      <a href="../articles/power-and-study-design.html">Statistical power and study design</a>
+    </li>
+    <li>
+      <a href="../articles/prediction-intervals.html">Prediction intervals for environmental monitoring</a>
+    </li>
+    <li>
+      <a href="../articles/trend-and-correlation.html">Trend tests and serial correlation</a>
+    </li>
+  </ul></li>
       </ul><ul class="nav navbar-nav navbar-right"><li>
   <a href="https://github.com/alexkowa/EnvStats/" class="external-link">
     <span class="fab fa-github fa-lg"></span>
@@ -43,7 +74,7 @@
   <div class="col-md-9 contents">
     <div class="page-header">
     <h1>Prediction Interval for a Poisson Distribution</h1>
-
+    <small class="dont-index">Source: <a href="https://github.com/alexkowa/EnvStats/blob/master/R/predIntPois.R" class="external-link"><code>R/predIntPois.R</code></a></small>
     <div class="hidden name"><code>predIntPois.Rd</code></div>
     </div>
 
@@ -54,10 +85,17 @@
     </div>
 
     <div id="ref-usage">
-    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">predIntPois</span><span class="op">(</span><span class="va">x</span>, k <span class="op">=</span> <span class="fl">1</span>, n.sum <span class="op">=</span> <span class="fl">1</span>, method <span class="op">=</span> <span class="st">"conditional"</span>, </span>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">predIntPois</span><span class="op">(</span><span class="va">x</span>, k <span class="op">=</span> <span class="fl">1</span>, n.sum <span class="op">=</span> <span class="fl">1</span>, method <span class="op">=</span> <span class="st">"conditional"</span>,</span>
 <span>    pi.type <span class="op">=</span> <span class="st">"two-sided"</span>, conf.level <span class="op">=</span> <span class="fl">0.95</span>, round.limits <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></code></pre></div>
     </div>
 
+    <div id="details">
+    <h2>Details</h2>
+    <p>Extended methods and derivations are available in
+<a href="https://alexkowa.github.io/EnvStats/articles/prediction-intervals.html#predintpois" class="external-link">Prediction intervals for environmental monitoring: <code>predIntPois</code></a>.
+Open the vignette locally with
+<code><a href="../articles/prediction-intervals.html">vignette("prediction-intervals", package = "EnvStats")</a></code>.</p>
+    </div>
     <div id="arguments">
     <h2>Arguments</h2>
     <p></p>
@@ -102,193 +140,6 @@
   nearest integer.  The default value is <code>round.limits=TRUE</code>.</p></dd>
 
 </dl></div>
-    <div id="details">
-    <h2>Details</h2>
-    <p>A prediction interval for some population is an interval on the real line constructed so
-  that it will contain \(k\) future observations or averages from that population with
-  some specified probability \((1-\alpha)100\%\), where 0 &lt; \(\alpha\) &lt; 1 and \(k\)
-  is some pre-specified positive integer.  The quantity \((1-\alpha)100\%\) is call
-  the confidence coefficient or confidence level associated with the prediction interval.</p>
-<p>In the case of a <a href="https://rdrr.io/r/stats/Poisson.html" class="external-link">Poisson distribution</a>, we have modified the
-  usual meaning of a prediction interval and instead construct an interval that will
-  contain \(k\) future observations or \(k\) future <em>sums</em> with a certain
-  confidence level.</p>
-<p>A prediction interval is a <em>random</em> interval; that is, the lower and/or
-  upper bounds are random variables computed based on sample statistics in the
-  baseline sample.  Prior to taking one specific baseline sample, the probability
-  that the prediction interval will contain the next \(k\) averages is
-  \((1-\alpha)100\%\).  Once a specific baseline sample is taken and the
-  prediction interval based on that sample is computed, the probability that that
-  prediction interval will contain the next \(k\) averages is not necessarily
-  \((1-a)100\%\), but it should be close.</p>
-<p>If an experiment is repeated \(N\) times, and for each experiment:</p><ol><li><p>A sample is taken and a \((1-a)100\%\) prediction interval for \(k=1\)
-  future observation is computed, and</p></li>
-<li><p>One future observation is generated and compared to the prediction interval,</p></li>
-</ol><p>then the number of prediction intervals that actually contain the future observation
-  generated in step 2 above is a binomial random variable with parameters
-  <code>size=</code>\(N\) and <code>prob=</code>\((1-\alpha)100\%\) (see <a href="https://rdrr.io/r/stats/Binomial.html" class="external-link">Binomial</a>).</p>
-<p>If, on the other hand, only one baseline sample is taken and only one prediction
-  interval for \(k=1\) future observation is computed, then the number of
-  future observations out of a total of \(N\) future observations that will be
-  contained in that one prediction interval is a binomial random variable with
-  parameters <code>size=</code>\(N\) and <code>prob=</code>\((1-\alpha^*)100\%\), where
-  \(\alpha^*\) depends on the true population parameters and the computed
-  bounds of the prediction interval.</p>
-<p>Because of the discrete nature of the <a href="https://rdrr.io/r/stats/Poisson.html" class="external-link">Poisson distribution</a>,
-  even if the true mean of the distribution \(\lambda\) were known exactly, the
-  actual confidence level associated with a prediction limit will usually not be exactly equal to
-  \((1-\alpha)100\%\).  For example, for the Poisson distribution with parameter
-  <code>lambda=2</code>, the interval [0, 4] contains 94.7% of this distribution and
-  the interval [0,5] contains 98.3% of this distribution.  Thus, no interval can
-  contain exactly 95% of this distribution, so it is impossible to construct an
-  exact 95% prediction interval for the next \(k=1\) observation for a
-  Poisson distribution with parameter <code>lambda=2</code>.
-  <br></p>
-<p><b>The Form of a Poisson Prediction Interval</b> <br>
-  Let \(\underline{x} = x_1, x_2, \ldots, x_n\) denote a vector of \(n\)
-  observations from a <a href="https://rdrr.io/r/stats/Poisson.html" class="external-link">Poisson distribution</a> with parameter
-  <code>lambda=</code>\(\lambda\).  Also, let \(X\) denote the sum of these
-  \(n\) random variables, i.e.,
-  $$X = \sum_{i=1}^n x_i \;\;\;\;\;\; (1)$$
-  Finally, let \(m\) denote the sample size associated with the \(k\) future
-  sums (i.e., <code>n.sum=</code>\(m\)).  When \(m=1\), each sum is really just a
-  single observation, so in the rest of this help file the term “sums”
-  replaces the phrase “observations or sums”.</p>
-<p>Let \(\underline{y} = y_1, y_2, \ldots, y_m\) denote a vector of \(m\)
-  future observations from a Poisson distribution with parameter
-  <code>lambda=</code>\(\lambda^{*}\), and set \(Y\) equal to the sum of these
-  \(m\) random variables, i.e.,
-  $$Y = \sum_{i=1}^m y_i \;\;\;\;\;\; (2)$$
-  Then \(Y\) has a Poisson distribution with parameter
-  <code>lambda=</code>\(m\lambda^{*}\) (Johnson et al., 1992, p.160).  We are interested
-  in constructing a prediction limit for the next value of \(Y\), or else the next
-  \(k\) sums of \(m\) Poisson random variables, based on the observed value of
-  \(X\) and assuming \(\lambda^{*} = \lambda\).</p>
-<p>For a Poisson distribution, the form of a two-sided prediction interval is:
-  $$[m\bar{x} - K, m\bar{x} + K] = [cX - K, cX + K] \;\;\;\;\;\; (3)$$
-  where
-  $$\bar{x} = \frac{X}{n} = \sum_{i=1}^n x_i \;\;\;\;\;\; (4)$$
-  $$c = \frac{m}{n} \;\;\;\;\;\; (5)$$
-  and \(K\) is a constant that depends on the sample size \(n\), the
-  confidence level \((1-\alpha)100\%\), the number of future sums \(k\),
-  and the sample size associated with the future sums \(m\). Do not confuse
-  the constant \(K\) (uppercase \(K\)) with the number of future sums
-  \(k\) (lowercase \(k\)).  The symbol \(K\) is used here to be consistent
-  with the notation used for prediction intervals for the normal distribution
-  (see <code><a href="predIntNorm.html">predIntNorm</a></code>).</p>
-<p>Similarly, the form of a one-sided lower prediction interval is:
-  $$[m\bar{x} - K, \infty] = [cX - K, \infty] \;\;\;\;\;\; (6)$$
-  and the form of a one-sided upper prediction interval is:
-  $$[0, m\bar{x} + K] = [0, cX + K] \;\;\;\;\;\; (7)$$
-  The derivation of the constant \(K\) is explained below.
-  <br></p>
-<p><b>Conditional Distribution</b> (<code>method="conditional"</code>) <br>
-  Nelson (1970) derives a prediction interval for the case \(k=1\) based on the
-  conditional distribution of \(Y\) given \(X+Y\).  He notes that the conditional
-  distribution of \(Y\) given the quantity \(X+Y=w\) is
-  <a href="https://rdrr.io/r/stats/Binomial.html" class="external-link">binomial</a> with parameters
-  <code>size=</code>\(w\) and <code>prob=</code>\([m\lambda^{*} / (m\lambda^{*} + n\lambda)]\)
-  (Johnson et al., 1992, p.161).  When \(k=1\), the prediction limits are computed
-  as those most extreme values of \(Y\) that still yield a non-significant test of
-  the hypothesis \(H_0: \lambda^{*} = \lambda\), which for the conditional
-  distribution of \(Y\) is equivalent to the hypothesis
-  \(H_0\): <code>prob=[m /(m + n)]</code>.</p>
-<p>Using the relationship between the <a href="https://rdrr.io/r/stats/Binomial.html" class="external-link">binomial</a> and
-  <a href="https://rdrr.io/r/stats/Fdist.html" class="external-link">F-distribution</a> (see the explanation of exact confidence
-  intervals in the help file for <code><a href="ebinom.html">ebinom</a></code>), Nelson (1982, p. 203) states
-  that exact two-sided \((1-\alpha)100\%\) prediction limits [LPL, UPL] are the
-  closest integer solutions to the following equations:
-  $$\frac{m}{LPL + 1} = \frac{n}{X} F(2 LPL + 2, 2X, 1 - \alpha/2) \;\;\;\;\;\; (8)$$
-  $$\frac{UPL}{n} = \frac{X+1}{n} F(2X + 2, 2 UPL, 1 - \alpha/2) \;\;\;\;\;\; (9)$$
-  where \(F(\nu_1, \nu_2, p)\) denotes the \(p\)'th quantile of the
-  <a href="https://rdrr.io/r/stats/Fdist.html" class="external-link">F-distribution</a> with \(\nu_1\) and \(\nu_2\) degrees of
-  freedom.</p>
-<p>If <code>ci.type="lower"</code>, \(\alpha/2\) is replaced with \(\alpha\) in
-  Equation (8) above for \(LPL\), and \(UPL\) is set to \(\infty\).</p>
-<p>If <code>ci.type="upper"</code>, \(\alpha/2\) is replaced with \(\alpha\) in
-  Equation (9) above for \(UPL\), and \(LPL\) is set to 0.</p>
-<p><b>NOTE:</b> This method is not extended to the case \(k &gt; 1\).
-  <br></p>
-<p><b>Conditional Distribution Approximation Based on Normal Distribution</b> <br>
-  (<code>method="conditional.approx.normal"</code>) <br>
-  Cox and Hinkley (1974, p.245) derive an approximate prediction interval for the case
-  \(k=1\).  Like Nelson (1970), they note that the conditional distribution of
-  \(Y\) given the quantity \(X+Y=w\) is  <a href="https://rdrr.io/r/stats/Binomial.html" class="external-link">binomial</a> with
-  parameters <code>size=</code>\(w\) and
-  <code>prob=</code>\([m\lambda^{*} / (m\lambda^{*} + n\lambda)]\), and that the
-  hypothesis \(H_0: \lambda^{*} = \lambda\) is equivalent to the hypothesis
-  \(H_0\): <code>prob=[m /(m + n)]</code>.</p>
-<p>Cox and Hinkley (1974, p.245) suggest using the normal approximation to the
-  binomial distribution (in this case, without the continuity correction;
-  see Zar, 2010, pp.534-536 for information on the continuity correction associated
-  with the normal approximation to the binomial distribution).  Under the null
-  hypothesis \(H_0: \lambda^{*} = \lambda\), the quantity
-  $$z = [Y - \frac{c(X+Y)}{1+c}] / \{ [\frac{c(X+Y)}{(1+c)^2}]^{1/2} \} \;\;\;\;\;\; (10)$$
-  is approximately distributed as a standard normal random variable.</p>
-<p><em>The Case When k = 1</em> <br>
-  When \(k = 1\) and <code>pi.type="two-sided"</code>, the prediction limits are computed
-  by solving the equation
-  $$z^2 \le z_{1 - \alpha/2}^2 \;\;\;\;\;\; (11)$$
-  where \(z_p\) denotes the \(p\)'th quantile of the standard normal distribution.
-  In this case, Gibbons (1987b) notes that the quantity \(K\) in Equation (3) above
-  is given by:
-  $$K = \frac{t^2c}{2} tc[X (1 + \frac{1}{c}) + \frac{t^2}{4}]^{1/2} \;\;\;\;\;\; (12)$$
-  where \(t = z_{1-\alpha/2}\).</p>
-<p>When <code>pi.type="lower"</code> or <code>pi.type="upper"</code>, \(K\) is computed exactly
-  as above, except \(t\) is set to \(t = z_{1-\alpha}\).</p>
-<p><em>The Case When k &gt; 1</em> <br>
-  When \(k &gt; 1\), Gibbons (1987b) suggests using the Bonferroni inequality.
-  That is, the value of \(K\) is computed exactly as for the case \(k=1\)
-  described above, except that the Bonferroni value of \(t\) is used in place of the
-  usual value of \(t\):</p>
-<p>When <code>pi.type="two-side"</code>, \(t = z_{1 - (\alpha/k)/2}\).</p>
-<p>When <code>pi.type="lower"</code> or <code>pi.type="upper"</code>, \(t = z_{1 - \alpha/k}\).
-  <br></p>
-<p><b>Conditional Distribution Approximation Based on Student's t-Distribution</b> <br>
-  (<code>method="conditional.approx.t"</code>) <br>
-  When <code>method="conditional.approx.t"</code>, the exact same procedure is used as when <br><code>method="conditional.approx.normal"</code>, except that the quantity in
-  Equation (10) is assumed to follow a Student's t-distribution with \(n-1\)
-  degrees of freedom.  Thus, all occurrences of \(z_p\) are replaced with
-  \(t_{n-1, p}\), where \(t_{\nu, p}\) denotes the \(p\)'th quantile of
-  <a href="https://rdrr.io/r/stats/TDist.html" class="external-link">Student's t-distribution</a> with \(\nu\) degrees of freedom.
-  <br></p>
-<p><b>Normal Approximation</b> (<code>method="normal.approx"</code>) <br>
-  The normal approximation for Poisson prediction limits was given by
-  Nelson (1970; 1982, p.203) and is based on the fact that the mean and variance of a
-  Poisson distribution are the same (Johnson et al, 1992, p.157), and for
-  “large” values of \(n\) and \(m\), both \(X\) and \(Y\) are
-  approximately normally distributed.</p>
-<p><em>The Case When k = 1</em> <br>
-  The quantity \(Y - cX\) is approximately normally distributed with expectation and
-  variance given by:
-  $$E(Y - cX) = E(Y) - cE(X) = m\lambda - cn\lambda = 0 \;\;\;\;\;\; (13)$$
-  $$Var(Y - cX) = Var(Y) + c^2 Var(X) = m\lambda + c^2 n\lambda = m\lambda (1 + \frac{m}{n}) \;\;\;\;\;\; (14)$$
-  so the quantity
-  $$z = \frac{Y-cX}{\sqrt{m\hat{\lambda}(1 + \frac{m}{n})}} = \frac{Y-cX}{\sqrt{m\bar{x}(1 + \frac{m}{n})}} \;\;\;\;\;\; (15)$$
-  is approximately distributed as a standard normal random variable.  The function
-  <code>predIntPois</code>, however, assumes this quantity is distributed as approximately
-  a <a href="https://rdrr.io/r/stats/TDist.html" class="external-link">Student's t-distribution</a> with \(n-1\) degrees of freedom.</p>
-<p>Thus, following the idea of prediction intervals for a normal distribution
-  (see <code><a href="predIntNorm.html">predIntNorm</a></code>), when <code>pi.type="two-sided"</code>, the constant
-  \(K\) for a \((1-\alpha)100\%\) prediction interval for the next \(k=1\) sum
-  of \(m\) observations is computed as:
-  $$K = t_{n-1, 1-\alpha/2} \sqrt{m\bar{x} (1 + \frac{m}{n})} \;\;\;\;\;\; (16)$$
-  where \(t_{\nu, p}\) denotes the \(p\)'th quantile of a
-  <a href="https://rdrr.io/r/stats/TDist.html" class="external-link">Student's t-distribution</a> with \(\nu\) degrees of freedom.</p>
-<p>Similarly, when <code>pi.type="lower"</code> or <code>pi.type="upper"</code>, the constant
-  \(K\) is computed as:
-  $$K = t_{n-1, 1-\alpha} \sqrt{m\bar{x} (1 + \frac{m}{n})} \;\;\;\;\;\; (17)$$</p>
-<p><em>The Case When k &gt; 1</em> <br>
-  When \(k &gt; 1\), the value of \(K\) is computed exactly as for the case
-  \(k = 1\) described above, except that the Bonferroni value of \(t\) is used
-  in place of the usual value of \(t\):</p>
-<p>When <code>pi.type="two-sided"</code>,
-  $$K = t_{n-1, 1-(\alpha/k)/2} \sqrt{m\bar{x} (1 + \frac{m}{n})} \;\;\;\;\;\; (18)$$</p>
-<p>When <code>pi.type="lower"</code> or <code>pi.type="upper"</code>,
-  $$K = t_{n-1, 1-(\alpha/k)} \sqrt{m\bar{x} (1 + \frac{m}{n})} \;\;\;\;\;\; (19)$$</p>
-<p>Hahn and Nelson (1973, p.182) discuss another method of computing \(K\) when
-  \(k &gt; 1\), but this method is not implemented here.</p>
-    </div>
     <div id="value">
     <h2>Value</h2>
     <p>If <code>x</code> is a numeric vector, <code>predIntPois</code> returns a list of class
@@ -357,72 +208,44 @@
 
     <div id="ref-examples">
     <h2>Examples</h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span>  <span class="co"># Generate 20 observations from a Poisson distribution with parameter </span></span></span>
-<span class="r-in"><span>  <span class="co"># lambda=2.  The interval [0, 4] contains 94.7% of this distribution and </span></span></span>
-<span class="r-in"><span>  <span class="co"># the interval [0,5] contains 98.3% of this distribution.  Thus, because </span></span></span>
-<span class="r-in"><span>  <span class="co"># of the discrete nature of the Poisson distribution, no interval contains </span></span></span>
-<span class="r-in"><span>  <span class="co"># exactly 95% of this distribution.  Use predIntPois to estimate the mean </span></span></span>
-<span class="r-in"><span>  <span class="co"># parameter of the true distribution, and construct a one-sided upper </span></span></span>
-<span class="r-in"><span>  <span class="co"># 95% prediction interval for the next single observation from this distribution. </span></span></span>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span>  <span class="co"># Generate 20 observations from a Poisson distribution with parameter</span></span></span>
+<span class="r-in"><span>  <span class="co"># lambda=2.  The interval [0, 4] contains 94.7% of this distribution and</span></span></span>
+<span class="r-in"><span>  <span class="co"># the interval [0,5] contains 98.3% of this distribution.  Thus, because</span></span></span>
+<span class="r-in"><span>  <span class="co"># of the discrete nature of the Poisson distribution, no interval contains</span></span></span>
+<span class="r-in"><span>  <span class="co"># exactly 95% of this distribution.  Use predIntPois to estimate the mean</span></span></span>
+<span class="r-in"><span>  <span class="co"># parameter of the true distribution, and construct a one-sided upper</span></span></span>
+<span class="r-in"><span>  <span class="co"># 95% prediction interval for the next single observation from this distribution.</span></span></span>
 <span class="r-in"><span>  <span class="co"># (Note: the call to set.seed simply allows you to reproduce this example.)</span></span></span>
 <span class="r-in"><span></span></span>
-<span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/r/base/Random.html" class="external-link">set.seed</a></span><span class="op">(</span><span class="fl">250</span><span class="op">)</span> </span></span>
-<span class="r-in"><span>  <span class="va">dat</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/Poisson.html" class="external-link">rpois</a></span><span class="op">(</span><span class="fl">20</span>, lambda <span class="op">=</span> <span class="fl">2</span><span class="op">)</span> </span></span>
+<span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/r/base/Random.html" class="external-link">set.seed</a></span><span class="op">(</span><span class="fl">250</span><span class="op">)</span></span></span>
+<span class="r-in"><span>  <span class="va">dat</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/Poisson.html" class="external-link">rpois</a></span><span class="op">(</span><span class="fl">20</span>, lambda <span class="op">=</span> <span class="fl">2</span><span class="op">)</span></span></span>
 <span class="r-in"><span></span></span>
-<span class="r-in"><span>  <span class="fu">predIntPois</span><span class="op">(</span><span class="va">dat</span>, pi.type <span class="op">=</span> <span class="st">"upper"</span><span class="op">)</span> </span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $distribution</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "Poisson"</span>
+<span class="r-in"><span>  <span class="fu">predIntPois</span><span class="op">(</span><span class="va">dat</span>, pi.type <span class="op">=</span> <span class="st">"upper"</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $sample.size</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] 20</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Results of Distribution Parameter Estimation</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> --------------------------------------------</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $parameters</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> lambda </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>    1.8 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Assumed Distribution:            Poisson</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $n.param.est</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] 1</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Estimated Parameter(s):          lambda = 1.8</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $method</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "mle/mme/mvue"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Estimation Method:               mle/mme/mvue</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $data.name</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "dat"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Data:                            dat</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $bad.obs</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] 0</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Sample Size:                     20</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $interval</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $name</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "Prediction"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Prediction Interval Method:      conditional</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $limits</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> LPL UPL </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   0   5 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Prediction Interval Type:        upper</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $type</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "upper"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Confidence Level:                95%</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $method</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "conditional"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Number of Future Observations:   1</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $conf.level</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] 0.95</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Prediction Interval:             LPL = 0</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                                  UPL = 5</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $sample.size</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] 20</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $k</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] 1</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $n.sum</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] 1</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> attr(,"class")</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "intervalEstimate"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> attr(,"class")</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "estimate"</span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span>  <span class="co">#Results of Distribution Parameter Estimation</span></span></span>
 <span class="r-in"><span>  <span class="co">#--------------------------------------------</span></span></span>
@@ -452,96 +275,68 @@
 <span class="r-in"><span></span></span>
 <span class="r-in"><span>  <span class="co"># Compare results above with the other approximation methods:</span></span></span>
 <span class="r-in"><span></span></span>
-<span class="r-in"><span>  <span class="fu">predIntPois</span><span class="op">(</span><span class="va">dat</span>, method <span class="op">=</span> <span class="st">"conditional.approx.normal"</span>, </span></span>
+<span class="r-in"><span>  <span class="fu">predIntPois</span><span class="op">(</span><span class="va">dat</span>, method <span class="op">=</span> <span class="st">"conditional.approx.normal"</span>,</span></span>
 <span class="r-in"><span>    pi.type <span class="op">=</span> <span class="st">"upper"</span><span class="op">)</span><span class="op">$</span><span class="va">interval</span><span class="op">$</span><span class="va">limits</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> LPL UPL </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   0   4 </span>
-<span class="r-in"><span>  <span class="co">#LPL UPL </span></span></span>
-<span class="r-in"><span>  <span class="co">#  0   4  </span></span></span>
-<span class="r-in"><span> </span></span>
+<span class="r-in"><span>  <span class="co">#LPL UPL</span></span></span>
+<span class="r-in"><span>  <span class="co">#  0   4</span></span></span>
 <span class="r-in"><span></span></span>
-<span class="r-in"><span>  <span class="fu">predIntPois</span><span class="op">(</span><span class="va">dat</span>, method <span class="op">=</span> <span class="st">"conditional.approx.t"</span>, </span></span>
-<span class="r-in"><span>    pi.type <span class="op">=</span> <span class="st">"upper"</span><span class="op">)</span><span class="op">$</span><span class="va">interval</span><span class="op">$</span><span class="va">limits</span> </span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="fu">predIntPois</span><span class="op">(</span><span class="va">dat</span>, method <span class="op">=</span> <span class="st">"conditional.approx.t"</span>,</span></span>
+<span class="r-in"><span>    pi.type <span class="op">=</span> <span class="st">"upper"</span><span class="op">)</span><span class="op">$</span><span class="va">interval</span><span class="op">$</span><span class="va">limits</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> LPL UPL </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   0   4 </span>
-<span class="r-in"><span>  <span class="co">#LPL UPL </span></span></span>
-<span class="r-in"><span>  <span class="co">#  0   4 </span></span></span>
+<span class="r-in"><span>  <span class="co">#LPL UPL</span></span></span>
+<span class="r-in"><span>  <span class="co">#  0   4</span></span></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span></span></span>
-<span class="r-in"><span>  <span class="fu">predIntPois</span><span class="op">(</span><span class="va">dat</span>, method <span class="op">=</span> <span class="st">"normal.approx"</span>, </span></span>
-<span class="r-in"><span>    pi.type <span class="op">=</span> <span class="st">"upper"</span><span class="op">)</span><span class="op">$</span><span class="va">interval</span><span class="op">$</span><span class="va">limits</span> </span></span>
+<span class="r-in"><span>  <span class="fu">predIntPois</span><span class="op">(</span><span class="va">dat</span>, method <span class="op">=</span> <span class="st">"normal.approx"</span>,</span></span>
+<span class="r-in"><span>    pi.type <span class="op">=</span> <span class="st">"upper"</span><span class="op">)</span><span class="op">$</span><span class="va">interval</span><span class="op">$</span><span class="va">limits</span></span></span>
 <span class="r-wrn co"><span class="r-pr">#&gt;</span> <span class="warning">Warning: </span>Estimated value of 'lambda' and/or number of future observations is/are probably too small for the normal approximation to work well.</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> LPL UPL </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   0   4 </span>
-<span class="r-in"><span>  <span class="co">#LPL UPL </span></span></span>
-<span class="r-in"><span>  <span class="co">#  0   4 </span></span></span>
+<span class="r-in"><span>  <span class="co">#LPL UPL</span></span></span>
+<span class="r-in"><span>  <span class="co">#  0   4</span></span></span>
 <span class="r-in"><span>  <span class="co">#Warning message:</span></span></span>
 <span class="r-in"><span>  <span class="co">#In predIntPois(dat, method = "normal.approx", pi.type = "upper") :</span></span></span>
-<span class="r-in"><span>  <span class="co">#  Estimated value of 'lambda' and/or number of future observations </span></span></span>
+<span class="r-in"><span>  <span class="co">#  Estimated value of 'lambda' and/or number of future observations</span></span></span>
 <span class="r-in"><span>  <span class="co">#  is/are probably too small for the normal approximation to work well.</span></span></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span>  <span class="co">#==========</span></span></span>
 <span class="r-in"><span></span></span>
-<span class="r-in"><span>  <span class="co"># Using the same data as in the previous example, compute a one-sided </span></span></span>
-<span class="r-in"><span>  <span class="co"># upper 95% prediction limit for k=10 future observations.  </span></span></span>
+<span class="r-in"><span>  <span class="co"># Using the same data as in the previous example, compute a one-sided</span></span></span>
+<span class="r-in"><span>  <span class="co"># upper 95% prediction limit for k=10 future observations.</span></span></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span>  <span class="co"># Using conditional approximation method based on the normal distribution.</span></span></span>
 <span class="r-in"><span></span></span>
-<span class="r-in"><span>  <span class="fu">predIntPois</span><span class="op">(</span><span class="va">dat</span>, k <span class="op">=</span> <span class="fl">10</span>, method <span class="op">=</span> <span class="st">"conditional.approx.normal"</span>, </span></span>
-<span class="r-in"><span>    pi.type <span class="op">=</span> <span class="st">"upper"</span><span class="op">)</span> </span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $distribution</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "Poisson"</span>
+<span class="r-in"><span>  <span class="fu">predIntPois</span><span class="op">(</span><span class="va">dat</span>, k <span class="op">=</span> <span class="fl">10</span>, method <span class="op">=</span> <span class="st">"conditional.approx.normal"</span>,</span></span>
+<span class="r-in"><span>    pi.type <span class="op">=</span> <span class="st">"upper"</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $sample.size</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] 20</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Results of Distribution Parameter Estimation</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> --------------------------------------------</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $parameters</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> lambda </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>    1.8 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Assumed Distribution:            Poisson</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $n.param.est</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] 1</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Estimated Parameter(s):          lambda = 1.8</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $method</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "mle/mme/mvue"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Estimation Method:               mle/mme/mvue</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $data.name</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "dat"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Data:                            dat</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $bad.obs</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] 0</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Sample Size:                     20</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $interval</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $name</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "Prediction"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Prediction Interval Method:      conditional.approx.normal</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $limits</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> LPL UPL </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   0   6 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Prediction Interval Type:        upper</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $type</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "upper"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Confidence Level:                95%</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $method</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "conditional.approx.normal"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Number of Future Observations:   10</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $conf.level</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] 0.95</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Prediction Interval:             LPL = 0</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                                  UPL = 6</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $sample.size</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] 20</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $k</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] 10</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $n.sum</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] 1</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> attr(,"class")</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "intervalEstimate"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> attr(,"class")</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "estimate"</span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span>  <span class="co">#Results of Distribution Parameter Estimation</span></span></span>
 <span class="r-in"><span>  <span class="co">#--------------------------------------------</span></span></span>
@@ -567,103 +362,75 @@
 <span class="r-in"><span>  <span class="co">#Prediction Interval:             LPL = 0</span></span></span>
 <span class="r-in"><span>  <span class="co">#                                 UPL = 6</span></span></span>
 <span class="r-in"><span></span></span>
-<span class="r-in"><span>  </span></span>
-<span class="r-in"><span>  <span class="co"># Using method based on approximating conditional distribution with </span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="co"># Using method based on approximating conditional distribution with</span></span></span>
 <span class="r-in"><span>  <span class="co"># Student's t-distribution</span></span></span>
 <span class="r-in"><span></span></span>
-<span class="r-in"><span>  <span class="fu">predIntPois</span><span class="op">(</span><span class="va">dat</span>, k <span class="op">=</span> <span class="fl">10</span>, method <span class="op">=</span> <span class="st">"conditional.approx.t"</span>, </span></span>
+<span class="r-in"><span>  <span class="fu">predIntPois</span><span class="op">(</span><span class="va">dat</span>, k <span class="op">=</span> <span class="fl">10</span>, method <span class="op">=</span> <span class="st">"conditional.approx.t"</span>,</span></span>
 <span class="r-in"><span>    pi.type <span class="op">=</span> <span class="st">"upper"</span><span class="op">)</span><span class="op">$</span><span class="va">interval</span><span class="op">$</span><span class="va">limits</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> LPL UPL </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   0   6 </span>
-<span class="r-in"><span>  <span class="co">#LPL UPL </span></span></span>
-<span class="r-in"><span>  <span class="co">#  0   6 </span></span></span>
+<span class="r-in"><span>  <span class="co">#LPL UPL</span></span></span>
+<span class="r-in"><span>  <span class="co">#  0   6</span></span></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span>  <span class="co">#==========</span></span></span>
 <span class="r-in"><span></span></span>
-<span class="r-in"><span>  <span class="co"># Repeat the above example, but set k=5 and n.sum=3.  Thus, we want a </span></span></span>
+<span class="r-in"><span>  <span class="co"># Repeat the above example, but set k=5 and n.sum=3.  Thus, we want a</span></span></span>
 <span class="r-in"><span>  <span class="co"># 95% upper prediction limit for the next 5 sets of sums of 3 observations.</span></span></span>
 <span class="r-in"><span></span></span>
-<span class="r-in"><span>  <span class="fu">predIntPois</span><span class="op">(</span><span class="va">dat</span>, k <span class="op">=</span> <span class="fl">5</span>, n.sum <span class="op">=</span> <span class="fl">3</span>, method <span class="op">=</span> <span class="st">"conditional.approx.t"</span>, </span></span>
+<span class="r-in"><span>  <span class="fu">predIntPois</span><span class="op">(</span><span class="va">dat</span>, k <span class="op">=</span> <span class="fl">5</span>, n.sum <span class="op">=</span> <span class="fl">3</span>, method <span class="op">=</span> <span class="st">"conditional.approx.t"</span>,</span></span>
 <span class="r-in"><span>    pi.type <span class="op">=</span> <span class="st">"upper"</span><span class="op">)</span><span class="op">$</span><span class="va">interval</span><span class="op">$</span><span class="va">limits</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> LPL UPL </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   0  12 </span>
-<span class="r-in"><span>  <span class="co">#LPL UPL </span></span></span>
+<span class="r-in"><span>  <span class="co">#LPL UPL</span></span></span>
 <span class="r-in"><span>  <span class="co">#  0  12</span></span></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span>  <span class="co">#==========</span></span></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span>  <span class="co"># Reproduce Example 3.6 in Gibbons et al. (2009, p. 75)</span></span></span>
-<span class="r-in"><span>  <span class="co"># A 32-constituent VOC scan was performed for n=16 upgradient </span></span></span>
-<span class="r-in"><span>  <span class="co"># samples and there were 5 detections out of these 16.  We </span></span></span>
-<span class="r-in"><span>  <span class="co"># want to construct a one-sided upper 95% prediction limit </span></span></span>
-<span class="r-in"><span>  <span class="co"># for 20 monitoring wells (so k=20 future observations) based </span></span></span>
+<span class="r-in"><span>  <span class="co"># A 32-constituent VOC scan was performed for n=16 upgradient</span></span></span>
+<span class="r-in"><span>  <span class="co"># samples and there were 5 detections out of these 16.  We</span></span></span>
+<span class="r-in"><span>  <span class="co"># want to construct a one-sided upper 95% prediction limit</span></span></span>
+<span class="r-in"><span>  <span class="co"># for 20 monitoring wells (so k=20 future observations) based</span></span></span>
 <span class="r-in"><span>  <span class="co"># on these data.</span></span></span>
 <span class="r-in"><span></span></span>
-<span class="r-in"><span>  <span class="co"># First we need to create a data set that will yield a mean </span></span></span>
-<span class="r-in"><span>  <span class="co"># of 5/16 based on a sample size of 16.  Any number of data </span></span></span>
+<span class="r-in"><span>  <span class="co"># First we need to create a data set that will yield a mean</span></span></span>
+<span class="r-in"><span>  <span class="co"># of 5/16 based on a sample size of 16.  Any number of data</span></span></span>
 <span class="r-in"><span>  <span class="co"># sets will do.  Here are two possible ones:</span></span></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span>  <span class="va">dat</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/rep.html" class="external-link">rep</a></span><span class="op">(</span><span class="fl">1</span>, <span class="fl">5</span><span class="op">)</span>, <span class="fu"><a href="https://rdrr.io/r/base/rep.html" class="external-link">rep</a></span><span class="op">(</span><span class="fl">0</span>, <span class="fl">11</span><span class="op">)</span><span class="op">)</span></span></span>
 <span class="r-in"><span>  <span class="va">dat</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">2</span>, <span class="fu"><a href="https://rdrr.io/r/base/rep.html" class="external-link">rep</a></span><span class="op">(</span><span class="fl">1</span>, <span class="fl">3</span><span class="op">)</span>, <span class="fu"><a href="https://rdrr.io/r/base/rep.html" class="external-link">rep</a></span><span class="op">(</span><span class="fl">0</span>, <span class="fl">12</span><span class="op">)</span><span class="op">)</span></span></span>
 <span class="r-in"><span></span></span>
-<span class="r-in"><span>  <span class="co"># Now call predIntPois.  Don't round the limits so we can </span></span></span>
+<span class="r-in"><span>  <span class="co"># Now call predIntPois.  Don't round the limits so we can</span></span></span>
 <span class="r-in"><span>  <span class="co"># compare to the example in Gibbons et al. (2009).</span></span></span>
 <span class="r-in"><span></span></span>
-<span class="r-in"><span>  <span class="fu">predIntPois</span><span class="op">(</span><span class="va">dat</span>, k <span class="op">=</span> <span class="fl">20</span>, method <span class="op">=</span> <span class="st">"conditional.approx.t"</span>, </span></span>
+<span class="r-in"><span>  <span class="fu">predIntPois</span><span class="op">(</span><span class="va">dat</span>, k <span class="op">=</span> <span class="fl">20</span>, method <span class="op">=</span> <span class="st">"conditional.approx.t"</span>,</span></span>
 <span class="r-in"><span>    pi.type <span class="op">=</span> <span class="st">"upper"</span>, round.limits <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $distribution</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "Poisson"</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $sample.size</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] 16</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Results of Distribution Parameter Estimation</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> --------------------------------------------</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $parameters</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> lambda </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 0.3125 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Assumed Distribution:            Poisson</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $n.param.est</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] 1</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Estimated Parameter(s):          lambda = 0.3125</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $method</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "mle/mme/mvue"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Estimation Method:               mle/mme/mvue</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $data.name</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "dat"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Data:                            dat</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $bad.obs</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] 0</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Sample Size:                     16</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $interval</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $name</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "Prediction"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Prediction Interval Method:      conditional.approx.t</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $limits</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>      LPL      UPL </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 0.000000 2.573258 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Prediction Interval Type:        upper</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $type</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "upper"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Confidence Level:                95%</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $method</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "conditional.approx.t"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Number of Future Observations:   20</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $conf.level</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] 0.95</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Prediction Interval:             LPL = 0.000000</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                                  UPL = 2.573258</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $sample.size</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] 16</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $k</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] 20</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $n.sum</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] 1</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> attr(,"class")</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "intervalEstimate"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> attr(,"class")</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "estimate"</span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span>  <span class="co">#Results of Distribution Parameter Estimation</span></span></span>
 <span class="r-in"><span>  <span class="co">#--------------------------------------------</span></span></span>
@@ -708,7 +475,7 @@
 </div>
 
 <div class="pkgdown">
-  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.1.1.</p>
+  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.2.1.</p>
 </div>
 
       </footer></div>

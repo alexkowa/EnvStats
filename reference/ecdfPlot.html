@@ -17,7 +17,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">EnvStats</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">3.1.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">4.0.0</span>
       </span>
     </div>
 
@@ -25,6 +25,37 @@
       <ul class="nav navbar-nav"><li>
   <a href="../reference/index.html">Reference</a>
 </li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+    Articles
+
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu"><li>
+      <a href="../articles/censored-estimation.html">Estimation with censored data</a>
+    </li>
+    <li>
+      <a href="../articles/distribution-diagnostics.html">Distribution diagnostics, transformations, and probability plots</a>
+    </li>
+    <li>
+      <a href="../articles/distributions-and-estimation.html">Probability distributions and parameter estimation</a>
+    </li>
+    <li>
+      <a href="../articles/nonparametric-methods.html">Nonparametric estimation and two-sample tests</a>
+    </li>
+    <li>
+      <a href="../articles/outlier-testing.html">Rosner's test for multiple outliers</a>
+    </li>
+    <li>
+      <a href="../articles/power-and-study-design.html">Statistical power and study design</a>
+    </li>
+    <li>
+      <a href="../articles/prediction-intervals.html">Prediction intervals for environmental monitoring</a>
+    </li>
+    <li>
+      <a href="../articles/trend-and-correlation.html">Trend tests and serial correlation</a>
+    </li>
+  </ul></li>
       </ul><ul class="nav navbar-nav navbar-right"><li>
   <a href="https://github.com/alexkowa/EnvStats/" class="external-link">
     <span class="fab fa-github fa-lg"></span>
@@ -41,7 +72,7 @@
   <div class="col-md-9 contents">
     <div class="page-header">
     <h1>Empirical Cumulative Distribution Function Plot</h1>
-
+    <small class="dont-index">Source: <a href="https://github.com/alexkowa/EnvStats/blob/master/R/ecdfPlot.R" class="external-link"><code>R/ecdfPlot.R</code></a></small>
     <div class="hidden name"><code>ecdfPlot.Rd</code></div>
     </div>
 
@@ -50,11 +81,11 @@
     </div>
 
     <div id="ref-usage">
-    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">ecdfPlot</span><span class="op">(</span><span class="va">x</span>, discrete <span class="op">=</span> <span class="cn">FALSE</span>, </span>
-<span>    prob.method <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/ifelse.html" class="external-link">ifelse</a></span><span class="op">(</span><span class="va">discrete</span>, <span class="st">"emp.probs"</span>, <span class="st">"plot.pos"</span><span class="op">)</span>, </span>
-<span>    plot.pos.con <span class="op">=</span> <span class="fl">0.375</span>, plot.it <span class="op">=</span> <span class="cn">TRUE</span>, add <span class="op">=</span> <span class="cn">FALSE</span>, ecdf.col <span class="op">=</span> <span class="st">"black"</span>, </span>
-<span>    ecdf.lwd <span class="op">=</span> <span class="fl">3</span> <span class="op">*</span> <span class="fu"><a href="https://rdrr.io/r/graphics/par.html" class="external-link">par</a></span><span class="op">(</span><span class="st">"cex"</span><span class="op">)</span>, ecdf.lty <span class="op">=</span> <span class="fl">1</span>, curve.fill <span class="op">=</span> <span class="cn">FALSE</span>, </span>
-<span>    curve.fill.col <span class="op">=</span> <span class="st">"cyan"</span>, <span class="va">...</span>, type <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/ifelse.html" class="external-link">ifelse</a></span><span class="op">(</span><span class="va">discrete</span>, <span class="st">"s"</span>, <span class="st">"l"</span><span class="op">)</span>, </span>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">ecdfPlot</span><span class="op">(</span><span class="va">x</span>, discrete <span class="op">=</span> <span class="cn">FALSE</span>,</span>
+<span>    prob.method <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/ifelse.html" class="external-link">ifelse</a></span><span class="op">(</span><span class="va">discrete</span>, <span class="st">"emp.probs"</span>, <span class="st">"plot.pos"</span><span class="op">)</span>,</span>
+<span>    plot.pos.con <span class="op">=</span> <span class="fl">0.375</span>, plot.it <span class="op">=</span> <span class="cn">TRUE</span>, add <span class="op">=</span> <span class="cn">FALSE</span>, ecdf.col <span class="op">=</span> <span class="st">"black"</span>,</span>
+<span>    ecdf.lwd <span class="op">=</span> <span class="fl">3</span> <span class="op">*</span> <span class="fu"><a href="https://rdrr.io/r/graphics/par.html" class="external-link">par</a></span><span class="op">(</span><span class="st">"cex"</span><span class="op">)</span>, ecdf.lty <span class="op">=</span> <span class="fl">1</span>, curve.fill <span class="op">=</span> <span class="cn">FALSE</span>,</span>
+<span>    curve.fill.col <span class="op">=</span> <span class="st">"cyan"</span>, <span class="va">...</span>, type <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/ifelse.html" class="external-link">ifelse</a></span><span class="op">(</span><span class="va">discrete</span>, <span class="st">"s"</span>, <span class="st">"l"</span><span class="op">)</span>,</span>
 <span>    main <span class="op">=</span> <span class="cn">NULL</span>, xlab <span class="op">=</span> <span class="cn">NULL</span>, ylab <span class="op">=</span> <span class="cn">NULL</span>, xlim <span class="op">=</span> <span class="cn">NULL</span>, ylim <span class="op">=</span> <span class="cn">NULL</span><span class="op">)</span></span></code></pre></div>
     </div>
 
@@ -244,18 +275,18 @@
 
     <div id="ref-examples">
     <h2>Examples</h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span>  <span class="co"># Generate 20 observations from a normal distribution with </span></span></span>
-<span class="r-in"><span>  <span class="co"># mean=0 and sd=1 and create an ecdf plot. </span></span></span>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span>  <span class="co"># Generate 20 observations from a normal distribution with</span></span></span>
+<span class="r-in"><span>  <span class="co"># mean=0 and sd=1 and create an ecdf plot.</span></span></span>
 <span class="r-in"><span>  <span class="co"># (Note: the call to set.seed simply allows you to reproduce this example.)</span></span></span>
 <span class="r-in"><span></span></span>
-<span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/r/base/Random.html" class="external-link">set.seed</a></span><span class="op">(</span><span class="fl">250</span><span class="op">)</span> </span></span>
-<span class="r-in"><span>  <span class="va">x</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/Normal.html" class="external-link">rnorm</a></span><span class="op">(</span><span class="fl">20</span><span class="op">)</span> </span></span>
+<span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/r/base/Random.html" class="external-link">set.seed</a></span><span class="op">(</span><span class="fl">250</span><span class="op">)</span></span></span>
+<span class="r-in"><span>  <span class="va">x</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/Normal.html" class="external-link">rnorm</a></span><span class="op">(</span><span class="fl">20</span><span class="op">)</span></span></span>
 <span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/r/grDevices/dev.html" class="external-link">dev.new</a></span><span class="op">(</span><span class="op">)</span></span></span>
 <span class="r-in"><span>  <span class="fu">ecdfPlot</span><span class="op">(</span><span class="va">x</span><span class="op">)</span></span></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span>  <span class="co">#----------</span></span></span>
 <span class="r-in"><span></span></span>
-<span class="r-in"><span>  <span class="co"># Repeat the above example, but fill in the area under the </span></span></span>
+<span class="r-in"><span>  <span class="co"># Repeat the above example, but fill in the area under the</span></span></span>
 <span class="r-in"><span>  <span class="co"># empirical cdf curve.</span></span></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/r/grDevices/dev.html" class="external-link">dev.new</a></span><span class="op">(</span><span class="op">)</span></span></span>
@@ -282,16 +313,16 @@
 <span class="r-in"><span></span></span>
 <span class="r-in"><span>  <span class="co">#-------------------------------------------------------------------------------------</span></span></span>
 <span class="r-in"><span></span></span>
-<span class="r-in"><span>  <span class="co"># The guidance document USEPA (1994b, pp. 6.22--6.25) </span></span></span>
-<span class="r-in"><span>  <span class="co"># contains measures of 1,2,3,4-Tetrachlorobenzene (TcCB) </span></span></span>
-<span class="r-in"><span>  <span class="co"># concentrations (in parts per billion) from soil samples </span></span></span>
-<span class="r-in"><span>  <span class="co"># at a Reference area and a Cleanup area.  These data are strored </span></span></span>
-<span class="r-in"><span>  <span class="co"># in the data frame EPA.94b.tccb.df.  </span></span></span>
+<span class="r-in"><span>  <span class="co"># The guidance document USEPA (1994b, pp. 6.22--6.25)</span></span></span>
+<span class="r-in"><span>  <span class="co"># contains measures of 1,2,3,4-Tetrachlorobenzene (TcCB)</span></span></span>
+<span class="r-in"><span>  <span class="co"># concentrations (in parts per billion) from soil samples</span></span></span>
+<span class="r-in"><span>  <span class="co"># at a Reference area and a Cleanup area.  These data are strored</span></span></span>
+<span class="r-in"><span>  <span class="co"># in the data frame EPA.94b.tccb.df.</span></span></span>
 <span class="r-in"><span>  <span class="co">#</span></span></span>
 <span class="r-in"><span>  <span class="co"># Create an empirical CDF plot for the reference area data.</span></span></span>
-<span class="r-in"><span>  </span></span>
+<span class="r-in"><span></span></span>
 <span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/r/grDevices/dev.html" class="external-link">dev.new</a></span><span class="op">(</span><span class="op">)</span></span></span>
-<span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/r/base/with.html" class="external-link">with</a></span><span class="op">(</span><span class="va">EPA.94b.tccb.df</span>, </span></span>
+<span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/r/base/with.html" class="external-link">with</a></span><span class="op">(</span><span class="va">EPA.94b.tccb.df</span>,</span></span>
 <span class="r-in"><span>    <span class="fu">ecdfPlot</span><span class="op">(</span><span class="va">TcCB</span><span class="op">[</span><span class="va">Area</span> <span class="op">==</span> <span class="st">"Reference"</span><span class="op">]</span>, xlab <span class="op">=</span> <span class="st">"TcCB (ppb)"</span><span class="op">)</span><span class="op">)</span></span></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span>  <span class="co">#==========</span></span></span>
@@ -313,7 +344,7 @@
 </div>
 
 <div class="pkgdown">
-  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.1.1.</p>
+  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.2.1.</p>
 </div>
 
       </footer></div>

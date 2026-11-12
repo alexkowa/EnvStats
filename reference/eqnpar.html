@@ -18,7 +18,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">EnvStats</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">3.1.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">4.0.0</span>
       </span>
     </div>
 
@@ -26,6 +26,37 @@
       <ul class="nav navbar-nav"><li>
   <a href="../reference/index.html">Reference</a>
 </li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+    Articles
+
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu"><li>
+      <a href="../articles/censored-estimation.html">Estimation with censored data</a>
+    </li>
+    <li>
+      <a href="../articles/distribution-diagnostics.html">Distribution diagnostics, transformations, and probability plots</a>
+    </li>
+    <li>
+      <a href="../articles/distributions-and-estimation.html">Probability distributions and parameter estimation</a>
+    </li>
+    <li>
+      <a href="../articles/nonparametric-methods.html">Nonparametric estimation and two-sample tests</a>
+    </li>
+    <li>
+      <a href="../articles/outlier-testing.html">Rosner's test for multiple outliers</a>
+    </li>
+    <li>
+      <a href="../articles/power-and-study-design.html">Statistical power and study design</a>
+    </li>
+    <li>
+      <a href="../articles/prediction-intervals.html">Prediction intervals for environmental monitoring</a>
+    </li>
+    <li>
+      <a href="../articles/trend-and-correlation.html">Trend tests and serial correlation</a>
+    </li>
+  </ul></li>
       </ul><ul class="nav navbar-nav navbar-right"><li>
   <a href="https://github.com/alexkowa/EnvStats/" class="external-link">
     <span class="fab fa-github fa-lg"></span>
@@ -42,7 +73,7 @@
   <div class="col-md-9 contents">
     <div class="page-header">
     <h1>Estimate Quantiles of a Distribution Nonparametrically</h1>
-
+    <small class="dont-index">Source: <a href="https://github.com/alexkowa/EnvStats/blob/master/R/eqnpar.R" class="external-link"><code>R/eqnpar.R</code></a></small>
     <div class="hidden name"><code>eqnpar.Rd</code></div>
     </div>
 
@@ -58,6 +89,13 @@
 <span>    approx.conf.level <span class="op">=</span> <span class="fl">0.95</span>, min.coverage <span class="op">=</span> <span class="cn">TRUE</span>, tol <span class="op">=</span> <span class="fl">0</span><span class="op">)</span></span></code></pre></div>
     </div>
 
+    <div id="details">
+    <h2>Details</h2>
+    <p>Extended methods and derivations are available in
+<a href="https://alexkowa.github.io/EnvStats/articles/nonparametric-methods.html#eqnpar" class="external-link">Nonparametric estimation and two-sample tests: <code>eqnpar</code></a>.
+Open the vignette locally with
+<code><a href="../articles/nonparametric-methods.html">vignette("nonparametric-methods", package = "EnvStats")</a></code>.</p>
+    </div>
     <div id="arguments">
     <h2>Arguments</h2>
     <p></p>
@@ -136,252 +174,6 @@
   The default value is <code>tol=0</code>.</p></dd>
 
 </dl></div>
-    <div id="details">
-    <h2>Details</h2>
-    <p>If <code>x</code> contains any missing (<code>NA</code>), undefined (<code>NaN</code>) or
-  infinite (<code>Inf</code>, <code>-Inf</code>) values, they will be removed prior to
-  performing the estimation.</p>
-<p><b>Estimation</b> <br>
-  The function <code>eqnpar</code> calls the <span style="R">R</span> function <code><a href="https://rdrr.io/r/stats/quantile.html" class="external-link">quantile</a></code>
-  to estimate quantiles.
-  <br></p>
-<p><b>Confidence Intervals</b> <br>
-  Let \(x_1, x_2, \ldots, x_n\) denote a sample of \(n\) independent and
-  identically distributed random variables from some arbitrary distribution.
-  Furthermore, let \(x_{(i)}\) denote the \(i\)'th order statistic for these
-  \(n\) random variables. That is,
-  $$x_{(1)} \le x_{(2)} \le \ldots \le x_{(n)} \;\;\;\;\;\; (1)$$
-  Finally, let \(x_p\) denote the \(p\)'th quantile of the distribution, that is:
-  $$Pr(X &lt; x_p) \le p \;\;\;\;\;\; (2)$$
-  $$Pr(X \le x_p) \ge p \;\;\;\;\;\; (3)$$
-  It can be shown (e.g., Conover, 1980, pp. 114-116) that for the \(i\)'th order
-  statistic:
-  $$Pr[x_p &lt; x_{(i)}] = F_{B(n,p)}[i-1]; \; i = 1, 2, \ldots, n \;\;\;\;\;\; (4)$$
-  for a continuous distribution and
-  $$Pr[x_p &lt; x_{(i)}] \le F_{B(n,p)}[i-1]; \; i = 1, 2, \ldots, n \;\;\;\;\;\; (5)$$
-  $$Pr[x_p \le x_{(i)}] \ge F_{B(n,p)}[i-1]; \; i = 1, 2, \ldots, n \;\;\;\;\;\; (6)$$
-  for a discrete distribution,
-  where \(F_{B(n,p)}[y]\) denotes the cumulative distribution function of a
-  <a href="https://rdrr.io/r/stats/Binomial.html" class="external-link">binomial random variable</a> with parameters <code>size=</code>\(n\)
-  and <code>prob=</code>\(p\) evaluated at \(y\).  These facts are used to construct
-  confidence intervals for quantiles (see below).
-  <br></p>
-<p><b>Two-Sided Confidence Interval</b> (<code>ci.type="two-sided"</code>) <br>
-  A two-sided nonparametric confidence interval for the \(p\)'th quantile is
-  constructed as:
-  $$[x_{(r)}, x_{(s)}] \;\;\;\;\;\; (7)$$
-  where
-  $$1 \le r \le (n-1) \;\;\;\;\;\; (8)$$
-  $$2 \le s \le n \;\;\;\;\;\; (9)$$
-  $$r &lt; s \;\;\;\;\;\; (10)$$
-  Note that the argument <code>lcl.rank</code> corresponds to \(r\), and the argument
-  <code>ucl.rank</code> corresponds to \(s\).</p>
-<p>This confidence interval has an associated confidence level that is at least as
-  large as:
-  $$F_{B(n,p)}[s-1] - F_{B(n,p)}[r-1] \;\;\;\;\;\; (11)$$
-  for a discrete distribution and exactly equal to this value for a continuous
-  distribution.  This is because by Equations (4)-(6) above:
-  $$Pr[x_{(r)} \le x_p \le x_{(s)}]$$
-  $$= Pr[x_p \le x_{(s)}] - Pr[x_p &lt; x_{(r)}]$$
-  $$\ge F_{B(n,p)}[s-1] - F_{B(n,p)}[r-1] \;\;\;\;\;\; (12)$$
-  with equality if the distribution is continuous.
-  <br></p>
-<p><em>Exact Method</em> (<code>ci.method="exact"</code>) <br>
-  When <code>lcl.rank</code> (\(r\)) and <code>ucl.rank</code> (\(s\)) are not supplied by
-  the user, and <code>ci.method="exact"</code>, \(r\) and \(s\) are initially chosen such that
-  \(r\) is the smallest integer satisfying equation (13) below, and \(s\) is
-  the largest integer satisfying equation (14) below:
-  $$F_{B(n,p)}[r-1] \ge \frac{\alpha}{2} \;\;\;\;\;\; (13)$$
-  $$F_{B(n,p)}[s-1] \le 1-\frac{\alpha}{2} \;\;\;\;\;\; (14)$$
-  where \(\alpha = 1 -\)<code>approx.conf.level</code>.
-  The values of \(r\) and \(s\) are then each varied by \(\pm 2\) (with the
-  restrictions \(r \ge 1\), \(s \le n\), and \(r &lt; s\)), and confidence levels
-  computed for each of these combinations.  If <code>min.coverage=TRUE</code>, the
-  combination of \(r\) and \(s\) is selected that provides the closest coverage
-  to <code>approx.conf.level</code>, with coverage greater than or equal to
-  <code>approx.conf.level</code>.  If <code>min.coverage=FALSE</code>, the
-  combination of \(r\) and \(s\) is selected that provides the closest coverage
-  to <code>approx.conf.level</code>, with coverage less than or equal to
-  <code>approx.conf.level + tol</code>.</p>
-<p>For this method, the confidence level associated with the confidence interval
-  is exact if the underlying distribution is continuous.
-  <br></p>
-<p><em>Approximate Method</em> (<code>ci.method="approx"</code>) <br>
-  Here the term “Approximate” simply refers to the method of initially
-  choosing the ranks for the lower and upper bounds.  As for <code>ci.method="exact"</code>,
-  the confidence level associated with the confidence interval is exact if the
-  underlying distribution is continuous.</p>
-<p>When <code>lcl.rank</code> (\(r\)) and <code>ucl.rank</code> (\(s\)) are not supplied by
-  the user and <code>ci.method="normal.approx"</code>, \(r\) and \(s\) are initially chosen
-  such that:
-  $$r = np - h \;\;\;\;\;\; (15)$$
-  $$s = np + h \;\;\;\;\;\; (16)$$
-  where
-  $$h = t_{n-1, 1-\alpha/2} \sqrt{np(1-p)} \;\;\;\;\;\; (17)$$
-  and \(t_{\nu,q}\) denotes the \(q\)'th quantile of
-  <a href="https://rdrr.io/r/stats/TDist.html" class="external-link">Student's t-distribution</a> with \(\nu\) degrees of freedom,
-  and \(\alpha = 1 -\)<code>approx.conf.level</code> (Conover, 1980, p. 112).
-  With the restictions that \(r \ge 1\) and \(s \le n\),
-  \(r\) is rounded down to the nearest integer \(r = r^* = floor(r)\) and
-  \(s\) is rounded up to the nearest integer \(s = s^* = ceiling(s)\).
-  Again, with the restictions that \(s \le n\),
-  if the confidence level using \(s = s^* + 1\) and \(r = r^*\) is less than or equal
-  to <code>approx.conf.level</code>, then \(s\) is set to \(s = s^* + 1\).
-  Once this has been checked, with the restriction that \(r \ge 1\),
-  if the confidence level using the current value of \(s\)
-  and \(r = r^* - 1\) is less than or equal to <code>approx.conf.level</code>, then
-  \(r\) is set to \(r = r^* - 1\).
-  <br></p>
-<p><em>Interpolate Method</em> (<code>ci.method="interpolate"</code>) <br>
-  Let \(\gamma\) denote the desired confidence level associated with the
-  confidence interval for the \(p\)'th quantile.
-  Based on the work of Hettmansperger and Sheather (1986), Nyblom (1992) showed that
-  if \([-\infty, x_{(w+1)}]\) is a one-sided upper confidence interval for the
-  \(p\)'th quantile with associated confidence level \(\gamma_{w+1}\), and
-  \(\gamma_{w+1} \ge \gamma \ge \gamma_{w}\), then the one-sided upper
-  confidence interval
-  $$[-\infty, (1-\lambda) x_{(w)} + \lambda x_{(w+1)}] \;\;\;\;\;\; (18)$$
-  where
-  $$\lambda = \lambda(\beta, p, w, n)$$
-  $$= [ 1 + \frac{w(1-p)(\pi_{w+1}-\beta)}{(n-w)p(\beta-\pi_w)} ] ^ {-1} \;\;\;\;\;\; (19)$$
-  $$\pi_w = F_{B(n,p)}[w-1] \;\;\;\;\;\; (20)$$
-  $$\beta = \gamma \;\;\;\;\;\; (21)$$
-  has associated confidence level approximately equal to \(\gamma\) for a wide
-  range of distributions.</p>
-<p>Thus, to construct an approximate two-sided confidence interval for the
-  \(p\)'th quantile with confidence level \(\gamma\), if
-  \([x_{(r)}, x_{(s)}]\) has confidence level \(\ge \gamma\) and
-  \([x_{(r+1)}, x_{(s-1)}]\) has confidence level \(\le \gamma\), then
-  the lower bound of the two-sided confidence interval is computed as:
-  $$(1-\lambda) x_{(r)} + \lambda x_{(r+1)} \;\;\;\;\;\; (21)$$
-  where
-  $$\beta = \alpha/2; \;\;\;\; \alpha = 1 - \gamma \;\;\;\;\;\; (22)$$
-  and the upper bound of the two-sided confidence interval is computed as:
-  $$(1-\lambda) x_{(s-1)} + \lambda x_{(s)} \;\;\;\;\;\; (23)$$
-  where
-  $$\beta = 1 - \alpha/2 \;\;\;\;\;\; (24)$$</p>
-<p>The values of \(r\) and \(s\) in Equations (21) and (23) are computed by
-  using <code>ci.method="exact"</code> with the argument <code>min.coverage=TRUE</code>.
-  <br></p>
-
-
-<p><b>One-Sided Lower Confidence Interval</b> (<code>ci.type="lower"</code>) <br>
-  A one-sided lower nonparametric confidence interval for the \(p\)'th quantile is
-  constructed as:
-  $$[x_{(r)}, ub] \;\;\;\;\;\; (25)$$
-  where \(ub\) denotes the value of the <code>ub</code> argument (the user-supplied
-  upper bound).
-  <br></p>
-<p><em>Exact Method</em> (<code>ci.method="exact"</code>) <br>
-  When <code>lcl.rank</code> (\(r\)) is not supplied by the user, and
-  <code>ci.method="exact"</code>, \(r\) is initially chosen such that it is the
-  smallest integer satisfying the following equation:
-  $$F_{B(n,p)}[r-1] \ge \alpha \;\;\;\;\;\; (26)$$
-  where \(\alpha = 1 - \)<code>approx.conf.level</code>.
-  The value of \(r\) is varied by \(\pm 2\) (with the
-  restrictions \(r \ge 1\) and \(r \le n\)), and confidence levels
-  computed for each of these combinations.  If <code>min.coverage=TRUE</code>, the
-  value of \(r\) is selected that provides the closest coverage
-  to <code>approx.conf.level</code>, with coverage greater than or equal to
-  <code>approx.conf.level</code>.  If <code>min.coverage=FALSE</code>, the
-  value of \(r\)  is selected that provides the closest coverage
-  to <code>approx.conf.level</code>, with coverage less than or equal to
-  <code>approx.conf.level + tol</code>.</p>
-<p>For this method, the confidence level associated with the confidence interval
-  is exact if the underlying distribution is continuous.
-  <br></p>
-<p><em>Approximate Method</em> (<code>ci.method="approx"</code>) <br>
-  When <code>lcl.rank</code> (\(r\)) is not supplied by the user and
-  <code>ci.method="normal.approx"</code>, \(r\) is initially chosen such that
-  $$r = np - t_{n-1, 1-\alpha} \sqrt{np(1-p)} \;\;\;\;\;\; (27)$$
-  With the restriction that \(r \ge 1\) and \(r \le n\),
-  if <code>p</code> is less than 0.5 then \(r\) is rounded up to the nearest integer,
-  otherwise it is rounded down to the nearest integer.  Denote this value by
-  \(r^*\).  With the restriction that \(r \ge 1\), if the confidence level using
-  \(r^* - 1\) is less than or equal to <code>approx.conf.level</code>, then
-  \(r\) is set to \(r = r^* - 1\).
-  <br></p>
-<p><em>Interpolate Method</em> (<code>ci.method="interpolate"</code>) <br>
-  Let \(\gamma\) denote the desired confidence level associated with the
-  confidence interval for the \(p\)'th quantile.
-  To construct an approximate one-sided lower confidence interval for the
-  \(p\)'th quantile with confidence level \(\gamma\), if
-  \([x_{(r)}, ub]\) has confidence level \(\ge \gamma\) and
-  \([x_{(r+1)}, ub]\) has confidence level \(\le \gamma\), then
-  the lower bound of the confidence interval is computed as:
-  $$(1-\lambda) x_{(r)} + \lambda x_{(r+1)} \;\;\;\;\;\; (28)$$
-  where
-  $$\beta = \alpha; \;\;\;\; \alpha = 1 - \gamma \;\;\;\;\;\; (29)$$</p>
-<p>The value of \(r\) in Equation (28) is computed by
-  using <code>ci.method="exact"</code> with the arguments
-  <code>ci.type="lower"</code> and <code>min.coverage=TRUE</code>.
-  <br></p>
-
-
-<p><b>One-Sided Upper Confidence Interval</b> (<code>ci.type="upper"</code>) <br>
-  A one-sided upper nonparametric confidence interval for the \(p\)'th quantile is
-  constructed as:
-  $$[lb, x_{(s)}] \;\;\;\;\;\; (30)$$
-  where \(lb\) denotes the value of the <code>lb</code> argument (the user-supplied
-  lower bound).
-  <br></p>
-<p><em>Exact Method</em> (<code>ci.method="exact"</code>) <br>
-  When <code>ucl.rank</code> (\(s\)) is not supplied by the user, and
-  <code>ci.method="exact"</code>, \(s\) is initially chosen such that it is the
-  largest integer satisfying the following equation:
-  $$F_{B(n,p)}[s-1] \le 1-\alpha \;\;\;\;\;\; (31)$$
-  where \(\alpha = 1 - \)<code>approx.conf.level</code>.
-  The value of \(s\) is varied by \(\pm 2\) (with the
-  restrictions \(s \ge 1\) and \(s \le n\)), and confidence levels
-  computed for each of these combinations.  If <code>min.coverage=TRUE</code>, the
-  value of \(s\) is selected that provides the closest coverage
-  to <code>approx.conf.level</code>, with coverage greater than or equal to
-  <code>approx.conf.level</code>.  If <code>min.coverage=FALSE</code>, the
-  value of \(s\)  is selected that provides the closest coverage
-  to <code>approx.conf.level</code>, with coverage less than or equal to
-  <code>approx.conf.level + tol</code>.</p>
-<p>For this method, the confidence level associated with the confidence interval
-  is exact if the underlying distribution is continuous.
-  <br></p>
-<p><em>Approximate Method</em> (<code>ci.method="approx"</code>) <br>
-  When <code>ucl.rank</code> (\(s\)) is not supplied by the user and
-  <code>ci.method="normal.approx"</code>, \(s\) is initially chosen such that
-  $$s = np + t_{n-1, 1-\alpha} \sqrt{np(1-p)} \;\;\;\;\;\; (31)$$
-  With the restriction that \(s \ge 1\) and \(s \le n\),
-  if <code>p</code> is greater than 0.5 then \(s\) is rounded down to the nearest integer,
-  otherwise it is rounded up to the nearest integer.  Denote this value by
-  \(s^*\).  With the restriction that \(s \le n\), if the confidence level using
-  \(s^* + 1\) is less than or equal to <code>approx.conf.level</code>, then
-  \(s\) is set to \(s = s^* + 1\).</p>
-<p>For this method, the confidence level associated with the confidence interval
-  is exact if the underlying distribution is continuous.
-  <br></p>
-<p><em>Interpolate Method</em> (<code>ci.method="interpolate"</code>) <br>
-  Let \(\gamma\) denote the desired confidence level associated with the
-  confidence interval for the \(p\)'th quantile.
-  To construct an approximate one-sided upper confidence interval for the
-  \(p\)'th quantile with confidence level \(\gamma\), if
-  \([lb, x_{(s)}]\) has confidence level \(\ge \gamma\) and
-  \([lb, x_{(s-1)}]\) has confidence level \(\le \gamma\), then
-  the upper bound of the confidence interval is computed as:
-  $$(1-\lambda) x_{(s-1)} + \lambda x_{(s)} \;\;\;\;\;\; (32)$$
-  where
-  $$\beta = \gamma \;\;\;\;\;\; (33)$$</p>
-<p>The value of \(s\) in Equation (32) is computed by
-  using <code>ci.method="exact"</code> with the arguments
-  <code>ci.type = "upper"</code>, and <code>min.coverage=TRUE</code>.
-  <br></p>
-
-
-<p><b>Note on Value of Confidence Level</b> <br>
-  Because of the discrete nature of order statistics, when <code>ci.method="exact"</code> or <br><code>ci.method="normal.approx"</code>, the value of the confidence level returned by
-  <code>eqnpar</code> will usually differ from the desired confidence level indicated by
-  the value of the argument <code>approx.conf.level</code>.  When <br><code>ci.method="interpolate"</code>,
-  <code>eqnpar</code> returns for the confidence level the value of the argument
-  <code>approx.conf.level</code>.  Nyblom (1992) and Hettmasperger and Sheather (1986) have
-  shown that the Interpolate method produces confidence intervals with confidence levels
-  quite close to the assumed confidence level for a wide range of distributions.</p>
-    </div>
     <div id="value">
     <h2>Value</h2>
     <p>a list of class <code>"estimate"</code> containing the estimated quantile(s) and other
@@ -457,61 +249,33 @@
 <span class="r-in"><span></span></span>
 <span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/r/base/with.html" class="external-link">with</a></span><span class="op">(</span><span class="va">ACE.13.TCE.df</span>,</span></span>
 <span class="r-in"><span>    <span class="fu">eqnpar</span><span class="op">(</span><span class="va">TCE.mg.per.L</span><span class="op">[</span><span class="va">Period</span><span class="op">==</span><span class="st">"Before"</span><span class="op">]</span>, ci <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $distribution</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "None"</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $sample.size</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] 10</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Results of Distribution Parameter Estimation</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> --------------------------------------------</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $method</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "Nonparametric"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Assumed Distribution:            None</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $quantiles</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Median </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   20.3 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Estimated Quantile(s):           Median = 20.3</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $quantile.method</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "Nonparametric"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Quantile Estimation Method:      Nonparametric</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $data.name</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "TCE.mg.per.L[Period == \"Before\"]"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Data:                            TCE.mg.per.L[Period == "Before"]</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $bad.obs</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] 0</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Sample Size:                     10</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $interval</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $name</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "Confidence"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Confidence Interval for:         50'th %ile</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $parameter</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "50'th %ile"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Confidence Interval Method:      interpolate (Nyblom, 1992)</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $limit.ranks</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>                   lcl.rank ucl.rank</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> limit.ranks.over         2        9</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> limit.ranks.under        3        8</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Confidence Interval Type:        two-sided</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $limits</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>       LCL       UCL </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  8.804775 35.874775 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Confidence Level:                95%</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $type</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "two-sided"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Confidence Limit Rank(s):        2 3 9 8 </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $method</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "interpolate (Nyblom, 1992)"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Confidence Interval:             LCL =  8.804775</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                                  UCL = 35.874775</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $conf.level</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] 0.95</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $sample.size</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] 10</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> attr(,"class")</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "intervalEstimate"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> attr(,"class")</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "estimate"</span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span>  <span class="co">#Results of Distribution Parameter Estimation</span></span></span>
 <span class="r-in"><span>  <span class="co">#--------------------------------------------</span></span></span>
@@ -543,61 +307,33 @@
 <span class="r-in"><span>  <span class="co">#----------</span></span></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/r/base/with.html" class="external-link">with</a></span><span class="op">(</span><span class="va">ACE.13.TCE.df</span>, <span class="fu">eqnpar</span><span class="op">(</span><span class="va">TCE.mg.per.L</span><span class="op">[</span><span class="va">Period</span><span class="op">==</span><span class="st">"After"</span><span class="op">]</span>, ci <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $distribution</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "None"</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $sample.size</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] 10</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Results of Distribution Parameter Estimation</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> --------------------------------------------</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $method</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "Nonparametric"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Assumed Distribution:            None</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $quantiles</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Median </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   2.48 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Estimated Quantile(s):           Median = 2.48</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $quantile.method</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "Nonparametric"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Quantile Estimation Method:      Nonparametric</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $data.name</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "TCE.mg.per.L[Period == \"After\"]"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Data:                            TCE.mg.per.L[Period == "After"]</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $bad.obs</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] 0</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Sample Size:                     10</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $interval</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $name</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "Confidence"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Confidence Interval for:         50'th %ile</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $parameter</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "50'th %ile"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Confidence Interval Method:      interpolate (Nyblom, 1992)</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $limit.ranks</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>                   lcl.rank ucl.rank</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> limit.ranks.over         2        9</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> limit.ranks.under        3        8</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Confidence Interval Type:        two-sided</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $limits</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>       LCL       UCL </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 0.7810901 5.8763063 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Confidence Level:                95%</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $type</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "two-sided"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Confidence Limit Rank(s):        2 3 9 8 </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $method</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "interpolate (Nyblom, 1992)"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Confidence Interval:             LCL = 0.7810901</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                                  UCL = 5.8763063</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $conf.level</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] 0.95</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $sample.size</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] 10</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> attr(,"class")</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "intervalEstimate"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> attr(,"class")</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "estimate"</span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span>  <span class="co">#Results of Distribution Parameter Estimation</span></span></span>
 <span class="r-in"><span>  <span class="co">#--------------------------------------------</span></span></span>
@@ -641,61 +377,33 @@
 <span class="r-in"><span>  <span class="co">#-------------------------------------------------------</span></span></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span>  <span class="fu">eqnpar</span><span class="op">(</span><span class="va">dat</span>, p <span class="op">=</span> <span class="fl">0.75</span>, ci <span class="op">=</span> <span class="cn">TRUE</span>, approx.conf.level <span class="op">=</span> <span class="fl">0.9</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $distribution</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "None"</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $sample.size</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] 20</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Results of Distribution Parameter Estimation</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> --------------------------------------------</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $method</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "Nonparametric"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Assumed Distribution:            None</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $quantiles</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 75'th %ile </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   1.524903 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Estimated Quantile(s):           75'th %ile = 1.524903</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $quantile.method</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "Nonparametric"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Quantile Estimation Method:      Nonparametric</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $data.name</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "dat"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Data:                            dat</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $bad.obs</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] 0</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Sample Size:                     20</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $interval</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $name</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "Confidence"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Confidence Interval for:         75'th %ile</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $parameter</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "75'th %ile"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Confidence Interval Method:      interpolate (Nyblom, 1992)</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $limit.ranks</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>                   lcl.rank ucl.rank</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> limit.ranks.over        12       19</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> limit.ranks.under       13       18</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Confidence Interval Type:        two-sided</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $limits</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>       LCL       UCL </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 0.8191423 2.1215570 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Confidence Level:                90%</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $type</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "two-sided"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Confidence Limit Rank(s):        12 13 19 18 </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $method</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "interpolate (Nyblom, 1992)"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Confidence Interval:             LCL = 0.8191423</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                                  UCL = 2.1215570</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $conf.level</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] 0.9</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $sample.size</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] 20</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> attr(,"class")</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "intervalEstimate"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> attr(,"class")</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "estimate"</span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span>  <span class="co">#Results of Distribution Parameter Estimation</span></span></span>
 <span class="r-in"><span>  <span class="co">#--------------------------------------------</span></span></span>
@@ -733,60 +441,33 @@
 <span class="r-in"><span></span></span>
 <span class="r-in"><span>  <span class="fu">eqnpar</span><span class="op">(</span><span class="va">dat</span>, p <span class="op">=</span> <span class="fl">0.75</span>, ci <span class="op">=</span> <span class="cn">TRUE</span>, approx.conf.level <span class="op">=</span> <span class="fl">0.9</span>,</span></span>
 <span class="r-in"><span>    ci.method <span class="op">=</span> <span class="st">"exact"</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $distribution</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "None"</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $sample.size</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] 20</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Results of Distribution Parameter Estimation</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> --------------------------------------------</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $method</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "Nonparametric"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Assumed Distribution:            None</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $quantiles</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 75'th %ile </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   1.524903 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Estimated Quantile(s):           75'th %ile = 1.524903</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $quantile.method</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "Nonparametric"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Quantile Estimation Method:      Nonparametric</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $data.name</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "dat"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Data:                            dat</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $bad.obs</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] 0</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Sample Size:                     20</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $interval</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $name</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "Confidence"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Confidence Interval for:         75'th %ile</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $parameter</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "75'th %ile"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Confidence Interval Method:      exact</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $limit.ranks</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> lcl.rank ucl.rank </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>       12       19 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Confidence Interval Type:        two-sided</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $limits</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>       LCL       UCL </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 0.7494692 2.2156601 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Confidence Level:                93.47622%</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $type</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "two-sided"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Confidence Limit Rank(s):        12 19 </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $method</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "exact"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Confidence Interval:             LCL = 0.7494692</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                                  UCL = 2.2156601</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $conf.level</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] 0.9347622</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $sample.size</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] 20</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> attr(,"class")</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "intervalEstimate"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> attr(,"class")</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "estimate"</span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span>  <span class="co">#Results of Distribution Parameter Estimation</span></span></span>
 <span class="r-in"><span>  <span class="co">#--------------------------------------------</span></span></span>
@@ -823,60 +504,33 @@
 <span class="r-in"><span></span></span>
 <span class="r-in"><span>  <span class="fu">eqnpar</span><span class="op">(</span><span class="va">dat</span>, p <span class="op">=</span> <span class="fl">0.75</span>, ci <span class="op">=</span> <span class="cn">TRUE</span>, approx.conf.level <span class="op">=</span> <span class="fl">0.9</span>,</span></span>
 <span class="r-in"><span>    ci.method <span class="op">=</span> <span class="st">"exact"</span>, min.coverage <span class="op">=</span> <span class="cn">FALSE</span>, <span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $distribution</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "None"</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $sample.size</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] 20</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Results of Distribution Parameter Estimation</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> --------------------------------------------</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $method</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "Nonparametric"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Assumed Distribution:            None</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $quantiles</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 75'th %ile </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   1.524903 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Estimated Quantile(s):           75'th %ile = 1.524903</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $quantile.method</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "Nonparametric"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Quantile Estimation Method:      Nonparametric</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $data.name</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "dat"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Data:                            dat</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $bad.obs</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] 0</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Sample Size:                     20</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $interval</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $name</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "Confidence"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Confidence Interval for:         75'th %ile</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $parameter</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "75'th %ile"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Confidence Interval Method:      exact</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $limit.ranks</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> lcl.rank ucl.rank </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>       13       20 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Confidence Interval Type:        two-sided</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $limits</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>      LCL      UCL </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1.018038 5.002399 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Confidence Level:                89.50169%</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $type</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "two-sided"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Confidence Limit Rank(s):        13 20 </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $method</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "exact"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Confidence Interval:             LCL = 1.018038</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                                  UCL = 5.002399</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $conf.level</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] 0.8950169</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $sample.size</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] 20</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> attr(,"class")</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "intervalEstimate"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> attr(,"class")</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "estimate"</span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span>  <span class="co">#Results of Distribution Parameter Estimation</span></span></span>
 <span class="r-in"><span>  <span class="co">#--------------------------------------------</span></span></span>
@@ -916,59 +570,33 @@
 <span class="r-in"><span>  <span class="co">#-----------------------------------------------------------</span></span></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span>  <span class="fu">eqnpar</span><span class="op">(</span><span class="va">dat</span>, p <span class="op">=</span> <span class="fl">0.75</span>, ci <span class="op">=</span> <span class="cn">TRUE</span>, lcl.rank <span class="op">=</span> <span class="fl">13</span>, ucl.rank <span class="op">=</span> <span class="fl">18</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $distribution</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "None"</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $sample.size</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] 20</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Results of Distribution Parameter Estimation</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> --------------------------------------------</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $method</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "Nonparametric"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Assumed Distribution:            None</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $quantiles</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 75'th %ile </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   1.524903 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Estimated Quantile(s):           75'th %ile = 1.524903</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $quantile.method</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "Nonparametric"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Quantile Estimation Method:      Nonparametric</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $data.name</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "dat"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Data:                            dat</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $bad.obs</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] 0</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Sample Size:                     20</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $interval</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $name</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "Confidence"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Confidence Interval for:         75'th %ile</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $parameter</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "75'th %ile"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Confidence Interval Method:      exact</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $limit.ranks</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] 13 18</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Confidence Interval Type:        two-sided</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $limits</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>      LCL      UCL </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1.018038 2.071172 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Confidence Level:                80.69277%</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $type</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "two-sided"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Confidence Limit Rank(s):        13 18 </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $method</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "exact"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Confidence Interval:             LCL = 1.018038</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                                  UCL = 2.071172</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $conf.level</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] 0.8069277</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $sample.size</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] 20</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> attr(,"class")</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "intervalEstimate"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> attr(,"class")</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "estimate"</span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span>  <span class="co">#Results of Distribution Parameter Estimation</span></span></span>
 <span class="r-in"><span>  <span class="co">#--------------------------------------------</span></span></span>
@@ -1098,59 +726,33 @@
 <span class="r-in"><span>        ci.method <span class="op">=</span> <span class="st">"exact"</span>, min.coverage <span class="op">=</span> <span class="cn">FALSE</span>,</span></span>
 <span class="r-in"><span>        ci.type <span class="op">=</span> <span class="st">"upper"</span>, lb <span class="op">=</span> <span class="fl">0</span>,</span></span>
 <span class="r-in"><span>        approx.conf.level <span class="op">=</span> <span class="fl">0.95</span><span class="op">)</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $distribution</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "None"</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $sample.size</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] 24</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Results of Distribution Parameter Estimation</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> --------------------------------------------</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $method</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "Nonparametric"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Assumed Distribution:            None</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $quantiles</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 95'th %ile </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>      7.925 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Estimated Quantile(s):           95'th %ile = 7.925</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $quantile.method</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "Nonparametric"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Quantile Estimation Method:      Nonparametric</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $data.name</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "Copper[Well.type == \"Background\"]"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Data:                            Copper[Well.type == "Background"]</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $bad.obs</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] 0</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Sample Size:                     24</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $interval</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $name</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "Confidence"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Confidence Interval for:         95'th %ile</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $parameter</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "95'th %ile"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Confidence Interval Method:      exact</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $limit.ranks</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] NA 24</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Confidence Interval Type:        upper</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $limits</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> LCL UCL </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 0.0 9.2 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Confidence Level:                70.8011%</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $type</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "upper"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Confidence Limit Rank(s):        NA 24 </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $method</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "exact"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Confidence Interval:             LCL = 0.0</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                                  UCL = 9.2</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $conf.level</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] 0.708011</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $sample.size</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] 24</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> attr(,"class")</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "intervalEstimate"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> attr(,"class")</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "estimate"</span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span>  <span class="co">#Results of Distribution Parameter Estimation</span></span></span>
 <span class="r-in"><span>  <span class="co">#--------------------------------------------</span></span></span>
@@ -1190,59 +792,33 @@
 <span class="r-in"><span>    <span class="fu">eqnpar</span><span class="op">(</span><span class="va">Copper</span><span class="op">[</span><span class="va">Well.type</span><span class="op">==</span><span class="st">"Background"</span><span class="op">]</span>, p <span class="op">=</span> <span class="fl">0.88</span>, ci <span class="op">=</span> <span class="cn">TRUE</span>,</span></span>
 <span class="r-in"><span>      ci.type <span class="op">=</span> <span class="st">"upper"</span>, lb <span class="op">=</span> <span class="fl">0</span>, ucl.rank <span class="op">=</span> <span class="fl">24</span>,</span></span>
 <span class="r-in"><span>      approx.conf.level <span class="op">=</span> <span class="fl">0.95</span><span class="op">)</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $distribution</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "None"</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $sample.size</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] 24</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Results of Distribution Parameter Estimation</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> --------------------------------------------</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $method</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "Nonparametric"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Assumed Distribution:            None</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $quantiles</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 88'th %ile </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>      6.892 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Estimated Quantile(s):           88'th %ile = 6.892</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $quantile.method</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "Nonparametric"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Quantile Estimation Method:      Nonparametric</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $data.name</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "Copper[Well.type == \"Background\"]"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Data:                            Copper[Well.type == "Background"]</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $bad.obs</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] 0</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Sample Size:                     24</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $interval</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $name</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "Confidence"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Confidence Interval for:         88'th %ile</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $parameter</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "88'th %ile"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Confidence Interval Method:      exact</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $limit.ranks</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] NA 24</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Confidence Interval Type:        upper</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $limits</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> LCL UCL </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 0.0 9.2 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Confidence Level:                95.3486%</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $type</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "upper"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Confidence Limit Rank(s):        NA 24 </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $method</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "exact"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Confidence Interval:             LCL = 0.0</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                                  UCL = 9.2</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $conf.level</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] 0.953486</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $sample.size</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] 24</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> attr(,"class")</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "intervalEstimate"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> attr(,"class")</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "estimate"</span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span>  <span class="co">#Results of Distribution Parameter Estimation</span></span></span>
 <span class="r-in"><span>  <span class="co">#--------------------------------------------</span></span></span>
@@ -1341,59 +917,33 @@
 <span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/r/base/with.html" class="external-link">with</a></span><span class="op">(</span><span class="va">EPA.09.Ex.21.6.nitrate.df</span>,</span></span>
 <span class="r-in"><span>    <span class="fu">eqnpar</span><span class="op">(</span><span class="va">Nitrate.mg.per.l</span>, p <span class="op">=</span> <span class="fl">0.95</span>, ci <span class="op">=</span> <span class="cn">TRUE</span>,</span></span>
 <span class="r-in"><span>      ci.type <span class="op">=</span> <span class="st">"lower"</span>, lcl.rank <span class="op">=</span> <span class="fl">10</span><span class="op">)</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $distribution</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "None"</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $sample.size</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] 12</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Results of Distribution Parameter Estimation</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> --------------------------------------------</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $method</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "Nonparametric"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Assumed Distribution:            None</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $quantiles</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 95'th %ile </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>      22.56 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Estimated Quantile(s):           95'th %ile = 22.56</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $quantile.method</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "Nonparametric"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Quantile Estimation Method:      Nonparametric</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $data.name</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "Nitrate.mg.per.l"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Data:                            Nitrate.mg.per.l</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $bad.obs</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] 0</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Sample Size:                     12</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $interval</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $name</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "Confidence"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Confidence Interval for:         95'th %ile</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $parameter</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "95'th %ile"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Confidence Interval Method:      exact</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $limit.ranks</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] 10 NA</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Confidence Interval Type:        lower</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $limits</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> LCL UCL </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  11 Inf </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Confidence Level:                98.04317%</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $type</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "lower"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Confidence Limit Rank(s):        10 NA </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $method</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "exact"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Confidence Interval:             LCL =  11</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                                  UCL = Inf</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $conf.level</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] 0.9804317</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $sample.size</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] 12</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> attr(,"class")</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "intervalEstimate"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> attr(,"class")</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "estimate"</span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span>  <span class="co">#Results of Distribution Parameter Estimation</span></span></span>
 <span class="r-in"><span>  <span class="co">#--------------------------------------------</span></span></span>
@@ -1441,7 +991,7 @@
 </div>
 
 <div class="pkgdown">
-  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.1.1.</p>
+  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.2.1.</p>
 </div>
 
       </footer></div>

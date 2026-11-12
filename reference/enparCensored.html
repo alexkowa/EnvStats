@@ -20,7 +20,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">EnvStats</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">3.1.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">4.0.0</span>
       </span>
     </div>
 
@@ -28,6 +28,37 @@
       <ul class="nav navbar-nav"><li>
   <a href="../reference/index.html">Reference</a>
 </li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+    Articles
+
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu"><li>
+      <a href="../articles/censored-estimation.html">Estimation with censored data</a>
+    </li>
+    <li>
+      <a href="../articles/distribution-diagnostics.html">Distribution diagnostics, transformations, and probability plots</a>
+    </li>
+    <li>
+      <a href="../articles/distributions-and-estimation.html">Probability distributions and parameter estimation</a>
+    </li>
+    <li>
+      <a href="../articles/nonparametric-methods.html">Nonparametric estimation and two-sample tests</a>
+    </li>
+    <li>
+      <a href="../articles/outlier-testing.html">Rosner's test for multiple outliers</a>
+    </li>
+    <li>
+      <a href="../articles/power-and-study-design.html">Statistical power and study design</a>
+    </li>
+    <li>
+      <a href="../articles/prediction-intervals.html">Prediction intervals for environmental monitoring</a>
+    </li>
+    <li>
+      <a href="../articles/trend-and-correlation.html">Trend tests and serial correlation</a>
+    </li>
+  </ul></li>
       </ul><ul class="nav navbar-nav navbar-right"><li>
   <a href="https://github.com/alexkowa/EnvStats/" class="external-link">
     <span class="fab fa-github fa-lg"></span>
@@ -44,7 +75,7 @@
   <div class="col-md-9 contents">
     <div class="page-header">
     <h1>Estimate Mean, Standard Deviation, and Standard Error Nonparametrically Based on Censored Data</h1>
-
+    <small class="dont-index">Source: <a href="https://github.com/alexkowa/EnvStats/blob/master/R/enparCensored.R" class="external-link"><code>R/enparCensored.R</code></a></small>
     <div class="hidden name"><code>enparCensored.Rd</code></div>
     </div>
 
@@ -56,14 +87,21 @@
     </div>
 
     <div id="ref-usage">
-    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">enparCensored</span><span class="op">(</span><span class="va">x</span>, <span class="va">censored</span>, censoring.side <span class="op">=</span> <span class="st">"left"</span>, correct.se <span class="op">=</span> <span class="cn">TRUE</span>, </span>
-<span>    restricted <span class="op">=</span> <span class="cn">FALSE</span>, left.censored.min <span class="op">=</span> <span class="st">"Censoring Level"</span>, </span>
-<span>    right.censored.max <span class="op">=</span> <span class="st">"Censoring Level"</span>, ci <span class="op">=</span> <span class="cn">FALSE</span>, </span>
-<span>    ci.method <span class="op">=</span> <span class="st">"normal.approx"</span>, ci.type <span class="op">=</span> <span class="st">"two-sided"</span>, conf.level <span class="op">=</span> <span class="fl">0.95</span>, </span>
-<span>    pivot.statistic <span class="op">=</span> <span class="st">"t"</span>, ci.sample.size <span class="op">=</span> <span class="st">"Total"</span>, n.bootstraps <span class="op">=</span> <span class="fl">1000</span>, </span>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">enparCensored</span><span class="op">(</span><span class="va">x</span>, <span class="va">censored</span>, censoring.side <span class="op">=</span> <span class="st">"left"</span>, correct.se <span class="op">=</span> <span class="cn">TRUE</span>,</span>
+<span>    restricted <span class="op">=</span> <span class="cn">FALSE</span>, left.censored.min <span class="op">=</span> <span class="st">"Censoring Level"</span>,</span>
+<span>    right.censored.max <span class="op">=</span> <span class="st">"Censoring Level"</span>, ci <span class="op">=</span> <span class="cn">FALSE</span>,</span>
+<span>    ci.method <span class="op">=</span> <span class="st">"normal.approx"</span>, ci.type <span class="op">=</span> <span class="st">"two-sided"</span>, conf.level <span class="op">=</span> <span class="fl">0.95</span>,</span>
+<span>    pivot.statistic <span class="op">=</span> <span class="st">"t"</span>, ci.sample.size <span class="op">=</span> <span class="st">"Total"</span>, n.bootstraps <span class="op">=</span> <span class="fl">1000</span>,</span>
 <span>    seed <span class="op">=</span> <span class="cn">NULL</span>, warn <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span></code></pre></div>
     </div>
 
+    <div id="details">
+    <h2>Details</h2>
+    <p>Extended methods and derivations are available in
+<a href="https://alexkowa.github.io/EnvStats/articles/nonparametric-methods.html#enparcensored" class="external-link">Nonparametric estimation and two-sample tests: <code>enparCensored</code></a>.
+Open the vignette locally with
+<code><a href="../articles/nonparametric-methods.html">vignette("nonparametric-methods", package = "EnvStats")</a></code>.</p>
+    </div>
     <div id="arguments">
     <h2>Arguments</h2>
     <p></p>
@@ -174,257 +212,6 @@
   is called.</p></dd>
 
 </dl></div>
-    <div id="details">
-    <h2>Details</h2>
-    <p>Let \(\underline{x} = (x_1, x_2, \ldots, x_N)\) denote a vector of \(N\)
-  observations from some positive-valued distribution with mean
-  \(\mu\) and standard deviation \(\sigma\).
-  Assume \(n\) (\(0 &lt; n &lt; N\)) of these
-  observations are known and \(c\) (\(c=N-n\)) of these observations are
-  all censored below (left-censored) or all censored above (right-censored) at
-  \(k\) censoring levels
-  $$T_1, T_2, \ldots, T_k; \; k \ge 1 \;\;\;\;\;\; (1)$$
-  Let \(y_1, y_2, \ldots, y_n\) denote the \(n\) ordered uncensored
-  observations, and let \(r_1, r_2, \ldots, r_n\) denote the order of these
-  uncensored observations within the context of all the observations (censored and
-  uncensored).  For example, if the left-censored data are {&lt;10, 14, 14, &lt;15, 20}, then
-  \(y_1 = 14, y_2 = 14, y_3 = 20\), and \(r_1 = 2, r_2 = 3, r_3 = 5\).</p>
-<p>Let \(y_1', y_2', \ldots, y_p'\) denote the \(p\) ordered <em>distinct</em>
-  uncensored observations, let \(m_j\) denote the number of detects at
-  \(y_j'\) (\(j = 1, 2, \ldots, p\)), and let \(r_j'\) denote the number of
-  \(x_i \le y_j'\), i.e., the number of observations (censored and uncensored)
-  less than or equal to \(y_j'\) (\(j = 1, 2, \ldots, p\)).  For example,
-  if the left-censored data are {&lt;10, 14, 14, &lt;15, 20}, then
-  \(y_1' = 14, y_2' = 20\), \(m_1 = 2, m_2 = 1\), and \(r_1' = 3, r_2' = 5\).
-  <br></p>
-<p><b>Estimation</b> <br>
-  This section explains how the mean \(\mu\), standard deviation \(\sigma\),
-  and standard error of the mean \(\hat{\sigma}_{\hat{\mu}}\) are estimated, as well as
-  the restricted mean.
-  <br></p>
-<p><em>Estimating the Mean</em> <br>
-  It can be shown that the mean of a positive-valued distribution is equal to the
-  area under the survival curve (Klein and Moeschberger, 2003, p.33):
-  $$\mu = \int_0^\infty [1 - F(t)] dt = \int_0^\infty S(t) dt \;\;\;\;\;\; (2)$$
-  where \(F(t)\) denotes the cumulative distribution function evaluated at \(t\)
-  and \(S(t) = 1 - F(t)\) denotes the survival function evaluated at \(t\).
-  When the Kaplan-Meier estimator is used to construct the survival function,
-  you can use the area under this curve to estimate the mean of the distribution,
-  and the estimator can be as efficient or more efficient than
-  parametric estimators of the mean (Meier, 2004; Helsel, 2012; Lee and Wang, 2003).
-  Let \(\hat{F}(t)\) denote the Kaplan-Meier estimator of the empirical
-  cumulative distribution function (ecdf) evaluated at \(t\), and let
-  \(\hat{S}(t) = 1 - \hat{F}(t)\) denote the estimated survival function evaluated
-  at \(t\).  (See the help files for <code><a href="ecdfPlotCensored.html">ecdfPlotCensored</a></code> and
-  <code><a href="qqPlotCensored.html">qqPlotCensored</a></code> for an explanation of how the Kaplan-Meier
-  estimator of the ecdf is computed.)</p>
-<p>The formula for the estimated mean is given by (Lee and Wang, 2003, p. 74):
-  $$\hat{\mu} = \sum_{i=1}^{n} \hat{S}(y_{i-1}) (y_{i} - y_{i-1}) \;\;\;\;\;\; (3)$$
-  where \(y_{0} = 0\) and \(\hat{S}(y_{0}) = 1\) by definition.  It can be
-  shown that this formula is eqivalent to:
-  $$\hat{\mu} = \sum_{i=1}^n y_{i} [\hat{F}(y_{i}) - \hat{F}(y_{i-1})] \;\;\;\;\;\; (4)$$
-  where \(\hat{F}(y_{0}) = \hat{F}(0) = 0\) by definition, and this is equivalent to:
-  $$\hat{\mu} = \sum_{i=1}^p y_i' [\hat{F}(y_i') - \hat{F}(y_{i-1}')] \;\;\;\;\;\; (5)$$
-  (USEPA, 2009, pp. 15–7 to 15–12; Beal, 2010; USEPA, 2022, pp. 128–129).
-  <br></p>
-<p><em>Estimating the Standard Deviation</em> <br>
-  The formula for the estimated standard deviation is:
-  $$\hat{\sigma} = \{\sum_{i=1}^n (y_{i} - \hat{\mu})^2 [\hat{F}(y_{i}) - \hat{F}(y_{i-1})]\}^{1/2} \;\;\;\;\; (6)$$
-  which is equivalent to:
-  $$\hat{\sigma} = \{\sum_{i=1}^p (y_i' - \hat{\mu})^2 [\hat{F}(y_i') - \hat{F}(y_{i-1}')]\}^{1/2} \;\;\;\;\; (7)$$
-  (USEPA, 2009, p. 15-10; Beal, 2010).
-  <br></p>
-<p><em>Estimating the Standard Error of the Mean</em> <br>
-  For left-censored data, the formula for the estimated standard error of the
-  mean is:
-  $$\hat{\sigma}_{\hat{\mu}} = [\sum_{i=j}^{p-1} A_j^2 \frac{m_{j+1}}{r_{j+1}'(r_{j+1}' - m_{j+1})}]^{1/2} \;\;\;\;\;\; (8)$$
-  where
-  $$A_j = \sum_{i=1}^{j} (y_{i+1}' - y_i') \hat{F}(y_i') \;\;\;\;\;\; (9)$$
-  (Beal, 2010; USEPA, 2022, pp. 128–129).</p>
-<p>For rigth-censored data, the formula for the estimated standard error of the
-  mean is:
-  $$\hat{\sigma}_{\hat{\mu}} = [\sum_{r=1}^{n-1} \frac{A_r^2}{(N-r)(N-r+1)}]^{1/2} \;\;\;\;\;\; (10)$$
-  where
-  $$A_r = \sum_{i=r}^{n-1} (y_{i+1} - y_{i}) \hat{S}(y_{i}) \;\;\;\;\;\; (11)$$
-  (Lee and Wang, 2003, p. 74).</p>
-<p>Kaplan and Meier suggest using a bias correction of
-  \(n/(n-1)\) for the estimated variance of the mean (Lee and Wang, 2003, p.75):
-  $$\hat{\sigma}_{\hat{\mu}, BC} = \sqrt{\frac{n}{n-1}} \;\; \hat{\sigma}_{\hat{\mu}} \;\;\;\;\;\; (12)$$
-  When <code>correct.se=TRUE</code> (the default), Equation (12) is used.  Beal (2010),
-  ProUCL 5.2.0 (USEPA, 2022), and the <code>kmms</code> function in the <b>STAND</b> package
-  (Frome and Frome, 2015) all compute the bias-corrected estimate of the standard
-  error of the mean as well.
-  <br></p>
-<p><em>Estimating the Restricted Mean</em> <br>
-  If the smallest value for left-censored data is censored and less than or equal to
-  the smallest uncensored value, then the estimated mean will be biased high, and
-  if the largest value for right-censored data is censored and greater than or equal to
-  the largest uncensored value, then the estimated mean will be biased low.  One solution
-  to this problem is to instead estimate what is called the <b><em>restricted mean</em></b>
-  (Miller, 1981; Lee and Wang, 2003, p. 74; Meier, 2004; Barker, 2009).</p>
-<p>To compute the restricted mean (<code>restricted=TRUE</code>), for left-censored data,
-  the smallest censored observation(s) are treated as observed, and set to the
-  smallest censoring level <br>
-  (<code>left.censored.min="Censoring Level"</code>) or some other
-  value less than the smallest censoring level and greater than 0, and then applying
-  the above formulas.  To compute the restricted mean for right-censored data,
-  the largest censored observation(s) are treated as observed and set to the
-  censoring level (<code>right.censored.max="Censoring Level"</code>) or some value
-  greater than the largest censoring level.</p>
-<p>ProUCL 5.2.0 (USEPA, 2022, pp. 128–129) and Beal (2010) do not compute the restricted
-  mean in cases where it could be applied, whereas USEPA (2009, pp. 15–7 to 15–12) and
-  the <code>kmms</code> function in Version 2.0 of the R package <b>STAND</b>
-  (Frome and Frome, 2015) do compute the restricted mean and set the smallest
-  censored observation(s) equal to the censoring level (i.e., what
-  <code>enparCensored</code> does when <code>restricted=TRUE</code> and
-  <code>left.censored.min="Censoring Level"</code>).</p>
-<p>To be consistent with ProUCL 5.2.0, by default the function <code>enparCensored</code>
-  does not compute the restricted mean (i.e., <code>restricted=FALSE</code>).  Note that there
-  are instances where ProUCL 5.2.0 does not agree with <code>enparCensored</code>, and it is
-  not clear why. It should
-  be noted that when the restricted mean is computed, the number of uncensored
-  observations increases because the smallest (left-censored) or largest
-  (right-censored) censored observation(s) is/are set to a specified value and
-  treated as uncensored.  The <code>kmms</code> function in Version 2.0 of the
-  <b>STAND</b> package (Frome and Frome, 2015) is inconsistent in how it treats the
-  number of uncensored observations when computing estimates associated with the
-  restricted mean.  Although <code>kmms</code> sets the smallest censored observations to the
-  observed censoring level and treats them as not censored, when it computes
-  the bias correction factor for the standard error of the mean, it assumes those
-  observations are still censored (see the EXAMPLES section below).</p>
-<p>In the unusual case when a restricted mean will be estimated and setting the
-  smallest censored value(s) to an uncensored value (left-censored data), or
-  setting the largest censored value(s) to an uncensored value
-  (right-censored data), results in no censored values in the data, the Kaplan-Meier
-  estimate of the mean reduces to the sample mean, so the function
-  <code><a href="enpar.html">enpar</a></code> is called and, if <code>warn=TRUE</code>, a warning is returned.
-  <br></p>
-<p><b>Confidence Intervals</b> <br>
-  This section explains how confidence intervals for the mean \(\mu\) are
-  computed.
-  <br></p>
-<p><em>Normal Approximation</em> (<code>ci.method="normal.approx"</code>) <br>
-  This method constructs approximate \((1-\alpha)100\%\) confidence intervals for
-  \(\mu\) based on the assumption that the estimator of \(\mu\) is
-  approximately normally distributed.  That is, a two-sided \((1-\alpha)100\%\)
-  confidence interval for \(\mu\) is constructed as:
-  $$[\hat{\mu} - t_{1-\alpha/2, v-1}\hat{\sigma}_{\hat{\mu}}, \; \hat{\mu} + t_{1-\alpha/2, v-1}\hat{\sigma}_{\hat{\mu}}] \;\;\;\; (13)$$
-  where \(\hat{\mu}\) denotes the estimate of \(\mu\),
-  \(\hat{\sigma}_{\hat{\mu}}\) denotes the estimated asymptotic standard
-  deviation of the estimator of \(\mu\), \(v\) denotes the assumed sample
-  size for the confidence interval, and \(t_{p,\nu}\) denotes the \(p\)'th
-  quantile of <a href="https://rdrr.io/r/stats/TDist.html" class="external-link">Student's t-distribuiton</a> with \(\nu\)
-  degrees of freedom.  One-sided confidence intervals are computed in a
-  similar fashion.</p>
-<p>The argument <code>ci.sample.size</code> determines the value of \(v\).
-  The possible values are the total number of observations, \(N\)
-  (<code>ci.sample.size="Total"</code>), or the number of uncensored observations,
-  \(n\) (<code>ci.sample.size="Uncensored"</code>).  To be consistent with ProUCL 5.2.0,
-  in <code>enparCensored</code> the default value is the total number of observations.
-  The <code>kmms</code> function in the <b>STAND</b> package, on the other hand,
-  uses the number of uncensored observations.</p>
-<p>When <code>pivot.statistic="z"</code>, the \(p\)'th quantile from the
-  <a href="https://rdrr.io/r/stats/Normal.html" class="external-link">standard normal distribution</a> is used in place of the
-  \(p\)'th quantile from Student's t-distribution.
-  <br></p>
-<p><em>Bootstrap and Bias-Corrected Bootstrap Approximation</em> (<code>ci.method="bootstrap"</code>) <br>
-  The bootstrap is a nonparametric method of estimating the distribution
-  (and associated distribution parameters and quantiles) of a sample statistic,
-  regardless of the distribution of the population from which the sample was drawn.
-  The bootstrap was introduced by Efron (1979) and a general reference is
-  Efron and Tibshirani (1993).</p>
-<p>In the context of deriving an approximate \((1-\alpha)100\%\) confidence interval
-  for the population mean \(\mu\), the bootstrap can be broken down into the
-  following steps:</p><ol><li><p>Create a bootstrap sample by taking a random sample of size \(N\) from
-      the observations in \(\underline{x}\), where sampling is done with
-      replacement.  Note that because sampling is done with replacement, the same
-      element of \(\underline{x}\) can appear more than once in the bootstrap
-      sample.  Thus, the bootstrap sample will usually not look exactly like the
-      original sample (e.g., the number of censored observations in the bootstrap
-      sample will often differ from the number of censored observations in the
-      original sample).</p></li>
-<li><p>Estimate \(\mu\) based on the bootstrap sample created in Step 1, using
-      the same method that was used to estimate \(\mu\) using the original
-      observations in \(\underline{x}\). Because the bootstrap sample usually
-      does not match the original sample, the estimate of \(\mu\) based on the
-      bootstrap sample will usually differ from the original estimate based on
-      \(\underline{x}\).  For the bootstrap-t method (see below), this step also
-      involves estimating the standard error of the estimate of the mean and
-      computing the statistic \(T = (\hat{\mu}_B - \hat{\mu}) / \hat{\sigma}_{\hat{\mu}_B}\)
-      where \(\hat{\mu}\) denotes the estimate of the mean based on the original sample,
-      and \(\hat{\mu}_B\) and \(\hat{\sigma}_{\hat{\mu}_B}\) denote the estimate of
-      the mean and estimate of the standard error of the estimate of the mean based on
-      the bootstrap sample.</p></li>
-<li><p>Repeat Steps 1 and 2 \(B\) times, where \(B\) is some large number.
-      For the function <code>enparCensored</code>, the number of bootstraps \(B\) is
-      determined by the argument <code>n.bootstraps</code> (see the section <b>ARGUMENTS</b>
-      above).
-      The default value of <code>n.bootstraps</code> is <code>1000</code>.</p></li>
-<li><p>Use the \(B\) estimated values of \(\mu\) to compute the empirical
-      cumulative distribution function of the estimator of \(\mu\) or to compute
-      the empirical cumulative distribution function of the statistic \(T\)
-      (see <code><a href="ecdfPlot.html">ecdfPlot</a></code>), and then create a confidence interval for \(\mu\)
-      based on this estimated cdf.</p></li>
-</ol><p>The two-sided percentile interval (Efron and Tibshirani, 1993, p.170) is computed as:
-  $$[\hat{G}^{-1}(\frac{\alpha}{2}), \; \hat{G}^{-1}(1-\frac{\alpha}{2})] \;\;\;\;\;\; (14)$$
-  where \(\hat{G}(t)\) denotes the empirical cdf of \(\hat{\mu}_B\) evaluated at \(t\)
-  and thus \(\hat{G}^{-1}(p)\) denotes the \(p\)'th empirical quantile of the
-  distribution of \(\hat{\mu}_B\), that is, the \(p\)'th quantile associated with the
-  empirical cdf.  Similarly, a one-sided lower
-  confidence interval is computed as:
-  $$[\hat{G}^{-1}(\alpha), \; \infty] \;\;\;\;\;\; (15)$$
-  and a one-sided upper confidence interval is computed as:
-  $$[-\infty, \; \hat{G}^{-1}(1-\alpha)] \;\;\;\;\;\; (16)$$
-  The function <code>enparCensored</code> calls the <span style="R">R</span> function <code><a href="https://rdrr.io/r/stats/quantile.html" class="external-link">quantile</a></code>
-  to compute the empirical quantiles used in Equations (14)-(16).</p>
-<p>The percentile method bootstrap confidence interval is only first-order
-  accurate (Efron and Tibshirani, 1993, pp.187-188), meaning that the probability
-  that the confidence interval will contain the true value of \(\mu\) can be
-  off by \(k/\sqrt{N}\), where \(k\) is some constant.  Efron and Tibshirani
-  (1993, pp.184–188) proposed a bias-corrected and accelerated interval that is
-  second-order accurate, meaning that the probability that the confidence interval
-  will contain the true value of \(\mu\) may be off by \(k/N\) instead of
-  \(k/\sqrt{N}\).  The two-sided bias-corrected and accelerated confidence interval is
-  computed as:
-  $$[\hat{G}^{-1}(\alpha_1), \; \hat{G}^{-1}(\alpha_2)] \;\;\;\;\;\; (17)$$
-  where
-  $$\alpha_1 = \Phi[\hat{z}_0 + \frac{\hat{z}_0 + z_{\alpha/2}}{1 - \hat{a}(z_0 + z_{\alpha/2})}] \;\;\;\;\;\; (18)$$
-  $$\alpha_2 = \Phi[\hat{z}_0 + \frac{\hat{z}_0 + z_{1-\alpha/2}}{1 - \hat{a}(z_0 + z_{1-\alpha/2})}] \;\;\;\;\;\; (19)$$
-  $$\hat{z}_0 = \Phi^{-1}[\hat{G}(\hat{\mu})] \;\;\;\;\;\; (20)$$
-  $$\hat{a} = \frac{\sum_{i=1}^N (\hat{\mu}_{(\cdot)} - \hat{\mu}_{(i)})^3}{6[\sum_{i=1}^N (\hat{\mu}_{(\cdot)} - \hat{\mu}_{(i)})^2]^{3/2}} \;\;\;\;\;\; (21)$$
-  where the quantity \(\hat{\mu}_{(i)}\) denotes the estimate of \(\mu\) using
-  all the values in \(\underline{x}\) except the \(i\)'th one, and
-  $$\hat{\mu}{(\cdot)} = \frac{1}{N} \sum_{i=1}^N \hat{\mu_{(i)}} \;\;\;\;\;\; (22)$$
-  A one-sided lower confidence interval is given by:
-  $$[\hat{G}^{-1}(\alpha_1), \; \infty] \;\;\;\;\;\; (23)$$
-  and a one-sided upper confidence interval is given by:
-  $$[-\infty, \; \hat{G}^{-1}(\alpha_2)] \;\;\;\;\;\; (24)$$
-  where \(\alpha_1\) and \(\alpha_2\) are computed as for a two-sided confidence
-  interval, except \(\alpha/2\) is replaced with \(\alpha\) in Equations (18) and (19).</p>
-<p>The constant \(\hat{z}_0\) incorporates the bias correction, and the constant
-  \(\hat{a}\) is the acceleration constant.  The term “acceleration” refers
-  to the rate of change of the standard error of the estimate of \(\mu\) with
-  respect to the true value of \(\mu\) (Efron and Tibshirani, 1993, p.186).  For a
-  normal (Gaussian) distribution, the standard error of the estimate of \(\mu\)
-  does not depend on the value of \(\mu\), hence the acceleration constant is not
-  really necessary.</p>
-<p>For the bootstrap-t method, the two-sided confidence interval
-  (Efron and Tibshirani, 1993, p.160) is computed as:
-  $$[\hat{\mu} - t_{1-\alpha/2}\hat{\sigma}_{\hat{\mu}}, \; \hat{\mu} - t_{\alpha/2}\hat{\sigma}_{\hat{\mu}}] \;\;\;\;\;\; (25)$$
-  where \(\hat{\mu}\) and \(\hat{\sigma}_{\hat{\mu}}\) denote the estimate of the mean
-  and standard error of the estimate of the mean based on the original sample, and
-  \(t_p\) denotes the \(p\)'th empirical quantile of the bootstrap distribution of
-  the statistic \(T\).  Similarly, a one-sided lower confidence interval is computed as:
-  $$[\hat{\mu} - t_{1-\alpha}\hat{\sigma}_{\hat{\mu}}, \; \infty] \;\;\;\;\;\; (26)$$
-  and a one-sided upper confidence interval is computed as:
-  $$[-\infty, \; \hat{\mu} - t_{\alpha}\hat{\sigma}_{\hat{\mu}}] \;\;\;\;\;\; (27)$$</p>
-<p>When <code>ci.method="bootstrap"</code>, the function <code>enparCensored</code> computes
-  the percentile method, bias-corrected and accelerated method, and bootstrap-t
-  bootstrap confidence intervals.  The percentile method is transformation respecting,
-  but not second-order accurate.  The bootstrap-t method is second-order accurate, but not
-  transformation respecting.  The bias-corrected and accelerated method is both
-  transformation respecting and second-order accurate (Efron and Tibshirani, 1993, p.188).</p>
-    </div>
     <div id="value">
     <h2>Value</h2>
     <p>a list of class <code>"estimateCensored"</code> containing the estimated parameters
@@ -438,7 +225,7 @@
 <p>Beal, D. (2010).  <em>A Macro for Calculating Summary Statistics on
   Left Censored Environmental Data Using the Kaplan-Meier Method</em>.
   Paper SDA-09, presented at Southeast SAS Users Group 2010, September 26-28,
-  Savannah, GA.  <a href="https://analytics.ncsu.edu/sesug/2010/SDA09.Beal.pdf" class="external-link">https://analytics.ncsu.edu/sesug/2010/SDA09.Beal.pdf</a>.</p>
+  Savannah, GA.</p>
 <p>Efron, B. (1979).  Bootstrap Methods: Another Look at the Jackknife.
   <em>The Annals of Statistics</em> <b>7</b>, 1–26.</p>
 <p>Efron, B., and R.J. Tibshirani. (1993).  <em>An Introduction to the Bootstrap</em>.
@@ -537,11 +324,11 @@
 
     <div id="ref-examples">
     <h2>Examples</h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span>  <span class="co"># Using the lead concentration data from soil samples shown in </span></span></span>
-<span class="r-in"><span>  <span class="co"># Beal (2010), compute the Kaplan-Meier estimators of the mean, </span></span></span>
-<span class="r-in"><span>  <span class="co"># standard deviation, and standard error of the mean, as well as </span></span></span>
-<span class="r-in"><span>  <span class="co"># a 95% upper confidence limit for the mean.  Compare these </span></span></span>
-<span class="r-in"><span>  <span class="co"># results to those given in Beal (2010), and also to the results </span></span></span>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span>  <span class="co"># Using the lead concentration data from soil samples shown in</span></span></span>
+<span class="r-in"><span>  <span class="co"># Beal (2010), compute the Kaplan-Meier estimators of the mean,</span></span></span>
+<span class="r-in"><span>  <span class="co"># standard deviation, and standard error of the mean, as well as</span></span></span>
+<span class="r-in"><span>  <span class="co"># a 95% upper confidence limit for the mean.  Compare these</span></span></span>
+<span class="r-in"><span>  <span class="co"># results to those given in Beal (2010), and also to the results</span></span></span>
 <span class="r-in"><span>  <span class="co"># produced by ProUCL 5.2.0.</span></span></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span>  <span class="co"># First look at the data:</span></span></span>
@@ -581,76 +368,51 @@
 <span class="r-in"><span></span></span>
 <span class="r-in"><span>  <span class="co"># enparCensored Results:</span></span></span>
 <span class="r-in"><span>  <span class="co">#-----------------------</span></span></span>
-<span class="r-in"><span>  <span class="va">Beal.unrestricted</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/with.html" class="external-link">with</a></span><span class="op">(</span><span class="va">Beal.2010.Pb.df</span>, </span></span>
-<span class="r-in"><span>    <span class="fu">enparCensored</span><span class="op">(</span>x <span class="op">=</span> <span class="va">Pb</span>, censored <span class="op">=</span> <span class="va">Censored</span>, ci <span class="op">=</span> <span class="cn">TRUE</span>, </span></span>
+<span class="r-in"><span>  <span class="va">Beal.unrestricted</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/with.html" class="external-link">with</a></span><span class="op">(</span><span class="va">Beal.2010.Pb.df</span>,</span></span>
+<span class="r-in"><span>    <span class="fu">enparCensored</span><span class="op">(</span>x <span class="op">=</span> <span class="va">Pb</span>, censored <span class="op">=</span> <span class="va">Censored</span>, ci <span class="op">=</span> <span class="cn">TRUE</span>,</span></span>
 <span class="r-in"><span>      ci.type <span class="op">=</span> <span class="st">"upper"</span><span class="op">)</span><span class="op">)</span></span></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span>  <span class="va">Beal.unrestricted</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $distribution</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "None"</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $sample.size</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] 29</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Results of Distribution Parameter Estimation</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Based on Type I Censored Data</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> --------------------------------------------</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $censoring.side</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "left"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Assumed Distribution:            None</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $censoring.levels</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1]  1  3  4  6  9 10</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Censoring Side:                  left</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $percent.censored</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] 34.48276</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Censoring Level(s):               1  3  4  6  9 10 </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $parameters</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>      mean        sd   se.mean </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  325.3396 1651.0950  315.0023 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Estimated Parameter(s):          mean    =  325.3396</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                                  sd      = 1651.0950</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                                  se.mean =  315.0023</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $n.param.est</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] 2</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Estimation Method:               Kaplan-Meier</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                                  (Bias-corrected se.mean)</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $method</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "Kaplan-Meier\n                                 (Bias-corrected se.mean)"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Data:                            Pb</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $data.name</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "Pb"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Censoring Variable:              Censored</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $censoring.name</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "Censored"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Sample Size:                     29</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $bad.obs</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] 0</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Percent Censored:                34.48276%</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $interval</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $name</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "Confidence"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Confidence Interval for:         mean</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $parameter</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "mean"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Assumed Sample Size:             29</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $limits</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>      LCL      UCL </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   0.0000 861.1996 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Confidence Interval Method:      Normal Approximation</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                                  (t Distribution)</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $type</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "upper"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Confidence Interval Type:        upper</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $method</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "Normal Approximation\n                                 (t Distribution)"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Confidence Level:                95%</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $conf.level</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] 0.95</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Confidence Interval:             LCL =   0.0000</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                                  UCL = 861.1996</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $sample.size</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] 29</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $dof</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] 28</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> attr(,"class")</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "intervalEstimate"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> attr(,"class")</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "estimateCensored"</span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span>  <span class="co">#Results of Distribution Parameter Estimation</span></span></span>
 <span class="r-in"><span>  <span class="co">#Based on Type I Censored Data</span></span></span>
@@ -660,7 +422,7 @@
 <span class="r-in"><span>  <span class="co">#</span></span></span>
 <span class="r-in"><span>  <span class="co">#Censoring Side:                  left</span></span></span>
 <span class="r-in"><span>  <span class="co">#</span></span></span>
-<span class="r-in"><span>  <span class="co">#Censoring Level(s):               1  3  4  6  9 10 </span></span></span>
+<span class="r-in"><span>  <span class="co">#Censoring Level(s):               1  3  4  6  9 10</span></span></span>
 <span class="r-in"><span>  <span class="co">#</span></span></span>
 <span class="r-in"><span>  <span class="co">#Estimated Parameter(s):          mean    =  325.3396</span></span></span>
 <span class="r-in"><span>  <span class="co">#                                 sd      = 1651.0950</span></span></span>
@@ -694,7 +456,7 @@
 <span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="va">Beal.unrestricted</span><span class="op">$</span><span class="va">parameters</span>, <span class="va">Beal.unrestricted</span><span class="op">$</span><span class="va">interval</span><span class="op">$</span><span class="va">limits</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>      mean        sd   se.mean       LCL       UCL </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  325.3396 1651.0950  315.0023    0.0000  861.1996 </span>
-<span class="r-in"><span>  <span class="co">#     mean        sd   se.mean       LCL       UCL </span></span></span>
+<span class="r-in"><span>  <span class="co">#     mean        sd   se.mean       LCL       UCL</span></span></span>
 <span class="r-in"><span>  <span class="co"># 325.3396 1651.0950  315.0023    0.0000  861.1996</span></span></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span>  <span class="co"># Beal (2010) published results:</span></span></span>
@@ -709,81 +471,58 @@
 <span class="r-in"><span></span></span>
 <span class="r-in"><span>  <span class="co">#----------</span></span></span>
 <span class="r-in"><span></span></span>
-<span class="r-in"><span>  <span class="co"># Now compute the restricted mean and associated quantities, </span></span></span>
-<span class="r-in"><span>  <span class="co"># and compare these results with those produced by the </span></span></span>
+<span class="r-in"><span>  <span class="co"># Now compute the restricted mean and associated quantities,</span></span></span>
+<span class="r-in"><span>  <span class="co"># and compare these results with those produced by the</span></span></span>
 <span class="r-in"><span>  <span class="co"># kmms() function in the STAND package.</span></span></span>
-<span class="r-in"><span>  <span class="co">#----------------------------------------------------------- </span></span></span>
+<span class="r-in"><span>  <span class="co">#-----------------------------------------------------------</span></span></span>
 <span class="r-in"><span></span></span>
-<span class="r-in"><span>  <span class="va">Beal.restricted</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/with.html" class="external-link">with</a></span><span class="op">(</span><span class="va">Beal.2010.Pb.df</span>, </span></span>
-<span class="r-in"><span>    <span class="fu">enparCensored</span><span class="op">(</span>x <span class="op">=</span> <span class="va">Pb</span>, censored <span class="op">=</span> <span class="va">Censored</span>, restricted <span class="op">=</span> <span class="cn">TRUE</span>, </span></span>
+<span class="r-in"><span>  <span class="va">Beal.restricted</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/with.html" class="external-link">with</a></span><span class="op">(</span><span class="va">Beal.2010.Pb.df</span>,</span></span>
+<span class="r-in"><span>    <span class="fu">enparCensored</span><span class="op">(</span>x <span class="op">=</span> <span class="va">Pb</span>, censored <span class="op">=</span> <span class="va">Censored</span>, restricted <span class="op">=</span> <span class="cn">TRUE</span>,</span></span>
 <span class="r-in"><span>      ci <span class="op">=</span> <span class="cn">TRUE</span>, ci.type <span class="op">=</span> <span class="st">"upper"</span><span class="op">)</span><span class="op">)</span></span></span>
 <span class="r-in"><span></span></span>
-<span class="r-in"><span>  <span class="va">Beal.restricted</span> </span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $distribution</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "None"</span>
+<span class="r-in"><span>  <span class="va">Beal.restricted</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $sample.size</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] 29</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Results of Distribution Parameter Estimation</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Based on Type I Censored Data</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> --------------------------------------------</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $censoring.side</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "left"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Assumed Distribution:            None</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $censoring.levels</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1]  1  3  4  6  9 10</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Censoring Side:                  left</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $percent.censored</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] 34.48276</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Censoring Level(s):               1  3  4  6  9 10 </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $parameters</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>      mean        sd   se.mean </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  325.2011 1651.1221  314.1774 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Estimated Parameter(s):          mean    =  325.2011</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                                  sd      = 1651.1221</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                                  se.mean =  314.1774</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $n.param.est</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] 2</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Estimation Method:               Kaplan-Meier (Restricted Mean)</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                                  Smallest censored value(s)</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                                    set to Censoring Level</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                                  (Bias-corrected se.mean)</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $method</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "Kaplan-Meier (Restricted Mean)\n                                 Smallest censored value(s)\n                                   set to Censoring Level\n                                 (Bias-corrected se.mean)"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Data:                            Pb</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $data.name</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "Pb"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Censoring Variable:              Censored</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $censoring.name</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "Censored"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Sample Size:                     29</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $bad.obs</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] 0</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Percent Censored:                34.48276%</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $interval</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $name</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "Confidence"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Confidence Interval for:         mean</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $parameter</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "mean"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Assumed Sample Size:             29</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $limits</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>     LCL     UCL </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   0.000 859.658 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Confidence Interval Method:      Normal Approximation</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                                  (t Distribution)</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $type</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "upper"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Confidence Interval Type:        upper</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $method</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "Normal Approximation\n                                 (t Distribution)"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Confidence Level:                95%</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $conf.level</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] 0.95</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Confidence Interval:             LCL =   0.000</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                                  UCL = 859.658</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $sample.size</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] 29</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $dof</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] 28</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> attr(,"class")</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "intervalEstimate"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> attr(,"class")</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "estimateCensored"</span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span>  <span class="co">#Results of Distribution Parameter Estimation</span></span></span>
 <span class="r-in"><span>  <span class="co">#Based on Type I Censored Data</span></span></span>
@@ -793,7 +532,7 @@
 <span class="r-in"><span>  <span class="co">#</span></span></span>
 <span class="r-in"><span>  <span class="co">#Censoring Side:                  left</span></span></span>
 <span class="r-in"><span>  <span class="co">#</span></span></span>
-<span class="r-in"><span>  <span class="co">#Censoring Level(s):               1  3  4  6  9 10 </span></span></span>
+<span class="r-in"><span>  <span class="co">#Censoring Level(s):               1  3  4  6  9 10</span></span></span>
 <span class="r-in"><span>  <span class="co">#</span></span></span>
 <span class="r-in"><span>  <span class="co">#Estimated Parameter(s):          mean    =  325.2011</span></span></span>
 <span class="r-in"><span>  <span class="co">#                                 sd      = 1651.1221</span></span></span>
@@ -829,113 +568,94 @@
 <span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="va">Beal.restricted</span><span class="op">$</span><span class="va">parameters</span>, <span class="va">Beal.restricted</span><span class="op">$</span><span class="va">interval</span><span class="op">$</span><span class="va">limits</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>      mean        sd   se.mean       LCL       UCL </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  325.2011 1651.1221  314.1774    0.0000  859.6580 </span>
-<span class="r-in"><span>  <span class="co">#     mean        sd   se.mean       LCL       UCL </span></span></span>
+<span class="r-in"><span>  <span class="co">#     mean        sd   se.mean       LCL       UCL</span></span></span>
 <span class="r-in"><span>  <span class="co"># 325.2011 1651.1221  314.1774    0.0000  859.6580</span></span></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span>  <span class="co"># kmms() results:</span></span></span>
 <span class="r-in"><span>  <span class="co">#----------------</span></span></span>
-<span class="r-in"><span>  <span class="co">#  KM.mean    KM.LCL    KM.UCL     KM.se     gamma </span></span></span>
-<span class="r-in"><span>  <span class="co"># 325.2011 -221.0419  871.4440  315.0075    0.9500 </span></span></span>
-<span class="r-in"><span>  </span></span>
-<span class="r-in"><span>  <span class="co"># NOTE: as pointed out above, the kmms() function treats the </span></span></span>
-<span class="r-in"><span>  <span class="co">#       smallest censored observations (&lt;1 and &lt;1) as NOT </span></span></span>
-<span class="r-in"><span>  <span class="co">#       censored when computing the mean and uncorrected </span></span></span>
-<span class="r-in"><span>  <span class="co">#       standard error of the mean, but assumes these </span></span></span>
-<span class="r-in"><span>  <span class="co">#       observations ARE censored when computing the corrected </span></span></span>
+<span class="r-in"><span>  <span class="co">#  KM.mean    KM.LCL    KM.UCL     KM.se     gamma</span></span></span>
+<span class="r-in"><span>  <span class="co"># 325.2011 -221.0419  871.4440  315.0075    0.9500</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="co"># NOTE: as pointed out above, the kmms() function treats the</span></span></span>
+<span class="r-in"><span>  <span class="co">#       smallest censored observations (&lt;1 and &lt;1) as NOT</span></span></span>
+<span class="r-in"><span>  <span class="co">#       censored when computing the mean and uncorrected</span></span></span>
+<span class="r-in"><span>  <span class="co">#       standard error of the mean, but assumes these</span></span></span>
+<span class="r-in"><span>  <span class="co">#       observations ARE censored when computing the corrected</span></span></span>
 <span class="r-in"><span>  <span class="co">#       standard error of the mean.</span></span></span>
 <span class="r-in"><span>  <span class="co">#--------------------------------------------------------------</span></span></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span>  <span class="va">Beal.restricted</span><span class="op">$</span><span class="va">parameters</span><span class="op">[</span><span class="st">"se.mean"</span><span class="op">]</span> <span class="op">*</span> <span class="fu"><a href="https://rdrr.io/r/base/MathFun.html" class="external-link">sqrt</a></span><span class="op">(</span><span class="op">(</span><span class="fl">20</span><span class="op">/</span><span class="fl">21</span><span class="op">)</span><span class="op">)</span> <span class="op">*</span> <span class="fu"><a href="https://rdrr.io/r/base/MathFun.html" class="external-link">sqrt</a></span><span class="op">(</span><span class="op">(</span><span class="fl">19</span><span class="op">/</span><span class="fl">18</span><span class="op">)</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  se.mean </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 315.0075 </span>
-<span class="r-in"><span>  <span class="co">#  se.mean </span></span></span>
+<span class="r-in"><span>  <span class="co">#  se.mean</span></span></span>
 <span class="r-in"><span>  <span class="co"># 315.0075</span></span></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span>  <span class="co">#==========</span></span></span>
 <span class="r-in"><span></span></span>
-<span class="r-in"><span>  <span class="co"># Repeat the above example, estimating the unrestricted mean and </span></span></span>
-<span class="r-in"><span>  <span class="co"># computing an upper confidence limit based on the bootstrap </span></span></span>
+<span class="r-in"><span>  <span class="co"># Repeat the above example, estimating the unrestricted mean and</span></span></span>
+<span class="r-in"><span>  <span class="co"># computing an upper confidence limit based on the bootstrap</span></span></span>
 <span class="r-in"><span>  <span class="co"># instead of on the normal approximation with a t pivot statistic.</span></span></span>
 <span class="r-in"><span>  <span class="co"># Compare results to those from ProUCL 5.2.0.</span></span></span>
 <span class="r-in"><span>  <span class="co"># Note:  Setting the seed argument lets you reproduce this example.</span></span></span>
 <span class="r-in"><span>  <span class="co">#------------------------------------------------------------------</span></span></span>
 <span class="r-in"><span></span></span>
-<span class="r-in"><span>  <span class="va">Beal.unrestricted.boot</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/with.html" class="external-link">with</a></span><span class="op">(</span><span class="va">Beal.2010.Pb.df</span>, </span></span>
-<span class="r-in"><span>    <span class="fu">enparCensored</span><span class="op">(</span>x <span class="op">=</span> <span class="va">Pb</span>, censored <span class="op">=</span> <span class="va">Censored</span>, ci <span class="op">=</span> <span class="cn">TRUE</span>, </span></span>
+<span class="r-in"><span>  <span class="va">Beal.unrestricted.boot</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/with.html" class="external-link">with</a></span><span class="op">(</span><span class="va">Beal.2010.Pb.df</span>,</span></span>
+<span class="r-in"><span>    <span class="fu">enparCensored</span><span class="op">(</span>x <span class="op">=</span> <span class="va">Pb</span>, censored <span class="op">=</span> <span class="va">Censored</span>, ci <span class="op">=</span> <span class="cn">TRUE</span>,</span></span>
 <span class="r-in"><span>      ci.type <span class="op">=</span> <span class="st">"upper"</span>, ci.method <span class="op">=</span> <span class="st">"bootstrap"</span>, seed <span class="op">=</span> <span class="fl">923</span><span class="op">)</span><span class="op">)</span></span></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span>  <span class="va">Beal.unrestricted.boot</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $distribution</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "None"</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $sample.size</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] 29</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Results of Distribution Parameter Estimation</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Based on Type I Censored Data</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> --------------------------------------------</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $censoring.side</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "left"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Assumed Distribution:            None</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $censoring.levels</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1]  1  3  4  6  9 10</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Censoring Side:                  left</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $percent.censored</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] 34.48276</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Censoring Level(s):               1  3  4  6  9 10 </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $parameters</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>      mean        sd   se.mean </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  325.3396 1651.0950  315.0023 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Estimated Parameter(s):          mean    =  325.3396</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                                  sd      = 1651.0950</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                                  se.mean =  315.0023</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $n.param.est</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] 2</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Estimation Method:               Kaplan-Meier</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                                  (Bias-corrected se.mean)</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $method</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "Kaplan-Meier\n                                 (Bias-corrected se.mean)"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Data:                            Pb</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $data.name</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "Pb"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Censoring Variable:              Censored</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $censoring.name</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "Censored"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Sample Size:                     29</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $bad.obs</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] 0</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Percent Censored:                34.48276%</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $interval</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $name</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "Confidence"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Confidence Interval for:         mean</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $parameter</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "mean"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Assumed Sample Size:             29</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $limits</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>    Pct.LCL    Pct.UCL    BCa.LCL    BCa.UCL      t.LCL      t.UCL </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>     0.0000   948.7342     0.0000   942.6596     0.0000 62121.8909 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Confidence Interval Method:      Bootstrap</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $type</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "upper"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Number of Bootstraps:            1000</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $method</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "Bootstrap"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Number of Bootstrap Samples</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> With No Censored Values:         0</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $conf.level</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] 0.95</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Number of Times Bootstrap</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Repeated Because Too Few</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Uncensored Observations:         0</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $sample.size</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] 29</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Confidence Interval Type:        upper</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $n.bootstraps</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] 1000</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Confidence Level:                95%</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $too.few.obs.count</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] 0</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Confidence Interval:             Pct.LCL =     0.0000</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                                  Pct.UCL =   948.7342</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                                  BCa.LCL =     0.0000</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                                  BCa.UCL =   942.6596</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                                  t.LCL   =     0.0000</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                                  t.UCL   = 62121.8909</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $no.cen.obs.count</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] 0</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> attr(,"class")</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "intervalEstimateCensored"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> attr(,"class")</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "estimateCensored"</span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span>  <span class="co">#Results of Distribution Parameter Estimation</span></span></span>
 <span class="r-in"><span>  <span class="co">#Based on Type I Censored Data</span></span></span>
@@ -945,7 +665,7 @@
 <span class="r-in"><span>  <span class="co">#</span></span></span>
 <span class="r-in"><span>  <span class="co">#Censoring Side:                  left</span></span></span>
 <span class="r-in"><span>  <span class="co">#</span></span></span>
-<span class="r-in"><span>  <span class="co">#Censoring Level(s):               1  3  4  6  9 10 </span></span></span>
+<span class="r-in"><span>  <span class="co">#Censoring Level(s):               1  3  4  6  9 10</span></span></span>
 <span class="r-in"><span>  <span class="co">#</span></span></span>
 <span class="r-in"><span>  <span class="co">#Estimated Parameter(s):          mean    =  325.3396</span></span></span>
 <span class="r-in"><span>  <span class="co">#                                 sd      = 1651.0950</span></span></span>
@@ -991,12 +711,12 @@
 <span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="va">Beal.unrestricted.boot</span><span class="op">$</span><span class="va">interval</span><span class="op">$</span><span class="va">limits</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>    Pct.LCL    Pct.UCL    BCa.LCL    BCa.UCL      t.LCL      t.UCL </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>     0.0000   948.7342     0.0000   942.6596     0.0000 62121.8909 </span>
-<span class="r-in"><span>  <span class="co">#   Pct.LCL    Pct.UCL    BCa.LCL    BCa.UCL      t.LCL      t.UCL </span></span></span>
+<span class="r-in"><span>  <span class="co">#   Pct.LCL    Pct.UCL    BCa.LCL    BCa.UCL      t.LCL      t.UCL</span></span></span>
 <span class="r-in"><span>  <span class="co">#    0.0000   948.7342     0.0000   942.6596     0.0000 62121.8909</span></span></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span>  <span class="co"># ProUCL 5.2.0 results:</span></span></span>
 <span class="r-in"><span>  <span class="co">#----------------------</span></span></span>
-<span class="r-in"><span>  <span class="co">#   Pct.LCL    Pct.UCL    BCa.LCL    BCa.UCL      t.LCL      t.UCL </span></span></span>
+<span class="r-in"><span>  <span class="co">#   Pct.LCL    Pct.UCL    BCa.LCL    BCa.UCL      t.LCL      t.UCL</span></span></span>
 <span class="r-in"><span>  <span class="co">#    0.0000   944.3        0.0000   947.8        0.0000 62169</span></span></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span>  <span class="co">#==========</span></span></span>
@@ -1018,7 +738,7 @@
 </div>
 
 <div class="pkgdown">
-  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.1.1.</p>
+  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.2.1.</p>
 </div>
 
       </footer></div>

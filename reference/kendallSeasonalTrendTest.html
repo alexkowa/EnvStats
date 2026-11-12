@@ -18,7 +18,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">EnvStats</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">3.1.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">4.0.0</span>
       </span>
     </div>
 
@@ -26,6 +26,37 @@
       <ul class="nav navbar-nav"><li>
   <a href="../reference/index.html">Reference</a>
 </li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+    Articles
+
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu"><li>
+      <a href="../articles/censored-estimation.html">Estimation with censored data</a>
+    </li>
+    <li>
+      <a href="../articles/distribution-diagnostics.html">Distribution diagnostics, transformations, and probability plots</a>
+    </li>
+    <li>
+      <a href="../articles/distributions-and-estimation.html">Probability distributions and parameter estimation</a>
+    </li>
+    <li>
+      <a href="../articles/nonparametric-methods.html">Nonparametric estimation and two-sample tests</a>
+    </li>
+    <li>
+      <a href="../articles/outlier-testing.html">Rosner's test for multiple outliers</a>
+    </li>
+    <li>
+      <a href="../articles/power-and-study-design.html">Statistical power and study design</a>
+    </li>
+    <li>
+      <a href="../articles/prediction-intervals.html">Prediction intervals for environmental monitoring</a>
+    </li>
+    <li>
+      <a href="../articles/trend-and-correlation.html">Trend tests and serial correlation</a>
+    </li>
+  </ul></li>
       </ul><ul class="nav navbar-nav navbar-right"><li>
   <a href="https://github.com/alexkowa/EnvStats/" class="external-link">
     <span class="fab fa-github fa-lg"></span>
@@ -42,7 +73,7 @@
   <div class="col-md-9 contents">
     <div class="page-header">
     <h1>Nonparametric Test for Monotonic Trend Within Each Season Based on Kendall's Tau Statistic</h1>
-
+    <small class="dont-index">Source: <a href="https://github.com/alexkowa/EnvStats/blob/master/R/kendallSeasonalTrendTest.R" class="external-link"><code>R/kendallSeasonalTrendTest.R</code></a></small>
     <div class="hidden name"><code>kendallSeasonalTrendTest.Rd</code></div>
     </div>
 
@@ -71,6 +102,13 @@
 <span><span class="fu">kendallSeasonalTrendTest</span><span class="op">(</span><span class="va">y</span>, <span class="va">...</span><span class="op">)</span></span></code></pre></div>
     </div>
 
+    <div id="details">
+    <h2>Details</h2>
+    <p>Extended methods and derivations are available in
+<a href="https://alexkowa.github.io/EnvStats/articles/trend-and-correlation.html#kendallseasonaltrendtest" class="external-link">Trend tests and serial correlation: <code>kendallSeasonalTrendTest</code></a>.
+Open the vignette locally with
+<code><a href="../articles/trend-and-correlation.html">vignette("trend-and-correlation", package = "EnvStats")</a></code>.</p>
+    </div>
     <div id="arguments">
     <h2>Arguments</h2>
     <p></p>
@@ -152,255 +190,6 @@
 <dd><p>additional arguments affecting the test for trend.</p></dd>
 
 </dl></div>
-    <div id="details">
-    <h2>Details</h2>
-    <p>Hirsch et al. (1982) introduced a modification of Kendall's test for trend
-  (see <code><a href="kendallTrendTest.html">kendallTrendTest</a></code>) that allows for seasonality in observations collected over time.
-  They call this test the <em>seasonal Kendall test</em>.  Their test is appropriate for testing for
-  trend in each season when the trend is always in the same direction across all seasons.
-  van Belle and Hughes (1984) introduced a heterogeneity test for trend which is appropriate for testing
-  for trend in any direction in any season.  Hirsch and Slack (1984) proposed an extension to the seasonal
-  Kendall test that allows for serial dependence in the observations.  The function
-  <code>kendallSeasonalTrendTest</code> includes all of these tests, as well as an extension of the
-  van Belle-Hughes heterogeneity test to the case of serial dependence.</p>
-<p><b>Testing for Trend Assuming Serial Independence</b> <br></p>
-<p><em>The Model</em> <br>
-  Assume observations are taken over two or more years, and assume a single year
-  can be divided into two or more seasons.  Let \(p\) denote the number of seasons.
-  Let \(X\) and \(Y\) denote two continuous random variables with some joint
-  (bivariate) distribution (which may differ from season to season).  Let \(N_j\)
-  denote the number of bivariate observations taken in the \(j\)'th season (over two
-  or more years) (\(j = 1, 2, \ldots, p\)), so that
-  $$(X_{1j}, Y_{1j}), (X_{2j}, Y_{2j}), \ldots, (X_{N_jj}, Y_{N_jj})$$
-  denote the \(N_j\) bivariate observations from this distribution for season
-  \(j\), assume these bivariate observations are mutually independent, and let
-  $$\tau_j = \{ 2 Pr[(X_{2j} - X_{1j})(Y_{2j} - Y_{1j}) &gt; 0] \} - 1 \;\;\;\;\;\; (1)$$
-  denote the value of Kendall's tau for that season (see <code><a href="kendallTrendTest.html">kendallTrendTest</a></code>).
-  Also, assume all of the \(Y\) observations are independent.</p>
-<p>The function <code>kendallSeasonalTrendTest</code> assumes that the \(X\) values always
-  denote the year in which the observation was taken.  Note that within any season,
-  the \(X\) values need not be unique.  That is, there may be more than one
-  observation within the same year within the same season.  In this case, the
-  argument <code>y</code> must be a numeric vector, and you must supply the additional
-  arguments <code>season</code> and <code>year</code>.</p>
-<p>If there is only one observation per season per year (missing values allowed), it is
-  usually easiest to supply the argument <code>y</code> as an \(n \times p\) matrix or
-  data frame, where \(n\) denotes the number of years. In this case
-  $$N_1 = N_2 = \cdots = N_p = n \;\;\;\;\;\; (2)$$
-  and
-  $$X_{ij} = i \;\;\;\;\;\; (3)$$
-  for \(i = 1, 2, \ldots, n\) and \(j = 1, 2, \ldots, p\), so if \(Y\) denotes
-  the \(n \times p\) matrix of observed \(Y\)'s and \(X\) denotes the
-  \(n \times p\) matrix of the \(X\)'s, then</p><table class="table table"><tr><td></td><td>\(Y_{11}\)</td><td>\(Y_{12}\)</td><td>\(\cdots\)</td><td>\(Y_{1p}\)</td><td></td></tr><tr><td></td><td>\(Y_{21}\)</td><td>\(Y_{22}\)</td><td>\(\cdots\)</td><td>\(Y_{2p}\)</td><td></td></tr><tr><td>\(\underline{Y} =\)</td><td>.</td><td></td><td></td><td></td><td>\(\;\;\;\;\;\; (4)\)</td></tr><tr><td></td><td>.</td><td></td><td></td><td></td><td></td></tr><tr><td></td><td>.</td><td></td><td></td><td></td><td></td></tr><tr><td></td><td>\(Y_{n1}\)</td><td>\(Y_{n2}\)</td><td>\(\cdots\)</td><td>\(Y_{np}\)</td><td></td></tr></table><p></p><table class="table table"><tr><td></td><td>\(1\)</td><td>\(1\)</td><td>\(\cdots\)</td><td>\(1\)</td><td></td></tr><tr><td></td><td>\(2\)</td><td>\(2\)</td><td>\(\cdots\)</td><td>\(2\)</td><td></td></tr><tr><td>\(\underline{X} =\)</td><td>.</td><td></td><td></td><td></td><td>\(\;\;\;\;\;\; (5)\)</td></tr><tr><td></td><td>.</td><td></td><td></td><td></td><td></td></tr><tr><td></td><td>.</td><td></td><td></td><td></td><td></td></tr><tr><td></td><td>\(n\)</td><td>\(n\)</td><td>\(\cdots\)</td><td>\(n\)</td><td></td></tr></table><p>The null hypothesis is that within each season the \(X\) and \(Y\) random
-  variables are independent; that is, within each season there is no trend in the
-  \(Y\) observations over time.  This null hypothesis can be expressed as:
-  $$H_0: \tau_1 = \tau_2 = \cdots = \tau_p = 0 \;\;\;\;\;\; (6)$$
-  <br></p>
-<p><em>The Seasonal Kendall Test for Trend</em> <br>
-  Hirsch et al.'s (1982) extension of Kendall's tau statistic to test the null
-  hypothesis (6) is based on simply summing together the Kendall \(S\)-statistics
-  for each season and computing the following statistic:
-  $$z = \frac{S'}{\sqrt{Var(S')}} \;\;\;\;\;\; (7)$$
-  or, using the correction for continuity,
-  $$z = \frac{S' - sign(S')}{\sqrt{Var(S')}} \;\;\;\;\;\; (8)$$
-  where
-  $$S' = \sum_{j=1}^p S_j \;\;\;\;\;\; (9)$$
-  $$S_j = \sum_{i=1}^{N_j-1} \sum_{k=i+1}^{N_j} sign[(X_{kj} - X_{ij})(Y_{kj} - Y_{ij})] \;\;\;\;\;\; (10)$$
-  and \(sign()\) denotes the <code><a href="https://rdrr.io/r/base/sign.html" class="external-link">sign</a></code> function:</p><table class="table table"><tr><td></td><td>\(-1\)</td><td>\(x &lt; 0\)</td></tr><tr><td>\(sign(x) =\)</td><td>\(0\)</td><td>\(x = 0 \;\;\;\;\;\; (11)\)</td></tr><tr><td></td><td>\(1\)</td><td>\(x &gt; 0\)</td></tr></table><p>Note that the quantity in Equation (10) is simply the Kendall \(S\)-statistic for
-  season \(j\) (\(j = 1, 2, \ldots, p\)) (see Equation (3) in the help file for
-  <code><a href="kendallTrendTest.html">kendallTrendTest</a></code>).</p>
-<p>For each season, if the predictor variables (the \(X\)'s) are strictly increasing
-  (e.g., Equation (3) above), then Equation (10) simplifies to
-  $$S_j = \sum_{i=1}^{N_j-1} \sum_{k=i+1}^{N_j} sign[(Y_{kj} - Y_{ij})] \;\;\;\;\;\; (12)$$
-  Under the null hypothesis (6), the quantity \(z\) defined in Equation (7) or (8)
-  is approximately distributed as a standard normal random variable.</p>
-<p>Note that there may be missing values in the observations, so let \(n_j\)
-  denote the number of \((X,Y)\) pairs without missing values for season \(j\).</p>
-<p>The statistic \(S'\) in Equation (9) has mean and variance given by:
-  $$E(S') = \sum_{j = 1}^p E(S_j) \;\;\;\;\;\; (13)$$
-  $$Var(S') = \sum_{j = 1}^p Var(S_j) + \sum_{g=1}^{p-1} \sum_{h=g+1}^{p} 2 Cov(S_g, S_h) \;\;\;\;\;\; (14)$$
-  Since all the observations are assumed to be mutually independent,
-  $$\sigma_{gh} = Cov(S_g, S_h) = 0, \;\; g \ne h, \;\; g,h = 1, 2, \ldots, p \;\;\;\;\;\; (15)$$
-  Furthermore, under the null hypothesis (6),
-  $$E(S_j) = 0, \;\; j = 1, 2, \ldots, p \;\;\;\;\;\; (16)$$
-  and, in the case of no tied observations,
-  $$Var(S_j) = \frac{n_j(n_j-1)(2n_j+5)}{18} \;\;\;\;\;\; (17)$$
-  for \(j=1,2, \ldots, p\) (see equation (7) in the help file for
-  <code><a href="kendallTrendTest.html">kendallTrendTest</a></code>).</p>
-<p>In the case of tied observations,</p><table class="table table"><tr><td>\(Var(S_j) =\)</td><td>\(\frac{n_j(n_j-1)(2n_j+5)}{18} -\)</td></tr><tr><td></td><td></td></tr><tr><td></td><td>\(\frac{\sum_{i=1}^{g} t_i(t_i-1)(2t_i+5)}{18} - \)</td></tr><tr><td></td><td></td></tr><tr><td></td><td>\(\frac{\sum_{k=1}^{h} u_k(u_k-1)(2u_k+5)}{18} + \)</td></tr><tr><td></td><td></td></tr><tr><td></td><td>\(\frac{[\sum_{i=1}^{g} t_i(t_i-1)(t_i-2)][\sum_{k=1}^{h} u_k(u_k-1)(u_k-2)]}{9n_k(n_k-1)(n_k-2)} +\)</td></tr><tr><td></td><td></td></tr><tr><td></td><td>\(\frac{[\sum_{i=1}^{g} t_i(t_i-1)][\sum_{k=1}^{h} u_k(u_k-1)]}{2n_k(n_k-1)} \;\;\;\;\;\; (18)\)</td></tr></table><p>where \(g\) is the number of tied groups in the \(X\) observations for
-  season \(j\), \(t_i\) is the size of the \(i\)'th tied group in the \(X\)
-  observations for season \(j\), \(h\) is the number of tied groups in the \(Y\)
-  observations for season \(j\), and \(u_k\) is the size of the \(k\)'th tied
-  group in the \(Y\) observations for season \(j\)
-  (see Equation (9) in the help file for <code><a href="kendallTrendTest.html">kendallTrendTest</a></code>).
-  <br></p>
-<p><em>Estimating \(\tau\), Slope, and Intercept</em> <br>
-  The function <code>kendall.SeasonalTrendTest</code> returns estimated values of
-  Kendall's \(\tau\), the slope, and the intercept for each season, as well as a
-  single estimate for each of these three quantities combined over all seasons.
-  The overall estimate of \(\tau\) is the weighted average of the p seasonal
-  \(\tau\)'s:
-  $$\hat{\tau} = \frac{\sum_{j=1}^p n_j \hat{\tau}_j}{\sum_{j=1}^p n_j} \;\;\;\;\;\; (19)$$
-  where
-  $$\hat{\tau}_j = \frac{2S_j}{n_j(n_j-1)} \;\;\;\;\;\; (20)$$
-  (see Equation (2) in the help file for <code><a href="kendallTrendTest.html">kendallTrendTest</a></code>).</p>
-<p>We can compute the estimated slope for season \(j\) as:
-  $$\hat{\beta}_{1_j} = Median(\frac{Y_{kj} - Y_{ij}}{X_{kj} - X_{ij}}); \;\; i &lt; k; \;\; X_{kj} \ne X_{ik} \;\;\;\;\;\; (21)$$
-  for \(j = 1, 2, \ldots, p\).  The overall estimate of slope, however, is
-  <b>not</b> the median of these \(p\) estimates of slope; instead,
-  following Hirsch et al. (1982, p.117), the overall estimate of slope is the median
-  of all two-point slopes computed within each season:
-  $$\hat{\beta}_1 = Median(\frac{Y_{kj} - Y_{ij}}{X_{kj} - X_{ij}}); \;\; i &lt; k; \;\; X_{kj} \ne X_{ik}; \;\; j = 1, 2, \ldots, p \;\;\;\;\;\; (22)$$
-  (see Equation (15) in the help file for <code><a href="kendallTrendTest.html">kendallTrendTest</a></code>).</p>
-<p>The overall estimate of intercept is the median of the \(p\) seasonal estimates of
-  intercept:
-  $$\hat{\beta}_0 = Median(\hat{\beta}_{0_1}, \hat{\beta}_{0_2}, \ldots, \hat{\beta}_{0_p}) \;\;\;\;\;\; (23)$$
-  where
-  $$\hat{\beta}_{0_j} = Y_{0.5_j} - \hat{\beta}_{1_j} X_{0.5_j} \;\;\;\;\;\; (24)$$
-  and \(X_{0.5_j}\) and \(Y_{0.5_j}\) denote the sample medians of the \(X\)'s
-  and \(Y\)'s, respectively, for season \(j\)
-  (see Equation (16) in the help file for <code><a href="kendallTrendTest.html">kendallTrendTest</a></code>).
-  <br></p>
-<p><em>Confidence Interval for the Slope</em> <br>
-  Gilbert (1987, p.227-228) extends his method of computing a confidence interval for
-  the slope to the case of seasonal observations.  Let \(N'\) denote the number of
-  defined two-point estimated slopes that are used in Equation (22) above and let
-  $$\hat{\beta}_{1_{(1)}}, \hat{\beta}_{1_{(2)}}, \ldots, \hat{\beta}_{1_{(N')}}$$
-  denote the \(N'\) ordered slopes.  For Gilbert's (1987) method, a
-  \(100(1-\alpha)\%\) two-sided confidence interval for the true over-all
-  slope across all seasons is given by:
-  $$[\hat{\beta}_{1_{(M1)}}, \hat{\beta}_{1_{(M2+1)}}] \;\;\;\;\;\; (25)$$
-  where
-  $$M1 = \frac{N' - C_{\alpha}}{2} \;\;\;\;\;\; (26)$$
-  $$M2 = \frac{N' + C_{\alpha}}{2} \;\;\;\;\;\; (27)$$
-  $$C_\alpha = z_{1 - \alpha/2} \sqrt{Var(S')} \;\;\;\;\;\; (28)$$
-  \(Var(S')\) is defined in Equation (14), and
-  \(z_p\) denotes the \(p\)'th quantile of the standard normal distribution.
-  One-sided confidence intervals may computed in a similar fashion.</p>
-<p>Usually the quantities \(M1\) and \(M2\) will not be integers.
-  Gilbert (1987, p.219) suggests interpolating between adjacent values in this case,
-  which is what the function <code>kendallSeasonalTrendTest</code> does.
-  <br></p>
-<p><em>The Van Belle-Hughes Heterogeneity Test for Trend</em> <br>
-  The seasonal Kendall test described above is appropriate for testing the null
-  hypothesis (6) against the alternative hypothesis of a trend in at least one season.
-  All of the trends in each season should be in the same direction.</p>
-<p>The seasonal Kendall test is not appropriate for testing for trend when there are
-  trends in a positive direction in one or more seasons and also negative trends in
-  one or more seasons.  For example, for the following set of observations, the
-  seasonal Kendall statistic \(S'\) is 0 with an associated two-sided p-value of 1,
-  even though there is clearly a positive trend in season 1 and a negative trend in
-  season 2.</p><table class="table table"><tr><td><b>Year</b></td><td><b>Season 1</b></td><td><b>Season 2</b></td></tr><tr><td>1</td><td>5</td><td>8</td></tr><tr><td>2</td><td>6</td><td>7</td></tr><tr><td>3</td><td>7</td><td>6</td></tr><tr><td>4</td><td>8</td><td>5</td></tr></table><p>Van Belle and Hughes (1984) suggest using the following statistic to test for
-  heterogeneity in trend prior to applying the seasonal Kendall test:
-  $$\chi_{het}^2 = \sum_{j=1}^p Z_j^2 - p \bar{Z}^2 \;\;\;\;\;\; (29)$$
-  where
-  $$Z_j = \frac{S_j}{Var(S_j)} \;\;\;\;\;\; (30)$$
-  $$\bar{Z} = \frac{1}{p} \sum_{j=1}^p Z_j \;\;\;\;\;\; (31)$$
-  Under the null hypothesis (6), the statistic defined in Equation (29) is
-  approximately distributed as a <a href="https://rdrr.io/r/stats/Chisquare.html" class="external-link">chi-square random variable</a> with
-  \(p-1\) degrees of freedom.  Note that the continuity correction is not used to
-  compute the \(Z_j\)'s defined in Equation (30) since using it results in an
-  unacceptably conservative test (van Belle and Hughes, 1984, p.132).  Van Belle and
-  Hughes (1984) actually call the statistic in (29) a homogeneous chi-square statistic.
-  Here it is called a heterogeneous chi-square statistic after the alternative
-  hypothesis it is meant to test.</p>
-<p>Van Belle and Hughes (1984) imply that the heterogeneity statistic defined in
-  Equation (29) may be used to test the null hypothesis:
-  $$H_0: \tau_1 = \tau_2 = \cdots = \tau_p = \tau \;\;\;\;\;\; (32)$$
-  where \(\tau\) is some arbitrary number between -1 and 1.  For this case, however,
-  the distribution of the test statistic in Equation (29) is unknown since it depends
-  on the unknown value of \(\tau\) (Equations (16)-(18) above assume
-  \(\tau = 0\) and are not correct if \(\tau \ne 0\)). The heterogeneity
-  chi-square statistic of Equation (29) may be assumed to be approximately
-  distributed as chi-square with \(p-1\) degrees of freedom under the null
-  hypothesis (32), but further study is needed to determine how well this
-  approximation works.
-  <br></p>
-<p><b>Testing for Trend Assuming Serial Dependence</b> <br></p>
-<p><em>The Model</em> <br>
-  Assume the same model as for the case of serial independence, except now the
-  observed \(Y\)'s are not assumed to be independent of one another, but are
-  allowed to be serially correlated over time.  Furthermore, assume one observation
-  per season per year (Equations (2)-(5) above).
-  <br></p>
-<p><em>The Seasonal Kendall Test for Trend Modified for Serial Dependence</em> <br>
-  Hirsch and Slack (1984) introduced a modification of the seasonal Kendall test that
-  is robust against serial dependence (in terms of Type I error) except when the
-  observations have a very strong long-term persistence (very large autocorrelation) or
-  when the sample sizes are small (e.g., 5 years of monthly data).  This modification
-  is based on a multivariate test introduced by Dietz and Killeen (1981).</p>
-<p>In the case of serial dependence, Equation (15) is no longer true, so an estimate of
-  the correct value of \(\sigma_{gh}\) must be used to compute Var(S') in
-  Equation (14).  Let \(R\) denote the \(n \times p\) matrix of ranks for the
-  \(Y\) observations (Equation (4) above), where the \(Y\)'s are ranked within
-  season:</p><table class="table table"><tr><td></td><td>\(R_{11}\)</td><td>\(R_{12}\)</td><td>\(\cdots\)</td><td>\(R_{1p}\)</td><td></td></tr><tr><td></td><td>\(R_{21}\)</td><td>\(R_{22}\)</td><td>\(\cdots\)</td><td>\(R_{2p}\)</td><td></td></tr><tr><td>\(\underline{R} =\)</td><td>.</td><td></td><td></td><td></td><td>\(\;\;\;\;\;\; (33)\)</td></tr><tr><td></td><td>.</td><td></td><td></td><td></td><td></td></tr><tr><td></td><td>.</td><td></td><td></td><td></td><td></td></tr><tr><td></td><td>\(R_{n1}\)</td><td>\(R_{n2}\)</td><td>\(\cdots\)</td><td>\(R_{np}\)</td><td></td></tr></table><p>where
-  $$R_{ij} = \frac{1}{2} [n_j + 1 \sum_{k=1}^{n_j} sign(Y_{ij} - Y_{kj})] \;\;\;\;\;\; (34)$$
-  the \(sign\) function is defined in Equation (11) above, and as before \(n_j\) denotes
-  the number of \((X,Y)\) pairs without missing values for season \(j\).  Note that
-  by this definition, missing values are assigned the mid-rank of the non-missing
-  values.</p>
-<p>Hirsch and Slack (1984) suggest using the following formula, given by Dietz and
-  Killeen (1981), in the case where there are no missing values:
-  $$\hat{\sigma}_{gh} = \frac{1}{3} [K_{gh} + 4 \sum_{i=1}^n R_{ig}R_{ih} - n(n+1)^2] \;\;\;\;\;\; (35)$$
-  where
-  $$K_{gh} = \sum_{i=1}^{n-1} \sum_{j=i+1}^n sign[(Y_{jg} - Y_{ig})(Y_{jh} - Y_{ih})] \;\;\;\;\;\; (36)$$
-  Note that the quantity defined in Equation (36) is Kendall's tau for season \(g\)
-  vs. season \(h\).</p>
-<p>For the case of missing values, Hirsch and Slack (1984) derive the following
-  modification of Equation (35):
-  $$\hat{\sigma}_{gh} = \frac{1}{3} [K_{gh} + 4 \sum_{i=1}^n R_{ig}R_{ih} - n(n_g + 1)(n_h + 1)] \;\;\;\;\;\; (37)$$
-  Technically, the estimates in Equations (35) and (37) are not correct estimators of
-  covariance, and Equations (17) and (18) are not correct estimators of variance,
-  because the model Dietz and Killeen (1981) use assumes that observations within the
-  rows of \(Y\) (Equation (4) above) may be correlated, but observations between
-  rows are independent.  Serial dependence induces correlation between all of the
-  \(Y\)'s.  In most cases, however, the serial dependence shows an exponential decay
-  in correlation across time and so these estimates work fairly well (see more
-  discussion in the BACKGROUND section below).
-  <br></p>
-<p><em>Estimates and Confidence Intervals</em> <br>
-  The seasonal and over-all estimates of \(\tau\), slope, and intercept are computed
-  using the same methods as in the case of serial independence.  Also, the method for
-  computing the confidence interval for the slope is the same as in the case of serial
-  independence.  Note that the serial dependence is accounted for in the term
-  \(Var(S')\) in Equation (28).
-  <br></p>
-<p><em>The Van Belle-Hughes Heterogeneity Test for Trend Modified for Serial Dependence</em> <br>
-  Like its counterpart in the case of serial independence, the seasonal Kendall test
-  modified for serial dependence described above is appropriate for testing the null
-  hypothesis (6) against the alternative hypothesis of a trend in at least one season.
-  All of the trends in each season should be in the same direction.</p>
-<p>The modified seasonal Kendall test is not appropriate for testing for trend when
-  there are trends in a positive direction in one or more seasons and also negative
-  trends in one or more seasons.  This section describes a modification of the
-  van Belle-Hughes heterogeneity test for trend in the presence of serial dependence.</p>
-<p>Let \(\underline{S}\) denote the \(p \times 1\) vector of Kendall \(S\)-statistics for
-  each season:</p><table class="table table"><tr><td></td><td>\(S_1\)</td><td></td></tr><tr><td></td><td>\(S_2\)</td><td></td></tr><tr><td>\(\underline{S} =\)</td><td>.</td><td>\(\;\;\;\;\;\; (38)\)</td></tr><tr><td></td><td>.</td><td></td></tr><tr><td></td><td>.</td><td></td></tr><tr><td></td><td>\(S_p\)</td><td></td></tr></table><p>The distribution of \(\underline{S}\) is approximately multivariate normal with</p><table class="table table"><tr><td></td><td>\(\mu_1\)</td><td></td></tr><tr><td></td><td>\(\mu_2\)</td><td></td></tr><tr><td>\(E(\underline{S}) = \underline{\mu} =\)</td><td>.</td><td>\(\;\;\;\;\;\; (39)\)</td></tr><tr><td></td><td>.</td><td></td></tr><tr><td></td><td>.</td><td></td></tr></table><p></p><table class="table table"><tr><td></td><td>\(\sigma_1^2\)</td><td>\(\sigma_{12}\)</td><td>\(\cdots\)</td><td>\(\sigma_{1p}\)</td><td></td></tr><tr><td></td><td>\(\sigma_{21}\)</td><td>\(\sigma_2^2\)</td><td>\(\cdots\)</td><td>\(\sigma_{2p}\)</td><td></td></tr><tr><td>\(Var(\underline{S}) = \Sigma =\)</td><td>.</td><td></td><td></td><td></td><td>\(\;\;\;\;\;\; (40)\)</td></tr><tr><td></td><td>.</td><td></td><td></td><td></td><td></td></tr><tr><td></td><td>.</td><td></td><td></td><td></td><td></td></tr><tr><td></td><td>\(\sigma_{n1}\)</td><td>\(\sigma_{n2}\)</td><td>\(\cdots\)</td><td>\(\sigma_n^2\)</td><td></td></tr></table><p>where
-  $$\mu_j = \frac{n_j(n_j - 1)}{2} \tau_j, \;\; j = 1, 2, \ldots, p \;\;\;\;\;\; (41)$$
-  Define the \(p \times p\) matrix \(\underline{m}\) as</p><table class="table table"><tr><td></td><td>\(\frac{2}{n_1(n_1 - 1)}\)</td><td>\(0\)</td><td>\(\cdots\)</td><td>\(0\)</td><td></td></tr><tr><td></td><td>\(0\)</td><td>\(\frac{2}{n_2(n_2 - 1)}\)</td><td>\(\cdots\)</td><td>\(0\)</td><td></td></tr><tr><td>\(\underline{m} =\)</td><td>.</td><td></td><td></td><td></td><td>\(\;\;\;\;\;\; (42)\)</td></tr><tr><td></td><td>.</td><td></td><td></td><td></td><td></td></tr><tr><td></td><td>.</td><td></td><td></td><td></td><td></td></tr></table><p>Then the vector of the seasonal estimates of \(\tau\) can be written as:</p><table class="table table"><tr><td></td><td>\(\hat{\tau}_1\)</td><td></td><td>\(2S_1/[n_1(n_1-1)]\)</td><td></td></tr><tr><td></td><td>\(\hat{\tau}_2\)</td><td></td><td>\(2S_2/[n_2(n_2-1)]\)</td><td></td></tr><tr><td>\(\underline{\hat{\tau}} =\)</td><td>.</td><td>\(=\)</td><td>.</td><td>\(= \underline{m} \; \underline{S} \;\;\;\;\; (43)\)</td></tr><tr><td></td><td>.</td><td></td><td>.</td><td></td></tr><tr><td></td><td>.</td><td></td><td>.</td><td></td></tr><tr><td></td><td>\(\hat{\tau}_p\)</td><td></td><td>\(2S_p/[n_p(n_p-1)]\)</td><td></td></tr></table><p>so the distribution of the vector in Equation (43) is approximately multivariate
-  normal with</p><table class="table table"><tr><td></td><td></td><td></td><td></td><td>\(\tau_1\)</td><td></td></tr><tr><td></td><td></td><td></td><td></td><td>\(\tau_2\)</td><td></td></tr><tr><td>\(E(\underline{\hat{\tau}}) =\)</td><td>\(E(\underline{m} \underline{S}) =\)</td><td>\(\underline{m} \underline{\mu} =\)</td><td>\(\underline{\tau} =\)</td><td>.</td><td>\(\;\;\;\;\;\; (44)\)</td></tr><tr><td></td><td></td><td></td><td></td><td>.</td><td></td></tr><tr><td></td><td></td><td></td><td></td><td>.</td><td></td></tr></table><p>$$Var(\underline{\hat{\tau}}) = Var(\underline{m} \; \underline{S}) = \underline{m} \Sigma \underline{m}^T = \Sigma_{\hat{\tau}} \;\;\;\;\;\; (45)$$
-  where \(^T\) denotes the transpose operator.
-  Let \(\underline{C}\) denote the \((p-1) \times p\) contrast matrix
-  $$\underline{C} = [\; \underline{1} \; | \; -I_p] \;\;\;\;\;\; (46)$$
-  where \(I_p\) denotes the \(p \times p\) identity matrix.  That is,</p><table class="table table"><tr><td></td><td>\(1\)</td><td>\(-1\)</td><td>\(0\)</td><td>\(\cdots\)</td><td>\(0\)</td></tr><tr><td></td><td>\(1\)</td><td>\(0\)</td><td>\(-1\)</td><td>\(\cdots\)</td><td>\(0\)</td></tr><tr><td>\(\underline{C} =\)</td><td>.</td><td></td><td></td><td></td><td>.</td></tr><tr><td></td><td>.</td><td></td><td></td><td></td><td>.</td></tr><tr><td></td><td>.</td><td></td><td></td><td></td><td>.</td></tr><tr><td></td><td>\(1\)</td><td>\(0\)</td><td>\(0\)</td><td>\(\cdots\)</td><td>\(-1\)</td></tr></table><p>Then the null hypothesis (32) is equivalent to the null hypothesis:
-  $$H_0: \underline{C} \underline{\tau} = 0 \;\;\;\;\;\; (47)$$
-  Based on theory for samples from a multivariate normal distribution
-  (Johnson and Wichern, 2007), under the null hypothesis (47) the quantity
-  $$\chi_{het}^2 = (\underline{C} \; \underline{\hat{\tau}})^T (\underline{C} \hat{\Sigma}_{\hat{\tau}} \underline{C}^T)^{-1} (\underline{C} \; \underline{\hat{\tau}}) \;\;\;\;\;\; (48)$$
-  has approximately a chi-square distribution with \(p-1\) degrees of freedom for
-  “large” values of seasonal sample sizes, where
-  $$\hat{\Sigma}_{\hat{\tau}} = \underline{m} \hat{\Sigma} \underline{m}^T \;\;\;\;\;\; (49)$$
-  The estimate of \(\Sigma\) in Equation (49) can be computed using the same formulas
-  that are used for the modified seasonal Kendall test (i.e., Equation (35) or (37)
-  for the off-diagonal elements and Equation (17) or (18) for the diagonal elements).
-  As previously noted, the formulas for the variances are actually only valid if
-  \(t = 0\) and there is no correlation between the rows of \(Y\).  The same is
-  true of the formulas for the covariances.  More work is needed to determine the
-  goodness of the chi-square approximation for the test statistic in (48).  The
-  pseudo-heterogeneity test statistic of Equation (48), however, should provide some
-  guidance as to whether the null hypothesis (32) (or equivalently (47)) appears to be
-  true.</p>
-    </div>
     <div id="value">
     <h2>Value</h2>
     <p>A list of class <code>"htestEnvStats"</code> containing the results of the hypothesis
@@ -599,106 +388,73 @@
 <span class="r-in"><span></span></span>
 <span class="r-in"><span>  <span class="fu">kendallSeasonalTrendTest</span><span class="op">(</span><span class="va">Unadj.Conc</span> <span class="op">~</span> <span class="va">Month</span> <span class="op">+</span> <span class="va">Year</span>,</span></span>
 <span class="r-in"><span>    data <span class="op">=</span> <span class="va">EPA.09.Ex.14.8.df</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $statistic</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Chi-Square (Het)        z (Trend) </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>        0.1071882        5.1849514 </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $parameters</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> df </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 11 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Results of Hypothesis Test</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> --------------------------</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $p.value</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Chi-Square (Het)        z (Trend) </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>     1.000000e+00     2.160712e-07 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Null Hypothesis:                 All 12 values of tau = 0</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $estimate</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>          tau        slope    intercept </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>    0.9722222    0.0600000 -131.7350000 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Alternative Hypothesis:          The seasonal taus are not all equal</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                                  (Chi-Square Heterogeneity Test)</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                                  At least one seasonal tau != 0</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                                  and all non-zero tau's have the</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                                  same sign (z Trend Test)</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $null.value</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> tau tau tau tau tau tau tau tau tau tau tau tau </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   0   0   0   0   0   0   0   0   0   0   0   0 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Test Name:                       Seasonal Kendall Test for Trend</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                                  (with continuity correction)</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $alternative</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "The seasonal taus are not all equal\n                                 (Chi-Square Heterogeneity Test)\n                                 At least one seasonal tau != 0\n                                 and all non-zero tau's have the\n                                 same sign (z Trend Test)"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Estimated Parameter(s):          tau       =    0.9722222</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                                  slope     =    0.0600000</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                                  intercept = -131.7350000</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $method</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "Seasonal Kendall Test for Trend\n                                 (with continuity correction)"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Estimation Method:               tau:        Weighted Average of</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                                              Seasonal Estimates</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                                  slope:      Hirsch et al.'s</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                                              Modification of</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                                              Thiel/Sen Estimator</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                                  intercept:  Median of</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                                              Seasonal Estimates</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $estimation.method</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "tau:        Weighted Average of\n                                             Seasonal Estimates\n                                 slope:      Hirsch et al.'s\n                                             Modification of\n                                             Thiel/Sen Estimator\n                                 intercept:  Median of\n                                             Seasonal Estimates"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Data:                            y      = Unadj.Conc</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                                  season = Month     </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                                  year   = Year      </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $sample.size</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   January  February     March     April       May      June      July    August </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>         3         3         3         3         3         3         3         3 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> September   October  November  December     Total </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>         3         3         3         3        36 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Data Source:                     EPA.09.Ex.14.8.df</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $data.name</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>            y       season         year </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> "Unadj.Conc"      "Month"       "Year" </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Sample Sizes:                    January   =  3</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                                  February  =  3</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                                  March     =  3</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                                  April     =  3</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                                  May       =  3</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                                  June      =  3</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                                  July      =  3</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                                  August    =  3</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                                  September =  3</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                                  October   =  3</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                                  November  =  3</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                                  December  =  3</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                                  Total     = 36</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $bad.obs</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] 0</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Test Statistics:                 Chi-Square (Het) = 0.1071882</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                                  z (Trend)        = 5.1849514</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $seasonal.S</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   January  February     March     April       May      June      July    August </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>         3         2         3         3         3         3         3         3 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> September   October  November  December </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>         3         3         3         3 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Test Statistic Parameter:        df = 11</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $var.seasonal.S</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   January  February     March     April       May      June      July    August </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  3.666667  2.666667  3.666667  3.666667  3.666667  3.666667  3.666667  3.666667 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> September   October  November  December </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  3.666667  3.666667  3.666667  3.666667 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> P-values:                        Chi-Square (Het) = 1.000000e+00</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                                  z (Trend)        = 2.160712e-07</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $seasonal.estimates</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>                 tau slope intercept</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> January   1.0000000 0.080   -156.71</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> February  0.6666667 0.035    -67.34</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> March     1.0000000 0.075   -146.63</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> April     1.0000000 0.055   -106.99</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> May       1.0000000 0.065   -126.83</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> June      1.0000000 0.055   -106.94</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> July      1.0000000 0.060   -116.79</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> August    1.0000000 0.070   -136.64</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> September 1.0000000 0.060   -116.82</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> October   1.0000000 0.070   -136.75</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> November  1.0000000 0.070   -136.80</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> December  1.0000000 0.070   -136.72</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Confidence Interval for:         slope</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $interval</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $name</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "Confidence"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Confidence Interval Method:      Gilbert's Modification of</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                                  Theil/Sen Method</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $parameter</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "slope"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Confidence Interval Type:        two-sided</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $limits</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>        LCL        UCL </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 0.05786914 0.07213086 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Confidence Level:                95%</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $type</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "two-sided"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Confidence Interval:             LCL = 0.05786914</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                                  UCL = 0.07213086</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $method</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "Gilbert's Modification of\n                                 Theil/Sen Method"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $conf.level</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] 0.95</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $sample.size</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] 36</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> attr(,"class")</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "intervalEstimate"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $parent.of.data</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "EPA.09.Ex.14.8.df"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> attr(,"class")</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "htestEnvStats"</span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span>  <span class="co">#Results of Hypothesis Test</span></span></span>
 <span class="r-in"><span>  <span class="co">#--------------------------</span></span></span>
@@ -787,7 +543,7 @@
 </div>
 
 <div class="pkgdown">
-  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.1.1.</p>
+  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.2.1.</p>
 </div>
 
       </footer></div>

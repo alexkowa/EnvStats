@@ -17,7 +17,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">EnvStats</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">3.1.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">4.0.0</span>
       </span>
     </div>
 
@@ -25,6 +25,37 @@
       <ul class="nav navbar-nav"><li>
   <a href="../reference/index.html">Reference</a>
 </li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+    Articles
+
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu"><li>
+      <a href="../articles/censored-estimation.html">Estimation with censored data</a>
+    </li>
+    <li>
+      <a href="../articles/distribution-diagnostics.html">Distribution diagnostics, transformations, and probability plots</a>
+    </li>
+    <li>
+      <a href="../articles/distributions-and-estimation.html">Probability distributions and parameter estimation</a>
+    </li>
+    <li>
+      <a href="../articles/nonparametric-methods.html">Nonparametric estimation and two-sample tests</a>
+    </li>
+    <li>
+      <a href="../articles/outlier-testing.html">Rosner's test for multiple outliers</a>
+    </li>
+    <li>
+      <a href="../articles/power-and-study-design.html">Statistical power and study design</a>
+    </li>
+    <li>
+      <a href="../articles/prediction-intervals.html">Prediction intervals for environmental monitoring</a>
+    </li>
+    <li>
+      <a href="../articles/trend-and-correlation.html">Trend tests and serial correlation</a>
+    </li>
+  </ul></li>
       </ul><ul class="nav navbar-nav navbar-right"><li>
   <a href="https://github.com/alexkowa/EnvStats/" class="external-link">
     <span class="fab fa-github fa-lg"></span>
@@ -41,7 +72,7 @@
   <div class="col-md-9 contents">
     <div class="page-header">
     <h1>Estimate Quantiles of a Three-Parameter Lognormal Distribution</h1>
-
+    <small class="dont-index">Source: <a href="https://github.com/alexkowa/EnvStats/blob/master/R/eqlnorm3.R" class="external-link"><code>R/eqlnorm3.R</code></a></small>
     <div class="hidden name"><code>eqlnorm3.Rd</code></div>
     </div>
 
@@ -191,46 +222,36 @@
 
     <div id="ref-examples">
     <h2>Examples</h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span>  <span class="co"># Generate 20 observations from a 3-parameter lognormal distribution </span></span></span>
-<span class="r-in"><span>  <span class="co"># with parameters meanlog=1.5, sdlog=1, and threshold=10, then use </span></span></span>
-<span class="r-in"><span>  <span class="co"># Cohen and Whitten's (1980) modified moments estimators to estimate </span></span></span>
-<span class="r-in"><span>  <span class="co"># the parameters, and estimate the 90th percentile. </span></span></span>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span>  <span class="co"># Generate 20 observations from a 3-parameter lognormal distribution</span></span></span>
+<span class="r-in"><span>  <span class="co"># with parameters meanlog=1.5, sdlog=1, and threshold=10, then use</span></span></span>
+<span class="r-in"><span>  <span class="co"># Cohen and Whitten's (1980) modified moments estimators to estimate</span></span></span>
+<span class="r-in"><span>  <span class="co"># the parameters, and estimate the 90th percentile.</span></span></span>
 <span class="r-in"><span>  <span class="co"># (Note: the call to set.seed simply allows you to reproduce this example.)</span></span></span>
 <span class="r-in"><span></span></span>
-<span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/r/base/Random.html" class="external-link">set.seed</a></span><span class="op">(</span><span class="fl">250</span><span class="op">)</span> </span></span>
-<span class="r-in"><span>  <span class="va">dat</span> <span class="op">&lt;-</span> <span class="fu"><a href="Lognormal3.html">rlnorm3</a></span><span class="op">(</span><span class="fl">20</span>, meanlog <span class="op">=</span> <span class="fl">1.5</span>, sdlog <span class="op">=</span> <span class="fl">1</span>, threshold <span class="op">=</span> <span class="fl">10</span><span class="op">)</span> </span></span>
+<span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/r/base/Random.html" class="external-link">set.seed</a></span><span class="op">(</span><span class="fl">250</span><span class="op">)</span></span></span>
+<span class="r-in"><span>  <span class="va">dat</span> <span class="op">&lt;-</span> <span class="fu"><a href="Lognormal3.html">rlnorm3</a></span><span class="op">(</span><span class="fl">20</span>, meanlog <span class="op">=</span> <span class="fl">1.5</span>, sdlog <span class="op">=</span> <span class="fl">1</span>, threshold <span class="op">=</span> <span class="fl">10</span><span class="op">)</span></span></span>
 <span class="r-in"><span>  <span class="fu">eqlnorm3</span><span class="op">(</span><span class="va">dat</span>, method <span class="op">=</span> <span class="st">"mmme"</span>, p <span class="op">=</span> <span class="fl">0.9</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $distribution</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "3-Parameter Lognormal"</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $sample.size</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] 20</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Results of Distribution Parameter Estimation</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> --------------------------------------------</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $parameters</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   meanlog     sdlog threshold </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1.5206664 0.5330974 9.6620403 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Assumed Distribution:            3-Parameter Lognormal</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $n.param.est</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] 3</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Estimated Parameter(s):          meanlog   = 1.5206664</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                                  sdlog     = 0.5330974</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                                  threshold = 9.6620403</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $method</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "mmme"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Estimation Method:               mmme</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $data.name</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "dat"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Estimated Quantile(s):           90'th %ile = 18.72194</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $bad.obs</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] 0</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Quantile Estimation Method:      Quantile(s) Based on</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                                  mmme Estimators</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $quantiles</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 90'th %ile </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   18.72194 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Data:                            dat</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $quantile.method</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "Quantile(s) Based on\n                                 mmme Estimators"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Sample Size:                     20</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> attr(,"class")</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "estimate"</span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span>  <span class="co">#Results of Distribution Parameter Estimation</span></span></span>
 <span class="r-in"><span>  <span class="co">#--------------------------------------------</span></span></span>
@@ -269,7 +290,7 @@
 </div>
 
 <div class="pkgdown">
-  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.1.1.</p>
+  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.2.1.</p>
 </div>
 
       </footer></div>

@@ -18,7 +18,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">EnvStats</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">3.1.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">4.0.0</span>
       </span>
     </div>
 
@@ -26,6 +26,37 @@
       <ul class="nav navbar-nav"><li>
   <a href="../reference/index.html">Reference</a>
 </li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+    Articles
+
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu"><li>
+      <a href="../articles/censored-estimation.html">Estimation with censored data</a>
+    </li>
+    <li>
+      <a href="../articles/distribution-diagnostics.html">Distribution diagnostics, transformations, and probability plots</a>
+    </li>
+    <li>
+      <a href="../articles/distributions-and-estimation.html">Probability distributions and parameter estimation</a>
+    </li>
+    <li>
+      <a href="../articles/nonparametric-methods.html">Nonparametric estimation and two-sample tests</a>
+    </li>
+    <li>
+      <a href="../articles/outlier-testing.html">Rosner's test for multiple outliers</a>
+    </li>
+    <li>
+      <a href="../articles/power-and-study-design.html">Statistical power and study design</a>
+    </li>
+    <li>
+      <a href="../articles/prediction-intervals.html">Prediction intervals for environmental monitoring</a>
+    </li>
+    <li>
+      <a href="../articles/trend-and-correlation.html">Trend tests and serial correlation</a>
+    </li>
+  </ul></li>
       </ul><ul class="nav navbar-nav navbar-right"><li>
   <a href="https://github.com/alexkowa/EnvStats/" class="external-link">
     <span class="fab fa-github fa-lg"></span>
@@ -42,7 +73,7 @@
   <div class="col-md-9 contents">
     <div class="page-header">
     <h1>Tolerance Interval for a Normal Distribution</h1>
-
+    <small class="dont-index">Source: <a href="https://github.com/alexkowa/EnvStats/blob/master/R/tolIntNorm.R" class="external-link"><code>R/tolIntNorm.R</code></a></small>
     <div class="hidden name"><code>tolIntNorm.Rd</code></div>
     </div>
 
@@ -52,7 +83,7 @@
     </div>
 
     <div id="ref-usage">
-    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">tolIntNorm</span><span class="op">(</span><span class="va">x</span>, coverage <span class="op">=</span> <span class="fl">0.95</span>, cov.type <span class="op">=</span> <span class="st">"content"</span>, </span>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">tolIntNorm</span><span class="op">(</span><span class="va">x</span>, coverage <span class="op">=</span> <span class="fl">0.95</span>, cov.type <span class="op">=</span> <span class="st">"content"</span>,</span>
 <span>    ti.type <span class="op">=</span> <span class="st">"two-sided"</span>, conf.level <span class="op">=</span> <span class="fl">0.95</span>, method <span class="op">=</span> <span class="st">"exact"</span><span class="op">)</span></span></code></pre></div>
     </div>
 
@@ -208,70 +239,42 @@
 
     <div id="ref-examples">
     <h2>Examples</h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span>  <span class="co"># Generate 20 observations from a normal distribution with parameters </span></span></span>
-<span class="r-in"><span>  <span class="co"># mean=10 and sd=2, then create a tolerance interval. </span></span></span>
-<span class="r-in"><span>  <span class="co"># (Note: the call to set.seed simply allows you to reproduce this </span></span></span>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span>  <span class="co"># Generate 20 observations from a normal distribution with parameters</span></span></span>
+<span class="r-in"><span>  <span class="co"># mean=10 and sd=2, then create a tolerance interval.</span></span></span>
+<span class="r-in"><span>  <span class="co"># (Note: the call to set.seed simply allows you to reproduce this</span></span></span>
 <span class="r-in"><span>  <span class="co"># example.)</span></span></span>
 <span class="r-in"><span></span></span>
-<span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/r/base/Random.html" class="external-link">set.seed</a></span><span class="op">(</span><span class="fl">250</span><span class="op">)</span> </span></span>
-<span class="r-in"><span>  <span class="va">dat</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/Normal.html" class="external-link">rnorm</a></span><span class="op">(</span><span class="fl">20</span>, mean <span class="op">=</span> <span class="fl">10</span>, sd <span class="op">=</span> <span class="fl">2</span><span class="op">)</span> </span></span>
+<span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/r/base/Random.html" class="external-link">set.seed</a></span><span class="op">(</span><span class="fl">250</span><span class="op">)</span></span></span>
+<span class="r-in"><span>  <span class="va">dat</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/Normal.html" class="external-link">rnorm</a></span><span class="op">(</span><span class="fl">20</span>, mean <span class="op">=</span> <span class="fl">10</span>, sd <span class="op">=</span> <span class="fl">2</span><span class="op">)</span></span></span>
 <span class="r-in"><span>  <span class="fu">tolIntNorm</span><span class="op">(</span><span class="va">dat</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $distribution</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "Normal"</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $sample.size</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] 20</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Results of Distribution Parameter Estimation</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> --------------------------------------------</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $parameters</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>     mean       sd </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 9.861160 1.180226 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Assumed Distribution:            Normal</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $n.param.est</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] 2</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Estimated Parameter(s):          mean = 9.861160</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                                  sd   = 1.180226</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $method</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "mvue"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Estimation Method:               mvue</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $data.name</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "dat"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Data:                            dat</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $bad.obs</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] 0</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Sample Size:                     20</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $interval</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $name</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "Tolerance"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Tolerance Interval Coverage:     95%</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $coverage</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] 0.95</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Coverage Type:                   content</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $coverage.type</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "content"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Tolerance Interval Method:       Exact</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $limits</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>       LTL       UTL </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  6.603328 13.118993 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Tolerance Interval Type:         two-sided</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $type</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "two-sided"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Confidence Level:                95%</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $method</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "Exact"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Tolerance Interval:              LTL =  6.603328</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                                  UTL = 13.118993</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $conf.level</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] 0.95</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $sample.size</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] 20</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $dof</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] 19</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> attr(,"class")</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "intervalEstimate"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> attr(,"class")</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "estimate"</span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span>  <span class="co">#Results of Distribution Parameter Estimation</span></span></span>
 <span class="r-in"><span>  <span class="co">#--------------------------------------------</span></span></span>
@@ -304,21 +307,21 @@
 <span class="r-in"><span></span></span>
 <span class="r-in"><span>  <span class="co"># Clean up</span></span></span>
 <span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/r/base/rm.html" class="external-link">rm</a></span><span class="op">(</span><span class="va">dat</span><span class="op">)</span></span></span>
-<span class="r-in"><span>  </span></span>
+<span class="r-in"><span></span></span>
 <span class="r-in"><span>  <span class="co">#--------------------------------------------------------------------</span></span></span>
 <span class="r-in"><span></span></span>
-<span class="r-in"><span>  <span class="co"># Example 17-3 of USEPA (2009, p. 17-17) shows how to construct a </span></span></span>
-<span class="r-in"><span>  <span class="co"># beta-content upper tolerance limit with 95% coverage and 95% </span></span></span>
-<span class="r-in"><span>  <span class="co"># confidence  using chrysene data and assuming a lognormal distribution.  </span></span></span>
-<span class="r-in"><span>  <span class="co"># The data for this example are stored in EPA.09.Ex.17.3.chrysene.df, </span></span></span>
-<span class="r-in"><span>  <span class="co"># which contains chrysene concentration data (ppb) found in water </span></span></span>
-<span class="r-in"><span>  <span class="co"># samples obtained from two background wells (Wells 1 and 2) and </span></span></span>
-<span class="r-in"><span>  <span class="co"># three compliance wells (Wells 3, 4, and 5).  The tolerance limit </span></span></span>
+<span class="r-in"><span>  <span class="co"># Example 17-3 of USEPA (2009, p. 17-17) shows how to construct a</span></span></span>
+<span class="r-in"><span>  <span class="co"># beta-content upper tolerance limit with 95% coverage and 95%</span></span></span>
+<span class="r-in"><span>  <span class="co"># confidence  using chrysene data and assuming a lognormal distribution.</span></span></span>
+<span class="r-in"><span>  <span class="co"># The data for this example are stored in EPA.09.Ex.17.3.chrysene.df,</span></span></span>
+<span class="r-in"><span>  <span class="co"># which contains chrysene concentration data (ppb) found in water</span></span></span>
+<span class="r-in"><span>  <span class="co"># samples obtained from two background wells (Wells 1 and 2) and</span></span></span>
+<span class="r-in"><span>  <span class="co"># three compliance wells (Wells 3, 4, and 5).  The tolerance limit</span></span></span>
 <span class="r-in"><span>  <span class="co"># is based on the data from the background wells.</span></span></span>
 <span class="r-in"><span></span></span>
-<span class="r-in"><span>  <span class="co"># Here we will first take the log of the data and  </span></span></span>
-<span class="r-in"><span>  <span class="co"># then construct the tolerance interval; note however that it is </span></span></span>
-<span class="r-in"><span>  <span class="co"># easier to call the function tolIntLnorm instead using the </span></span></span>
+<span class="r-in"><span>  <span class="co"># Here we will first take the log of the data and</span></span></span>
+<span class="r-in"><span>  <span class="co"># then construct the tolerance interval; note however that it is</span></span></span>
+<span class="r-in"><span>  <span class="co"># easier to call the function tolIntLnorm instead using the</span></span></span>
 <span class="r-in"><span>  <span class="co"># original data.</span></span></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">EPA.09.Ex.17.3.chrysene.df</span><span class="op">)</span></span></span>
@@ -349,67 +352,39 @@
 <span class="r-in"><span>  <span class="co">#3    7.8   16.1   30.1   31.9   15.0</span></span></span>
 <span class="r-in"><span>  <span class="co">#4   12.8    5.7   38.1   22.2   23.4</span></span></span>
 <span class="r-in"><span></span></span>
-<span class="r-in"><span>  <span class="va">tol.int.list</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/with.html" class="external-link">with</a></span><span class="op">(</span><span class="va">EPA.09.Ex.17.3.chrysene.df</span>, </span></span>
-<span class="r-in"><span>    <span class="fu">tolIntNorm</span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/Log.html" class="external-link">log</a></span><span class="op">(</span><span class="va">Chrysene.ppb</span><span class="op">[</span><span class="va">Well.type</span> <span class="op">==</span> <span class="st">"Background"</span><span class="op">]</span><span class="op">)</span>, </span></span>
+<span class="r-in"><span>  <span class="va">tol.int.list</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/with.html" class="external-link">with</a></span><span class="op">(</span><span class="va">EPA.09.Ex.17.3.chrysene.df</span>,</span></span>
+<span class="r-in"><span>    <span class="fu">tolIntNorm</span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/Log.html" class="external-link">log</a></span><span class="op">(</span><span class="va">Chrysene.ppb</span><span class="op">[</span><span class="va">Well.type</span> <span class="op">==</span> <span class="st">"Background"</span><span class="op">]</span><span class="op">)</span>,</span></span>
 <span class="r-in"><span>    ti.type <span class="op">=</span> <span class="st">"upper"</span>, coverage <span class="op">=</span> <span class="fl">0.95</span>, conf.level <span class="op">=</span> <span class="fl">0.95</span><span class="op">)</span><span class="op">)</span></span></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span>  <span class="va">tol.int.list</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $distribution</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "Normal"</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $sample.size</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] 8</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Results of Distribution Parameter Estimation</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> --------------------------------------------</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $parameters</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>      mean        sd </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 2.5085773 0.6279479 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Assumed Distribution:            Normal</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $n.param.est</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] 2</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Estimated Parameter(s):          mean = 2.5085773</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                                  sd   = 0.6279479</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $method</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "mvue"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Estimation Method:               mvue</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $data.name</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "log(Chrysene.ppb[Well.type == \"Background\"])"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Data:                            log(Chrysene.ppb[Well.type == "Background"])</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $bad.obs</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] 0</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Sample Size:                     8</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $interval</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $name</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "Tolerance"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Tolerance Interval Coverage:     95%</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $coverage</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] 0.95</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Coverage Type:                   content</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $coverage.type</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "content"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Tolerance Interval Method:       Exact</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $limits</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>      LTL      UTL </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>     -Inf 4.510032 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Tolerance Interval Type:         upper</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $type</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "upper"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Confidence Level:                95%</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $method</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "Exact"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Tolerance Interval:              LTL =     -Inf</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                                  UTL = 4.510032</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $conf.level</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] 0.95</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $sample.size</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] 8</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $dof</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] 7</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> attr(,"class")</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "intervalEstimate"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> attr(,"class")</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "estimate"</span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span>  <span class="co">#Results of Distribution Parameter Estimation</span></span></span>
 <span class="r-in"><span>  <span class="co">#--------------------------------------------</span></span></span>
@@ -444,7 +419,7 @@
 <span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/r/base/Log.html" class="external-link">exp</a></span><span class="op">(</span><span class="va">tol.int.list</span><span class="op">$</span><span class="va">interval</span><span class="op">$</span><span class="va">limits</span><span class="op">[</span><span class="st">"UTL"</span><span class="op">]</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>     UTL </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 90.9247 </span>
-<span class="r-in"><span>  <span class="co">#    UTL </span></span></span>
+<span class="r-in"><span>  <span class="co">#    UTL</span></span></span>
 <span class="r-in"><span>  <span class="co">#90.9247</span></span></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span>  <span class="co">#----------</span></span></span>
@@ -466,7 +441,7 @@
 </div>
 
 <div class="pkgdown">
-  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.1.1.</p>
+  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.2.1.</p>
 </div>
 
       </footer></div>

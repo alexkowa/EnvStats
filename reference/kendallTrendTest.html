@@ -19,7 +19,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">EnvStats</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">3.1.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">4.0.0</span>
       </span>
     </div>
 
@@ -27,6 +27,37 @@
       <ul class="nav navbar-nav"><li>
   <a href="../reference/index.html">Reference</a>
 </li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+    Articles
+
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu"><li>
+      <a href="../articles/censored-estimation.html">Estimation with censored data</a>
+    </li>
+    <li>
+      <a href="../articles/distribution-diagnostics.html">Distribution diagnostics, transformations, and probability plots</a>
+    </li>
+    <li>
+      <a href="../articles/distributions-and-estimation.html">Probability distributions and parameter estimation</a>
+    </li>
+    <li>
+      <a href="../articles/nonparametric-methods.html">Nonparametric estimation and two-sample tests</a>
+    </li>
+    <li>
+      <a href="../articles/outlier-testing.html">Rosner's test for multiple outliers</a>
+    </li>
+    <li>
+      <a href="../articles/power-and-study-design.html">Statistical power and study design</a>
+    </li>
+    <li>
+      <a href="../articles/prediction-intervals.html">Prediction intervals for environmental monitoring</a>
+    </li>
+    <li>
+      <a href="../articles/trend-and-correlation.html">Trend tests and serial correlation</a>
+    </li>
+  </ul></li>
       </ul><ul class="nav navbar-nav navbar-right"><li>
   <a href="https://github.com/alexkowa/EnvStats/" class="external-link">
     <span class="fab fa-github fa-lg"></span>
@@ -43,7 +74,7 @@
   <div class="col-md-9 contents">
     <div class="page-header">
     <h1>Kendall's Nonparametric Test for Montonic Trend</h1>
-
+    <small class="dont-index">Source: <a href="https://github.com/alexkowa/EnvStats/blob/master/R/kendallTrendTest.R" class="external-link"><code>R/kendallTrendTest.R</code></a></small>
     <div class="hidden name"><code>kendallTrendTest.Rd</code></div>
     </div>
 
@@ -67,6 +98,13 @@
 <span>  parent.of.data <span class="op">=</span> <span class="cn">NULL</span>, subset.expression <span class="op">=</span> <span class="cn">NULL</span>, <span class="va">...</span><span class="op">)</span></span></code></pre></div>
     </div>
 
+    <div id="details">
+    <h2>Details</h2>
+    <p>Extended methods and derivations are available in
+<a href="https://alexkowa.github.io/EnvStats/articles/trend-and-correlation.html#kendalltrendtest" class="external-link">Trend tests and serial correlation: <code>kendallTrendTest</code></a>.
+Open the vignette locally with
+<code><a href="../articles/trend-and-correlation.html">vignette("trend-and-correlation", package = "EnvStats")</a></code>.</p>
+    </div>
     <div id="arguments">
     <h2>Arguments</h2>
     <p></p>
@@ -147,165 +185,6 @@
 <dd><p>additional arguments affecting the test for trend.</p></dd>
 
 </dl></div>
-    <div id="details">
-    <h2>Details</h2>
-    <p><code>kendallTrendTest</code> performs Kendall's nonparametric test for a monotonic trend,
-  which is a special case of the test for independence based on Kendall's tau statistic
-  (see <code><a href="https://rdrr.io/r/stats/cor.test.html" class="external-link">cor.test</a></code>).  The slope is estimated using the method of Theil (1950) and
-  Sen (1968).  When <code>ci.slope=TRUE</code>, the confidence interval for the slope is
-  computed using Gilbert's (1987) Modification of the Theil/Sen Method.</p>
-<p>Kendall's test for a monotonic trend is a special case of the test for independence
-  based on Kendall's tau statistic.  The first section below explains the general case
-  of testing for independence.  The second section explains the special case of
-  testing for monotonic trend.  The last section explains how a simple linear
-  regression model is a special case of a monotonic trend and how the slope may be
-  estimated.
-  <br></p>
-<p><b>The General Case of Testing for Independence</b> <br></p>
-<p><em>Definition of Kendall's Tau</em> <br>
-  Let \(X\) and \(Y\) denote two continuous random variables with some joint
-  (bivariate) distribution.  Let \((X_1, Y_1), (X_2, Y_2), \ldots, (X_n, Y_n)\)
-  denote a set of \(n\) bivariate observations from this distribution, and assume
-  these bivariate observations are mutually independent.  Kendall (1938, 1975) proposed
-  a test for the hypothesis that the \(X\) and \(Y\) random variables are
-  independent based on estimating the following quantity:
-  $$\tau = \{ 2 Pr[(X_2 - X_1)(Y_2 - Y_1) &gt; 0] \} - 1 \;\;\;\;\;\; (1)$$
-  The quantity in Equation (1) is called Kendall's tau, although this term is more
-  often applied to the estimate of \(\tau\) (see Equation (2) below).
-  If \(X\) and \(Y\) are independent, then \(\tau=0\).  Furthermore, for most
-  distributions of interest, if \(\tau=0\) then the random variables \(X\) and
-  \(Y\) are independent.  (It can be shown that there exist some distributions for
-  which \(\tau=0\) and the random variables \(X\) and \(Y\) are not independent;
-  see Hollander and Wolfe (1999, p.364)).</p>
-<p>Note that Kendall's tau is similar to a correlation coefficient in that
-  \(-1 \le \tau \le 1\).  If \(X\) and \(Y\) always vary in the same direction,
-  that is if \(X_1 &lt; X_2\) always implies \(Y_1 &lt; Y_2\), then \(\tau = 1\).
-  If \(X\) and \(Y\) always vary in the opposite direction, that is if
-  \(X_1 &lt; X_2\) always implies \(Y_1 &gt; Y_2\), then \(\tau = -1\).  If
-  \(\tau &gt; 0\), this indicates \(X\) and \(Y\) are positively associated.
-  If \(\tau &lt; 0\), this indicates \(X\) and \(Y\) are negatively associated.
-  <br></p>
-<p><em>Estimating Kendall's Tau</em> <br>
-  The quantity in Equation (1) can be estimated by:
-  $$\hat{\tau} = \frac{2S}{n(n-1)} \;\;\;\;\;\; (2)$$
-  where
-  $$S = \sum_{i=1}^{n-1} \sum_{j=i+1}^{n} sign[(X_j - X_i)(Y_j - Y_i)] \;\;\;\;\;\; (3)$$
-  and \(sign()\) denotes the <code><a href="https://rdrr.io/r/base/sign.html" class="external-link">sign</a></code> function:</p><table class="table table"><tr><td></td><td>\(-1\)</td><td>\(x &lt; 0\)</td></tr><tr><td>\(sign(x) =\)</td><td>\(0\)</td><td>\(x = 0 \;\;\;\;\;\; (4)\)</td></tr><tr><td></td><td>\(1\)</td><td>\(x &gt; 0\)</td></tr></table><p>(Hollander and Wolfe, 1999, Chapter 8; Conover, 1980, pp.256–260;
-  Gilbert, 1987, Chapter 16; Helsel and Hirsch, 1992, pp.212–216;
-  Gibbons et al., 2009, Chapter 11). The quantity defined in Equation (2) is called
-  Kendall's rank correlation coefficient or more often Kendall's tau.</p>
-<p>Note that the quantity \(S\) defined in Equation (3) is equal to the number of
-  concordant pairs minus the number of discordant pairs.  Hollander and Wolfe
-  (1999, p.364) use the notation \(K\) instead of \(S\), and Conover (1980, p.257)
-  uses the notation \(T\).
-  <br></p>
-<p><em>Testing the Null Hypothesis of Independence</em> <br>
-  The null hypothesis \(H_0: \tau = 0\), can be tested using the statistic \(S\)
-  defined in Equation (3) above.  Tables of the distribution of \(S\) for small
-  samples are given in Hollander and Wolfe (1999), Conover (1980, pp.458–459),
-  Gilbert (1987, p.272), Helsel and Hirsch (1992, p.469), and Gibbons (2009, p.210).
-  The function <code>kendallTrendTest</code> uses the large sample approximation to the
-  distribution of \(S\) under the null hypothesis, which is given by:
-  $$z = \frac{S - E(S)}{\sqrt{Var(S)}} \;\;\;\;\;\; (5)$$
-  where
-  $$E(S) = 0 \;\;\;\;\;\; (6)$$
-  $$Var(S) = \frac{n(n-1)(2n+5)}{18} \;\;\;\;\;\; (7)$$
-  Under the null hypothesis, the quantity \(z\) defined in Equation (5) is
-  approximately distributed as a standard normal random variable.</p>
-<p>Both Kendall (1975) and Mann (1945) show that the normal approximation is excellent
-  even for samples as small as \(n=10\), provided that the following continuity
-  correction is used:
-  $$z = \frac{S - sign(S)}{\sqrt{Var(S)}} \;\;\;\;\;\; (8)$$
-  The function <code>kendallTrendTest</code> performs the usual one-sample z-test using
-  the statistic computed in Equation (8) or Equation (5).  The argument
-  <code>correct</code> determines which equation is used to compute the z-statistic.
-  By default, <code>correct=TRUE</code> so Equation (8) is used.</p>
-<p>In the case of tied observations in either the observed \(X\)'s and/or observed
-  \(Y\)'s, the formula for the variance of \(S\) given in Equation (7) must be
-  modified as follows:</p><table class="table table"><tr><td>\(Var(S) =\)</td><td>\(\frac{n(n-1)(2n+5)}{18} -\)</td></tr><tr><td></td><td></td></tr><tr><td></td><td>\(\frac{\sum_{i=1}^{g} t_i(t_i-1)(2t_i+5)}{18} - \)</td></tr><tr><td></td><td></td></tr><tr><td></td><td>\(\frac{\sum_{j=1}^{h} u_j(u_j-1)(2u_j+5)}{18} + \)</td></tr><tr><td></td><td></td></tr><tr><td></td><td>\(\frac{[\sum_{i=1}^{g} t_i(t_i-1)(t_i-2)][\sum_{j=1}^{h} u_j(u_j-1)(u_j-2)]}{9n(n-1)(n-2)} +\)</td></tr><tr><td></td><td></td></tr><tr><td></td><td>\(\frac{[\sum_{i=1}^{g} t_i(t_i-1)][\sum_{j=1}^{h} u_j(u_j-1)]}{2n(n-1)} \;\;\;\;\;\; (9)\)</td></tr></table><p>where \(g\) is the number of tied groups in the \(X\) observations,
-  \(t_i\) is the size of the \(i\)'th tied group in the \(X\) observations,
-  \(h\) is the number of tied groups in the \(Y\) observations, and
-  \(u_j\) is the size of the \(j\)'th tied group in the \(Y\) observations.
-  In the case of no ties in either the \(X\) or \(Y\) observations, Equation (9)
-  reduces to Equation (7).
-  <br></p>
-<p><b>The Special Case of Testing for Monotonic Trend</b> <br>
-  Often in environmental sampling, observations are taken periodically over time
-  (Hirsch et al., 1982; van Belle and Hughes, 1984; Hirsch and Slack, 1984).  In
-  this case, the random variables \(Y_1, Y_2, \ldots, Y_n\) can be thought of as
-  representing the observations, and the variables \(X_1, X_2, \ldots, X_n\)
-  are no longer random but represent the time at which the \(i\)'th observation
-  was taken.  If the observations are equally spaced over time, then it is useful to
-  make the simplification \(X_i = i\) for \(i = 1, 2, \ldots, n\).  This is in
-  fact the default value of the argument <code>x</code> for the function
-  <code>kendallTrendTest</code>.</p>
-<p>In the case where the \(X\)'s represent time and are all distinct, the test for
-  independence between \(X\) and \(Y\) is equivalent to testing for a monotonic
-  trend in \(Y\), and the test statistic \(S\) simplifies to:
-  $$S = \sum_{i=1}^{n-1} \sum_{j=i+1}^{n} sign(Y_j - Y_i) \;\;\;\;\;\; (10)$$
-  Also, the formula for the variance of \(S\) in the presence of ties (under the
-  null hypothesis \(H_0: \tau = 0\)) simplifies to:
-  $$Var(S) = \frac{n(n-1)(2n+5)}{18} - \frac{\sum_{j=1}^{h} u_j(u_j-1)(2u_j+5)}{18} \;\;\;\;\;\; (11)$$
-  A form of the test statistic \(S\) in Equation (10) was introduced by Mann (1945).
-  <br></p>
-<p><b>The Special Case of a Simple Linear Model:  Estimating the Slope</b> <br>
-  Consider the simple linear regression model
-  $$Y_i = \beta_0 + \beta_1 X_i + \epsilon_i \;\;\;\;\;\; (12)$$
-  where \(\beta_0\) denotes the intercept, \(\beta_1\) denotes the slope,
-  \(i = 1, 2, \ldots, n\), and the \(\epsilon\)'s are assumed to be
-  independent and identically distributed random variables from the same distribution.
-  This is a special case of dependence between the \(X\)'s and the \(Y\)'s, and
-  the null hypothesis of a zero slope can be tested using Kendall's test statistic
-  \(S\) (Equation (3) or (10) above) and the associated z-statistic
-  (Equation (5) or (8) above) (Hollander and Wolfe, 1999, pp.415–420).</p>
-<p>Theil (1950) proposed the following nonparametric estimator of the slope:
-  $$\hat{\beta}_1 = Median(\frac{Y_j - Y_i}{X_j - X_i}); \;\; i &lt; j \;\;\;\;\;\; (13)$$
-  Note that the computation of the estimated slope involves computing
-  $$N = {n \choose 2} = \frac{n(n-1)}{2} \;\;\;\;\;\; (14)$$
-  “two-point” estimated slopes (assuming no tied \(X\) values), and taking
-  the median of these N values.</p>
-<p>Sen (1968) generalized this estimator to the case where there are possibly tied
-  observations in the \(X\)'s.  In this case, Sen simply ignores the two-point
-  estimated slopes where the \(X\)'s are tied and computes the median based on the
-  remaining \(N'\) two-point estimated slopes.  That is, Sen's estimator is given by:
-  $$\hat{\beta}_1 = Median(\frac{Y_j - Y_i}{X_j - X_i}); \;\; i &lt; j, X_i \ne X_j  \;\;\;\;\;\; (15)$$
-  (Hollander and Wolfe, 1999, pp.421–422).</p>
-<p>Conover (1980, p. 267) suggests the following estimator for the intercept:
-  $$\hat{\beta}_0 = Y_{0.5} - \hat{\beta}_1 X_{0.5} \;\;\;\;\;\; (16)$$
-  where \(X_{0.5}\) and \(Y_{0.5}\) denote the sample medians of the \(X\)'s
-  and \(Y\)'s, respectively.  With these estimators of slope and intercept, the
-  estimated regression line passes through the point \((X_{0.5}, Y_{0.5})\).</p>
-<p><b>NOTE:</b> The function <code>kendallTrendTest</code> always returns estimates of
-  slope and intercept assuming a linear model (Equation (12)), while the p-value
-  is based on Kendall's tau, which is testing for the broader alternative of any
-  kind of dependence between the \(X\)'s and \(Y\)'s.
-  <br></p>
-<p><em>Confidence Interval for the Slope</em> <br>
-  Theil (1950) and Sen (1968) proposed methods to compute a confidence interval for
-  the true slope, assuming the linear model of Equation (12) (see
-  Hollander and Wolfe, 1999, pp.421-422).  Gilbert (1987, p.218) illustrates a
-  simpler method than the one given by Sen (1968) that is based on a normal
-  approximation.  Gilbert's (1987) method is an extension of the one given in
-  Hollander and Wolfe (1999, p.424) that allows for ties and/or multiple
-  observations per time period.  This method is valid for a sample size as small as
-  \(n=10\) unless there are several tied observations.</p>
-<p>Let \(N'\) denote the number of defined two-point estimated slopes that are used
-  in Equation (15) above (if there are no tied \(X\) values then \(N' = N\)), and
-  let \(\hat{\beta}_{1_{(1)}}, \hat{\beta}_{1_{(2)}}, \ldots, \hat{\beta}_{1_{(N')}}\)
-  denote the \(N'\) ordered slopes.  For Gilbert's (1987) method, a
-  \(100(1-\alpha)\%\) two-sided confidence interval for the true slope is given by:
-  $$[\hat{\beta}_{1_{(M1)}}, \hat{\beta}_{1_{(M2+1)}}] \;\;\;\;\;\; (17)$$
-  where
-  $$M1 = \frac{N' - C_{\alpha}}{2} \;\;\;\;\;\; (18)$$
-  $$M2 = \frac{N' + C_{\alpha}}{2} \;\;\;\;\;\; (19)$$
-  $$C_\alpha = z_{1 - \alpha/2} \sqrt{Var(S)} \;\;\;\;\;\; (20)$$
-  \(Var(S)\) is defined in Equations (7), (9), or (11), and
-  \(z_p\) denotes the \(p\)'th quantile of the standard normal distribution.
-  One-sided confidence intervals may computed in a similar fashion.</p>
-<p>Usually the quantities \(M1\) and \(M2\) will not be integers.
-  Gilbert (1987, p.219) suggests interpolating between adjacent values in this case,
-  which is what the function <code>kendallTrendTest</code> does.</p>
-    </div>
     <div id="value">
     <h2>Value</h2>
     <p>A list of class <code>"htestEnvStats"</code> containing the results of the hypothesis
@@ -438,126 +317,47 @@
 <span class="r-in"><span>  <span class="co">#-----------------------------------</span></span></span>
 <span class="r-in"><span>  <span class="fu">kendallTrendTest</span><span class="op">(</span><span class="va">Sulfate.ppm</span> <span class="op">~</span> <span class="va">Sampling.Date</span>,</span></span>
 <span class="r-in"><span>    data <span class="op">=</span> <span class="va">EPA.09.Ex.17.6.sulfate.df</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $statistic</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>        z </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 5.107322 </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $parameters</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> NULL</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Results of Hypothesis Test</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> --------------------------</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $p.value</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>            z </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 3.267574e-07 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Null Hypothesis:                 tau = 0</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $estimate</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>           tau         slope     intercept </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>     0.7667984    26.6666667 -1909.3333333 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Alternative Hypothesis:          True tau is not equal to 0</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $null.value</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> tau </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   0 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Test Name:                       Kendall's Test for Trend</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                                  (with continuity correction)</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $alternative</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "two.sided"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Estimated Parameter(s):          tau       =     0.7667984</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                                  slope     =    26.6666667</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                                  intercept = -1909.3333333</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $method</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "Kendall's Test for Trend\n                                 (with continuity correction)"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Estimation Method:               slope:      Theil/Sen Estimator</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                                  intercept:  Conover's Estimator</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $estimation.method</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "slope:      Theil/Sen Estimator\n                                 intercept:  Conover's Estimator"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Data:                            y = Sulfate.ppm  </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                                  x = Sampling.Date</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $sample.size</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] 23</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Data Source:                     EPA.09.Ex.17.6.sulfate.df</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $data.name</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>               y               x </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   "Sulfate.ppm" "Sampling.Date" </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Sample Size:                     23</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $bad.obs</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] 0</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Test Statistic:                  z = 5.107322</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $S</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] 194</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> P-value:                         3.267574e-07</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $var.S</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] 1428</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Confidence Interval for:         slope</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $slopes</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   [1] -650.000000 -480.000000 -366.666667 -260.000000 -150.000000 -116.666667</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   [7] -100.000000  -90.000000  -80.000000  -66.666667  -60.000000  -53.333333</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  [13]  -50.000000  -42.857143  -41.666667  -40.000000  -30.000000  -25.000000</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  [19]  -20.000000  -16.666667  -12.500000  -10.000000  -10.000000   -7.692308</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  [25]   -6.666667   -5.555556   -3.703704    0.000000    0.000000    0.000000</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  [31]    0.000000    0.000000    3.030303    3.333333    5.000000    6.000000</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  [37]    6.382979    6.666667    7.692308    8.000000    8.695652    8.695652</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  [43]    9.090909   10.000000   10.000000   10.000000   10.000000   10.000000</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  [49]   10.000000   10.416667   10.526316   10.769231   10.909091   11.764706</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  [55]   11.904762   12.000000   12.500000   13.157895   13.333333   13.333333</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  [61]   13.333333   13.953488   13.953488   14.035088   14.285714   14.285714</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  [67]   14.925373   15.000000   15.000000   15.000000   15.277778   15.384615</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  [73]   16.000000   16.000000   16.363636   16.666667   16.935484   16.981132</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  [79]   17.142857   17.142857   17.241379   17.391304   17.500000   18.604651</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  [85]   18.750000   18.888889   20.000000   20.000000   20.000000   20.000000</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  [91]   20.000000   20.000000   20.000000   20.000000   20.000000   20.000000</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  [97]   20.754717   20.833333   21.052632   21.538462   21.666667   21.666667</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [103]   21.666667   21.818182   22.000000   22.222222   22.222222   22.222222</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [109]   22.500000   22.641509   22.857143   23.076923   23.333333   23.636364</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [115]   24.324324   24.444444   24.545455   25.000000   25.000000   25.000000</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [121]   25.000000   25.000000   25.000000   26.315789   26.666667   26.666667</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [127]   26.666667   26.984127   27.272727   27.419355   27.500000   27.500000</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [133]   27.586207   28.000000   28.000000   28.070175   28.571429   29.411765</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [139]   29.411765   29.787234   30.000000   30.000000   30.000000   30.000000</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [145]   31.428571   31.730769   31.746032   32.000000   32.142857   32.857143</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [151]   33.333333   33.333333   33.333333   33.333333   33.333333   33.333333</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [157]   33.333333   34.285714   34.375000   34.782609   34.883721   35.000000</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [163]   35.384615   35.555556   35.849057   36.000000   36.206897   36.363636</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [169]   37.142857   37.500000   38.181818   38.461538   39.166667   39.705882</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [175]   40.000000   40.000000   40.000000   41.176471   41.860465   42.000000</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [181]   42.000000   42.424242   43.750000   44.000000   45.000000   45.454545</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [187]   46.153846   46.666667   47.826087   48.000000   50.000000   50.000000</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [193]   50.000000   50.000000   50.000000   50.000000   50.000000   51.515152</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [199]   51.666667   52.083333   52.238806   53.333333   53.333333   53.750000</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [205]   54.285714   54.838710   55.000000   56.000000   56.666667   57.142857</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [211]   58.181818   58.461538   60.000000   60.000000   60.000000   60.000000</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [217]   60.526316   61.538462   62.500000   63.333333   64.285714   64.285714</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [223]   68.085106   71.428571   73.333333   75.000000   76.470588   78.378378</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [229]   80.000000   80.000000   87.500000  100.000000  100.000000  100.000000</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [235]  100.000000  100.000000  103.703704  104.545455  110.000000  114.285714</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [241]  125.000000  133.333333  140.000000  150.000000  150.000000  200.000000</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [247]  200.000000  200.000000  216.666667  250.000000  314.285714  360.000000</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [253] 1050.000000</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Confidence Interval Method:      Gilbert's Modification</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                                  of Theil/Sen Method</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $interval</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $name</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "Confidence"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Confidence Interval Type:        two-sided</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $parameter</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "slope"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Confidence Level:                95%</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $limits</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>      LCL      UCL </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 20.00000 35.71182 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Confidence Interval:             LCL = 20.00000</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                                  UCL = 35.71182</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $type</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "two-sided"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $method</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "Gilbert's Modification\n                                 of Theil/Sen Method"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $conf.level</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] 0.95</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $sample.size</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] 253</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> attr(,"class")</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "intervalEstimate"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $parent.of.data</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "EPA.09.Ex.17.6.sulfate.df"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> attr(,"class")</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "htestEnvStats"</span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span>  <span class="co">#Results of Hypothesis Test</span></span></span>
 <span class="r-in"><span>  <span class="co">#--------------------------</span></span></span>
@@ -618,7 +418,7 @@
 </div>
 
 <div class="pkgdown">
-  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.1.1.</p>
+  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.2.1.</p>
 </div>
 
       </footer></div>

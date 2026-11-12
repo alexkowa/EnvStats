@@ -20,7 +20,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">EnvStats</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">3.1.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">4.0.0</span>
       </span>
     </div>
 
@@ -28,6 +28,37 @@
       <ul class="nav navbar-nav"><li>
   <a href="../reference/index.html">Reference</a>
 </li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+    Articles
+
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu"><li>
+      <a href="../articles/censored-estimation.html">Estimation with censored data</a>
+    </li>
+    <li>
+      <a href="../articles/distribution-diagnostics.html">Distribution diagnostics, transformations, and probability plots</a>
+    </li>
+    <li>
+      <a href="../articles/distributions-and-estimation.html">Probability distributions and parameter estimation</a>
+    </li>
+    <li>
+      <a href="../articles/nonparametric-methods.html">Nonparametric estimation and two-sample tests</a>
+    </li>
+    <li>
+      <a href="../articles/outlier-testing.html">Rosner's test for multiple outliers</a>
+    </li>
+    <li>
+      <a href="../articles/power-and-study-design.html">Statistical power and study design</a>
+    </li>
+    <li>
+      <a href="../articles/prediction-intervals.html">Prediction intervals for environmental monitoring</a>
+    </li>
+    <li>
+      <a href="../articles/trend-and-correlation.html">Trend tests and serial correlation</a>
+    </li>
+  </ul></li>
       </ul><ul class="nav navbar-nav navbar-right"><li>
   <a href="https://github.com/alexkowa/EnvStats/" class="external-link">
     <span class="fab fa-github fa-lg"></span>
@@ -44,7 +75,7 @@
   <div class="col-md-9 contents">
     <div class="page-header">
     <h1>Plotting Positions for Type I Censored Data</h1>
-
+    <small class="dont-index">Source: <a href="https://github.com/alexkowa/EnvStats/blob/master/R/ppointsCensored.R" class="external-link"><code>R/ppointsCensored.R</code></a></small>
     <div class="hidden name"><code>ppointsCensored.Rd</code></div>
     </div>
 
@@ -60,6 +91,13 @@
 <span>    prob.method <span class="op">=</span> <span class="st">"michael-schucany"</span>, plot.pos.con <span class="op">=</span> <span class="fl">0.375</span><span class="op">)</span></span></code></pre></div>
     </div>
 
+    <div id="details">
+    <h2>Details</h2>
+    <p>Extended methods and derivations are available in
+<a href="https://alexkowa.github.io/EnvStats/articles/distribution-diagnostics.html#ppointscensored" class="external-link">Distribution diagnostics, transformations, and probability plots: <code>ppointsCensored</code></a>.
+Open the vignette locally with
+<code><a href="../articles/distribution-diagnostics.html">vignette("distribution-diagnostics", package = "EnvStats")</a></code>.</p>
+    </div>
     <div id="arguments">
     <h2>Arguments</h2>
     <p></p>
@@ -93,241 +131,6 @@
   <code>"hirsch-stedinger"</code>.</p></dd>
 
 </dl></div>
-    <div id="details">
-    <h2>Details</h2>
-    <p>Methods for computing plotting positions for complete data sets
-  (no censored observations) are discussed in D'Agostino, R.B. (1986a) and
-  Cleveland (1993).  For data sets with censored observations, these methods
-  must be modified.  The function <code>ppointsCensored</code> allows you to compute
-  plotting positions based on any of the following methods:</p><ul><li><p>Product-limit method of Kaplan and Meier (1958) (<code>prob.method="kaplan-meier"</code>).</p></li>
-<li><p>Hazard plotting method of Nelson (1972) (<code>prob.method="nelson"</code>).</p></li>
-<li><p>Generalization of the product-limit method due to Michael and Schucany (1986) <br>
-  (<code>prob.method="michael-schucany"</code>) (the default).</p></li>
-<li><p>Generalization of the product-limit method due to Hirsch and Stedinger (1987) <br>
-  (<code>prob.method="hirsch-stedinger"</code>).</p></li>
-</ul><p>Let \(\underline{x}\) denote a random sample of \(N\) observations from
-  some distribution.  Assume \(n\) (\(0 &lt; n &lt; N\)) of these
-  observations are known and \(c\) (\(c=N-n\)) of these observations are
-  all censored below (left-censored) or all censored above (right-censored) at
-  \(k\) fixed censoring levels
-  $$T_1, T_2, \ldots, T_K; \; K \ge 1 \;\;\;\;\;\; (1)$$
-  For the case when \(K \ge 2\), the data are said to be Type I
-  <b><em>multiply censored</em></b>.  For the case when \(K=1\),
-  set \(T = T_1\).  If the data are left-censored
-  and all \(n\) known observations are greater
-  than or equal to \(T\), or if the data are right-censored and all \(n\)
-  known observations are less than or equal to \(T\), then the data are
-  said to be Type I <b><em>singly censored</em></b> (Nelson, 1982, p.7), otherwise
-  they are considered to be Type I multiply censored.</p>
-<p>Let \(c_j\) denote the number of observations censored below or above censoring
-  level \(T_j\) for \(j = 1, 2, \ldots, K\), so that
-  $$\sum_{i=1}^K c_j = c \;\;\;\;\;\; (2)$$
-  Let \(x_{(1)}, x_{(2)}, \ldots, x_{(N)}\) denote the “ordered” observations,
-  where now “observation” means either the actual observation (for uncensored
-  observations) or the censoring level (for censored observations).  For
-  right-censored data, if a censored observation has the same value as an
-  uncensored one, the uncensored observation should be placed first.
-  For left-censored data, if a censored observation has the same value as an
-  uncensored one, the censored observation should be placed first.</p>
-<p>Note that in this case the quantity \(x_{(i)}\) does not necessarily represent
-  the \(i\)'th “largest” observation from the (unknown) complete sample.</p>
-<p>Finally, let \(\Omega\) (omega) denote the set of \(n\) subscripts in the
-  “ordered” sample that correspond to uncensored observations.
-  <br></p>
-<p><b>Product-Limit Method of Kaplan and Meier</b> (<code>prob.method="kaplan-meier"</code>) <br>
-  For complete data sets (no censored observations), the
-  <b><em>empirical probabilities</em></b> estimator of the cumulative distribution
-  function evaluated at the \(i\)'th ordered observation is given by
-  (D'Agostino, 1986a, p.8):
-  $$\hat{F}[x_{(i)}] = \hat{p}_i = \frac{\#[x_j \le x_{(i)}]}{n} \;\;\;\;\;\; (3)$$
-  where \(\#[x_j \le x_{(i)}]\) denotes the number of observations less than
-  or equal to \(x_{(i)}\) (see the help file for <code><a href="ecdfPlot.html">ecdfPlot</a></code>).
-  Kaplan and Meier (1958) extended this method of computing the empirical cdf to
-  the case of right-censored data.
-  <br></p>
-<p><em>Right-Censored Data</em> (<code>censoring.side="right"</code>)<br>
-  Let \(S(t)\) denote the survival function evaluated at \(t\), that is:
-  $$S(t) = 1 - F(t) = Pr(X &gt; t) \;\;\;\;\;\; (4)$$
-  Kaplan and Meier (1958) show that a nonparametric estimate of the survival
-  function at the \(i\)'th ordered observation that is not censored
-  (i.e., \(i \in \Omega\)), is given by:</p><table class="table table"><tr><td>\(\hat{S}[x_{(i)}]\)</td><td>\(=\)</td><td>\(\widehat{Pr}[X &gt; x_{(i)}]\)</td></tr><tr><td></td><td>\(=\)</td><td>\(\widehat{Pr}[X &gt; x_{(1)}]\)</td></tr><tr><td></td><td></td><td>\(\;\; \widehat{Pr}[X &gt; x_{(2)} | X &gt; x_{(1)}] \;\; \cdots\)</td></tr><tr><td></td><td></td><td>\(\;\; \widehat{Pr}[X &gt; x_{(i)} | X &gt; x_{(i-1)}]\)</td></tr><tr><td></td><td>\(=\)</td><td>\(\prod_{j \in \Omega, j \le i} \frac{n_j - d_j}{n_j}, \;\; i \in \Omega \;\;\;\;\; (5)\)</td></tr></table><p>where \(n_j\) is the number of observations (uncensored or censored) with values
-  greater than or equal to \(x_{(j)}\), and \(d_j\) denotes the number of
-  uncensored observations exactly equal to \(x_{(j)}\) (if there are no tied
-  uncensored observations then \(d_j\) will equal 1 for all values of \(j\)).
-  (See also Lee and Wang, 2003, pp. 64–69; Michael and Schucany, 1986).  By convention,
-  the estimate of the survival function at a censored observation is set equal to
-  the estimated value of the survival function at the largest uncensored observation
-  less than or equal to that censoring level.  If there are no uncensored observations
-  less than or equal to a particular censoring level, the estimate of the survival
-  function is set to 1 for that censoring level.</p>
-<p>Thus the Kaplan-Meier plotting position at the \(i\)'th ordered observation
-  that is not censored (i.e., \(i \in \Omega\)), is given by:
-  $$\hat{p}_i = \hat{F}[x_{(i)}] = 1 - \prod_{j \in \Omega, j \le i} \frac{n_j - d_j}{n_j} \;\;\;\;\;\; (6)$$</p>
-<p>The plotting position for a censored observation is set equal to the plotting
-  position associated with the largest uncensored observation less than or equal to
-  that censoring level.  If there are no uncensored observations less than or equal
-  to a particular censoring level, the plotting position is set to 0 for that
-  censoring level.</p>
-<p>As an example, consider the following right-censored data set:
-  $$3, \ge4, \ge4, 5, 5, 6$$
-  The table below shows how the plotting positions are computed.</p><table class="table table"><tr><td>\(i\)</td><td>\(x_{(i)}\)</td><td>\(n_i\)</td><td>\(d_i\)</td><td>\(\frac{n_i-d_i}{n_i}\)</td><td>Plotting Position</td></tr><tr><td>1</td><td>\(3\)</td><td>\(6\)</td><td>\(1\)</td><td>\(5/6\)</td><td>\(1 - (5/6) = 0.167\)</td></tr><tr><td>2</td><td>\(\ge4\)</td><td></td><td></td><td></td><td></td></tr><tr><td>3</td><td>\(\ge4\)</td><td></td><td></td><td></td><td></td></tr><tr><td>4</td><td>\(5\)</td><td>\(3\)</td><td>\(2\)</td><td>\(1/3\)</td><td>\(1 - (5/6)(1/3) = 0.722\)</td></tr><tr><td>5</td><td>\(5\)</td><td></td><td></td><td></td><td>\(0.722\)</td></tr><tr><td>6</td><td>\(6\)</td><td>\(1\)</td><td>\(1\)</td><td>\(0/1\)</td><td>\(1 - (5/6)(1/3)(0/1) = 1\)</td></tr></table><p>Note that for complete data sets, Equation (6) reduces to Equation (3).
-  <br></p>
-<p><em>Left-Censored Data</em> (<code>censoring.side="left"</code>) <br>
-  Gillespie et al. (2010) give formulas for the Kaplan-Meier estimator for the case of
-  left-cesoring (<code>censoring.side="left"</code>).  In this case, the plotting position
-  for the \(i\)'th ordered observation, assuming it is not censored, is computed as:
-  $$\hat{p}_i = \hat{F}[x_{(i)}] = \prod_{j \in \Omega, j &gt; i} \frac{n_j - d_j}{n_j} \;\;\;\;\;\; (7)$$
-  where \(n_j\) is the number of observations (uncensored or censored) with values
-  less than or equal to \(x_{(j)}\), and \(d_j\) denotes the number of
-  uncensored observations exactly equal to \(x_{(j)}\) (if there are no tied
-  uncensored observations then \(d_j\) will equal 1 for all values of \(j\)).
-  The plotting position is equal to 1 for the largest uncensored order statistic.</p>
-<p>As an example, consider the following left-censored data set:
-  $$3, &lt;4, &lt;4, 5, 5, 6$$
-  The table below shows how the plotting positions are computed.</p><table class="table table"><tr><td>\(i\)</td><td>\(x_{(i)}\)</td><td>\(n_i\)</td><td>\(d_i\)</td><td>\(\frac{n_i-d_i}{n_i}\)</td><td>Plotting Position</td></tr><tr><td>1</td><td>\(3\)</td><td>\(1\)</td><td>\(1\)</td><td>\(0/1\)</td><td>\(1(5/6)(3/5) = 0.5\)</td></tr><tr><td>2</td><td>\(&lt;4\)</td><td></td><td></td><td></td><td></td></tr><tr><td>3</td><td>\(&lt;4\)</td><td></td><td></td><td></td><td></td></tr><tr><td>4</td><td>\(5\)</td><td>\(5\)</td><td>\(2\)</td><td>\(3/5\)</td><td>\(0.833\)</td></tr><tr><td>5</td><td>\(5\)</td><td></td><td></td><td></td><td>\(1(5/6) = 0.833\)</td></tr><tr><td>6</td><td>\(6\)</td><td>\(6\)</td><td>\(1\)</td><td>\(5/6\)</td><td>\(1\)</td></tr></table><p>Note that for complete data sets, Equation (7) reduces to Equation (3).
-  <br></p>
-<p><b>Modified Kaplan-Meier Method</b> (<code>prob.method="modified kaplan-meier"</code>) <br>
-  (Left-Censored Data Only.)  For left-censored data, the modified Kaplan-Meier
-  method is the same as the Kaplan-Meier method, except that for the largest
-  uncensored order statistic, the plotting position is not set to 1 but rather is
-  set equal to the Blom plotting position:  \((N - 0.375)/(N + 0.25)\).  This method
-  is useful, for example, when creating <a href="qqPlotCensored.html">Quantile-Quantile plots</a>.
-  <br></p>
-<p><b>Hazard Plotting Method of Nelson</b> (<code>prob.method="nelson"</code>) <br>
-  (Right-Censored Data Only.)  For right-censored data, Equation (5) can be
-  re-written as:
-  $$\hat{S}[x_{(i)}] = \prod_{j \in \Omega, j \le i} \frac{N-j}{N-j+1}, \;\; i \in \Omega \;\;\;\;\;\; (8)$$
-  Nelson (1972) proposed the following formula for plotting positions for
-  the uncensored observations in the context of estimating the hazard function
-  (see Michael and Schucany,1986, p.469):
-  $$\hat{p}_i = \hat{F}[x_{(i)}] = 1 - \prod_{j \in \Omega, j \le i} exp(\frac{-1}{N-j+1}) \;\;\;\;\;\; (9)$$
-  See Lee and Wang (2003) for more information about the hazard function.</p>
-<p>As for the Kaplan and Meier (1958) method, the plotting position for a censored
-  observation is set equal to the plotting position associated with the largest
-  uncensored observation less than or equal to that censoring level.  If there are
-  no uncensored observations less than or equal to a particular censoring level,
-  the plotting position is set to 0 for that censoring level.
-  <br></p>
-<p><b>Generalization of Product-Limit Method, Michael and Schucany</b> <br>
-  (<code>prob.method="michael-schucany"</code>) <br>
-  For complete data sets, the disadvantage of using Equation (3) above to define
-  plotting positions is that it implies the largest observed value is the maximum
-  possible value of the distribution (the \(100\)'th percentile).  This may be
-  satisfactory if the underlying distribution is known to be discrete, but it is
-  usually not satisfactory if the underlying distribution is known to be continuous.</p>
-<p>A more frequently used formula for plotting positions for complete data sets is
-  given by:
-  $$\hat{F}[x_{(i)}] = \hat{p}_i = \frac{i - a}{N - 2a + 1} \;\;\;\;\;\; (10)$$
-  where \(0 \le a \le 1\) (Cleveland, 1993, p. 18; D'Agostino, 1986a, pp. 8,25).
-  The value of \(a\) is usually chosen so that the plotting positions are
-  approximately unbiased (i.e., approximate the mean of their distribution) or else
-  approximate the median value of their distribution (see the help file for
-  <code><a href="ecdfPlot.html">ecdfPlot</a></code>).  Michael and Schucany (1986) extended this method for
-  both left- and right-censored data sets.
-  <br></p>
-<p><em>Right-Censored Data</em> (<code>censoring.side="right"</code>)<br>
-  For right-censored data sets, the plotting positions for the uncensored
-  observations are computed as:
-  $$\hat{p}_i = 1 - \frac{N-a+1}{N-2a+1} \prod_{j \in \Omega, j \le i} \frac{N-j-a+1}{N-j-a+2} \;\; i \in \Omega \;\;\;\;\;\; (11)$$
-  Note that the plotting positions proposed by Herd (1960) and Johnson (1964) are a
-  special case of Equation (11) with \(a=0\).  Equation (11) reduces to Equation (10)
-  in the case of complete data sets.  Note that unlike the Kaplan-Meier method,
-  plotting positions associated with tied uncensored observations are not the same
-  (just as in the case for complete data using Equation (10)).</p>
-<p>As for the Kaplan and Meier (1958) method, for right-censored data the plotting
-  position for a censored observation is set equal to the plotting position associated
-  with the largest uncensored observation less than or equal to that censoring level.
-  If there are no uncensored observations less than or equal to a particular censoring
-  level, the plotting position is set to 0 for that censoring level.
-  <br></p>
-<p><em>Left-Censored Data</em> (<code>censoring.side="left"</code>) <br>
-  For left-censored data sets the plotting positions are computed as:
-  $$\hat{p}_i = \frac{N-a+1}{N-2a+1} \prod_{j \in \Omega, j \ge i} \frac{j-a}{j-a+1} \;\; i \in \Omega \;\;\;\;\;\; (12)$$
-  Equation (12) reduces to Equation (10) in the case of complete data
-  sets.  Note that unlike the Kaplan-Meier method, plotting positions associated with
-  tied uncensored observations are not the same (just as in the case for complete
-  data using Equation (10)).</p>
-<p>For left-censored data, the plotting position for a censored observation is set
-  equal to the plotting position associated with the smallest uncensored observation
-  greater than or equal to that censoring level.  If there are no uncensored
-  observations greater than or equal to a particular censoring level, the plotting
-  position is set to 1 for that censoring level.
-  <br></p>
-<p><b>Generalization of Product-Limit Method, Hirsch and Stedinger</b> <br>
-  (<code>prob.method="hirsch-stedinger"</code>) <br>
-  Hirsch and Stedinger (1987) use a slightly different approach than Kaplan and Meier
-  (1958) and Michael and Schucany (1986) to derive a nonparametric estimate of the
-  survival function (probability of exceedance) in the context of left-censored data.
-  First they estimate the value of the survival function at each of the censoring
-  levels.  The value of the survival function for an uncensored observation between
-  two adjacent censoring levels is then computed by linear interpolation (in the form
-  of a plotting position).  See also Helsel and Cohn (1988).</p>
-<p>The discussion below presents an extension of the method of Hirsch and Stedinger
-  (1987) to the case of right-censored data, and then presents the original derivation
-  due to Hirsch and Stedinger (1987) for left-censored data.</p>
-<p><em>Right-Censored Data</em> (<code>censoring.side="right"</code>)<br>
-  For right-censored data, the survival function is estimated as follows.
-  For the \(j\)'th censoring level (\(j = 0, 1, \ldots, K\)), write the
-  value of the survival function as:</p><table class="table table"><tr><td>\(S(T_j)\)</td><td>\(=\)</td><td>\(Pr[X &gt; T_j]\)</td></tr><tr><td></td><td>\(=\)</td><td>\(Pr[X &gt; T_{j+1}] + Pr[T_j &lt; X \le T_{j+1}]\)</td></tr><tr><td></td><td>\(=\)</td><td>\(S(T_{j+1}) + Pr[T_j &lt; X \le T_{j+1} | X &gt; T_j] Pr[X &gt; T_j]\)</td></tr><tr><td></td><td>\(=\)</td><td>\(S(T_{j+1}) + Pr[T_j &lt; X \le T_{j+1} | X &gt; T_j] S(T_j) \;\;\;\;\;\; (13)\)</td></tr></table><p>where
-  $$T_0 = -\infty, \;\;\;\;\;\; (14)$$
-  $$T_{K+1} = \infty \;\;\;\;\;\; (15)$$
-  Now set</p><table class="table table"><tr><td>\(A_j\)</td><td>\(=\)</td><td># uncensored observations in \((T_j, T_{j+1}] \;\;\;\;\;\; (16)\)</td></tr><tr><td>\(B_j\)</td><td>\(=\)</td><td># observations in \((T_{j+1}, \infty) \;\;\;\;\;\; (17)\)</td></tr></table><p>for \(j = 0, 1, \ldots, K\).  Then the method of moments estimator of the
-  conditional probability in Equation (13) is given by:
-  $$\widehat{Pr}[T_j &lt; X \le T_{j+1} | X &gt; T_j] = \frac{A_j}{A_j + B_j} \;\;\;\;\;\; (18)$$
-  Hence, by equations (13) and (18) we have
-  $$\hat{S}(T_j) = \hat{S}(T_{j+1}) + (\frac{A_j}{A_j + B_j}) \hat{S}(T_{j}) \;\;\;\;\;\; (19)$$
-  which can be rewritten as:
-  $$\hat{S}(T_{j+1}) = \hat{S}(T_j) [1 - (\frac{A_j}{A_j + B_j})] \;\;\;\;\;\; (20)$$
-  Equation (20) can be solved interatively for \(j = 1, 2, \ldots, K\).  Note that
-  $$\hat{S}(T_0) = \hat{S}(-\infty) = S(-\infty) = 1 \;\;\;\;\;\; (21)$$
-  $$\hat{S}(T_{K+1}) = \hat{S}(\infty) = S(\infty) = 0 \;\;\;\;\;\; (22)$$</p>
-<p>Once the values of the survival function at the censoring levels are computed, the
-  plotting positions for the \(A_j\) uncensored observations in the interval
-  \((T_J, T_{j+1}]\) (\(j = 0, 1, \ldots, K\)) are computed as
-  $$\hat{p}_i = [1 - \hat{S}(T_j)] + [\hat{S}(T_j) - \hat{S}(T_{j+1})] \frac{r-a}{A_j - 2a + 1} \;\;\;\;\;\; (23)$$
-  where \(a\) denotes the plotting position constant, \(0 \le a \le 1\), and
-  \(r\) denotes the rank of the \(i\)'th observation among the \(A_j\)
-  uncensored observations in the interval \((T_J, T_{j+1}]\).
-  (Tied observations are given distinct ranks.)</p>
-<p>For the \(c_j\) observations censored at censoring level \(T_j\)
-  (\(j = 1, 2, \ldots, K\)), the plotting positions are computed as:
-  $$\hat{p}_i = 1 - [\hat{S}(T_j) \frac{r-a}{c_j - 2a + 1}]  \;\;\;\;\;\; (24)$$
-  where \(r\) denotes the rank of the \(i\)'th observation among the \(c_j\)
-  observations censored at censoring level \(T_j\).  Note that all the
-  observations censored at the same censoring level are given distinct ranks,
-  even though there is no way to distinguish between them.
-  <br></p>
-<p><em>Left-Censored Data</em> (<code>censoring.side="left"</code>) <br>
-  For left-censored data, Hirsch and Stedinger (1987) modify the definition of the
-  survival function as follows:
-  $$S^*(t) = Pr[X \ge t] \;\;\;\;\;\; (25)$$
-  For continuous distributions, the functions in Equations (4) and (25) are identical.</p>
-<p>Hirsch and Stedinger (1987) show that for the \(j\)'th censoring level
-  (\(j = 0, 1, \ldots, K\)), the value of the survival function can be written as:</p><table class="table table"><tr><td>\(S(T_j)\)</td><td>\(=\)</td><td>\(Pr[X \ge T_j]\)</td></tr><tr><td></td><td>\(=\)</td><td>\(Pr[X \ge T_{j+1}] + Pr[T_j \le X &lt; T_{j+1}]\)</td></tr><tr><td></td><td>\(=\)</td><td>\(S^*(T_{j+1}) + Pr[T_j \le X &lt; T_{j+1} | X &lt; T_{j+1}] Pr[X &lt; T_{j+1}]\)</td></tr><tr><td></td><td>\(=\)</td><td>\(S^*(T_{j+1}) + Pr[T_j \le X &lt; T_{j+1} | X &lt; T_j] [1 - S^*(T_j)] \;\;\;\;\;\; (26)\)</td></tr></table><p>where \(T_0\) and \(T_{K+1}\) are defined in Equations (14) and (15).</p>
-<p>Now set</p><table class="table table"><tr><td>\(A_j\)</td><td>\(=\)</td><td># uncensored observations in \([T_j, T_{j+1}) \;\;\;\;\;\; (27)\)</td></tr><tr><td>\(B_j\)</td><td>\(=\)</td><td># observations in \((-\infty, T_j) \;\;\;\;\;\; (28)\)</td></tr></table><p>for \(j = 0, 1, \ldots, K\).  Then the method of moments estimator of the
-  conditional probability in Equation (26) is given by:
-  $$Pr[T_j \le X &lt; T_{j+1} | X &lt; T_{j+1}] = \frac{A_j}{A_j + B_j} \;\;\;\;\;\; (29)$$
-  Hence, by Equations (26) and (29) we have
-  $$\hat{S}(T_j) = \hat{S}(T_{j+1}) + (\frac{A_j}{A_j + B_j}) \hat{S}(T_{j}) \;\;\;\;\;\; (30)$$
-  which can be solved interatively for \(j = 1, 2, \ldots, K\).  Note that
-  $$\widehat{S^*}(T_{K+1}) = \widehat{S^*}(\infty) = S^*(\infty) = 0 \;\;\;\;\;\; (31)$$
-  $$\widehat{S^*}(T_0) = \widehat{S^*}(-\infty) = S^*(-\infty) = 1 \;\;\;\;\;\; (32)$$</p>
-<p>Once the values of the survival function at the censoring levels are computed, the
-  plotting positions for the \(A_j\) uncensored observations in the interval
-  \([T_J, T_{j+1})\) (\(j = 0, 1, \ldots, K\)) are computed as
-  $$\hat{p}_i = [1 - \widehat{S^*}(T_j)] + [\widehat{S^*}(T_j) - \widehat{S^*}(T_{j+1})] \frac{r-a}{A_j - 2a + 1} \;\;\;\;\;\; (33)$$
-  where \(a\) denotes the plotting position constant, \(0 \le a \le 0.5\), and
-  \(r\) denotes the rank of the \(i\)'th observation among the \(A_j\)
-  uncensored observations in the interval \([T_J, T_{j+1})\).
-  (Tied observations are given distinct ranks.)</p>
-<p>For the \(c_j\) observations censored at censoring level \(T_j\)
-  (\(j = 1, 2, \ldots, K\)), the plotting positions are computed as:
-  $$\hat{p}_i = [1 - \widehat{S^*}(T_j)] \frac{r-a}{c_j - 2a + 1}  \;\;\;\;\;\; (34)$$
-  where \(r\) denotes the rank of the \(i\)'th observation among the \(c_j\)
-  observations censored at censoring level \(T_j\).  Note that all the
-  observations censored at the same censoring level are given distinct ranks,
-  even though there is no way to distinguish between them.</p>
-    </div>
     <div id="value">
     <h2>Value</h2>
     <p><code>ppointsCensored</code> returns a list with the following components:</p>
@@ -705,7 +508,7 @@
 </div>
 
 <div class="pkgdown">
-  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.1.1.</p>
+  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.2.1.</p>
 </div>
 
       </footer></div>

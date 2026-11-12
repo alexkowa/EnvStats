@@ -20,7 +20,7 @@ Note: You can perform Fisher's exact test in R using the function
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">EnvStats</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">3.1.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">4.0.0</span>
       </span>
     </div>
 
@@ -28,6 +28,37 @@ Note: You can perform Fisher's exact test in R using the function
       <ul class="nav navbar-nav"><li>
   <a href="../reference/index.html">Reference</a>
 </li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+    Articles
+
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu"><li>
+      <a href="../articles/censored-estimation.html">Estimation with censored data</a>
+    </li>
+    <li>
+      <a href="../articles/distribution-diagnostics.html">Distribution diagnostics, transformations, and probability plots</a>
+    </li>
+    <li>
+      <a href="../articles/distributions-and-estimation.html">Probability distributions and parameter estimation</a>
+    </li>
+    <li>
+      <a href="../articles/nonparametric-methods.html">Nonparametric estimation and two-sample tests</a>
+    </li>
+    <li>
+      <a href="../articles/outlier-testing.html">Rosner's test for multiple outliers</a>
+    </li>
+    <li>
+      <a href="../articles/power-and-study-design.html">Statistical power and study design</a>
+    </li>
+    <li>
+      <a href="../articles/prediction-intervals.html">Prediction intervals for environmental monitoring</a>
+    </li>
+    <li>
+      <a href="../articles/trend-and-correlation.html">Trend tests and serial correlation</a>
+    </li>
+  </ul></li>
       </ul><ul class="nav navbar-nav navbar-right"><li>
   <a href="https://github.com/alexkowa/EnvStats/" class="external-link">
     <span class="fab fa-github fa-lg"></span>
@@ -44,7 +75,7 @@ Note: You can perform Fisher's exact test in R using the function
   <div class="col-md-9 contents">
     <div class="page-header">
     <h1>Randomization (Permutation) Test to Compare Two Proportions (Fisher's Exact Test)</h1>
-
+    <small class="dont-index">Source: <a href="https://github.com/alexkowa/EnvStats/blob/master/R/twoSamplePermutationTestProportion.R" class="external-link"><code>R/twoSamplePermutationTestProportion.R</code></a></small>
     <div class="hidden name"><code>twoSamplePermutationTestProportion.Rd</code></div>
     </div>
 
@@ -56,7 +87,7 @@ Note: You can perform Fisher's exact test in R using the function
     </div>
 
     <div id="ref-usage">
-    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">twoSamplePermutationTestProportion</span><span class="op">(</span><span class="va">x</span>, <span class="va">y</span>, x.and.y <span class="op">=</span> <span class="st">"Binomial Outcomes"</span>, </span>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">twoSamplePermutationTestProportion</span><span class="op">(</span><span class="va">x</span>, <span class="va">y</span>, x.and.y <span class="op">=</span> <span class="st">"Binomial Outcomes"</span>,</span>
 <span>    alternative <span class="op">=</span> <span class="st">"two.sided"</span>, tol <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/MathFun.html" class="external-link">sqrt</a></span><span class="op">(</span><span class="va">.Machine</span><span class="op">$</span><span class="va">double.eps</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
     </div>
 
@@ -211,77 +242,51 @@ Note: You can perform Fisher's exact test in R using the function
 
     <div id="ref-examples">
     <h2>Examples</h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span>  <span class="co"># Generate 10 observations from a binomial distribution with parameters </span></span></span>
-<span class="r-in"><span>  <span class="co"># size=1 and prob=0.3, and 20 observations from a binomial distribution </span></span></span>
-<span class="r-in"><span>  <span class="co"># with parameters size=1 and prob=0.5.  Test the null hypothesis that the </span></span></span>
-<span class="r-in"><span>  <span class="co"># probability of "success" for the two distributions is the same against the </span></span></span>
-<span class="r-in"><span>  <span class="co"># alternative that the probability of "success" for group 1 is less than </span></span></span>
-<span class="r-in"><span>  <span class="co"># the probability of "success" for group 2. </span></span></span>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span>  <span class="co"># Generate 10 observations from a binomial distribution with parameters</span></span></span>
+<span class="r-in"><span>  <span class="co"># size=1 and prob=0.3, and 20 observations from a binomial distribution</span></span></span>
+<span class="r-in"><span>  <span class="co"># with parameters size=1 and prob=0.5.  Test the null hypothesis that the</span></span></span>
+<span class="r-in"><span>  <span class="co"># probability of "success" for the two distributions is the same against the</span></span></span>
+<span class="r-in"><span>  <span class="co"># alternative that the probability of "success" for group 1 is less than</span></span></span>
+<span class="r-in"><span>  <span class="co"># the probability of "success" for group 2.</span></span></span>
 <span class="r-in"><span>  <span class="co"># (Note: the call to set.seed allows you to reproduce this example).</span></span></span>
 <span class="r-in"><span></span></span>
-<span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/r/base/Random.html" class="external-link">set.seed</a></span><span class="op">(</span><span class="fl">23</span><span class="op">)</span> </span></span>
-<span class="r-in"><span>  <span class="va">dat1</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/Binomial.html" class="external-link">rbinom</a></span><span class="op">(</span><span class="fl">10</span>, size <span class="op">=</span> <span class="fl">1</span>, prob <span class="op">=</span> <span class="fl">0.3</span><span class="op">)</span> </span></span>
-<span class="r-in"><span>  <span class="va">dat2</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/Binomial.html" class="external-link">rbinom</a></span><span class="op">(</span><span class="fl">20</span>, size <span class="op">=</span> <span class="fl">1</span>, prob <span class="op">=</span> <span class="fl">0.5</span><span class="op">)</span> </span></span>
+<span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/r/base/Random.html" class="external-link">set.seed</a></span><span class="op">(</span><span class="fl">23</span><span class="op">)</span></span></span>
+<span class="r-in"><span>  <span class="va">dat1</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/Binomial.html" class="external-link">rbinom</a></span><span class="op">(</span><span class="fl">10</span>, size <span class="op">=</span> <span class="fl">1</span>, prob <span class="op">=</span> <span class="fl">0.3</span><span class="op">)</span></span></span>
+<span class="r-in"><span>  <span class="va">dat2</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/Binomial.html" class="external-link">rbinom</a></span><span class="op">(</span><span class="fl">20</span>, size <span class="op">=</span> <span class="fl">1</span>, prob <span class="op">=</span> <span class="fl">0.5</span><span class="op">)</span></span></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span>  <span class="va">test.list</span> <span class="op">&lt;-</span> <span class="fu">twoSamplePermutationTestProportion</span><span class="op">(</span></span></span>
-<span class="r-in"><span>    <span class="va">dat1</span>, <span class="va">dat2</span>, alternative <span class="op">=</span> <span class="st">"less"</span><span class="op">)</span> </span></span>
+<span class="r-in"><span>    <span class="va">dat1</span>, <span class="va">dat2</span>, alternative <span class="op">=</span> <span class="st">"less"</span><span class="op">)</span></span></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span>  <span class="co">#----------</span></span></span>
 <span class="r-in"><span></span></span>
-<span class="r-in"><span>  <span class="co"># Print the results of the test </span></span></span>
+<span class="r-in"><span>  <span class="co"># Print the results of the test</span></span></span>
 <span class="r-in"><span>  <span class="co">#------------------------------</span></span></span>
-<span class="r-in"><span>  <span class="va">test.list</span> </span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $statistic</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> p.hat.x - p.hat.y </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>             -0.05 </span>
+<span class="r-in"><span>  <span class="va">test.list</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $parameters</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> NULL</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Results of Hypothesis Test</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> --------------------------</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $p.value</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] 0.548026</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Null Hypothesis:                 p.x - p.y = 0</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $estimate</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> p.hat.x p.hat.y </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>    0.60    0.65 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Alternative Hypothesis:          True p.x - p.y is less than 0</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $null.value</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> p.x - p.y </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>         0 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Test Name:                       Two-Sample Permutation Test</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                                  Based on Differences in Proportions</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                                  (Fisher's Exact Test)</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $alternative</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "less"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Estimated Parameter(s):          p.hat.x = 0.60</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                                  p.hat.y = 0.65</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $method</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "Two-Sample Permutation Test\n                                 Based on Differences in Proportions\n                                 (Fisher's Exact Test)"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Data:                            x = dat1</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                                  y = dat2</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $estimation.method</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> NULL</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Sample Sizes:                    nx = 10</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                                  ny = 20</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $sample.size</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> nx ny </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 10 20 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Test Statistic:                  p.hat.x - p.hat.y = -0.05</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $data.name</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>      x      y </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> "dat1" "dat2" </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> P-value:                         0.548026</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $bad.obs</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] 0</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $stat.dist</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  [1] -0.95 -0.80 -0.65 -0.50 -0.35 -0.20 -0.05  0.10  0.25  0.40  0.55</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $probs.stat.dist</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  [1] 3.661173e-07 3.478114e-05 9.390909e-04 1.064303e-02 5.960097e-02</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  [6] 1.788029e-01 2.980048e-01 2.767188e-01 1.383594e-01 3.382118e-02</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [11] 3.074653e-03</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $exact</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] TRUE</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> attr(,"class")</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "permutationTest"</span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span>  <span class="co">#Results of Hypothesis Test</span></span></span>
 <span class="r-in"><span>  <span class="co">#--------------------------</span></span></span>
@@ -309,7 +314,7 @@ Note: You can perform Fisher's exact test in R using the function
 <span class="r-in"><span></span></span>
 <span class="r-in"><span>  <span class="co">#----------</span></span></span>
 <span class="r-in"><span></span></span>
-<span class="r-in"><span>  <span class="co"># Plot the results of the test </span></span></span>
+<span class="r-in"><span>  <span class="co"># Plot the results of the test</span></span></span>
 <span class="r-in"><span>  <span class="co">#------------------------------</span></span></span>
 <span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/r/grDevices/dev.html" class="external-link">dev.new</a></span><span class="op">(</span><span class="op">)</span></span></span>
 <span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">test.list</span><span class="op">)</span></span></span>
@@ -357,18 +362,18 @@ Note: You can perform Fisher's exact test in R using the function
 <span class="r-in"><span></span></span>
 <span class="r-in"><span>  <span class="co">#==========</span></span></span>
 <span class="r-in"><span></span></span>
-<span class="r-in"><span>  <span class="co"># Rodricks (1992, p. 133) presents data from an experiment by </span></span></span>
-<span class="r-in"><span>  <span class="co"># Graham et al. (1975) in which different groups of rats were exposed to </span></span></span>
-<span class="r-in"><span>  <span class="co"># various concentration levels of ethylene thiourea (ETU), a decomposition </span></span></span>
-<span class="r-in"><span>  <span class="co"># product of a certain class of fungicides that can be found in treated foods.  </span></span></span>
-<span class="r-in"><span>  <span class="co"># In the group exposed to a dietary level of 250 ppm of ETU, 16 out of 69 rats </span></span></span>
-<span class="r-in"><span>  <span class="co"># (23%) developed thyroid tumors, whereas in the control group </span></span></span>
-<span class="r-in"><span>  <span class="co"># (no exposure to ETU) only 2 out of 72 (3%) rats developed thyroid tumors.  </span></span></span>
-<span class="r-in"><span>  <span class="co"># If we use Fisher's exact test to test the null hypothesis that the proportion </span></span></span>
-<span class="r-in"><span>  <span class="co"># of rats exposed to 250 ppm of ETU who will develop thyroid tumors over their </span></span></span>
-<span class="r-in"><span>  <span class="co"># lifetime is no greater than the proportion of rats not exposed to ETU who will </span></span></span>
-<span class="r-in"><span>  <span class="co"># develop tumors, we get a one-sided upper p-value of 0.0002.  Therefore, we </span></span></span>
-<span class="r-in"><span>  <span class="co"># conclude that the true underlying rate of tumor incidence in the exposed group </span></span></span>
+<span class="r-in"><span>  <span class="co"># Rodricks (1992, p. 133) presents data from an experiment by</span></span></span>
+<span class="r-in"><span>  <span class="co"># Graham et al. (1975) in which different groups of rats were exposed to</span></span></span>
+<span class="r-in"><span>  <span class="co"># various concentration levels of ethylene thiourea (ETU), a decomposition</span></span></span>
+<span class="r-in"><span>  <span class="co"># product of a certain class of fungicides that can be found in treated foods.</span></span></span>
+<span class="r-in"><span>  <span class="co"># In the group exposed to a dietary level of 250 ppm of ETU, 16 out of 69 rats</span></span></span>
+<span class="r-in"><span>  <span class="co"># (23%) developed thyroid tumors, whereas in the control group</span></span></span>
+<span class="r-in"><span>  <span class="co"># (no exposure to ETU) only 2 out of 72 (3%) rats developed thyroid tumors.</span></span></span>
+<span class="r-in"><span>  <span class="co"># If we use Fisher's exact test to test the null hypothesis that the proportion</span></span></span>
+<span class="r-in"><span>  <span class="co"># of rats exposed to 250 ppm of ETU who will develop thyroid tumors over their</span></span></span>
+<span class="r-in"><span>  <span class="co"># lifetime is no greater than the proportion of rats not exposed to ETU who will</span></span></span>
+<span class="r-in"><span>  <span class="co"># develop tumors, we get a one-sided upper p-value of 0.0002.  Therefore, we</span></span></span>
+<span class="r-in"><span>  <span class="co"># conclude that the true underlying rate of tumor incidence in the exposed group</span></span></span>
 <span class="r-in"><span>  <span class="co"># is greater than in the control group.</span></span></span>
 <span class="r-in"><span>  <span class="co">#</span></span></span>
 <span class="r-in"><span>  <span class="co"># The data for this example are stored in Graham.et.al.75.etu.df.</span></span></span>
@@ -396,72 +401,42 @@ Note: You can perform Fisher's exact test in R using the function
 <span class="r-in"><span>  <span class="co">#-------------------------------------------------</span></span></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span>  <span class="va">Num.Tumors</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/with.html" class="external-link">with</a></span><span class="op">(</span><span class="va">Graham.et.al.75.etu.df</span>, <span class="va">tumors</span><span class="op">[</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">5</span>, <span class="fl">1</span><span class="op">)</span><span class="op">]</span><span class="op">)</span></span></span>
-<span class="r-in"><span>  <span class="va">Sample.Sizes</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/with.html" class="external-link">with</a></span><span class="op">(</span><span class="va">Graham.et.al.75.etu.df</span>, <span class="va">n</span><span class="op">[</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">5</span>, <span class="fl">1</span><span class="op">)</span><span class="op">]</span><span class="op">)</span> </span></span>
+<span class="r-in"><span>  <span class="va">Sample.Sizes</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/with.html" class="external-link">with</a></span><span class="op">(</span><span class="va">Graham.et.al.75.etu.df</span>, <span class="va">n</span><span class="op">[</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">5</span>, <span class="fl">1</span><span class="op">)</span><span class="op">]</span><span class="op">)</span></span></span>
 <span class="r-in"><span></span></span>
-<span class="r-in"><span>  <span class="va">test.list</span> <span class="op">&lt;-</span> <span class="fu">twoSamplePermutationTestProportion</span><span class="op">(</span> </span></span>
-<span class="r-in"><span>    x <span class="op">=</span> <span class="va">Num.Tumors</span>, y <span class="op">=</span> <span class="va">Sample.Sizes</span>, </span></span>
-<span class="r-in"><span>    x.and.y<span class="op">=</span><span class="st">"Number Successes and Trials"</span>, alternative <span class="op">=</span> <span class="st">"greater"</span><span class="op">)</span> </span></span>
+<span class="r-in"><span>  <span class="va">test.list</span> <span class="op">&lt;-</span> <span class="fu">twoSamplePermutationTestProportion</span><span class="op">(</span></span></span>
+<span class="r-in"><span>    x <span class="op">=</span> <span class="va">Num.Tumors</span>, y <span class="op">=</span> <span class="va">Sample.Sizes</span>,</span></span>
+<span class="r-in"><span>    x.and.y<span class="op">=</span><span class="st">"Number Successes and Trials"</span>, alternative <span class="op">=</span> <span class="st">"greater"</span><span class="op">)</span></span></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span>  <span class="co">#----------</span></span></span>
 <span class="r-in"><span></span></span>
-<span class="r-in"><span>  <span class="co"># Print the results of the test </span></span></span>
+<span class="r-in"><span>  <span class="co"># Print the results of the test</span></span></span>
 <span class="r-in"><span>  <span class="co">#------------------------------</span></span></span>
-<span class="r-in"><span>  <span class="va">test.list</span> </span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $statistic</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> p.hat.x - p.hat.y </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>         0.2041063 </span>
+<span class="r-in"><span>  <span class="va">test.list</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $parameters</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> NULL</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Results of Hypothesis Test</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> --------------------------</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $p.value</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] 0.0002186462</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Null Hypothesis:                 p.x - p.y = 0</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $estimate</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>    p.hat.x    p.hat.y </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 0.23188406 0.02777778 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Alternative Hypothesis:          True p.x - p.y is greater than 0</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $null.value</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> p.x - p.y </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>         0 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Test Name:                       Two-Sample Permutation Test</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                                  Based on Differences in Proportions</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                                  (Fisher's Exact Test)</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $alternative</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "greater"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Estimated Parameter(s):          p.hat.x = 0.23188406</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                                  p.hat.y = 0.02777778</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $method</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "Two-Sample Permutation Test\n                                 Based on Differences in Proportions\n                                 (Fisher's Exact Test)"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Data:                            x = Num.Tumors  </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                                  n = Sample.Sizes</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $estimation.method</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> NULL</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Sample Sizes:                    nx = 69</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                                  ny = 72</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $sample.size</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> nx ny </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 69 72 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Test Statistic:                  p.hat.x - p.hat.y = 0.2041063</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $data.name</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>              x              n </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   "Num.Tumors" "Sample.Sizes" </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> P-value:                         0.0002186462</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $bad.obs</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> NULL</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $stat.dist</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  [1] -0.250000000 -0.221618357 -0.193236715 -0.164855072 -0.136473430</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  [6] -0.108091787 -0.079710145 -0.051328502 -0.022946860  0.005434783</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [11]  0.033816425  0.062198068  0.090579710  0.118961353  0.147342995</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [16]  0.175724638  0.204106280  0.232487923  0.260869565</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $probs.stat.dist</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  [1] 1.697434e-06 3.833115e-05 3.956322e-04 2.480221e-03 1.058370e-02</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  [6] 3.264802e-02 7.545321e-02 1.335893e-01 1.836853e-01 1.976156e-01</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [11] 1.667381e-01 1.100705e-01 5.642502e-02 2.215540e-02 6.516295e-03</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [16] 1.385106e-03 2.003457e-04 1.759457e-05 7.059550e-07</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $exact</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] TRUE</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> attr(,"class")</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "permutationTest"</span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span>  <span class="co">#Results of Hypothesis Test</span></span></span>
 <span class="r-in"><span>  <span class="co">#--------------------------</span></span></span>
@@ -477,7 +452,7 @@ Note: You can perform Fisher's exact test in R using the function
 <span class="r-in"><span>  <span class="co">#Estimated Parameter(s):          p.hat.x = 0.23188406</span></span></span>
 <span class="r-in"><span>  <span class="co">#                                 p.hat.y = 0.02777778</span></span></span>
 <span class="r-in"><span>  <span class="co">#</span></span></span>
-<span class="r-in"><span>  <span class="co">#Data:                            x = Num.Tumors  </span></span></span>
+<span class="r-in"><span>  <span class="co">#Data:                            x = Num.Tumors</span></span></span>
 <span class="r-in"><span>  <span class="co">#                                 n = Sample.Sizes</span></span></span>
 <span class="r-in"><span>  <span class="co">#</span></span></span>
 <span class="r-in"><span>  <span class="co">#Sample Sizes:                    nx = 69</span></span></span>
@@ -489,7 +464,7 @@ Note: You can perform Fisher's exact test in R using the function
 <span class="r-in"><span></span></span>
 <span class="r-in"><span>  <span class="co">#----------</span></span></span>
 <span class="r-in"><span></span></span>
-<span class="r-in"><span>  <span class="co"># Plot the results of the test </span></span></span>
+<span class="r-in"><span>  <span class="co"># Plot the results of the test</span></span></span>
 <span class="r-in"><span>  <span class="co">#------------------------------</span></span></span>
 <span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/r/grDevices/dev.html" class="external-link">dev.new</a></span><span class="op">(</span><span class="op">)</span></span></span>
 <span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">test.list</span><span class="op">)</span></span></span>
@@ -514,7 +489,7 @@ Note: You can perform Fisher's exact test in R using the function
 </div>
 
 <div class="pkgdown">
-  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.1.1.</p>
+  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.2.1.</p>
 </div>
 
       </footer></div>

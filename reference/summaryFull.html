@@ -22,7 +22,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">EnvStats</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">3.1.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">4.0.0</span>
       </span>
     </div>
 
@@ -30,6 +30,37 @@
       <ul class="nav navbar-nav"><li>
   <a href="../reference/index.html">Reference</a>
 </li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+    Articles
+
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu"><li>
+      <a href="../articles/censored-estimation.html">Estimation with censored data</a>
+    </li>
+    <li>
+      <a href="../articles/distribution-diagnostics.html">Distribution diagnostics, transformations, and probability plots</a>
+    </li>
+    <li>
+      <a href="../articles/distributions-and-estimation.html">Probability distributions and parameter estimation</a>
+    </li>
+    <li>
+      <a href="../articles/nonparametric-methods.html">Nonparametric estimation and two-sample tests</a>
+    </li>
+    <li>
+      <a href="../articles/outlier-testing.html">Rosner's test for multiple outliers</a>
+    </li>
+    <li>
+      <a href="../articles/power-and-study-design.html">Statistical power and study design</a>
+    </li>
+    <li>
+      <a href="../articles/prediction-intervals.html">Prediction intervals for environmental monitoring</a>
+    </li>
+    <li>
+      <a href="../articles/trend-and-correlation.html">Trend tests and serial correlation</a>
+    </li>
+  </ul></li>
       </ul><ul class="nav navbar-nav navbar-right"><li>
   <a href="https://github.com/alexkowa/EnvStats/" class="external-link">
     <span class="fab fa-github fa-lg"></span>
@@ -46,7 +77,7 @@
   <div class="col-md-9 contents">
     <div class="page-header">
     <h1>Full Complement of Summary Statistics</h1>
-
+    <small class="dont-index">Source: <a href="https://github.com/alexkowa/EnvStats/blob/master/R/summaryFull.R" class="external-link"><code>R/summaryFull.R</code></a></small>
     <div class="hidden name"><code>summaryFull.Rd</code></div>
     </div>
 
@@ -63,18 +94,18 @@
     <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">summaryFull</span><span class="op">(</span><span class="va">object</span>, <span class="va">...</span><span class="op">)</span></span>
 <span></span>
 <span><span class="co"># S3 method for class 'formula'</span></span>
-<span><span class="fu">summaryFull</span><span class="op">(</span><span class="va">object</span>, data <span class="op">=</span> <span class="cn">NULL</span>, <span class="va">subset</span>, </span>
+<span><span class="fu">summaryFull</span><span class="op">(</span><span class="va">object</span>, data <span class="op">=</span> <span class="cn">NULL</span>, <span class="va">subset</span>,</span>
 <span>  na.action <span class="op">=</span> <span class="va">na.pass</span>, <span class="va">...</span><span class="op">)</span></span>
 <span></span>
 <span><span class="co"># Default S3 method</span></span>
-<span><span class="fu">summaryFull</span><span class="op">(</span><span class="va">object</span>, group <span class="op">=</span> <span class="cn">NULL</span>, </span>
-<span>    combine.groups <span class="op">=</span> <span class="cn">FALSE</span>, drop.unused.levels <span class="op">=</span> <span class="cn">TRUE</span>, </span>
-<span>    rm.group.na <span class="op">=</span> <span class="cn">TRUE</span>, stats <span class="op">=</span> <span class="cn">NULL</span>, trim <span class="op">=</span> <span class="fl">0.1</span>, </span>
-<span>    sd.method <span class="op">=</span> <span class="st">"sqrt.unbiased"</span>, geo.sd.method <span class="op">=</span> <span class="st">"sqrt.unbiased"</span>, </span>
-<span>    skew.list <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span><span class="op">)</span>, kurtosis.list <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span><span class="op">)</span>, </span>
-<span>    cv.list <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span><span class="op">)</span>, digits <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/Extremes.html" class="external-link">max</a></span><span class="op">(</span><span class="fl">3</span>, <span class="fu"><a href="https://rdrr.io/r/base/options.html" class="external-link">getOption</a></span><span class="op">(</span><span class="st">"digits"</span><span class="op">)</span> <span class="op">-</span> <span class="fl">3</span><span class="op">)</span>, </span>
-<span>    digit.type <span class="op">=</span> <span class="st">"signif"</span>, stats.in.rows <span class="op">=</span> <span class="cn">TRUE</span>, </span>
-<span>    drop0trailing <span class="op">=</span> <span class="cn">TRUE</span>, data.name <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/deparse.html" class="external-link">deparse</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/substitute.html" class="external-link">substitute</a></span><span class="op">(</span><span class="va">object</span><span class="op">)</span><span class="op">)</span>, </span>
+<span><span class="fu">summaryFull</span><span class="op">(</span><span class="va">object</span>, group <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>    combine.groups <span class="op">=</span> <span class="cn">FALSE</span>, drop.unused.levels <span class="op">=</span> <span class="cn">TRUE</span>,</span>
+<span>    rm.group.na <span class="op">=</span> <span class="cn">TRUE</span>, stats <span class="op">=</span> <span class="cn">NULL</span>, trim <span class="op">=</span> <span class="fl">0.1</span>,</span>
+<span>    sd.method <span class="op">=</span> <span class="st">"sqrt.unbiased"</span>, geo.sd.method <span class="op">=</span> <span class="st">"sqrt.unbiased"</span>,</span>
+<span>    skew.list <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span><span class="op">)</span>, kurtosis.list <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span><span class="op">)</span>,</span>
+<span>    cv.list <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span><span class="op">)</span>, digits <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/Extremes.html" class="external-link">max</a></span><span class="op">(</span><span class="fl">3</span>, <span class="fu"><a href="https://rdrr.io/r/base/options.html" class="external-link">getOption</a></span><span class="op">(</span><span class="st">"digits"</span><span class="op">)</span> <span class="op">-</span> <span class="fl">3</span><span class="op">)</span>,</span>
+<span>    digit.type <span class="op">=</span> <span class="st">"signif"</span>, stats.in.rows <span class="op">=</span> <span class="cn">TRUE</span>,</span>
+<span>    drop0trailing <span class="op">=</span> <span class="cn">TRUE</span>, data.name <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/deparse.html" class="external-link">deparse</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/substitute.html" class="external-link">substitute</a></span><span class="op">(</span><span class="va">object</span><span class="op">)</span><span class="op">)</span>,</span>
 <span>    <span class="va">...</span><span class="op">)</span></span>
 <span></span>
 <span><span class="co"># S3 method for class 'data.frame'</span></span>
@@ -254,111 +285,99 @@
 
     <div id="ref-examples">
     <h2>Examples</h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span>  <span class="co"># Generate 20 observations from a lognormal distribution with </span></span></span>
-<span class="r-in"><span>  <span class="co"># parameters mean=10 and cv=1, and compute the summary statistics.  </span></span></span>
-<span class="r-in"><span>  <span class="co"># (Note: the call to set.seed simply allows you to reproduce this </span></span></span>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span>  <span class="co"># Generate 20 observations from a lognormal distribution with</span></span></span>
+<span class="r-in"><span>  <span class="co"># parameters mean=10 and cv=1, and compute the summary statistics.</span></span></span>
+<span class="r-in"><span>  <span class="co"># (Note: the call to set.seed simply allows you to reproduce this</span></span></span>
 <span class="r-in"><span>  <span class="co"># example.)</span></span></span>
 <span class="r-in"><span></span></span>
-<span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/r/base/Random.html" class="external-link">set.seed</a></span><span class="op">(</span><span class="fl">250</span><span class="op">)</span> </span></span>
+<span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/r/base/Random.html" class="external-link">set.seed</a></span><span class="op">(</span><span class="fl">250</span><span class="op">)</span></span></span>
 <span class="r-in"><span></span></span>
-<span class="r-in"><span>  <span class="va">dat</span> <span class="op">&lt;-</span> <span class="fu"><a href="LognormalAlt.html">rlnormAlt</a></span><span class="op">(</span><span class="fl">20</span>, mean<span class="op">=</span><span class="fl">10</span>, cv<span class="op">=</span><span class="fl">1</span><span class="op">)</span> </span></span>
+<span class="r-in"><span>  <span class="va">dat</span> <span class="op">&lt;-</span> <span class="fu"><a href="LognormalAlt.html">rlnormAlt</a></span><span class="op">(</span><span class="fl">20</span>, mean<span class="op">=</span><span class="fl">10</span>, cv<span class="op">=</span><span class="fl">1</span><span class="op">)</span></span></span>
 <span class="r-in"><span></span></span>
-<span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/r/base/summary.html" class="external-link">summary</a></span><span class="op">(</span><span class="va">dat</span><span class="op">)</span> </span></span>
+<span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/r/base/summary.html" class="external-link">summary</a></span><span class="op">(</span><span class="va">dat</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   2.608   4.995   6.235   7.490   9.295  15.437 </span>
-<span class="r-in"><span>  <span class="co"># Min. 1st Qu.  Median    Mean 3rd Qu.    Max. </span></span></span>
+<span class="r-in"><span>  <span class="co"># Min. 1st Qu.  Median    Mean 3rd Qu.    Max.</span></span></span>
 <span class="r-in"><span>  <span class="co">#2.608   4.995   6.235   7.490   9.295  15.440</span></span></span>
 <span class="r-in"><span></span></span>
-<span class="r-in"><span>  <span class="fu">summaryFull</span><span class="op">(</span><span class="va">dat</span><span class="op">)</span> </span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>                                   dat</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> N                            20.00000</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Mean                          7.49000</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Median                        6.23500</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 10% Trimmed Mean              7.12500</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Geometric Mean                6.67400</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Skew                          0.98770</span>
+<span class="r-in"><span>  <span class="fu">summaryFull</span><span class="op">(</span><span class="va">dat</span><span class="op">)</span></span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                              dat     </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> N                            20      </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Mean                          7.49   </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Median                        6.235  </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 10% Trimmed Mean              7.125  </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Geometric Mean                6.674  </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Skew                          0.9877 </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Kurtosis                     -0.03539</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Min                           2.60800</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Max                          15.44000</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Range                        12.83000</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1st Quartile                  4.99500</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 3rd Quartile                  9.29500</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Standard Deviation            3.80300</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Geometric Standard Deviation  1.63400</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Interquartile Range           4.30000</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Median Absolute Deviation     2.60700</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Coefficient of Variation      0.50780</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> attr(,"class")</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "summaryStats"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> attr(,"stats.in.rows")</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] TRUE</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> attr(,"drop0trailing")</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] TRUE</span>
-<span class="r-in"><span>  <span class="co">#                             dat     </span></span></span>
-<span class="r-in"><span>  <span class="co">#N                            20      </span></span></span>
-<span class="r-in"><span>  <span class="co">#Mean                          7.49   </span></span></span>
-<span class="r-in"><span>  <span class="co">#Median                        6.235  </span></span></span>
-<span class="r-in"><span>  <span class="co">#10% Trimmed Mean              7.125  </span></span></span>
-<span class="r-in"><span>  <span class="co">#Geometric Mean                6.674  </span></span></span>
-<span class="r-in"><span>  <span class="co">#Skew                          0.9877 </span></span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Min                           2.608  </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Max                          15.44   </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Range                        12.83   </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1st Quartile                  4.995  </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 3rd Quartile                  9.295  </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Standard Deviation            3.803  </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Geometric Standard Deviation  1.634  </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Interquartile Range           4.3    </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Median Absolute Deviation     2.607  </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Coefficient of Variation      0.5078 </span>
+<span class="r-in"><span>  <span class="co">#                             dat</span></span></span>
+<span class="r-in"><span>  <span class="co">#N                            20</span></span></span>
+<span class="r-in"><span>  <span class="co">#Mean                          7.49</span></span></span>
+<span class="r-in"><span>  <span class="co">#Median                        6.235</span></span></span>
+<span class="r-in"><span>  <span class="co">#10% Trimmed Mean              7.125</span></span></span>
+<span class="r-in"><span>  <span class="co">#Geometric Mean                6.674</span></span></span>
+<span class="r-in"><span>  <span class="co">#Skew                          0.9877</span></span></span>
 <span class="r-in"><span>  <span class="co">#Kurtosis                     -0.03539</span></span></span>
-<span class="r-in"><span>  <span class="co">#Min                           2.608  </span></span></span>
-<span class="r-in"><span>  <span class="co">#Max                          15.44   </span></span></span>
-<span class="r-in"><span>  <span class="co">#Range                        12.83   </span></span></span>
-<span class="r-in"><span>  <span class="co">#1st Quartile                  4.995  </span></span></span>
-<span class="r-in"><span>  <span class="co">#3rd Quartile                  9.295  </span></span></span>
-<span class="r-in"><span>  <span class="co">#Standard Deviation            3.803  </span></span></span>
-<span class="r-in"><span>  <span class="co">#Geometric Standard Deviation  1.634  </span></span></span>
-<span class="r-in"><span>  <span class="co">#Interquartile Range           4.3    </span></span></span>
-<span class="r-in"><span>  <span class="co">#Median Absolute Deviation     2.607  </span></span></span>
-<span class="r-in"><span>  <span class="co">#Coefficient of Variation      0.5078 </span></span></span>
+<span class="r-in"><span>  <span class="co">#Min                           2.608</span></span></span>
+<span class="r-in"><span>  <span class="co">#Max                          15.44</span></span></span>
+<span class="r-in"><span>  <span class="co">#Range                        12.83</span></span></span>
+<span class="r-in"><span>  <span class="co">#1st Quartile                  4.995</span></span></span>
+<span class="r-in"><span>  <span class="co">#3rd Quartile                  9.295</span></span></span>
+<span class="r-in"><span>  <span class="co">#Standard Deviation            3.803</span></span></span>
+<span class="r-in"><span>  <span class="co">#Geometric Standard Deviation  1.634</span></span></span>
+<span class="r-in"><span>  <span class="co">#Interquartile Range           4.3</span></span></span>
+<span class="r-in"><span>  <span class="co">#Median Absolute Deviation     2.607</span></span></span>
+<span class="r-in"><span>  <span class="co">#Coefficient of Variation      0.5078</span></span></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span>  <span class="co">#----------</span></span></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span>  <span class="co"># Compare summary statistics for normal and lognormal data:</span></span></span>
-<span class="r-in"><span>  <span class="va">log.dat</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/Log.html" class="external-link">log</a></span><span class="op">(</span><span class="va">dat</span><span class="op">)</span> </span></span>
+<span class="r-in"><span>  <span class="va">log.dat</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/Log.html" class="external-link">log</a></span><span class="op">(</span><span class="va">dat</span><span class="op">)</span></span></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span>  <span class="fu">summaryFull</span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>dat <span class="op">=</span> <span class="va">dat</span>, log.dat <span class="op">=</span> <span class="va">log.dat</span><span class="op">)</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>                                   dat log.dat</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> N                            20.00000 20.0000</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Mean                          7.49000  1.8980</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Median                        6.23500  1.8300</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 10% Trimmed Mean              7.12500  1.9020</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Geometric Mean                6.67400  1.8350</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Skew                          0.98770  0.1319</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                              dat      log.dat</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> N                            20       20     </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Mean                          7.49     1.898 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Median                        6.235    1.83  </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 10% Trimmed Mean              7.125    1.902 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Geometric Mean                6.674    1.835 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Skew                          0.9877   0.1319</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Kurtosis                     -0.03539 -0.4288</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Min                           2.60800  0.9587</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Max                          15.44000  2.7370</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Range                        12.83000  1.7780</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1st Quartile                  4.99500  1.6070</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 3rd Quartile                  9.29500  2.2270</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Standard Deviation            3.80300  0.4913</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Geometric Standard Deviation  1.63400  1.3150</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Interquartile Range           4.30000  0.6200</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Median Absolute Deviation     2.60700  0.4915</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Coefficient of Variation      0.50780  0.2588</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> attr(,"class")</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "summaryStats"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> attr(,"stats.in.rows")</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] TRUE</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> attr(,"drop0trailing")</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] TRUE</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Min                           2.608    0.9587</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Max                          15.44     2.737 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Range                        12.83     1.778 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1st Quartile                  4.995    1.607 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 3rd Quartile                  9.295    2.227 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Standard Deviation            3.803    0.4913</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Geometric Standard Deviation  1.634    1.315 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Interquartile Range           4.3      0.62  </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Median Absolute Deviation     2.607    0.4915</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Coefficient of Variation      0.5078   0.2588</span>
 <span class="r-in"><span>  <span class="co">#                             dat      log.dat</span></span></span>
-<span class="r-in"><span>  <span class="co">#N                            20       20     </span></span></span>
-<span class="r-in"><span>  <span class="co">#Mean                          7.49     1.898 </span></span></span>
-<span class="r-in"><span>  <span class="co">#Median                        6.235    1.83  </span></span></span>
-<span class="r-in"><span>  <span class="co">#10% Trimmed Mean              7.125    1.902 </span></span></span>
-<span class="r-in"><span>  <span class="co">#Geometric Mean                6.674    1.835 </span></span></span>
+<span class="r-in"><span>  <span class="co">#N                            20       20</span></span></span>
+<span class="r-in"><span>  <span class="co">#Mean                          7.49     1.898</span></span></span>
+<span class="r-in"><span>  <span class="co">#Median                        6.235    1.83</span></span></span>
+<span class="r-in"><span>  <span class="co">#10% Trimmed Mean              7.125    1.902</span></span></span>
+<span class="r-in"><span>  <span class="co">#Geometric Mean                6.674    1.835</span></span></span>
 <span class="r-in"><span>  <span class="co">#Skew                          0.9877   0.1319</span></span></span>
 <span class="r-in"><span>  <span class="co">#Kurtosis                     -0.03539 -0.4288</span></span></span>
 <span class="r-in"><span>  <span class="co">#Min                           2.608    0.9587</span></span></span>
-<span class="r-in"><span>  <span class="co">#Max                          15.44     2.737 </span></span></span>
-<span class="r-in"><span>  <span class="co">#Range                        12.83     1.778 </span></span></span>
-<span class="r-in"><span>  <span class="co">#1st Quartile                  4.995    1.607 </span></span></span>
-<span class="r-in"><span>  <span class="co">#3rd Quartile                  9.295    2.227 </span></span></span>
+<span class="r-in"><span>  <span class="co">#Max                          15.44     2.737</span></span></span>
+<span class="r-in"><span>  <span class="co">#Range                        12.83     1.778</span></span></span>
+<span class="r-in"><span>  <span class="co">#1st Quartile                  4.995    1.607</span></span></span>
+<span class="r-in"><span>  <span class="co">#3rd Quartile                  9.295    2.227</span></span></span>
 <span class="r-in"><span>  <span class="co">#Standard Deviation            3.803    0.4913</span></span></span>
-<span class="r-in"><span>  <span class="co">#Geometric Standard Deviation  1.634    1.315 </span></span></span>
-<span class="r-in"><span>  <span class="co">#Interquartile Range           4.3      0.62  </span></span></span>
+<span class="r-in"><span>  <span class="co">#Geometric Standard Deviation  1.634    1.315</span></span></span>
+<span class="r-in"><span>  <span class="co">#Interquartile Range           4.3      0.62</span></span></span>
 <span class="r-in"><span>  <span class="co">#Median Absolute Deviation     2.607    0.4915</span></span></span>
 <span class="r-in"><span>  <span class="co">#Coefficient of Variation      0.5078   0.2588</span></span></span>
 <span class="r-in"><span></span></span>
@@ -367,51 +386,45 @@
 <span class="r-in"><span></span></span>
 <span class="r-in"><span>  <span class="co">#--------------------------------------------------------------------</span></span></span>
 <span class="r-in"><span></span></span>
-<span class="r-in"><span>  <span class="co"># Compute summary statistics for 10 observations from a normal </span></span></span>
-<span class="r-in"><span>  <span class="co"># distribution with parameters mean=0 and sd=1.  Note that the </span></span></span>
-<span class="r-in"><span>  <span class="co"># geometric mean and geometric standard deviation are not computed </span></span></span>
+<span class="r-in"><span>  <span class="co"># Compute summary statistics for 10 observations from a normal</span></span></span>
+<span class="r-in"><span>  <span class="co"># distribution with parameters mean=0 and sd=1.  Note that the</span></span></span>
+<span class="r-in"><span>  <span class="co"># geometric mean and geometric standard deviation are not computed</span></span></span>
 <span class="r-in"><span>  <span class="co"># since some of the observations are non-positive.</span></span></span>
 <span class="r-in"><span></span></span>
-<span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/r/base/Random.html" class="external-link">set.seed</a></span><span class="op">(</span><span class="fl">287</span><span class="op">)</span> </span></span>
+<span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/r/base/Random.html" class="external-link">set.seed</a></span><span class="op">(</span><span class="fl">287</span><span class="op">)</span></span></span>
 <span class="r-in"><span></span></span>
-<span class="r-in"><span>  <span class="va">dat</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/Normal.html" class="external-link">rnorm</a></span><span class="op">(</span><span class="fl">10</span><span class="op">)</span> </span></span>
+<span class="r-in"><span>  <span class="va">dat</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/Normal.html" class="external-link">rnorm</a></span><span class="op">(</span><span class="fl">10</span><span class="op">)</span></span></span>
 <span class="r-in"><span></span></span>
-<span class="r-in"><span>  <span class="fu">summaryFull</span><span class="op">(</span><span class="va">dat</span><span class="op">)</span> </span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>                                dat</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> N                         10.00000</span>
+<span class="r-in"><span>  <span class="fu">summaryFull</span><span class="op">(</span><span class="va">dat</span><span class="op">)</span></span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                           dat     </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> N                         10      </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Mean                       0.07406</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Median                     0.10950</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 10% Trimmed Mean           0.10510</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Skew                      -0.16460</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Kurtosis                  -0.71350</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Min                       -1.54900</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Max                        1.44900</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Range                      2.99800</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1st Quartile              -0.58340</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 3rd Quartile               0.69660</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Standard Deviation         0.94120</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Interquartile Range        1.28000</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Median Absolute Deviation  1.05000</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> attr(,"class")</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "summaryStats"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> attr(,"stats.in.rows")</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] TRUE</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> attr(,"drop0trailing")</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] TRUE</span>
-<span class="r-in"><span>  <span class="co">#                          dat     </span></span></span>
-<span class="r-in"><span>  <span class="co">#N                         10      </span></span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Median                     0.1095 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 10% Trimmed Mean           0.1051 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Skew                      -0.1646 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Kurtosis                  -0.7135 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Min                       -1.549  </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Max                        1.449  </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Range                      2.998  </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1st Quartile              -0.5834 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 3rd Quartile               0.6966 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Standard Deviation         0.9412 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Interquartile Range        1.28   </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Median Absolute Deviation  1.05   </span>
+<span class="r-in"><span>  <span class="co">#                          dat</span></span></span>
+<span class="r-in"><span>  <span class="co">#N                         10</span></span></span>
 <span class="r-in"><span>  <span class="co">#Mean                       0.07406</span></span></span>
-<span class="r-in"><span>  <span class="co">#Median                     0.1095 </span></span></span>
-<span class="r-in"><span>  <span class="co">#10% Trimmed Mean           0.1051 </span></span></span>
-<span class="r-in"><span>  <span class="co">#Skew                      -0.1646 </span></span></span>
-<span class="r-in"><span>  <span class="co">#Kurtosis                  -0.7135 </span></span></span>
-<span class="r-in"><span>  <span class="co">#Min                       -1.549  </span></span></span>
-<span class="r-in"><span>  <span class="co">#Max                        1.449  </span></span></span>
-<span class="r-in"><span>  <span class="co">#Range                      2.998  </span></span></span>
-<span class="r-in"><span>  <span class="co">#1st Quartile              -0.5834 </span></span></span>
-<span class="r-in"><span>  <span class="co">#3rd Quartile               0.6966 </span></span></span>
-<span class="r-in"><span>  <span class="co">#Standard Deviation         0.9412 </span></span></span>
-<span class="r-in"><span>  <span class="co">#Interquartile Range        1.28   </span></span></span>
+<span class="r-in"><span>  <span class="co">#Median                     0.1095</span></span></span>
+<span class="r-in"><span>  <span class="co">#10% Trimmed Mean           0.1051</span></span></span>
+<span class="r-in"><span>  <span class="co">#Skew                      -0.1646</span></span></span>
+<span class="r-in"><span>  <span class="co">#Kurtosis                  -0.7135</span></span></span>
+<span class="r-in"><span>  <span class="co">#Min                       -1.549</span></span></span>
+<span class="r-in"><span>  <span class="co">#Max                        1.449</span></span></span>
+<span class="r-in"><span>  <span class="co">#Range                      2.998</span></span></span>
+<span class="r-in"><span>  <span class="co">#1st Quartile              -0.5834</span></span></span>
+<span class="r-in"><span>  <span class="co">#3rd Quartile               0.6966</span></span></span>
+<span class="r-in"><span>  <span class="co">#Standard Deviation         0.9412</span></span></span>
+<span class="r-in"><span>  <span class="co">#Interquartile Range        1.28</span></span></span>
 <span class="r-in"><span>  <span class="co">#Median Absolute Deviation  1.05</span></span></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span>  <span class="co"># Clean up</span></span></span>
@@ -419,54 +432,48 @@
 <span class="r-in"><span></span></span>
 <span class="r-in"><span>  <span class="co">#--------------------------------------------------------------------</span></span></span>
 <span class="r-in"><span></span></span>
-<span class="r-in"><span>  <span class="co"># Compute summary statistics for the TcCB data given in USEPA (1994b) </span></span></span>
-<span class="r-in"><span>  <span class="co"># (the data are stored in EPA.94b.tccb.df).  Arbitrarily set the one </span></span></span>
-<span class="r-in"><span>  <span class="co"># censored observation to the censoring level. Group by the variable </span></span></span>
+<span class="r-in"><span>  <span class="co"># Compute summary statistics for the TcCB data given in USEPA (1994b)</span></span></span>
+<span class="r-in"><span>  <span class="co"># (the data are stored in EPA.94b.tccb.df).  Arbitrarily set the one</span></span></span>
+<span class="r-in"><span>  <span class="co"># censored observation to the censoring level. Group by the variable</span></span></span>
 <span class="r-in"><span>  <span class="co"># Area.</span></span></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span>  <span class="fu">summaryFull</span><span class="op">(</span><span class="va">TcCB</span> <span class="op">~</span> <span class="va">Area</span>, data <span class="op">=</span> <span class="va">EPA.94b.tccb.df</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>                               Cleanup Reference</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> N                             77.0000   47.0000</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Mean                           3.9150    0.5985</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Median                         0.4300    0.5400</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 10% Trimmed Mean               0.6846    0.5728</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Geometric Mean                 0.5784    0.5382</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Skew                           7.7170    0.9019</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Kurtosis                      62.6700    0.1320</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Min                            0.0900    0.2200</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Max                          168.6000    1.3300</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Range                        168.5000    1.1100</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1st Quartile                   0.2300    0.3900</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 3rd Quartile                   1.1000    0.7500</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Standard Deviation            20.0200    0.2836</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Geometric Standard Deviation   3.8980    1.5970</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Interquartile Range            0.8700    0.3600</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Median Absolute Deviation      0.3558    0.2669</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Coefficient of Variation       5.1120    0.4739</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> attr(,"class")</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "summaryStats"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> attr(,"stats.in.rows")</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] TRUE</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> attr(,"drop0trailing")</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] TRUE</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                              Cleanup  Reference</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> N                             77       47      </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Mean                           3.915    0.5985 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Median                         0.43     0.54   </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 10% Trimmed Mean               0.6846   0.5728 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Geometric Mean                 0.5784   0.5382 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Skew                           7.717    0.9019 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Kurtosis                      62.67     0.132  </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Min                            0.09     0.22   </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Max                          168.6      1.33   </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Range                        168.5      1.11   </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1st Quartile                   0.23     0.39   </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 3rd Quartile                   1.1      0.75   </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Standard Deviation            20.02     0.2836 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Geometric Standard Deviation   3.898    1.597  </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Interquartile Range            0.87     0.36   </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Median Absolute Deviation      0.3558   0.2669 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Coefficient of Variation       5.112    0.4739 </span>
 <span class="r-in"><span>  <span class="co">#                             Cleanup  Reference</span></span></span>
-<span class="r-in"><span>  <span class="co">#N                             77       47      </span></span></span>
-<span class="r-in"><span>  <span class="co">#Mean                           3.915    0.5985 </span></span></span>
-<span class="r-in"><span>  <span class="co">#Median                         0.43     0.54   </span></span></span>
-<span class="r-in"><span>  <span class="co">#10% Trimmed Mean               0.6846   0.5728 </span></span></span>
-<span class="r-in"><span>  <span class="co">#Geometric Mean                 0.5784   0.5382 </span></span></span>
-<span class="r-in"><span>  <span class="co">#Skew                           7.717    0.9019 </span></span></span>
-<span class="r-in"><span>  <span class="co">#Kurtosis                      62.67     0.132  </span></span></span>
-<span class="r-in"><span>  <span class="co">#Min                            0.09     0.22   </span></span></span>
-<span class="r-in"><span>  <span class="co">#Max                          168.6      1.33   </span></span></span>
-<span class="r-in"><span>  <span class="co">#Range                        168.5      1.11   </span></span></span>
-<span class="r-in"><span>  <span class="co">#1st Quartile                   0.23     0.39   </span></span></span>
-<span class="r-in"><span>  <span class="co">#3rd Quartile                   1.1      0.75   </span></span></span>
-<span class="r-in"><span>  <span class="co">#Standard Deviation            20.02     0.2836 </span></span></span>
-<span class="r-in"><span>  <span class="co">#Geometric Standard Deviation   3.898    1.597  </span></span></span>
-<span class="r-in"><span>  <span class="co">#Interquartile Range            0.87     0.36   </span></span></span>
-<span class="r-in"><span>  <span class="co">#Median Absolute Deviation      0.3558   0.2669 </span></span></span>
-<span class="r-in"><span>  <span class="co">#Coefficient of Variation       5.112    0.4739 </span></span></span>
+<span class="r-in"><span>  <span class="co">#N                             77       47</span></span></span>
+<span class="r-in"><span>  <span class="co">#Mean                           3.915    0.5985</span></span></span>
+<span class="r-in"><span>  <span class="co">#Median                         0.43     0.54</span></span></span>
+<span class="r-in"><span>  <span class="co">#10% Trimmed Mean               0.6846   0.5728</span></span></span>
+<span class="r-in"><span>  <span class="co">#Geometric Mean                 0.5784   0.5382</span></span></span>
+<span class="r-in"><span>  <span class="co">#Skew                           7.717    0.9019</span></span></span>
+<span class="r-in"><span>  <span class="co">#Kurtosis                      62.67     0.132</span></span></span>
+<span class="r-in"><span>  <span class="co">#Min                            0.09     0.22</span></span></span>
+<span class="r-in"><span>  <span class="co">#Max                          168.6      1.33</span></span></span>
+<span class="r-in"><span>  <span class="co">#Range                        168.5      1.11</span></span></span>
+<span class="r-in"><span>  <span class="co">#1st Quartile                   0.23     0.39</span></span></span>
+<span class="r-in"><span>  <span class="co">#3rd Quartile                   1.1      0.75</span></span></span>
+<span class="r-in"><span>  <span class="co">#Standard Deviation            20.02     0.2836</span></span></span>
+<span class="r-in"><span>  <span class="co">#Geometric Standard Deviation   3.898    1.597</span></span></span>
+<span class="r-in"><span>  <span class="co">#Interquartile Range            0.87     0.36</span></span></span>
+<span class="r-in"><span>  <span class="co">#Median Absolute Deviation      0.3558   0.2669</span></span></span>
+<span class="r-in"><span>  <span class="co">#Coefficient of Variation       5.112    0.4739</span></span></span>
 </code></pre></div>
     </div>
   </div>
@@ -481,7 +488,7 @@
 </div>
 
 <div class="pkgdown">
-  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.1.1.</p>
+  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.2.1.</p>
 </div>
 
       </footer></div>

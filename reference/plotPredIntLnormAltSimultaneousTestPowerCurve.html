@@ -19,7 +19,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">EnvStats</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">3.1.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">4.0.0</span>
       </span>
     </div>
 
@@ -27,6 +27,37 @@
       <ul class="nav navbar-nav"><li>
   <a href="../reference/index.html">Reference</a>
 </li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+    Articles
+
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu"><li>
+      <a href="../articles/censored-estimation.html">Estimation with censored data</a>
+    </li>
+    <li>
+      <a href="../articles/distribution-diagnostics.html">Distribution diagnostics, transformations, and probability plots</a>
+    </li>
+    <li>
+      <a href="../articles/distributions-and-estimation.html">Probability distributions and parameter estimation</a>
+    </li>
+    <li>
+      <a href="../articles/nonparametric-methods.html">Nonparametric estimation and two-sample tests</a>
+    </li>
+    <li>
+      <a href="../articles/outlier-testing.html">Rosner's test for multiple outliers</a>
+    </li>
+    <li>
+      <a href="../articles/power-and-study-design.html">Statistical power and study design</a>
+    </li>
+    <li>
+      <a href="../articles/prediction-intervals.html">Prediction intervals for environmental monitoring</a>
+    </li>
+    <li>
+      <a href="../articles/trend-and-correlation.html">Trend tests and serial correlation</a>
+    </li>
+  </ul></li>
       </ul><ul class="nav navbar-nav navbar-right"><li>
   <a href="https://github.com/alexkowa/EnvStats/" class="external-link">
     <span class="fab fa-github fa-lg"></span>
@@ -43,7 +74,7 @@
   <div class="col-md-9 contents">
     <div class="page-header">
     <h1>Power Curves for Sampling Design for Test Based on Simultaneous Prediction Interval for Lognormal Distribution</h1>
-
+    <small class="dont-index">Source: <a href="https://github.com/alexkowa/EnvStats/blob/master/R/plotPredIntLnormAltSimultaneousTestPowerCurve.R" class="external-link"><code>R/plotPredIntLnormAltSimultaneousTestPowerCurve.R</code></a></small>
     <div class="hidden name"><code>plotPredIntLnormAltSimultaneousTestPowerCurve.Rd</code></div>
     </div>
 
@@ -54,12 +85,12 @@
     </div>
 
     <div id="ref-usage">
-    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">plotPredIntLnormAltSimultaneousTestPowerCurve</span><span class="op">(</span>n <span class="op">=</span> <span class="fl">8</span>, df <span class="op">=</span> <span class="va">n</span> <span class="op">-</span> <span class="fl">1</span>, n.geomean <span class="op">=</span> <span class="fl">1</span>, </span>
-<span>    k <span class="op">=</span> <span class="fl">1</span>, m <span class="op">=</span> <span class="fl">2</span>, r <span class="op">=</span> <span class="fl">1</span>, rule <span class="op">=</span> <span class="st">"k.of.m"</span>, cv <span class="op">=</span> <span class="fl">1</span>, range.ratio.of.means <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">1</span>, <span class="fl">5</span><span class="op">)</span>, </span>
-<span>    pi.type <span class="op">=</span> <span class="st">"upper"</span>, conf.level <span class="op">=</span> <span class="fl">0.95</span>, r.shifted <span class="op">=</span> <span class="va">r</span>, </span>
-<span>    K.tol <span class="op">=</span> <span class="va">.Machine</span><span class="op">$</span><span class="va">double.eps</span><span class="op">^</span><span class="op">(</span><span class="fl">1</span><span class="op">/</span><span class="fl">2</span><span class="op">)</span>, integrate.args.list <span class="op">=</span> <span class="cn">NULL</span>, plot.it <span class="op">=</span> <span class="cn">TRUE</span>, </span>
-<span>    add <span class="op">=</span> <span class="cn">FALSE</span>, n.points <span class="op">=</span> <span class="fl">20</span>, plot.col <span class="op">=</span> <span class="st">"black"</span>, plot.lwd <span class="op">=</span> <span class="fl">3</span> <span class="op">*</span> <span class="fu"><a href="https://rdrr.io/r/graphics/par.html" class="external-link">par</a></span><span class="op">(</span><span class="st">"cex"</span><span class="op">)</span>, </span>
-<span>    plot.lty <span class="op">=</span> <span class="fl">1</span>, digits <span class="op">=</span> <span class="va">.Options</span><span class="op">$</span><span class="va">digits</span>, cex.main <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/graphics/par.html" class="external-link">par</a></span><span class="op">(</span><span class="st">"cex"</span><span class="op">)</span>, <span class="va">...</span>, </span>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">plotPredIntLnormAltSimultaneousTestPowerCurve</span><span class="op">(</span>n <span class="op">=</span> <span class="fl">8</span>, df <span class="op">=</span> <span class="va">n</span> <span class="op">-</span> <span class="fl">1</span>, n.geomean <span class="op">=</span> <span class="fl">1</span>,</span>
+<span>    k <span class="op">=</span> <span class="fl">1</span>, m <span class="op">=</span> <span class="fl">2</span>, r <span class="op">=</span> <span class="fl">1</span>, rule <span class="op">=</span> <span class="st">"k.of.m"</span>, cv <span class="op">=</span> <span class="fl">1</span>, range.ratio.of.means <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">1</span>, <span class="fl">5</span><span class="op">)</span>,</span>
+<span>    pi.type <span class="op">=</span> <span class="st">"upper"</span>, conf.level <span class="op">=</span> <span class="fl">0.95</span>, r.shifted <span class="op">=</span> <span class="va">r</span>,</span>
+<span>    K.tol <span class="op">=</span> <span class="va">.Machine</span><span class="op">$</span><span class="va">double.eps</span><span class="op">^</span><span class="op">(</span><span class="fl">1</span><span class="op">/</span><span class="fl">2</span><span class="op">)</span>, integrate.args.list <span class="op">=</span> <span class="cn">NULL</span>, plot.it <span class="op">=</span> <span class="cn">TRUE</span>,</span>
+<span>    add <span class="op">=</span> <span class="cn">FALSE</span>, n.points <span class="op">=</span> <span class="fl">20</span>, plot.col <span class="op">=</span> <span class="st">"black"</span>, plot.lwd <span class="op">=</span> <span class="fl">3</span> <span class="op">*</span> <span class="fu"><a href="https://rdrr.io/r/graphics/par.html" class="external-link">par</a></span><span class="op">(</span><span class="st">"cex"</span><span class="op">)</span>,</span>
+<span>    plot.lty <span class="op">=</span> <span class="fl">1</span>, digits <span class="op">=</span> <span class="va">.Options</span><span class="op">$</span><span class="va">digits</span>, cex.main <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/graphics/par.html" class="external-link">par</a></span><span class="op">(</span><span class="st">"cex"</span><span class="op">)</span>, <span class="va">...</span>,</span>
 <span>    main <span class="op">=</span> <span class="cn">NULL</span>, xlab <span class="op">=</span> <span class="cn">NULL</span>, ylab <span class="op">=</span> <span class="cn">NULL</span>, type <span class="op">=</span> <span class="st">"l"</span><span class="op">)</span></span></code></pre></div>
     </div>
 
@@ -224,26 +255,26 @@
 
     <div id="ref-examples">
     <h2>Examples</h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span>  <span class="co"># USEPA (2009) contains an example on page 19-23 that involves monitoring </span></span></span>
-<span class="r-in"><span>  <span class="co"># nw=100 compliance wells at a large facility with minimal natural spatial </span></span></span>
-<span class="r-in"><span>  <span class="co"># variation every 6 months for nc=20 separate chemicals.  </span></span></span>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span>  <span class="co"># USEPA (2009) contains an example on page 19-23 that involves monitoring</span></span></span>
+<span class="r-in"><span>  <span class="co"># nw=100 compliance wells at a large facility with minimal natural spatial</span></span></span>
+<span class="r-in"><span>  <span class="co"># variation every 6 months for nc=20 separate chemicals.</span></span></span>
 <span class="r-in"><span>  <span class="co"># There are n=25 background measurements for each chemical to use to create</span></span></span>
 <span class="r-in"><span>  <span class="co"># simultaneous prediction intervals.  We would like to determine which kind of</span></span></span>
 <span class="r-in"><span>  <span class="co"># resampling plan based on normal distribution simultaneous prediction intervals to</span></span></span>
 <span class="r-in"><span>  <span class="co"># use (1-of-m, 1-of-m based on means, or Modified California) in order to have</span></span></span>
 <span class="r-in"><span>  <span class="co"># adequate power of detecting an increase in chemical concentration at any of the</span></span></span>
 <span class="r-in"><span>  <span class="co"># 100 wells while at the same time maintaining a site-wide false positive rate</span></span></span>
-<span class="r-in"><span>  <span class="co"># (SWFPR) of 10% per year over all 4,000 comparisons </span></span></span>
+<span class="r-in"><span>  <span class="co"># (SWFPR) of 10% per year over all 4,000 comparisons</span></span></span>
 <span class="r-in"><span>  <span class="co"># (100 wells x 20 chemicals x semi-annual sampling).</span></span></span>
 <span class="r-in"><span></span></span>
-<span class="r-in"><span>  <span class="co"># The function predIntNormSimultaneousTestPower includes the argument "r" </span></span></span>
-<span class="r-in"><span>  <span class="co"># that is the number of future sampling occasions (r=2 in this case because </span></span></span>
-<span class="r-in"><span>  <span class="co"># we are performing semi-annual sampling), so to compute the individual test </span></span></span>
-<span class="r-in"><span>  <span class="co"># Type I error level alpha.test (and thus the individual test confidence level), </span></span></span>
-<span class="r-in"><span>  <span class="co"># we only need to worry about the number of wells (100) and the number of </span></span></span>
-<span class="r-in"><span>  <span class="co"># constituents (20): alpha.test = 1-(1-alpha)^(1/(nw x nc)).  The individual </span></span></span>
-<span class="r-in"><span>  <span class="co"># confidence level is simply 1-alpha.test.  Plugging in 0.1 for alpha, </span></span></span>
-<span class="r-in"><span>  <span class="co"># 100 for nw, and 20 for nc yields an individual test confidence level of </span></span></span>
+<span class="r-in"><span>  <span class="co"># The function predIntNormSimultaneousTestPower includes the argument "r"</span></span></span>
+<span class="r-in"><span>  <span class="co"># that is the number of future sampling occasions (r=2 in this case because</span></span></span>
+<span class="r-in"><span>  <span class="co"># we are performing semi-annual sampling), so to compute the individual test</span></span></span>
+<span class="r-in"><span>  <span class="co"># Type I error level alpha.test (and thus the individual test confidence level),</span></span></span>
+<span class="r-in"><span>  <span class="co"># we only need to worry about the number of wells (100) and the number of</span></span></span>
+<span class="r-in"><span>  <span class="co"># constituents (20): alpha.test = 1-(1-alpha)^(1/(nw x nc)).  The individual</span></span></span>
+<span class="r-in"><span>  <span class="co"># confidence level is simply 1-alpha.test.  Plugging in 0.1 for alpha,</span></span></span>
+<span class="r-in"><span>  <span class="co"># 100 for nw, and 20 for nc yields an individual test confidence level of</span></span></span>
 <span class="r-in"><span>  <span class="co"># 1-alpha.test = 0.9999473.</span></span></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span>  <span class="va">nc</span> <span class="op">&lt;-</span> <span class="fl">20</span></span></span>
@@ -253,7 +284,7 @@
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] 0.9999473</span>
 <span class="r-in"><span>  <span class="co">#[1] 0.9999473</span></span></span>
 <span class="r-in"><span></span></span>
-<span class="r-in"><span>  <span class="co"># The help file for predIntNormSimultaneousTestPower shows how to </span></span></span>
+<span class="r-in"><span>  <span class="co"># The help file for predIntNormSimultaneousTestPower shows how to</span></span></span>
 <span class="r-in"><span>  <span class="co"># create the results below for various sampling plans:</span></span></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span>  <span class="co">#         Rule k m N.Mean    K Power Total.Samples</span></span></span>
@@ -271,78 +302,78 @@
 <span class="r-in"><span>  <span class="co"># strategies considered.  The last three rows of the table correspond to sampling</span></span></span>
 <span class="r-in"><span>  <span class="co"># strategies that involve using the mean of two or three observations.</span></span></span>
 <span class="r-in"><span></span></span>
-<span class="r-in"><span>  <span class="co"># Here we will create a variation of this example based on </span></span></span>
-<span class="r-in"><span>  <span class="co"># using a lognormal distribution and plotting power versus ratio of the </span></span></span>
+<span class="r-in"><span>  <span class="co"># Here we will create a variation of this example based on</span></span></span>
+<span class="r-in"><span>  <span class="co"># using a lognormal distribution and plotting power versus ratio of the</span></span></span>
 <span class="r-in"><span>  <span class="co"># means assuming cv=1.</span></span></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span>  <span class="co"># Here is the power curve for the 1-of-4 sampling strategy:</span></span></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/r/grDevices/dev.html" class="external-link">dev.new</a></span><span class="op">(</span><span class="op">)</span></span></span>
-<span class="r-in"><span>  <span class="fu">plotPredIntLnormAltSimultaneousTestPowerCurve</span><span class="op">(</span>n <span class="op">=</span> <span class="fl">25</span>, k <span class="op">=</span> <span class="fl">1</span>, m <span class="op">=</span> <span class="fl">4</span>, r <span class="op">=</span> <span class="fl">2</span>, </span></span>
-<span class="r-in"><span>    rule<span class="op">=</span><span class="st">"k.of.m"</span>, range.ratio.of.means <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">1</span>, <span class="fl">10</span><span class="op">)</span>, pi.type <span class="op">=</span> <span class="st">"upper"</span>,  </span></span>
+<span class="r-in"><span>  <span class="fu">plotPredIntLnormAltSimultaneousTestPowerCurve</span><span class="op">(</span>n <span class="op">=</span> <span class="fl">25</span>, k <span class="op">=</span> <span class="fl">1</span>, m <span class="op">=</span> <span class="fl">4</span>, r <span class="op">=</span> <span class="fl">2</span>,</span></span>
+<span class="r-in"><span>    rule<span class="op">=</span><span class="st">"k.of.m"</span>, range.ratio.of.means <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">1</span>, <span class="fl">10</span><span class="op">)</span>, pi.type <span class="op">=</span> <span class="st">"upper"</span>,</span></span>
 <span class="r-in"><span>    conf.level <span class="op">=</span> <span class="va">conf.level</span>, ylim <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">0</span>, <span class="fl">1</span><span class="op">)</span>, main <span class="op">=</span> <span class="st">""</span><span class="op">)</span></span></span>
 <span class="r-in"><span></span></span>
-<span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/r/graphics/title.html" class="external-link">title</a></span><span class="op">(</span>main <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/paste.html" class="external-link">paste</a></span><span class="op">(</span><span class="st">"Power Curves for 1-of-4 Sampling Strategy Based on 25 Background"</span>, </span></span>
+<span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/r/graphics/title.html" class="external-link">title</a></span><span class="op">(</span>main <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/paste.html" class="external-link">paste</a></span><span class="op">(</span><span class="st">"Power Curves for 1-of-4 Sampling Strategy Based on 25 Background"</span>,</span></span>
 <span class="r-in"><span>    <span class="st">"Samples, SWFPR=10%, and 2 Future Sampling Periods"</span>, sep <span class="op">=</span> <span class="st">"\n"</span><span class="op">)</span><span class="op">)</span></span></span>
 <span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/r/graphics/mtext.html" class="external-link">mtext</a></span><span class="op">(</span><span class="st">"Assuming Lognormal Data with CV=1"</span>, line <span class="op">=</span> <span class="fl">0</span><span class="op">)</span></span></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span>  <span class="co">#----------</span></span></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span>  <span class="co"># Here are the power curves for the first four sampling strategies.</span></span></span>
-<span class="r-in"><span>  <span class="co"># Because this takes several seconds to run, here we have commented out </span></span></span>
-<span class="r-in"><span>  <span class="co"># the R commands.  To run this example, just remove the pound signs (#) </span></span></span>
+<span class="r-in"><span>  <span class="co"># Because this takes several seconds to run, here we have commented out</span></span></span>
+<span class="r-in"><span>  <span class="co"># the R commands.  To run this example, just remove the pound signs (#)</span></span></span>
 <span class="r-in"><span>  <span class="co"># from in front of the R commands.</span></span></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span>  <span class="co">#dev.new()</span></span></span>
-<span class="r-in"><span>  <span class="co">#plotPredIntLnormAltSimultaneousTestPowerCurve(n = 25, k = 1, m = 4, r = 2, </span></span></span>
-<span class="r-in"><span>  <span class="co">#  rule="k.of.m", range.ratio.of.means = c(1, 10), pi.type = "upper",  </span></span></span>
+<span class="r-in"><span>  <span class="co">#plotPredIntLnormAltSimultaneousTestPowerCurve(n = 25, k = 1, m = 4, r = 2,</span></span></span>
+<span class="r-in"><span>  <span class="co">#  rule="k.of.m", range.ratio.of.means = c(1, 10), pi.type = "upper",</span></span></span>
 <span class="r-in"><span>  <span class="co">#  conf.level = conf.level, ylim = c(0, 1), main = "")</span></span></span>
 <span class="r-in"><span></span></span>
-<span class="r-in"><span>  <span class="co">#plotPredIntLnormAltSimultaneousTestPowerCurve(n = 25, k = 1, m = 3, r = 2, </span></span></span>
-<span class="r-in"><span>  <span class="co">#  rule="k.of.m", range.ratio.of.means = c(1, 10), pi.type = "upper",  </span></span></span>
+<span class="r-in"><span>  <span class="co">#plotPredIntLnormAltSimultaneousTestPowerCurve(n = 25, k = 1, m = 3, r = 2,</span></span></span>
+<span class="r-in"><span>  <span class="co">#  rule="k.of.m", range.ratio.of.means = c(1, 10), pi.type = "upper",</span></span></span>
 <span class="r-in"><span>  <span class="co">#  conf.level = conf.level, add = TRUE, plot.col = "red", plot.lty = 2)</span></span></span>
 <span class="r-in"><span></span></span>
-<span class="r-in"><span>  <span class="co">#plotPredIntLnormAltSimultaneousTestPowerCurve(n = 25, k = 1, m = 2, r = 2, </span></span></span>
-<span class="r-in"><span>  <span class="co">#  rule="k.of.m", range.ratio.of.means = c(1, 10), pi.type = "upper", </span></span></span>
+<span class="r-in"><span>  <span class="co">#plotPredIntLnormAltSimultaneousTestPowerCurve(n = 25, k = 1, m = 2, r = 2,</span></span></span>
+<span class="r-in"><span>  <span class="co">#  rule="k.of.m", range.ratio.of.means = c(1, 10), pi.type = "upper",</span></span></span>
 <span class="r-in"><span>  <span class="co">#  conf.level = conf.level, add = TRUE, plot.col = "blue", plot.lty = 3)</span></span></span>
 <span class="r-in"><span></span></span>
-<span class="r-in"><span>  <span class="co">#plotPredIntLnormAltSimultaneousTestPowerCurve(n = 25, r = 2, rule="Modified.CA", </span></span></span>
-<span class="r-in"><span>  <span class="co">#  range.ratio.of.means = c(1, 10), pi.type = "upper", conf.level = conf.level, </span></span></span>
+<span class="r-in"><span>  <span class="co">#plotPredIntLnormAltSimultaneousTestPowerCurve(n = 25, r = 2, rule="Modified.CA",</span></span></span>
+<span class="r-in"><span>  <span class="co">#  range.ratio.of.means = c(1, 10), pi.type = "upper", conf.level = conf.level,</span></span></span>
 <span class="r-in"><span>  <span class="co">#  add = TRUE, plot.col = "green3", plot.lty = 4)</span></span></span>
 <span class="r-in"><span></span></span>
-<span class="r-in"><span>  <span class="co">#legend("topleft", c("1-of-4", "Modified CA", "1-of-3", "1-of-2"), </span></span></span>
+<span class="r-in"><span>  <span class="co">#legend("topleft", c("1-of-4", "Modified CA", "1-of-3", "1-of-2"),</span></span></span>
 <span class="r-in"><span>  <span class="co">#  col = c("black", "green3", "red", "blue"), lty = c(1, 4, 2, 3),</span></span></span>
-<span class="r-in"><span>  <span class="co">#  lwd = 3 * par("cex"), bty = "n") </span></span></span>
+<span class="r-in"><span>  <span class="co">#  lwd = 3 * par("cex"), bty = "n")</span></span></span>
 <span class="r-in"><span></span></span>
-<span class="r-in"><span>  <span class="co">#title(main = paste("Power Curves for 4 Sampling Strategies Based on 25 Background", </span></span></span>
+<span class="r-in"><span>  <span class="co">#title(main = paste("Power Curves for 4 Sampling Strategies Based on 25 Background",</span></span></span>
 <span class="r-in"><span>  <span class="co">#  "Samples, SWFPR=10%, and 2 Future Sampling Periods", sep = "\n"))</span></span></span>
 <span class="r-in"><span>  <span class="co">#mtext("Assuming Lognormal Data with CV=1", line = 0)</span></span></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span>  <span class="co">#----------</span></span></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span>  <span class="co"># Here are the power curves for the last 3 sampling strategies:</span></span></span>
-<span class="r-in"><span>  <span class="co"># Because this takes several seconds to run, here we have commented out </span></span></span>
-<span class="r-in"><span>  <span class="co"># the R commands.  To run this example, just remove the pound signs (#) </span></span></span>
+<span class="r-in"><span>  <span class="co"># Because this takes several seconds to run, here we have commented out</span></span></span>
+<span class="r-in"><span>  <span class="co"># the R commands.  To run this example, just remove the pound signs (#)</span></span></span>
 <span class="r-in"><span>  <span class="co"># from in front of the R commands.</span></span></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span>  <span class="co">#dev.new()</span></span></span>
-<span class="r-in"><span>  <span class="co">#plotPredIntLnormAltSimultaneousTestPowerCurve(n = 25, k = 1, m = 2, n.geomean = 2, </span></span></span>
-<span class="r-in"><span>  <span class="co">#  r = 2, rule="k.of.m", range.ratio.of.means = c(1, 10), pi.type = "upper", </span></span></span>
+<span class="r-in"><span>  <span class="co">#plotPredIntLnormAltSimultaneousTestPowerCurve(n = 25, k = 1, m = 2, n.geomean = 2,</span></span></span>
+<span class="r-in"><span>  <span class="co">#  r = 2, rule="k.of.m", range.ratio.of.means = c(1, 10), pi.type = "upper",</span></span></span>
 <span class="r-in"><span>  <span class="co">#  conf.level = conf.level, ylim = c(0, 1), main = "")</span></span></span>
 <span class="r-in"><span></span></span>
-<span class="r-in"><span>  <span class="co">#plotPredIntLnormAltSimultaneousTestPowerCurve(n = 25, k = 1, m = 1, n.geomean = 2, </span></span></span>
-<span class="r-in"><span>  <span class="co">#  r = 2, rule="k.of.m", range.ratio.of.means = c(1, 10), pi.type = "upper", </span></span></span>
+<span class="r-in"><span>  <span class="co">#plotPredIntLnormAltSimultaneousTestPowerCurve(n = 25, k = 1, m = 1, n.geomean = 2,</span></span></span>
+<span class="r-in"><span>  <span class="co">#  r = 2, rule="k.of.m", range.ratio.of.means = c(1, 10), pi.type = "upper",</span></span></span>
 <span class="r-in"><span>  <span class="co">#  conf.level = conf.level, add = TRUE, plot.col = "red", plot.lty = 2)</span></span></span>
 <span class="r-in"><span></span></span>
-<span class="r-in"><span>  <span class="co">#plotPredIntLnormAltSimultaneousTestPowerCurve(n = 25, k = 1, m = 1, n.geomean = 3, </span></span></span>
-<span class="r-in"><span>  <span class="co">#  r = 2, rule="k.of.m", range.ratio.of.means = c(1, 10), pi.type = "upper", </span></span></span>
+<span class="r-in"><span>  <span class="co">#plotPredIntLnormAltSimultaneousTestPowerCurve(n = 25, k = 1, m = 1, n.geomean = 3,</span></span></span>
+<span class="r-in"><span>  <span class="co">#  r = 2, rule="k.of.m", range.ratio.of.means = c(1, 10), pi.type = "upper",</span></span></span>
 <span class="r-in"><span>  <span class="co">#  conf.level = conf.level, add = TRUE, plot.col = "blue", plot.lty = 3)</span></span></span>
 <span class="r-in"><span></span></span>
-<span class="r-in"><span>  <span class="co">#legend("topleft", c("1-of-2, Order 2", "1-of-1, Order 3", "1-of-1, Order 2"), </span></span></span>
-<span class="r-in"><span>  <span class="co">#  col = c("black", "blue", "red"), lty = c(1, 3, 2), lwd = 3 * par("cex"), </span></span></span>
+<span class="r-in"><span>  <span class="co">#legend("topleft", c("1-of-2, Order 2", "1-of-1, Order 3", "1-of-1, Order 2"),</span></span></span>
+<span class="r-in"><span>  <span class="co">#  col = c("black", "blue", "red"), lty = c(1, 3, 2), lwd = 3 * par("cex"),</span></span></span>
 <span class="r-in"><span>  <span class="co">#  bty="n")</span></span></span>
 <span class="r-in"><span></span></span>
-<span class="r-in"><span>  <span class="co">#title(main = paste("Power Curves for 3 Sampling Strategies Based on 25 Background", </span></span></span>
+<span class="r-in"><span>  <span class="co">#title(main = paste("Power Curves for 3 Sampling Strategies Based on 25 Background",</span></span></span>
 <span class="r-in"><span>  <span class="co">#  "Samples, SWFPR=10%, and 2 Future Sampling Periods", sep = "\n"))</span></span></span>
 <span class="r-in"><span>  <span class="co">#mtext("Assuming Lognormal Data with CV=1", line = 0)</span></span></span>
 <span class="r-in"><span></span></span>
@@ -366,7 +397,7 @@
 </div>
 
 <div class="pkgdown">
-  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.1.1.</p>
+  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.2.1.</p>
 </div>
 
       </footer></div>

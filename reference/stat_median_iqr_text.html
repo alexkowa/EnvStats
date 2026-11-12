@@ -20,7 +20,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">EnvStats</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">3.1.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">4.0.0</span>
       </span>
     </div>
 
@@ -28,6 +28,37 @@
       <ul class="nav navbar-nav"><li>
   <a href="../reference/index.html">Reference</a>
 </li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+    Articles
+
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu"><li>
+      <a href="../articles/censored-estimation.html">Estimation with censored data</a>
+    </li>
+    <li>
+      <a href="../articles/distribution-diagnostics.html">Distribution diagnostics, transformations, and probability plots</a>
+    </li>
+    <li>
+      <a href="../articles/distributions-and-estimation.html">Probability distributions and parameter estimation</a>
+    </li>
+    <li>
+      <a href="../articles/nonparametric-methods.html">Nonparametric estimation and two-sample tests</a>
+    </li>
+    <li>
+      <a href="../articles/outlier-testing.html">Rosner's test for multiple outliers</a>
+    </li>
+    <li>
+      <a href="../articles/power-and-study-design.html">Statistical power and study design</a>
+    </li>
+    <li>
+      <a href="../articles/prediction-intervals.html">Prediction intervals for environmental monitoring</a>
+    </li>
+    <li>
+      <a href="../articles/trend-and-correlation.html">Trend tests and serial correlation</a>
+    </li>
+  </ul></li>
       </ul><ul class="nav navbar-nav navbar-right"><li>
   <a href="https://github.com/alexkowa/EnvStats/" class="external-link">
     <span class="fab fa-github fa-lg"></span>
@@ -44,7 +75,7 @@
   <div class="col-md-9 contents">
     <div class="page-header">
     <h1>Add Text Indicating the Median and Interquartile Range to a ggplot2 Plot</h1>
-
+    <small class="dont-index">Source: <a href="https://github.com/alexkowa/EnvStats/blob/master/R/stat_median_iqr_text.R" class="external-link"><code>R/stat_median_iqr_text.R</code></a></small>
     <div class="hidden name"><code>stat_median_iqr_text.Rd</code></div>
     </div>
 
@@ -56,15 +87,15 @@
     </div>
 
     <div id="ref-usage">
-    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">stat_median_iqr_text</span><span class="op">(</span>mapping <span class="op">=</span> <span class="cn">NULL</span>, data <span class="op">=</span> <span class="cn">NULL</span>, </span>
-<span>    geom <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/ifelse.html" class="external-link">ifelse</a></span><span class="op">(</span><span class="va">text.box</span>, <span class="st">"label"</span>, <span class="st">"text"</span><span class="op">)</span>, </span>
-<span>    position <span class="op">=</span> <span class="st">"identity"</span>, na.rm <span class="op">=</span> <span class="cn">FALSE</span>, show.legend <span class="op">=</span> <span class="cn">NA</span>, </span>
-<span>    inherit.aes <span class="op">=</span> <span class="cn">TRUE</span>, y.pos <span class="op">=</span> <span class="cn">NULL</span>, y.expand.factor <span class="op">=</span> <span class="fl">0.2</span>, </span>
-<span>    digits <span class="op">=</span> <span class="fl">1</span>, digit.type <span class="op">=</span> <span class="st">"round"</span>, </span>
-<span>    nsmall <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/ifelse.html" class="external-link">ifelse</a></span><span class="op">(</span><span class="va">digit.type</span> <span class="op">==</span> <span class="st">"round"</span>, <span class="va">digits</span>, <span class="fl">0</span><span class="op">)</span>, text.box <span class="op">=</span> <span class="cn">FALSE</span>, </span>
-<span>    alpha <span class="op">=</span> <span class="fl">1</span>, angle <span class="op">=</span> <span class="fl">0</span>, color <span class="op">=</span> <span class="st">"black"</span>, family <span class="op">=</span> <span class="st">""</span>, fontface <span class="op">=</span> <span class="st">"plain"</span>, </span>
-<span>    hjust <span class="op">=</span> <span class="fl">0.5</span>, label.padding <span class="op">=</span> <span class="fu">ggplot2</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/r/grid/unit.html" class="external-link">unit</a></span><span class="op">(</span><span class="fl">0.25</span>, <span class="st">"lines"</span><span class="op">)</span>, </span>
-<span>    label.r <span class="op">=</span> <span class="fu">ggplot2</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/r/grid/unit.html" class="external-link">unit</a></span><span class="op">(</span><span class="fl">0.15</span>, <span class="st">"lines"</span><span class="op">)</span>, label.size <span class="op">=</span> <span class="fl">0.25</span>, </span>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">stat_median_iqr_text</span><span class="op">(</span>mapping <span class="op">=</span> <span class="cn">NULL</span>, data <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>    geom <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/ifelse.html" class="external-link">ifelse</a></span><span class="op">(</span><span class="va">text.box</span>, <span class="st">"label"</span>, <span class="st">"text"</span><span class="op">)</span>,</span>
+<span>    position <span class="op">=</span> <span class="st">"identity"</span>, na.rm <span class="op">=</span> <span class="cn">FALSE</span>, show.legend <span class="op">=</span> <span class="cn">NA</span>,</span>
+<span>    inherit.aes <span class="op">=</span> <span class="cn">TRUE</span>, y.pos <span class="op">=</span> <span class="cn">NULL</span>, y.expand.factor <span class="op">=</span> <span class="fl">0.2</span>,</span>
+<span>    digits <span class="op">=</span> <span class="fl">1</span>, digit.type <span class="op">=</span> <span class="st">"round"</span>,</span>
+<span>    nsmall <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/ifelse.html" class="external-link">ifelse</a></span><span class="op">(</span><span class="va">digit.type</span> <span class="op">==</span> <span class="st">"round"</span>, <span class="va">digits</span>, <span class="fl">0</span><span class="op">)</span>, text.box <span class="op">=</span> <span class="cn">FALSE</span>,</span>
+<span>    alpha <span class="op">=</span> <span class="fl">1</span>, angle <span class="op">=</span> <span class="fl">0</span>, color <span class="op">=</span> <span class="st">"black"</span>, family <span class="op">=</span> <span class="st">""</span>, fontface <span class="op">=</span> <span class="st">"plain"</span>,</span>
+<span>    hjust <span class="op">=</span> <span class="fl">0.5</span>, label.padding <span class="op">=</span> <span class="fu">ggplot2</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/r/grid/unit.html" class="external-link">unit</a></span><span class="op">(</span><span class="fl">0.25</span>, <span class="st">"lines"</span><span class="op">)</span>,</span>
+<span>    label.r <span class="op">=</span> <span class="fu">ggplot2</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/r/grid/unit.html" class="external-link">unit</a></span><span class="op">(</span><span class="fl">0.15</span>, <span class="st">"lines"</span><span class="op">)</span>, label.size <span class="op">=</span> <span class="fl">0.25</span>,</span>
 <span>    lineheight <span class="op">=</span> <span class="fl">1.2</span>, size <span class="op">=</span> <span class="fl">4</span>, vjust <span class="op">=</span> <span class="fl">0.5</span>, <span class="va">...</span><span class="op">)</span></span></code></pre></div>
     </div>
 
@@ -175,43 +206,43 @@
 <span class="r-in"><span></span></span>
 <span class="r-in"><span>  <span class="co"># Example 1:</span></span></span>
 <span class="r-in"><span></span></span>
-<span class="r-in"><span>  <span class="co"># Using the built-in data frame mtcars, </span></span></span>
+<span class="r-in"><span>  <span class="co"># Using the built-in data frame mtcars,</span></span></span>
 <span class="r-in"><span>  <span class="co"># plot miles per gallon vs. number of cylinders</span></span></span>
 <span class="r-in"><span>  <span class="co"># using different colors for each level of the number of cylinders.</span></span></span>
 <span class="r-in"><span>  <span class="co">#------------------------------------------------------------------</span></span></span>
 <span class="r-in"><span></span></span>
-<span class="r-in"><span>  <span class="va">p</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html" class="external-link">ggplot</a></span><span class="op">(</span><span class="va">mtcars</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html" class="external-link">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/factor.html" class="external-link">factor</a></span><span class="op">(</span><span class="va">cyl</span><span class="op">)</span>, y <span class="op">=</span> <span class="va">mpg</span>, color <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/factor.html" class="external-link">factor</a></span><span class="op">(</span><span class="va">cyl</span><span class="op">)</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span> </span></span>
+<span class="r-in"><span>  <span class="va">p</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html" class="external-link">ggplot</a></span><span class="op">(</span><span class="va">mtcars</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html" class="external-link">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/factor.html" class="external-link">factor</a></span><span class="op">(</span><span class="va">cyl</span><span class="op">)</span>, y <span class="op">=</span> <span class="va">mpg</span>, color <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/factor.html" class="external-link">factor</a></span><span class="op">(</span><span class="va">cyl</span><span class="op">)</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span></span>
 <span class="r-in"><span>    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/theme.html" class="external-link">theme</a></span><span class="op">(</span>legend.position <span class="op">=</span> <span class="st">"none"</span><span class="op">)</span></span></span>
 <span class="r-in"><span></span></span>
-<span class="r-in"><span>  <span class="va">p</span> <span class="op">+</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html" class="external-link">geom_point</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span> </span></span>
+<span class="r-in"><span>  <span class="va">p</span> <span class="op">+</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html" class="external-link">geom_point</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span></span></span>
 <span class="r-in"><span>    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html" class="external-link">labs</a></span><span class="op">(</span>x <span class="op">=</span> <span class="st">"Number of Cylinders"</span>, y <span class="op">=</span> <span class="st">"Miles per Gallon"</span><span class="op">)</span></span></span>
 <span class="r-plt img"><img src="stat_median_iqr_text-1.png" alt="" width="700" height="433"></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span></span></span>
-<span class="r-in"><span>  <span class="co"># Now add text indicating the median and interquartile range </span></span></span>
+<span class="r-in"><span>  <span class="co"># Now add text indicating the median and interquartile range</span></span></span>
 <span class="r-in"><span>  <span class="co"># for each level of cylinder.</span></span></span>
 <span class="r-in"><span>  <span class="co">#-----------------------------------------------------------</span></span></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/r/grDevices/dev.html" class="external-link">dev.new</a></span><span class="op">(</span><span class="op">)</span></span></span>
-<span class="r-in"><span>  <span class="va">p</span> <span class="op">+</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html" class="external-link">geom_point</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span> </span></span>
-<span class="r-in"><span>    <span class="fu">stat_median_iqr_text</span><span class="op">(</span><span class="op">)</span> <span class="op">+</span> </span></span>
+<span class="r-in"><span>  <span class="va">p</span> <span class="op">+</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html" class="external-link">geom_point</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span></span></span>
+<span class="r-in"><span>    <span class="fu">stat_median_iqr_text</span><span class="op">(</span><span class="op">)</span> <span class="op">+</span></span></span>
 <span class="r-in"><span>    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html" class="external-link">labs</a></span><span class="op">(</span>x <span class="op">=</span> <span class="st">"Number of Cylinders"</span>, y <span class="op">=</span> <span class="st">"Miles per Gallon"</span><span class="op">)</span></span></span>
-<span class="r-in"><span>  </span></span>
+<span class="r-in"><span></span></span>
 <span class="r-in"><span>  <span class="co">#====================</span></span></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span>  <span class="co"># Example 2:</span></span></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span>  <span class="co"># Repeat Example 1, but:</span></span></span>
-<span class="r-in"><span>  <span class="co"># 1) facet by transmission type, </span></span></span>
+<span class="r-in"><span>  <span class="co"># 1) facet by transmission type,</span></span></span>
 <span class="r-in"><span>  <span class="co"># 2) make the size of the text smaller.</span></span></span>
 <span class="r-in"><span>  <span class="co">#--------------------------------------</span></span></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/r/grDevices/dev.html" class="external-link">dev.new</a></span><span class="op">(</span><span class="op">)</span></span></span>
-<span class="r-in"><span>  <span class="va">p</span> <span class="op">+</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html" class="external-link">geom_point</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span> </span></span>
-<span class="r-in"><span>    <span class="fu">stat_median_iqr_text</span><span class="op">(</span>size <span class="op">=</span> <span class="fl">2.75</span><span class="op">)</span> <span class="op">+</span> </span></span>
-<span class="r-in"><span>    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/facet_wrap.html" class="external-link">facet_wrap</a></span><span class="op">(</span><span class="op">~</span> <span class="va">am</span>, labeller <span class="op">=</span> <span class="va">label_both</span><span class="op">)</span> <span class="op">+</span>  </span></span>
+<span class="r-in"><span>  <span class="va">p</span> <span class="op">+</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html" class="external-link">geom_point</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span></span></span>
+<span class="r-in"><span>    <span class="fu">stat_median_iqr_text</span><span class="op">(</span>size <span class="op">=</span> <span class="fl">2.75</span><span class="op">)</span> <span class="op">+</span></span></span>
+<span class="r-in"><span>    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/facet_wrap.html" class="external-link">facet_wrap</a></span><span class="op">(</span><span class="op">~</span> <span class="va">am</span>, labeller <span class="op">=</span> <span class="va">label_both</span><span class="op">)</span> <span class="op">+</span></span></span>
 <span class="r-in"><span>    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html" class="external-link">labs</a></span><span class="op">(</span>x <span class="op">=</span> <span class="st">"Number of Cylinders"</span>, y <span class="op">=</span> <span class="st">"Miles per Gallon"</span><span class="op">)</span></span></span>
-<span class="r-in"><span> </span></span>
+<span class="r-in"><span></span></span>
 <span class="r-in"><span>  <span class="co">#====================</span></span></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span>  <span class="co"># Example 3:</span></span></span>
@@ -220,8 +251,8 @@
 <span class="r-in"><span>  <span class="co">#-----------------------------------------------------------</span></span></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/r/grDevices/dev.html" class="external-link">dev.new</a></span><span class="op">(</span><span class="op">)</span></span></span>
-<span class="r-in"><span>  <span class="va">p</span> <span class="op">+</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html" class="external-link">geom_point</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span> </span></span>
-<span class="r-in"><span>    <span class="fu">stat_median_iqr_text</span><span class="op">(</span>y.pos <span class="op">=</span> <span class="fl">36</span><span class="op">)</span> <span class="op">+</span> </span></span>
+<span class="r-in"><span>  <span class="va">p</span> <span class="op">+</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html" class="external-link">geom_point</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span></span></span>
+<span class="r-in"><span>    <span class="fu">stat_median_iqr_text</span><span class="op">(</span>y.pos <span class="op">=</span> <span class="fl">36</span><span class="op">)</span> <span class="op">+</span></span></span>
 <span class="r-in"><span>    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html" class="external-link">labs</a></span><span class="op">(</span>x <span class="op">=</span> <span class="st">"Number of Cylinders"</span>, y <span class="op">=</span> <span class="st">"Miles per Gallon"</span><span class="op">)</span></span></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span></span></span>
@@ -229,25 +260,26 @@
 <span class="r-in"><span></span></span>
 <span class="r-in"><span>  <span class="co"># Example 4:</span></span></span>
 <span class="r-in"><span></span></span>
-<span class="r-in"><span>  <span class="co"># Repeat Example 1, but show the </span></span></span>
+<span class="r-in"><span>  <span class="co"># Repeat Example 1, but show the</span></span></span>
 <span class="r-in"><span>  <span class="co"># median and interquartile range in a text box.</span></span></span>
 <span class="r-in"><span>  <span class="co">#----------------------------------------------</span></span></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/r/grDevices/dev.html" class="external-link">dev.new</a></span><span class="op">(</span><span class="op">)</span></span></span>
-<span class="r-in"><span>  <span class="va">p</span> <span class="op">+</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html" class="external-link">geom_point</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span> </span></span>
-<span class="r-in"><span>    <span class="fu">stat_median_iqr_text</span><span class="op">(</span>text.box <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span> <span class="op">+</span> </span></span>
+<span class="r-in"><span>  <span class="va">p</span> <span class="op">+</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html" class="external-link">geom_point</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span></span></span>
+<span class="r-in"><span>    <span class="fu">stat_median_iqr_text</span><span class="op">(</span>text.box <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span> <span class="op">+</span></span></span>
 <span class="r-in"><span>    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html" class="external-link">labs</a></span><span class="op">(</span>x <span class="op">=</span> <span class="st">"Number of Cylinders"</span>, y <span class="op">=</span> <span class="st">"Miles per Gallon"</span><span class="op">)</span></span></span>
-<span class="r-in"><span>  </span></span>
+<span class="r-wrn co"><span class="r-pr">#&gt;</span> <span class="warning">Warning: </span>Ignoring unknown parameters: `label.size`</span>
+<span class="r-in"><span></span></span>
 <span class="r-in"><span>  <span class="co">#====================</span></span></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span>  <span class="co"># Example 5:</span></span></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span>  <span class="co"># Repeat Example 1, but use the color brown for the text.</span></span></span>
 <span class="r-in"><span>  <span class="co">#--------------------------------------------------------</span></span></span>
-<span class="r-in"><span> </span></span>
+<span class="r-in"><span></span></span>
 <span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/r/grDevices/dev.html" class="external-link">dev.new</a></span><span class="op">(</span><span class="op">)</span></span></span>
-<span class="r-in"><span>  <span class="va">p</span> <span class="op">+</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html" class="external-link">geom_point</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span> </span></span>
-<span class="r-in"><span>    <span class="fu">stat_median_iqr_text</span><span class="op">(</span>color <span class="op">=</span> <span class="st">"brown"</span><span class="op">)</span> <span class="op">+</span> </span></span>
+<span class="r-in"><span>  <span class="va">p</span> <span class="op">+</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html" class="external-link">geom_point</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span></span></span>
+<span class="r-in"><span>    <span class="fu">stat_median_iqr_text</span><span class="op">(</span>color <span class="op">=</span> <span class="st">"brown"</span><span class="op">)</span> <span class="op">+</span></span></span>
 <span class="r-in"><span>    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html" class="external-link">labs</a></span><span class="op">(</span>x <span class="op">=</span> <span class="st">"Number of Cylinders"</span>, y <span class="op">=</span> <span class="st">"Miles per Gallon"</span><span class="op">)</span></span></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span>  <span class="co">#====================</span></span></span>
@@ -255,20 +287,20 @@
 <span class="r-in"><span>  <span class="co"># Example 6:</span></span></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span>  <span class="co"># Repeat Example 1, but:</span></span></span>
-<span class="r-in"><span>  <span class="co"># 1) use the same colors for the text that are used for each group, </span></span></span>
+<span class="r-in"><span>  <span class="co"># 1) use the same colors for the text that are used for each group,</span></span></span>
 <span class="r-in"><span>  <span class="co"># 2) use the bold monospaced font.</span></span></span>
 <span class="r-in"><span>  <span class="co">#------------------------------------------------------------------</span></span></span>
-<span class="r-in"><span> </span></span>
+<span class="r-in"><span></span></span>
 <span class="r-in"><span>  <span class="va">mat</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot_build.html" class="external-link">ggplot_build</a></span><span class="op">(</span><span class="va">p</span><span class="op">)</span><span class="op">$</span><span class="va">data</span><span class="op">[[</span><span class="fl">1</span><span class="op">]</span><span class="op">]</span></span></span>
 <span class="r-in"><span>  <span class="va">group</span> <span class="op">&lt;-</span> <span class="va">mat</span><span class="op">[</span>, <span class="st">"group"</span><span class="op">]</span></span></span>
 <span class="r-in"><span>  <span class="va">colors</span> <span class="op">&lt;-</span> <span class="va">mat</span><span class="op">[</span><span class="fu"><a href="https://rdrr.io/r/base/match.html" class="external-link">match</a></span><span class="op">(</span><span class="fl">1</span><span class="op">:</span><span class="fu"><a href="https://rdrr.io/r/base/Extremes.html" class="external-link">max</a></span><span class="op">(</span><span class="va">group</span><span class="op">)</span>, <span class="va">group</span><span class="op">)</span>, <span class="st">"colour"</span><span class="op">]</span></span></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/r/grDevices/dev.html" class="external-link">dev.new</a></span><span class="op">(</span><span class="op">)</span></span></span>
-<span class="r-in"><span>  <span class="va">p</span> <span class="op">+</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html" class="external-link">geom_point</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span> </span></span>
-<span class="r-in"><span>    <span class="fu">stat_median_iqr_text</span><span class="op">(</span>color <span class="op">=</span> <span class="va">colors</span>,  </span></span>
-<span class="r-in"><span>      family <span class="op">=</span> <span class="st">"mono"</span>, fontface <span class="op">=</span> <span class="st">"bold"</span><span class="op">)</span> <span class="op">+</span> </span></span>
+<span class="r-in"><span>  <span class="va">p</span> <span class="op">+</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html" class="external-link">geom_point</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span></span></span>
+<span class="r-in"><span>    <span class="fu">stat_median_iqr_text</span><span class="op">(</span>color <span class="op">=</span> <span class="va">colors</span>,</span></span>
+<span class="r-in"><span>      family <span class="op">=</span> <span class="st">"mono"</span>, fontface <span class="op">=</span> <span class="st">"bold"</span><span class="op">)</span> <span class="op">+</span></span></span>
 <span class="r-in"><span>    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html" class="external-link">labs</a></span><span class="op">(</span>x <span class="op">=</span> <span class="st">"Number of Cylinders"</span>, y <span class="op">=</span> <span class="st">"Miles per Gallon"</span><span class="op">)</span></span></span>
-<span class="r-in"><span> </span></span>
+<span class="r-in"><span></span></span>
 <span class="r-in"><span>  <span class="co">#====================</span></span></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span>  <span class="co"># Clean up</span></span></span>
@@ -290,7 +322,7 @@
 </div>
 
 <div class="pkgdown">
-  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.1.1.</p>
+  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.2.1.</p>
 </div>
 
       </footer></div>

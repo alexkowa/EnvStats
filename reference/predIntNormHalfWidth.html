@@ -18,7 +18,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">EnvStats</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">3.1.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">4.0.0</span>
       </span>
     </div>
 
@@ -26,6 +26,37 @@
       <ul class="nav navbar-nav"><li>
   <a href="../reference/index.html">Reference</a>
 </li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+    Articles
+
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu"><li>
+      <a href="../articles/censored-estimation.html">Estimation with censored data</a>
+    </li>
+    <li>
+      <a href="../articles/distribution-diagnostics.html">Distribution diagnostics, transformations, and probability plots</a>
+    </li>
+    <li>
+      <a href="../articles/distributions-and-estimation.html">Probability distributions and parameter estimation</a>
+    </li>
+    <li>
+      <a href="../articles/nonparametric-methods.html">Nonparametric estimation and two-sample tests</a>
+    </li>
+    <li>
+      <a href="../articles/outlier-testing.html">Rosner's test for multiple outliers</a>
+    </li>
+    <li>
+      <a href="../articles/power-and-study-design.html">Statistical power and study design</a>
+    </li>
+    <li>
+      <a href="../articles/prediction-intervals.html">Prediction intervals for environmental monitoring</a>
+    </li>
+    <li>
+      <a href="../articles/trend-and-correlation.html">Trend tests and serial correlation</a>
+    </li>
+  </ul></li>
       </ul><ul class="nav navbar-nav navbar-right"><li>
   <a href="https://github.com/alexkowa/EnvStats/" class="external-link">
     <span class="fab fa-github fa-lg"></span>
@@ -42,7 +73,7 @@
   <div class="col-md-9 contents">
     <div class="page-header">
     <h1>Half-Width of a Prediction Interval for the next \(k\) Observations from a Normal Distribution</h1>
-
+    <small class="dont-index">Source: <a href="https://github.com/alexkowa/EnvStats/blob/master/R/predIntNormHalfWidth.R" class="external-link"><code>R/predIntNormHalfWidth.R</code></a></small>
     <div class="hidden name"><code>predIntNormHalfWidth.Rd</code></div>
     </div>
 
@@ -52,7 +83,7 @@
     </div>
 
     <div id="ref-usage">
-    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">predIntNormHalfWidth</span><span class="op">(</span><span class="va">n</span>, df <span class="op">=</span> <span class="va">n</span> <span class="op">-</span> <span class="fl">1</span>, n.mean <span class="op">=</span> <span class="fl">1</span>, k <span class="op">=</span> <span class="fl">1</span>, sigma.hat <span class="op">=</span> <span class="fl">1</span>, </span>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">predIntNormHalfWidth</span><span class="op">(</span><span class="va">n</span>, df <span class="op">=</span> <span class="va">n</span> <span class="op">-</span> <span class="fl">1</span>, n.mean <span class="op">=</span> <span class="fl">1</span>, k <span class="op">=</span> <span class="fl">1</span>, sigma.hat <span class="op">=</span> <span class="fl">1</span>,</span>
 <span>    method <span class="op">=</span> <span class="st">"Bonferroni"</span>, conf.level <span class="op">=</span> <span class="fl">0.95</span><span class="op">)</span></span></code></pre></div>
     </div>
 
@@ -140,71 +171,71 @@
 
     <div id="ref-examples">
     <h2>Examples</h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span>  <span class="co"># Look at how the half-width of a prediction interval increases with </span></span></span>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span>  <span class="co"># Look at how the half-width of a prediction interval increases with</span></span></span>
 <span class="r-in"><span>  <span class="co"># increasing number of future observations:</span></span></span>
 <span class="r-in"><span></span></span>
-<span class="r-in"><span>  <span class="fl">1</span><span class="op">:</span><span class="fl">5</span> </span></span>
+<span class="r-in"><span>  <span class="fl">1</span><span class="op">:</span><span class="fl">5</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] 1 2 3 4 5</span>
-<span class="r-in"><span>  <span class="co">#[1] 1 2 3 4 5 </span></span></span>
+<span class="r-in"><span>  <span class="co">#[1] 1 2 3 4 5</span></span></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span>  <span class="va">hw</span> <span class="op">&lt;-</span> <span class="fu">predIntNormHalfWidth</span><span class="op">(</span>n <span class="op">=</span> <span class="fl">10</span>, k <span class="op">=</span> <span class="fl">1</span><span class="op">:</span><span class="fl">5</span><span class="op">)</span></span></span>
 <span class="r-in"><span></span></span>
-<span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/r/base/Round.html" class="external-link">round</a></span><span class="op">(</span><span class="va">hw</span>, <span class="fl">2</span><span class="op">)</span> </span></span>
+<span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/r/base/Round.html" class="external-link">round</a></span><span class="op">(</span><span class="va">hw</span>, <span class="fl">2</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] 2.37 2.82 3.08 3.26 3.41</span>
 <span class="r-in"><span>  <span class="co">#[1] 2.37 2.82 3.08 3.26 3.41</span></span></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span>  <span class="co">#----------</span></span></span>
 <span class="r-in"><span></span></span>
-<span class="r-in"><span>  <span class="co"># Look at how the half-width of a prediction interval decreases with </span></span></span>
+<span class="r-in"><span>  <span class="co"># Look at how the half-width of a prediction interval decreases with</span></span></span>
 <span class="r-in"><span>  <span class="co"># increasing sample size:</span></span></span>
 <span class="r-in"><span></span></span>
-<span class="r-in"><span>  <span class="fl">2</span><span class="op">:</span><span class="fl">5</span> </span></span>
+<span class="r-in"><span>  <span class="fl">2</span><span class="op">:</span><span class="fl">5</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] 2 3 4 5</span>
-<span class="r-in"><span>  <span class="co">#[1] 2 3 4 5 </span></span></span>
+<span class="r-in"><span>  <span class="co">#[1] 2 3 4 5</span></span></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span>  <span class="va">hw</span> <span class="op">&lt;-</span> <span class="fu">predIntNormHalfWidth</span><span class="op">(</span>n <span class="op">=</span> <span class="fl">2</span><span class="op">:</span><span class="fl">5</span><span class="op">)</span></span></span>
 <span class="r-in"><span></span></span>
-<span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/r/base/Round.html" class="external-link">round</a></span><span class="op">(</span><span class="va">hw</span>, <span class="fl">2</span><span class="op">)</span> </span></span>
+<span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/r/base/Round.html" class="external-link">round</a></span><span class="op">(</span><span class="va">hw</span>, <span class="fl">2</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] 15.56  4.97  3.56  3.04</span>
 <span class="r-in"><span>  <span class="co">#[1] 15.56  4.97  3.56  3.04</span></span></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span>  <span class="co">#----------</span></span></span>
 <span class="r-in"><span></span></span>
-<span class="r-in"><span>  <span class="co"># Look at how the half-width of a prediction interval increases with </span></span></span>
+<span class="r-in"><span>  <span class="co"># Look at how the half-width of a prediction interval increases with</span></span></span>
 <span class="r-in"><span>  <span class="co"># increasing estimated standard deviation for a fixed sample size:</span></span></span>
 <span class="r-in"><span></span></span>
-<span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/r/base/seq.html" class="external-link">seq</a></span><span class="op">(</span><span class="fl">0.5</span>, <span class="fl">2</span>, by <span class="op">=</span> <span class="fl">0.5</span><span class="op">)</span> </span></span>
+<span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/r/base/seq.html" class="external-link">seq</a></span><span class="op">(</span><span class="fl">0.5</span>, <span class="fl">2</span>, by <span class="op">=</span> <span class="fl">0.5</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] 0.5 1.0 1.5 2.0</span>
-<span class="r-in"><span>  <span class="co">#[1] 0.5 1.0 1.5 2.0 </span></span></span>
+<span class="r-in"><span>  <span class="co">#[1] 0.5 1.0 1.5 2.0</span></span></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span>  <span class="va">hw</span> <span class="op">&lt;-</span> <span class="fu">predIntNormHalfWidth</span><span class="op">(</span>n <span class="op">=</span> <span class="fl">10</span>, sigma.hat <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/seq.html" class="external-link">seq</a></span><span class="op">(</span><span class="fl">0.5</span>, <span class="fl">2</span>, by <span class="op">=</span> <span class="fl">0.5</span><span class="op">)</span><span class="op">)</span></span></span>
 <span class="r-in"><span></span></span>
-<span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/r/base/Round.html" class="external-link">round</a></span><span class="op">(</span><span class="va">hw</span>, <span class="fl">2</span><span class="op">)</span> </span></span>
+<span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/r/base/Round.html" class="external-link">round</a></span><span class="op">(</span><span class="va">hw</span>, <span class="fl">2</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] 1.19 2.37 3.56 4.75</span>
 <span class="r-in"><span>  <span class="co">#[1] 1.19 2.37 3.56 4.75</span></span></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span>  <span class="co">#----------</span></span></span>
 <span class="r-in"><span></span></span>
-<span class="r-in"><span>  <span class="co"># Look at how the half-width of a prediction interval increases with </span></span></span>
+<span class="r-in"><span>  <span class="co"># Look at how the half-width of a prediction interval increases with</span></span></span>
 <span class="r-in"><span>  <span class="co"># increasing confidence level for a fixed sample size:</span></span></span>
 <span class="r-in"><span></span></span>
-<span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/r/base/seq.html" class="external-link">seq</a></span><span class="op">(</span><span class="fl">0.5</span>, <span class="fl">0.9</span>, by <span class="op">=</span> <span class="fl">0.1</span><span class="op">)</span> </span></span>
+<span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/r/base/seq.html" class="external-link">seq</a></span><span class="op">(</span><span class="fl">0.5</span>, <span class="fl">0.9</span>, by <span class="op">=</span> <span class="fl">0.1</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] 0.5 0.6 0.7 0.8 0.9</span>
-<span class="r-in"><span>  <span class="co">#[1] 0.5 0.6 0.7 0.8 0.9 </span></span></span>
+<span class="r-in"><span>  <span class="co">#[1] 0.5 0.6 0.7 0.8 0.9</span></span></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span>  <span class="va">hw</span> <span class="op">&lt;-</span> <span class="fu">predIntNormHalfWidth</span><span class="op">(</span>n <span class="op">=</span> <span class="fl">5</span>, conf <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/seq.html" class="external-link">seq</a></span><span class="op">(</span><span class="fl">0.5</span>, <span class="fl">0.9</span>, by <span class="op">=</span> <span class="fl">0.1</span><span class="op">)</span><span class="op">)</span></span></span>
 <span class="r-in"><span></span></span>
-<span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/r/base/Round.html" class="external-link">round</a></span><span class="op">(</span><span class="va">hw</span>, <span class="fl">2</span><span class="op">)</span> </span></span>
+<span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/r/base/Round.html" class="external-link">round</a></span><span class="op">(</span><span class="va">hw</span>, <span class="fl">2</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] 0.81 1.03 1.30 1.68 2.34</span>
 <span class="r-in"><span>  <span class="co">#[1] 0.81 1.03 1.30 1.68 2.34</span></span></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span>  <span class="co">#==========</span></span></span>
 <span class="r-in"><span></span></span>
-<span class="r-in"><span>  <span class="co"># The data frame EPA.92c.arsenic3.df contains arsenic concentrations (ppb) </span></span></span>
-<span class="r-in"><span>  <span class="co"># collected quarterly for 3 years at a background well and quarterly for </span></span></span>
-<span class="r-in"><span>  <span class="co"># 2 years at a compliance well.  Using the data from the background well, compute </span></span></span>
-<span class="r-in"><span>  <span class="co"># the half-width associated with sample sizes of 12 (3 years of quarterly data), </span></span></span>
-<span class="r-in"><span>  <span class="co"># 16 (4 years of quarterly data), and 20 (5 years of quarterly data) for a </span></span></span>
+<span class="r-in"><span>  <span class="co"># The data frame EPA.92c.arsenic3.df contains arsenic concentrations (ppb)</span></span></span>
+<span class="r-in"><span>  <span class="co"># collected quarterly for 3 years at a background well and quarterly for</span></span></span>
+<span class="r-in"><span>  <span class="co"># 2 years at a compliance well.  Using the data from the background well, compute</span></span></span>
+<span class="r-in"><span>  <span class="co"># the half-width associated with sample sizes of 12 (3 years of quarterly data),</span></span></span>
+<span class="r-in"><span>  <span class="co"># 16 (4 years of quarterly data), and 20 (5 years of quarterly data) for a</span></span></span>
 <span class="r-in"><span>  <span class="co"># two-sided 90% prediction interval for k=4 future observations.</span></span></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span>  <span class="va">EPA.92c.arsenic3.df</span></span></span>
@@ -238,24 +269,24 @@
 <span class="r-in"><span>  <span class="co">#19     2.6    5 Compliance</span></span></span>
 <span class="r-in"><span>  <span class="co">#20    51.9    5 Compliance</span></span></span>
 <span class="r-in"><span></span></span>
-<span class="r-in"><span>  <span class="va">mu.hat</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/with.html" class="external-link">with</a></span><span class="op">(</span><span class="va">EPA.92c.arsenic3.df</span>, </span></span>
-<span class="r-in"><span>    <span class="fu"><a href="https://rdrr.io/r/base/mean.html" class="external-link">mean</a></span><span class="op">(</span><span class="va">Arsenic</span><span class="op">[</span><span class="va">Well.type</span><span class="op">==</span><span class="st">"Background"</span><span class="op">]</span><span class="op">)</span><span class="op">)</span> </span></span>
+<span class="r-in"><span>  <span class="va">mu.hat</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/with.html" class="external-link">with</a></span><span class="op">(</span><span class="va">EPA.92c.arsenic3.df</span>,</span></span>
+<span class="r-in"><span>    <span class="fu"><a href="https://rdrr.io/r/base/mean.html" class="external-link">mean</a></span><span class="op">(</span><span class="va">Arsenic</span><span class="op">[</span><span class="va">Well.type</span><span class="op">==</span><span class="st">"Background"</span><span class="op">]</span><span class="op">)</span><span class="op">)</span></span></span>
 <span class="r-in"><span></span></span>
-<span class="r-in"><span>  <span class="va">mu.hat</span> </span></span>
+<span class="r-in"><span>  <span class="va">mu.hat</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] 27.51667</span>
-<span class="r-in"><span>  <span class="co">#[1] 27.51667 </span></span></span>
+<span class="r-in"><span>  <span class="co">#[1] 27.51667</span></span></span>
 <span class="r-in"><span></span></span>
-<span class="r-in"><span>  <span class="va">sigma.hat</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/with.html" class="external-link">with</a></span><span class="op">(</span><span class="va">EPA.92c.arsenic3.df</span>, </span></span>
+<span class="r-in"><span>  <span class="va">sigma.hat</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/with.html" class="external-link">with</a></span><span class="op">(</span><span class="va">EPA.92c.arsenic3.df</span>,</span></span>
 <span class="r-in"><span>    <span class="fu"><a href="https://rdrr.io/r/stats/sd.html" class="external-link">sd</a></span><span class="op">(</span><span class="va">Arsenic</span><span class="op">[</span><span class="va">Well.type</span><span class="op">==</span><span class="st">"Background"</span><span class="op">]</span><span class="op">)</span><span class="op">)</span></span></span>
 <span class="r-in"><span></span></span>
-<span class="r-in"><span>  <span class="va">sigma.hat</span> </span></span>
+<span class="r-in"><span>  <span class="va">sigma.hat</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] 17.10119</span>
-<span class="r-in"><span>  <span class="co">#[1] 17.10119 </span></span></span>
+<span class="r-in"><span>  <span class="co">#[1] 17.10119</span></span></span>
 <span class="r-in"><span></span></span>
-<span class="r-in"><span>  <span class="va">hw</span> <span class="op">&lt;-</span> <span class="fu">predIntNormHalfWidth</span><span class="op">(</span>n <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">12</span>, <span class="fl">16</span>, <span class="fl">20</span><span class="op">)</span>, k <span class="op">=</span> <span class="fl">4</span>, sigma.hat <span class="op">=</span> <span class="va">sigma.hat</span>, </span></span>
+<span class="r-in"><span>  <span class="va">hw</span> <span class="op">&lt;-</span> <span class="fu">predIntNormHalfWidth</span><span class="op">(</span>n <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">12</span>, <span class="fl">16</span>, <span class="fl">20</span><span class="op">)</span>, k <span class="op">=</span> <span class="fl">4</span>, sigma.hat <span class="op">=</span> <span class="va">sigma.hat</span>,</span></span>
 <span class="r-in"><span>    conf.level <span class="op">=</span> <span class="fl">0.9</span><span class="op">)</span></span></span>
 <span class="r-in"><span></span></span>
-<span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/r/base/Round.html" class="external-link">round</a></span><span class="op">(</span><span class="va">hw</span>, <span class="fl">2</span><span class="op">)</span> </span></span>
+<span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/r/base/Round.html" class="external-link">round</a></span><span class="op">(</span><span class="va">hw</span>, <span class="fl">2</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] 46.16 43.89 42.64</span>
 <span class="r-in"><span>  <span class="co">#[1] 46.16 43.89 42.64</span></span></span>
 <span class="r-in"><span></span></span>
@@ -278,7 +309,7 @@
 </div>
 
 <div class="pkgdown">
-  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.1.1.</p>
+  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.2.1.</p>
 </div>
 
       </footer></div>

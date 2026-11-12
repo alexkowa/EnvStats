@@ -18,7 +18,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">EnvStats</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">3.1.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">4.0.0</span>
       </span>
     </div>
 
@@ -26,6 +26,37 @@
       <ul class="nav navbar-nav"><li>
   <a href="../reference/index.html">Reference</a>
 </li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+    Articles
+
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu"><li>
+      <a href="../articles/censored-estimation.html">Estimation with censored data</a>
+    </li>
+    <li>
+      <a href="../articles/distribution-diagnostics.html">Distribution diagnostics, transformations, and probability plots</a>
+    </li>
+    <li>
+      <a href="../articles/distributions-and-estimation.html">Probability distributions and parameter estimation</a>
+    </li>
+    <li>
+      <a href="../articles/nonparametric-methods.html">Nonparametric estimation and two-sample tests</a>
+    </li>
+    <li>
+      <a href="../articles/outlier-testing.html">Rosner's test for multiple outliers</a>
+    </li>
+    <li>
+      <a href="../articles/power-and-study-design.html">Statistical power and study design</a>
+    </li>
+    <li>
+      <a href="../articles/prediction-intervals.html">Prediction intervals for environmental monitoring</a>
+    </li>
+    <li>
+      <a href="../articles/trend-and-correlation.html">Trend tests and serial correlation</a>
+    </li>
+  </ul></li>
       </ul><ul class="nav navbar-nav navbar-right"><li>
   <a href="https://github.com/alexkowa/EnvStats/" class="external-link">
     <span class="fab fa-github fa-lg"></span>
@@ -42,7 +73,7 @@
   <div class="col-md-9 contents">
     <div class="page-header">
     <h1>Estimate Parameters of Gamma Distribution</h1>
-
+    <small class="dont-index">Source: <a href="https://github.com/alexkowa/EnvStats/blob/master/R/egamma.R" class="external-link"><code>R/egamma.R</code></a></small>
     <div class="hidden name"><code>egamma.Rd</code></div>
     </div>
 
@@ -52,15 +83,22 @@
     </div>
 
     <div id="ref-usage">
-    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">egamma</span><span class="op">(</span><span class="va">x</span>, method <span class="op">=</span> <span class="st">"mle"</span>, ci <span class="op">=</span> <span class="cn">FALSE</span>, </span>
-<span>    ci.type <span class="op">=</span> <span class="st">"two-sided"</span>, ci.method <span class="op">=</span> <span class="st">"normal.approx"</span>, </span>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">egamma</span><span class="op">(</span><span class="va">x</span>, method <span class="op">=</span> <span class="st">"mle"</span>, ci <span class="op">=</span> <span class="cn">FALSE</span>,</span>
+<span>    ci.type <span class="op">=</span> <span class="st">"two-sided"</span>, ci.method <span class="op">=</span> <span class="st">"normal.approx"</span>,</span>
 <span>    normal.approx.transform <span class="op">=</span> <span class="st">"kulkarni.powar"</span>, conf.level <span class="op">=</span> <span class="fl">0.95</span><span class="op">)</span></span>
 <span></span>
-<span>  <span class="fu">egammaAlt</span><span class="op">(</span><span class="va">x</span>, method <span class="op">=</span> <span class="st">"mle"</span>, ci <span class="op">=</span> <span class="cn">FALSE</span>, </span>
-<span>    ci.type <span class="op">=</span> <span class="st">"two-sided"</span>, ci.method <span class="op">=</span> <span class="st">"normal.approx"</span>, </span>
+<span>  <span class="fu">egammaAlt</span><span class="op">(</span><span class="va">x</span>, method <span class="op">=</span> <span class="st">"mle"</span>, ci <span class="op">=</span> <span class="cn">FALSE</span>,</span>
+<span>    ci.type <span class="op">=</span> <span class="st">"two-sided"</span>, ci.method <span class="op">=</span> <span class="st">"normal.approx"</span>,</span>
 <span>    normal.approx.transform <span class="op">=</span> <span class="st">"kulkarni.powar"</span>, conf.level <span class="op">=</span> <span class="fl">0.95</span><span class="op">)</span></span></code></pre></div>
     </div>
 
+    <div id="details">
+    <h2>Details</h2>
+    <p>Extended methods and derivations are available in
+<a href="https://alexkowa.github.io/EnvStats/articles/distributions-and-estimation.html#egamma" class="external-link">Probability distributions and parameter estimation: <code>egamma</code></a>.
+Open the vignette locally with
+<code><a href="../articles/distributions-and-estimation.html">vignette("distributions-and-estimation", package = "EnvStats")</a></code>.</p>
+    </div>
     <div id="arguments">
     <h2>Arguments</h2>
     <p></p>
@@ -99,170 +137,6 @@
   value is <code>conf.level=0.95</code>.  This argument is ignored if <code>ci=FALSE</code>.</p></dd>
 
 </dl></div>
-    <div id="details">
-    <h2>Details</h2>
-    <p>If <code>x</code> contains any missing (<code>NA</code>), undefined (<code>NaN</code>) or
-  infinite (<code>Inf</code>, <code>-Inf</code>) values, they will be removed prior to
-  performing the estimation.</p>
-<p>Let \(\underline{x} = x_1, x_2, \ldots, x_n\) denote a random sample of
-  \(n\) observations from a <a href="https://rdrr.io/r/stats/GammaDist.html" class="external-link">gamma distribution</a>
-  with parameters <code>shape=</code>\(\kappa\) and <code>scale=</code>\(\theta\).
-  The relationship between these parameters and the mean (<code>mean=</code>\(\mu\))
-  and coefficient of variation (<code>cv=</code>\(\tau\)) of this distribution is given by:
-  $$\kappa = \tau^{-2} \;\;\;\;\;\; (1)$$
-  $$\theta = \mu/\kappa \;\;\;\;\;\; (2)$$
-  $$\mu = \kappa \; \theta \;\;\;\;\;\; (3)$$
-  $$\tau = \kappa^{-1/2} \;\;\;\;\;\; (4)$$</p>
-<p>The function <code>egamma</code> returns estimates of the shape and scale parameters.
-  The function <code>egammaAlt</code> returns estimates of the mean (\(\mu\)) and
-  coefficient of variation (\(cv\)) based on the estimates of the shape and
-  scale parameters.</p>
-<p><b>Estimation</b> <br></p>
-<p><em>Maximum Likelihood Estimation</em> (<code>method="mle"</code>) <br>
-  The maximum likelihood estimators (mle's) of the shape and scale parameters
-  \(\kappa\) and \(\theta\) are solutions of the simultaneous equations:
-  $$\hat{\kappa}_{mle} =  \frac{1}{n}\sum_{i=1}^n log(x_i) - log(\bar{x}) = \psi(\hat{\kappa}_{mle}) - log(\hat{\kappa}_{mle}) \ \;\;\;\;\;\; (5)$$
-  $$\hat{\theta}_{mle} = \bar{x} / \hat{\kappa}_{mle} \;\;\;\;\;\; (6)$$
-  where \(\psi\) denotes the <code><a href="https://rdrr.io/r/base/Special.html" class="external-link">digamma function</a></code>,
-  and \(\bar{x}\) denotes the sample mean:
-  $$\bar{x} = \frac{1}{n}\sum_{i=1}^n x_i \;\;\;\;\;\; (7)$$
-  (Forbes et al., 2011, chapter 22; Johnson et al., 1994, chapter 17).
-  <br></p>
-<p><em>Bias-Corrected Maximum Likelihood Estimation</em> (<code>method="bcmle"</code>) <br>
-  The “bias-corrected” maximum likelihood estimator of
-  the shape parameter is based on the suggestion of Anderson and Ray (1975;
-  see also Johnon et al., 1994, p.366 and Singh et al., 2010b, p.48), who noted that
-  the bias of the maximum likelihood estimator of the shape parameter can be
-  considerable when the sample size is small.  This estimator is given by:
-  $$\hat{\kappa}_{bcmle} = \frac{n-3}{n}\hat{\kappa}_{mle} + \frac{2}{3n} \;\;\;\;\;\; (8)$$
-  When <code>method="bcmle"</code>, Equation (6) above is modified so that the estimate of the
-  scale paramter is based on the “bias-corrected” maximum likelihood estimator
-  of the shape parameter:
-  $$\hat{\theta}_{bcmle} = \bar{x} / \hat{\kappa}_{bcmle} \;\;\;\;\;\; (9)$$
-  <br></p>
-<p><em>Method of Moments Estimation</em> (<code>method="mme"</code>) <br>
-  The method of moments estimators (mme's) of the shape and scale parameters
-  \(\kappa\) and \(\theta\) are:
-  $$\hat{\kappa}_{mme} = (\bar{x}/s_m)^2 \;\;\;\;\;\; (10)$$
-  $$\hat{\theta}_{mme} = s_m^2 / \bar{x} \;\;\;\;\;\; (11)$$
-  where \(s_m^2\) denotes the method of moments estimator of variance:
-  $$s_m^2 = \frac{1}{n} \sum_{i=1}^n (x_i - \bar{x})^2 \;\;\;\;\;\; (12)$$
-  <br></p>
-<p><em>Method of Moments Estimation Based on the Unbiased Estimator of Variance</em> (<code>method="mmue"</code>) <br>
-  The method of moments estimators based on the unbiased estimator of variance
-  are exactly the same as the method of moments estimators,
-  except that the method of moments estimator of variance is replaced with the
-  unbiased estimator of variance:
-  $$\hat{\kappa}_{mmue} = (\bar{x}/s)^2 \;\;\;\;\;\; (13)$$
-  $$\hat{\theta}_{mmue} = s^2 / \bar{x} \;\;\;\;\;\; (14)$$
-  where \(s^2\) denotes the unbiased estimator of variance:
-  $$s^2 = \frac{1}{n-1} \sum_{i=1}^n (x_i - \bar{x})^2 \;\;\;\;\;\; (15)$$
-  <br></p>
-<p><b>Confidence Intervals</b> <br>
-  This section discusses how confidence intervals for the mean \(\mu\) are computed.</p>
-<p><em>Normal Approximation</em> (<code>ci.method="normal.approx"</code>) <br>
-  The normal approximation method is based on the method of Kulkarni and Powar (2010),
-  who use a power transformation of the the original data to approximate a sample
-  from a normal distribuiton, compute the confidence interval for the mean on the
-  transformed scale using the usual formula for a confidence interval for the
-  mean of a normal distribuiton, and then tranform the limits back to the original
-  space using equations based on the expected value of a gamma random variable
-  raised to a power.</p>
-<p>The particular power used for the normal approximation is defined by the argument <br><code>normal.approx.transform</code>.  The value
-  <code>normal.approx.transform="cube.root"</code> uses the cube root transformation
-  suggested by Wilson and Hilferty (1931), and the value <br><code>"fourth.root"</code> uses the fourth root transformation suggested
-  by Hawkins and Wixley (1986).  The default value <code>"kulkarni.powar"</code>
-  uses the “Optimum Power Normal Approximation Method” of Kulkarni and Powar
-  (2010), who show this method performs the best in terms of maintining coverage
-  and minimizing confidence interval width compared to eight other methods.
-  The “optimum” power \(p\) is determined by:</p><table class="table table"><tr><td>\(p = -0.0705 - 0.178\hat{\kappa} + 0.475 \sqrt{\hat{\kappa}}\)</td><td>if \(\hat{\kappa} \le 1.5\)</td><td></td></tr><tr><td>\(p = 0.246\)</td><td>if \(\hat{\kappa} &gt; 1.5\)</td><td>(16)</td></tr></table><p>where \(\hat{\kappa}\) denotes the estimate of the shape parameter.
-  Kulkarni and Powar (2010)
-  derived this equation by determining what power transformation yields a skew closest to 0 and
-  a kurtosis closest to 3 for a gamma random variable with a given shape parameter.
-  Although Kulkarni and Powar (2010) use the maximum likelihood estimate of shape to
-  determine the power to use to induce approximate normality, for the functions
-  <code>egamma</code> and <code>egammaAlt</code> the power is based on whatever estimate of
-  shape is used (e.g., <code>method="mle"</code>, <code>method="bcmle"</code>, etc.).
-  <br></p>
-<p><em>Likelihood Profile</em> (<code>ci.method="profile.likelihood"</code>) <br>
-  This method was proposed by Cox (1970, p.88), and Venzon and Moolgavkar (1988)
-  introduced an efficient method of computation.  This method is also discussed by
-  Stryhn and Christensen (2003) and Royston (2007).
-  The idea behind this method is to invert the likelihood-ratio test to obtain a
-  confidence interval for the mean \(\mu\) while treating the coefficient of
-  variation \(\tau\) as a nuisance parameter.</p>
-<p>The likelihood function is given by:
-  $$L(\mu, \tau | \underline{x}) = \prod_{i=1}^n \frac{x_i^{\kappa-1} e^{-x_i/\theta}}{\theta^\kappa \Gamma(\kappa)} \;\;\;\;\;\; (17)$$
-  where \(\kappa\), \(\theta\), \(\mu\), and \(\tau\) are defined in
-  Equations (1)-(4) above, and
-  \(\Gamma(t)\) denotes the <a href="https://rdrr.io/r/base/Special.html" class="external-link">Gamma function</a> evaluated at \(t\).</p>
-<p>Following Stryhn and Christensen (2003), denote the maximum likelihood estimates
-  of the mean and coefficient of variation by \((\mu^*, \tau^*)\).
-  The likelihood ratio test statistic (\(G^2\)) of the hypothesis
-  \(H_0: \mu = \mu_0\) (where \(\mu_0\) is a fixed value) equals the
-  drop in \(2 log(L)\) between the “full” model and the reduced model with
-  \(\mu\) fixed at \(\mu_0\), i.e.,
-  $$G^2 = 2 \{log[L(\mu^*, \tau^*)] - log[L(\mu_0, \tau_0^*)]\} \;\;\;\;\;\; (18)$$
-  where \(\tau_0^*\) is the maximum likelihood estimate of \(\tau\) for the
-  reduced model (i.e., when \(\mu = \mu_0\)).  Under the null hypothesis,
-  the test statistic \(G^2\) follows a
-  <a href="https://rdrr.io/r/stats/Chisquare.html" class="external-link">chi-squared distribution</a> with 1 degree of freedom.</p>
-<p>Alternatively, we may
-  express the test statistic in terms of the profile likelihood function \(L_1\)
-  for the mean \(\mu\), which is obtained from the usual likelihood function by
-  maximizing over the parameter \(\tau\), i.e.,
-  $$L_1(\mu) = max_{\tau} L(\mu, \tau) \;\;\;\;\;\; (19)$$
-  Then we have
-  $$G^2 = 2 \{log[L_1(\mu^*)] - log[L_1(\mu_0)]\} \;\;\;\;\;\; (20)$$
-  A two-sided \((1-\alpha)100\%\) confidence interval for the mean \(\mu\)
-  consists of all values of \(\mu_0\) for which the test is not significant at
-  level \(alpha\):
-  $$\mu_0: G^2 \le \chi^2_{1, {1-\alpha}} \;\;\;\;\;\; (21)$$
-  where \(\chi^2_{\nu, p}\) denotes the \(p\)'th quantile of the
-  <a href="https://rdrr.io/r/stats/Chisquare.html" class="external-link">chi-squared distribution</a> with \(\nu\) degrees of freedom.
-  One-sided lower and one-sided upper confidence intervals are computed in a similar
-  fashion, except that the quantity \(1-\alpha\) in Equation (21) is replaced with
-  \(1-2\alpha\).
-  <br></p>
-<p><em>Chi-Square Approximation</em> (<code>ci.method="chisq.approx"</code>) <br>
-  This method is based on the relationship between the sample mean of the gamma
-  distribution and the chi-squared distribution (Grice and Bain, 1980):
-  $$\frac{2n\bar{x}}{\theta} \sim \chi^2_{2n\kappa} \;\;\;\;\;\; (22)$$
-  Therefore, an exact one-sided upper \((1-\alpha)100\%\) confidence interval
-  for the mean \(\mu\) is given by:
-  $$[0, \, \frac{2n\bar{x}\kappa}{\chi^2_{2n\kappa, \alpha}}] \;\;\;\;\;\; (23)$$
-  an exact one-sided lower \((1-\alpha)100\%\) confidence interval
-  is given by:
-  $$[\frac{2n\bar{x}\kappa}{\chi^2_{2n\kappa, 1-\alpha}}, \, \infty] \;\;\;\;\;\; (24)$$
-  and a two-sided \((1-\alpha)100\%\) confidence interval is given by:
-  $$[\frac{2n\bar{x}\kappa}{\chi^2_{2n\kappa, 1-\alpha/2}},
-    \, \frac{2n\bar{x}\kappa}{\chi^2_{2n\kappa, \alpha/2}}] \;\;\;\;\;\; (25)$$</p>
-<p>Because this method is exact only when the shape parameter \(\kappa\) is known, the
-  method used here is called the “chi-square approximation” method
-  because the estimate of the shape parameter, \(\hat{\kappa}\), is used in place
-  of \(\kappa\) in Equations (23)-(25) above.  The Chi-Square Approximation method
-  is <b>not</b> the method proposed by Grice and Bain (1980) in which the
-  confidence interval is adjusted based on adjusting for the fact that the shape
-  parameter \(\kappa\) is estimated (see the explanation of the
-  Chi-Square Adjusted method below).  The Chi-Square Approximation method used
-  by <code>egamma</code> and <code>egammaAlt</code> is equivalent to the “approximate gamma”
-  method of <em>ProUCL</em> (USEPA, 2015, equation (2-34), p.62).
-  <br></p>
-<p><em>Chi-Square Adjusted</em> (<code>ci.method="chisq.adj"</code>) <br>
-  This is the same method as the Chi-Square Approximation method discussed above,
-  execpt that the value of \(\alpha\) is adjusted to account for the fact that
-  the shape parameter \(\kappa\) is estimated rather than known.  Grice and Bain (1980)
-  performed Monte Carlo simulations to determine how to adjust \(\alpha\) and the
-  values in their Table 2 are given in the matrix <code><a href="Grice.Bain.80.mat.html">Grice.Bain.80.mat</a></code>.
-  This method requires that the sample size \(n\) is at least 5 and the confidence level
-  is between 75% and 99.5% (except when \(n=5\), in which case the confidence level
-  must be less than 99%).  For values of the sample size \(n\) and/or \(\alpha\)
-  that are not listed in the table, linear interpolation is used (when the sample
-  size \(n\) is greater than 40, linear interpolation on \(1/n\) is used, as
-  recommended by Grice and Bain (1980)).  The Chi-Square Adjusted method used
-  by <code>egamma</code> and <code>egammaAlt</code> is equivalent to the “adjusted gamma”
-  method of <em>ProUCL</em> (USEPA, 2015, equation (2-35), p.63).</p>
-    </div>
     <div id="value">
     <h2>Value</h2>
     <p>a list of class <code>"estimate"</code> containing the estimated parameters and other information.
@@ -326,64 +200,44 @@
 
     <div id="ref-examples">
     <h2>Examples</h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span>  <span class="co"># Generate 20 observations from a gamma distribution with parameters </span></span></span>
-<span class="r-in"><span>  <span class="co"># shape=3 and scale=2, then estimate the parameters. </span></span></span>
-<span class="r-in"><span>  <span class="co"># (Note: the call to set.seed simply allows you to reproduce this </span></span></span>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span>  <span class="co"># Generate 20 observations from a gamma distribution with parameters</span></span></span>
+<span class="r-in"><span>  <span class="co"># shape=3 and scale=2, then estimate the parameters.</span></span></span>
+<span class="r-in"><span>  <span class="co"># (Note: the call to set.seed simply allows you to reproduce this</span></span></span>
 <span class="r-in"><span>  <span class="co"># example.)</span></span></span>
 <span class="r-in"><span></span></span>
-<span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/r/base/Random.html" class="external-link">set.seed</a></span><span class="op">(</span><span class="fl">250</span><span class="op">)</span> </span></span>
-<span class="r-in"><span>  <span class="va">dat</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/GammaDist.html" class="external-link">rgamma</a></span><span class="op">(</span><span class="fl">20</span>, shape <span class="op">=</span> <span class="fl">3</span>, scale <span class="op">=</span> <span class="fl">2</span><span class="op">)</span> </span></span>
+<span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/r/base/Random.html" class="external-link">set.seed</a></span><span class="op">(</span><span class="fl">250</span><span class="op">)</span></span></span>
+<span class="r-in"><span>  <span class="va">dat</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/GammaDist.html" class="external-link">rgamma</a></span><span class="op">(</span><span class="fl">20</span>, shape <span class="op">=</span> <span class="fl">3</span>, scale <span class="op">=</span> <span class="fl">2</span><span class="op">)</span></span></span>
 <span class="r-in"><span>  <span class="fu">egamma</span><span class="op">(</span><span class="va">dat</span>, ci <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $distribution</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "Gamma"</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $sample.size</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] 20</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Results of Distribution Parameter Estimation</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> --------------------------------------------</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $parameters</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>    shape    scale </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 2.203862 2.174928 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Assumed Distribution:            Gamma</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $method</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "MLE"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Estimated Parameter(s):          shape = 2.203862</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                                  scale = 2.174928</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $data.name</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "dat"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Estimation Method:               MLE</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $bad.obs</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] 0</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Data:                            dat</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $interval</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $name</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "Confidence"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Sample Size:                     20</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $parameter</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "mean"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Confidence Interval for:         mean</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $limits</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>      LCL      UCL </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 3.361652 6.746794 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Confidence Interval Method:      Optimum Power Normal Approximation</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                                  of Kulkarni &amp; Powar (2010)</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                                  using mle of 'shape'</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $type</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "two-sided"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Normal Transform Power:          0.246</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $method</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "Optimum Power Normal Approximation\n                                 of Kulkarni &amp; Powar (2010)\n                                 using mle of 'shape'"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Confidence Interval Type:        two-sided</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $conf.level</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] 0.95</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Confidence Level:                95%</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $sample.size</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] 20</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Confidence Interval:             LCL = 3.361652</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                                  UCL = 6.746794</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $normal.transform.power</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] 0.246</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> attr(,"class")</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "intervalEstimate"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> attr(,"class")</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "estimate"</span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span>  <span class="co">#Results of Distribution Parameter Estimation</span></span></span>
 <span class="r-in"><span>  <span class="co">#--------------------------------------------</span></span></span>
@@ -419,77 +273,50 @@
 <span class="r-in"><span></span></span>
 <span class="r-in"><span>  <span class="co">#====================================================================</span></span></span>
 <span class="r-in"><span></span></span>
-<span class="r-in"><span>  <span class="co"># Using the reference area TcCB data in EPA.94b.tccb.df, assume a </span></span></span>
-<span class="r-in"><span>  <span class="co"># gamma distribution, estimate the parameters based on the </span></span></span>
-<span class="r-in"><span>  <span class="co"># bias-corrected mle of shape, and compute a one-sided upper 90% </span></span></span>
+<span class="r-in"><span>  <span class="co"># Using the reference area TcCB data in EPA.94b.tccb.df, assume a</span></span></span>
+<span class="r-in"><span>  <span class="co"># gamma distribution, estimate the parameters based on the</span></span></span>
+<span class="r-in"><span>  <span class="co"># bias-corrected mle of shape, and compute a one-sided upper 90%</span></span></span>
 <span class="r-in"><span>  <span class="co"># confidence interval for the mean.</span></span></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span>  <span class="co">#----------</span></span></span>
-<span class="r-in"><span>  <span class="co"># First test to see whether the data appear to follow a gamma </span></span></span>
+<span class="r-in"><span>  <span class="co"># First test to see whether the data appear to follow a gamma</span></span></span>
 <span class="r-in"><span>  <span class="co"># distribution.</span></span></span>
 <span class="r-in"><span></span></span>
-<span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/r/base/with.html" class="external-link">with</a></span><span class="op">(</span><span class="va">EPA.94b.tccb.df</span>, </span></span>
-<span class="r-in"><span>    <span class="fu"><a href="gofTest.html">gofTest</a></span><span class="op">(</span><span class="va">TcCB</span><span class="op">[</span><span class="va">Area</span> <span class="op">==</span> <span class="st">"Reference"</span><span class="op">]</span>, dist <span class="op">=</span> <span class="st">"gamma"</span>, </span></span>
+<span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/r/base/with.html" class="external-link">with</a></span><span class="op">(</span><span class="va">EPA.94b.tccb.df</span>,</span></span>
+<span class="r-in"><span>    <span class="fu"><a href="gofTest.html">gofTest</a></span><span class="op">(</span><span class="va">TcCB</span><span class="op">[</span><span class="va">Area</span> <span class="op">==</span> <span class="st">"Reference"</span><span class="op">]</span>, dist <span class="op">=</span> <span class="st">"gamma"</span>,</span></span>
 <span class="r-in"><span>      est.arg.list <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>method <span class="op">=</span> <span class="st">"bcmle"</span><span class="op">)</span><span class="op">)</span></span></span>
 <span class="r-in"><span>  <span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $distribution</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "Gamma"</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $dist.abb</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "gamma"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Results of Goodness-of-Fit Test</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> -------------------------------</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $distribution.parameters</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>     shape     scale </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 4.5695247 0.1309788 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Test Method:                     Shapiro-Wilk GOF Based on</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                                  Chen &amp; Balakrisnan (1995)</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $n.param.est</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] 2</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Hypothesized Distribution:       Gamma</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $estimation.method</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "Bias-Corrected MLE"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Estimated Parameter(s):          shape = 4.5695247</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                                  scale = 0.1309788</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $statistic</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>         W </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 0.9703827 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Estimation Method:               Bias-Corrected MLE</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $sample.size</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] 47</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Data:                            TcCB[Area == "Reference"]</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $parameters</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  n </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 47 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Sample Size:                     47</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $z.value</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] 0.6009062</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Test Statistic:                  W = 0.9703827</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $p.value</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] 0.2739512</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Test Statistic Parameter:        n = 47</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $alternative</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "True cdf does not equal the\n                                 Gamma Distribution."</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> P-value:                         0.2739512</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $method</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "Shapiro-Wilk GOF Based on\n                                 Chen &amp; Balakrisnan (1995)"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $data</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  [1] 0.22 0.23 0.26 0.27 0.28 0.28 0.29 0.33 0.34 0.35 0.38 0.39 0.39 0.42 0.42</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [16] 0.43 0.45 0.46 0.48 0.50 0.50 0.51 0.52 0.54 0.56 0.56 0.57 0.57 0.60 0.62</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [31] 0.63 0.67 0.69 0.72 0.74 0.76 0.79 0.81 0.82 0.84 0.89 1.11 1.13 1.14 1.14</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [46] 1.20 1.33</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $data.name</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "TcCB[Area == \"Reference\"]"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $bad.obs</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] 0</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> attr(,"class")</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "gof"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Alternative Hypothesis:          True cdf does not equal the</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                                  Gamma Distribution.</span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span>  <span class="co">#Results of Goodness-of-Fit Test</span></span></span>
 <span class="r-in"><span>  <span class="co">#-------------------------------</span></span></span>
 <span class="r-in"><span>  <span class="co">#</span></span></span>
-<span class="r-in"><span>  <span class="co">#Test Method:                     Shapiro-Wilk GOF Based on </span></span></span>
+<span class="r-in"><span>  <span class="co">#Test Method:                     Shapiro-Wilk GOF Based on</span></span></span>
 <span class="r-in"><span>  <span class="co">#                                 Chen &amp; Balakrisnan (1995)</span></span></span>
 <span class="r-in"><span>  <span class="co">#</span></span></span>
 <span class="r-in"><span>  <span class="co">#Hypothesized Distribution:       Gamma</span></span></span>
@@ -515,60 +342,40 @@
 <span class="r-in"><span>  <span class="co">#----------</span></span></span>
 <span class="r-in"><span>  <span class="co"># Now estimate the paramters and compute the upper confidence limit.</span></span></span>
 <span class="r-in"><span></span></span>
-<span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/r/base/with.html" class="external-link">with</a></span><span class="op">(</span><span class="va">EPA.94b.tccb.df</span>, </span></span>
-<span class="r-in"><span>    <span class="fu">egamma</span><span class="op">(</span><span class="va">TcCB</span><span class="op">[</span><span class="va">Area</span> <span class="op">==</span> <span class="st">"Reference"</span><span class="op">]</span>, method <span class="op">=</span> <span class="st">"bcmle"</span>, ci <span class="op">=</span> <span class="cn">TRUE</span>, </span></span>
-<span class="r-in"><span>      ci.type <span class="op">=</span> <span class="st">"upper"</span>, conf.level <span class="op">=</span> <span class="fl">0.9</span><span class="op">)</span> </span></span>
+<span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/r/base/with.html" class="external-link">with</a></span><span class="op">(</span><span class="va">EPA.94b.tccb.df</span>,</span></span>
+<span class="r-in"><span>    <span class="fu">egamma</span><span class="op">(</span><span class="va">TcCB</span><span class="op">[</span><span class="va">Area</span> <span class="op">==</span> <span class="st">"Reference"</span><span class="op">]</span>, method <span class="op">=</span> <span class="st">"bcmle"</span>, ci <span class="op">=</span> <span class="cn">TRUE</span>,</span></span>
+<span class="r-in"><span>      ci.type <span class="op">=</span> <span class="st">"upper"</span>, conf.level <span class="op">=</span> <span class="fl">0.9</span><span class="op">)</span></span></span>
 <span class="r-in"><span>  <span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $distribution</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "Gamma"</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $sample.size</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] 47</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Results of Distribution Parameter Estimation</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> --------------------------------------------</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $parameters</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>     shape     scale </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 4.5695247 0.1309788 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Assumed Distribution:            Gamma</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $method</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "Bias-Corrected MLE"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Estimated Parameter(s):          shape = 4.5695247</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                                  scale = 0.1309788</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $data.name</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "TcCB[Area == \"Reference\"]"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Estimation Method:               Bias-Corrected MLE</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $bad.obs</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] 0</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Data:                            TcCB[Area == "Reference"]</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $interval</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $name</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "Confidence"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Sample Size:                     47</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $parameter</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "mean"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Confidence Interval for:         mean</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $limits</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>       LCL       UCL </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 0.0000000 0.6561838 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Confidence Interval Method:      Optimum Power Normal Approximation</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                                  of Kulkarni &amp; Powar (2010)</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                                  using bcmle of 'shape'</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $type</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "upper"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Normal Transform Power:          0.246</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $method</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "Optimum Power Normal Approximation\n                                 of Kulkarni &amp; Powar (2010)\n                                 using bcmle of 'shape'"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Confidence Interval Type:        upper</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $conf.level</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] 0.9</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Confidence Level:                90%</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $sample.size</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] 47</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Confidence Interval:             LCL = 0.0000000</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                                  UCL = 0.6561838</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $normal.transform.power</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] 0.246</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> attr(,"class")</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "intervalEstimate"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> attr(,"class")</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "estimate"</span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span>  <span class="co">#Results of Distribution Parameter Estimation</span></span></span>
 <span class="r-in"><span>  <span class="co">#--------------------------------------------</span></span></span>
@@ -603,60 +410,40 @@
 <span class="r-in"><span></span></span>
 <span class="r-in"><span>  <span class="co"># Repeat the above example but use the alternative parameterization.</span></span></span>
 <span class="r-in"><span></span></span>
-<span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/r/base/with.html" class="external-link">with</a></span><span class="op">(</span><span class="va">EPA.94b.tccb.df</span>, </span></span>
-<span class="r-in"><span>    <span class="fu">egammaAlt</span><span class="op">(</span><span class="va">TcCB</span><span class="op">[</span><span class="va">Area</span> <span class="op">==</span> <span class="st">"Reference"</span><span class="op">]</span>, method <span class="op">=</span> <span class="st">"bcmle"</span>, ci <span class="op">=</span> <span class="cn">TRUE</span>, </span></span>
-<span class="r-in"><span>      ci.type <span class="op">=</span> <span class="st">"upper"</span>, conf.level <span class="op">=</span> <span class="fl">0.9</span><span class="op">)</span> </span></span>
+<span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/r/base/with.html" class="external-link">with</a></span><span class="op">(</span><span class="va">EPA.94b.tccb.df</span>,</span></span>
+<span class="r-in"><span>    <span class="fu">egammaAlt</span><span class="op">(</span><span class="va">TcCB</span><span class="op">[</span><span class="va">Area</span> <span class="op">==</span> <span class="st">"Reference"</span><span class="op">]</span>, method <span class="op">=</span> <span class="st">"bcmle"</span>, ci <span class="op">=</span> <span class="cn">TRUE</span>,</span></span>
+<span class="r-in"><span>      ci.type <span class="op">=</span> <span class="st">"upper"</span>, conf.level <span class="op">=</span> <span class="fl">0.9</span><span class="op">)</span></span></span>
 <span class="r-in"><span>  <span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $distribution</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "Gamma"</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $sample.size</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] 47</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Results of Distribution Parameter Estimation</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> --------------------------------------------</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $parameters</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>      mean        cv </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 0.5985106 0.4678046 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Assumed Distribution:            Gamma</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $method</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "Bias-Corrected MLE"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Estimated Parameter(s):          mean = 0.5985106</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                                  cv   = 0.4678046</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $data.name</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "TcCB[Area == \"Reference\"]"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Estimation Method:               Bias-Corrected MLE</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $bad.obs</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] 0</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Data:                            TcCB[Area == "Reference"]</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $interval</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $name</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "Confidence"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Sample Size:                     47</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $parameter</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "mean"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Confidence Interval for:         mean</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $limits</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>       LCL       UCL </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 0.0000000 0.6561838 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Confidence Interval Method:      Optimum Power Normal Approximation</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                                  of Kulkarni &amp; Powar (2010)</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                                  using bcmle of 'shape'</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $type</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "upper"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Normal Transform Power:          0.246</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $method</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "Optimum Power Normal Approximation\n                                 of Kulkarni &amp; Powar (2010)\n                                 using bcmle of 'shape'"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Confidence Interval Type:        upper</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $conf.level</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] 0.9</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Confidence Level:                90%</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $sample.size</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] 47</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Confidence Interval:             LCL = 0.0000000</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                                  UCL = 0.6561838</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $normal.transform.power</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] 0.246</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> attr(,"class")</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "intervalEstimate"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> attr(,"class")</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "estimate"</span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span>  <span class="co">#Results of Distribution Parameter Estimation</span></span></span>
 <span class="r-in"><span>  <span class="co">#--------------------------------------------</span></span></span>
@@ -689,64 +476,64 @@
 <span class="r-in"><span></span></span>
 <span class="r-in"><span>  <span class="co">#------------------------------------------------------------------</span></span></span>
 <span class="r-in"><span></span></span>
-<span class="r-in"><span>  <span class="co"># Compare the upper confidence limit based on </span></span></span>
-<span class="r-in"><span>  <span class="co"># 1) the default method: </span></span></span>
+<span class="r-in"><span>  <span class="co"># Compare the upper confidence limit based on</span></span></span>
+<span class="r-in"><span>  <span class="co"># 1) the default method:</span></span></span>
 <span class="r-in"><span>  <span class="co">#    normal approximation method based on Kulkarni and Powar (2010)</span></span></span>
-<span class="r-in"><span>  <span class="co"># 2) Profile Likelihood </span></span></span>
+<span class="r-in"><span>  <span class="co"># 2) Profile Likelihood</span></span></span>
 <span class="r-in"><span>  <span class="co"># 3) Chi-Square Approximation</span></span></span>
 <span class="r-in"><span>  <span class="co"># 4) Chi-Square Adjusted</span></span></span>
 <span class="r-in"><span></span></span>
-<span class="r-in"><span>  <span class="co"># Default Method </span></span></span>
+<span class="r-in"><span>  <span class="co"># Default Method</span></span></span>
 <span class="r-in"><span>  <span class="co">#---------------</span></span></span>
-<span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/r/base/with.html" class="external-link">with</a></span><span class="op">(</span><span class="va">EPA.94b.tccb.df</span>, </span></span>
-<span class="r-in"><span>    <span class="fu">egamma</span><span class="op">(</span><span class="va">TcCB</span><span class="op">[</span><span class="va">Area</span> <span class="op">==</span> <span class="st">"Reference"</span><span class="op">]</span>, method <span class="op">=</span> <span class="st">"bcmle"</span>, ci <span class="op">=</span> <span class="cn">TRUE</span>, </span></span>
+<span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/r/base/with.html" class="external-link">with</a></span><span class="op">(</span><span class="va">EPA.94b.tccb.df</span>,</span></span>
+<span class="r-in"><span>    <span class="fu">egamma</span><span class="op">(</span><span class="va">TcCB</span><span class="op">[</span><span class="va">Area</span> <span class="op">==</span> <span class="st">"Reference"</span><span class="op">]</span>, method <span class="op">=</span> <span class="st">"bcmle"</span>, ci <span class="op">=</span> <span class="cn">TRUE</span>,</span></span>
 <span class="r-in"><span>      ci.type <span class="op">=</span> <span class="st">"upper"</span>, conf.level <span class="op">=</span> <span class="fl">0.9</span><span class="op">)</span><span class="op">$</span><span class="va">interval</span><span class="op">$</span><span class="va">limits</span><span class="op">[</span><span class="st">"UCL"</span><span class="op">]</span></span></span>
 <span class="r-in"><span>  <span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>       UCL </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 0.6561838 </span>
 <span class="r-in"><span></span></span>
-<span class="r-in"><span>  <span class="co">#      UCL </span></span></span>
+<span class="r-in"><span>  <span class="co">#      UCL</span></span></span>
 <span class="r-in"><span>  <span class="co">#0.6561838</span></span></span>
 <span class="r-in"><span></span></span>
-<span class="r-in"><span>  <span class="co"># Profile Likelihood </span></span></span>
+<span class="r-in"><span>  <span class="co"># Profile Likelihood</span></span></span>
 <span class="r-in"><span>  <span class="co">#-------------------</span></span></span>
-<span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/r/base/with.html" class="external-link">with</a></span><span class="op">(</span><span class="va">EPA.94b.tccb.df</span>, </span></span>
-<span class="r-in"><span>    <span class="fu">egamma</span><span class="op">(</span><span class="va">TcCB</span><span class="op">[</span><span class="va">Area</span> <span class="op">==</span> <span class="st">"Reference"</span><span class="op">]</span>, method <span class="op">=</span> <span class="st">"mle"</span>, ci <span class="op">=</span> <span class="cn">TRUE</span>, </span></span>
+<span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/r/base/with.html" class="external-link">with</a></span><span class="op">(</span><span class="va">EPA.94b.tccb.df</span>,</span></span>
+<span class="r-in"><span>    <span class="fu">egamma</span><span class="op">(</span><span class="va">TcCB</span><span class="op">[</span><span class="va">Area</span> <span class="op">==</span> <span class="st">"Reference"</span><span class="op">]</span>, method <span class="op">=</span> <span class="st">"mle"</span>, ci <span class="op">=</span> <span class="cn">TRUE</span>,</span></span>
 <span class="r-in"><span>      ci.type <span class="op">=</span> <span class="st">"upper"</span>, conf.level <span class="op">=</span> <span class="fl">0.9</span>,</span></span>
 <span class="r-in"><span>      ci.method <span class="op">=</span> <span class="st">"profile.likelihood"</span><span class="op">)</span><span class="op">$</span><span class="va">interval</span><span class="op">$</span><span class="va">limits</span><span class="op">[</span><span class="st">"UCL"</span><span class="op">]</span></span></span>
 <span class="r-in"><span>  <span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>       UCL </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 0.6527009 </span>
 <span class="r-in"><span></span></span>
-<span class="r-in"><span>  <span class="co">#      UCL </span></span></span>
+<span class="r-in"><span>  <span class="co">#      UCL</span></span></span>
 <span class="r-in"><span>  <span class="co">#0.6527009</span></span></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span>  <span class="co"># Chi-Square Approximation</span></span></span>
 <span class="r-in"><span>  <span class="co">#-------------------------</span></span></span>
-<span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/r/base/with.html" class="external-link">with</a></span><span class="op">(</span><span class="va">EPA.94b.tccb.df</span>, </span></span>
-<span class="r-in"><span>    <span class="fu">egamma</span><span class="op">(</span><span class="va">TcCB</span><span class="op">[</span><span class="va">Area</span> <span class="op">==</span> <span class="st">"Reference"</span><span class="op">]</span>, method <span class="op">=</span> <span class="st">"mle"</span>, ci <span class="op">=</span> <span class="cn">TRUE</span>, </span></span>
-<span class="r-in"><span>      ci.type <span class="op">=</span> <span class="st">"upper"</span>, conf.level <span class="op">=</span> <span class="fl">0.9</span>, </span></span>
+<span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/r/base/with.html" class="external-link">with</a></span><span class="op">(</span><span class="va">EPA.94b.tccb.df</span>,</span></span>
+<span class="r-in"><span>    <span class="fu">egamma</span><span class="op">(</span><span class="va">TcCB</span><span class="op">[</span><span class="va">Area</span> <span class="op">==</span> <span class="st">"Reference"</span><span class="op">]</span>, method <span class="op">=</span> <span class="st">"mle"</span>, ci <span class="op">=</span> <span class="cn">TRUE</span>,</span></span>
+<span class="r-in"><span>      ci.type <span class="op">=</span> <span class="st">"upper"</span>, conf.level <span class="op">=</span> <span class="fl">0.9</span>,</span></span>
 <span class="r-in"><span>      ci.method <span class="op">=</span> <span class="st">"chisq.approx"</span><span class="op">)</span><span class="op">$</span><span class="va">interval</span><span class="op">$</span><span class="va">limits</span><span class="op">[</span><span class="st">"UCL"</span><span class="op">]</span></span></span>
 <span class="r-in"><span>  <span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>       UCL </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 0.6532188 </span>
 <span class="r-in"><span></span></span>
-<span class="r-in"><span>  <span class="co">#      UCL </span></span></span>
+<span class="r-in"><span>  <span class="co">#      UCL</span></span></span>
 <span class="r-in"><span>  <span class="co">#0.6532188</span></span></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span>  <span class="co"># Chi-Square Adjusted</span></span></span>
 <span class="r-in"><span>  <span class="co">#--------------------</span></span></span>
-<span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/r/base/with.html" class="external-link">with</a></span><span class="op">(</span><span class="va">EPA.94b.tccb.df</span>, </span></span>
-<span class="r-in"><span>    <span class="fu">egamma</span><span class="op">(</span><span class="va">TcCB</span><span class="op">[</span><span class="va">Area</span> <span class="op">==</span> <span class="st">"Reference"</span><span class="op">]</span>, method <span class="op">=</span> <span class="st">"mle"</span>, ci <span class="op">=</span> <span class="cn">TRUE</span>, </span></span>
-<span class="r-in"><span>      ci.type <span class="op">=</span> <span class="st">"upper"</span>, conf.level <span class="op">=</span> <span class="fl">0.9</span>, </span></span>
+<span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/r/base/with.html" class="external-link">with</a></span><span class="op">(</span><span class="va">EPA.94b.tccb.df</span>,</span></span>
+<span class="r-in"><span>    <span class="fu">egamma</span><span class="op">(</span><span class="va">TcCB</span><span class="op">[</span><span class="va">Area</span> <span class="op">==</span> <span class="st">"Reference"</span><span class="op">]</span>, method <span class="op">=</span> <span class="st">"mle"</span>, ci <span class="op">=</span> <span class="cn">TRUE</span>,</span></span>
+<span class="r-in"><span>      ci.type <span class="op">=</span> <span class="st">"upper"</span>, conf.level <span class="op">=</span> <span class="fl">0.9</span>,</span></span>
 <span class="r-in"><span>      ci.method <span class="op">=</span> <span class="st">"chisq.adj"</span><span class="op">)</span><span class="op">$</span><span class="va">interval</span><span class="op">$</span><span class="va">limits</span><span class="op">[</span><span class="st">"UCL"</span><span class="op">]</span></span></span>
 <span class="r-in"><span>  <span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>     UCL </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 0.65467 </span>
 <span class="r-in"><span></span></span>
-<span class="r-in"><span>  <span class="co">#    UCL </span></span></span>
+<span class="r-in"><span>  <span class="co">#    UCL</span></span></span>
 <span class="r-in"><span>  <span class="co">#0.65467</span></span></span>
 <span class="r-in"><span></span></span>
 </code></pre></div>
@@ -763,7 +550,7 @@
 </div>
 
 <div class="pkgdown">
-  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.1.1.</p>
+  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.2.1.</p>
 </div>
 
       </footer></div>
