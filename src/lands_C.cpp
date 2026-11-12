@@ -1,14 +1,14 @@
+// Copyright (c) 2026 Neptune and Company, Inc.  Author: John H. Carson Jr.
+// Contributed to EnvStats under the GNU General Public License, version 3 or
+// later (GPL (>= 3)), the licence of the package.
+//
 // lands_C.cpp -- Rcpp entry point for Land's C, used by lands.C() and hence by
 // ci.land(), ci.lnorm.land() and elnormAlt(ci.method = "land").
 //
 // Computes Land's C (the H statistic) directly from Land (1971) with the
 // table-free solver in land.cpp (C++17 standard library only; no R or Rcpp
-// dependency).  land.cpp and land.h are copied verbatim from the landh project,
-// where they are maintained and validated; edit them there, not here.
-//
-// land.cpp, land.h and this file: Copyright (c) 2026 Neptune and Company, Inc.
-// (author John H. Carson Jr.), contributed to EnvStats under the GNU General
-// Public License (>= 3), the licence of the package.
+// dependency).  Neptune and Company also maintains land.cpp and land.h in its
+// landh package; changes should be made there first and then copied here.
 
 #include <Rcpp.h>
 

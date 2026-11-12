@@ -1,3 +1,7 @@
+// Copyright (c) 2026 Neptune and Company, Inc.  Author: John H. Carson Jr.
+// Contributed to EnvStats under the GNU General Public License, version 3 or
+// later (GPL (>= 3)), the licence of the package.
+//
 // land.cpp -- implementation.  See land.h.
 //
 // Numerical policy, forced by the range of the problem (H_ALGORITHM.md section 6):

@@ -1,3 +1,7 @@
+# Copyright (c) 2026 Neptune and Company, Inc.  Author: John H. Carson Jr.
+# Contributed to EnvStats under the GNU General Public License, version 3 or
+# later (GPL (>= 3)), the licence of the package.
+
 library(EnvStats)
 
 # Land's method for the lognormal mean: lands.C, used by ci.land, ci.lnorm.land

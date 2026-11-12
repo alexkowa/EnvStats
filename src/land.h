@@ -1,3 +1,7 @@
+// Copyright (c) 2026 Neptune and Company, Inc.  Author: John H. Carson Jr.
+// Contributed to EnvStats under the GNU General Public License, version 3 or
+// later (GPL (>= 3)), the licence of the package.
+//
 // land.h -- Land (1971) confidence limits for mu + lambda*sigma^2, computed
 // from first principles.  No lookup tables, no interpolation, no dependencies.
 //
