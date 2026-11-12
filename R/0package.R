@@ -5,6 +5,8 @@
 #' environmental monitoring.
 #' @keywords internal
 #' @name EnvStats-package
+#' @useDynLib EnvStats, .registration = TRUE
+#' @importFrom Rcpp evalCpp
 #' @rawNamespace importFrom("grDevices", "dev.new", "devAskNewPage", "nclass.Sturges")
 #' @rawNamespace importFrom("graphics", "Axis", "abline", "axis", "box", "hist", "lines", "mtext", "par", "plot", "points", "polygon", "rect", "segments", "text", "title", "xinch", "yinch")
 #' @rawNamespace importFrom("stats", "anova", "aov", "approx", "ar.yw", "arima", "binom.test", "cor", "dbeta", "dchisq", "dhyper", "dlnorm", "dnorm", "dpois", "formula", "integrate", "kruskal.test", "ks.test", "lm", "mad", "median", "model.frame", "na.pass", "nlminb", "optim", "pbeta", "pbinom", "pchisq", "pf", "pgamma", "phyper", "plnorm", "pnbinom", "pnorm", "ppoints", "ppois", "prop.test", "pt", "qbeta", "qbinom", "qchisq", "qexp", "qf", "qgamma", "qgeom", "qhyper", "qlnorm", "qlogis", "qnbinom", "qnorm", "qpois", "qt", "quantile", "qunif", "qweibull", "rbinom", "rchisq", "residuals", "rlnorm", "rnorm", "runif", "sd", "summary.aov", "t.test", "terms", "time", "uniroot", "update", "var")
