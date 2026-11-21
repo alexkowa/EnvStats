@@ -75,6 +75,10 @@
 #'   Bradu, D., and Y. Mundlak. (1970).  Estimation in Lognormal Linear Models.
 #'   \emph{Journal of the American Statistical Association} \bold{65}, 198--211.
 #'
+#'   Carson, J.H. (2026).  \emph{Land's Exact Confidence Limits for the Lognormal
+#'   Mean: The Method, and Three Implementations}.  Technical report, Neptune and
+#'   Company, Inc., Lakewood, CO.
+#'
 #'   Cohn, T.A., L.L. DeLong, E.J. Gilroy, R.M. Hirsch, and D.K. Wells. (1989).
 #'   Estimating Constituent Loads.  \emph{Water Resources Research} \bold{25}(5),
 #'   937--942.
@@ -193,7 +197,10 @@
 #'   95\% confidence interval for the mean, assuming the data follow a lognormal
 #'   distribution (the guidance document cites Gilbert (1987) as a source of descriptions
 #'   and tables for this method).  The last example in the EXAMPLES section below
-#'   reproduces an example from this guidance document.
+#'   reproduces an example from this guidance document.  \code{elnormAlt} computes
+#'   Land's factor \eqn{C} directly from Land (1971) rather than from tables; results
+#'   from EnvStats versions before 4.0.0 differ for \eqn{n} above about 50 and for
+#'   \eqn{n = 3} to 5 (see the vignette and NEWS).
 #'
 #'   In the past, some authors suggested using the geometric mean, also called the
 #'   "rating curve" estimator (Cohn et al., 1989), as the estimator of the mean,
