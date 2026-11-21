@@ -1337,6 +1337,8 @@ $$
 g_m(z) = \sum_{i=0}^\infty \frac{m^i (m+2i)}{m(m+2) \cdots (m+2i)} (\frac{m}{m+1})^i (\frac{z^i}{i!}) \;\;\;\; (5)
 $$
 
+The series in equation (5) is the confluent hypergeometric limit function $g_m(z) = {}_0F_1(;\, m/2;\, y)$ with $y = m^2 z / [2(m+1)]$. For $z < 0$ its terms alternate in sign, and summing them directly can lose all precision. Since Version 4.0.0, EnvStats then uses the equivalent closed form $g_m(z) = \Gamma(b)\, u^{(1-b)/2} J_{b-1}(2\sqrt{u})$, where $b = m/2$, $u = -y$ and $J$ is the Bessel function of the first kind, whenever the direct sum would lose accuracy.
+
 The expected value and variance of the mvue of $\theta$ are (Bradu and Mundlak, 1970; Cohn et al., 1989):
 
 $$
@@ -1487,7 +1489,7 @@ $$
 [ \hat{\beta}_{mvue} + s \frac{C_{\alpha}}{\sqrt{n-1}}, \;  \infty ] \;\;\;\; (30)
 $$
 
-where $s$ is the estimate of $\sigma$ (see equation (4) above), and the factor $C$ is given in tables in Land (1975).
+where $s$ is the estimate of $\sigma$ (see equation (4) above), and $C$ is the factor tabulated by Land (1975). `elnormAlt` computes $C$ directly rather than from tables (see *Computing Land's C* below).
 
 Thus, by equations (25)-(30), the two-sided $(1-\alpha)100\%$ confidence interval for $\theta$ is given by:
 
@@ -1508,6 +1510,11 @@ $$
 $$
 
 Note that Gilbert (1987, pp. 169-171, 264-265) denotes the quantity $C$ above as $H$ and reproduces a subset of Land's (1975) tables. Some guidance documents (e.g., USEPA, 1992d) refer to this quantity as the $H$-statistic.
+
+*Computing Land's C*
+Land (1971, Section 5) defines $C$ through the quantiles of a one-dimensional conditional density, so it can be computed for any sample size, standard deviation and confidence level without tables or interpolation. Since Version 4.0.0, `elnormAlt` computes $C$ this way, in compiled code. The density is evaluated relative to its own maximum over the range where it is numerically non-zero and integrated by adaptive quadrature, and $C$ is found by root-finding. This keeps the computation stable for large $n$ and large $s$, where the density is extremely concentrated.
+
+Versions of EnvStats before 4.0.0 used a different numerical approach, which was accurate for small and moderate samples but not beyond them. For upper confidence limits at the 90%–99% levels, it agreed with the correct values to within 0.005% for $n = 6$ to 20 and to within about 0.1% for $n = 21$ to 50. Beyond that it degraded: errors in the confidence limit of up to about 2% for $n = 51$ to 100, up to about 14% for $n = 101$ to 300, and up to 85% above that, where most calls also stopped with an error. For $n = 3$ to 5 at confidence levels of 95% and above, it could return an upper confidence limit below the estimate of the mean. Results from Version 4.0.0 therefore differ from those of earlier versions for $n$ above about 50 and for $n = 3$ to 5. See Carson (2026) for details.
 
 *Zou et al.'s Method* (`ci.method="zou"`)  
 Zou et al. (2009) proposed the following approximation for the two-sided $(1-\alpha)100\%$ confidence intervals for $\theta$. The lower limit $LL$ is given by:
