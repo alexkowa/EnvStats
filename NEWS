@@ -1,20 +1,52 @@
-Changes in Version 4.0.0 2026.11.10
+Changes in Version 4.0.0 2026.11.19
 -----------------------------------
 
  - Moved to roxygen2 for documentation.
+
  - Shortened function help pages to focus on usage, arguments, return values, and examples.
-   Extended method details, derivations, formulas, and tables are now organized into eight
-   thematic vignettes covering distributions and estimation, censored-data estimation,
-   distribution diagnostics, nonparametric methods, trends and serial correlation,
-   prediction intervals, power and study design, and outlier testing.
-   Help pages link to the relevant vignette sections and include commands to open the
-   vignettes locally. Each vignette includes a table of contents and links to related
-   vignettes and help pages.
+   * Extended method details, derivations, formulas, and tables are now organized into 
+     eight thematic vignettes covering distributions and estimation, censored-data estimation,
+     distribution diagnostics, nonparametric methods, trends and serial correlation,
+     prediction intervals, power and study design, and outlier testing.
+   * Help pages link to the relevant vignette sections and include commands to open the
+     vignettes locally. Each vignette includes a table of contents and links to related
+     vignettes and help pages.
 
- - Removed functions print and print.default.
+ - Removed the functions print and print.default.
    * Objects of class "htestEnvStats" print as in previous versions.
-   * Objects of class "htest" now print the default way in R.  To change the printing format output for objects of class "htest" to match earlier documentation (e.g., the Springer users manual), you need to explicitly call the print.htestEnvStats() function.
+   * Objects of class "htest" now print the default way in R.  
+     To change the printing format output for objects of class "htest" to match earlier 
+     documentation (e.g., the Springer users manual), you need to explicitly call the 
+     print.htestEnvStats function (see for example the EXAMPLE section of the help files 
+     for print.htestEnvStats and twoSampleLinearRankTest).
 
+ - Land's method for confidence limits for the mean of a lognormal distribution
+   (elnormAlt with ci.method = "land", the default) now computes Land's factor C
+   directly from Land (1971) in compiled C++ code, through the Rcpp package, which 
+   is a new dependency.  
+   * The previous numerical method was accurate for small and moderate sample sizes, 
+     but beyond them the confidence limits were silently wrong.  For upper limits at 
+     the 90-99% levels, errors were up to about 2% for n = 51 to 100, up to about 14% 
+     for n = 101 to 300, and up to 85% above that, where most calls also stopped with 
+     an error.  For n = 3 to 5 at confidence levels of 95% and above, the upper 
+     confidence limit could fall below the estimate of the mean.  Results therefore 
+     differ from earlier versions of EnvStats for n above about 50 and for n = 3 to 5; 
+     for n = 6 to 50 they agree to within about 0.1%. 
+   * The internal functions qlands.t, plands.t, dlands.t, mode.lands.t, 
+     lands.cond.t.prop.density and lands.cond.t.prop.density.polar have been removed.
+   * Many thanks to John H. Carson Jr. (Neptune and Company, Inc.), who identified the 
+     problem and contributed the code.
+
+ - Fixed the computation of Finney's g (performed by the internal function finneys.g) 
+   for negative arguments, where its series alternates and loses precision.  
+   * This affects only the results of the eqlnorm function with method = "mvue": the 
+     estimate of the median changes by less than 1 part in a billion, and confidence 
+     limits with ci.method = "normal.approx" by less than 0.01%, with the largest changes 
+     in small samples with sdlog of 7 or more.  
+   * Results from elnormAlt and the censored MVUE estimators change by less than 1e-12 
+     (relative).
+   * Many thanks to John H. Carson Jr. (Neptune and Company, Inc.), who identified the 
+     problem and contributed the code.
 
 =================================================================================
 
