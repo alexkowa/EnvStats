@@ -10961,7 +10961,7 @@ NULL
 #'   #mean of x
 #'   # 34.56667
 #'
-#'   print(htest.obj)
+#'   print.htestEnvStats(htest.obj)
 #'
 #'   #Results of Hypothesis Test
 #'   #--------------------------
