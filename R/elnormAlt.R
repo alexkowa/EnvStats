@@ -176,7 +176,7 @@
 #' }
 #' @rawRd
 #' \author{
-#'     Steven P. Millard (\email{EnvStats@ProbStatInfo.com})
+#'     Steven P. Millard (\email{EnvStats@ProbStatInfo.com}), John Carson (\email{jcarson@neptuneinc.org})
 #' }
 #' @rawRd
 #' \note{

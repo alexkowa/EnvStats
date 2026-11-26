@@ -179,7 +179,7 @@ Open the vignette locally with
   \emph{Environmetrics} \bold{20}, 172--180.
 }
 \author{
-    Steven P. Millard (\email{EnvStats@ProbStatInfo.com})
+    Steven P. Millard (\email{EnvStats@ProbStatInfo.com}), John Carson (\email{jcarson@neptuneinc.org})
 }
 \note{
   The normal and lognormal distribution are probably the two most frequently used
