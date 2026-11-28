@@ -223,7 +223,7 @@ Open the vignette locally with
 
   # Plot the data
   #--------------
-  dev.new()
+  if (interactive()) dev.new()
   with(EPA.09.Ex.17.6.sulfate.df,
     plot(Sampling.Date, Sulfate.ppm, pch = 15, ylim = c(400, 900),
     xlab = "Sampling Date", ylab = "Sulfate Conc (ppm)",

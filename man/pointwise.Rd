@@ -178,7 +178,7 @@ Computes pointwise confidence limits for predictions computed by the function
 
   y <- Air.df$ozone
 
-  dev.new()
+  if (interactive()) dev.new()
   plot(x, y, xlab="Temperature (degrees F)",
     ylab = expression(sqrt("Ozone (ppb)", 3)))
 
@@ -205,7 +205,7 @@ Computes pointwise confidence limits for predictions computed by the function
   # Redo the last example by creating non-simultaneous
   # confidence bounds and prediction bounds as well.
 
-  dev.new()
+  if (interactive()) dev.new()
   plot(x, y, xlab = "Temperature (degrees F)",
     ylab = expression(sqrt("Ozone (ppb)", 3)))
 

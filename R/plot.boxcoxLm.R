@@ -198,18 +198,18 @@
 #'
 #'   # Plot PPCC vs. lambda based on Q-Q plots of residuals
 #'   #-----------------------------------------------------
-#'   dev.new()
+#'   if (interactive()) dev.new()
 #'   plot(boxcox.list)
 #'
 #'   # Look at Q-Q plots of residuals for the various transformation
 #'   #--------------------------------------------------------------
-#'   plot(boxcox.list, plot.type = "Q-Q Plots", same.window = FALSE)
+#'   plot(boxcox.list, plot.type = "Q-Q Plots", same.window = !interactive(), ask = FALSE)
 #'
 #'
 #'   # Look at Tukey Mean-Difference Q-Q plots of residuals
 #'   # for the various transformation
 #'   #-----------------------------------------------------
-#'   plot(boxcox.list, plot.type = "Tukey M-D Q-Q Plots", same.window = FALSE)
+#'   plot(boxcox.list, plot.type = "Tukey M-D Q-Q Plots", same.window = !interactive(), ask = FALSE)
 #'
 #'   #==========
 #'

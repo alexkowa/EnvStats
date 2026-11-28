@@ -144,14 +144,14 @@ Create plots involving sample size, quantile, and confidence level for a
   # Look at the relationship between confidence level and sample size for
   # a two-sided nonparametric confidence interval for the 90'th percentile.
 
-  dev.new()
+  if (interactive()) dev.new()
   plotCiNparDesign(p = 0.9)
 
   #----------
 
   # Plot sample size vs. quantile for various levels of confidence:
 
-  dev.new()
+  if (interactive()) dev.new()
   plotCiNparDesign(x.var = "p", y.var = "n", range.x.var = c(0.8, 0.95),
     ylim = c(0, 60), main = "")
 

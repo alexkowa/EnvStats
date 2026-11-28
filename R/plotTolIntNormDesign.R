@@ -168,14 +168,14 @@
 #'   # 95% beta-content tolerance interval, assuming an estimated standard
 #'   # deviation of 1 and a confidence level of 95%:
 #'
-#'   dev.new()
+#'   if (interactive()) dev.new()
 #'   plotTolIntNormDesign()
 #'
 #'   #==========
 #'
 #'   # Plot half-width vs. coverage for various levels of confidence:
 #'
-#'   dev.new()
+#'   if (interactive()) dev.new()
 #'   plotTolIntNormDesign(x.var = "coverage", y.var = "half.width",
 #'     ylim = c(0, 3.5), main="")
 #'
@@ -235,7 +235,7 @@
 #'   sigma.hat
 #'   #[1] 0.6279
 #'
-#'   dev.new()
+#'   if (interactive()) dev.new()
 #'   plotTolIntNormDesign(x.var = "n", y.var = "half.width",
 #'     range.x.var = c(5, 40), sigma.hat = sigma.hat, cex.main = 1)
 #'

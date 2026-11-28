@@ -142,7 +142,7 @@
 #'   #
 #'   # Here we will reproduce Figure 6-3 on page 6-17.
 #'
-#'   dev.new()
+#'   if (interactive()) dev.new()
 #'   plotPredIntNormTestPowerCurve(n = 10, k = 1, conf.level = 0.99,
 #'     ylim = c(0, 1), main="")
 #'
@@ -163,7 +163,7 @@
 #'   # Plot power vs. scaled minimal detectable difference for various sample sizes
 #'   # using a 5% significance level.
 #'
-#'   dev.new()
+#'   if (interactive()) dev.new()
 #'   plotPredIntNormTestPowerCurve(n = 8, k = 1, ylim = c(0, 1), main="")
 #'
 #'   plotPredIntNormTestPowerCurve(n = 16, k = 1, add = TRUE, plot.col = "red")

@@ -284,7 +284,7 @@ Open the vignette locally with
   n          <- length(Unadj.Conc)
   Three.Yr.Mean <- mean(Unadj.Conc)
 
-  dev.new()
+  if (interactive()) dev.new()
   par(mar = c(7, 4, 3, 1) + 0.1, cex.lab = 1.25)
   plot(1:n, Unadj.Conc, type = "n", xaxt = "n",
 	xlab = "Time (Month)",

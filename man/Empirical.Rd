@@ -227,7 +227,7 @@ Density, distribution function, quantile function, and random generation for
 
   # Now plot the empirical distribution (with a histogram) and the true distribution:
 
-  dev.new()
+  if (interactive()) dev.new()
   hist(obs, col = "cyan", xlim = c(0, 65), freq = FALSE,
     ylab = "Relative Frequency")
 
@@ -241,7 +241,7 @@ Density, distribution function, quantile function, and random generation for
   x <- qemp(p = seq(0, 1, len = 100), obs = obs)
   y <- demp(x, obs)
 
-  dev.new()
+  if (interactive()) dev.new()
   plot(x, y, xlim = c(0, 65), type = "n",
     xlab = "Value of Random Variable",
     ylab = "Relative Frequency")
@@ -252,7 +252,7 @@ Density, distribution function, quantile function, and random generation for
   # Alternatively, you can create the above plot with the function
   # epdfPlot:
 
-  dev.new()
+  if (interactive()) dev.new()
   epdfPlot(obs, xlim = c(0, 65), epdf.col = "cyan",
     xlab = "Value of Random Variable",
     main = "Empirical and Theoretical PDFs")

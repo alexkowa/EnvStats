@@ -258,13 +258,13 @@
 #'   # Assume a normal distribution
 #'   #-----------------------------
 #'
-#'   dev.new()
+#'   if (interactive()) dev.new()
 #'   with(EPA.94b.tccb.df, qqPlot(TcCB[Area == "Reference"]))
 #'
-#'   dev.new()
+#'   if (interactive()) dev.new()
 #'   with(EPA.94b.tccb.df, qqPlot(TcCB[Area == "Reference"], add.line = TRUE))
 #'
-#'   dev.new()
+#'   if (interactive()) dev.new()
 #'   with(EPA.94b.tccb.df, qqPlot(TcCB[Area == "Reference"],
 #'     plot.type = "Tukey", add.line = TRUE))
 #'
@@ -276,12 +276,12 @@
 #'   # Assume a lognormal distribution
 #'   #--------------------------------
 #'
-#'   dev.new()
+#'   if (interactive()) dev.new()
 #'   with(EPA.94b.tccb.df,
 #'     qqPlot(TcCB[Area == "Reference"], dist = "lnorm",
 #'       digits = 2, points.col = "blue", add.line = TRUE))
 #'
-#'   dev.new()
+#'   if (interactive()) dev.new()
 #'   with(EPA.94b.tccb.df,
 #'     qqPlot(TcCB[Area == "Reference"], dist = "lnorm",
 #'       digits = 2, plot.type = "Tukey", points.col = "blue",
@@ -289,13 +289,13 @@
 #'
 #'   # Alternative parameterization
 #'
-#'   dev.new()
+#'   if (interactive()) dev.new()
 #'   with(EPA.94b.tccb.df,
 #'     qqPlot(TcCB[Area == "Reference"], dist = "lnormAlt",
 #'       estimate.params = TRUE, digits = 2, points.col = "blue",
 #'       add.line = TRUE))
 #'
-#'   dev.new()
+#'   if (interactive()) dev.new()
 #'   with(EPA.94b.tccb.df,
 #'     qqPlot(TcCB[Area == "Reference"], dist = "lnormAlt",
 #'       digits = 2, plot.type = "Tukey", points.col = "blue",
@@ -306,13 +306,13 @@
 #'   # Now look at a Q-Q plot assuming a gamma distribution.
 #'   #----------------------------------------------------------
 #'
-#'   dev.new()
+#'   if (interactive()) dev.new()
 #'   with(EPA.94b.tccb.df,
 #'     qqPlot(TcCB[Area == "Reference"], dist = "gamma",
 #'       estimate.params = TRUE, digits = 2, points.col = "blue",
 #'       add.line = TRUE))
 #'
-#'   dev.new()
+#'   if (interactive()) dev.new()
 #'   with(EPA.94b.tccb.df,
 #'     qqPlot(TcCB[Area == "Reference"], dist = "gamma",
 #'       digits = 2, plot.type = "Tukey", points.col = "blue",
@@ -320,13 +320,13 @@
 #'
 #'   # Alternative Parameterization
 #'
-#'   dev.new()
+#'   if (interactive()) dev.new()
 #'   with(EPA.94b.tccb.df,
 #'     qqPlot(TcCB[Area == "Reference"], dist = "gammaAlt",
 #'       estimate.params = TRUE, digits = 2, points.col = "blue",
 #'       add.line = TRUE))
 #'
-#'   dev.new()
+#'   if (interactive()) dev.new()
 #'   with(EPA.94b.tccb.df,
 #'     qqPlot(TcCB[Area == "Reference"], dist = "gammaAlt",
 #'       digits = 2, plot.type = "Tukey", points.col = "blue",
@@ -340,13 +340,13 @@
 #'
 #'   set.seed(357)
 #'   dat <- rgamma(20, shape=2, scale=2)
-#'   dev.new()
+#'   if (interactive()) dev.new()
 #'   qqPlot(dat, add.line = TRUE)
 #'
 #'   # Now assume a gamma distribution and estimate the parameters
 #'   #------------------------------------------------------------
 #'
-#'   dev.new()
+#'   if (interactive()) dev.new()
 #'   qqPlot(dat, dist = "gamma", estimate.params = TRUE, add.line = TRUE)
 #'
 #'   # Clean up

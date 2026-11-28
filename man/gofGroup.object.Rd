@@ -153,7 +153,7 @@ Objects of S3 class \code{"gofGroup"} are returned by the \pkg{EnvStats} functio
   # Plot the results of the test
   #-----------------------------
 
-  dev.new()
+  if (interactive()) dev.new()
   plot(gofGroup.obj)
 
   #==========

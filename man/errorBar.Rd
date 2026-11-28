@@ -148,7 +148,7 @@ Plot pointwise error bars given their upper and lower limits.
 
   # Dynamite Plot
   #--------------
-  dev.new()
+  if (interactive()) dev.new()
   group.centers <- barplot(Means, col = c("red", "blue"),
     ylim = range(0, Means, Means + SEs), ylab = "TcCB (ppb)",
     main = "Dynamite Plot for TcCB Data")
@@ -160,7 +160,7 @@ Plot pointwise error bars given their upper and lower limits.
   # Confidence Interval Plot
   #-------------------------
   xlim <- par("usr")[1:2]
-  dev.new()
+  if (interactive()) dev.new()
   errorBar(x = as.vector(group.centers), y = Means,
     lower = LCLs, upper = UCLs, incr = FALSE, gap = FALSE,
     col = c("red", "blue"), xlim = xlim, xaxt = "n",

@@ -335,7 +335,7 @@
 #'
 #'   # Plot the results for the censored data
 #'   #---------------------------------------
-#'   dev.new()
+#'   if (interactive()) dev.new()
 #'   plot(gof.list)
 #'
 #'   #==========
@@ -421,7 +421,7 @@
 #'
 #'   # Plot the results for the censored data
 #'   #---------------------------------------
-#'   dev.new()
+#'   if (interactive()) dev.new()
 #'   plot(gof.list)
 #'
 #'   #----------
@@ -528,7 +528,7 @@
 #'   #Alternative Hypothesis:          True cdf does not equal the
 #'   #                                 Lognormal Distribution.
 #'
-#'   dev.new()
+#'   if (interactive()) dev.new()
 #'   plot(dum.list)
 #'
 #'   #----------
@@ -629,7 +629,7 @@
 #'   # Plot the results:
 #'   #------------------
 #'
-#'   dev.new()
+#'   if (interactive()) dev.new()
 #'   plot(gof.normal)
 #'
 #'   #----------
@@ -683,7 +683,7 @@
 #'   # Plot the results:
 #'   #------------------
 #'
-#'   dev.new()
+#'   if (interactive()) dev.new()
 #'   plot(gof.lognormal)
 #'
 #'   #----------

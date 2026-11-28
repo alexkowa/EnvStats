@@ -419,7 +419,7 @@
 #'   #N.10.2    1.00    0.78
 #'   #LN.10.1   0.78    1.00
 #'
-#'   dev.new()
+#'   if (interactive()) dev.new()
 #'   plot(mat, xlab = "Observations from N(10, 2)",
 #'     ylab = "Observations from LN(mean=10, cv=1)",
 #'     main = "Lognormal vs. Normal Deviates with Rank Correlation 0.8")
@@ -441,7 +441,7 @@
 #'   #N.10.2    1.00    0.79
 #'   #LN.10.1   0.79    1.00
 #'
-#'   dev.new()
+#'   if (interactive()) dev.new()
 #'   plot(mat.LHS, xlab = "Observations from N(10, 2)",
 #'     ylab = "Observations from LN(mean=10, cv=1)",
 #'     main = paste("Lognormal vs. Normal Deviates with Rank Correlation 0.8",
@@ -491,7 +491,7 @@
 #'   #Beta       -0.01     -0.01  1.00      0.19
 #'   #Empirical   0.47      0.67  0.19      1.00
 #'
-#'   dev.new()
+#'   if (interactive()) dev.new()
 #'   pairs(mat)
 #'
 #'   #==========

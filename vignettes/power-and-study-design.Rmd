@@ -10,6 +10,10 @@ vignette: >
   %\VignetteEncoding{UTF-8}
 ---
 
+```{r, include=FALSE, eval=identical(Sys.getenv("IN_PKGDOWN"), "true"), purl=FALSE}
+source("pkgdown-links.R", local = TRUE)
+```
+
 This vignette surveys the functions available for planning studies, then derives
 power calculations for t-tests and tests of a linear trend. The overview includes
 sample-size and precision tools for confidence, prediction, and tolerance
@@ -27,7 +31,7 @@ and [nonparametric prediction interval power](prediction-intervals.html#predintn
 
 ## FcnsByCatPower {#fcnsbycatpower}
 
-Help topic: [`FcnsByCatPower`](https://alexkowa.github.io/EnvStats/reference/FcnsByCatPower.html).
+Help topic: [`FcnsByCatPower`](../help/FcnsByCatPower).
 
 **Confidence Intervals**
 
@@ -38,7 +42,7 @@ Help topic: [`FcnsByCatPower`](https://alexkowa.github.io/EnvStats/reference/Fcn
     <td><em>Description</em></td>
   </tr>
   <tr>
-    <td><a href="https://alexkowa.github.io/EnvStats/reference/ciTableProp.html"><code>ciTableProp</code></a></td>
+    <td><a href="../help/ciTableProp"><code>ciTableProp</code></a></td>
     <td>Confidence intervals for binomial proportion, or</td>
   </tr>
   <tr>
@@ -46,7 +50,7 @@ Help topic: [`FcnsByCatPower`](https://alexkowa.github.io/EnvStats/reference/Fcn
     <td>difference between two proportions, following Bacchetti (2010)</td>
   </tr>
   <tr>
-    <td><a href="https://alexkowa.github.io/EnvStats/reference/ciBinomHalfWidth.html"><code>ciBinomHalfWidth</code></a></td>
+    <td><a href="../help/ciBinomHalfWidth"><code>ciBinomHalfWidth</code></a></td>
     <td>Compute the half-width of a confidence interval for a</td>
   </tr>
   <tr>
@@ -54,7 +58,7 @@ Help topic: [`FcnsByCatPower`](https://alexkowa.github.io/EnvStats/reference/Fcn
     <td>Binomial proportion or the difference between two proportions.</td>
   </tr>
   <tr>
-    <td><a href="https://alexkowa.github.io/EnvStats/reference/ciBinomN.html"><code>ciBinomN</code></a></td>
+    <td><a href="../help/ciBinomN"><code>ciBinomN</code></a></td>
     <td>Compute the sample size necessary to achieve a specified</td>
   </tr>
   <tr>
@@ -66,7 +70,7 @@ Help topic: [`FcnsByCatPower`](https://alexkowa.github.io/EnvStats/reference/Fcn
     <td>the difference between two proportions.</td>
   </tr>
   <tr>
-    <td><a href="https://alexkowa.github.io/EnvStats/reference/plotCiBinomDesign.html"><code>plotCiBinomDesign</code></a></td>
+    <td><a href="../help/plotCiBinomDesign"><code>plotCiBinomDesign</code></a></td>
     <td>Create plots for a sampling design based on a confidence interval</td>
   </tr>
   <tr>
@@ -74,7 +78,7 @@ Help topic: [`FcnsByCatPower`](https://alexkowa.github.io/EnvStats/reference/Fcn
     <td>for a Binomial proportion or the difference between two proportions.</td>
   </tr>
   <tr>
-    <td><a href="https://alexkowa.github.io/EnvStats/reference/ciTableMean.html"><code>ciTableMean</code></a></td>
+    <td><a href="../help/ciTableMean"><code>ciTableMean</code></a></td>
     <td>Confidence intervals for mean of normal distribution, or</td>
   </tr>
   <tr>
@@ -82,7 +86,7 @@ Help topic: [`FcnsByCatPower`](https://alexkowa.github.io/EnvStats/reference/Fcn
     <td>difference between two means, following Bacchetti (2010)</td>
   </tr>
   <tr>
-    <td><a href="https://alexkowa.github.io/EnvStats/reference/ciNormHalfWidth.html"><code>ciNormHalfWidth</code></a></td>
+    <td><a href="../help/ciNormHalfWidth"><code>ciNormHalfWidth</code></a></td>
     <td>Compute the half-width of a confidence interval for the mean of a</td>
   </tr>
   <tr>
@@ -90,7 +94,7 @@ Help topic: [`FcnsByCatPower`](https://alexkowa.github.io/EnvStats/reference/Fcn
     <td>Normal distribution or the difference between two means.</td>
   </tr>
   <tr>
-    <td><a href="https://alexkowa.github.io/EnvStats/reference/ciNormN.html"><code>ciNormN</code></a></td>
+    <td><a href="../help/ciNormN"><code>ciNormN</code></a></td>
     <td>Compute the sample size necessary to achieve a specified half-width</td>
   </tr>
   <tr>
@@ -102,7 +106,7 @@ Help topic: [`FcnsByCatPower`](https://alexkowa.github.io/EnvStats/reference/Fcn
     <td>the difference between two means.</td>
   </tr>
   <tr>
-    <td><a href="https://alexkowa.github.io/EnvStats/reference/plotCiNormDesign.html"><code>plotCiNormDesign</code></a></td>
+    <td><a href="../help/plotCiNormDesign"><code>plotCiNormDesign</code></a></td>
     <td>Create plots for a sampling design based on a confidence interval</td>
   </tr>
   <tr>
@@ -114,7 +118,7 @@ Help topic: [`FcnsByCatPower`](https://alexkowa.github.io/EnvStats/reference/Fcn
     <td>two means.</td>
   </tr>
   <tr>
-    <td><a href="https://alexkowa.github.io/EnvStats/reference/ciNparConfLevel.html"><code>ciNparConfLevel</code></a></td>
+    <td><a href="../help/ciNparConfLevel"><code>ciNparConfLevel</code></a></td>
     <td>Compute the confidence level associated with a nonparametric</td>
   </tr>
   <tr>
@@ -122,7 +126,7 @@ Help topic: [`FcnsByCatPower`](https://alexkowa.github.io/EnvStats/reference/Fcn
     <td>confidence interval for a percentile.</td>
   </tr>
   <tr>
-    <td><a href="https://alexkowa.github.io/EnvStats/reference/ciNparN.html"><code>ciNparN</code></a></td>
+    <td><a href="../help/ciNparN"><code>ciNparN</code></a></td>
     <td>Compute the sample size necessary to achieve a specified</td>
   </tr>
   <tr>
@@ -134,7 +138,7 @@ Help topic: [`FcnsByCatPower`](https://alexkowa.github.io/EnvStats/reference/Fcn
     <td>a percentile.</td>
   </tr>
   <tr>
-    <td><a href="https://alexkowa.github.io/EnvStats/reference/plotCiNparDesign.html"><code>plotCiNparDesign</code></a></td>
+    <td><a href="../help/plotCiNparDesign"><code>plotCiNparDesign</code></a></td>
     <td>Create plots for a sampling design based on a nonparametric</td>
   </tr>
   <tr>
@@ -153,7 +157,7 @@ Help topic: [`FcnsByCatPower`](https://alexkowa.github.io/EnvStats/reference/Fcn
     <td><em>Description</em></td>
   </tr>
   <tr>
-    <td><a href="https://alexkowa.github.io/EnvStats/reference/aovN.html"><code>aovN</code></a></td>
+    <td><a href="../help/aovN"><code>aovN</code></a></td>
     <td>Compute the sample sizes necessary to achieve a</td>
   </tr>
   <tr>
@@ -165,7 +169,7 @@ Help topic: [`FcnsByCatPower`](https://alexkowa.github.io/EnvStats/reference/Fcn
     <td>of variance test.</td>
   </tr>
   <tr>
-    <td><a href="https://alexkowa.github.io/EnvStats/reference/aovPower.html"><code>aovPower</code></a></td>
+    <td><a href="../help/aovPower"><code>aovPower</code></a></td>
     <td>Compute the power of a one-way fixed-effects analysis of</td>
   </tr>
   <tr>
@@ -173,7 +177,7 @@ Help topic: [`FcnsByCatPower`](https://alexkowa.github.io/EnvStats/reference/Fcn
     <td>variance test.</td>
   </tr>
   <tr>
-    <td><a href="https://alexkowa.github.io/EnvStats/reference/plotAovDesign.html"><code>plotAovDesign</code></a></td>
+    <td><a href="../help/plotAovDesign"><code>plotAovDesign</code></a></td>
     <td>Create plots for a sampling design based on a one-way</td>
   </tr>
   <tr>
@@ -181,7 +185,7 @@ Help topic: [`FcnsByCatPower`](https://alexkowa.github.io/EnvStats/reference/Fcn
     <td>analysis of variance.</td>
   </tr>
   <tr>
-    <td><a href="https://alexkowa.github.io/EnvStats/reference/propTestN.html"><code>propTestN</code></a></td>
+    <td><a href="../help/propTestN"><code>propTestN</code></a></td>
     <td>Compute the sample size necessary to achieve a specified</td>
   </tr>
   <tr>
@@ -189,11 +193,11 @@ Help topic: [`FcnsByCatPower`](https://alexkowa.github.io/EnvStats/reference/Fcn
     <td>power for a one- or two-sample proportion test.</td>
   </tr>
   <tr>
-    <td><a href="https://alexkowa.github.io/EnvStats/reference/propTestPower.html"><code>propTestPower</code></a></td>
+    <td><a href="../help/propTestPower"><code>propTestPower</code></a></td>
     <td>Compute the power of a one- or two-sample proportion test.</td>
   </tr>
   <tr>
-    <td><a href="https://alexkowa.github.io/EnvStats/reference/propTestMdd.html"><code>propTestMdd</code></a></td>
+    <td><a href="../help/propTestMdd"><code>propTestMdd</code></a></td>
     <td>Compute the minimal detectable difference associated with</td>
   </tr>
   <tr>
@@ -201,7 +205,7 @@ Help topic: [`FcnsByCatPower`](https://alexkowa.github.io/EnvStats/reference/Fcn
     <td>a one- or two-sample proportion test.</td>
   </tr>
   <tr>
-    <td><a href="https://alexkowa.github.io/EnvStats/reference/plotPropTestDesign.html"><code>plotPropTestDesign</code></a></td>
+    <td><a href="../help/plotPropTestDesign"><code>plotPropTestDesign</code></a></td>
     <td>Create plots involving sample size, power, difference, and</td>
   </tr>
   <tr>
@@ -209,7 +213,7 @@ Help topic: [`FcnsByCatPower`](https://alexkowa.github.io/EnvStats/reference/Fcn
     <td>significance level for a one- or two-sample proportion test.</td>
   </tr>
   <tr>
-    <td><a href="https://alexkowa.github.io/EnvStats/reference/tTestAlpha.html"><code>tTestAlpha</code></a></td>
+    <td><a href="../help/tTestAlpha"><code>tTestAlpha</code></a></td>
     <td>Compute the Type I Error associated with specified values for</td>
   </tr>
   <tr>
@@ -221,7 +225,7 @@ Help topic: [`FcnsByCatPower`](https://alexkowa.github.io/EnvStats/reference/Fcn
     <td>two-sample t-test.</td>
   </tr>
   <tr>
-    <td><a href="https://alexkowa.github.io/EnvStats/reference/tTestN.html"><code>tTestN</code></a></td>
+    <td><a href="../help/tTestN"><code>tTestN</code></a></td>
     <td>Compute the sample size necessary to achieve a specified</td>
   </tr>
   <tr>
@@ -229,11 +233,11 @@ Help topic: [`FcnsByCatPower`](https://alexkowa.github.io/EnvStats/reference/Fcn
     <td>power for a one- or two-sample t-test.</td>
   </tr>
   <tr>
-    <td><a href="https://alexkowa.github.io/EnvStats/reference/tTestPower.html"><code>tTestPower</code></a></td>
+    <td><a href="../help/tTestPower"><code>tTestPower</code></a></td>
     <td>Compute the power of a one- or two-sample t-test.</td>
   </tr>
   <tr>
-    <td><a href="https://alexkowa.github.io/EnvStats/reference/tTestScaledMdd.html"><code>tTestScaledMdd</code></a></td>
+    <td><a href="../help/tTestScaledMdd"><code>tTestScaledMdd</code></a></td>
     <td>Compute the scaled minimal detectable difference</td>
   </tr>
   <tr>
@@ -241,7 +245,7 @@ Help topic: [`FcnsByCatPower`](https://alexkowa.github.io/EnvStats/reference/Fcn
     <td>associated with a one- or two-sample t-test.</td>
   </tr>
   <tr>
-    <td><a href="https://alexkowa.github.io/EnvStats/reference/plotTTestDesign.html"><code>plotTTestDesign</code></a></td>
+    <td><a href="../help/plotTTestDesign"><code>plotTTestDesign</code></a></td>
     <td>Create plots for a sampling design based on a one- or</td>
   </tr>
   <tr>
@@ -249,7 +253,7 @@ Help topic: [`FcnsByCatPower`](https://alexkowa.github.io/EnvStats/reference/Fcn
     <td>two-sample t-test.</td>
   </tr>
   <tr>
-    <td><a href="https://alexkowa.github.io/EnvStats/reference/tTestLnormAltN.html"><code>tTestLnormAltN</code></a></td>
+    <td><a href="../help/tTestLnormAltN"><code>tTestLnormAltN</code></a></td>
     <td>Compute the sample size necessary to achieve a specified</td>
   </tr>
   <tr>
@@ -261,7 +265,7 @@ Help topic: [`FcnsByCatPower`](https://alexkowa.github.io/EnvStats/reference/Fcn
     <td>data.</td>
   </tr>
   <tr>
-    <td><a href="https://alexkowa.github.io/EnvStats/reference/tTestLnormAltPower.html"><code>tTestLnormAltPower</code></a></td>
+    <td><a href="../help/tTestLnormAltPower"><code>tTestLnormAltPower</code></a></td>
     <td>Compute the power of a one- or two-sample t-test, assuming</td>
   </tr>
   <tr>
@@ -269,7 +273,7 @@ Help topic: [`FcnsByCatPower`](https://alexkowa.github.io/EnvStats/reference/Fcn
     <td>lognormal data.</td>
   </tr>
   <tr>
-    <td><a href="https://alexkowa.github.io/EnvStats/reference/tTestLnormAltRatioOfMeans.html"><code>tTestLnormAltRatioOfMeans</code></a></td>
+    <td><a href="../help/tTestLnormAltRatioOfMeans"><code>tTestLnormAltRatioOfMeans</code></a></td>
     <td>Compute the minimal or maximal detectable ratio of means</td>
   </tr>
   <tr>
@@ -281,7 +285,7 @@ Help topic: [`FcnsByCatPower`](https://alexkowa.github.io/EnvStats/reference/Fcn
     <td>lognormal data.</td>
   </tr>
   <tr>
-    <td><a href="https://alexkowa.github.io/EnvStats/reference/plotTTestLnormAltDesign.html"><code>plotTTestLnormAltDesign</code></a></td>
+    <td><a href="../help/plotTTestLnormAltDesign"><code>plotTTestLnormAltDesign</code></a></td>
     <td>Create plots for a sampling design based on a one- or</td>
   </tr>
   <tr>
@@ -289,7 +293,7 @@ Help topic: [`FcnsByCatPower`](https://alexkowa.github.io/EnvStats/reference/Fcn
     <td>two-sample t-test, assuming lognormal data.</td>
   </tr>
   <tr>
-    <td><a href="https://alexkowa.github.io/EnvStats/reference/linearTrendTestN.html"><code>linearTrendTestN</code></a></td>
+    <td><a href="../help/linearTrendTestN"><code>linearTrendTestN</code></a></td>
     <td>Compute the sample size necessary to achieve a specified</td>
   </tr>
   <tr>
@@ -297,11 +301,11 @@ Help topic: [`FcnsByCatPower`](https://alexkowa.github.io/EnvStats/reference/Fcn
     <td>power for a t-test for linear trend.</td>
   </tr>
   <tr>
-    <td><a href="https://alexkowa.github.io/EnvStats/reference/linearTrendTestPower.html"><code>linearTrendTestPower</code></a></td>
+    <td><a href="../help/linearTrendTestPower"><code>linearTrendTestPower</code></a></td>
     <td>Compute the power of a t-test for linear trend.</td>
   </tr>
   <tr>
-    <td><a href="https://alexkowa.github.io/EnvStats/reference/linearTrendTestScaledMds.html"><code>linearTrendTestScaledMds</code></a></td>
+    <td><a href="../help/linearTrendTestScaledMds"><code>linearTrendTestScaledMds</code></a></td>
     <td>Compute the scaled minimal detectable slope for a t-test</td>
   </tr>
   <tr>
@@ -309,7 +313,7 @@ Help topic: [`FcnsByCatPower`](https://alexkowa.github.io/EnvStats/reference/Fcn
     <td>for linear trend.</td>
   </tr>
   <tr>
-    <td><a href="https://alexkowa.github.io/EnvStats/reference/plotLinearTrendTestDesign.html"><code>plotLinearTrendTestDesign</code></a></td>
+    <td><a href="../help/plotLinearTrendTestDesign"><code>plotLinearTrendTestDesign</code></a></td>
     <td>Create plots for a sampling design based on a t-test for</td>
   </tr>
   <tr>
@@ -330,7 +334,7 @@ Help topic: [`FcnsByCatPower`](https://alexkowa.github.io/EnvStats/reference/Fcn
     <td><em>Description</em></td>
   </tr>
   <tr>
-    <td><a href="https://alexkowa.github.io/EnvStats/reference/predIntNormHalfWidth.html"><code>predIntNormHalfWidth</code></a></td>
+    <td><a href="../help/predIntNormHalfWidth"><code>predIntNormHalfWidth</code></a></td>
     <td>Compute the half-width of a prediction</td>
   </tr>
   <tr>
@@ -338,7 +342,7 @@ Help topic: [`FcnsByCatPower`](https://alexkowa.github.io/EnvStats/reference/Fcn
     <td>interval for a normal distribution.</td>
   </tr>
   <tr>
-    <td><a href="https://alexkowa.github.io/EnvStats/reference/predIntNormK.html"><code>predIntNormK</code></a></td>
+    <td><a href="../help/predIntNormK"><code>predIntNormK</code></a></td>
     <td>Compute the required value of \(K\) for</td>
   </tr>
   <tr>
@@ -350,7 +354,7 @@ Help topic: [`FcnsByCatPower`](https://alexkowa.github.io/EnvStats/reference/Fcn
     <td>distribution.</td>
   </tr>
   <tr>
-    <td><a href="https://alexkowa.github.io/EnvStats/reference/predIntNormN.html"><code>predIntNormN</code></a></td>
+    <td><a href="../help/predIntNormN"><code>predIntNormN</code></a></td>
     <td>Compute the sample size necessary to</td>
   </tr>
   <tr>
@@ -366,7 +370,7 @@ Help topic: [`FcnsByCatPower`](https://alexkowa.github.io/EnvStats/reference/Fcn
     <td>distribution.</td>
   </tr>
   <tr>
-    <td><a href="https://alexkowa.github.io/EnvStats/reference/plotPredIntNormDesign.html"><code>plotPredIntNormDesign</code></a></td>
+    <td><a href="../help/plotPredIntNormDesign"><code>plotPredIntNormDesign</code></a></td>
     <td>Create plots for a sampling design</td>
   </tr>
   <tr>
@@ -378,7 +382,7 @@ Help topic: [`FcnsByCatPower`](https://alexkowa.github.io/EnvStats/reference/Fcn
     <td>interval for a Normal distribution.</td>
   </tr>
   <tr>
-    <td><a href="https://alexkowa.github.io/EnvStats/reference/predIntNormTestPower.html"><code>predIntNormTestPower</code></a></td>
+    <td><a href="../help/predIntNormTestPower"><code>predIntNormTestPower</code></a></td>
     <td>Compute the probability that at least</td>
   </tr>
   <tr>
@@ -394,7 +398,7 @@ Help topic: [`FcnsByCatPower`](https://alexkowa.github.io/EnvStats/reference/Fcn
     <td>for a Normal distribution.</td>
   </tr>
   <tr>
-    <td><a href="https://alexkowa.github.io/EnvStats/reference/plotPredIntNormTestPowerCurve.html"><code>plotPredIntNormTestPowerCurve</code></a></td>
+    <td><a href="../help/plotPredIntNormTestPowerCurve"><code>plotPredIntNormTestPowerCurve</code></a></td>
     <td>Create plots for a sampling</td>
   </tr>
   <tr>
@@ -406,7 +410,7 @@ Help topic: [`FcnsByCatPower`](https://alexkowa.github.io/EnvStats/reference/Fcn
     <td>for a Normal distribution.</td>
   </tr>
   <tr>
-    <td><a href="https://alexkowa.github.io/EnvStats/reference/predIntNormSimultaneousTestPower.html"><code>predIntNormSimultaneousTestPower</code></a></td>
+    <td><a href="../help/predIntNormSimultaneousTestPower"><code>predIntNormSimultaneousTestPower</code></a></td>
     <td>Compute the probability that at</td>
   </tr>
   <tr>
@@ -426,7 +430,7 @@ Help topic: [`FcnsByCatPower`](https://alexkowa.github.io/EnvStats/reference/Fcn
     <td>interval for a Normal distribution.</td>
   </tr>
   <tr>
-    <td><a href="https://alexkowa.github.io/EnvStats/reference/plotPredIntNormSimultaneousTestPowerCurve.html"><code>plotPredIntNormSimultaneousTestPowerCurve</code></a></td>
+    <td><a href="../help/plotPredIntNormSimultaneousTestPowerCurve"><code>plotPredIntNormSimultaneousTestPowerCurve</code></a></td>
     <td>Create plots for a sampling design</td>
   </tr>
   <tr>
@@ -449,7 +453,7 @@ Help topic: [`FcnsByCatPower`](https://alexkowa.github.io/EnvStats/reference/Fcn
     <td><em>Description</em></td>
   </tr>
   <tr>
-    <td><a href="https://alexkowa.github.io/EnvStats/reference/predIntLnormAltTestPower.html"><code>predIntLnormAltTestPower</code></a></td>
+    <td><a href="../help/predIntLnormAltTestPower"><code>predIntLnormAltTestPower</code></a></td>
     <td>Compute the probability that at least</td>
   </tr>
   <tr>
@@ -465,7 +469,7 @@ Help topic: [`FcnsByCatPower`](https://alexkowa.github.io/EnvStats/reference/Fcn
     <td>interval for a lognormal distribution.</td>
   </tr>
   <tr>
-    <td><a href="https://alexkowa.github.io/EnvStats/reference/plotPredIntLnormAltTestPowerCurve.html"><code>plotPredIntLnormAltTestPowerCurve</code></a></td>
+    <td><a href="../help/plotPredIntLnormAltTestPowerCurve"><code>plotPredIntLnormAltTestPowerCurve</code></a></td>
     <td>Create plots for a sampling design</td>
   </tr>
   <tr>
@@ -477,7 +481,7 @@ Help topic: [`FcnsByCatPower`](https://alexkowa.github.io/EnvStats/reference/Fcn
     <td>lognormal distribution.</td>
   </tr>
   <tr>
-    <td><a href="https://alexkowa.github.io/EnvStats/reference/predIntLnormAltSimultaneousTestPower.html"><code>predIntLnormAltSimultaneousTestPower</code></a></td>
+    <td><a href="../help/predIntLnormAltSimultaneousTestPower"><code>predIntLnormAltSimultaneousTestPower</code></a></td>
     <td>Compute the probability that at least</td>
   </tr>
   <tr>
@@ -501,7 +505,7 @@ Help topic: [`FcnsByCatPower`](https://alexkowa.github.io/EnvStats/reference/Fcn
     <td>distribution.</td>
   </tr>
   <tr>
-    <td><a href="https://alexkowa.github.io/EnvStats/reference/plotPredIntLnormAltSimultaneousTestPowerCurve.html"><code>plotPredIntLnormAltSimultaneousTestPowerCurve</code></a></td>
+    <td><a href="../help/plotPredIntLnormAltSimultaneousTestPowerCurve"><code>plotPredIntLnormAltSimultaneousTestPowerCurve</code></a></td>
     <td>Create plots for a sampling design</td>
   </tr>
   <tr>
@@ -524,7 +528,7 @@ Help topic: [`FcnsByCatPower`](https://alexkowa.github.io/EnvStats/reference/Fcn
     <td><em>Description</em></td>
   </tr>
   <tr>
-    <td><a href="https://alexkowa.github.io/EnvStats/reference/predIntNparConfLevel.html"><code>predIntNparConfLevel</code></a></td>
+    <td><a href="../help/predIntNparConfLevel"><code>predIntNparConfLevel</code></a></td>
     <td>Compute the confidence level associated with</td>
   </tr>
   <tr>
@@ -532,7 +536,7 @@ Help topic: [`FcnsByCatPower`](https://alexkowa.github.io/EnvStats/reference/Fcn
     <td>a nonparametric prediction interval.</td>
   </tr>
   <tr>
-    <td><a href="https://alexkowa.github.io/EnvStats/reference/predIntNparN.html"><code>predIntNparN</code></a></td>
+    <td><a href="../help/predIntNparN"><code>predIntNparN</code></a></td>
     <td>Compute the required sample size to achieve</td>
   </tr>
   <tr>
@@ -544,7 +548,7 @@ Help topic: [`FcnsByCatPower`](https://alexkowa.github.io/EnvStats/reference/Fcn
     <td>nonparametric prediction interval.</td>
   </tr>
   <tr>
-    <td><a href="https://alexkowa.github.io/EnvStats/reference/plotPredIntNparDesign.html"><code>plotPredIntNparDesign</code></a></td>
+    <td><a href="../help/plotPredIntNparDesign"><code>plotPredIntNparDesign</code></a></td>
     <td>Create plots for a sampling design based on</td>
   </tr>
   <tr>
@@ -556,7 +560,7 @@ Help topic: [`FcnsByCatPower`](https://alexkowa.github.io/EnvStats/reference/Fcn
     <td>nonparametric prediction interval.</td>
   </tr>
   <tr>
-    <td><a href="https://alexkowa.github.io/EnvStats/reference/predIntNparSimultaneousConfLevel.html"><code>predIntNparSimultaneousConfLevel</code></a></td>
+    <td><a href="../help/predIntNparSimultaneousConfLevel"><code>predIntNparSimultaneousConfLevel</code></a></td>
     <td>Compute the confidence level associated with</td>
   </tr>
   <tr>
@@ -568,7 +572,7 @@ Help topic: [`FcnsByCatPower`](https://alexkowa.github.io/EnvStats/reference/Fcn
     <td>interval.</td>
   </tr>
   <tr>
-    <td><a href="https://alexkowa.github.io/EnvStats/reference/predIntNparSimultaneousN.html"><code>predIntNparSimultaneousN</code></a></td>
+    <td><a href="../help/predIntNparSimultaneousN"><code>predIntNparSimultaneousN</code></a></td>
     <td>Compute the required sample size for a</td>
   </tr>
   <tr>
@@ -580,7 +584,7 @@ Help topic: [`FcnsByCatPower`](https://alexkowa.github.io/EnvStats/reference/Fcn
     <td>interval.</td>
   </tr>
   <tr>
-    <td><a href="https://alexkowa.github.io/EnvStats/reference/plotPredIntNparSimultaneousDesign.html"><code>plotPredIntNparSimultaneousDesign</code></a></td>
+    <td><a href="../help/plotPredIntNparSimultaneousDesign"><code>plotPredIntNparSimultaneousDesign</code></a></td>
     <td>Create plots for a sampling design based on</td>
   </tr>
   <tr>
@@ -592,7 +596,7 @@ Help topic: [`FcnsByCatPower`](https://alexkowa.github.io/EnvStats/reference/Fcn
     <td>interval.</td>
   </tr>
   <tr>
-    <td><a href="https://alexkowa.github.io/EnvStats/reference/predIntNparSimultaneousTestPower.html"><code>predIntNparSimultaneousTestPower</code></a></td>
+    <td><a href="../help/predIntNparSimultaneousTestPower"><code>predIntNparSimultaneousTestPower</code></a></td>
     <td>Compute the probability that at least one</td>
   </tr>
   <tr>
@@ -608,7 +612,7 @@ Help topic: [`FcnsByCatPower`](https://alexkowa.github.io/EnvStats/reference/Fcn
     <td>simultaneous prediction interval.</td>
   </tr>
   <tr>
-    <td><a href="https://alexkowa.github.io/EnvStats/reference/plotPredIntNparSimultaneousTestPowerCurve.html"><code>plotPredIntNparSimultaneousTestPowerCurve</code></a></td>
+    <td><a href="../help/plotPredIntNparSimultaneousTestPowerCurve"><code>plotPredIntNparSimultaneousTestPowerCurve</code></a></td>
     <td>Create plots for a sampling design based on</td>
   </tr>
   <tr>
@@ -631,7 +635,7 @@ Help topic: [`FcnsByCatPower`](https://alexkowa.github.io/EnvStats/reference/Fcn
     <td><em>Description</em></td>
   </tr>
   <tr>
-    <td><a href="https://alexkowa.github.io/EnvStats/reference/tolIntNormHalfWidth.html"><code>tolIntNormHalfWidth</code></a></td>
+    <td><a href="../help/tolIntNormHalfWidth"><code>tolIntNormHalfWidth</code></a></td>
     <td>Compute the half-width of a tolerance</td>
   </tr>
   <tr>
@@ -639,7 +643,7 @@ Help topic: [`FcnsByCatPower`](https://alexkowa.github.io/EnvStats/reference/Fcn
     <td>interval for a normal distribution.</td>
   </tr>
   <tr>
-    <td><a href="https://alexkowa.github.io/EnvStats/reference/tolIntNormK.html"><code>tolIntNormK</code></a></td>
+    <td><a href="../help/tolIntNormK"><code>tolIntNormK</code></a></td>
     <td>Compute the required value of \(K\) for a</td>
   </tr>
   <tr>
@@ -647,7 +651,7 @@ Help topic: [`FcnsByCatPower`](https://alexkowa.github.io/EnvStats/reference/Fcn
     <td>tolerance interval for a Normal distribution.</td>
   </tr>
   <tr>
-    <td><a href="https://alexkowa.github.io/EnvStats/reference/tolIntNormN.html"><code>tolIntNormN</code></a></td>
+    <td><a href="../help/tolIntNormN"><code>tolIntNormN</code></a></td>
     <td>Compute the sample size necessary to achieve a</td>
   </tr>
   <tr>
@@ -659,7 +663,7 @@ Help topic: [`FcnsByCatPower`](https://alexkowa.github.io/EnvStats/reference/Fcn
     <td>for a Normal distribution.</td>
   </tr>
   <tr>
-    <td><a href="https://alexkowa.github.io/EnvStats/reference/plotTolIntNormDesign.html"><code>plotTolIntNormDesign</code></a></td>
+    <td><a href="../help/plotTolIntNormDesign"><code>plotTolIntNormDesign</code></a></td>
     <td>Create plots for a sampling design based on a</td>
   </tr>
   <tr>
@@ -667,7 +671,7 @@ Help topic: [`FcnsByCatPower`](https://alexkowa.github.io/EnvStats/reference/Fcn
     <td>tolerance interval for a Normal distribution.</td>
   </tr>
   <tr>
-    <td><a href="https://alexkowa.github.io/EnvStats/reference/tolIntNparConfLevel.html"><code>tolIntNparConfLevel</code></a></td>
+    <td><a href="../help/tolIntNparConfLevel"><code>tolIntNparConfLevel</code></a></td>
     <td>Compute the confidence level associated with a</td>
   </tr>
   <tr>
@@ -679,7 +683,7 @@ Help topic: [`FcnsByCatPower`](https://alexkowa.github.io/EnvStats/reference/Fcn
     <td>sample size and coverage.</td>
   </tr>
   <tr>
-    <td><a href="https://alexkowa.github.io/EnvStats/reference/tolIntNparCoverage.html"><code>tolIntNparCoverage</code></a></td>
+    <td><a href="../help/tolIntNparCoverage"><code>tolIntNparCoverage</code></a></td>
     <td>Compute the coverage associated with a</td>
   </tr>
   <tr>
@@ -691,7 +695,7 @@ Help topic: [`FcnsByCatPower`](https://alexkowa.github.io/EnvStats/reference/Fcn
     <td>sample size and confidence level.</td>
   </tr>
   <tr>
-    <td><a href="https://alexkowa.github.io/EnvStats/reference/tolIntNparN.html"><code>tolIntNparN</code></a></td>
+    <td><a href="../help/tolIntNparN"><code>tolIntNparN</code></a></td>
     <td>Compute the sample size required for a nonparametric</td>
   </tr>
   <tr>
@@ -703,7 +707,7 @@ Help topic: [`FcnsByCatPower`](https://alexkowa.github.io/EnvStats/reference/Fcn
     <td>confidence level.</td>
   </tr>
   <tr>
-    <td><a href="https://alexkowa.github.io/EnvStats/reference/plotTolIntNparDesign.html"><code>plotTolIntNparDesign</code></a></td>
+    <td><a href="../help/plotTolIntNparDesign"><code>plotTolIntNparDesign</code></a></td>
     <td>Create plots for a sampling design based on a</td>
   </tr>
   <tr>
@@ -715,7 +719,7 @@ Help topic: [`FcnsByCatPower`](https://alexkowa.github.io/EnvStats/reference/Fcn
 
 ## tTestPower {#ttestpower}
 
-Help topic: [`tTestPower`](https://alexkowa.github.io/EnvStats/reference/tTestPower.html).
+Help topic: [`tTestPower`](../help/tTestPower).
 
 If the arguments `n.or.n1`, `n2`, `delta.over.sigma`, and `alpha` are not all the same length, they are replicated to be the same length as the length of the longest argument.
 
@@ -1003,7 +1007,7 @@ Note that none of the equations for the power of the t-test requires knowledge o
 
 ## linearTrendTestPower {#lineartrendtestpower}
 
-Help topic: [`linearTrendTestPower`](https://alexkowa.github.io/EnvStats/reference/linearTrendTestPower.html).
+Help topic: [`linearTrendTestPower`](../help/linearTrendTestPower).
 
 If the argument `x` is a vector, it is converted into a list with one component. If the arguments `n`, `x`, `slope.over.sigma`, and `alpha` are not all the same length, they are replicated to be the same length as the length of the longest argument.
 

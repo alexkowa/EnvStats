@@ -154,7 +154,7 @@
 #' \examples{
 #'   # Plot the cdf of the standard normal distribution
 #'   #-------------------------------------------------
-#'   dev.new()
+#'   if (interactive()) dev.new()
 #'   cdfPlot()
 #'
 #'   #==========
@@ -162,7 +162,7 @@
 #'   # Plot the cdf of the standard normal distribution
 #'   # and a N(2, 2) distribution on the sample plot.
 #'   #-------------------------------------------------
-#'   dev.new()
+#'   if (interactive()) dev.new()
 #'   cdfPlot(param.list = list(mean=2, sd=2), main = "")
 #'
 #'   cdfPlot(add = TRUE, cdf.col = "red")

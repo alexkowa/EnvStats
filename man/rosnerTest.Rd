@@ -177,7 +177,7 @@ Open the vignette locally with
 
   dat <- c(rnorm(30, mean = 3, sd = 2), rnorm(3, mean = 10, sd = 1))
 
-  dev.new()
+  if (interactive()) dev.new()
   qqPlot(dat)
 
   rosnerTest(dat, k = 4)
@@ -249,12 +249,12 @@ Open the vignette locally with
   # Look at Q-Q plots for both the raw and log-transformed data
   #------------------------------------------------------------
 
-  dev.new()
+  if (interactive()) dev.new()
   with(EPA.09.Ex.12.4.naphthalene.df,
     qqPlot(Naphthalene.ppb, add.line = TRUE,
       main = "Figure 12-6.  Naphthalene Probability Plot"))
 
-  dev.new()
+  if (interactive()) dev.new()
   with(EPA.09.Ex.12.4.naphthalene.df,
     qqPlot(Naphthalene.ppb, dist = "lnorm", add.line = TRUE,
       main = "Figure 12-7.  Log Naphthalene Probability Plot"))

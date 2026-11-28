@@ -353,11 +353,11 @@
 #'   new.x <- x
 #'   new.x[censored] <- 18
 #'
-#'   dev.new()
+#'   if (interactive()) dev.new()
 #'   qqPlot(x, ylim = range(pretty(x)),
 #'     main = "Q-Q Plot for\nComplete Data Set")
 #'
-#'   dev.new()
+#'   if (interactive()) dev.new()
 #'   qqPlotCensored(new.x, censored, ylim = range(pretty(x)),
 #'     main="Q-Q Plot for\nCensored Data Set")
 #'
@@ -393,7 +393,7 @@
 #'   # Assume normal distribution
 #'   #---------------------------
 #'
-#'   dev.new()
+#'   if (interactive()) dev.new()
 #'   with(EPA.09.Ex.15.1.manganese.df,
 #'     qqPlotCensored(Manganese.ppb, Censored,
 #'       prob.method = "kaplan-meier", points.col = "blue", add.line = TRUE,
@@ -403,7 +403,7 @@
 #'   # Include max value in the plot
 #'   #------------------------------
 #'
-#'   dev.new()
+#'   if (interactive()) dev.new()
 #'   with(EPA.09.Ex.15.1.manganese.df,
 #'     qqPlotCensored(Manganese.ppb, Censored,
 #'       prob.method = "modified kaplan-meier", points.col = "blue",
@@ -416,7 +416,7 @@
 #'   # Assume lognormal distribution
 #'   #------------------------------
 #'
-#'   dev.new()
+#'   if (interactive()) dev.new()
 #'   with(EPA.09.Ex.15.1.manganese.df,
 #'     qqPlotCensored(Manganese.ppb, Censored, dist = "lnorm",
 #'       prob.method = "kaplan-meier", points.col = "blue", add.line = TRUE,
@@ -426,7 +426,7 @@
 #'   # Include max value in the plot
 #'   #------------------------------
 #'
-#'   dev.new()
+#'   if (interactive()) dev.new()
 #'   with(EPA.09.Ex.15.1.manganese.df,
 #'     qqPlotCensored(Manganese.ppb, Censored, dist = "lnorm",
 #'       prob.method = "modified kaplan-meier", points.col = "blue",
@@ -440,7 +440,7 @@
 #'   # Now create a Q-Q plot assuming a gamma distribution.  Here we'll
 #'   # need to set estimate.params=TRUE.
 #'
-#'   dev.new()
+#'   if (interactive()) dev.new()
 #'   with(EPA.09.Ex.15.1.manganese.df,
 #'     qqPlotCensored(Manganese.ppb, Censored, dist = "gamma",
 #'       estimate.params = TRUE, prob.method = "kaplan-meier",
@@ -451,7 +451,7 @@
 #'   # Include max value in the plot
 #'   #------------------------------
 #'
-#'   dev.new()
+#'   if (interactive()) dev.new()
 #'   with(EPA.09.Ex.15.1.manganese.df,
 #'     qqPlotCensored(Manganese.ppb, Censored, dist = "gamma",
 #'       estimate.params = TRUE, prob.method = "modified kaplan-meier",

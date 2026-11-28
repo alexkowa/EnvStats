@@ -256,25 +256,25 @@
 #'   gofGroup.obj <- gofGroupTest(Nickel.ppb ~ Well,
 #'     data = EPA.09.Ex.10.1.nickel.df)
 #'
-#'   dev.new()
+#'   if (interactive()) dev.new()
 #'   plot(gofGroup.obj)
 #'
 #'   # Make your own titles for the summary plot
 #'   #------------------------------------------
-#'   dev.new()
+#'   if (interactive()) dev.new()
 #'   plot(gofGroup.obj, captions = list(QQ = "Q-Q Plot",
 #'     ScoresQQ = "Scores Q-Q Plot", Results = "Results"),
 #'     om.title = "Summary Plot")
 #'
 #'   # Just the Q-Q Plot
 #'   #------------------
-#'   dev.new()
+#'   if (interactive()) dev.new()
 #'   plot(gofGroup.obj, plot.type="Q-Q")
 #'
 #'
 #'   # Make your own title for the Q-Q Plot
 #'   #-------------------------------------
-#'   dev.new()
+#'   if (interactive()) dev.new()
 #'   plot(gofGroup.obj, plot.type="Q-Q", main = "Q-Q Plot")
 #'
 #'   #==========

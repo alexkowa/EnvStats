@@ -10,6 +10,10 @@ vignette: >
   %\VignetteEncoding{UTF-8}
 ---
 
+```{r, include=FALSE, eval=identical(Sys.getenv("IN_PKGDOWN"), "true"), purl=FALSE}
+source("pkgdown-links.R", local = TRUE)
+```
+
 This vignette describes tests for serial correlation and monotonic trends,
 including seasonal Kendall tests and adjustments for serial dependence. It
 explains the test statistics, slope estimates, and assumptions used when
@@ -26,7 +30,7 @@ For planning a study to detect a linear trend, see
 
 ## serialCorrelationTest {#serialcorrelationtest}
 
-Help topic: [`serialCorrelationTest`](https://alexkowa.github.io/EnvStats/reference/serialCorrelationTest.html).
+Help topic: [`serialCorrelationTest`](../help/serialCorrelationTest).
 
 Let $\underline{x} = x_1, x_2, \ldots, x_n$ denote $n$ observations from a stationary time series sampled at equispaced points in time with normal (Gaussian) errors. The function `serialCorrelationTest` tests the null hypothesis:
 
@@ -188,7 +192,7 @@ When `test="AR1.mle"`, the MLE of the lag-1 autocorrelation is used, and its sta
 
 ## kendallTrendTest {#kendalltrendtest}
 
-Help topic: [`kendallTrendTest`](https://alexkowa.github.io/EnvStats/reference/kendallTrendTest.html).
+Help topic: [`kendallTrendTest`](../help/kendallTrendTest).
 
 `kendallTrendTest` performs Kendall's nonparametric test for a monotonic trend, which is a special case of the test for independence based on Kendall's tau statistic (see `cor.test`). The slope is estimated using the method of Theil (1950) and Sen (1968). When `ci.slope=TRUE`, the confidence interval for the slope is computed using Gilbert's (1987) Modification of the Theil/Sen Method.
 
@@ -389,9 +393,9 @@ Usually the quantities $M1$ and $M2$ will not be integers. Gilbert (1987, p.219)
 
 ## kendallSeasonalTrendTest {#kendallseasonaltrendtest}
 
-Help topic: [`kendallSeasonalTrendTest`](https://alexkowa.github.io/EnvStats/reference/kendallSeasonalTrendTest.html).
+Help topic: [`kendallSeasonalTrendTest`](../help/kendallSeasonalTrendTest).
 
-Hirsch et al. (1982) introduced a modification of Kendall's test for trend (see [`kendallTrendTest`](https://alexkowa.github.io/EnvStats/reference/kendallTrendTest.html)) that allows for seasonality in observations collected over time. They call this test the *seasonal Kendall test*. Their test is appropriate for testing for trend in each season when the trend is always in the same direction across all seasons. van Belle and Hughes (1984) introduced a heterogeneity test for trend which is appropriate for testing for trend in any direction in any season. Hirsch and Slack (1984) proposed an extension to the seasonal Kendall test that allows for serial dependence in the observations. The function [`kendallSeasonalTrendTest`](https://alexkowa.github.io/EnvStats/reference/kendallSeasonalTrendTest.html) includes all of these tests, as well as an extension of the van Belle-Hughes heterogeneity test to the case of serial dependence.
+Hirsch et al. (1982) introduced a modification of Kendall's test for trend (see [`kendallTrendTest`](../help/kendallTrendTest)) that allows for seasonality in observations collected over time. They call this test the *seasonal Kendall test*. Their test is appropriate for testing for trend in each season when the trend is always in the same direction across all seasons. van Belle and Hughes (1984) introduced a heterogeneity test for trend which is appropriate for testing for trend in any direction in any season. Hirsch and Slack (1984) proposed an extension to the seasonal Kendall test that allows for serial dependence in the observations. The function [`kendallSeasonalTrendTest`](../help/kendallSeasonalTrendTest) includes all of these tests, as well as an extension of the van Belle-Hughes heterogeneity test to the case of serial dependence.
 
 **Testing for Trend Assuming Serial Independence**
 
@@ -408,7 +412,7 @@ $$
 \tau_j = \{ 2 Pr[(X_{2j} - X_{1j})(Y_{2j} - Y_{1j}) > 0] \} - 1 \;\;\;\;\;\; (1)
 $$
 
-denote the value of Kendall's tau for that season (see [`kendallTrendTest`](https://alexkowa.github.io/EnvStats/reference/kendallTrendTest.html)). Also, assume all of the $Y$ observations are independent.
+denote the value of Kendall's tau for that season (see [`kendallTrendTest`](../help/kendallTrendTest)). Also, assume all of the $Y$ observations are independent.
 
 The function `kendallSeasonalTrendTest` assumes that the $X$ values always denote the year in which the observation was taken. Note that within any season, the $X$ values need not be unique. That is, there may be more than one observation within the same year within the same season. In this case, the argument `y` must be a numeric vector, and you must supply the additional arguments `season` and `year`.
 
@@ -880,7 +884,7 @@ $$
 \hat{\sigma}_{gh} = \frac{1}{3} [K_{gh} + 4 \sum_{i=1}^n R_{ig}R_{ih} - n(n_g + 1)(n_h + 1)] \;\;\;\;\;\; (37)
 $$
 
-Technically, the estimates in Equations (35) and (37) are not correct estimators of covariance, and Equations (17) and (18) are not correct estimators of variance, because the model Dietz and Killeen (1981) use assumes that observations within the rows of $Y$ (Equation (4) above) may be correlated, but observations between rows are independent. Serial dependence induces correlation between all of the $Y$'s. In most cases, however, the serial dependence shows an exponential decay in correlation across time and so these estimates work fairly well (see more discussion in the background discussion in the [`kendallSeasonalTrendTest` help page](https://alexkowa.github.io/EnvStats/reference/kendallSeasonalTrendTest.html)).
+Technically, the estimates in Equations (35) and (37) are not correct estimators of covariance, and Equations (17) and (18) are not correct estimators of variance, because the model Dietz and Killeen (1981) use assumes that observations within the rows of $Y$ (Equation (4) above) may be correlated, but observations between rows are independent. Serial dependence induces correlation between all of the $Y$'s. In most cases, however, the serial dependence shows an exponential decay in correlation across time and so these estimates work fairly well (see more discussion in the background discussion in the [`kendallSeasonalTrendTest` help page](../help/kendallSeasonalTrendTest)).
 
 *Estimates and Confidence Intervals*  
 The seasonal and over-all estimates of $\tau$, slope, and intercept are computed using the same methods as in the case of serial independence. Also, the method for computing the confidence interval for the slope is the same as in the case of serial independence. Note that the serial dependence is accounted for in the term $Var(S')$ in Equation (28).

@@ -204,7 +204,7 @@ Produce an empirical cumulative distribution function plot.
 
   set.seed(250)
   x <- rnorm(20)
-  dev.new()
+  if (interactive()) dev.new()
   ecdfPlot(x)
 
   #----------
@@ -212,21 +212,21 @@ Produce an empirical cumulative distribution function plot.
   # Repeat the above example, but fill in the area under the
   # empirical cdf curve.
 
-  dev.new()
+  if (interactive()) dev.new()
   ecdfPlot(x, curve.fill = TRUE)
 
   #----------
 
   # Repeat the above example, but plot only the points.
 
-  dev.new()
+  if (interactive()) dev.new()
   ecdfPlot(x, type = "p")
 
   #----------
 
   # Repeat the above example, but force a step function.
 
-  dev.new()
+  if (interactive()) dev.new()
   ecdfPlot(x, type = "s")
 
   #----------
@@ -244,7 +244,7 @@ Produce an empirical cumulative distribution function plot.
   #
   # Create an empirical CDF plot for the reference area data.
 
-  dev.new()
+  if (interactive()) dev.new()
   with(EPA.94b.tccb.df,
     ecdfPlot(TcCB[Area == "Reference"], xlab = "TcCB (ppb)"))
 

@@ -175,7 +175,7 @@
 #' \examples{
 #'   # Plot the pdf of the standard normal distribution
 #'   #-------------------------------------------------
-#'   dev.new()
+#'   if (interactive()) dev.new()
 #'   pdfPlot()
 #'
 #'   #==========
@@ -183,7 +183,7 @@
 #'   # Plot the pdf of the standard normal distribution
 #'   # and a N(2, 2) distribution on the sample plot.
 #'   #-------------------------------------------------
-#'   dev.new()
+#'   if (interactive()) dev.new()
 #'   pdfPlot(param.list = list(mean=2, sd=2),
 #'     curve.fill = FALSE, ylim = c(0, dnorm(0)), main = "")
 #'

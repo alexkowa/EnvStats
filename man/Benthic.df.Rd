@@ -72,7 +72,7 @@ Benthic data from a monitoring program in the Chesapeake Bay,
 
   # Show station locations
   #-----------------------
-  dev.new()
+  if (interactive()) dev.new()
   plot(Longitude, Latitude,
       xlab = "-Longitude (Degrees West)",
       ylab = "Latitude",
@@ -81,7 +81,7 @@ Benthic data from a monitoring program in the Chesapeake Bay,
 
   # Scatterplot matrix of benthic index, salinity, and silt
   #--------------------------------------------------------
-  dev.new()
+  if (interactive()) dev.new()
   pairs(~ Index + Salinity + Silt, data = Benthic.df)
 
 
@@ -108,7 +108,7 @@ Benthic data from a monitoring program in the Chesapeake Bay,
       pol.y = lat[index.chull])
   predict.fit[inside == 0] <- NA
 
-  dev.new()
+  if (interactive()) dev.new()
   contour(Longitude, Latitude, predict.fit,
       levels=seq(1, 5, by=0.5), labcex=0.75,
       xlab="-Longitude (degrees West)",
@@ -116,7 +116,7 @@ Benthic data from a monitoring program in the Chesapeake Bay,
   title(main=paste("Contour Plot of Benthic Index",
       "Based on Loess Smooth", sep="\n"))
 
-  dev.new()
+  if (interactive()) dev.new()
   persp(Longitude, Latitude, predict.fit,
       xlim = c(-77.3, -75.9), ylim = c(38.1, 39.5), zlim = c(0, 6),
       theta = -45, phi = 30, d = 0.5,

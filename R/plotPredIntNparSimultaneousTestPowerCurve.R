@@ -210,7 +210,7 @@
 #'
 #'   # Here is the power curve for the 1-of-4 sampling strategy.
 #'
-#'   dev.new()
+#'   if (interactive()) dev.new()
 #'   plotPredIntNparSimultaneousTestPowerCurve(n = 20, k = 1, m = 4, r = 10,
 #'     rule = "k.of.m", n.plus.one.minus.upl.rank = 3, pi.type = "upper",
 #'     r.shifted = 1, method = "approx", range.delta.over.sigma = c(0, 5), main = "")

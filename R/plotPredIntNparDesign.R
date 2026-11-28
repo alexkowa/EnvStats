@@ -166,7 +166,7 @@
 #'   # Look at the relationship between confidence level and sample size for a
 #'   # two-sided nonparametric prediction interval for the next m=1 future observation.
 #'
-#'   dev.new()
+#'   if (interactive()) dev.new()
 #'   plotPredIntNparDesign()
 #'
 #'   #==========
@@ -174,7 +174,7 @@
 #'   # Plot confidence level vs. sample size for various values of number of
 #'   # future observations (m):
 #'
-#'   dev.new()
+#'   if (interactive()) dev.new()
 #'   plotPredIntNparDesign(k = 1, m = 1, ylim = c(0, 1), main = "")
 #'
 #'   plotPredIntNparDesign(k = 2, m = 2, add = TRUE, plot.col = "red")
@@ -201,7 +201,7 @@
 #'   # predicting the next m = 4 future observations when constructing a one-sided
 #'   # upper prediction interval based on the maximum value.
 #'
-#'   dev.new()
+#'   if (interactive()) dev.new()
 #'   plotPredIntNparDesign(k = 4, m = 4, pi.type = "upper")
 #'
 #'   #==========

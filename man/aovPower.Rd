@@ -201,7 +201,7 @@ Compute the power of a one-way fixed-effects analysis of variance,
   names(EPA.89b.loglead.df)
   #[1] "LogLead"   "Month"     "Well"      "Well.type"
 
-  dev.new()
+  if (interactive()) dev.new()
   stripChart(LogLead ~ Well, data = EPA.89b.loglead.df,
     show.ci = FALSE, xlab = "Well Number",
     ylab="Log [ Lead (ug/L) ]",

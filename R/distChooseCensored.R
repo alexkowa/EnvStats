@@ -507,7 +507,7 @@
 #'   # First create a lognormal Q-Q plot
 #'   #----------------------------------
 #'
-#'   dev.new()
+#'   if (interactive()) dev.new()
 #'   with(Helsel.Cohn.88.silver.df,
 #'     qqPlotCensored(Ag, Censored, distribution = "lnorm",
 #'       points.col = "blue", add.line = TRUE))

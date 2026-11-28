@@ -181,7 +181,7 @@ Objects of S3 class \code{"gofCensored"} are returned by the \pkg{EnvStats} func
   # Plot the results of the test
   #-----------------------------
 
-  dev.new()
+  if (interactive()) dev.new()
   plot(gofCensored.obj)
 
   #==========

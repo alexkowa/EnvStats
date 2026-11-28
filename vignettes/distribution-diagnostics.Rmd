@@ -10,6 +10,10 @@ vignette: >
   %\VignetteEncoding{UTF-8}
 ---
 
+```{r, include=FALSE, eval=identical(Sys.getenv("IN_PKGDOWN"), "true"), purl=FALSE}
+source("pkgdown-links.R", local = TRUE)
+```
+
 This vignette explains probability plots, plotting positions, goodness-of-fit
 tests, and Box-Cox transformations. Complete and censored samples are treated
 together so that the assumptions and extensions of each diagnostic can be
@@ -23,7 +27,7 @@ Related vignettes:
 
 ## qqPlot {#qqplot}
 
-Help topic: [`qqPlot`](https://alexkowa.github.io/EnvStats/reference/qqPlot.html).
+Help topic: [`qqPlot`](../help/qqPlot).
 
 If `y` is not supplied, the vector `x` is assumed to be a sample from the probability distribution specified by the argument `distribution` (and `param.list` if `estimate.params=FALSE`). When `plot.type="Q-Q"`, the quantiles of `x` are plotted on the $y$-axis against the quantiles of the assumed distribution on the $x$-axis.
 
@@ -50,7 +54,7 @@ When `y` is not supplied and the argument `distribution` specifies one of the fo
 A ***probability plot*** or ***quantile-quantile (Q-Q) plot*** is a graphical display invented by Wilk and Gnanadesikan (1968) to compare a data set to a particular probability distribution or to compare it to another data set. The idea is that if two population distributions are exactly the same, then they have the same quantiles (percentiles), so a plot of the quantiles for the first distribution vs. the quantiles for the second distribution will fall on the 0-1 line (i.e., the straight line $y = x$ with intercept 0 and slope 1). If the two distributions have the same shape and spread but different locations, then the plot of the quantiles will fall on the line $y = x + b$ (parallel to the 0-1 line) where $b$ denotes the difference in locations. If the distributions have different locations and differ by a multiplicative constant $m$, then the plot of the quantiles will fall on the line $y = mx + b$ (D'Agostino, 1986a, p. 25; Helsel and Hirsch, 1986, p. 42). Various kinds of differences between distributions will yield various kinds of deviations from a straight line.
 
 *Comparing Observations to a Hypothesized Distribution*  
-Let $\underline{x} = x_1, x_2, \ldots, x_n$ denote the observations in a random sample of size $n$ from some unknown distribution with cumulative distribution function $F()$, and let $x_{(1)}, x_{(2)}, \ldots, x_{(n)}$ denote the ordered observations. Depending on the particular formula used for the empirical cdf (see [`ecdfPlot`](https://alexkowa.github.io/EnvStats/reference/ecdfPlot.html)), the $i$'th order statistic is an estimate of the $i/(n+1)$'th, $(i-0.5)/n$'th, etc., quantile. For the moment, assume the $i$'th order statistic is an estimate of the $i/(n+1)$'th quantile, that is:
+Let $\underline{x} = x_1, x_2, \ldots, x_n$ denote the observations in a random sample of size $n$ from some unknown distribution with cumulative distribution function $F()$, and let $x_{(1)}, x_{(2)}, \ldots, x_{(n)}$ denote the ordered observations. Depending on the particular formula used for the empirical cdf (see [`ecdfPlot`](../help/ecdfPlot)), the $i$'th order statistic is an estimate of the $i/(n+1)$'th, $(i-0.5)/n$'th, etc., quantile. For the moment, assume the $i$'th order statistic is an estimate of the $i/(n+1)$'th quantile, that is:
 
 $$
 \hat{F}[x_{(i)}] = \hat{p}_i = \frac{i}{n+1} \;\;\;\;\;\; (1)
@@ -226,11 +230,11 @@ Note that the R function `qqplot` uses a different method than the one in Equati
 
 ## gofTest {#goftest}
 
-Help topic: [`gofTest`](https://alexkowa.github.io/EnvStats/reference/gofTest.html).
+Help topic: [`gofTest`](../help/gofTest).
 
 - **Shapiro-Wilk Goodness-of-Fit Test** (`test="sw"`).
 
-  The Shapiro-Wilk goodness-of-fit test (Shapiro and Wilk, 1965; Royston, 1992a) is one of the most commonly used goodness-of-fit tests for normality. You can use it to test the following hypothesized distributions: `Normal`, `Lognormal`, [Three-Parameter Lognormal](https://alexkowa.github.io/EnvStats/reference/Lognormal3.html), [Zero-Modified Normal](https://alexkowa.github.io/EnvStats/reference/ZeroModifiedNormal.html), or [Zero-Modified Lognormal (Delta)](https://alexkowa.github.io/EnvStats/reference/ZeroModifiedLognormal.html). **In addition, you can also use it to test the null hypothesis of any continuous distribution that is available** (see the section on [`Distribution.df`](distributions-and-estimation.html#distribution-df), and see explanation below).
+  The Shapiro-Wilk goodness-of-fit test (Shapiro and Wilk, 1965; Royston, 1992a) is one of the most commonly used goodness-of-fit tests for normality. You can use it to test the following hypothesized distributions: `Normal`, `Lognormal`, [Three-Parameter Lognormal](../help/Lognormal3), [Zero-Modified Normal](../help/ZeroModifiedNormal), or [Zero-Modified Lognormal (Delta)](../help/ZeroModifiedLognormal). **In addition, you can also use it to test the null hypothesis of any continuous distribution that is available** (see the section on [`Distribution.df`](distributions-and-estimation.html#distribution-df), and see explanation below).
 
   **Shapiro-Wilk W-Statistic and P-Value for Testing Normality**  
   Let $X$ denote a random variable with cumulative distribution function (cdf) $F$. Suppose we want to test the null hypothesis that $F$ is the cdf of a [normal (Gaussian) distribution](https://stat.ethz.ch/R-manual/R-devel/library/stats/html/Normal.html) with some arbitrary mean $\mu$ and standard deviation $\sigma$ against the alternative hypothesis that $F$ is the cdf of some other distribution. The table below shows the random variable for which $F$ is the assumed cdf, given the value of the argument `distribution`.
@@ -448,7 +452,7 @@ Help topic: [`gofTest`](https://alexkowa.github.io/EnvStats/reference/gofTest.ht
   Royston (1992a) found his approximation to $\underline{a}$ to be accurate to at least $\pm 1$ in the third decimal place over all values of $i$ and selected values of $n$, and also found that critical percentage points of $W$ based on his approximation agreed closely with the exact critical percentage points calculated by Verrill and Johnson (1988).
 
   *Transformation of the Null Distribution of W to Normality*  
-  In order to compute a p-value associated with a particular value of $W$, Royston (1992a) approximated the distribution of $(1-W)$ by a [three-parameter lognormal distribution](https://alexkowa.github.io/EnvStats/reference/Lognormal3.html) for $4 \le n \le 11$, and the upper half of the distribution of $(1-W)$ by a two-parameter [lognormal distribution](https://stat.ethz.ch/R-manual/R-devel/library/stats/html/Lognormal.html) for $12 \le n \le 2000$. Setting
+  In order to compute a p-value associated with a particular value of $W$, Royston (1992a) approximated the distribution of $(1-W)$ by a [three-parameter lognormal distribution](../help/Lognormal3) for $4 \le n \le 11$, and the upper half of the distribution of $(1-W)$ by a two-parameter [lognormal distribution](https://stat.ethz.ch/R-manual/R-devel/library/stats/html/Lognormal.html) for $12 \le n \le 2000$. Setting
 
   $$
   z = \frac{w - \mu}{\sigma} \;\;\;\;\;\; (25)
@@ -499,7 +503,7 @@ Help topic: [`gofTest`](https://alexkowa.github.io/EnvStats/reference/gofTest.ht
   For the last approximation when $12 \le n \le 2000$, Royston (1992a) claims this approximation is actually valid for sample sizes up to $n = 5000$.
 
   *Modification for the Three-Parameter Lognormal Distribution*  
-  When `distribution="lnorm3"`, the function `gofTest` assumes the vector $\underline{x}$ is a random sample from a [three-parameter lognormal distribution](https://alexkowa.github.io/EnvStats/reference/Lognormal3.html). It estimates the threshold parameter via the zero-skewness method (see [`elnorm3`](https://alexkowa.github.io/EnvStats/reference/elnorm3.html)), and then performs the Shapiro-Wilk goodness-of-fit test for normality on $log(x-\hat{\gamma})$ where $\hat{\gamma}$ is the estimated threshold parmater. Because the threshold parameter has to be estimated, however, the p-value associated with the computed z-statistic will tend to be conservative (larger than it should be under the null hypothesis). Royston (1992b) proposed the following transformation of the z-statistic:
+  When `distribution="lnorm3"`, the function `gofTest` assumes the vector $\underline{x}$ is a random sample from a [three-parameter lognormal distribution](../help/Lognormal3). It estimates the threshold parameter via the zero-skewness method (see [`elnorm3`](../help/elnorm3)), and then performs the Shapiro-Wilk goodness-of-fit test for normality on $log(x-\hat{\gamma})$ where $\hat{\gamma}$ is the estimated threshold parmater. Because the threshold parameter has to be estimated, however, the p-value associated with the computed z-statistic will tend to be conservative (larger than it should be under the null hypothesis). Royston (1992b) proposed the following transformation of the z-statistic:
 
   $$
   z' = \frac{z - \mu_z}{\sigma_z} \;\;\;\;\;\; (35)
@@ -559,7 +563,7 @@ Help topic: [`gofTest`](https://alexkowa.github.io/EnvStats/reference/gofTest.ht
 
 - **Shapiro-Francia Goodness-of-Fit Test** (`test="sf"`).
 
-  The Shapiro-Francia goodness-of-fit test (Shapiro and Francia, 1972; Weisberg and Bingham, 1975; Royston, 1992c) is also one of the most commonly used goodness-of-fit tests for normality. You can use it to test the following hypothesized distributions: `Normal`, `Lognormal`, [Zero-Modified Normal](https://alexkowa.github.io/EnvStats/reference/ZeroModifiedNormal.html), or [Zero-Modified Lognormal (Delta)](https://alexkowa.github.io/EnvStats/reference/ZeroModifiedLognormal.html). In addition, you can also use it to test the null hypothesis of any continuous distribution that is available (see the section on [`Distribution.df`](distributions-and-estimation.html#distribution-df)). See the section *Testing Goodness-of-Fit for Any Continuous Distribution* above for an explanation of how this is done.
+  The Shapiro-Francia goodness-of-fit test (Shapiro and Francia, 1972; Weisberg and Bingham, 1975; Royston, 1992c) is also one of the most commonly used goodness-of-fit tests for normality. You can use it to test the following hypothesized distributions: `Normal`, `Lognormal`, [Zero-Modified Normal](../help/ZeroModifiedNormal), or [Zero-Modified Lognormal (Delta)](../help/ZeroModifiedLognormal). In addition, you can also use it to test the null hypothesis of any continuous distribution that is available (see the section on [`Distribution.df`](distributions-and-estimation.html#distribution-df)). See the section *Testing Goodness-of-Fit for Any Continuous Distribution* above for an explanation of how this is done.
 
   *Royston's Transformation of the Shapiro-Francia W'-Statistic to Normality*  
   Equation (13) above gives the formula for the Shapiro-Francia W'-statistic, and Equation (16) above gives the formula for Weisberg-Bingham approximation to the W'-statistic (denoted $\tilde{W}'$). Royston (1992c) presents an algorithm to transform the $\tilde{W}'$-statistic so that its null distribution is approximately a standard normal. For $5 \le n \le 5000$, Royston (1992c) approximates the distribution of $(1-\tilde{W}')$ by a [lognormal distribution](https://stat.ethz.ch/R-manual/R-devel/library/stats/html/Lognormal.html). Setting
@@ -610,9 +614,9 @@ Help topic: [`gofTest`](https://alexkowa.github.io/EnvStats/reference/gofTest.ht
 
 - **Probability Plot Correlation Coefficient (PPCC) Goodness-of-Fit Test** (`test="ppcc"`).
 
-  The PPPCC goodness-of-fit test (Filliben, 1975; Looney and Gulledge, 1985) can be used to test the following hypothesized distributions: `Normal`, `Lognormal`, [Zero-Modified Normal](https://alexkowa.github.io/EnvStats/reference/ZeroModifiedNormal.html), or [Zero-Modified Lognormal (Delta)](https://alexkowa.github.io/EnvStats/reference/ZeroModifiedLognormal.html). In addition, you can also use it to test the null hypothesis of any continuous distribution that is available (see the section on [`Distribution.df`](distributions-and-estimation.html#distribution-df)). The function `gofTest` computes the PPCC test statistic using Blom plotting positions.
+  The PPPCC goodness-of-fit test (Filliben, 1975; Looney and Gulledge, 1985) can be used to test the following hypothesized distributions: `Normal`, `Lognormal`, [Zero-Modified Normal](../help/ZeroModifiedNormal), or [Zero-Modified Lognormal (Delta)](../help/ZeroModifiedLognormal). In addition, you can also use it to test the null hypothesis of any continuous distribution that is available (see the section on [`Distribution.df`](distributions-and-estimation.html#distribution-df)). The function `gofTest` computes the PPCC test statistic using Blom plotting positions.
 
-  Filliben (1975) proposed using the correlation coefficient $r$ from a [normal probability plot](https://alexkowa.github.io/EnvStats/reference/qqPlot.html) to perform a goodness-of-fit test for normality, and he provided a table of critical values for $r$ under the for samples sizes between 3 and 100. Vogel (1986) provided an additional table for sample sizes between 100 and 10,000.
+  Filliben (1975) proposed using the correlation coefficient $r$ from a [normal probability plot](../help/qqPlot) to perform a goodness-of-fit test for normality, and he provided a table of critical values for $r$ under the for samples sizes between 3 and 100. Vogel (1986) provided an additional table for sample sizes between 100 and 10,000.
 
   Looney and Gulledge (1985) investigated the characteristics of Filliben's probability plot correlation coefficient (PPCC) test using the plotting position formulas given in Filliben (1975), as well as three other plotting position formulas: Hazen plotting positions, Weibull plotting positions, and Blom plotting positions (see the section on [`qqPlot`](distribution-diagnostics.html#qqplot) for an explanation of these plotting positions). They concluded that the PPCC test based on Blom plotting positions performs slightly better than tests based on other plotting positions, and they provide a table of empirical percentage points for the distribution of $r$ based on Blom plotting positions.
 
@@ -620,7 +624,7 @@ Help topic: [`gofTest`](https://alexkowa.github.io/EnvStats/reference/gofTest.ht
 
 - **Anderson-Darling Goodness-of-Fit Test** (`test="ad"`).
 
-  The Anderson-Darling goodness-of-fit test (Stephens, 1986a; Thode, 2002) can be used to test the following hypothesized distributions: `Normal`, `Lognormal`, [Zero-Modified Normal](https://alexkowa.github.io/EnvStats/reference/ZeroModifiedNormal.html), or [Zero-Modified Lognormal (Delta)](https://alexkowa.github.io/EnvStats/reference/ZeroModifiedLognormal.html).
+  The Anderson-Darling goodness-of-fit test (Stephens, 1986a; Thode, 2002) can be used to test the following hypothesized distributions: `Normal`, `Lognormal`, [Zero-Modified Normal](../help/ZeroModifiedNormal), or [Zero-Modified Lognormal (Delta)](../help/ZeroModifiedLognormal).
 
   When `test="ad"`, the function `gofTest` calls the function [`ad.test`](https://search.r-project.org/CRAN/refmans/nortest/html/ad.test.html) in the package nortest. Documentation from that package is as follows:
 
@@ -634,7 +638,7 @@ Help topic: [`gofTest`](https://alexkowa.github.io/EnvStats/reference/gofTest.ht
 
 - **Cramer-von Mises Goodness-of-Fit Test** (`test="cvm"`).
 
-  The Cramer-von Mises goodness-of-fit test (Stephens, 1986a; Thode, 2002) can be used to test the following hypothesized distributions: `Normal`, `Lognormal`, [Zero-Modified Normal](https://alexkowa.github.io/EnvStats/reference/ZeroModifiedNormal.html), or [Zero-Modified Lognormal (Delta)](https://alexkowa.github.io/EnvStats/reference/ZeroModifiedLognormal.html).
+  The Cramer-von Mises goodness-of-fit test (Stephens, 1986a; Thode, 2002) can be used to test the following hypothesized distributions: `Normal`, `Lognormal`, [Zero-Modified Normal](../help/ZeroModifiedNormal), or [Zero-Modified Lognormal (Delta)](../help/ZeroModifiedLognormal).
 
   When `test="cvm"`, the function `gofTest` calls the function [`cvm.test`](https://search.r-project.org/CRAN/refmans/nortest/html/cvm.test.html) in the package nortest. Documentation from that package is as follows:
 
@@ -648,7 +652,7 @@ Help topic: [`gofTest`](https://alexkowa.github.io/EnvStats/reference/gofTest.ht
 
 - **Lilliefors Goodness-of-Fit Test** (`test="lillie"`).
 
-  The Lilliefors goodness-of-fit test (Stephens, 1974; Dallal and Wilkinson, 1986; Thode, 2002) can be used to test the following hypothesized distributions: `Normal`, `Lognormal`, [Zero-Modified Normal](https://alexkowa.github.io/EnvStats/reference/ZeroModifiedNormal.html), or [Zero-Modified Lognormal (Delta)](https://alexkowa.github.io/EnvStats/reference/ZeroModifiedLognormal.html).
+  The Lilliefors goodness-of-fit test (Stephens, 1974; Dallal and Wilkinson, 1986; Thode, 2002) can be used to test the following hypothesized distributions: `Normal`, `Lognormal`, [Zero-Modified Normal](../help/ZeroModifiedNormal), or [Zero-Modified Lognormal (Delta)](../help/ZeroModifiedLognormal).
 
   When `test="lillie"`, the function `gofTest` calls the function [`lillie.test`](https://search.r-project.org/CRAN/refmans/nortest/html/lillie.test.html) in the package nortest. Documentation from that package is as follows:
 
@@ -662,7 +666,7 @@ Help topic: [`gofTest`](https://alexkowa.github.io/EnvStats/reference/gofTest.ht
 
 - **Zero-Skew Goodness-of-Fit Test** (`test="skew"`).
 
-  The Zero-skew goodness-of-fit test (D'Agostino, 1970) can be used to test the following hypothesized distributions: `Normal`, `Lognormal`, [Zero-Modified Normal](https://alexkowa.github.io/EnvStats/reference/ZeroModifiedNormal.html), or [Zero-Modified Lognormal (Delta)](https://alexkowa.github.io/EnvStats/reference/ZeroModifiedLognormal.html).
+  The Zero-skew goodness-of-fit test (D'Agostino, 1970) can be used to test the following hypothesized distributions: `Normal`, `Lognormal`, [Zero-Modified Normal](../help/ZeroModifiedNormal), or [Zero-Modified Lognormal (Delta)](../help/ZeroModifiedLognormal).
 
   When `test="skew"`, the function `gofTest` tests the null hypothesis that the skew of the distribution is 0:
 
@@ -743,11 +747,11 @@ Help topic: [`gofTest`](https://alexkowa.github.io/EnvStats/reference/gofTest.ht
 
 - **ProUCL Kolmogorov-Smirnov Goodness-of-Fit Test for Gamma** (`test="proucl.ks.gamma"`).
 
-  When `test="proucl.ks.gamma"`, the function `gofTest` calls the R function `ks.test` to compute the Kolmogorov-Smirnov test statistic based on the maximum likelihood estimates of the shape and scale parameters (see [`egamma`](https://alexkowa.github.io/EnvStats/reference/egamma.html)). The p-value is computed based on the simulated critical values given in [`ProUCL.Crit.Vals.for.KS.Test.for.Gamma.array`](https://alexkowa.github.io/EnvStats/reference/ProUCL.Crit.Vals.for.KS.Test.for.Gamma.array.html) (USEPA, 2015). The sample size must be between 5 and 1000, and the value of the maximum likelihood estimate of the shape parameter must be between 0.025 and 50. The critical value for the test statistic is computed using the simulated critical values and linear interpolation.
+  When `test="proucl.ks.gamma"`, the function `gofTest` calls the R function `ks.test` to compute the Kolmogorov-Smirnov test statistic based on the maximum likelihood estimates of the shape and scale parameters (see [`egamma`](../help/egamma)). The p-value is computed based on the simulated critical values given in [`ProUCL.Crit.Vals.for.KS.Test.for.Gamma.array`](../help/ProUCL.Crit.Vals.for.KS.Test.for.Gamma.array) (USEPA, 2015). The sample size must be between 5 and 1000, and the value of the maximum likelihood estimate of the shape parameter must be between 0.025 and 50. The critical value for the test statistic is computed using the simulated critical values and linear interpolation.
 
 - **ProUCL Anderson-Darling Goodness-of-Fit Test for Gamma** (`test="proucl.ad.gamma"`).
 
-  When `test="proucl.ad.gamma"`, the function `gofTest` computes the Anderson-Darling test statistic (Stephens, 1986a, p.101) based on the maximum likelihood estimates of the shape and scale parameters (see [`egamma`](https://alexkowa.github.io/EnvStats/reference/egamma.html)). The p-value is computed based on the simulated critical values given in [`ProUCL.Crit.Vals.for.AD.Test.for.Gamma.array`](https://alexkowa.github.io/EnvStats/reference/ProUCL.Crit.Vals.for.AD.Test.for.Gamma.array.html) (USEPA, 2015). The sample size must be between 5 and 1000, and the value of the maximum likelihood estimate of the shape parameter must be between 0.025 and 50. The critical value for the test statistic is computed using the simulated critical values and linear interpolation.
+  When `test="proucl.ad.gamma"`, the function `gofTest` computes the Anderson-Darling test statistic (Stephens, 1986a, p.101) based on the maximum likelihood estimates of the shape and scale parameters (see [`egamma`](../help/egamma)). The p-value is computed based on the simulated critical values given in [`ProUCL.Crit.Vals.for.AD.Test.for.Gamma.array`](../help/ProUCL.Crit.Vals.for.AD.Test.for.Gamma.array) (USEPA, 2015). The sample size must be between 5 and 1000, and the value of the maximum likelihood estimate of the shape parameter must be between 0.025 and 50. The critical value for the test statistic is computed using the simulated critical values and linear interpolation.
 
 - **Chi-Squared Goodness-of-Fit Test** (`test="chisq"`).
 
@@ -817,7 +821,7 @@ Help topic: [`gofTest`](https://alexkowa.github.io/EnvStats/reference/gofTest.ht
 
 ## ppointsCensored {#ppointscensored}
 
-Help topic: [`ppointsCensored`](https://alexkowa.github.io/EnvStats/reference/ppointsCensored.html).
+Help topic: [`ppointsCensored`](../help/ppointsCensored).
 
 Methods for computing plotting positions for complete data sets (no censored observations) are discussed in D'Agostino, R.B. (1986a) and Cleveland (1993). For data sets with censored observations, these methods must be modified. The function `ppointsCensored` allows you to compute plotting positions based on any of the following methods:
 
@@ -855,7 +859,7 @@ $$
 \hat{F}[x_{(i)}] = \hat{p}_i = \frac{\#[x_j \le x_{(i)}]}{n} \;\;\;\;\;\; (3)
 $$
 
-where $\#[x_j \le x_{(i)}]$ denotes the number of observations less than or equal to $x_{(i)}$ (see the help file for [`ecdfPlot`](https://alexkowa.github.io/EnvStats/reference/ecdfPlot.html)). Kaplan and Meier (1958) extended this method of computing the empirical cdf to the case of right-censored data.
+where $\#[x_j \le x_{(i)}]$ denotes the number of observations less than or equal to $x_{(i)}$ (see the help file for [`ecdfPlot`](../help/ecdfPlot)). Kaplan and Meier (1958) extended this method of computing the empirical cdf to the case of right-censored data.
 
 *Right-Censored Data* (`censoring.side="right"`)  
 Let $S(t)$ denote the survival function evaluated at $t$, that is:
@@ -1058,7 +1062,7 @@ The table below shows how the plotting positions are computed.
 Note that for complete data sets, Equation (7) reduces to Equation (3).
 
 **Modified Kaplan-Meier Method** (`prob.method="modified kaplan-meier"`)  
-(Left-Censored Data Only.) For left-censored data, the modified Kaplan-Meier method is the same as the Kaplan-Meier method, except that for the largest uncensored order statistic, the plotting position is not set to 1 but rather is set equal to the Blom plotting position: $(N - 0.375)/(N + 0.25)$. This method is useful, for example, when creating [Quantile-Quantile plots](https://alexkowa.github.io/EnvStats/reference/qqPlotCensored.html).
+(Left-Censored Data Only.) For left-censored data, the modified Kaplan-Meier method is the same as the Kaplan-Meier method, except that for the largest uncensored order statistic, the plotting position is not set to 1 but rather is set equal to the Blom plotting position: $(N - 0.375)/(N + 0.25)$. This method is useful, for example, when creating [Quantile-Quantile plots](../help/qqPlotCensored).
 
 **Hazard Plotting Method of Nelson** (`prob.method="nelson"`)  
 (Right-Censored Data Only.) For right-censored data, Equation (5) can be re-written as:
@@ -1087,7 +1091,7 @@ $$
 \hat{F}[x_{(i)}] = \hat{p}_i = \frac{i - a}{N - 2a + 1} \;\;\;\;\;\; (10)
 $$
 
-where $0 \le a \le 1$ (Cleveland, 1993, p. 18; D'Agostino, 1986a, pp. 8,25). The value of $a$ is usually chosen so that the plotting positions are approximately unbiased (i.e., approximate the mean of their distribution) or else approximate the median value of their distribution (see the help file for [`ecdfPlot`](https://alexkowa.github.io/EnvStats/reference/ecdfPlot.html)). Michael and Schucany (1986) extended this method for both left- and right-censored data sets.
+where $0 \le a \le 1$ (Cleveland, 1993, p. 18; D'Agostino, 1986a, pp. 8,25). The value of $a$ is usually chosen so that the plotting positions are approximately unbiased (i.e., approximate the mean of their distribution) or else approximate the median value of their distribution (see the help file for [`ecdfPlot`](../help/ecdfPlot)). Michael and Schucany (1986) extended this method for both left- and right-censored data sets.
 
 *Right-Censored Data* (`censoring.side="right"`)  
 For right-censored data sets, the plotting positions for the uncensored observations are computed as:
@@ -1311,7 +1315,7 @@ where $r$ denotes the rank of the $i$'th observation among the $c_j$ observation
 
 ## gofTestCensored {#goftestcensored}
 
-Help topic: [`gofTestCensored`](https://alexkowa.github.io/EnvStats/reference/gofTestCensored.html).
+Help topic: [`gofTestCensored`](../help/gofTestCensored).
 
 Let $\underline{x} = c(x_1, x_2, \ldots, x_N)$ denote a vector of $N$ observations from from some distribution with cdf $F$. Suppose we want to test the null hypothesis that $F$ is the cdf of a [normal (Gaussian) distribution](https://stat.ethz.ch/R-manual/R-devel/library/stats/html/Normal.html) with some arbitrary mean $\mu$ and standard deviation $\sigma$ against the alternative hypothesis that $F$ is the cdf of some other distribution. The table below shows the random variable for which $F$ is the assumed cdf, given the value of the argument `distribution`.
 
@@ -1429,7 +1433,7 @@ $$
 \underline{x}_{\Delta} = (x_{(1)}, x_{(2)}, \ldots, x_{(n)}) \;\;\;\;\;\; (13)
 $$
 
-Just like the function [`gofTest`](https://alexkowa.github.io/EnvStats/reference/gofTest.html), when `test="sw"`, the function `gofTestCensored` uses Royston's (1992a) approximation for the coefficients $\underline{a}$ (see the section on [`gofTest`](distribution-diagnostics.html#goftest)).
+Just like the function [`gofTest`](../help/gofTest), when `test="sw"`, the function `gofTestCensored` uses Royston's (1992a) approximation for the coefficients $\underline{a}$ (see the section on [`gofTest`](distribution-diagnostics.html#goftest)).
 
 *Computing P-Values for the Shapiro-Wilk Test*  
 Verrill and Johnson (1988) show that the asymptotic distribution of the statistic in Equation (9) above is normal, but the rate of convergence is “surprisingly slow” even for complete samples. They provide a table of empirical percentiles of the distribution for the $W$-statistic shown in Equation (9) above for several sample sizes and percentages of censoring.
@@ -1445,7 +1449,7 @@ Note: Verrill and Johnson (1988) produced their tables based on Type II censorin
 *Testing Goodness-of-Fit for Any Continuous Distribution*  
 The function `gofTestCensored` extends the Shapiro-Wilk test that accounts for censoring to test for goodness-of-fit for any continuous distribution by using the idea of Chen and Balakrishnan (1995), who proposed a general purpose approximate goodness-of-fit test based on the Cramer-von Mises or Anderson-Darling goodness-of-fit tests for normality. The function `gofTestCensored` modifies the approach of Chen and Balakrishnan (1995) by using the same first 2 steps, and then applying the Shapiro-Wilk test that accounts for censoring:
 
-1. Let $\underline{x} = x_1, x_2, \ldots, x_n$ denote the vector of $n$ ***ordered*** observations, ignoring censoring status. Compute cumulative probabilities for each $x_i$ based on the cumulative distribution function for the hypothesized distribution. That is, compute $p_i = F(x_i, \hat{\theta})$, where $F(x, \theta)$ denotes the hypothesized cumulative distribution function with parameter(s) $\theta$, and $\hat{\theta}$ denotes the estimated parameter(s) using an estimation method that accounts for censoring (e.g., assuming a [Gamma](https://alexkowa.github.io/EnvStats/reference/GammaAlt.html) distribution with alternative parameterization, call the function `linkegammaAltCensored`).
+1. Let $\underline{x} = x_1, x_2, \ldots, x_n$ denote the vector of $n$ ***ordered*** observations, ignoring censoring status. Compute cumulative probabilities for each $x_i$ based on the cumulative distribution function for the hypothesized distribution. That is, compute $p_i = F(x_i, \hat{\theta})$, where $F(x, \theta)$ denotes the hypothesized cumulative distribution function with parameter(s) $\theta$, and $\hat{\theta}$ denotes the estimated parameter(s) using an estimation method that accounts for censoring (e.g., assuming a [Gamma](../help/GammaAlt) distribution with alternative parameterization, call the function `linkegammaAltCensored`).
 2. Compute standard normal deviates based on the computed cumulative probabilities:  
    $y_i = \Phi^{-1}(p_i)$
 3. Perform the Shapiro-Wilk goodness-of-fit test (that accounts for censoring) on the $y_i$'s.
@@ -1494,7 +1498,7 @@ $$
 
 and $\Phi$ denotes the standard normal cdf. **Note:** Do not confuse the elements of the vector $\underline{c}$ with the scalar $c$ which denotes the number of censored observations. We use $\underline{c}$ here to be consistent with the notation in the section on [`gofTest`](distribution-diagnostics.html#goftest).
 
-Just like the function [`gofTest`](https://alexkowa.github.io/EnvStats/reference/gofTest.html), when `test="sf"`, the function `gofTestCensored` uses Royston's (1992a) approximation for the coefficients $\underline{c}$ (see the section on [`gofTest`](distribution-diagnostics.html#goftest)).
+Just like the function [`gofTest`](../help/gofTest), when `test="sf"`, the function `gofTestCensored` uses Royston's (1992a) approximation for the coefficients $\underline{c}$ (see the section on [`gofTest`](distribution-diagnostics.html#goftest)).
 
 In general, the Shapiro-Francia test statistic can be extended to multiply censored data using Equation (14) with $\underline{c}_{\Delta}$ defined as the orderd values of $c_i$ associated with uncensored observations, and $\underline{x}_{\Delta}$ defined as the ordered values of $x_i$ associated with uncensored observations:
 
@@ -1506,7 +1510,7 @@ $$
 \underline{x}_{\Delta} = \cup_{i \in \Omega} \;\; x_{(i)} \;\;\;\;\;\; (22)
 $$
 
-and where the plotting positions in Equation (20) are replaced with any of the plotting positions available in [`ppointsCensored`](https://alexkowa.github.io/EnvStats/reference/ppointsCensored.html) (see the description for the argument `prob.method`).
+and where the plotting positions in Equation (20) are replaced with any of the plotting positions available in [`ppointsCensored`](../help/ppointsCensored) (see the description for the argument `prob.method`).
 
 *Computing P-Values for the Shapiro-Francia Test*  
 Verrill and Johnson (1988) show that the asymptotic distribution of the statistic in Equation (14) above is normal, but the rate of convergence is “surprisingly slow” even for complete samples. They provide a table of empirical percentiles of the distribution for the $\tilde{W}'$-statistic shown in Equation (14) above for several sample sizes and percentages of censoring.
@@ -1522,7 +1526,7 @@ Note: Verrill and Johnson (1988) produced their tables based on Type II censorin
 *Testing Goodness-of-Fit for Any Continuous Distribution*  
 The function `gofTestCensored` extends the Shapiro-Francia test that accounts for censoring to test for goodness-of-fit for any continuous distribution by using the idea of Chen and Balakrishnan (1995), who proposed a general purpose approximate goodness-of-fit test based on the Cramer-von Mises or Anderson-Darling goodness-of-fit tests for normality. The function `gofTestCensored` modifies the approach of Chen and Balakrishnan (1995) by using the same first 2 steps, and then applying the Shapiro-Francia test that accounts for censoring:
 
-1. Let $\underline{x} = x_1, x_2, \ldots, x_n$ denote the vector of $n$ ***ordered*** observations, ignoring censoring status. Compute cumulative probabilities for each $x_i$ based on the cumulative distribution function for the hypothesized distribution. That is, compute $p_i = F(x_i, \hat{\theta})$ where $F(x, \theta)$ denotes the hypothesized cumulative distribution function with parameter(s) $\theta$, and $\hat{\theta}$ denotes the estimated parameter(s) using an estimation method that accounts for censoring (e.g., assuming a [Gamma](https://alexkowa.github.io/EnvStats/reference/GammaAlt.html) distribution with alternative parameterization, call the function `linkegammaAltCensored`).
+1. Let $\underline{x} = x_1, x_2, \ldots, x_n$ denote the vector of $n$ ***ordered*** observations, ignoring censoring status. Compute cumulative probabilities for each $x_i$ based on the cumulative distribution function for the hypothesized distribution. That is, compute $p_i = F(x_i, \hat{\theta})$ where $F(x, \theta)$ denotes the hypothesized cumulative distribution function with parameter(s) $\theta$, and $\hat{\theta}$ denotes the estimated parameter(s) using an estimation method that accounts for censoring (e.g., assuming a [Gamma](../help/GammaAlt) distribution with alternative parameterization, call the function `linkegammaAltCensored`).
 2. Compute standard normal deviates based on the computed cumulative probabilities:  
    $y_i = \Phi^{-1}(p_i)$
 3. Perform the Shapiro-Francia goodness-of-fit test (that accounts for censoring) on the $y_i$'s.
@@ -1532,7 +1536,7 @@ The function `gofTestCensored` computes the PPCC test statistic using Blom plott
 
 ## boxcoxCensored {#boxcoxcensored}
 
-Help topic: [`boxcoxCensored`](https://alexkowa.github.io/EnvStats/reference/boxcoxCensored.html).
+Help topic: [`boxcoxCensored`](../help/boxcoxCensored).
 
 Two common assumptions for several standard parametric hypothesis tests are:
 
@@ -1560,7 +1564,7 @@ When the original data do not satisfy the above assumptions, data transformation
 </tbody>
 </table>
 
-where $Y$ is assumed to come from a normal distribution. This transformation is continuous in $\lambda$. Note that this transformation also preserves ordering. See the help file for [`boxcoxTransform`](https://alexkowa.github.io/EnvStats/reference/boxcoxTransform.html) for more information on data transformations.
+where $Y$ is assumed to come from a normal distribution. This transformation is continuous in $\lambda$. Note that this transformation also preserves ordering. See the help file for [`boxcoxTransform`](../help/boxcoxTransform) for more information on data transformations.
 
 Box and Cox (1964) proposed choosing the appropriate value of $\lambda$ based on maximizing the likelihood function. Alternatively, an appropriate value of $\lambda$ can be chosen based on another objective, such as maximizing the probability plot correlation coefficient or the Shapiro-Wilk goodness-of-fit statistic.
 
@@ -1636,7 +1640,7 @@ where $i \in \Omega_j$.
 **Computing the Objective**
 
 *Objective Based on Probability Plot Correlation Coefficient* (`objective.name="PPCC"`)  
-When `objective.name="PPCC"`, the objective is computed as the value of the normal probability plot correlation coefficient based on the transformed data (see the description of the Probability Plot Correlation Coefficient (PPCC) goodness-of-fit test in the section on [`gofTestCensored`](distribution-diagnostics.html#goftestcensored)). That is, the objective is the correlation coefficient for the normal [quantile-quantile plot](https://alexkowa.github.io/EnvStats/reference/qqPlotCensored.html) for the transformed data. Large values of the PPCC tend to indicate a good fit to a normal distribution.
+When `objective.name="PPCC"`, the objective is computed as the value of the normal probability plot correlation coefficient based on the transformed data (see the description of the Probability Plot Correlation Coefficient (PPCC) goodness-of-fit test in the section on [`gofTestCensored`](distribution-diagnostics.html#goftestcensored)). That is, the objective is the correlation coefficient for the normal [quantile-quantile plot](../help/qqPlotCensored) for the transformed data. Large values of the PPCC tend to indicate a good fit to a normal distribution.
 
 *Objective Based on Shapiro-Wilk Goodness-of-Fit Statistic* (`objective.name="Shapiro-Wilk"`)  
 When `objective.name="Shapiro-Wilk"`, the objective is computed as the value of the Shapiro-Wilk goodness-of-fit statistic based on the transformed data (see the description of the Shapiro-Wilk test in the section on [`gofTestCensored`](distribution-diagnostics.html#goftestcensored)). Large values of the Shapiro-Wilk statistic tend to indicate a good fit to a normal distribution.

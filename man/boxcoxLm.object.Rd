@@ -93,7 +93,7 @@ Objects of S3 class \code{"boxcoxLm"} are returned by the \pkg{EnvStats}
 
   # Plot Ozone vs. Temperature, with fitted line
   #---------------------------------------------
-  dev.new()
+  if (interactive()) dev.new()
   with(Environmental.df,
     plot(temperature, ozone, xlab = "Temperature (degrees F)",
       ylab = "Ozone (ppb)", main = "Ozone vs. Temperature"))
@@ -101,7 +101,7 @@ Objects of S3 class \code{"boxcoxLm"} are returned by the \pkg{EnvStats}
 
   # Look at the Q-Q Plot for the residuals
   #---------------------------------------
-  dev.new()
+  if (interactive()) dev.new()
   qqPlot(ozone.fit$residuals, add.line = TRUE)
 
   # Look at Box-Cox transformations of Ozone

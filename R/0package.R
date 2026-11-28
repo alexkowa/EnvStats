@@ -249,7 +249,7 @@ NULL
 #'
 #'   # Show station locations
 #'   #-----------------------
-#'   dev.new()
+#'   if (interactive()) dev.new()
 #'   plot(Longitude, Latitude,
 #'       xlab = "-Longitude (Degrees West)",
 #'       ylab = "Latitude",
@@ -258,7 +258,7 @@ NULL
 #'
 #'   # Scatterplot matrix of benthic index, salinity, and silt
 #'   #--------------------------------------------------------
-#'   dev.new()
+#'   if (interactive()) dev.new()
 #'   pairs(~ Index + Salinity + Silt, data = Benthic.df)
 #'
 #'
@@ -285,7 +285,7 @@ NULL
 #'       pol.y = lat[index.chull])
 #'   predict.fit[inside == 0] <- NA
 #'
-#'   dev.new()
+#'   if (interactive()) dev.new()
 #'   contour(Longitude, Latitude, predict.fit,
 #'       levels=seq(1, 5, by=0.5), labcex=0.75,
 #'       xlab="-Longitude (degrees West)",
@@ -293,7 +293,7 @@ NULL
 #'   title(main=paste("Contour Plot of Benthic Index",
 #'       "Based on Loess Smooth", sep="\n"))
 #'
-#'   dev.new()
+#'   if (interactive()) dev.new()
 #'   persp(Longitude, Latitude, predict.fit,
 #'       xlim = c(-77.3, -75.9), ylim = c(38.1, 39.5), zlim = c(0, 6),
 #'       theta = -45, phi = 30, d = 0.5,
@@ -3439,7 +3439,7 @@ NULL
 #'
 #'   # Now plot the empirical distribution (with a histogram) and the true distribution:
 #'
-#'   dev.new()
+#'   if (interactive()) dev.new()
 #'   hist(obs, col = "cyan", xlim = c(0, 65), freq = FALSE,
 #'     ylab = "Relative Frequency")
 #'
@@ -3453,7 +3453,7 @@ NULL
 #'   x <- qemp(p = seq(0, 1, len = 100), obs = obs)
 #'   y <- demp(x, obs)
 #'
-#'   dev.new()
+#'   if (interactive()) dev.new()
 #'   plot(x, y, xlim = c(0, 65), type = "n",
 #'     xlab = "Value of Random Variable",
 #'     ylab = "Relative Frequency")
@@ -3464,7 +3464,7 @@ NULL
 #'   # Alternatively, you can create the above plot with the function
 #'   # epdfPlot:
 #'
-#'   dev.new()
+#'   if (interactive()) dev.new()
 #'   epdfPlot(obs, xlim = c(0, 65), epdf.col = "cyan",
 #'     xlab = "Value of Random Variable",
 #'     main = "Empirical and Theoretical PDFs")
@@ -7590,7 +7590,7 @@ NULL
 #'   set.seed(250)
 #'   x <- rlnormAlt(30, mean = 10, cv = 2)
 #'
-#'   dev.new()
+#'   if (interactive()) dev.new()
 #'   hist(x, col = "cyan")
 #'
 #'   boxcox.list <- boxcox(x)
@@ -7947,7 +7947,7 @@ NULL
 #'
 #'   # Plot Ozone vs. Temperature, with fitted line
 #'   #---------------------------------------------
-#'   dev.new()
+#'   if (interactive()) dev.new()
 #'   with(Environmental.df,
 #'     plot(temperature, ozone, xlab = "Temperature (degrees F)",
 #'       ylab = "Ozone (ppb)", main = "Ozone vs. Temperature"))
@@ -7955,7 +7955,7 @@ NULL
 #'
 #'   # Look at the Q-Q Plot for the residuals
 #'   #---------------------------------------
-#'   dev.new()
+#'   if (interactive()) dev.new()
 #'   qqPlot(ozone.fit$residuals, add.line = TRUE)
 #'
 #'   # Look at Box-Cox transformations of Ozone
@@ -9114,7 +9114,7 @@ NULL
 #'   # Plot the results of the test
 #'   #-----------------------------
 #'
-#'   dev.new()
+#'   if (interactive()) dev.new()
 #'   plot(gof.obj)
 #'
 #'   #==========
@@ -9315,7 +9315,7 @@ NULL
 #'   # Plot the results of the test
 #'   #-----------------------------
 #'
-#'   dev.new()
+#'   if (interactive()) dev.new()
 #'   plot(gofCensored.obj)
 #'
 #'   #==========
@@ -9488,7 +9488,7 @@ NULL
 #'   # Plot the results of the test
 #'   #-----------------------------
 #'
-#'   dev.new()
+#'   if (interactive()) dev.new()
 #'   plot(gofGroup.obj)
 #'
 #'   #==========
@@ -10787,7 +10787,7 @@ NULL
 #'
 #'   # Plot the results of the test
 #'   #-----------------------------
-#'   dev.new()
+#'   if (interactive()) dev.new()
 #'   plot(permutationTest.obj)
 #'
 #'   #==========

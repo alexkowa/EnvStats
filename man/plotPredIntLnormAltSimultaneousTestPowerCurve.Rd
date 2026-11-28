@@ -220,7 +220,7 @@ Plot power vs. \eqn{\theta_1/\theta_2} (ratio of means) for a
 
   # Here is the power curve for the 1-of-4 sampling strategy:
 
-  dev.new()
+  if (interactive()) dev.new()
   plotPredIntLnormAltSimultaneousTestPowerCurve(n = 25, k = 1, m = 4, r = 2,
     rule="k.of.m", range.ratio.of.means = c(1, 10), pi.type = "upper",
     conf.level = conf.level, ylim = c(0, 1), main = "")

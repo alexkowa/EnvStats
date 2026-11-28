@@ -205,7 +205,7 @@ Create plots involving sample size, power, scaled difference, and significance
   # Look at the relationship between power and sample size for a two-sample t-test,
   # assuming a scaled difference of 0.5 and a 5% significance level:
 
-  dev.new()
+  if (interactive()) dev.new()
   plotTTestDesign(sample.type = "two")
 
   #----------
@@ -213,7 +213,7 @@ Create plots involving sample size, power, scaled difference, and significance
   # For a two-sample t-test, plot sample size vs. the scaled minimal detectable
   # difference for various levels of power, using a 5% significance level:
 
-  dev.new()
+  if (interactive()) dev.new()
   plotTTestDesign(x.var = "delta.over.sigma", y.var = "n", sample.type = "two",
     ylim = c(0, 110), main="")
 
@@ -239,7 +239,7 @@ Create plots involving sample size, power, scaled difference, and significance
   # assume an upper one-sided alternative (i.e., compliance well mean larger
   # than 7 ppb).
 
-  dev.new()
+  if (interactive()) dev.new()
   plotTTestDesign(x.var = "delta.over.sigma", y.var = "power",
     range.x.var = c(0.5, 2), n.or.n1 = 8, alpha = 0.01,
     alternative = "greater", ylim = c(0, 1), main = "")

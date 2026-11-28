@@ -185,14 +185,14 @@ Create plots involving sample size, power, scaled difference, and significance l
   # 0 and 1, a population standard deviation of 1, and a
   # 5\% significance level:
 
-  dev.new()
+  if (interactive()) dev.new()
   plotAovDesign()
 
   #--------------------------------------------------------------------
 
   # Plot power vs. sample size for various levels of significance:
 
-  dev.new()
+  if (interactive()) dev.new()
   plotAovDesign(mu.vec = c(0, 0.5, 1), ylim=c(0, 1), main="")
 
   plotAovDesign(mu.vec = c(0, 0.5, 1), alpha=0.1, add=TRUE, plot.col=2)
@@ -235,7 +235,7 @@ Create plots involving sample size, power, scaled difference, and significance l
   #Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 '' 1
 
   # Now create the plot
-  dev.new()
+  if (interactive()) dev.new()
   plotAovDesign(range.x.var = c(2, 20),
     mu.vec = c(3.9,3.9,4.5,4.5,4.5,5),
     sigma=sqrt(0.34),

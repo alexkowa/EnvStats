@@ -180,7 +180,7 @@
 #'
 #'   y <- Air.df$ozone
 #'
-#'   dev.new()
+#'   if (interactive()) dev.new()
 #'   plot(x, y, xlab="Temperature (degrees F)",
 #'     ylab = expression(sqrt("Ozone (ppb)", 3)))
 #'
@@ -207,7 +207,7 @@
 #'   # Redo the last example by creating non-simultaneous
 #'   # confidence bounds and prediction bounds as well.
 #'
-#'   dev.new()
+#'   if (interactive()) dev.new()
 #'   plot(x, y, xlab = "Temperature (degrees F)",
 #'     ylab = expression(sqrt("Ozone (ppb)", 3)))
 #'

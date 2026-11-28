@@ -310,7 +310,7 @@
 #'   # standard parametric analysis of variance.
 #'   #-------------------------------------------------
 #'
-#'   dev.new()
+#'   if (interactive()) dev.new()
 #'   p + geom_stripchart(test.text = TRUE) +
 #'     labs(x = "Number of Cylinders", y = "Miles per Gallon")
 #'
@@ -325,7 +325,7 @@
 #'   #-----------------------------------------------------
 #'
 #'   set.seed(47)
-#'   dev.new()
+#'   if (interactive()) dev.new()
 #'   p + theme(legend.position = "none") +
 #'     geom_jitter(pch = 1, width = 0.15, height = 0) +
 #'     stat_summary(fun = "mean", geom = "point",
@@ -344,7 +344,7 @@
 #'   # Repeat Example 2, but put all text in a text box.
 #'   #--------------------------------------------------
 #'
-#'   dev.new()
+#'   if (interactive()) dev.new()
 #'   p + geom_stripchart(text.box = TRUE, test.text = TRUE) +
 #'     labs(x = "Number of Cylinders", y = "Miles per Gallon")
 #'
@@ -356,7 +356,7 @@
 #'   # in a text box.
 #'   #------------------------------------------------
 #'
-#'   dev.new()
+#'   if (interactive()) dev.new()
 #'   p + geom_stripchart(test.text = TRUE, test.text.box = TRUE) +
 #'     labs(x = "Number of Cylinders", y = "Miles per Gallon")
 #'
@@ -382,7 +382,7 @@
 #'   # (see the explanation for the argument ci above).
 #'   #------------------------------------------------------------
 #'
-#'   dev.new()
+#'   if (interactive()) dev.new()
 #'   p + geom_stripchart(location = "median", test.text = TRUE) +
 #'     labs(x = "Number of Cylinders", y = "Miles per Gallon")
 #'
@@ -406,7 +406,7 @@
 #'   # 4 and 8 cylinders.
 #'   #-----------------------------------------------
 #'
-#'   dev.new()
+#'   if (interactive()) dev.new()
 #'   p <- ggplot(subset(mtcars, cyl \%in\% c(4, 8)),
 #'     aes(x = factor(cyl), y = mpg, color = cyl))
 #'
@@ -423,7 +423,7 @@
 #'   # 3) put the text for the test results in a text box
 #'   #    and make them blue.
 #'
-#'   dev.new()
+#'   if (interactive()) dev.new()
 #'   p + geom_stripchart(test.text = TRUE, test.text.box = TRUE,
 #'         n.text.params = list(size = 3),
 #'         location.scale.text.params = list(size = 3),
@@ -457,7 +457,7 @@
 #'   # TcCB concentrations between the areas and use a nonparametric
 #'   # test to test for a difference between areas.
 #'
-#'   dev.new()
+#'   if (interactive()) dev.new()
 #'   p <- ggplot(EPA.94b.tccb.df, aes(x = Area, y = TcCB, color = Area))
 #'
 #'   p + geom_stripchart(location = "median", test.text = TRUE) +
@@ -470,7 +470,7 @@
 #'   # Now log-transform the TcCB data and use a parametric test
 #'   # to compare the areas.
 #'
-#'   dev.new()
+#'   if (interactive()) dev.new()
 #'   p <- ggplot(EPA.94b.tccb.df, aes(x = Area, y = log10(TcCB), color = Area))
 #'
 #'   p + geom_stripchart(test.text = TRUE) +
@@ -484,7 +484,7 @@
 #'   # between Areas.
 #'   #-----------------------------------------------------
 #'
-#'   dev.new()
+#'   if (interactive()) dev.new()
 #'   p + geom_stripchart(test.text = TRUE,
 #'         test.text.params = list(test.arg.list = list(var.equal=FALSE))) +
 #'     labs(y = "log10[ TcCB (ppb) ]")
@@ -523,7 +523,7 @@
 #'   #19        3.060    9  After
 #'   #20        1.900   10  After
 #'
-#'   dev.new()
+#'   if (interactive()) dev.new()
 #'   p <- ggplot(ACE.13.TCE.df, aes(x = Period, y = TCE.mg.per.L, color = Period))
 #'
 #'   p + geom_stripchart(paired = TRUE, group = "Well", test.text = TRUE) +
@@ -537,7 +537,7 @@
 #'   # remediation should decrease TCE concentration.
 #'   #---------------------------------------------------------
 #'
-#'   dev.new()
+#'   if (interactive()) dev.new()
 #'   p + geom_stripchart(paired = TRUE, group = "Well", test.text = TRUE,
 #'     test.text.params = list(test.arg.list = list(alternative="less"))) +
 #'     labs(y = "TCE (mg/L)")
@@ -575,7 +575,7 @@
 #'   #23           53     11    Below
 #'   #24          124     12    Below
 #'
-#'   dev.new()
+#'   if (interactive()) dev.new()
 #'   p <- ggplot(Helsel.Hirsch.02.Mayfly.df,
 #'     aes(x = Location, y = Mayfly.Count, color = Location))
 #'

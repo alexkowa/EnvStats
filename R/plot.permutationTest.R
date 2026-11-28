@@ -145,7 +145,7 @@
 #'
 #'   # Plot the results of the test
 #'   #-----------------------------
-#'   dev.new()
+#'   if (interactive()) dev.new()
 #'   plot(permutationTest.obj)
 #'
 #'   #==========

@@ -290,7 +290,7 @@
 #'   # 95%.  The jigsaw appearance of the plot is the result of using the
 #'   # score method:
 #'
-#'   dev.new()
+#'   if (interactive()) dev.new()
 #'   plotCiBinomDesign()
 #'
 #'   #----------
@@ -298,7 +298,7 @@
 #'   # Redo the example above, but use the traditional (and inaccurate)
 #'   # Wald method.
 #'
-#'   dev.new()
+#'   if (interactive()) dev.new()
 #'   plotCiBinomDesign(ci.method = "Wald")
 #'
 #'   #--------------------------------------------------------------------
@@ -363,7 +363,7 @@
 #'   p.hat.comp
 #'   #[1] 0.375
 #'
-#'   dev.new()
+#'   if (interactive()) dev.new()
 #'   plotCiBinomDesign(p.hat.or.p1.hat = p.hat.back,
 #'       p2.hat = p.hat.comp, digits=3)
 #'

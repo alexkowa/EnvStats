@@ -213,7 +213,7 @@ Create plots involving sample size, power, ratio of means, coefficient of variat
   # assuming lognormal data, a ratio of means of 2, a coefficient of variation
   # of 1, and a 5% significance level:
 
-  dev.new()
+  if (interactive()) dev.new()
   plotTTestLnormAltDesign(sample.type = "two")
 
   #----------
@@ -222,7 +222,7 @@ Create plots involving sample size, power, ratio of means, coefficient of variat
   # minimal detectable ratio for various levels of power, assuming a coefficient
   # of variation of 1 and using a 5% significance level:
 
-  dev.new()
+  if (interactive()) dev.new()
   plotTTestLnormAltDesign(x.var = "ratio.of.means", y.var = "n",
     range.x.var = c(1.5, 2), sample.type = "two", ylim = c(20, 120), main="")
 
@@ -270,7 +270,7 @@ Create plots involving sample size, power, ratio of means, coefficient of variat
   # detectable ratio of theta/(SSL/2) when the sample size is 6 and the exact power
   # calculations are used.
 
-  dev.new()
+  if (interactive()) dev.new()
   plotTTestLnormAltDesign(x.var = "ratio.of.means", y.var = "power",
     range.x.var = c(1, 5), n.or.n1 = 6, cv = 2, alpha = 0.2,
     alternative = "greater", approx = FALSE, ylim = c(0.2, 1),

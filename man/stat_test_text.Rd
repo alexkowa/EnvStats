@@ -217,7 +217,7 @@ For a strip plot or scatterplot produced using the package \link[ggplot2]{ggplot
   # test for the difference in means between groups.
   #------------------------------------------------------------
 
-  dev.new()
+  if (interactive()) dev.new()
   p + geom_point() +
     stat_n_text() + stat_mean_sd_text() +
     stat_test_text() +
@@ -231,7 +231,7 @@ For a strip plot or scatterplot produced using the package \link[ggplot2]{ggplot
   # and use the nonparametric test.
   #---------------------------------------------------------------
 
-  dev.new()
+  if (interactive()) dev.new()
   p + geom_point() +
     stat_n_text() + stat_median_iqr_text() +
     stat_test_text(test = "nonparametric") +
@@ -249,7 +249,7 @@ For a strip plot or scatterplot produced using the package \link[ggplot2]{ggplot
     aes(x = factor(cyl), y = mpg, color = cyl)) +
     theme(legend.position = "none")
 
-  dev.new()
+  if (interactive()) dev.new()
   p + geom_point() +
     stat_n_text() + stat_mean_sd_text() +
     stat_test_text() +
@@ -266,7 +266,7 @@ For a strip plot or scatterplot produced using the package \link[ggplot2]{ggplot
   #    and make them blue.
   #---------------------------------------------------
 
-  dev.new()
+  if (interactive()) dev.new()
   p + geom_point() +
     stat_n_text(size = 3) + stat_mean_sd_text(size = 3) +
     stat_test_text(size = 3, text.box = TRUE, color = "blue") +

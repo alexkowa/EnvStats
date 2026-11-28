@@ -124,7 +124,7 @@ This class of objects is returned by functions that perform permutation tests.
 
   # Plot the results of the test
   #-----------------------------
-  dev.new()
+  if (interactive()) dev.new()
   plot(permutationTest.obj)
 
   #==========

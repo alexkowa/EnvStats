@@ -205,7 +205,7 @@
 #'
 #'   # Plot the results of the test
 #'   #-----------------------------
-#'   dev.new()
+#'   if (interactive()) dev.new()
 #'   plot(test.list)
 #'
 #'   #==========
@@ -255,7 +255,7 @@
 #'
 #'   # Plot the results of the test
 #'   #-----------------------------
-#'   dev.new()
+#'   if (interactive()) dev.new()
 #'   plot(test.list)
 #'
 #'   #----------

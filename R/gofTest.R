@@ -506,7 +506,7 @@
 #'   #Alternative Hypothesis:          True cdf does not equal the
 #'   #                                 Gamma Distribution.
 #'
-#'   dev.new()
+#'   if (interactive()) dev.new()
 #'   plot(gof.list)
 #'
 #'   #----------
@@ -710,7 +710,7 @@
 #'   #Alternative Hypothesis:          True cdf does not equal the
 #'   #                                 Normal Distribution.
 #'
-#'   dev.new()
+#'   if (interactive()) dev.new()
 #'   plot(gof.list)
 #'
 #'   #----------

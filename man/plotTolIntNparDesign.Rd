@@ -156,14 +156,14 @@ Create plots involving sample size (\eqn{n}), coverage (\eqn{\beta}), and confid
   # Look at the relationship between confidence level and sample size for a two-sided
   # nonparametric tolerance interval.
 
-  dev.new()
+  if (interactive()) dev.new()
   plotTolIntNparDesign()
 
   #==========
 
   # Plot confidence level vs. sample size for various values of coverage:
 
-  dev.new()
+  if (interactive()) dev.new()
   plotTolIntNparDesign(coverage = 0.7, ylim = c(0,1), main = "")
 
   plotTolIntNparDesign(coverage = 0.8, add = TRUE, plot.col = "red")
@@ -189,7 +189,7 @@ Create plots involving sample size (\eqn{n}), coverage (\eqn{\beta}), and confid
   # Here we will modify the example and look at confidence level versus coverage for
   # a set sample size of n = 24.
 
-  dev.new()
+  if (interactive()) dev.new()
   plotTolIntNparDesign(x.var = "coverage", y.var = "conf.level", n = 24, ti.type = "upper")
 
   #==========

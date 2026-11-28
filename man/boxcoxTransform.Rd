@@ -204,13 +204,13 @@ Apply a Box-Cox power transformation to a set of data to attempt to induce
   set.seed(250)
   x <- rlnormAlt(30, mean = 10, cv = 2)
 
-  dev.new()
+  if (interactive()) dev.new()
   qqPlot(x, add.line = TRUE)
 
-  dev.new()
+  if (interactive()) dev.new()
   qqPlot(boxcoxTransform(x, lambda = 0.5), add.line = TRUE)
 
-  dev.new()
+  if (interactive()) dev.new()
   qqPlot(boxcoxTransform(x, lambda = 0), add.line = TRUE)
 
 

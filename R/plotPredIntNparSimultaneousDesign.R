@@ -194,7 +194,7 @@
 #'   # relationship between confidence level and sample size for a one-sided
 #'   # upper simultaneous nonparametric prediction interval.
 #'
-#'   dev.new()
+#'   if (interactive()) dev.new()
 #'   plotPredIntNparSimultaneousDesign(k = 1, m = 3, r = 20, range.x.var = c(2, 20))
 #'
 #'   #==========
@@ -202,7 +202,7 @@
 #'   # Plot confidence level vs. sample size for various values of number of
 #'   # future sampling occasions (r):
 #'
-#'   dev.new()
+#'   if (interactive()) dev.new()
 #'   plotPredIntNparSimultaneousDesign(m = 3, r = 10, rule = "CA",
 #'     ylim = c(0, 1), main = "")
 #'
@@ -224,7 +224,7 @@
 #'   # versus sample size (number of background observations requried) for
 #'   # a 1-of-3 plan assuming r = 10 compliance wells (future sampling occasions).
 #'
-#'   dev.new()
+#'   if (interactive()) dev.new()
 #'   plotPredIntNparSimultaneousDesign(k = 1, m = 3, r = 10, rule = "k.of.m")
 #'
 #'   #==========

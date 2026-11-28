@@ -191,10 +191,10 @@ Open the vignette locally with
 
   # Look at the data
   #-----------------
-  dev.new()
+  if (interactive()) dev.new()
   ts.plot(x)
 
-  dev.new()
+  if (interactive()) dev.new()
   acf(x)
 
   # Test for serial correlation
@@ -250,10 +250,10 @@ Open the vignette locally with
 
   # Look at the data
   #-----------------
-  dev.new()
+  if (interactive()) dev.new()
   ts.plot(y)
 
-  dev.new()
+  if (interactive()) dev.new()
   acf(y)
 
   # Test for serial correlation

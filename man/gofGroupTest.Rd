@@ -348,7 +348,7 @@ Perform a goodness-of-fit test to determine whether data in a set of
   #                                 does not come from a
   #                                 Normal Distribution.
 
-  dev.new()
+  if (interactive()) dev.new()
   plot(gofGroup.list)
 
   #----------

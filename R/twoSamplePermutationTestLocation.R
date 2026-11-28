@@ -172,7 +172,7 @@
 #'
 #'   # Plot the results of the test
 #'   #-----------------------------
-#'   dev.new()
+#'   if (interactive()) dev.new()
 #'   plot(test.list)
 #'
 #'   #==========
@@ -226,7 +226,7 @@
 #'   #
 #'   #P-value:                         0.0206
 #'
-#'   dev.new()
+#'   if (interactive()) dev.new()
 #'   plot(mean.list)
 #'
 #'
@@ -268,7 +268,7 @@
 #'   #
 #'   #P-value:                         0.936
 #'
-#'   dev.new()
+#'   if (interactive()) dev.new()
 #'   plot(median.list)
 #'
 #'   #==========

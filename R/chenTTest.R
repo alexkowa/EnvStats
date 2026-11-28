@@ -265,7 +265,7 @@
 #'   #[33]  26  26  26  27  27  28  28  28  28  29  29  30  30  31  32  32
 #'   #[49]  32  33  33  35  35  97  98 105 107 111 117 119
 #'
-#'   dev.new()
+#'   if (interactive()) dev.new()
 #'   hist(EPA.02d.Ex.9.mg.per.L.vec, col = "cyan", xlab = "Concentration (mg/L)")
 #'
 #'   # The Shapiro-Wilk goodness-of-fit test rejects the null hypothesis of a

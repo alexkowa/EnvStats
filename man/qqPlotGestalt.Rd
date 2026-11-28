@@ -218,16 +218,16 @@ Produce a series of quantile-quantile (Q-Q) plots (also called probability plots
   #         same plots more than once.)
 
   set.seed(298)
-  qqPlotGestalt(same.window = FALSE)
+  qqPlotGestalt(same.window = !interactive(), ask = FALSE)
 
   # Add lines to these same Q-Q plots
   #----------------------------------
   set.seed(298)
-  qqPlotGestalt(same.window = FALSE, add.line = TRUE)
+  qqPlotGestalt(same.window = !interactive(), ask = FALSE, add.line = TRUE)
 
   # Add lines to different Q-Q plots
   #---------------------------------
-  qqPlotGestalt(same.window = FALSE, add.line = TRUE)
+  qqPlotGestalt(same.window = !interactive(), ask = FALSE, add.line = TRUE)
 
   \dontrun{
   # Look at 4 sets of plots all in the same graphics window
@@ -243,7 +243,7 @@ Produce a series of quantile-quantile (Q-Q) plots (also called probability plots
   qqPlotGestalt(dist = "gammaAlt",
     param.list = list(mean = 10, cv = 1),
     estimate.params = TRUE, num.pages = 3,
-    same.window = FALSE, add.line = TRUE)
+    same.window = !interactive(), ask = FALSE, add.line = TRUE)
 
 
   # Look at Tukey Mean Difference Q-Q plots
@@ -253,7 +253,7 @@ Produce a series of quantile-quantile (Q-Q) plots (also called probability plots
   qqPlotGestalt(dist = "gammaAlt",
     param.list = list(mean = 10, cv = 1),
     estimate.params = TRUE, num.pages = 3,
-    plot.type = "Tukey", same.window = FALSE, add.line = TRUE)
+    plot.type = "Tukey", same.window = !interactive(), ask = FALSE, add.line = TRUE)
 
   #==========
 

@@ -324,7 +324,7 @@
 #'   set.seed(250)
 #'   x <- rlnormAlt(30, mean = 10, cv = 2)
 #'
-#'   dev.new()
+#'   if (interactive()) dev.new()
 #'   hist(x, col = "cyan")
 #'
 #'   # Using the PPCC objective:
@@ -415,12 +415,12 @@
 #'   # Plot the results based on the PPCC objective
 #'   #---------------------------------------------
 #'   boxcox.list <- boxcox(x)
-#'   dev.new()
+#'   if (interactive()) dev.new()
 #'   plot(boxcox.list)
 #'
 #'   #Look at QQ-Plots for the candidate values of lambda
 #'   #---------------------------------------------------
-#'   plot(boxcox.list, plot.type = "Q-Q Plots", same.window = FALSE)
+#'   plot(boxcox.list, plot.type = "Q-Q Plots", same.window = !interactive(), ask = FALSE)
 #'
 #'   #==========
 #'
@@ -459,7 +459,7 @@
 #'
 #'   # Plot Ozone vs. Temperature, with fitted line
 #'   #---------------------------------------------
-#'   dev.new()
+#'   if (interactive()) dev.new()
 #'   with(Environmental.df,
 #'     plot(temperature, ozone, xlab = "Temperature (degrees F)",
 #'       ylab = "Ozone (ppb)", main = "Ozone vs. Temperature"))
@@ -467,7 +467,7 @@
 #'
 #'   # Look at the Q-Q Plot for the residuals
 #'   #---------------------------------------
-#'   dev.new()
+#'   if (interactive()) dev.new()
 #'   qqPlot(ozone.fit$residuals, add.line = TRUE)
 #'
 #'   # Look at Box-Cox transformations of Ozone
@@ -496,12 +496,12 @@
 #'
 #'   # Plot PPCC vs. lambda based on Q-Q plots of residuals
 #'   #-----------------------------------------------------
-#'   dev.new()
+#'   if (interactive()) dev.new()
 #'   plot(boxcox.list)
 #'
 #'   # Look at Q-Q plots of residuals for the various transformation
 #'   #--------------------------------------------------------------
-#'   plot(boxcox.list, plot.type = "Q-Q Plots", same.window = FALSE)
+#'   plot(boxcox.list, plot.type = "Q-Q Plots", same.window = !interactive(), ask = FALSE)
 #'
 #'   # Compute the "optimal" transformation
 #'   #-------------------------------------

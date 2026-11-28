@@ -375,7 +375,7 @@ For one sample, plots the empirical cumulative distribution function (ecdf)
   sum(censored)
   #[1] 7
 
-  dev.new()
+  if (interactive()) dev.new()
   cdfCompareCensored(x, censored)
 
   # Clean up
@@ -429,12 +429,12 @@ For one sample, plots the empirical cumulative distribution function (ecdf)
   #-----------------------------
 
   # Michael-Schucany plotting positions:
-  dev.new()
+  if (interactive()) dev.new()
   with(EPA.09.Ex.15.1.manganese.df,
     cdfCompareCensored(Manganese.ppb, Censored))
 
   # Kaplan-Meier plotting positions:
-  dev.new()
+  if (interactive()) dev.new()
   with(EPA.09.Ex.15.1.manganese.df,
     cdfCompareCensored(Manganese.ppb, Censored,
       prob.method = "kaplan-meier"))
@@ -444,12 +444,12 @@ For one sample, plots the empirical cumulative distribution function (ecdf)
   #--------------------------------
 
   # Michael-Schucany plotting positions:
-  dev.new()
+  if (interactive()) dev.new()
   with(EPA.09.Ex.15.1.manganese.df,
     cdfCompareCensored(Manganese.ppb, Censored, dist = "lnorm"))
 
   # Kaplan-Meier plotting positions:
-  dev.new()
+  if (interactive()) dev.new()
   with(EPA.09.Ex.15.1.manganese.df,
     cdfCompareCensored(Manganese.ppb, Censored, dist = "lnorm",
       prob.method = "kaplan-meier"))
@@ -459,12 +459,12 @@ For one sample, plots the empirical cumulative distribution function (ecdf)
   #----------------------------
 
   # Michael-Schucany plotting positions:
-  dev.new()
+  if (interactive()) dev.new()
   with(EPA.09.Ex.15.1.manganese.df,
     cdfCompareCensored(Manganese.ppb, Censored, dist = "gamma"))
 
   # Kaplan-Meier plotting positions:
-  dev.new()
+  if (interactive()) dev.new()
   with(EPA.09.Ex.15.1.manganese.df,
     cdfCompareCensored(Manganese.ppb, Censored, dist = "gamma",
       prob.method = "kaplan-meier"))
@@ -518,14 +518,14 @@ For one sample, plots the empirical cumulative distribution function (ecdf)
 
   # First compare the copper concentrations
   #----------------------------------------
-  dev.new()
+  if (interactive()) dev.new()
   cdfCompareCensored(x = Cu.AF, censored = Cu.AF.cen,
     y = Cu.BT, y.censored = Cu.BT.cen)
 
 
   # Now compare the zinc concentrations
   #------------------------------------
-  dev.new()
+  if (interactive()) dev.new()
   cdfCompareCensored(x = Zn.AF, censored = Zn.AF.cen,
     y = Zn.BT, y.censored = Zn.BT.cen)
 
@@ -550,7 +550,7 @@ For one sample, plots the empirical cumulative distribution function (ecdf)
   #Zn.AF[-38] 66 14.4697 8.1604     10   3  50    1      67
 
 
-  dev.new()
+  if (interactive()) dev.new()
   cdfCompareCensored(x = Zn.AF[-38], censored = Zn.AF.cen[-38],
     y = Zn.BT, y.censored = Zn.BT.cen)
 

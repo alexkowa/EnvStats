@@ -10,6 +10,10 @@ vignette: >
   %\VignetteEncoding{UTF-8}
 ---
 
+```{r, include=FALSE, eval=identical(Sys.getenv("IN_PKGDOWN"), "true"), purl=FALSE}
+source("pkgdown-links.R", local = TRUE)
+```
+
 This vignette explains Rosner's generalized extreme Studentized deviate test
 for multiple potential outliers. It includes the sequential testing procedure,
 critical values, and the simulation tables used to assess Type I error and
@@ -22,7 +26,7 @@ Related vignettes:
 
 ## rosnerTest {#rosnertest}
 
-Help topic: [`rosnerTest`](https://alexkowa.github.io/EnvStats/reference/rosnerTest.html).
+Help topic: [`rosnerTest`](../help/rosnerTest).
 
 Let $x_1, x_2, \ldots, x_n$ denote the $n$ observations. We assume that $n-k$ of these observations come from the same normal (Gaussian) distribution, and that the $k$ most “extreme” observations may or may not represent observations from a different distribution. Let $x^{*}_1, x^{*}_2, \ldots, x^{*}_{n-i}$ denote the $n-i$ observations left after omiting the $i$ most extreme observations, where $i = 0, 1, \ldots, k-1$. Let $\bar{x}^{(i)}$ and $s^{(i)}$ denote the mean and standard deviation, respectively, of the $n-i$ observations in the data that remain after removing the $i$ most extreme observations. Thus, $\bar{x}^{(0)}$ and $s^{(0)}$ denote the mean and standard deviation for the full sample, and in general
 

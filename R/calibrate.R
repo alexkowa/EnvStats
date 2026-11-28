@@ -197,7 +197,7 @@
 #'
 #'   pointwise.list <- pointwise(pred.list, coverage = 0.99, individual = TRUE)
 #'
-#'   dev.new()
+#'   if (interactive()) dev.new()
 #'   plot(Spike, Cadmium, ylim = c(min(pointwise.list$lower),
 #'     max(pointwise.list$upper)), xlab = "True Concentration (ng/L)",
 #'     ylab = "Observed Concentration (ng/L)")

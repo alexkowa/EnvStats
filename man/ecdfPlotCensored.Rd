@@ -239,11 +239,11 @@ Produce an empirical cumulative distribution function plot for Type I left-censo
   new.x <- x
   new.x[censored] <- 18
 
-  dev.new()
+  if (interactive()) dev.new()
   ecdfPlot(x, xlim = range(pretty(x)),
     main = "Empirical CDF Plot for\nComplete Data Set")
 
-  dev.new()
+  if (interactive()) dev.new()
   ecdfPlotCensored(new.x, censored, xlim = range(pretty(x)),
     main="Empirical CDF Plot for\nCensored Data Set")
 
@@ -274,7 +274,7 @@ Produce an empirical cumulative distribution function plot for Type I left-censo
   #24      4 Well.5                8.4           8.4    FALSE
   #25      5 Well.5                 <2           2.0     TRUE
 
-  dev.new()
+  if (interactive()) dev.new()
   with(EPA.09.Ex.15.1.manganese.df,
     ecdfPlotCensored(Manganese.ppb, Censored,
       prob.method = "kaplan-meier", ecdf.col = "blue",

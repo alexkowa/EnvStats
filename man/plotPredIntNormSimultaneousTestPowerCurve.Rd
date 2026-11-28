@@ -211,7 +211,7 @@ Plot power vs. \eqn{\Delta/\sigma} (scaled minimal detectable difference) for a
 
   # Here is the power curve for the 1-of-4 sampling strategy:
 
-  dev.new()
+  if (interactive()) dev.new()
   plotPredIntNormSimultaneousTestPowerCurve(n = 25, k = 1, m = 4, r = 2,
     rule="k.of.m", pi.type = "upper",  conf.level = conf.level,
     xlab = "SD Units Above Background", main = "")

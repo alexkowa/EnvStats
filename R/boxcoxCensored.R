@@ -381,12 +381,12 @@
 #'   # Plot the results based on the PPCC objective
 #'   #---------------------------------------------
 #'   boxcox.list <- boxcoxCensored(x, censored)
-#'   dev.new()
+#'   if (interactive()) dev.new()
 #'   plot(boxcox.list)
 #'
 #'   #Look at QQ-Plots for the candidate values of lambda
 #'   #---------------------------------------------------
-#'   plot(boxcox.list, plot.type = "Q-Q Plots", same.window = FALSE)
+#'   plot(boxcox.list, plot.type = "Q-Q Plots", same.window = !interactive(), ask = FALSE)
 #'
 #'   #==========
 #'

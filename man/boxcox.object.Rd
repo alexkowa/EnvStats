@@ -91,7 +91,7 @@ Objects of S3 class \code{"boxcox"} are returned by the \pkg{EnvStats}
   set.seed(250)
   x <- rlnormAlt(30, mean = 10, cv = 2)
 
-  dev.new()
+  if (interactive()) dev.new()
   hist(x, col = "cyan")
 
   boxcox.list <- boxcox(x)

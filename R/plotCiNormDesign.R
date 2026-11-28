@@ -206,7 +206,7 @@
 #'   # for a one-sample confidence interval for the mean, assuming
 #'   # an estimated standard deviation of 1 and a confidence level of 95%.
 #'
-#'   dev.new()
+#'   if (interactive()) dev.new()
 #'   plotCiNormDesign()
 #'
 #'   #--------------------------------------------------------------------
@@ -214,7 +214,7 @@
 #'   # Plot sample size vs. the estimated standard deviation for
 #'   # various levels of confidence, using a half-width of 0.5.
 #'
-#'   dev.new()
+#'   if (interactive()) dev.new()
 #'   plotCiNormDesign(x.var = "sigma.hat", y.var = "n", main = "")
 #'
 #'   plotCiNormDesign(x.var = "sigma.hat", y.var = "n", conf.level = 0.9,
@@ -259,7 +259,7 @@
 #'   sigma.hat
 #'   #[1] 4.93491
 #'
-#'   dev.new()
+#'   if (interactive()) dev.new()
 #'   plotCiNormDesign(sigma.hat = sigma.hat, digits = 2,
 #'     range.x.var = c(2, 25))
 #'

@@ -114,7 +114,7 @@ Produces an empirical probability density function plot.
   # create a histogram of the log-transformed observations,
   # then superimpose the empirical pdf plot.
 
-  dev.new()
+  if (interactive()) dev.new()
   log.TcCB <- with(EPA.94b.tccb.df, log(TcCB[Area == "Reference"]))
 
   hist(log.TcCB, freq = FALSE, xlim = c(-2, 1),
@@ -131,7 +131,7 @@ Produces an empirical probability density function plot.
 
   set.seed(875)
   x <- rpois(20, lambda = 10)
-  dev.new()
+  if (interactive()) dev.new()
   epdfPlot(x, discrete = TRUE)
 
   #==========

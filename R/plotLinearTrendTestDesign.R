@@ -183,7 +183,7 @@
 #'   # Look at the relationship between power and sample size for the t-test for
 #'   # liner trend, assuming a scaled slope of 0.1 and a 5% significance level:
 #'
-#'   dev.new()
+#'   if (interactive()) dev.new()
 #'   plotLinearTrendTestDesign()
 #'
 #'   #==========
@@ -191,7 +191,7 @@
 #'   # Plot sample size vs. the scaled minimal detectable slope for various
 #'   # levels of power, using a 5% significance level:
 #'
-#'   dev.new()
+#'   if (interactive()) dev.new()
 #'   plotLinearTrendTestDesign(x.var = "slope.over.sigma", y.var = "n",
 #'     ylim = c(0, 30), main = "")
 #'

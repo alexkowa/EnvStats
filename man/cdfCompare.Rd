@@ -224,7 +224,7 @@ For one sample, plots the empirical cumulative distribution function (ecdf)
 
   set.seed(250)
   x <- rnorm(20, mean = 10, sd = 2)
-  dev.new()
+  if (interactive()) dev.new()
   cdfCompare(x)
 
   #----------
@@ -236,7 +236,7 @@ For one sample, plots the empirical cumulative distribution function (ecdf)
 
   set.seed(432)
   y <- rexp(30, rate = 0.1)
-  dev.new()
+  if (interactive()) dev.new()
   cdfCompare(x, y)
 
   #==========
@@ -248,7 +248,7 @@ For one sample, plots the empirical cumulative distribution function (ecdf)
 
   set.seed(250)
   x <- rpois(20, lambda = 10)
-  dev.new()
+  if (interactive()) dev.new()
   cdfCompare(x, dist = "pois")
 
   #==========

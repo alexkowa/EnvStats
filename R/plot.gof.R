@@ -312,13 +312,13 @@
 #'
 #'   # Summary plot (the default)
 #'   #---------------------------
-#'   dev.new()
+#'   if (interactive()) dev.new()
 #'   plot(gof.obj)
 #'
 #'
 #'   # Make your own titles for the summary plot
 #'   #------------------------------------------
-#'   dev.new()
+#'   if (interactive()) dev.new()
 #'   plot(gof.obj, captions = list(PDFs = "Compare PDFs",
 #'     CDFs = "Compare CDFs", QQ = "Q-Q Plot", Results = "Results"),
 #'     om.title = "Summary")
@@ -326,13 +326,13 @@
 #'
 #'   # Just the Q-Q Plot
 #'   #------------------
-#'   dev.new()
+#'   if (interactive()) dev.new()
 #'   plot(gof.obj, plot.type="Q-Q")
 #'
 #'
 #'   # Make your own title for the Q-Q Plot
 #'   #-------------------------------------
-#'   dev.new()
+#'   if (interactive()) dev.new()
 #'   plot(gof.obj, plot.type="Q-Q", main = "Q-Q Plot")
 #'
 #'   #==========

@@ -10,6 +10,10 @@ vignette: >
   %\VignetteEncoding{UTF-8}
 ---
 
+```{r, include=FALSE, eval=identical(Sys.getenv("IN_PKGDOWN"), "true"), purl=FALSE}
+source("pkgdown-links.R", local = TRUE)
+```
+
 This vignette describes nonparametric estimates of distribution summaries and
 quantiles, followed by rank and permutation tests for comparing two samples.
 It includes extensions for censored observations and the assumptions behind the
@@ -23,7 +27,7 @@ Related vignettes:
 
 ## enpar {#enpar}
 
-Help topic: [`enpar`](https://alexkowa.github.io/EnvStats/reference/enpar.html).
+Help topic: [`enpar`](../help/enpar).
 
 Let $\underline{x} = (x_1, x_2, \ldots, x_N)$ denote a vector of $N$ observations from some distribution with mean $\mu$ and standard deviation $\sigma$.
 
@@ -77,8 +81,8 @@ In the context of deriving an approximate $(1-\alpha)100\%$ confidence interval 
 
 1. Create a bootstrap sample by taking a random sample of size $N$ from the observations in $\underline{x}$, where sampling is done with replacement. Note that because sampling is done with replacement, the same element of $\underline{x}$ can appear more than once in the bootstrap sample. Thus, the bootstrap sample will usually not look exactly like the original sample.
 2. Estimate $\mu$ based on the bootstrap sample created in Step 1, using the same method that was used to estimate $\mu$ using the original observations in $\underline{x}$. Because the bootstrap sample usually does not match the original sample, the estimate of $\mu$ based on the bootstrap sample will usually differ from the original estimate based on $\underline{x}$. For the bootstrap-t method (see below), this step also involves estimating the standard error of the estimate of the mean and computing the statistic $T = (\hat{\mu}_B - \hat{\mu}) / \hat{\sigma}_{\hat{\mu}_B}$ where $\hat{\mu}$ denotes the estimate of the mean based on the original sample, and $\hat{\mu}_B$ and $\hat{\sigma}_{\hat{\mu}_B}$ denote the estimate of the mean and estimate of the standard error of the estimate of the mean based on the bootstrap sample.
-3. Repeat Steps 1 and 2 $B$ times, where $B$ is some large number. For the function `enpar`, the number of bootstraps $B$ is determined by the argument `n.bootstraps` (see the arguments in the [`enpar` help page](https://alexkowa.github.io/EnvStats/reference/enpar.html)). The default value of `n.bootstraps` is `1000`.
-4. Use the $B$ estimated values of $\mu$ to compute the empirical cumulative distribution function of the estimator of $\mu$ or to compute the empirical cumulative distribution function of the statistic $T$ (see [`ecdfPlot`](https://alexkowa.github.io/EnvStats/reference/ecdfPlot.html)), and then create a confidence interval for $\mu$ based on this estimated cdf.
+3. Repeat Steps 1 and 2 $B$ times, where $B$ is some large number. For the function `enpar`, the number of bootstraps $B$ is determined by the argument `n.bootstraps` (see the arguments in the [`enpar` help page](../help/enpar)). The default value of `n.bootstraps` is `1000`.
+4. Use the $B$ estimated values of $\mu$ to compute the empirical cumulative distribution function of the estimator of $\mu$ or to compute the empirical cumulative distribution function of the statistic $T$ (see [`ecdfPlot`](../help/ecdfPlot)), and then create a confidence interval for $\mu$ based on this estimated cdf.
 
 The two-sided percentile interval (Efron and Tibshirani, 1993, p.170) is computed as:
 
@@ -168,7 +172,7 @@ When `ci.method="bootstrap"`, the function `enpar` computes the percentile metho
 
 ## enparCensored {#enparcensored}
 
-Help topic: [`enparCensored`](https://alexkowa.github.io/EnvStats/reference/enparCensored.html).
+Help topic: [`enparCensored`](../help/enparCensored).
 
 Let $\underline{x} = (x_1, x_2, \ldots, x_N)$ denote a vector of $N$ observations from some positive-valued distribution with mean $\mu$ and standard deviation $\sigma$. Assume $n$ ($0 < n < N$) of these observations are known and $c$ ($c=N-n$) of these observations are all censored below (left-censored) or all censored above (right-censored) at $k$ censoring levels
 
@@ -190,7 +194,7 @@ $$
 \mu = \int_0^\inftydt = \int_0^\infty S(t) dt \;\;\;\;\;\; (2)
 $$
 
-where $F(t)$ denotes the cumulative distribution function evaluated at $t$ and $S(t) = 1 - F(t)$ denotes the survival function evaluated at $t$. When the Kaplan-Meier estimator is used to construct the survival function, you can use the area under this curve to estimate the mean of the distribution, and the estimator can be as efficient or more efficient than parametric estimators of the mean (Meier, 2004; Helsel, 2012; Lee and Wang, 2003). Let $\hat{F}(t)$ denote the Kaplan-Meier estimator of the empirical cumulative distribution function (ecdf) evaluated at $t$, and let $\hat{S}(t) = 1 - \hat{F}(t)$ denote the estimated survival function evaluated at $t$. (See the help files for [`ecdfPlotCensored`](https://alexkowa.github.io/EnvStats/reference/ecdfPlotCensored.html) and [`qqPlotCensored`](https://alexkowa.github.io/EnvStats/reference/qqPlotCensored.html) for an explanation of how the Kaplan-Meier estimator of the ecdf is computed.)
+where $F(t)$ denotes the cumulative distribution function evaluated at $t$ and $S(t) = 1 - F(t)$ denotes the survival function evaluated at $t$. When the Kaplan-Meier estimator is used to construct the survival function, you can use the area under this curve to estimate the mean of the distribution, and the estimator can be as efficient or more efficient than parametric estimators of the mean (Meier, 2004; Helsel, 2012; Lee and Wang, 2003). Let $\hat{F}(t)$ denote the Kaplan-Meier estimator of the empirical cumulative distribution function (ecdf) evaluated at $t$, and let $\hat{S}(t) = 1 - \hat{F}(t)$ denote the estimated survival function evaluated at $t$. (See the help files for [`ecdfPlotCensored`](../help/ecdfPlotCensored) and [`qqPlotCensored`](../help/qqPlotCensored) for an explanation of how the Kaplan-Meier estimator of the ecdf is computed.)
 
 The formula for the estimated mean is given by (Lee and Wang, 2003, p. 74):
 
@@ -272,9 +276,9 @@ To compute the restricted mean (`restricted=TRUE`), for left-censored data, the 
 
 ProUCL 5.2.0 (USEPA, 2022, pp. 128--129) and Beal (2010) do not compute the restricted mean in cases where it could be applied, whereas USEPA (2009, pp. 15--7 to 15--12) and the `kmms` function in Version 2.0 of the R package **STAND** (Frome and Frome, 2015) do compute the restricted mean and set the smallest censored observation(s) equal to the censoring level (i.e., what `enparCensored` does when `restricted=TRUE` and `left.censored.min="Censoring Level"`).
 
-To be consistent with ProUCL 5.2.0, by default the function `enparCensored` does not compute the restricted mean (i.e., `restricted=FALSE`). Note that there are instances where ProUCL 5.2.0 does not agree with `enparCensored`, and it is not clear why. It should be noted that when the restricted mean is computed, the number of uncensored observations increases because the smallest (left-censored) or largest (right-censored) censored observation(s) is/are set to a specified value and treated as uncensored. The `kmms` function in Version 2.0 of the **STAND** package (Frome and Frome, 2015) is inconsistent in how it treats the number of uncensored observations when computing estimates associated with the restricted mean. Although `kmms` sets the smallest censored observations to the observed censoring level and treats them as not censored, when it computes the bias correction factor for the standard error of the mean, it assumes those observations are still censored (see the examples in the [`enparCensored` help page](https://alexkowa.github.io/EnvStats/reference/enparCensored.html)).
+To be consistent with ProUCL 5.2.0, by default the function `enparCensored` does not compute the restricted mean (i.e., `restricted=FALSE`). Note that there are instances where ProUCL 5.2.0 does not agree with `enparCensored`, and it is not clear why. It should be noted that when the restricted mean is computed, the number of uncensored observations increases because the smallest (left-censored) or largest (right-censored) censored observation(s) is/are set to a specified value and treated as uncensored. The `kmms` function in Version 2.0 of the **STAND** package (Frome and Frome, 2015) is inconsistent in how it treats the number of uncensored observations when computing estimates associated with the restricted mean. Although `kmms` sets the smallest censored observations to the observed censoring level and treats them as not censored, when it computes the bias correction factor for the standard error of the mean, it assumes those observations are still censored (see the examples in the [`enparCensored` help page](../help/enparCensored)).
 
-In the unusual case when a restricted mean will be estimated and setting the smallest censored value(s) to an uncensored value (left-censored data), or setting the largest censored value(s) to an uncensored value (right-censored data), results in no censored values in the data, the Kaplan-Meier estimate of the mean reduces to the sample mean, so the function [`enpar`](https://alexkowa.github.io/EnvStats/reference/enpar.html) is called and, if `warn=TRUE`, a warning is returned.
+In the unusual case when a restricted mean will be estimated and setting the smallest censored value(s) to an uncensored value (left-censored data), or setting the largest censored value(s) to an uncensored value (right-censored data), results in no censored values in the data, the Kaplan-Meier estimate of the mean reduces to the sample mean, so the function [`enpar`](../help/enpar) is called and, if `warn=TRUE`, a warning is returned.
 
 **Confidence Intervals**  
 This section explains how confidence intervals for the mean $\mu$ are computed.
@@ -299,8 +303,8 @@ In the context of deriving an approximate $(1-\alpha)100\%$ confidence interval 
 
 1. Create a bootstrap sample by taking a random sample of size $N$ from the observations in $\underline{x}$, where sampling is done with replacement. Note that because sampling is done with replacement, the same element of $\underline{x}$ can appear more than once in the bootstrap sample. Thus, the bootstrap sample will usually not look exactly like the original sample (e.g., the number of censored observations in the bootstrap sample will often differ from the number of censored observations in the original sample).
 2. Estimate $\mu$ based on the bootstrap sample created in Step 1, using the same method that was used to estimate $\mu$ using the original observations in $\underline{x}$. Because the bootstrap sample usually does not match the original sample, the estimate of $\mu$ based on the bootstrap sample will usually differ from the original estimate based on $\underline{x}$. For the bootstrap-t method (see below), this step also involves estimating the standard error of the estimate of the mean and computing the statistic $T = (\hat{\mu}_B - \hat{\mu}) / \hat{\sigma}_{\hat{\mu}_B}$ where $\hat{\mu}$ denotes the estimate of the mean based on the original sample, and $\hat{\mu}_B$ and $\hat{\sigma}_{\hat{\mu}_B}$ denote the estimate of the mean and estimate of the standard error of the estimate of the mean based on the bootstrap sample.
-3. Repeat Steps 1 and 2 $B$ times, where $B$ is some large number. For the function `enparCensored`, the number of bootstraps $B$ is determined by the argument `n.bootstraps` (see the arguments in the [`enparCensored` help page](https://alexkowa.github.io/EnvStats/reference/enparCensored.html)). The default value of `n.bootstraps` is `1000`.
-4. Use the $B$ estimated values of $\mu$ to compute the empirical cumulative distribution function of the estimator of $\mu$ or to compute the empirical cumulative distribution function of the statistic $T$ (see [`ecdfPlot`](https://alexkowa.github.io/EnvStats/reference/ecdfPlot.html)), and then create a confidence interval for $\mu$ based on this estimated cdf.
+3. Repeat Steps 1 and 2 $B$ times, where $B$ is some large number. For the function `enparCensored`, the number of bootstraps $B$ is determined by the argument `n.bootstraps` (see the arguments in the [`enparCensored` help page](../help/enparCensored)). The default value of `n.bootstraps` is `1000`.
+4. Use the $B$ estimated values of $\mu$ to compute the empirical cumulative distribution function of the estimator of $\mu$ or to compute the empirical cumulative distribution function of the statistic $T$ (see [`ecdfPlot`](../help/ecdfPlot)), and then create a confidence interval for $\mu$ based on this estimated cdf.
 
 The two-sided percentile interval (Efron and Tibshirani, 1993, p.170) is computed as:
 
@@ -390,7 +394,7 @@ When `ci.method="bootstrap"`, the function `enparCensored` computes the percenti
 
 ## eqnpar {#eqnpar}
 
-Help topic: [`eqnpar`](https://alexkowa.github.io/EnvStats/reference/eqnpar.html).
+Help topic: [`eqnpar`](../help/eqnpar).
 
 If `x` contains any missing (`NA`), undefined (`NaN`) or infinite (`Inf`, `-Inf`) values, they will be removed prior to performing the estimation.
 
@@ -663,7 +667,7 @@ Because of the discrete nature of order statistics, when `ci.method="exact"` or
 
 ## twoSampleLinearRankTest {#twosamplelinearranktest}
 
-Help topic: [`twoSampleLinearRankTest`](https://alexkowa.github.io/EnvStats/reference/twoSampleLinearRankTest.html).
+Help topic: [`twoSampleLinearRankTest`](../help/twoSampleLinearRankTest).
 
 The function `twoSampleLinearRankTest` allows you to compare two samples using a locally most powerful rank test (LMPRT) to determine whether the two samples come from the same distribution. The sections below explain the concepts of location and scale shifts, linear rank tests, and LMPRT's.
 
@@ -916,7 +920,7 @@ is approximately distributed as a standard normal random variable for “large�
 
 ## twoSampleLinearRankTestCensored {#twosamplelinearranktestcensored}
 
-Help topic: [`twoSampleLinearRankTestCensored`](https://alexkowa.github.io/EnvStats/reference/twoSampleLinearRankTestCensored.html).
+Help topic: [`twoSampleLinearRankTestCensored`](../help/twoSampleLinearRankTestCensored).
 
 The function `twoSampleLinearRankTestCensored` allows you to compare two samples containing censored observations using a linear rank test to determine whether the two samples came from the same distribution. The section on [`twoSampleLinearRankTest`](nonparametric-methods.html#twosamplelinearranktest) explains linear rank tests for complete data (i.e., no censored observations are present), and here we assume you are familiar with that material. The sections below explain how linear rank tests can be extended to the case of censored data.
 
@@ -1163,7 +1167,7 @@ Most of the time, if censored observations occur in environmental data, they are
 
 ## twoSamplePermutationTestLocation {#twosamplepermutationtestlocation}
 
-Help topic: [`twoSamplePermutationTestLocation`](https://alexkowa.github.io/EnvStats/reference/twoSamplePermutationTestLocation.html).
+Help topic: [`twoSamplePermutationTestLocation`](../help/twoSamplePermutationTestLocation).
 
 **Randomization Tests**  
 In 1935, R.A. Fisher introduced the idea of a ***randomization test*** (Manly, 2007, p. 107; Efron and Tibshirani, 1993, Chapter 15), which is based on trying to answer the question: “Did the observed pattern happen by chance, or does the pattern indicate the null hypothesis is not true?” A randomization test works by simply enumerating all of the possible outcomes under the null hypothesis, then seeing where the observed outcome fits in. A randomization test is also called a ***permutation test***, because it involves permuting the observations during the enumeration procedure (Manly, 2007, p. 3).
@@ -1275,7 +1279,7 @@ For this simple example, the one-sided upper, one-sided lower, and two-sided p-v
 
 **Note:** Because of the nature of machine arithmetic and how the permutation distribution is computed, a one-sided upper p-value is computed as the proportion of times that the differences of the means (or medians) in the permutation distribution are greater than or equal to \[the observed difference in means (or medians) - a small tolerance value\], where the tolerance value is determined by the argument `tol`. Similarly, a one-sided lower p-value is computed as the proportion of times that the differences in the means (or medians) in the permutation distribution are less than or equal to \[the observed difference in the means (or medians) + a small tolerance value\]. Finally, a two-sided p-value is computed as the proportion of times the absolute values of the differences in the means (or medians) in the permutation distribution are greater than or equal to \[the absolute value of the observed difference in the means (or medians) - a small tolerance value\].
 
-In this simple example, we assumed the hypothesized differences in the means under the null hypothesis was $\delta_0 = 0$. If we had hypothesized a different value for $\delta_0$, then we would have had to subtract this value from each of the observations in Group 1 before permuting the group assignments to compute the permutation distribution of the differences of the means. As in the case of the [one-sample permutation test](https://alexkowa.github.io/EnvStats/reference/oneSamplePermutationTest.html), if the sample sizes for the groups become too large to compute all possible permutations of the group assignments, the permutation test can still be performed by sampling from the permutation distribution and comparing the observed difference in locations to the sampled permutation distribution of the difference in locations.
+In this simple example, we assumed the hypothesized differences in the means under the null hypothesis was $\delta_0 = 0$. If we had hypothesized a different value for $\delta_0$, then we would have had to subtract this value from each of the observations in Group 1 before permuting the group assignments to compute the permutation distribution of the differences of the means. As in the case of the [one-sample permutation test](../help/oneSamplePermutationTest), if the sample sizes for the groups become too large to compute all possible permutations of the group assignments, the permutation test can still be performed by sampling from the permutation distribution and comparing the observed difference in locations to the sampled permutation distribution of the difference in locations.
 
 Unlike the two-sample [Student's t-test](https://stat.ethz.ch/R-manual/R-devel/library/stats/html/t.test.html), we do not have to worry about the normality assumption when we use a permutation test. The permutation test still assumes, however, that under the null hypothesis, the distributions of the observations from each group are exactly the same, and under the alternative hypothesis there is simply a shift in location (that is, the whole distribution of group 1 is shifted by some constant relative to the distribution of group 2). Mathematically, this can be written as follows:
 
@@ -1289,4 +1293,4 @@ where $F_1$ and $F_2$ denote the cumulative distribution functions for group 1 a
 Based on the relationship between hypothesis tests and confidence intervals, it is possible to construct a two-sided or one-sided $(1-\alpha)100\%$ confidence interval for the difference in means or medians based on the two-sample permutation test by finding the values of $\delta_0$ that correspond to obtaining a p-value of $\alpha$ (Manly, 2007, pp. 18--20, 114). A confidence interval based on the bootstrap however, will yield a similar type of confidence interval (Efron and Tibshirani, 1993, p. 214); see the help file for [`boot`](https://search.r-project.org/CRAN/refmans/boot/html/boot.html) in the R package boot.
 
 **Paired-Sample Randomization Test for Location** (`paired=TRUE`)  
-When the argument `paired=TRUE`, the arguments `x` and `y` are assumed to have the same length, and the $n1 = n2 = n$ differences $y_i = x_i - y_i$, $i = 1, 2, \ldots, n$ are assumed to be independent observations from some symmetric distribution with mean $\mu$. The [one-sample permutation test](https://alexkowa.github.io/EnvStats/reference/oneSamplePermutationTest.html) can then be applied to the differences.
+When the argument `paired=TRUE`, the arguments `x` and `y` are assumed to have the same length, and the $n1 = n2 = n$ differences $y_i = x_i - y_i$, $i = 1, 2, \ldots, n$ are assumed to be independent observations from some symmetric distribution with mean $\mu$. The [one-sample permutation test](../help/oneSamplePermutationTest) can then be applied to the differences.

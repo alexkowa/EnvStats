@@ -347,7 +347,7 @@
 #'   #                                 does not come from a
 #'   #                                 Normal Distribution.
 #'
-#'   dev.new()
+#'   if (interactive()) dev.new()
 #'   plot(gofGroup.list)
 #'
 #'   #----------

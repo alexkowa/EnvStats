@@ -187,18 +187,18 @@ Plot the results of calling the function \code{\link{boxcox}}, which returns an
   # Plot the results based on the PPCC objective
   #---------------------------------------------
   boxcox.list <- boxcox(x)
-  dev.new()
+  if (interactive()) dev.new()
   plot(boxcox.list)
 
   # Look at Q-Q Plots for the candidate values of lambda
   #-----------------------------------------------------
-  plot(boxcox.list, plot.type = "Q-Q Plots", same.window = FALSE)
+  plot(boxcox.list, plot.type = "Q-Q Plots", same.window = !interactive(), ask = FALSE)
 
 
   # Look at Tukey Mean-Difference Q-Q Plots
   # for the candidate values of lambda
   #----------------------------------------
-  plot(boxcox.list, plot.type = "Tukey M-D Q-Q Plots", same.window = FALSE)
+  plot(boxcox.list, plot.type = "Tukey M-D Q-Q Plots", same.window = !interactive(), ask = FALSE)
 
   #==========
 

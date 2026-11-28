@@ -175,7 +175,7 @@ Create plots involving sample size, number of future observations, half-width,
   # prediction interval for k=1 future observation, assuming an estimated
   # standard deviation of 1 and a confidence level of 95%:
 
-  dev.new()
+  if (interactive()) dev.new()
   plotPredIntNormDesign()
 
   #==========
@@ -183,7 +183,7 @@ Create plots involving sample size, number of future observations, half-width,
   # Plot sample size vs. the estimated standard deviation for various levels
   # of confidence, using a half-width of 4:
 
-  dev.new()
+  if (interactive()) dev.new()
   plotPredIntNormDesign(x.var = "sigma.hat", y.var = "n", range.x.var = c(1, 2),
     ylim = c(0, 90), main = "")
 
@@ -230,7 +230,7 @@ Create plots involving sample size, number of future observations, half-width,
   sigma.hat
   #[1] 17.10119
 
-  dev.new()
+  if (interactive()) dev.new()
   plotPredIntNormDesign(x.var = "n", y.var = "half.width", range.x.var = c(4, 50),
     k = 4, sigma.hat = sigma.hat, conf.level = 0.9)
 

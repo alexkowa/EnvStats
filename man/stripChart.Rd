@@ -532,7 +532,7 @@ the list also includes these components:
   # TcCB concentrations between the areas and use a nonparametric
   # test to test for a difference between areas.
 
-  dev.new()
+  if (interactive()) dev.new()
   stripChart(TcCB ~ Area, data = EPA.94b.tccb.df, col = c("red", "blue"),
     p.value = TRUE, ci.and.test = "nonparametric",
     ylab = "TcCB (ppb)")
@@ -542,7 +542,7 @@ the list also includes these components:
   # Now log-transform the TcCB data and use a parametric test
   # to compare the areas.
 
-  dev.new()
+  if (interactive()) dev.new()
   stripChart(log10(TcCB) ~ Area, data = EPA.94b.tccb.df, col = c("red", "blue"),
     p.value = TRUE, ylab = "log10 [ TcCB (ppb) ]")
 
@@ -551,7 +551,7 @@ the list also includes these components:
   # Repeat the above procedure, but also plot the confidence interval
   # for the difference between the means.
 
-  dev.new()
+  if (interactive()) dev.new()
   stripChart(log10(TcCB) ~ Area, data = EPA.94b.tccb.df, col = c("red", "blue"),
     p.value = TRUE, plot.diff = TRUE, diff.col = "black",
     ylab = "log10 [ TcCB (ppb) ]")
@@ -560,7 +560,7 @@ the list also includes these components:
 
   # Repeat the above procedure, but allow the variances to differ.
 
-  dev.new()
+  if (interactive()) dev.new()
   stripChart(log10(TcCB) ~ Area, data = EPA.94b.tccb.df, col = c("red", "blue"),
     p.value = TRUE, plot.diff = TRUE, diff.col = "black",
     ylab = "log10 [ TcCB (ppb) ]", test.arg.list = list(var.equal = FALSE))
@@ -570,7 +570,7 @@ the list also includes these components:
   # Repeat the above procedure, but jitter the points instead of
   # stacking them.
 
-  dev.new()
+  if (interactive()) dev.new()
   stripChart(log10(TcCB) ~ Area, data = EPA.94b.tccb.df, col = c("red", "blue"),
     p.value = TRUE, plot.diff = TRUE, diff.col = "black",
     ylab = "log10 [ TcCB (ppb) ]", test.arg.list = list(var.equal = FALSE),
@@ -606,7 +606,7 @@ the list also includes these components:
   #19        3.060    9  After
   #20        1.900   10  After
 
-  dev.new()
+  if (interactive()) dev.new()
   stripChart(TCE.mg.per.L ~ Period, data = ACE.13.TCE.df,
     col = c("brown", "green"), p.value = TRUE, paired = TRUE,
     ylab = "TCE (mg/L)")
@@ -616,7 +616,7 @@ the list also includes these components:
   # Repeat the above procedure, but also plot the confidence interval
   # for the mean of the paired differences.
 
-  dev.new()
+  if (interactive()) dev.new()
   stripChart(TCE.mg.per.L ~ Period, data = ACE.13.TCE.df,
     col = c("brown", "green"), p.value = TRUE, paired = TRUE,
     ylab = "TCE (mg/L)", plot.diff = TRUE, diff.col = "blue")
@@ -627,7 +627,7 @@ the list also includes these components:
   # Repeat the last two examples, but use a one-sided alternative since
   # remediation should decrease TCE concentration.
 
-  dev.new()
+  if (interactive()) dev.new()
   stripChart(TCE.mg.per.L ~ Period, data = ACE.13.TCE.df,
     col = c("brown", "green"), p.value = TRUE, paired = TRUE,
     ylab = "TCE (mg/L)", alternative = "less",
@@ -647,7 +647,7 @@ the list also includes these components:
   #       so that the upper bound of the CI corresponds to the upper
   #       bound of a 95% one-sided CI.
 
-  dev.new()
+  if (interactive()) dev.new()
   stripChart(TCE.mg.per.L ~ Period, data = ACE.13.TCE.df,
     col = c("brown", "green"), p.value = TRUE, paired = TRUE,
     ylab = "TCE (mg/L)", group.difference.digits = 2,
@@ -678,7 +678,7 @@ the list also includes these components:
   #23           53     11    Below
   #24          124     12    Below
 
-  dev.new()
+  if (interactive()) dev.new()
   stripChart(Mayfly.Count ~ Location, data = Helsel.Hirsch.02.Mayfly.df,
     col = c("green", "brown"), p.value = TRUE, paired = TRUE,
     ci.and.test = "nonparametric", ylab = "Number of Mayfly Nymphs")
@@ -688,7 +688,7 @@ the list also includes these components:
   # Repeat the above procedure, but also plot the confidence interval
   # for the pseudomedian of the paired differences.
 
-  dev.new()
+  if (interactive()) dev.new()
   stripChart(Mayfly.Count ~ Location, data = Helsel.Hirsch.02.Mayfly.df,
     col = c("green", "brown"), p.value = TRUE, paired = TRUE,
     ci.and.test = "nonparametric", ylab = "Number of Mayfly Nymphs",

@@ -10,6 +10,10 @@ vignette: >
   %\VignetteEncoding{UTF-8}
 ---
 
+```{r, include=FALSE, eval=identical(Sys.getenv("IN_PKGDOWN"), "true"), purl=FALSE}
+source("pkgdown-links.R", local = TRUE)
+```
+
 This vignette describes the probability distributions available in EnvStats and
 the methods used to estimate gamma, lognormal, and generalized extreme value
 distribution parameters. It includes likelihood, moment, and probability-weighted
@@ -23,11 +27,11 @@ Related vignettes:
 
 ## Distribution.df {#distribution-df}
 
-Help topic: [`Distribution.df`](https://alexkowa.github.io/EnvStats/reference/Distribution.df.html).
+Help topic: [`Distribution.df`](../help/Distribution.df).
 
 The table below summarizes the probability distributions available in R and EnvStats. For each distribution, there are four associated functions for computing density values, percentiles, quantiles, and random numbers. The form of the names of these functions are `d`*abb*, `p`*abb*, `q`*abb*, and `r`*abb*, where *abb* is the abbreviated name of the distribution (see table below). These functions are described in the help file with the name of the distribution (see the first column of the table below). For example, the help file for `Beta` describes the behavior of `dbeta`, `pbeta`, `qbeta`, and `rbeta`.
 
-For most distributions, there is also an associated function for estimating the distribution parameters, and the form of the names of these functions is `e`*abb*, where *abb* is the abbreviated name of the distribution (see table below). All of these functions are listed in the help file [Estimating Distribution Parameters](https://alexkowa.github.io/EnvStats/reference/FcnsByCatEstDistParams.html). For example, the function [`ebeta`](https://alexkowa.github.io/EnvStats/reference/ebeta.html) estimates the shape parameters of a Beta distribution based on a random sample of observations from this distribution.
+For most distributions, there is also an associated function for estimating the distribution parameters, and the form of the names of these functions is `e`*abb*, where *abb* is the abbreviated name of the distribution (see table below). All of these functions are listed in the help file [Estimating Distribution Parameters](../help/FcnsByCatEstDistParams). For example, the function [`ebeta`](../help/ebeta) estimates the shape parameters of a Beta distribution based on a random sample of observations from this distribution.
 
 For some distributions, there are functions to estimate distribution parameters based on Type I censored data. The form of the names of these functions is `e`*abb*`SinglyCensored` for singly censored data and `e`*abb*`MultiplyCensored` for multiply censored data. All of these functions are listed under the heading *Estimating Distribution Parameters* in the [censored-data overview](censored-estimation.html#fcnsbycatcensoreddata).
 
@@ -66,7 +70,7 @@ For some distributions, there are functions to estimate distribution parameters 
     <td>\((-\infty, \infty)\)</td>
   </tr>
   <tr>
-    <td><a href="https://alexkowa.github.io/EnvStats/reference/Chi.html">Chi</a></td>
+    <td><a href="../help/Chi">Chi</a></td>
     <td><code>chi</code></td>
     <td>Continuous</td>
     <td>\([0, \infty)\)</td>
@@ -84,13 +88,13 @@ For some distributions, there are functions to estimate distribution parameters 
     <td>\([0, \infty)\)</td>
   </tr>
   <tr>
-    <td><a href="https://alexkowa.github.io/EnvStats/reference/EVD.html">Extreme</a></td>
+    <td><a href="../help/EVD">Extreme</a></td>
     <td><code>evd</code></td>
     <td>Continuous</td>
     <td>\((-\infty, \infty)\)</td>
   </tr>
   <tr>
-    <td><a href="https://alexkowa.github.io/EnvStats/reference/EVD.html">Value</a></td>
+    <td><a href="../help/EVD">Value</a></td>
     <td>&nbsp;</td>
     <td>&nbsp;</td>
     <td>&nbsp;</td>
@@ -108,31 +112,31 @@ For some distributions, there are functions to estimate distribution parameters 
     <td>\([0, \infty)\)</td>
   </tr>
   <tr>
-    <td><a href="https://alexkowa.github.io/EnvStats/reference/GammaAlt.html">Gamma</a></td>
+    <td><a href="../help/GammaAlt">Gamma</a></td>
     <td><code>gammaAlt</code></td>
     <td>Continuous</td>
     <td>\([0, \infty)\)</td>
   </tr>
   <tr>
-    <td><a href="https://alexkowa.github.io/EnvStats/reference/GammaAlt.html">(Alternative)</a></td>
+    <td><a href="../help/GammaAlt">(Alternative)</a></td>
     <td>&nbsp;</td>
     <td>&nbsp;</td>
     <td>&nbsp;</td>
   </tr>
   <tr>
-    <td><a href="https://alexkowa.github.io/EnvStats/reference/GEVD.html">Generalized</a></td>
+    <td><a href="../help/GEVD">Generalized</a></td>
     <td><code>gevd</code></td>
     <td>Continuous</td>
     <td>\((-\infty, \infty)\)</td>
   </tr>
   <tr>
-    <td><a href="https://alexkowa.github.io/EnvStats/reference/GEVD.html">Extreme</a></td>
+    <td><a href="../help/GEVD">Extreme</a></td>
     <td>&nbsp;</td>
     <td>&nbsp;</td>
     <td>for \(shape = 0\)</td>
   </tr>
   <tr>
-    <td><a href="https://alexkowa.github.io/EnvStats/reference/GEVD.html">Value</a></td>
+    <td><a href="../help/GEVD">Value</a></td>
     <td>&nbsp;</td>
     <td>&nbsp;</td>
     <td>&nbsp;</td>
@@ -198,91 +202,91 @@ For some distributions, there are functions to estimate distribution parameters 
     <td>\((0, \infty)\)</td>
   </tr>
   <tr>
-    <td><a href="https://alexkowa.github.io/EnvStats/reference/LognormalAlt.html">Lognormal</a></td>
+    <td><a href="../help/LognormalAlt">Lognormal</a></td>
     <td><code>lnormAlt</code></td>
     <td>Continuous</td>
     <td>\((0, \infty)\)</td>
   </tr>
   <tr>
-    <td><a href="https://alexkowa.github.io/EnvStats/reference/LognormalAlt.html">(Alternative)</a></td>
+    <td><a href="../help/LognormalAlt">(Alternative)</a></td>
     <td>&nbsp;</td>
     <td>&nbsp;</td>
     <td>&nbsp;</td>
   </tr>
   <tr>
-    <td><a href="https://alexkowa.github.io/EnvStats/reference/LognormalMix.html">Lognormal</a></td>
+    <td><a href="../help/LognormalMix">Lognormal</a></td>
     <td><code>lnormMix</code></td>
     <td>Continuous</td>
     <td>\((0, \infty)\)</td>
   </tr>
   <tr>
-    <td><a href="https://alexkowa.github.io/EnvStats/reference/LognormalMix.html">Mixture</a></td>
+    <td><a href="../help/LognormalMix">Mixture</a></td>
     <td>&nbsp;</td>
     <td>&nbsp;</td>
     <td>&nbsp;</td>
   </tr>
   <tr>
-    <td><a href="https://alexkowa.github.io/EnvStats/reference/LognormalMixAlt.html">Lognormal</a></td>
+    <td><a href="../help/LognormalMixAlt">Lognormal</a></td>
     <td><code>lnormMixAlt</code></td>
     <td>Continuous</td>
     <td>\((0, \infty)\)</td>
   </tr>
   <tr>
-    <td><a href="https://alexkowa.github.io/EnvStats/reference/LognormalMixAlt.html">Mixture</a></td>
+    <td><a href="../help/LognormalMixAlt">Mixture</a></td>
     <td>&nbsp;</td>
     <td>&nbsp;</td>
     <td>&nbsp;</td>
   </tr>
   <tr>
-    <td><a href="https://alexkowa.github.io/EnvStats/reference/LognormalMixAlt.html">(Alternative)</a></td>
+    <td><a href="../help/LognormalMixAlt">(Alternative)</a></td>
     <td>&nbsp;</td>
     <td>&nbsp;</td>
     <td>&nbsp;</td>
   </tr>
   <tr>
-    <td><a href="https://alexkowa.github.io/EnvStats/reference/Lognormal3.html">Three-</a></td>
+    <td><a href="../help/Lognormal3">Three-</a></td>
     <td><code>lnorm3</code></td>
     <td>Continuous</td>
     <td>\([threshold, \infty)\)</td>
   </tr>
   <tr>
-    <td><a href="https://alexkowa.github.io/EnvStats/reference/Lognormal3.html">Parameter</a></td>
+    <td><a href="../help/Lognormal3">Parameter</a></td>
     <td>&nbsp;</td>
     <td>&nbsp;</td>
     <td>&nbsp;</td>
   </tr>
   <tr>
-    <td><a href="https://alexkowa.github.io/EnvStats/reference/Lognormal3.html">Lognormal</a></td>
+    <td><a href="../help/Lognormal3">Lognormal</a></td>
     <td>&nbsp;</td>
     <td>&nbsp;</td>
     <td>&nbsp;</td>
   </tr>
   <tr>
-    <td><a href="https://alexkowa.github.io/EnvStats/reference/LognormalTrunc.html">Truncated</a></td>
+    <td><a href="../help/LognormalTrunc">Truncated</a></td>
     <td><code>lnormTrunc</code></td>
     <td>Continuous</td>
     <td>\([min, max]\)</td>
   </tr>
   <tr>
-    <td><a href="https://alexkowa.github.io/EnvStats/reference/LognormalTrunc.html">Lognormal</a></td>
+    <td><a href="../help/LognormalTrunc">Lognormal</a></td>
     <td>&nbsp;</td>
     <td>&nbsp;</td>
     <td>&nbsp;</td>
   </tr>
   <tr>
-    <td><a href="https://alexkowa.github.io/EnvStats/reference/LognormalTruncAlt.html">Truncated</a></td>
+    <td><a href="../help/LognormalTruncAlt">Truncated</a></td>
     <td><code>lnormTruncAlt</code></td>
     <td>Continuous</td>
     <td>\([min, max]\)</td>
   </tr>
   <tr>
-    <td><a href="https://alexkowa.github.io/EnvStats/reference/LognormalTruncAlt.html">Lognormal</a></td>
+    <td><a href="../help/LognormalTruncAlt">Lognormal</a></td>
     <td>&nbsp;</td>
     <td>&nbsp;</td>
     <td>&nbsp;</td>
   </tr>
   <tr>
-    <td><a href="https://alexkowa.github.io/EnvStats/reference/LognormalTruncAlt.html">(Alternative)</a></td>
+    <td><a href="../help/LognormalTruncAlt">(Alternative)</a></td>
     <td>&nbsp;</td>
     <td>&nbsp;</td>
     <td>&nbsp;</td>
@@ -306,31 +310,31 @@ For some distributions, there are functions to estimate distribution parameters 
     <td>\((-\infty, \infty)\)</td>
   </tr>
   <tr>
-    <td><a href="https://alexkowa.github.io/EnvStats/reference/NormalMix.html">Normal</a></td>
+    <td><a href="../help/NormalMix">Normal</a></td>
     <td><code>normMix</code></td>
     <td>Continuous</td>
     <td>\((-\infty, \infty)\)</td>
   </tr>
   <tr>
-    <td><a href="https://alexkowa.github.io/EnvStats/reference/NormalMix.html">Mixture</a></td>
+    <td><a href="../help/NormalMix">Mixture</a></td>
     <td>&nbsp;</td>
     <td>&nbsp;</td>
     <td>&nbsp;</td>
   </tr>
   <tr>
-    <td><a href="https://alexkowa.github.io/EnvStats/reference/NormalTrunc.html">Truncated</a></td>
+    <td><a href="../help/NormalTrunc">Truncated</a></td>
     <td><code>normTrunc</code></td>
     <td>Continuous</td>
     <td>\([min, max]\)</td>
   </tr>
   <tr>
-    <td><a href="https://alexkowa.github.io/EnvStats/reference/NormalTrunc.html">Normal</a></td>
+    <td><a href="../help/NormalTrunc">Normal</a></td>
     <td>&nbsp;</td>
     <td>&nbsp;</td>
     <td>&nbsp;</td>
   </tr>
   <tr>
-    <td><a href="https://alexkowa.github.io/EnvStats/reference/Pareto.html">Pareto</a></td>
+    <td><a href="../help/Pareto">Pareto</a></td>
     <td><code>pareto</code></td>
     <td>Continuous</td>
     <td>\([location, \infty)\)</td>
@@ -354,7 +358,7 @@ For some distributions, there are functions to estimate distribution parameters 
     <td>\((-\infty, \infty)\)</td>
   </tr>
   <tr>
-    <td><a href="https://alexkowa.github.io/EnvStats/reference/Triangular.html">Triangular</a></td>
+    <td><a href="../help/Triangular">Triangular</a></td>
     <td><code>tri</code></td>
     <td>Continuous</td>
     <td>\([min, max]\)</td>
@@ -384,55 +388,55 @@ For some distributions, there are functions to estimate distribution parameters 
     <td>(integer)</td>
   </tr>
   <tr>
-    <td><a href="https://alexkowa.github.io/EnvStats/reference/ZeroModifiedLognormal.html">Zero-Modified</a></td>
+    <td><a href="../help/ZeroModifiedLognormal">Zero-Modified</a></td>
     <td><code>zmlnorm</code></td>
     <td>Mixed</td>
     <td>\([0, \infty)\)</td>
   </tr>
   <tr>
-    <td><a href="https://alexkowa.github.io/EnvStats/reference/ZeroModifiedLognormal.html">Lognormal</a></td>
+    <td><a href="../help/ZeroModifiedLognormal">Lognormal</a></td>
     <td>&nbsp;</td>
     <td>&nbsp;</td>
     <td>&nbsp;</td>
   </tr>
   <tr>
-    <td><a href="https://alexkowa.github.io/EnvStats/reference/ZeroModifiedLognormal.html">(Delta)</a></td>
+    <td><a href="../help/ZeroModifiedLognormal">(Delta)</a></td>
     <td>&nbsp;</td>
     <td>&nbsp;</td>
     <td>&nbsp;</td>
   </tr>
   <tr>
-    <td><a href="https://alexkowa.github.io/EnvStats/reference/ZeroModifiedLognormalAlt.html">Zero-Modified</a></td>
+    <td><a href="../help/ZeroModifiedLognormalAlt">Zero-Modified</a></td>
     <td><code>zmlnormAlt</code></td>
     <td>Mixed</td>
     <td>\([0, \infty)\)</td>
   </tr>
   <tr>
-    <td><a href="https://alexkowa.github.io/EnvStats/reference/ZeroModifiedLognormalAlt.html">Lognormal</a></td>
+    <td><a href="../help/ZeroModifiedLognormalAlt">Lognormal</a></td>
     <td>&nbsp;</td>
     <td>&nbsp;</td>
     <td>&nbsp;</td>
   </tr>
   <tr>
-    <td><a href="https://alexkowa.github.io/EnvStats/reference/ZeroModifiedLognormalAlt.html">(Delta)</a></td>
+    <td><a href="../help/ZeroModifiedLognormalAlt">(Delta)</a></td>
     <td>&nbsp;</td>
     <td>&nbsp;</td>
     <td>&nbsp;</td>
   </tr>
   <tr>
-    <td><a href="https://alexkowa.github.io/EnvStats/reference/ZeroModifiedLognormalAlt.html">(Alternative)</a></td>
+    <td><a href="../help/ZeroModifiedLognormalAlt">(Alternative)</a></td>
     <td>&nbsp;</td>
     <td>&nbsp;</td>
     <td>&nbsp;</td>
   </tr>
   <tr>
-    <td><a href="https://alexkowa.github.io/EnvStats/reference/ZeroModifiedNormal.html">Zero-Modified</a></td>
+    <td><a href="../help/ZeroModifiedNormal">Zero-Modified</a></td>
     <td><code>zmnorm</code></td>
     <td>Mixed</td>
     <td>\((-\infty, \infty)\)</td>
   </tr>
   <tr>
-    <td><a href="https://alexkowa.github.io/EnvStats/reference/ZeroModifiedNormal.html">Normal</a></td>
+    <td><a href="../help/ZeroModifiedNormal">Normal</a></td>
     <td>&nbsp;</td>
     <td>&nbsp;</td>
     <td>&nbsp;</td>
@@ -463,7 +467,7 @@ For some distributions, there are functions to estimate distribution parameters 
     <td><code>shape1</code></td>
     <td>&nbsp;</td>
     <td>\((0, \infty)\)</td>
-    <td><a href="https://alexkowa.github.io/EnvStats/reference/ebeta.html">mle, mme, mmue</a></td>
+    <td><a href="../help/ebeta">mle, mme, mmue</a></td>
   </tr>
   <tr>
     <td>&nbsp;</td>
@@ -484,7 +488,7 @@ For some distributions, there are functions to estimate distribution parameters 
     <td><code>size</code></td>
     <td>&nbsp;</td>
     <td>\([0, \infty)\)</td>
-    <td><a href="https://alexkowa.github.io/EnvStats/reference/ebinom.html">mle/mme/mvue</a></td>
+    <td><a href="../help/ebinom">mle/mme/mvue</a></td>
   </tr>
   <tr>
     <td>&nbsp;</td>
@@ -508,7 +512,7 @@ For some distributions, there are functions to estimate distribution parameters 
     <td>&nbsp;</td>
   </tr>
   <tr>
-    <td><a href="https://alexkowa.github.io/EnvStats/reference/Chi.html">Chi</a></td>
+    <td><a href="../help/Chi">Chi</a></td>
     <td><code>df</code></td>
     <td>&nbsp;</td>
     <td>\((0, \infty)\)</td>
@@ -533,17 +537,17 @@ For some distributions, there are functions to estimate distribution parameters 
     <td><code>rate</code></td>
     <td><code>1</code></td>
     <td>\((0, \infty)\)</td>
-    <td><a href="https://alexkowa.github.io/EnvStats/reference/eexp.html">mle/mme</a></td>
+    <td><a href="../help/eexp">mle/mme</a></td>
   </tr>
   <tr>
-    <td><a href="https://alexkowa.github.io/EnvStats/reference/EVD.html">Extreme</a></td>
+    <td><a href="../help/EVD">Extreme</a></td>
     <td><code>location</code></td>
     <td><code>0</code></td>
     <td>\((-\infty, \infty)\)</td>
-    <td><a href="https://alexkowa.github.io/EnvStats/reference/eevd.html">mle, mme, mmue, pwme</a></td>
+    <td><a href="../help/eevd">mle, mme, mmue, pwme</a></td>
   </tr>
   <tr>
-    <td><a href="https://alexkowa.github.io/EnvStats/reference/EVD.html">Value</a></td>
+    <td><a href="../help/EVD">Value</a></td>
     <td><code>scale</code></td>
     <td><code>1</code></td>
     <td>\((0, \infty)\)</td>
@@ -575,7 +579,7 @@ For some distributions, there are functions to estimate distribution parameters 
     <td><code>shape</code></td>
     <td>&nbsp;</td>
     <td>\((0, \infty)\)</td>
-    <td><a href="https://alexkowa.github.io/EnvStats/reference/egamma.html">mle, bcmle, mme, mmue</a></td>
+    <td><a href="../help/egamma">mle, bcmle, mme, mmue</a></td>
   </tr>
   <tr>
     <td>&nbsp;</td>
@@ -585,35 +589,35 @@ For some distributions, there are functions to estimate distribution parameters 
     <td>&nbsp;</td>
   </tr>
   <tr>
-    <td><a href="https://alexkowa.github.io/EnvStats/reference/GammaAlt.html">Gamma</a></td>
+    <td><a href="../help/GammaAlt">Gamma</a></td>
     <td><code>mean</code></td>
     <td>&nbsp;</td>
     <td>\((0, \infty)\)</td>
-    <td><a href="https://alexkowa.github.io/EnvStats/reference/egamma.html">mle, bcmle, mme, mmue</a></td>
+    <td><a href="../help/egamma">mle, bcmle, mme, mmue</a></td>
   </tr>
   <tr>
-    <td><a href="https://alexkowa.github.io/EnvStats/reference/GammaAlt.html">(Alternative)</a></td>
+    <td><a href="../help/GammaAlt">(Alternative)</a></td>
     <td><code>cv</code></td>
     <td><code>1</code></td>
     <td>\((0, \infty)\)</td>
     <td>&nbsp;</td>
   </tr>
   <tr>
-    <td><a href="https://alexkowa.github.io/EnvStats/reference/GEVD.html">Generalized</a></td>
+    <td><a href="../help/GEVD">Generalized</a></td>
     <td><code>location</code></td>
     <td><code>0</code></td>
     <td>\((-\infty, \infty)\)</td>
-    <td><a href="https://alexkowa.github.io/EnvStats/reference/egevd.html">mle, pwme, tsoe</a></td>
+    <td><a href="../help/egevd">mle, pwme, tsoe</a></td>
   </tr>
   <tr>
-    <td><a href="https://alexkowa.github.io/EnvStats/reference/GEVD.html">Extreme</a></td>
+    <td><a href="../help/GEVD">Extreme</a></td>
     <td><code>scale</code></td>
     <td><code>1</code></td>
     <td>\((0, \infty)\)</td>
     <td>&nbsp;</td>
   </tr>
   <tr>
-    <td><a href="https://alexkowa.github.io/EnvStats/reference/GEVD.html">Value</a></td>
+    <td><a href="../help/GEVD">Value</a></td>
     <td><code>shape</code></td>
     <td><code>0</code></td>
     <td>\((-\infty, \infty)\)</td>
@@ -624,14 +628,14 @@ For some distributions, there are functions to estimate distribution parameters 
     <td><code>prob</code></td>
     <td>&nbsp;</td>
     <td>\((0, 1)\)</td>
-    <td><a href="https://alexkowa.github.io/EnvStats/reference/egeom.html">mle/mme, mvue</a></td>
+    <td><a href="../help/egeom">mle/mme, mvue</a></td>
   </tr>
   <tr>
     <td><code>Hypergeometric</code></td>
     <td><code>m</code></td>
     <td>&nbsp;</td>
     <td>\([0, \infty)\)</td>
-    <td><a href="https://alexkowa.github.io/EnvStats/reference/ehyper.html">mle, mvue</a></td>
+    <td><a href="../help/ehyper">mle, mvue</a></td>
   </tr>
   <tr>
     <td>&nbsp;</td>
@@ -652,7 +656,7 @@ For some distributions, there are functions to estimate distribution parameters 
     <td><code>location</code></td>
     <td><code>0</code></td>
     <td>\((-\infty, \infty)\)</td>
-    <td><a href="https://alexkowa.github.io/EnvStats/reference/elogis.html">mle, mme, mmue</a></td>
+    <td><a href="../help/elogis">mle, mme, mmue</a></td>
   </tr>
   <tr>
     <td>&nbsp;</td>
@@ -666,7 +670,7 @@ For some distributions, there are functions to estimate distribution parameters 
     <td><code>meanlog</code></td>
     <td><code>0</code></td>
     <td>\((-\infty, \infty)\)</td>
-    <td><a href="https://alexkowa.github.io/EnvStats/reference/elnorm.html">mle/mme, mvue</a></td>
+    <td><a href="../help/elnorm">mle/mme, mvue</a></td>
   </tr>
   <tr>
     <td>&nbsp;</td>
@@ -676,28 +680,28 @@ For some distributions, there are functions to estimate distribution parameters 
     <td>&nbsp;</td>
   </tr>
   <tr>
-    <td><a href="https://alexkowa.github.io/EnvStats/reference/LognormalAlt.html">Lognormal</a></td>
+    <td><a href="../help/LognormalAlt">Lognormal</a></td>
     <td><code>mean</code></td>
     <td><code>exp(1/2)</code></td>
     <td>\((0, \infty)\)</td>
-    <td><a href="https://alexkowa.github.io/EnvStats/reference/elnormAlt.html">mle, mme, mmue,</a></td>
+    <td><a href="../help/elnormAlt">mle, mme, mmue,</a></td>
   </tr>
   <tr>
-    <td><a href="https://alexkowa.github.io/EnvStats/reference/LognormalAlt.html">(Alternative)</a></td>
+    <td><a href="../help/LognormalAlt">(Alternative)</a></td>
     <td><code>cv</code></td>
     <td><code>sqrt(exp(1)-1)</code></td>
     <td>\((0, \infty)\)</td>
-    <td><a href="https://alexkowa.github.io/EnvStats/reference/elnormAlt.html">mvue, qmle</a></td>
+    <td><a href="../help/elnormAlt">mvue, qmle</a></td>
   </tr>
   <tr>
-    <td><a href="https://alexkowa.github.io/EnvStats/reference/LognormalMix.html">Lognormal</a></td>
+    <td><a href="../help/LognormalMix">Lognormal</a></td>
     <td><code>meanlog1</code></td>
     <td><code>0</code></td>
     <td>\((-\infty, \infty)\)</td>
     <td>&nbsp;</td>
   </tr>
   <tr>
-    <td><a href="https://alexkowa.github.io/EnvStats/reference/LognormalMix.html">Mixture</a></td>
+    <td><a href="../help/LognormalMix">Mixture</a></td>
     <td><code>sdlog1</code></td>
     <td><code>1</code></td>
     <td>\((0, \infty)\)</td>
@@ -725,21 +729,21 @@ For some distributions, there are functions to estimate distribution parameters 
     <td>&nbsp;</td>
   </tr>
   <tr>
-    <td><a href="https://alexkowa.github.io/EnvStats/reference/LognormalMixAlt.html">Lognormal</a></td>
+    <td><a href="../help/LognormalMixAlt">Lognormal</a></td>
     <td><code>mean1</code></td>
     <td><code>exp(1/2)</code></td>
     <td>\((0, \infty)\)</td>
     <td>&nbsp;</td>
   </tr>
   <tr>
-    <td><a href="https://alexkowa.github.io/EnvStats/reference/LognormalMixAlt.html">Mixture</a></td>
+    <td><a href="../help/LognormalMixAlt">Mixture</a></td>
     <td><code>cv1</code></td>
     <td><code>sqrt(exp(1)-1)</code></td>
     <td>\((0, \infty)\)</td>
     <td>&nbsp;</td>
   </tr>
   <tr>
-    <td><a href="https://alexkowa.github.io/EnvStats/reference/LognormalMixAlt.html">(Alternative)</a></td>
+    <td><a href="../help/LognormalMixAlt">(Alternative)</a></td>
     <td><code>mean2</code></td>
     <td><code>exp(1/2)</code></td>
     <td>\((0, \infty)\)</td>
@@ -760,42 +764,42 @@ For some distributions, there are functions to estimate distribution parameters 
     <td>&nbsp;</td>
   </tr>
   <tr>
-    <td><a href="https://alexkowa.github.io/EnvStats/reference/Lognormal3.html">Three-</a></td>
+    <td><a href="../help/Lognormal3">Three-</a></td>
     <td><code>meanlog</code></td>
     <td><code>0</code></td>
     <td>\((-\infty, \infty)\)</td>
-    <td><a href="https://alexkowa.github.io/EnvStats/reference/elnorm3.html">lmle, mme,</a></td>
+    <td><a href="../help/elnorm3">lmle, mme,</a></td>
   </tr>
   <tr>
-    <td><a href="https://alexkowa.github.io/EnvStats/reference/Lognormal3.html">Parameter</a></td>
+    <td><a href="../help/Lognormal3">Parameter</a></td>
     <td><code>sdlog</code></td>
     <td><code>1</code></td>
     <td>\((0, \infty)\)</td>
-    <td><a href="https://alexkowa.github.io/EnvStats/reference/elnorm3.html">mmue, mmme,</a></td>
+    <td><a href="../help/elnorm3">mmue, mmme,</a></td>
   </tr>
   <tr>
-    <td><a href="https://alexkowa.github.io/EnvStats/reference/Lognormal3.html">Lognormal</a></td>
+    <td><a href="../help/Lognormal3">Lognormal</a></td>
     <td><code>threshold</code></td>
     <td><code>0</code></td>
     <td>\((-\infty, \infty)\)</td>
-    <td><a href="https://alexkowa.github.io/EnvStats/reference/elnorm3.html">royston.skew,</a></td>
+    <td><a href="../help/elnorm3">royston.skew,</a></td>
   </tr>
   <tr>
     <td>&nbsp;</td>
     <td>&nbsp;</td>
     <td>&nbsp;</td>
     <td>&nbsp;</td>
-    <td><a href="https://alexkowa.github.io/EnvStats/reference/elnorm3.html">zero.skew</a></td>
+    <td><a href="../help/elnorm3">zero.skew</a></td>
   </tr>
   <tr>
-    <td><a href="https://alexkowa.github.io/EnvStats/reference/LognormalTrunc.html">Truncated</a></td>
+    <td><a href="../help/LognormalTrunc">Truncated</a></td>
     <td><code>meanlog</code></td>
     <td><code>0</code></td>
     <td>\((-\infty, \infty)\)</td>
     <td>&nbsp;</td>
   </tr>
   <tr>
-    <td><a href="https://alexkowa.github.io/EnvStats/reference/LognormalTrunc.html">Lognormal</a></td>
+    <td><a href="../help/LognormalTrunc">Lognormal</a></td>
     <td><code>sdlog</code></td>
     <td><code>1</code></td>
     <td>\((0, \infty)\)</td>
@@ -816,21 +820,21 @@ For some distributions, there are functions to estimate distribution parameters 
     <td>&nbsp;</td>
   </tr>
   <tr>
-    <td><a href="https://alexkowa.github.io/EnvStats/reference/LognormalTruncAlt.html">Truncated</a></td>
+    <td><a href="../help/LognormalTruncAlt">Truncated</a></td>
     <td><code>mean</code></td>
     <td><code>exp(1/2)</code></td>
     <td>\((0, \infty)\)</td>
     <td>&nbsp;</td>
   </tr>
   <tr>
-    <td><a href="https://alexkowa.github.io/EnvStats/reference/LognormalTruncAlt.html">Lognormal</a></td>
+    <td><a href="../help/LognormalTruncAlt">Lognormal</a></td>
     <td><code>cv</code></td>
     <td><code>sqrt(exp(1)-1)</code></td>
     <td>\((0, \infty)\)</td>
     <td>&nbsp;</td>
   </tr>
   <tr>
-    <td><a href="https://alexkowa.github.io/EnvStats/reference/LognormalTruncAlt.html">(Alternative)</a></td>
+    <td><a href="../help/LognormalTruncAlt">(Alternative)</a></td>
     <td><code>min</code></td>
     <td><code>0</code></td>
     <td>\([0, max)\)</td>
@@ -848,7 +852,7 @@ For some distributions, there are functions to estimate distribution parameters 
     <td><code>size</code></td>
     <td>&nbsp;</td>
     <td>\([1, \infty)\)</td>
-    <td><a href="https://alexkowa.github.io/EnvStats/reference/enbinom.html">mle/mme, mvue</a></td>
+    <td><a href="../help/enbinom">mle/mme, mvue</a></td>
   </tr>
   <tr>
     <td><code>Binomial</code></td>
@@ -869,7 +873,7 @@ For some distributions, there are functions to estimate distribution parameters 
     <td><code>mean</code></td>
     <td><code>0</code></td>
     <td>\((-\infty, \infty)\)</td>
-    <td><a href="https://alexkowa.github.io/EnvStats/reference/enorm.html">mle/mme, mvue</a></td>
+    <td><a href="../help/enorm">mle/mme, mvue</a></td>
   </tr>
   <tr>
     <td>&nbsp;</td>
@@ -879,14 +883,14 @@ For some distributions, there are functions to estimate distribution parameters 
     <td>&nbsp;</td>
   </tr>
   <tr>
-    <td><a href="https://alexkowa.github.io/EnvStats/reference/NormalMix.html">Normal</a></td>
+    <td><a href="../help/NormalMix">Normal</a></td>
     <td><code>mean1</code></td>
     <td><code>0</code></td>
     <td>\((-\infty, \infty)\)</td>
     <td>&nbsp;</td>
   </tr>
   <tr>
-    <td><a href="https://alexkowa.github.io/EnvStats/reference/NormalMix.html">Mixture</a></td>
+    <td><a href="../help/NormalMix">Mixture</a></td>
     <td><code>sd1</code></td>
     <td><code>1</code></td>
     <td>\((0, \infty)\)</td>
@@ -914,14 +918,14 @@ For some distributions, there are functions to estimate distribution parameters 
     <td>&nbsp;</td>
   </tr>
   <tr>
-    <td><a href="https://alexkowa.github.io/EnvStats/reference/NormalTrunc.html">Truncated</a></td>
+    <td><a href="../help/NormalTrunc">Truncated</a></td>
     <td><code>mean</code></td>
     <td><code>0</code></td>
     <td>\((-\infty, \infty)\)</td>
     <td>&nbsp;</td>
   </tr>
   <tr>
-    <td><a href="https://alexkowa.github.io/EnvStats/reference/NormalTrunc.html">Normal</a></td>
+    <td><a href="../help/NormalTrunc">Normal</a></td>
     <td><code>sd</code></td>
     <td><code>1</code></td>
     <td>\((0, \infty)\)</td>
@@ -942,11 +946,11 @@ For some distributions, there are functions to estimate distribution parameters 
     <td>&nbsp;</td>
   </tr>
   <tr>
-    <td><a href="https://alexkowa.github.io/EnvStats/reference/Pareto.html">Pareto</a></td>
+    <td><a href="../help/Pareto">Pareto</a></td>
     <td><code>location</code></td>
     <td>&nbsp;</td>
     <td>\((0, \infty)\)</td>
-    <td><a href="https://alexkowa.github.io/EnvStats/reference/epareto.html">lse, mle</a></td>
+    <td><a href="../help/epareto">lse, mle</a></td>
   </tr>
   <tr>
     <td>&nbsp;</td>
@@ -960,7 +964,7 @@ For some distributions, there are functions to estimate distribution parameters 
     <td><code>lambda</code></td>
     <td>&nbsp;</td>
     <td>\((0, \infty)\)</td>
-    <td><a href="https://alexkowa.github.io/EnvStats/reference/epois.html">mle/mme/mvue</a></td>
+    <td><a href="../help/epois">mle/mme/mvue</a></td>
   </tr>
   <tr>
     <td><code>Student's t</code></td>
@@ -977,7 +981,7 @@ For some distributions, there are functions to estimate distribution parameters 
     <td>&nbsp;</td>
   </tr>
   <tr>
-    <td><a href="https://alexkowa.github.io/EnvStats/reference/Triangular.html">Triangular</a></td>
+    <td><a href="../help/Triangular">Triangular</a></td>
     <td><code>min</code></td>
     <td><code>0</code></td>
     <td>\((-\infty, max)\)</td>
@@ -1002,7 +1006,7 @@ For some distributions, there are functions to estimate distribution parameters 
     <td><code>min</code></td>
     <td><code>0</code></td>
     <td>\((-\infty, max)\)</td>
-    <td><a href="https://alexkowa.github.io/EnvStats/reference/eunif.html">mle, mme, mmue</a></td>
+    <td><a href="../help/eunif">mle, mme, mmue</a></td>
   </tr>
   <tr>
     <td>&nbsp;</td>
@@ -1016,7 +1020,7 @@ For some distributions, there are functions to estimate distribution parameters 
     <td><code>shape</code></td>
     <td>&nbsp;</td>
     <td>\((0, \infty)\)</td>
-    <td><a href="https://alexkowa.github.io/EnvStats/reference/eweibull.html">mle, mme, mmue</a></td>
+    <td><a href="../help/eweibull">mle, mme, mmue</a></td>
   </tr>
   <tr>
     <td>&nbsp;</td>
@@ -1040,62 +1044,62 @@ For some distributions, there are functions to estimate distribution parameters 
     <td>&nbsp;</td>
   </tr>
   <tr>
-    <td><a href="https://alexkowa.github.io/EnvStats/reference/ZeroModifiedLognormal.html">Zero-Modified</a></td>
+    <td><a href="../help/ZeroModifiedLognormal">Zero-Modified</a></td>
     <td><code>meanlog</code></td>
     <td><code>0</code></td>
     <td>\((-\infty, \infty)\)</td>
-    <td><a href="https://alexkowa.github.io/EnvStats/reference/ezmlnorm.html">mvue</a></td>
+    <td><a href="../help/ezmlnorm">mvue</a></td>
   </tr>
   <tr>
-    <td><a href="https://alexkowa.github.io/EnvStats/reference/ZeroModifiedLognormal.html">Lognormal</a></td>
+    <td><a href="../help/ZeroModifiedLognormal">Lognormal</a></td>
     <td><code>sdlog</code></td>
     <td><code>1</code></td>
     <td>\((0, \infty)\)</td>
     <td>&nbsp;</td>
   </tr>
   <tr>
-    <td><a href="https://alexkowa.github.io/EnvStats/reference/ZeroModifiedLognormal.html">(Delta)</a></td>
+    <td><a href="../help/ZeroModifiedLognormal">(Delta)</a></td>
     <td><code>p.zero</code></td>
     <td><code>0.5</code></td>
     <td>\([0, 1]\)</td>
     <td>&nbsp;</td>
   </tr>
   <tr>
-    <td><a href="https://alexkowa.github.io/EnvStats/reference/ZeroModifiedLognormalAlt.html">Zero-Modified</a></td>
+    <td><a href="../help/ZeroModifiedLognormalAlt">Zero-Modified</a></td>
     <td><code>mean</code></td>
     <td><code>exp(1/2)</code></td>
     <td>\((0, \infty)\)</td>
-    <td><a href="https://alexkowa.github.io/EnvStats/reference/ezmlnorm.html">mvue</a></td>
+    <td><a href="../help/ezmlnorm">mvue</a></td>
   </tr>
   <tr>
-    <td><a href="https://alexkowa.github.io/EnvStats/reference/ZeroModifiedLognormalAlt.html">Lognormal</a></td>
+    <td><a href="../help/ZeroModifiedLognormalAlt">Lognormal</a></td>
     <td><code>cv</code></td>
     <td><code>sqrt(exp(1)-1)</code></td>
     <td>\((0, \infty)\)</td>
     <td>&nbsp;</td>
   </tr>
   <tr>
-    <td><a href="https://alexkowa.github.io/EnvStats/reference/ZeroModifiedLognormalAlt.html">(Delta)</a></td>
+    <td><a href="../help/ZeroModifiedLognormalAlt">(Delta)</a></td>
     <td><code>p.zero</code></td>
     <td><code>0.5</code></td>
     <td>\([0, 1]\)</td>
     <td>&nbsp;</td>
   </tr>
   <tr>
-    <td><a href="https://alexkowa.github.io/EnvStats/reference/ZeroModifiedLognormalAlt.html">(Alternative)</a></td>
+    <td><a href="../help/ZeroModifiedLognormalAlt">(Alternative)</a></td>
     <td>&nbsp;</td>
     <td>&nbsp;</td>
     <td>&nbsp;</td>
   </tr>
   <tr>
-    <td><a href="https://alexkowa.github.io/EnvStats/reference/ZeroModifiedNormal.html">Zero-Modified</a></td>
+    <td><a href="../help/ZeroModifiedNormal">Zero-Modified</a></td>
     <td><code>mean</code></td>
     <td><code>0</code></td>
     <td>\((-\infty, \infty)\)</td>
-    <td><a href="https://alexkowa.github.io/EnvStats/reference/ezmnorm.html">mvue</a></td>
+    <td><a href="../help/ezmnorm">mvue</a></td>
   </tr>
   <tr>
-    <td><a href="https://alexkowa.github.io/EnvStats/reference/ZeroModifiedNormal.html">Normal</a></td>
+    <td><a href="../help/ZeroModifiedNormal">Normal</a></td>
     <td><code>sd</code></td>
     <td><code>1</code></td>
     <td>\((0, \infty)\)</td>
@@ -1113,7 +1117,7 @@ For some distributions, there are functions to estimate distribution parameters 
 
 ## egamma {#egamma}
 
-Help topic: [`egamma`](https://alexkowa.github.io/EnvStats/reference/egamma.html).
+Help topic: [`egamma`](../help/egamma).
 
 If `x` contains any missing (`NA`), undefined (`NaN`) or infinite (`Inf`, `-Inf`) values, they will be removed prior to performing the estimation.
 
@@ -1299,15 +1303,15 @@ $$
 Because this method is exact only when the shape parameter $\kappa$ is known, the method used here is called the “chi-square approximation” method because the estimate of the shape parameter, $\hat{\kappa}$, is used in place of $\kappa$ in Equations (23)-(25) above. The Chi-Square Approximation method is **not** the method proposed by Grice and Bain (1980) in which the confidence interval is adjusted based on adjusting for the fact that the shape parameter $\kappa$ is estimated (see the explanation of the Chi-Square Adjusted method below). The Chi-Square Approximation method used by `egamma` and `egammaAlt` is equivalent to the “approximate gamma” method of *ProUCL* (USEPA, 2015, equation (2-34), p.62).
 
 *Chi-Square Adjusted* (`ci.method="chisq.adj"`)  
-This is the same method as the Chi-Square Approximation method discussed above, execpt that the value of $\alpha$ is adjusted to account for the fact that the shape parameter $\kappa$ is estimated rather than known. Grice and Bain (1980) performed Monte Carlo simulations to determine how to adjust $\alpha$ and the values in their Table 2 are given in the matrix [`Grice.Bain.80.mat`](https://alexkowa.github.io/EnvStats/reference/Grice.Bain.80.mat.html). This method requires that the sample size $n$ is at least 5 and the confidence level is between 75% and 99.5% (except when $n=5$, in which case the confidence level must be less than 99%). For values of the sample size $n$ and/or $\alpha$ that are not listed in the table, linear interpolation is used (when the sample size $n$ is greater than 40, linear interpolation on $1/n$ is used, as recommended by Grice and Bain (1980)). The Chi-Square Adjusted method used by `egamma` and `egammaAlt` is equivalent to the “adjusted gamma” method of *ProUCL* (USEPA, 2015, equation (2-35), p.63).
+This is the same method as the Chi-Square Approximation method discussed above, execpt that the value of $\alpha$ is adjusted to account for the fact that the shape parameter $\kappa$ is estimated rather than known. Grice and Bain (1980) performed Monte Carlo simulations to determine how to adjust $\alpha$ and the values in their Table 2 are given in the matrix [`Grice.Bain.80.mat`](../help/Grice.Bain.80.mat). This method requires that the sample size $n$ is at least 5 and the confidence level is between 75% and 99.5% (except when $n=5$, in which case the confidence level must be less than 99%). For values of the sample size $n$ and/or $\alpha$ that are not listed in the table, linear interpolation is used (when the sample size $n$ is greater than 40, linear interpolation on $1/n$ is used, as recommended by Grice and Bain (1980)). The Chi-Square Adjusted method used by `egamma` and `egammaAlt` is equivalent to the “adjusted gamma” method of *ProUCL* (USEPA, 2015, equation (2-35), p.63).
 
 ## elnormAlt {#elnormalt}
 
-Help topic: [`elnormAlt`](https://alexkowa.github.io/EnvStats/reference/elnormAlt.html).
+Help topic: [`elnormAlt`](../help/elnormAlt).
 
 If `x` contains any missing (`NA`), undefined (`NaN`) or infinite (`Inf`, `-Inf`) values, they will be removed prior to performing the estimation.
 
-Let $\underline{x}$ be a vector of $n$ observations from a [lognormal distribution](https://alexkowa.github.io/EnvStats/reference/LognormalAlt.html) with parameters `mean=`$\theta$ and `cv=`$\tau$. Let $\eta$ denote the standard deviation of this distribution, so that $\eta = \theta \tau$. Set $\underline{y} = log(\underline{x})$. Then $\underline{y}$ is a vector of observations from a normal distribution with parameters `mean=`$\mu$ and `sd=`$\sigma$. See the help file for [LognormalAlt](https://alexkowa.github.io/EnvStats/reference/LognormalAlt.html) for the relationship between $\theta, \tau, \eta, \mu$, and $\sigma$.
+Let $\underline{x}$ be a vector of $n$ observations from a [lognormal distribution](../help/LognormalAlt) with parameters `mean=`$\theta$ and `cv=`$\tau$. Let $\eta$ denote the standard deviation of this distribution, so that $\eta = \theta \tau$. Set $\underline{y} = log(\underline{x})$. Then $\underline{y}$ is a vector of observations from a normal distribution with parameters `mean=`$\mu$ and `sd=`$\sigma$. See the help file for [LognormalAlt](../help/LognormalAlt) for the relationship between $\theta, \tau, \eta, \mu$, and $\sigma$.
 
 **Estimation**  
 This section explains how each of the estimators of `mean=`$\theta$ and `cv=`$\tau$ are computed. The approach is to first compute estimates of $\theta$ and $\eta^2$ (the mean and variance of the lognormal distribution), say $\hat{\theta}$ and $\hat{\eta}^2$, then compute the estimate of the cv $\tau$ by $\hat{\tau} = \hat{\eta}/\hat{\theta}$.
@@ -1453,7 +1457,7 @@ This section explains the different methods for constructing confidence interval
 *Land's Method* (`ci.method="land"`)  
 Land (1971, 1975) derived a method for computing one-sided (lower or upper) uniformly most accurate unbiased confidence intervals for $\theta$. A two-sided confidence interval can be constructed by combining an optimal lower confidence limit with an optimal upper confidence limit. This procedure for two-sided confidence intervals is only asymptotically optimal, but for most purposes should be acceptable (Land, 1975, p.387).
 
-As shown in equation (3) in the help file for [LognormalAlt](https://alexkowa.github.io/EnvStats/reference/LognormalAlt.html), the mean $\theta$ of a lognormal random variable is related to the mean $\mu$ and standard deviation $\sigma$ of the log-transformed random variable by the following relationship:
+As shown in equation (3) in the help file for [LognormalAlt](../help/LognormalAlt), the mean $\theta$ of a lognormal random variable is related to the mean $\mu$ and standard deviation $\sigma$ of the log-transformed random variable by the following relationship:
 
 $$
 \theta = e^{\beta} \;\;\;\; (25)
@@ -1537,7 +1541,7 @@ $$
 p = \Phi(\frac{\sigma}{2}) \;\;\;\; (36)
 $$
 
-and $\Phi$ denotes the cumulative distribution function of the standard [normal distribution](https://stat.ethz.ch/R-manual/R-devel/library/stats/html/Normal.html). Parkin et al. (1990) suggested estimating $p$ by replacing $\sigma$ in equation (36) with the estimate $s$ as computed in equation (4). Once an estimate of $p$ is obtained, a nonparametric confidence interval can be constructed for $p$, assuming $p$ is equal to its estimated value (see [`eqnpar`](https://alexkowa.github.io/EnvStats/reference/eqnpar.html)).
+and $\Phi$ denotes the cumulative distribution function of the standard [normal distribution](https://stat.ethz.ch/R-manual/R-devel/library/stats/html/Normal.html). Parkin et al. (1990) suggested estimating $p$ by replacing $\sigma$ in equation (36) with the estimate $s$ as computed in equation (4). Once an estimate of $p$ is obtained, a nonparametric confidence interval can be constructed for $p$, assuming $p$ is equal to its estimated value (see [`eqnpar`](../help/eqnpar)).
 
 *Cox's Method* (`ci.method="cox"`)  
 This method was suggested by Professor D.R. Cox and is illustrated in Land (1972). El-Shaarawi (1989) adapts this method to the case of censored water quality data. Cox's idea is to construct an approximate $(1-\alpha)100\%$ confidence interval for the quantity $\beta$ defined in equation (26) above assuming the estimate of $\beta$ is approximately normally distributed, and then exponentiate the confidence limits. That is, a two-sided $(1-\alpha)100\%$ confidence interval for $\theta$ is constructed as:
@@ -1614,11 +1618,11 @@ $$
 
 ## elnorm3 {#elnorm3}
 
-Help topic: [`elnorm3`](https://alexkowa.github.io/EnvStats/reference/elnorm3.html).
+Help topic: [`elnorm3`](../help/elnorm3).
 
 If `x` contains any missing (`NA`), undefined (`NaN`) or infinite (`Inf`, `-Inf`) values, they will be removed prior to performing the estimation.
 
-Let $X$ denote a random variable from a [three-parameter lognormal distribution](https://alexkowa.github.io/EnvStats/reference/Lognormal3.html) with parameters `meanlog=`$\mu$, `sdlog=`$\sigma$, and `threshold=`$\gamma$. Let $\underline{x}$ denote a vector of $n$ observations from this distribution. Furthermore, let $x_{(i)}$ denote the $i$'th order statistic in the sample, so that $x_{(1)}$ denotes the smallest value and $x_{(n)}$ denote the largest value in $\underline{x}$. Finally, denote the sample mean and variance by:
+Let $X$ denote a random variable from a [three-parameter lognormal distribution](../help/Lognormal3) with parameters `meanlog=`$\mu$, `sdlog=`$\sigma$, and `threshold=`$\gamma$. Let $\underline{x}$ denote a vector of $n$ observations from this distribution. Furthermore, let $x_{(i)}$ denote the $i$'th order statistic in the sample, so that $x_{(1)}$ denotes the smallest value and $x_{(n)}$ denote the largest value in $\underline{x}$. Finally, denote the sample mean and variance by:
 
 $$
 \bar{x} = \frac{1}{n} \sum_{i=1}^n x_i \;\;\;\; (1)
@@ -1778,7 +1782,7 @@ $$
 log(x_{(1)} - \gamma) = \mu + \sigma E[Z_{(1,n)}] \;\;\;\; (26)
 $$
 
-where $E[Z_{(i,n)}]$ denotes the expected value of the $i$'th order statistic in a random sample of $n$ observations from a standard normal distribution. (See the help file for [`evNormOrdStats`](https://alexkowa.github.io/EnvStats/reference/evNormOrdStats.html) for information on how $E[Z_{(i,n)}]$ is computed.) Using equations (17) and (18), equation (26) can be rewritten as:
+where $E[Z_{(i,n)}]$ denotes the expected value of the $i$'th order statistic in a random sample of $n$ observations from a standard normal distribution. (See the help file for [`evNormOrdStats`](../help/evNormOrdStats) for information on how $E[Z_{(i,n)}]$ is computed.) Using equations (17) and (18), equation (26) can be rewritten as:
 
 $$
 x_{(1)} = \gamma + \beta exp\{\sqrt{log(\omega)} \, E[Z_{(i,n)}] \} \;\;\;\; (27)
@@ -1815,7 +1819,7 @@ Note that since the denominator in equation (30) is always positive (assuming th
 
 Once the value of $\hat{\gamma}$ has been determined, $\mu$ and $\sigma$ are estimated using equations (7) and (8), except the unbiased estimator of variance is used in equation (8).
 
-Royston (1992b) developed a modification of the Shaprio-Wilk goodness-of-fit test for normality based on tranforming the data using equation (6) and the zero-skewness estimator of $\gamma$ (see [`gofTest`](https://alexkowa.github.io/EnvStats/reference/gofTest.html)).
+Royston (1992b) developed a modification of the Shaprio-Wilk goodness-of-fit test for normality based on tranforming the data using equation (6) and the zero-skewness estimator of $\gamma$ (see [`gofTest`](../help/gofTest)).
 
 *Estimators Based on Royston's Index of Skewness* (`method="royston.skew"`)  
 This method of estimation is discussed by Royston (1992b), and is similar to the zero-skewness method discussed above, except a different measure of skewness is used. Royston's (1992b) index of skewness is given by:
@@ -1944,16 +1948,16 @@ Royston (1992b) actually suggested using the quantile from the standard normal d
 Note that this method of constructing confidence intervals can be used with estimators other than the lmle's.
 
 *Royston's Confidence Interval Based on Significant Skewness* (`ci.method="skewness"`)  
-Royston (1992b) suggested constructing confidence intervals for the threshold parameter $\gamma$ based on the idea behind the zero-skewness estimator (`method="zero.skew"`). A two-sided $(1-\alpha)100\%$ confidence interval for $\gamma$ is constructed by finding the two values of $\gamma$ that yield a p-value of $\alpha/2$ for the test of zero-skewness on the observations $\underline{y}$ defined in equation (6) (see [`gofTest`](https://alexkowa.github.io/EnvStats/reference/gofTest.html)). One-sided confidence intervals are constructed in a similar manner.
+Royston (1992b) suggested constructing confidence intervals for the threshold parameter $\gamma$ based on the idea behind the zero-skewness estimator (`method="zero.skew"`). A two-sided $(1-\alpha)100\%$ confidence interval for $\gamma$ is constructed by finding the two values of $\gamma$ that yield a p-value of $\alpha/2$ for the test of zero-skewness on the observations $\underline{y}$ defined in equation (6) (see [`gofTest`](../help/gofTest)). One-sided confidence intervals are constructed in a similar manner.
 
 To construct $(1-\alpha)100\%$ confidence intervals for the median (see equation (34)), the exact same procedure is used as for `ci.method="likelihood.profile"`, except that the confidence interval for $\gamma$ is based on the zero-skewness method just described instead of the likelihood profile method.
 
 ## HoskingEtAl1985 {#hoskingetal1985}
 
-Help topic: [`HoskingEtAl1985`](https://alexkowa.github.io/EnvStats/reference/HoskingEtAl1985.html).
+Help topic: [`HoskingEtAl1985`](../help/HoskingEtAl1985).
 
 **Abstract**  
-Hosking et al. (1985) use the method of probability-weighted moments, introduced by Greenwood et al. (1979), to estimate the parameters of the [generalized extreme value distribution](https://alexkowa.github.io/EnvStats/reference/GEVD.html) (GEVD) with parameters `location=`$\eta$, `scale=`$\theta$, and `shape=`$\kappa$. Hosking et al. (1985) derive the asymptotic distributions of the probability-weighted moment estimators (PWME), and compare the asymptotic and small-sample statistical properties (via computer simulation) of the PWME with maximum likelihood estimators (MLE) and Jenkinson's (1969) method of sextiles estimators (JSE). They also compare the statistical properties of quantile estimators (which are based on the distribution parameter estimators). Finally, they derive a test of the null hypothesis that the shape parameter is zero, and assess its performance via computer simulation.
+Hosking et al. (1985) use the method of probability-weighted moments, introduced by Greenwood et al. (1979), to estimate the parameters of the [generalized extreme value distribution](../help/GEVD) (GEVD) with parameters `location=`$\eta$, `scale=`$\theta$, and `shape=`$\kappa$. Hosking et al. (1985) derive the asymptotic distributions of the probability-weighted moment estimators (PWME), and compare the asymptotic and small-sample statistical properties (via computer simulation) of the PWME with maximum likelihood estimators (MLE) and Jenkinson's (1969) method of sextiles estimators (JSE). They also compare the statistical properties of quantile estimators (which are based on the distribution parameter estimators). Finally, they derive a test of the null hypothesis that the shape parameter is zero, and assess its performance via computer simulation.
 
 Hosking et al. (1985) note that when $\kappa \le -1$, the moments and probability-weighted moments of the GEVD do not exist. They also note that in practice the shape parameter usually lies between -1/2 and 1/2.
 
@@ -1971,12 +1975,12 @@ $$
 z = \frac{\hat{\kappa_{pwme}}}{\sqrt{0.5663/n}} \;\;\;\; (1)
 $$
 
-and comparing $z$ to a standard normal distribution (see [`zTestGevdShape`](https://alexkowa.github.io/EnvStats/reference/zTestGevdShape.html)). Based on computer simulations using the plotting-position PWME, they found that a sample size of $n \ge 25$ ensures an adequate normal approximation. They also found this test has power comparable to the modified likelihood-ratio test, which was found by Hosking (1984) to be the best overall test of $H_0: \kappa=0$ of the thirteen tests he considered.
+and comparing $z$ to a standard normal distribution (see [`zTestGevdShape`](../help/zTestGevdShape)). Based on computer simulations using the plotting-position PWME, they found that a sample size of $n \ge 25$ ensures an adequate normal approximation. They also found this test has power comparable to the modified likelihood-ratio test, which was found by Hosking (1984) to be the best overall test of $H_0: \kappa=0$ of the thirteen tests he considered.
 
 **More Details**
 
 *Probability-Weighted Moments and Parameters of the GEVD*  
-The definition of a [probability-weighted moment](https://alexkowa.github.io/EnvStats/reference/pwMoment.html), introduced by Greenwood et al. (1979), is as follows. Let $X$ denote a random variable with cdf $F$, and let $x(p)$ denote the $p$'th quantile of the distribution. Then the $ijk$'th probability-weighted moment is given by:
+The definition of a [probability-weighted moment](../help/pwMoment), introduced by Greenwood et al. (1979), is as follows. Let $X$ denote a random variable with cdf $F$, and let $x(p)$ denote the $p$'th quantile of the distribution. Then the $ijk$'th probability-weighted moment is given by:
 
 $$
 M(i, j, k) = E[X^i F^j (1 - F)^k] = \int^1_0 [x(F)]^i F^j (1 - F)^k \, dF \;\;\;\; (2)

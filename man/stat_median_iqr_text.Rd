@@ -136,7 +136,7 @@ For a strip plot or scatterplot produced using the package \link[ggplot2]{ggplot
   # for each level of cylinder.
   #-----------------------------------------------------------
 
-  dev.new()
+  if (interactive()) dev.new()
   p + geom_point() +
     stat_median_iqr_text() +
     labs(x = "Number of Cylinders", y = "Miles per Gallon")
@@ -150,7 +150,7 @@ For a strip plot or scatterplot produced using the package \link[ggplot2]{ggplot
   # 2) make the size of the text smaller.
   #--------------------------------------
 
-  dev.new()
+  if (interactive()) dev.new()
   p + geom_point() +
     stat_median_iqr_text(size = 2.75) +
     facet_wrap(~ am, labeller = label_both) +
@@ -163,7 +163,7 @@ For a strip plot or scatterplot produced using the package \link[ggplot2]{ggplot
   # Repeat Example 1, but specify the y-position for the text.
   #-----------------------------------------------------------
 
-  dev.new()
+  if (interactive()) dev.new()
   p + geom_point() +
     stat_median_iqr_text(y.pos = 36) +
     labs(x = "Number of Cylinders", y = "Miles per Gallon")
@@ -177,7 +177,7 @@ For a strip plot or scatterplot produced using the package \link[ggplot2]{ggplot
   # median and interquartile range in a text box.
   #----------------------------------------------
 
-  dev.new()
+  if (interactive()) dev.new()
   p + geom_point() +
     stat_median_iqr_text(text.box = TRUE) +
     labs(x = "Number of Cylinders", y = "Miles per Gallon")
@@ -189,7 +189,7 @@ For a strip plot or scatterplot produced using the package \link[ggplot2]{ggplot
   # Repeat Example 1, but use the color brown for the text.
   #--------------------------------------------------------
 
-  dev.new()
+  if (interactive()) dev.new()
   p + geom_point() +
     stat_median_iqr_text(color = "brown") +
     labs(x = "Number of Cylinders", y = "Miles per Gallon")
@@ -207,7 +207,7 @@ For a strip plot or scatterplot produced using the package \link[ggplot2]{ggplot
   group <- mat[, "group"]
   colors <- mat[match(1:max(group), group), "colour"]
 
-  dev.new()
+  if (interactive()) dev.new()
   p + geom_point() +
     stat_median_iqr_text(color = colors,
       family = "mono", fontface = "bold") +

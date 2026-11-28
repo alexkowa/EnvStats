@@ -126,7 +126,7 @@ Plot power vs. \eqn{\theta_1/\theta_2} (ratio of means) for a
   # Plot power vs. ratio of means for k=1 future observation for
   # various sample sizes using a 5% significance level and assuming cv=1.
 
-  dev.new()
+  if (interactive()) dev.new()
   plotPredIntLnormAltTestPowerCurve(n = 8, k = 1,
     range.ratio.of.means=c(1, 10), ylim = c(0, 1), main = "")
 
@@ -162,7 +162,7 @@ Plot power vs. \eqn{\theta_1/\theta_2} (ratio of means) for a
   # using a lognormal distribution and plotting power versus ratio of the
   # means assuming cv=1.
 
-  dev.new()
+  if (interactive()) dev.new()
   plotPredIntLnormAltTestPowerCurve(n = 10, k = 1, cv = 1, conf.level = 0.99,
     range.ratio.of.means = c(1, 10), ylim = c(0, 1), main="")
 

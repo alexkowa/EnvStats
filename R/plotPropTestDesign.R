@@ -260,7 +260,7 @@
 #'   # Compute the power based on the normal approximation to the binomial
 #'   # distribution.
 #'
-#'   dev.new()
+#'   if (interactive()) dev.new()
 #'   plotPropTestDesign()
 #'
 #'   #----------
@@ -269,7 +269,7 @@
 #'   # difference for various levels of power, using a 5% significance level and a
 #'   # two-sided alternative:
 #'
-#'   dev.new()
+#'   if (interactive()) dev.new()
 #'   plotPropTestDesign(x.var = "delta", y.var = "n", sample.type = "two",
 #'     ylim = c(0, 2800), main="")
 #'
@@ -300,7 +300,7 @@
 #'   # using a 5% Type I error level.
 #'
 #'
-#'   dev.new()
+#'   if (interactive()) dev.new()
 #'   plotPropTestDesign(x.var = "n", y.var = "power",
 #'     sample.type = "one", alternative = "greater",
 #'     p0.or.p2 = 0.1, p.or.p1 = 0.25,
