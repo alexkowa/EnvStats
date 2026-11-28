@@ -302,7 +302,7 @@ Open the vignette locally with
 <span class="r-in"><span></span></span>
 <span class="r-in"><span>  <span class="co"># Plot the data</span></span></span>
 <span class="r-in"><span>  <span class="co">#--------------</span></span></span>
-<span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/r/grDevices/dev.html" class="external-link">dev.new</a></span><span class="op">(</span><span class="op">)</span></span></span>
+<span class="r-in"><span>  <span class="kw">if</span> <span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/interactive.html" class="external-link">interactive</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span> <span class="fu"><a href="https://rdrr.io/r/grDevices/dev.html" class="external-link">dev.new</a></span><span class="op">(</span><span class="op">)</span></span></span>
 <span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/r/base/with.html" class="external-link">with</a></span><span class="op">(</span><span class="va">EPA.09.Ex.17.6.sulfate.df</span>,</span></span>
 <span class="r-in"><span>    <span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">Sampling.Date</span>, <span class="va">Sulfate.ppm</span>, pch <span class="op">=</span> <span class="fl">15</span>, ylim <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">400</span>, <span class="fl">900</span><span class="op">)</span>,</span></span>
 <span class="r-in"><span>    xlab <span class="op">=</span> <span class="st">"Sampling Date"</span>, ylab <span class="op">=</span> <span class="st">"Sulfate Conc (ppm)"</span>,</span></span>
@@ -311,6 +311,7 @@ Open the vignette locally with
 <span class="r-in"><span>  <span class="va">Sulfate.fit</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/lm.html" class="external-link">lm</a></span><span class="op">(</span><span class="va">Sulfate.ppm</span> <span class="op">~</span> <span class="va">Sampling.Date</span>,</span></span>
 <span class="r-in"><span>    data <span class="op">=</span> <span class="va">EPA.09.Ex.17.6.sulfate.df</span><span class="op">)</span></span></span>
 <span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/r/graphics/abline.html" class="external-link">abline</a></span><span class="op">(</span><span class="va">Sulfate.fit</span>, lty <span class="op">=</span> <span class="fl">2</span><span class="op">)</span></span></span>
+<span class="r-plt img"><img src="kendallTrendTest-1.png" alt="" width="700" height="433"></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span>  <span class="co"># Perform the Kendall test for trend</span></span></span>

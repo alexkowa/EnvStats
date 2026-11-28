@@ -357,8 +357,9 @@ Currently, there is a default method and a method for objects of class &quot;lm&
 <span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/r/base/Random.html" class="external-link">set.seed</a></span><span class="op">(</span><span class="fl">250</span><span class="op">)</span></span></span>
 <span class="r-in"><span>  <span class="va">x</span> <span class="op">&lt;-</span> <span class="fu"><a href="LognormalAlt.html">rlnormAlt</a></span><span class="op">(</span><span class="fl">30</span>, mean <span class="op">=</span> <span class="fl">10</span>, cv <span class="op">=</span> <span class="fl">2</span><span class="op">)</span></span></span>
 <span class="r-in"><span></span></span>
-<span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/r/grDevices/dev.html" class="external-link">dev.new</a></span><span class="op">(</span><span class="op">)</span></span></span>
+<span class="r-in"><span>  <span class="kw">if</span> <span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/interactive.html" class="external-link">interactive</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span> <span class="fu"><a href="https://rdrr.io/r/grDevices/dev.html" class="external-link">dev.new</a></span><span class="op">(</span><span class="op">)</span></span></span>
 <span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/r/graphics/hist.html" class="external-link">hist</a></span><span class="op">(</span><span class="va">x</span>, col <span class="op">=</span> <span class="st">"cyan"</span><span class="op">)</span></span></span>
+<span class="r-plt img"><img src="boxcox-1.png" alt="" width="700" height="433"></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span>  <span class="co"># Using the PPCC objective:</span></span></span>
 <span class="r-in"><span>  <span class="co">#--------------------------</span></span></span>
@@ -522,12 +523,22 @@ Currently, there is a default method and a method for objects of class &quot;lm&
 <span class="r-in"><span>  <span class="co"># Plot the results based on the PPCC objective</span></span></span>
 <span class="r-in"><span>  <span class="co">#---------------------------------------------</span></span></span>
 <span class="r-in"><span>  <span class="va">boxcox.list</span> <span class="op">&lt;-</span> <span class="fu">boxcox</span><span class="op">(</span><span class="va">x</span><span class="op">)</span></span></span>
-<span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/r/grDevices/dev.html" class="external-link">dev.new</a></span><span class="op">(</span><span class="op">)</span></span></span>
+<span class="r-in"><span>  <span class="kw">if</span> <span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/interactive.html" class="external-link">interactive</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span> <span class="fu"><a href="https://rdrr.io/r/grDevices/dev.html" class="external-link">dev.new</a></span><span class="op">(</span><span class="op">)</span></span></span>
 <span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">boxcox.list</span><span class="op">)</span></span></span>
+<span class="r-plt img"><img src="boxcox-2.png" alt="" width="700" height="433"></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span>  <span class="co">#Look at QQ-Plots for the candidate values of lambda</span></span></span>
 <span class="r-in"><span>  <span class="co">#---------------------------------------------------</span></span></span>
-<span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">boxcox.list</span>, plot.type <span class="op">=</span> <span class="st">"Q-Q Plots"</span>, same.window <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span></span>
+<span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">boxcox.list</span>, plot.type <span class="op">=</span> <span class="st">"Q-Q Plots"</span>, same.window <span class="op">=</span> <span class="op">!</span><span class="fu"><a href="https://rdrr.io/r/base/interactive.html" class="external-link">interactive</a></span><span class="op">(</span><span class="op">)</span>, ask <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span></span>
+<span class="r-plt img"><img src="boxcox-3.png" alt="" width="700" height="433"></span>
+<span class="r-plt img"><img src="boxcox-4.png" alt="" width="700" height="433"></span>
+<span class="r-plt img"><img src="boxcox-5.png" alt="" width="700" height="433"></span>
+<span class="r-plt img"><img src="boxcox-6.png" alt="" width="700" height="433"></span>
+<span class="r-plt img"><img src="boxcox-7.png" alt="" width="700" height="433"></span>
+<span class="r-plt img"><img src="boxcox-8.png" alt="" width="700" height="433"></span>
+<span class="r-plt img"><img src="boxcox-9.png" alt="" width="700" height="433"></span>
+<span class="r-plt img"><img src="boxcox-10.png" alt="" width="700" height="433"></span>
+<span class="r-plt img"><img src="boxcox-11.png" alt="" width="700" height="433"></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span>  <span class="co">#==========</span></span></span>
 <span class="r-in"><span></span></span>
@@ -580,16 +591,18 @@ Currently, there is a default method and a method for objects of class &quot;lm&
 <span class="r-in"><span></span></span>
 <span class="r-in"><span>  <span class="co"># Plot Ozone vs. Temperature, with fitted line</span></span></span>
 <span class="r-in"><span>  <span class="co">#---------------------------------------------</span></span></span>
-<span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/r/grDevices/dev.html" class="external-link">dev.new</a></span><span class="op">(</span><span class="op">)</span></span></span>
+<span class="r-in"><span>  <span class="kw">if</span> <span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/interactive.html" class="external-link">interactive</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span> <span class="fu"><a href="https://rdrr.io/r/grDevices/dev.html" class="external-link">dev.new</a></span><span class="op">(</span><span class="op">)</span></span></span>
 <span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/r/base/with.html" class="external-link">with</a></span><span class="op">(</span><span class="va">Environmental.df</span>,</span></span>
 <span class="r-in"><span>    <span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">temperature</span>, <span class="va">ozone</span>, xlab <span class="op">=</span> <span class="st">"Temperature (degrees F)"</span>,</span></span>
 <span class="r-in"><span>      ylab <span class="op">=</span> <span class="st">"Ozone (ppb)"</span>, main <span class="op">=</span> <span class="st">"Ozone vs. Temperature"</span><span class="op">)</span><span class="op">)</span></span></span>
 <span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/r/graphics/abline.html" class="external-link">abline</a></span><span class="op">(</span><span class="va">ozone.fit</span><span class="op">)</span></span></span>
+<span class="r-plt img"><img src="boxcox-12.png" alt="" width="700" height="433"></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span>  <span class="co"># Look at the Q-Q Plot for the residuals</span></span></span>
 <span class="r-in"><span>  <span class="co">#---------------------------------------</span></span></span>
-<span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/r/grDevices/dev.html" class="external-link">dev.new</a></span><span class="op">(</span><span class="op">)</span></span></span>
+<span class="r-in"><span>  <span class="kw">if</span> <span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/interactive.html" class="external-link">interactive</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span> <span class="fu"><a href="https://rdrr.io/r/grDevices/dev.html" class="external-link">dev.new</a></span><span class="op">(</span><span class="op">)</span></span></span>
 <span class="r-in"><span>  <span class="fu"><a href="qqPlot.html">qqPlot</a></span><span class="op">(</span><span class="va">ozone.fit</span><span class="op">$</span><span class="va">residuals</span>, add.line <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></span>
+<span class="r-plt img"><img src="boxcox-13.png" alt="" width="700" height="433"></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span>  <span class="co"># Look at Box-Cox transformations of Ozone</span></span></span>
 <span class="r-in"><span>  <span class="co">#-----------------------------------------</span></span></span>
@@ -637,12 +650,22 @@ Currently, there is a default method and a method for objects of class &quot;lm&
 <span class="r-in"><span></span></span>
 <span class="r-in"><span>  <span class="co"># Plot PPCC vs. lambda based on Q-Q plots of residuals</span></span></span>
 <span class="r-in"><span>  <span class="co">#-----------------------------------------------------</span></span></span>
-<span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/r/grDevices/dev.html" class="external-link">dev.new</a></span><span class="op">(</span><span class="op">)</span></span></span>
+<span class="r-in"><span>  <span class="kw">if</span> <span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/interactive.html" class="external-link">interactive</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span> <span class="fu"><a href="https://rdrr.io/r/grDevices/dev.html" class="external-link">dev.new</a></span><span class="op">(</span><span class="op">)</span></span></span>
 <span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">boxcox.list</span><span class="op">)</span></span></span>
+<span class="r-plt img"><img src="boxcox-14.png" alt="" width="700" height="433"></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span>  <span class="co"># Look at Q-Q plots of residuals for the various transformation</span></span></span>
 <span class="r-in"><span>  <span class="co">#--------------------------------------------------------------</span></span></span>
-<span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">boxcox.list</span>, plot.type <span class="op">=</span> <span class="st">"Q-Q Plots"</span>, same.window <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span></span>
+<span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">boxcox.list</span>, plot.type <span class="op">=</span> <span class="st">"Q-Q Plots"</span>, same.window <span class="op">=</span> <span class="op">!</span><span class="fu"><a href="https://rdrr.io/r/base/interactive.html" class="external-link">interactive</a></span><span class="op">(</span><span class="op">)</span>, ask <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span></span>
+<span class="r-plt img"><img src="boxcox-15.png" alt="" width="700" height="433"></span>
+<span class="r-plt img"><img src="boxcox-16.png" alt="" width="700" height="433"></span>
+<span class="r-plt img"><img src="boxcox-17.png" alt="" width="700" height="433"></span>
+<span class="r-plt img"><img src="boxcox-18.png" alt="" width="700" height="433"></span>
+<span class="r-plt img"><img src="boxcox-19.png" alt="" width="700" height="433"></span>
+<span class="r-plt img"><img src="boxcox-20.png" alt="" width="700" height="433"></span>
+<span class="r-plt img"><img src="boxcox-21.png" alt="" width="700" height="433"></span>
+<span class="r-plt img"><img src="boxcox-22.png" alt="" width="700" height="433"></span>
+<span class="r-plt img"><img src="boxcox-23.png" alt="" width="700" height="433"></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span>  <span class="co"># Compute the "optimal" transformation</span></span></span>
 <span class="r-in"><span>  <span class="co">#-------------------------------------</span></span></span>

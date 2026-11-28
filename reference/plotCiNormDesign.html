@@ -283,15 +283,16 @@
 <span class="r-in"><span>  <span class="co"># for a one-sample confidence interval for the mean, assuming</span></span></span>
 <span class="r-in"><span>  <span class="co"># an estimated standard deviation of 1 and a confidence level of 95%.</span></span></span>
 <span class="r-in"><span></span></span>
-<span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/r/grDevices/dev.html" class="external-link">dev.new</a></span><span class="op">(</span><span class="op">)</span></span></span>
+<span class="r-in"><span>  <span class="kw">if</span> <span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/interactive.html" class="external-link">interactive</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span> <span class="fu"><a href="https://rdrr.io/r/grDevices/dev.html" class="external-link">dev.new</a></span><span class="op">(</span><span class="op">)</span></span></span>
 <span class="r-in"><span>  <span class="fu">plotCiNormDesign</span><span class="op">(</span><span class="op">)</span></span></span>
+<span class="r-plt img"><img src="plotCiNormDesign-1.png" alt="" width="700" height="433"></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span>  <span class="co">#--------------------------------------------------------------------</span></span></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span>  <span class="co"># Plot sample size vs. the estimated standard deviation for</span></span></span>
 <span class="r-in"><span>  <span class="co"># various levels of confidence, using a half-width of 0.5.</span></span></span>
 <span class="r-in"><span></span></span>
-<span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/r/grDevices/dev.html" class="external-link">dev.new</a></span><span class="op">(</span><span class="op">)</span></span></span>
+<span class="r-in"><span>  <span class="kw">if</span> <span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/interactive.html" class="external-link">interactive</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span> <span class="fu"><a href="https://rdrr.io/r/grDevices/dev.html" class="external-link">dev.new</a></span><span class="op">(</span><span class="op">)</span></span></span>
 <span class="r-in"><span>  <span class="fu">plotCiNormDesign</span><span class="op">(</span>x.var <span class="op">=</span> <span class="st">"sigma.hat"</span>, y.var <span class="op">=</span> <span class="st">"n"</span>, main <span class="op">=</span> <span class="st">""</span><span class="op">)</span></span></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span>  <span class="fu">plotCiNormDesign</span><span class="op">(</span>x.var <span class="op">=</span> <span class="st">"sigma.hat"</span>, y.var <span class="op">=</span> <span class="st">"n"</span>, conf.level <span class="op">=</span> <span class="fl">0.9</span>,</span></span>
@@ -306,6 +307,7 @@
 <span class="r-in"><span>    font <span class="op">=</span> <span class="fl">2</span>, cex <span class="op">=</span> <span class="fl">1.25</span>, line <span class="op">=</span> <span class="fl">2.75</span><span class="op">)</span></span></span>
 <span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/r/graphics/mtext.html" class="external-link">mtext</a></span><span class="op">(</span><span class="st">"with Half-Width=0.5 and Various Confidence Levels"</span>, font <span class="op">=</span> <span class="fl">2</span>,</span></span>
 <span class="r-in"><span>    cex <span class="op">=</span> <span class="fl">1.25</span>, line <span class="op">=</span> <span class="fl">1.25</span><span class="op">)</span></span></span>
+<span class="r-plt img"><img src="plotCiNormDesign-2.png" alt="" width="700" height="433"></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span>  <span class="co">#--------------------------------------------------------------------</span></span></span>
 <span class="r-in"><span></span></span>
@@ -351,9 +353,10 @@
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] 4.93491</span>
 <span class="r-in"><span>  <span class="co">#[1] 4.93491</span></span></span>
 <span class="r-in"><span></span></span>
-<span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/r/grDevices/dev.html" class="external-link">dev.new</a></span><span class="op">(</span><span class="op">)</span></span></span>
+<span class="r-in"><span>  <span class="kw">if</span> <span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/interactive.html" class="external-link">interactive</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span> <span class="fu"><a href="https://rdrr.io/r/grDevices/dev.html" class="external-link">dev.new</a></span><span class="op">(</span><span class="op">)</span></span></span>
 <span class="r-in"><span>  <span class="fu">plotCiNormDesign</span><span class="op">(</span>sigma.hat <span class="op">=</span> <span class="va">sigma.hat</span>, digits <span class="op">=</span> <span class="fl">2</span>,</span></span>
 <span class="r-in"><span>    range.x.var <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">2</span>, <span class="fl">25</span><span class="op">)</span><span class="op">)</span></span></span>
+<span class="r-plt img"><img src="plotCiNormDesign-3.png" alt="" width="700" height="433"></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span>  <span class="co">#==========</span></span></span>
 <span class="r-in"><span></span></span>

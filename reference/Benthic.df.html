@@ -161,17 +161,19 @@
 <span class="r-in"><span></span></span>
 <span class="r-in"><span>  <span class="co"># Show station locations</span></span></span>
 <span class="r-in"><span>  <span class="co">#-----------------------</span></span></span>
-<span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/r/grDevices/dev.html" class="external-link">dev.new</a></span><span class="op">(</span><span class="op">)</span></span></span>
+<span class="r-in"><span>  <span class="kw">if</span> <span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/interactive.html" class="external-link">interactive</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span> <span class="fu"><a href="https://rdrr.io/r/grDevices/dev.html" class="external-link">dev.new</a></span><span class="op">(</span><span class="op">)</span></span></span>
 <span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">Longitude</span>, <span class="va">Latitude</span>,</span></span>
 <span class="r-in"><span>      xlab <span class="op">=</span> <span class="st">"-Longitude (Degrees West)"</span>,</span></span>
 <span class="r-in"><span>      ylab <span class="op">=</span> <span class="st">"Latitude"</span>,</span></span>
 <span class="r-in"><span>      main <span class="op">=</span> <span class="st">"Sampling Station Locations"</span><span class="op">)</span></span></span>
+<span class="r-plt img"><img src="Benthic.df-1.png" alt="" width="700" height="433"></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span>  <span class="co"># Scatterplot matrix of benthic index, salinity, and silt</span></span></span>
 <span class="r-in"><span>  <span class="co">#--------------------------------------------------------</span></span></span>
-<span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/r/grDevices/dev.html" class="external-link">dev.new</a></span><span class="op">(</span><span class="op">)</span></span></span>
+<span class="r-in"><span>  <span class="kw">if</span> <span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/interactive.html" class="external-link">interactive</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span> <span class="fu"><a href="https://rdrr.io/r/grDevices/dev.html" class="external-link">dev.new</a></span><span class="op">(</span><span class="op">)</span></span></span>
 <span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/r/graphics/pairs.html" class="external-link">pairs</a></span><span class="op">(</span><span class="op">~</span> <span class="va">Index</span> <span class="op">+</span> <span class="va">Salinity</span> <span class="op">+</span> <span class="va">Silt</span>, data <span class="op">=</span> <span class="va">Benthic.df</span><span class="op">)</span></span></span>
+<span class="r-plt img"><img src="Benthic.df-2.png" alt="" width="700" height="433"></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span>  <span class="co"># Contour and perspective plots based on loess fit</span></span></span>
@@ -197,15 +199,16 @@
 <span class="r-in"><span>      pol.y <span class="op">=</span> <span class="va">lat</span><span class="op">[</span><span class="va">index.chull</span><span class="op">]</span><span class="op">)</span></span></span>
 <span class="r-in"><span>  <span class="va">predict.fit</span><span class="op">[</span><span class="va">inside</span> <span class="op">==</span> <span class="fl">0</span><span class="op">]</span> <span class="op">&lt;-</span> <span class="cn">NA</span></span></span>
 <span class="r-in"><span></span></span>
-<span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/r/grDevices/dev.html" class="external-link">dev.new</a></span><span class="op">(</span><span class="op">)</span></span></span>
+<span class="r-in"><span>  <span class="kw">if</span> <span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/interactive.html" class="external-link">interactive</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span> <span class="fu"><a href="https://rdrr.io/r/grDevices/dev.html" class="external-link">dev.new</a></span><span class="op">(</span><span class="op">)</span></span></span>
 <span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/r/graphics/contour.html" class="external-link">contour</a></span><span class="op">(</span><span class="va">Longitude</span>, <span class="va">Latitude</span>, <span class="va">predict.fit</span>,</span></span>
 <span class="r-in"><span>      levels<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/seq.html" class="external-link">seq</a></span><span class="op">(</span><span class="fl">1</span>, <span class="fl">5</span>, by<span class="op">=</span><span class="fl">0.5</span><span class="op">)</span>, labcex<span class="op">=</span><span class="fl">0.75</span>,</span></span>
 <span class="r-in"><span>      xlab<span class="op">=</span><span class="st">"-Longitude (degrees West)"</span>,</span></span>
 <span class="r-in"><span>      ylab<span class="op">=</span><span class="st">"Latitude (degrees North)"</span><span class="op">)</span></span></span>
 <span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/r/graphics/title.html" class="external-link">title</a></span><span class="op">(</span>main<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/paste.html" class="external-link">paste</a></span><span class="op">(</span><span class="st">"Contour Plot of Benthic Index"</span>,</span></span>
 <span class="r-in"><span>      <span class="st">"Based on Loess Smooth"</span>, sep<span class="op">=</span><span class="st">"\n"</span><span class="op">)</span><span class="op">)</span></span></span>
+<span class="r-plt img"><img src="Benthic.df-3.png" alt="" width="700" height="433"></span>
 <span class="r-in"><span></span></span>
-<span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/r/grDevices/dev.html" class="external-link">dev.new</a></span><span class="op">(</span><span class="op">)</span></span></span>
+<span class="r-in"><span>  <span class="kw">if</span> <span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/interactive.html" class="external-link">interactive</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span> <span class="fu"><a href="https://rdrr.io/r/grDevices/dev.html" class="external-link">dev.new</a></span><span class="op">(</span><span class="op">)</span></span></span>
 <span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/r/graphics/persp.html" class="external-link">persp</a></span><span class="op">(</span><span class="va">Longitude</span>, <span class="va">Latitude</span>, <span class="va">predict.fit</span>,</span></span>
 <span class="r-in"><span>      xlim <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="op">-</span><span class="fl">77.3</span>, <span class="op">-</span><span class="fl">75.9</span><span class="op">)</span>, ylim <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">38.1</span>, <span class="fl">39.5</span><span class="op">)</span>, zlim <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">0</span>, <span class="fl">6</span><span class="op">)</span>,</span></span>
 <span class="r-in"><span>      theta <span class="op">=</span> <span class="op">-</span><span class="fl">45</span>, phi <span class="op">=</span> <span class="fl">30</span>, d <span class="op">=</span> <span class="fl">0.5</span>,</span></span>
@@ -215,6 +218,7 @@
 <span class="r-wrn co"><span class="r-pr">#&gt;</span> <span class="warning">Warning: </span>surface extends beyond the box</span>
 <span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/r/graphics/title.html" class="external-link">title</a></span><span class="op">(</span>main<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/paste.html" class="external-link">paste</a></span><span class="op">(</span><span class="st">"Surface Plot of Benthic Index"</span>,</span></span>
 <span class="r-in"><span>      <span class="st">"Based on Loess Smooth"</span>, sep<span class="op">=</span><span class="st">"\n"</span><span class="op">)</span><span class="op">)</span></span></span>
+<span class="r-plt img"><img src="Benthic.df-4.png" alt="" width="700" height="433"></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span>  <span class="kw"><a href="https://rdrr.io/r/base/detach.html" class="external-link">detach</a></span><span class="op">(</span><span class="st">"Benthic.df"</span><span class="op">)</span></span></span>
 <span class="r-in"><span></span></span>

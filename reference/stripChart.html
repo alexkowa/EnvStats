@@ -608,49 +608,54 @@ the list also includes these components:</p>
 <span class="r-in"><span>  <span class="co"># TcCB concentrations between the areas and use a nonparametric</span></span></span>
 <span class="r-in"><span>  <span class="co"># test to test for a difference between areas.</span></span></span>
 <span class="r-in"><span></span></span>
-<span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/r/grDevices/dev.html" class="external-link">dev.new</a></span><span class="op">(</span><span class="op">)</span></span></span>
+<span class="r-in"><span>  <span class="kw">if</span> <span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/interactive.html" class="external-link">interactive</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span> <span class="fu"><a href="https://rdrr.io/r/grDevices/dev.html" class="external-link">dev.new</a></span><span class="op">(</span><span class="op">)</span></span></span>
 <span class="r-in"><span>  <span class="fu">stripChart</span><span class="op">(</span><span class="va">TcCB</span> <span class="op">~</span> <span class="va">Area</span>, data <span class="op">=</span> <span class="va">EPA.94b.tccb.df</span>, col <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"red"</span>, <span class="st">"blue"</span><span class="op">)</span>,</span></span>
 <span class="r-in"><span>    p.value <span class="op">=</span> <span class="cn">TRUE</span>, ci.and.test <span class="op">=</span> <span class="st">"nonparametric"</span>,</span></span>
 <span class="r-in"><span>    ylab <span class="op">=</span> <span class="st">"TcCB (ppb)"</span><span class="op">)</span></span></span>
+<span class="r-plt img"><img src="stripChart-1.png" alt="" width="700" height="433"></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span>  <span class="co">#----------</span></span></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span>  <span class="co"># Now log-transform the TcCB data and use a parametric test</span></span></span>
 <span class="r-in"><span>  <span class="co"># to compare the areas.</span></span></span>
 <span class="r-in"><span></span></span>
-<span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/r/grDevices/dev.html" class="external-link">dev.new</a></span><span class="op">(</span><span class="op">)</span></span></span>
+<span class="r-in"><span>  <span class="kw">if</span> <span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/interactive.html" class="external-link">interactive</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span> <span class="fu"><a href="https://rdrr.io/r/grDevices/dev.html" class="external-link">dev.new</a></span><span class="op">(</span><span class="op">)</span></span></span>
 <span class="r-in"><span>  <span class="fu">stripChart</span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/Log.html" class="external-link">log10</a></span><span class="op">(</span><span class="va">TcCB</span><span class="op">)</span> <span class="op">~</span> <span class="va">Area</span>, data <span class="op">=</span> <span class="va">EPA.94b.tccb.df</span>, col <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"red"</span>, <span class="st">"blue"</span><span class="op">)</span>,</span></span>
 <span class="r-in"><span>    p.value <span class="op">=</span> <span class="cn">TRUE</span>, ylab <span class="op">=</span> <span class="st">"log10 [ TcCB (ppb) ]"</span><span class="op">)</span></span></span>
+<span class="r-plt img"><img src="stripChart-2.png" alt="" width="700" height="433"></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span>  <span class="co">#----------</span></span></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span>  <span class="co"># Repeat the above procedure, but also plot the confidence interval</span></span></span>
 <span class="r-in"><span>  <span class="co"># for the difference between the means.</span></span></span>
 <span class="r-in"><span></span></span>
-<span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/r/grDevices/dev.html" class="external-link">dev.new</a></span><span class="op">(</span><span class="op">)</span></span></span>
+<span class="r-in"><span>  <span class="kw">if</span> <span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/interactive.html" class="external-link">interactive</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span> <span class="fu"><a href="https://rdrr.io/r/grDevices/dev.html" class="external-link">dev.new</a></span><span class="op">(</span><span class="op">)</span></span></span>
 <span class="r-in"><span>  <span class="fu">stripChart</span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/Log.html" class="external-link">log10</a></span><span class="op">(</span><span class="va">TcCB</span><span class="op">)</span> <span class="op">~</span> <span class="va">Area</span>, data <span class="op">=</span> <span class="va">EPA.94b.tccb.df</span>, col <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"red"</span>, <span class="st">"blue"</span><span class="op">)</span>,</span></span>
 <span class="r-in"><span>    p.value <span class="op">=</span> <span class="cn">TRUE</span>, plot.diff <span class="op">=</span> <span class="cn">TRUE</span>, diff.col <span class="op">=</span> <span class="st">"black"</span>,</span></span>
 <span class="r-in"><span>    ylab <span class="op">=</span> <span class="st">"log10 [ TcCB (ppb) ]"</span><span class="op">)</span></span></span>
+<span class="r-plt img"><img src="stripChart-3.png" alt="" width="700" height="433"></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span>  <span class="co">#----------</span></span></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span>  <span class="co"># Repeat the above procedure, but allow the variances to differ.</span></span></span>
 <span class="r-in"><span></span></span>
-<span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/r/grDevices/dev.html" class="external-link">dev.new</a></span><span class="op">(</span><span class="op">)</span></span></span>
+<span class="r-in"><span>  <span class="kw">if</span> <span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/interactive.html" class="external-link">interactive</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span> <span class="fu"><a href="https://rdrr.io/r/grDevices/dev.html" class="external-link">dev.new</a></span><span class="op">(</span><span class="op">)</span></span></span>
 <span class="r-in"><span>  <span class="fu">stripChart</span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/Log.html" class="external-link">log10</a></span><span class="op">(</span><span class="va">TcCB</span><span class="op">)</span> <span class="op">~</span> <span class="va">Area</span>, data <span class="op">=</span> <span class="va">EPA.94b.tccb.df</span>, col <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"red"</span>, <span class="st">"blue"</span><span class="op">)</span>,</span></span>
 <span class="r-in"><span>    p.value <span class="op">=</span> <span class="cn">TRUE</span>, plot.diff <span class="op">=</span> <span class="cn">TRUE</span>, diff.col <span class="op">=</span> <span class="st">"black"</span>,</span></span>
 <span class="r-in"><span>    ylab <span class="op">=</span> <span class="st">"log10 [ TcCB (ppb) ]"</span>, test.arg.list <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>var.equal <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span><span class="op">)</span></span></span>
+<span class="r-plt img"><img src="stripChart-4.png" alt="" width="700" height="433"></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span>  <span class="co">#----------</span></span></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span>  <span class="co"># Repeat the above procedure, but jitter the points instead of</span></span></span>
 <span class="r-in"><span>  <span class="co"># stacking them.</span></span></span>
 <span class="r-in"><span></span></span>
-<span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/r/grDevices/dev.html" class="external-link">dev.new</a></span><span class="op">(</span><span class="op">)</span></span></span>
+<span class="r-in"><span>  <span class="kw">if</span> <span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/interactive.html" class="external-link">interactive</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span> <span class="fu"><a href="https://rdrr.io/r/grDevices/dev.html" class="external-link">dev.new</a></span><span class="op">(</span><span class="op">)</span></span></span>
 <span class="r-in"><span>  <span class="fu">stripChart</span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/Log.html" class="external-link">log10</a></span><span class="op">(</span><span class="va">TcCB</span><span class="op">)</span> <span class="op">~</span> <span class="va">Area</span>, data <span class="op">=</span> <span class="va">EPA.94b.tccb.df</span>, col <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"red"</span>, <span class="st">"blue"</span><span class="op">)</span>,</span></span>
 <span class="r-in"><span>    p.value <span class="op">=</span> <span class="cn">TRUE</span>, plot.diff <span class="op">=</span> <span class="cn">TRUE</span>, diff.col <span class="op">=</span> <span class="st">"black"</span>,</span></span>
 <span class="r-in"><span>    ylab <span class="op">=</span> <span class="st">"log10 [ TcCB (ppb) ]"</span>, test.arg.list <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>var.equal <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span>,</span></span>
 <span class="r-in"><span>    method <span class="op">=</span> <span class="st">"jitter"</span>, ci.offset <span class="op">=</span> <span class="fl">4</span><span class="op">)</span></span></span>
+<span class="r-plt img"><img src="stripChart-5.png" alt="" width="700" height="433"></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span>  <span class="co">#----------</span></span></span>
 <span class="r-in"><span></span></span>
@@ -703,7 +708,7 @@ the list also includes these components:</p>
 <span class="r-in"><span>  <span class="co">#19        3.060    9  After</span></span></span>
 <span class="r-in"><span>  <span class="co">#20        1.900   10  After</span></span></span>
 <span class="r-in"><span></span></span>
-<span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/r/grDevices/dev.html" class="external-link">dev.new</a></span><span class="op">(</span><span class="op">)</span></span></span>
+<span class="r-in"><span>  <span class="kw">if</span> <span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/interactive.html" class="external-link">interactive</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span> <span class="fu"><a href="https://rdrr.io/r/grDevices/dev.html" class="external-link">dev.new</a></span><span class="op">(</span><span class="op">)</span></span></span>
 <span class="r-in"><span>  <span class="fu">stripChart</span><span class="op">(</span><span class="va">TCE.mg.per.L</span> <span class="op">~</span> <span class="va">Period</span>, data <span class="op">=</span> <span class="va">ACE.13.TCE.df</span>,</span></span>
 <span class="r-in"><span>    col <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"brown"</span>, <span class="st">"green"</span><span class="op">)</span>, p.value <span class="op">=</span> <span class="cn">TRUE</span>, paired <span class="op">=</span> <span class="cn">TRUE</span>,</span></span>
 <span class="r-in"><span>    ylab <span class="op">=</span> <span class="st">"TCE (mg/L)"</span><span class="op">)</span></span></span>
@@ -713,7 +718,7 @@ the list also includes these components:</p>
 <span class="r-in"><span>  <span class="co"># Repeat the above procedure, but also plot the confidence interval</span></span></span>
 <span class="r-in"><span>  <span class="co"># for the mean of the paired differences.</span></span></span>
 <span class="r-in"><span></span></span>
-<span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/r/grDevices/dev.html" class="external-link">dev.new</a></span><span class="op">(</span><span class="op">)</span></span></span>
+<span class="r-in"><span>  <span class="kw">if</span> <span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/interactive.html" class="external-link">interactive</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span> <span class="fu"><a href="https://rdrr.io/r/grDevices/dev.html" class="external-link">dev.new</a></span><span class="op">(</span><span class="op">)</span></span></span>
 <span class="r-in"><span>  <span class="fu">stripChart</span><span class="op">(</span><span class="va">TCE.mg.per.L</span> <span class="op">~</span> <span class="va">Period</span>, data <span class="op">=</span> <span class="va">ACE.13.TCE.df</span>,</span></span>
 <span class="r-in"><span>    col <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"brown"</span>, <span class="st">"green"</span><span class="op">)</span>, p.value <span class="op">=</span> <span class="cn">TRUE</span>, paired <span class="op">=</span> <span class="cn">TRUE</span>,</span></span>
 <span class="r-in"><span>    ylab <span class="op">=</span> <span class="st">"TCE (mg/L)"</span>, plot.diff <span class="op">=</span> <span class="cn">TRUE</span>, diff.col <span class="op">=</span> <span class="st">"blue"</span><span class="op">)</span></span></span>
@@ -724,7 +729,7 @@ the list also includes these components:</p>
 <span class="r-in"><span>  <span class="co"># Repeat the last two examples, but use a one-sided alternative since</span></span></span>
 <span class="r-in"><span>  <span class="co"># remediation should decrease TCE concentration.</span></span></span>
 <span class="r-in"><span></span></span>
-<span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/r/grDevices/dev.html" class="external-link">dev.new</a></span><span class="op">(</span><span class="op">)</span></span></span>
+<span class="r-in"><span>  <span class="kw">if</span> <span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/interactive.html" class="external-link">interactive</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span> <span class="fu"><a href="https://rdrr.io/r/grDevices/dev.html" class="external-link">dev.new</a></span><span class="op">(</span><span class="op">)</span></span></span>
 <span class="r-in"><span>  <span class="fu">stripChart</span><span class="op">(</span><span class="va">TCE.mg.per.L</span> <span class="op">~</span> <span class="va">Period</span>, data <span class="op">=</span> <span class="va">ACE.13.TCE.df</span>,</span></span>
 <span class="r-in"><span>    col <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"brown"</span>, <span class="st">"green"</span><span class="op">)</span>, p.value <span class="op">=</span> <span class="cn">TRUE</span>, paired <span class="op">=</span> <span class="cn">TRUE</span>,</span></span>
 <span class="r-in"><span>    ylab <span class="op">=</span> <span class="st">"TCE (mg/L)"</span>, alternative <span class="op">=</span> <span class="st">"less"</span>,</span></span>
@@ -744,7 +749,7 @@ the list also includes these components:</p>
 <span class="r-in"><span>  <span class="co">#       so that the upper bound of the CI corresponds to the upper</span></span></span>
 <span class="r-in"><span>  <span class="co">#       bound of a 95% one-sided CI.</span></span></span>
 <span class="r-in"><span></span></span>
-<span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/r/grDevices/dev.html" class="external-link">dev.new</a></span><span class="op">(</span><span class="op">)</span></span></span>
+<span class="r-in"><span>  <span class="kw">if</span> <span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/interactive.html" class="external-link">interactive</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span> <span class="fu"><a href="https://rdrr.io/r/grDevices/dev.html" class="external-link">dev.new</a></span><span class="op">(</span><span class="op">)</span></span></span>
 <span class="r-in"><span>  <span class="fu">stripChart</span><span class="op">(</span><span class="va">TCE.mg.per.L</span> <span class="op">~</span> <span class="va">Period</span>, data <span class="op">=</span> <span class="va">ACE.13.TCE.df</span>,</span></span>
 <span class="r-in"><span>    col <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"brown"</span>, <span class="st">"green"</span><span class="op">)</span>, p.value <span class="op">=</span> <span class="cn">TRUE</span>, paired <span class="op">=</span> <span class="cn">TRUE</span>,</span></span>
 <span class="r-in"><span>    ylab <span class="op">=</span> <span class="st">"TCE (mg/L)"</span>, group.difference.digits <span class="op">=</span> <span class="fl">2</span>,</span></span>
@@ -800,7 +805,7 @@ the list also includes these components:</p>
 <span class="r-in"><span>  <span class="co">#23           53     11    Below</span></span></span>
 <span class="r-in"><span>  <span class="co">#24          124     12    Below</span></span></span>
 <span class="r-in"><span></span></span>
-<span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/r/grDevices/dev.html" class="external-link">dev.new</a></span><span class="op">(</span><span class="op">)</span></span></span>
+<span class="r-in"><span>  <span class="kw">if</span> <span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/interactive.html" class="external-link">interactive</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span> <span class="fu"><a href="https://rdrr.io/r/grDevices/dev.html" class="external-link">dev.new</a></span><span class="op">(</span><span class="op">)</span></span></span>
 <span class="r-in"><span>  <span class="fu">stripChart</span><span class="op">(</span><span class="va">Mayfly.Count</span> <span class="op">~</span> <span class="va">Location</span>, data <span class="op">=</span> <span class="va">Helsel.Hirsch.02.Mayfly.df</span>,</span></span>
 <span class="r-in"><span>    col <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"green"</span>, <span class="st">"brown"</span><span class="op">)</span>, p.value <span class="op">=</span> <span class="cn">TRUE</span>, paired <span class="op">=</span> <span class="cn">TRUE</span>,</span></span>
 <span class="r-in"><span>    ci.and.test <span class="op">=</span> <span class="st">"nonparametric"</span>, ylab <span class="op">=</span> <span class="st">"Number of Mayfly Nymphs"</span><span class="op">)</span></span></span>
@@ -810,7 +815,7 @@ the list also includes these components:</p>
 <span class="r-in"><span>  <span class="co"># Repeat the above procedure, but also plot the confidence interval</span></span></span>
 <span class="r-in"><span>  <span class="co"># for the pseudomedian of the paired differences.</span></span></span>
 <span class="r-in"><span></span></span>
-<span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/r/grDevices/dev.html" class="external-link">dev.new</a></span><span class="op">(</span><span class="op">)</span></span></span>
+<span class="r-in"><span>  <span class="kw">if</span> <span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/interactive.html" class="external-link">interactive</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span> <span class="fu"><a href="https://rdrr.io/r/grDevices/dev.html" class="external-link">dev.new</a></span><span class="op">(</span><span class="op">)</span></span></span>
 <span class="r-in"><span>  <span class="fu">stripChart</span><span class="op">(</span><span class="va">Mayfly.Count</span> <span class="op">~</span> <span class="va">Location</span>, data <span class="op">=</span> <span class="va">Helsel.Hirsch.02.Mayfly.df</span>,</span></span>
 <span class="r-in"><span>    col <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"green"</span>, <span class="st">"brown"</span><span class="op">)</span>, p.value <span class="op">=</span> <span class="cn">TRUE</span>, paired <span class="op">=</span> <span class="cn">TRUE</span>,</span></span>
 <span class="r-in"><span>    ci.and.test <span class="op">=</span> <span class="st">"nonparametric"</span>, ylab <span class="op">=</span> <span class="st">"Number of Mayfly Nymphs"</span>,</span></span>

@@ -270,7 +270,7 @@
 <span class="r-in"><span></span></span>
 <span class="r-in"><span>  <span class="va">pointwise.list</span> <span class="op">&lt;-</span> <span class="fu"><a href="pointwise.html">pointwise</a></span><span class="op">(</span><span class="va">pred.list</span>, coverage <span class="op">=</span> <span class="fl">0.99</span>, individual <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></span>
 <span class="r-in"><span></span></span>
-<span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/r/grDevices/dev.html" class="external-link">dev.new</a></span><span class="op">(</span><span class="op">)</span></span></span>
+<span class="r-in"><span>  <span class="kw">if</span> <span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/interactive.html" class="external-link">interactive</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span> <span class="fu"><a href="https://rdrr.io/r/grDevices/dev.html" class="external-link">dev.new</a></span><span class="op">(</span><span class="op">)</span></span></span>
 <span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">Spike</span>, <span class="va">Cadmium</span>, ylim <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/Extremes.html" class="external-link">min</a></span><span class="op">(</span><span class="va">pointwise.list</span><span class="op">$</span><span class="va">lower</span><span class="op">)</span>,</span></span>
 <span class="r-in"><span>    <span class="fu"><a href="https://rdrr.io/r/base/Extremes.html" class="external-link">max</a></span><span class="op">(</span><span class="va">pointwise.list</span><span class="op">$</span><span class="va">upper</span><span class="op">)</span><span class="op">)</span>, xlab <span class="op">=</span> <span class="st">"True Concentration (ng/L)"</span>,</span></span>
 <span class="r-in"><span>    ylab <span class="op">=</span> <span class="st">"Observed Concentration (ng/L)"</span><span class="op">)</span></span></span>
@@ -283,6 +283,7 @@
 <span class="r-in"><span></span></span>
 <span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/r/graphics/title.html" class="external-link">title</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/paste.html" class="external-link">paste</a></span><span class="op">(</span><span class="st">"Calibration Line and 99% Prediction Limits"</span>,</span></span>
 <span class="r-in"><span>    <span class="st">"for US EPA Cadmium 111 Data"</span>, sep <span class="op">=</span> <span class="st">"\n"</span><span class="op">)</span><span class="op">)</span></span></span>
+<span class="r-plt img"><img src="calibrate-1.png" alt="" width="700" height="433"></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span>  <span class="co">#----------</span></span></span>
 <span class="r-in"><span></span></span>

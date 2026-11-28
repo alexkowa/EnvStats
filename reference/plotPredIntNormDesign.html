@@ -263,15 +263,16 @@
 <span class="r-in"><span>  <span class="co"># prediction interval for k=1 future observation, assuming an estimated</span></span></span>
 <span class="r-in"><span>  <span class="co"># standard deviation of 1 and a confidence level of 95%:</span></span></span>
 <span class="r-in"><span></span></span>
-<span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/r/grDevices/dev.html" class="external-link">dev.new</a></span><span class="op">(</span><span class="op">)</span></span></span>
+<span class="r-in"><span>  <span class="kw">if</span> <span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/interactive.html" class="external-link">interactive</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span> <span class="fu"><a href="https://rdrr.io/r/grDevices/dev.html" class="external-link">dev.new</a></span><span class="op">(</span><span class="op">)</span></span></span>
 <span class="r-in"><span>  <span class="fu">plotPredIntNormDesign</span><span class="op">(</span><span class="op">)</span></span></span>
+<span class="r-plt img"><img src="plotPredIntNormDesign-1.png" alt="" width="700" height="433"></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span>  <span class="co">#==========</span></span></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span>  <span class="co"># Plot sample size vs. the estimated standard deviation for various levels</span></span></span>
 <span class="r-in"><span>  <span class="co"># of confidence, using a half-width of 4:</span></span></span>
 <span class="r-in"><span></span></span>
-<span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/r/grDevices/dev.html" class="external-link">dev.new</a></span><span class="op">(</span><span class="op">)</span></span></span>
+<span class="r-in"><span>  <span class="kw">if</span> <span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/interactive.html" class="external-link">interactive</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span> <span class="fu"><a href="https://rdrr.io/r/grDevices/dev.html" class="external-link">dev.new</a></span><span class="op">(</span><span class="op">)</span></span></span>
 <span class="r-in"><span>  <span class="fu">plotPredIntNormDesign</span><span class="op">(</span>x.var <span class="op">=</span> <span class="st">"sigma.hat"</span>, y.var <span class="op">=</span> <span class="st">"n"</span>, range.x.var <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">1</span>, <span class="fl">2</span><span class="op">)</span>,</span></span>
 <span class="r-in"><span>    ylim <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">0</span>, <span class="fl">90</span><span class="op">)</span>, main <span class="op">=</span> <span class="st">""</span><span class="op">)</span></span></span>
 <span class="r-in"><span></span></span>
@@ -287,6 +288,7 @@
 <span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/r/graphics/title.html" class="external-link">title</a></span><span class="op">(</span>main <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/paste.html" class="external-link">paste</a></span><span class="op">(</span><span class="st">"Sample Size vs. Sigma Hat for Prediction Interval for"</span>,</span></span>
 <span class="r-in"><span>    <span class="st">"k=1 Future Obs, Half-Width=4, and Various Confidence Levels"</span>,</span></span>
 <span class="r-in"><span>    sep <span class="op">=</span> <span class="st">"\n"</span><span class="op">)</span><span class="op">)</span></span></span>
+<span class="r-plt img"><img src="plotPredIntNormDesign-2.png" alt="" width="700" height="433"></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span>  <span class="co">#==========</span></span></span>
 <span class="r-in"><span></span></span>
@@ -341,9 +343,10 @@
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] 17.10119</span>
 <span class="r-in"><span>  <span class="co">#[1] 17.10119</span></span></span>
 <span class="r-in"><span></span></span>
-<span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/r/grDevices/dev.html" class="external-link">dev.new</a></span><span class="op">(</span><span class="op">)</span></span></span>
+<span class="r-in"><span>  <span class="kw">if</span> <span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/interactive.html" class="external-link">interactive</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span> <span class="fu"><a href="https://rdrr.io/r/grDevices/dev.html" class="external-link">dev.new</a></span><span class="op">(</span><span class="op">)</span></span></span>
 <span class="r-in"><span>  <span class="fu">plotPredIntNormDesign</span><span class="op">(</span>x.var <span class="op">=</span> <span class="st">"n"</span>, y.var <span class="op">=</span> <span class="st">"half.width"</span>, range.x.var <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">4</span>, <span class="fl">50</span><span class="op">)</span>,</span></span>
 <span class="r-in"><span>    k <span class="op">=</span> <span class="fl">4</span>, sigma.hat <span class="op">=</span> <span class="va">sigma.hat</span>, conf.level <span class="op">=</span> <span class="fl">0.9</span><span class="op">)</span></span></span>
+<span class="r-plt img"><img src="plotPredIntNormDesign-3.png" alt="" width="700" height="433"></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span>  <span class="co">#==========</span></span></span>
 <span class="r-in"><span></span></span>

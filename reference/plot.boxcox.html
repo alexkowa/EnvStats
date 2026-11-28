@@ -260,18 +260,37 @@ The function plot.boxcox is automatically called by plot
 <span class="r-in"><span>  <span class="co"># Plot the results based on the PPCC objective</span></span></span>
 <span class="r-in"><span>  <span class="co">#---------------------------------------------</span></span></span>
 <span class="r-in"><span>  <span class="va">boxcox.list</span> <span class="op">&lt;-</span> <span class="fu"><a href="boxcox.html">boxcox</a></span><span class="op">(</span><span class="va">x</span><span class="op">)</span></span></span>
-<span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/r/grDevices/dev.html" class="external-link">dev.new</a></span><span class="op">(</span><span class="op">)</span></span></span>
+<span class="r-in"><span>  <span class="kw">if</span> <span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/interactive.html" class="external-link">interactive</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span> <span class="fu"><a href="https://rdrr.io/r/grDevices/dev.html" class="external-link">dev.new</a></span><span class="op">(</span><span class="op">)</span></span></span>
 <span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">boxcox.list</span><span class="op">)</span></span></span>
+<span class="r-plt img"><img src="plot.boxcox-1.png" alt="" width="700" height="433"></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span>  <span class="co"># Look at Q-Q Plots for the candidate values of lambda</span></span></span>
 <span class="r-in"><span>  <span class="co">#-----------------------------------------------------</span></span></span>
-<span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">boxcox.list</span>, plot.type <span class="op">=</span> <span class="st">"Q-Q Plots"</span>, same.window <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span></span>
+<span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">boxcox.list</span>, plot.type <span class="op">=</span> <span class="st">"Q-Q Plots"</span>, same.window <span class="op">=</span> <span class="op">!</span><span class="fu"><a href="https://rdrr.io/r/base/interactive.html" class="external-link">interactive</a></span><span class="op">(</span><span class="op">)</span>, ask <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span></span>
+<span class="r-plt img"><img src="plot.boxcox-2.png" alt="" width="700" height="433"></span>
+<span class="r-plt img"><img src="plot.boxcox-3.png" alt="" width="700" height="433"></span>
+<span class="r-plt img"><img src="plot.boxcox-4.png" alt="" width="700" height="433"></span>
+<span class="r-plt img"><img src="plot.boxcox-5.png" alt="" width="700" height="433"></span>
+<span class="r-plt img"><img src="plot.boxcox-6.png" alt="" width="700" height="433"></span>
+<span class="r-plt img"><img src="plot.boxcox-7.png" alt="" width="700" height="433"></span>
+<span class="r-plt img"><img src="plot.boxcox-8.png" alt="" width="700" height="433"></span>
+<span class="r-plt img"><img src="plot.boxcox-9.png" alt="" width="700" height="433"></span>
+<span class="r-plt img"><img src="plot.boxcox-10.png" alt="" width="700" height="433"></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span>  <span class="co"># Look at Tukey Mean-Difference Q-Q Plots</span></span></span>
 <span class="r-in"><span>  <span class="co"># for the candidate values of lambda</span></span></span>
 <span class="r-in"><span>  <span class="co">#----------------------------------------</span></span></span>
-<span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">boxcox.list</span>, plot.type <span class="op">=</span> <span class="st">"Tukey M-D Q-Q Plots"</span>, same.window <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span></span>
+<span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">boxcox.list</span>, plot.type <span class="op">=</span> <span class="st">"Tukey M-D Q-Q Plots"</span>, same.window <span class="op">=</span> <span class="op">!</span><span class="fu"><a href="https://rdrr.io/r/base/interactive.html" class="external-link">interactive</a></span><span class="op">(</span><span class="op">)</span>, ask <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span></span>
+<span class="r-plt img"><img src="plot.boxcox-11.png" alt="" width="700" height="433"></span>
+<span class="r-plt img"><img src="plot.boxcox-12.png" alt="" width="700" height="433"></span>
+<span class="r-plt img"><img src="plot.boxcox-13.png" alt="" width="700" height="433"></span>
+<span class="r-plt img"><img src="plot.boxcox-14.png" alt="" width="700" height="433"></span>
+<span class="r-plt img"><img src="plot.boxcox-15.png" alt="" width="700" height="433"></span>
+<span class="r-plt img"><img src="plot.boxcox-16.png" alt="" width="700" height="433"></span>
+<span class="r-plt img"><img src="plot.boxcox-17.png" alt="" width="700" height="433"></span>
+<span class="r-plt img"><img src="plot.boxcox-18.png" alt="" width="700" height="433"></span>
+<span class="r-plt img"><img src="plot.boxcox-19.png" alt="" width="700" height="433"></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span>  <span class="co">#==========</span></span></span>
 <span class="r-in"><span></span></span>

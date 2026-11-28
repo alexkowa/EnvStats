@@ -639,10 +639,11 @@
 <span class="r-in"><span>  <span class="co"># First create a lognormal Q-Q plot</span></span></span>
 <span class="r-in"><span>  <span class="co">#----------------------------------</span></span></span>
 <span class="r-in"><span></span></span>
-<span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/r/grDevices/dev.html" class="external-link">dev.new</a></span><span class="op">(</span><span class="op">)</span></span></span>
+<span class="r-in"><span>  <span class="kw">if</span> <span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/interactive.html" class="external-link">interactive</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span> <span class="fu"><a href="https://rdrr.io/r/grDevices/dev.html" class="external-link">dev.new</a></span><span class="op">(</span><span class="op">)</span></span></span>
 <span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/r/base/with.html" class="external-link">with</a></span><span class="op">(</span><span class="va">Helsel.Cohn.88.silver.df</span>,</span></span>
 <span class="r-in"><span>    <span class="fu"><a href="qqPlotCensored.html">qqPlotCensored</a></span><span class="op">(</span><span class="va">Ag</span>, <span class="va">Censored</span>, distribution <span class="op">=</span> <span class="st">"lnorm"</span>,</span></span>
 <span class="r-in"><span>      points.col <span class="op">=</span> <span class="st">"blue"</span>, add.line <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span><span class="op">)</span></span></span>
+<span class="r-plt img"><img src="distChooseCensored-1.png" alt="" width="700" height="433"></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span>  <span class="co">#----------</span></span></span>
 <span class="r-in"><span></span></span>

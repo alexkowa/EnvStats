@@ -330,8 +330,9 @@
 <span class="r-in"><span>  <span class="co"># Compute the power based on the normal approximation to the binomial</span></span></span>
 <span class="r-in"><span>  <span class="co"># distribution.</span></span></span>
 <span class="r-in"><span></span></span>
-<span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/r/grDevices/dev.html" class="external-link">dev.new</a></span><span class="op">(</span><span class="op">)</span></span></span>
+<span class="r-in"><span>  <span class="kw">if</span> <span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/interactive.html" class="external-link">interactive</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span> <span class="fu"><a href="https://rdrr.io/r/grDevices/dev.html" class="external-link">dev.new</a></span><span class="op">(</span><span class="op">)</span></span></span>
 <span class="r-in"><span>  <span class="fu">plotPropTestDesign</span><span class="op">(</span><span class="op">)</span></span></span>
+<span class="r-plt img"><img src="plotPropTestDesign-1.png" alt="" width="700" height="433"></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span>  <span class="co">#----------</span></span></span>
 <span class="r-in"><span></span></span>
@@ -339,7 +340,7 @@
 <span class="r-in"><span>  <span class="co"># difference for various levels of power, using a 5% significance level and a</span></span></span>
 <span class="r-in"><span>  <span class="co"># two-sided alternative:</span></span></span>
 <span class="r-in"><span></span></span>
-<span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/r/grDevices/dev.html" class="external-link">dev.new</a></span><span class="op">(</span><span class="op">)</span></span></span>
+<span class="r-in"><span>  <span class="kw">if</span> <span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/interactive.html" class="external-link">interactive</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span> <span class="fu"><a href="https://rdrr.io/r/grDevices/dev.html" class="external-link">dev.new</a></span><span class="op">(</span><span class="op">)</span></span></span>
 <span class="r-in"><span>  <span class="fu">plotPropTestDesign</span><span class="op">(</span>x.var <span class="op">=</span> <span class="st">"delta"</span>, y.var <span class="op">=</span> <span class="st">"n"</span>, sample.type <span class="op">=</span> <span class="st">"two"</span>,</span></span>
 <span class="r-in"><span>    ylim <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">0</span>, <span class="fl">2800</span><span class="op">)</span>, main<span class="op">=</span><span class="st">""</span><span class="op">)</span></span></span>
 <span class="r-in"><span></span></span>
@@ -354,6 +355,7 @@
 <span class="r-in"><span></span></span>
 <span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/r/graphics/title.html" class="external-link">title</a></span><span class="op">(</span>main <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/paste.html" class="external-link">paste</a></span><span class="op">(</span><span class="st">"Sample Size vs. Minimal Detectable Difference for Two-Sample"</span>,</span></span>
 <span class="r-in"><span>    <span class="st">"Proportion Test with p2=0.5, Alpha=0.05 and Various Powers"</span>, sep <span class="op">=</span> <span class="st">"\n"</span><span class="op">)</span><span class="op">)</span></span></span>
+<span class="r-plt img"><img src="plotPropTestDesign-2.png" alt="" width="700" height="433"></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span>  <span class="co">#==========</span></span></span>
 <span class="r-in"><span></span></span>
@@ -370,7 +372,7 @@
 <span class="r-in"><span>  <span class="co"># using a 5% Type I error level.</span></span></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span></span></span>
-<span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/r/grDevices/dev.html" class="external-link">dev.new</a></span><span class="op">(</span><span class="op">)</span></span></span>
+<span class="r-in"><span>  <span class="kw">if</span> <span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/interactive.html" class="external-link">interactive</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span> <span class="fu"><a href="https://rdrr.io/r/grDevices/dev.html" class="external-link">dev.new</a></span><span class="op">(</span><span class="op">)</span></span></span>
 <span class="r-in"><span>  <span class="fu">plotPropTestDesign</span><span class="op">(</span>x.var <span class="op">=</span> <span class="st">"n"</span>, y.var <span class="op">=</span> <span class="st">"power"</span>,</span></span>
 <span class="r-in"><span>    sample.type <span class="op">=</span> <span class="st">"one"</span>, alternative <span class="op">=</span> <span class="st">"greater"</span>,</span></span>
 <span class="r-in"><span>    p0.or.p2 <span class="op">=</span> <span class="fl">0.1</span>, p.or.p1 <span class="op">=</span> <span class="fl">0.25</span>,</span></span>
@@ -392,6 +394,7 @@
 <span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/r/graphics/title.html" class="external-link">title</a></span><span class="op">(</span>main <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/paste.html" class="external-link">paste</a></span><span class="op">(</span><span class="st">"Power vs. Sample Size for One-Sided One-Sample Proportion"</span>,</span></span>
 <span class="r-in"><span>    <span class="st">"Test with p0=0.1, Alpha=0.05 and Various Detectable Differences"</span>,</span></span>
 <span class="r-in"><span>    sep <span class="op">=</span> <span class="st">"\n"</span><span class="op">)</span><span class="op">)</span></span></span>
+<span class="r-plt img"><img src="plotPropTestDesign-3.png" alt="" width="700" height="433"></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span>  <span class="co">#==========</span></span></span>
 <span class="r-in"><span></span></span>
